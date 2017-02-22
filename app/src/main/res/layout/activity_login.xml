@@ -1,13 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:funkitext="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hifunki.www.funki.ui.activity.LoginActivity">
 
-</RelativeLayout>
+    <com.hifunki.www.funki.ui.widget.TitleBar
+        android:id="@+id/tbLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/iv_bg"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="43dp"
+        android:src="@drawable/iv_logo"
+        android:text="login" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.hifunki.www.funki.ui.widget.FunKiTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            funkitext:line_color="@color/colorAccent"
+            funkitext:line_height="2dp"
+            funkitext:line_location="bottom"
+            funkitext:show_line="false" />
+
+        <com.hifunki.www.funki.ui.widget.FunKiTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            funkitext:line_color="@color/colorAccent"
+            funkitext:line_height="2dp"
+            funkitext:line_location="bottom"
+            funkitext:show_line="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <com.hifunki.www.funki.ui.widget.ViewpagerNotScroll
+            android:layout_width="match_parent"
+            android:layout_height="200dp"></com.hifunki.www.funki.ui.widget.ViewpagerNotScroll>
+    </LinearLayout>
+</LinearLayout>

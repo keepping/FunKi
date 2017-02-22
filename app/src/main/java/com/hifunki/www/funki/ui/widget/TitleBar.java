@@ -5,7 +5,9 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -73,6 +75,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     private void initView(Context context) {
         mLeftText = new TextView(context);
+
         mCenterLayout = new LinearLayout(context);
         mRightLayout = new LinearLayout(context);
         mDividerView = new View(context);
@@ -247,14 +250,40 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         final Object tag = view.getTag();
+        Log.e("test", "title bar onClick: ");
         if (tag instanceof Action) {
             final Action action = (Action) tag;
+            Log.e("test", "title bar onClick: in");
             action.performAction(view);
+
         }
+    }
+
+    private OnItemSelectListeners listener;
+
+    public void setOnItemSelectListeners(OnItemSelectListeners listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemSelectListeners {
+        void onItemSelect();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (listener != null) {
+                    listener.onItemSelect();
+                }
+                return true;
+        }
+        return super.onTouchEvent(event);
     }
 
     /**
      * Adds a list of {@link Action}s.
+     *
      * @param actionList the actions to add
      */
     public void addActions(ActionList actionList) {
@@ -266,6 +295,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     /**
      * Adds a new {@link Action}.
+     *
      * @param action the action to add
      */
     public View addAction(Action action) {
@@ -275,8 +305,9 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     /**
      * Adds a new {@link Action} at the specified index.
+     *
      * @param action the action to add
-     * @param index the position at which to add the action
+     * @param index  the position at which to add the action
      */
     public View addAction(Action action, int index) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
@@ -295,6 +326,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     /**
      * Remove a action from the action bar.
+     *
      * @param index position of action to remove
      */
     public void removeActionAt(int index) {
@@ -303,6 +335,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     /**
      * Remove a action from the action bar.
+     *
      * @param action The action to remove
      */
     public void removeAction(Action action) {
@@ -320,6 +353,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     /**
      * Returns the number of actions currently registered with the action bar.
+     *
      * @return action count
      */
     public int getActionCount() {
@@ -328,6 +362,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     /**
      * Inflates a {@link View} with the given {@link Action}.
+     *
      * @param action the action to inflate
      * @return a view
      */
@@ -408,6 +443,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     /**
      * 计算状态栏高度高度
      * getStatusBarHeight
+     *
      * @return
      */
     public static int getStatusBarHeight() {
@@ -437,7 +473,9 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
      */
     public interface Action {
         String getText();
+
         int getDrawable();
+
         void performAction(View view);
     }
 
@@ -479,10 +517,20 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     /**
      * 获取中间的TextView
+     *
      * @return
      */
-    public TextView getmCenterText(){
+    public TextView getmCenterText() {
         return mCenterText;
+    }
+
+    /**
+     * 获取左边的TextView
+     *
+     * @return
+     */
+    public TextView getLeftText() {
+        return mLeftText;
     }
 
 }

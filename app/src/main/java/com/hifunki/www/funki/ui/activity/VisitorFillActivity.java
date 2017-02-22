@@ -1,8 +1,8 @@
 package com.hifunki.www.funki.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,10 +14,10 @@ import com.hifunki.www.funki.util.StatusBarUtil;
 import com.hifunki.www.funki.util.TextUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class VisitorFillActivity extends BaseActivity {
+
+public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItemSelectListeners {
 
 
     @BindView(R.id.tbVisitor)
@@ -61,10 +61,20 @@ public class VisitorFillActivity extends BaseActivity {
 
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
+        tbVisitor.setOnItemSelectListeners(this);
+
 //        initState();
         tbVisitor.setLeftImageResource(R.drawable.iv_back);
         tbVisitor.setTitle(getResources().getString(R.string.visitor_title));
         TextView textView = tbVisitor.getmCenterText();
+
+        //点击返回按键
+        tbVisitor.getLeftText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("test", "onClick: tv");
+            }
+        });
 
         textView.setTextColor(getResources().getColor(R.color.titleText));
 
@@ -76,7 +86,6 @@ public class VisitorFillActivity extends BaseActivity {
         //设置沉浸式
 //        tbVisitor.setImmersive(true);
 
-
     }
 
     @Override
@@ -85,16 +94,12 @@ public class VisitorFillActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
-    @OnClick({R.id.tvBoy, R.id.tvGirl, R.id.tvThirdSex, R.id.tvLoveSameSex, R.id.tvLoveDifferentSex, R.id.tvNotCareSex, R.id.tvLoveBothSex, R.id.tvSecretSex, R.id.etInputAge, R.id.tvVisitorConfirm, R.id.llSkip, R.id.activity_visitor_fill})
+    @OnClick({R.id.tbVisitor, R.id.tvBoy, R.id.tvGirl, R.id.tvThirdSex, R.id.tvLoveSameSex, R.id.tvLoveDifferentSex, R.id.tvNotCareSex, R.id.tvLoveBothSex, R.id.tvSecretSex, R.id.etInputAge, R.id.tvVisitorConfirm, R.id.llSkip, R.id.activity_visitor_fill})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tbVisitor:
+
+                break;
             case R.id.tvBoy:
                 changeTvStyle(tvBoy, tvGirl, tvThirdSex);
                 sex = 1;
@@ -128,6 +133,7 @@ public class VisitorFillActivity extends BaseActivity {
                 sexOrientation = 6;
                 break;
             case R.id.etInputAge:
+
                 break;
             case R.id.tvVisitorConfirm:
                 if (sex == 0 && sexOrientation == 0) {
@@ -135,12 +141,18 @@ public class VisitorFillActivity extends BaseActivity {
                 }
                 Intent intent = new Intent();
                 intent.setClass(VisitorFillActivity.this, LoginActivity.class);
+
+                //获取年龄
+                String age = etInputAge.getText().toString();
+
+
                 startActivity(intent);
                 break;
             case R.id.llSkip:
 
+                startActivity(new Intent(VisitorFillActivity.this, LoginActivity.class));
                 break;
-            case R.id.activity_visitor_fill:
+            case R.id.activity_visitor_fill://根布局
                 break;
         }
     }
@@ -161,5 +173,11 @@ public class VisitorFillActivity extends BaseActivity {
             tv.setBackground(getResources().getDrawable(R.drawable.visitor_tv_bg));
         }
 
+    }
+
+
+    @Override
+    public void onItemSelect() {
+//        Log.e("test", "onItemSelect: click");
     }
 }

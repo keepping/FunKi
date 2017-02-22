@@ -2,4 +2,15 @@
 <resources>
     <attr name="fontPath" format="string" />
 
+    <declare-styleable name="JollyTextView">
+        <attr name="line_color" format="color"></attr>
+        <attr name="line_location">
+            <enum name="top" value="0"></enum>
+            <enum name="bottom" value="1"></enum>
+            <enum name="both" value="2"></enum>
+        </attr>
+        <attr name="line_height" format="dimension"></attr>
+        <attr name="show_line" format="boolean"></attr>
+    </declare-styleable>
+
 </resources>
