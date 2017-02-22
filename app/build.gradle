@@ -26,4 +26,21 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
+
+    //ButterKnife
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+    //自定义字体
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+
+//    https://github.com/zilianliuxue --->androidStudy
+//    https://github.com/zilianliuxue/AndroidStudy/blob/master/Android%20%E5%AE%9E%E6%88%98%E5%BC%80%E5%8F%91/%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F.md
+//    https://github.com/jgilfelt/SystemBarTint
+    //沉浸式
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }

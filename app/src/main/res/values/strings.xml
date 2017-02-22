@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FunKi</string>
+    <string name="visitor_title">必填信息</string>
 </resources>
