@@ -15,4 +15,6 @@
     <string name="age">年龄</string>
     <string name="skip">跳过</string>
     <string name="confirm">确定</string>
+    <string name="login_phone">行动电话</string>
+    <string name="login_mail">邮箱</string>
 </resources>

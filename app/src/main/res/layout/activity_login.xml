@@ -43,6 +43,7 @@
         <com.hifunki.www.funki.ui.widget.FunKiTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/login_phone"
             funkitext:line_color="@color/colorAccent"
             funkitext:line_height="2dp"
             funkitext:line_location="bottom"
@@ -51,6 +52,7 @@
         <com.hifunki.www.funki.ui.widget.FunKiTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/login_mail"
             funkitext:line_color="@color/colorAccent"
             funkitext:line_height="2dp"
             funkitext:line_location="bottom"
