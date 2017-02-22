@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">FunKi</string>
     <string name="visitor_title">必填信息</string>
+    <string name="visitor_sex">性别</string>
+    <string name="boy">男</string>
+    <string name="girl">女</string>
+    <string name="third_sex">第三性</string>
 </resources>

@@ -4,20 +4,98 @@
     android:id="@+id/activity_visitor_fill"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColor"
     android:orientation="vertical"
-
-    tools:context="com.hifunki.www.funki.ui.activity.VisitorFillActivity">
+    tools:context="com.hifunki.www.funki.ui.activity.VisitorFillActivity"
+    tools:ignore="MissingPrefix">
 
     <com.hifunki.www.funki.ui.widget.TitleBar
-        android:clipToPadding="true"
-        android:fitsSystemWindows="true"
         android:id="@+id/tbVisitor"
-        android:background="@drawable/iv_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.hifunki.www.funki.ui.widget.TitleBar>
+        android:layout_height="wrap_content"
+        android:background="@drawable/iv_bg"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"></com.hifunki.www.funki.ui.widget.TitleBar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_visitor_height">
+
+        <TextView
+            fontPath="fonts/Fan_Normal.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/activity_visitor_tv_height"
+            android:layout_marginLeft="@dimen/activity_vistitor_tv_left"
+            android:gravity="center"
+            android:text="@string/visitor_sex"
+            android:textColor="@color/vistorTvTitle"
+            android:textSize="@dimen/activity_vistitor_tv_size"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_visitor_ll_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                fontPath="fonts/Fan_Big.ttf"
+                android:layout_width="@dimen/activity_visitor_tv_one"
+                android:layout_height="@dimen/activity_visitor_tv_height"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/activity_visitor_tv_margin"
+                android:background="@drawable/visitor_tv_bg"
+                android:gravity="center"
+                android:text="@string/boy"
+                android:textColor="@color/titleText"
+                android:textSize="@dimen/activity_vistitor_tv_size" />
+
+            <TextView
+                fontPath="fonts/Fan_Big.ttf"
+                android:layout_width="@dimen/activity_visitor_tv_one"
+                android:layout_height="@dimen/activity_visitor_tv_height"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/activity_visitor_tv_margin"
+                android:layout_marginRight="@dimen/activity_visitor_tv_margin"
+                android:background="@drawable/visitor_tv_bg"
+                android:gravity="center"
+                android:text="@string/girl"
+                android:textColor="@color/titleText"
+                android:textSize="@dimen/activity_vistitor_tv_size" />
+
+            <TextView
+                fontPath="fonts/Fan_Big.ttf"
+                android:layout_width="@dimen/activity_visitor_tv_three"
+                android:layout_height="@dimen/activity_visitor_tv_height"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/activity_visitor_tv_margin"
+                android:background="@drawable/visitor_tv_bg"
+                android:gravity="center"
+                android:text="@string/third_sex"
+                android:textColor="@color/titleText"
+                android:textSize="@dimen/activity_vistitor_tv_size" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <TextView
+        android:id="@+id/tvBig"
+        fontPath="fonts/Fan_Big.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+
+    <TextView
+        android:id="@+id/tvNormal"
+        fontPath="fonts/Fan_Normal.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+
 </LinearLayout>
