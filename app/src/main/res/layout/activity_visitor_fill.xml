@@ -15,87 +15,192 @@
         android:layout_height="wrap_content"
         android:background="@drawable/iv_bg"
         android:clipToPadding="true"
-        android:fitsSystemWindows="true"></com.hifunki.www.funki.ui.widget.TitleBar>
+        android:fitsSystemWindows="true"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_visitor_height">
 
         <TextView
+            style="@style/ActivityVisitorTvTitle"
             fontPath="fonts/Fan_Normal.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/activity_visitor_tv_height"
-            android:layout_marginLeft="@dimen/activity_vistitor_tv_left"
-            android:gravity="center"
-            android:text="@string/visitor_sex"
-            android:textColor="@color/vistorTvTitle"
-            android:textSize="@dimen/activity_vistitor_tv_size"
-            android:textStyle="bold" />
+            android:text="@string/visitor_sex" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/activity_visitor_ll_margin"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tvBoy"
+                style="@style/ActivityVisitorTvValue"
                 fontPath="fonts/Fan_Big.ttf"
-                android:layout_width="@dimen/activity_visitor_tv_one"
-                android:layout_height="@dimen/activity_visitor_tv_height"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/activity_visitor_tv_margin"
-                android:background="@drawable/visitor_tv_bg"
-                android:gravity="center"
-                android:text="@string/boy"
-                android:textColor="@color/titleText"
-                android:textSize="@dimen/activity_vistitor_tv_size" />
+                android:text="@string/boy" />
 
             <TextView
+                android:id="@+id/tvGirl"
+                style="@style/ActivityVisitorTvValue"
                 fontPath="fonts/Fan_Big.ttf"
-                android:layout_width="@dimen/activity_visitor_tv_one"
-                android:layout_height="@dimen/activity_visitor_tv_height"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/activity_visitor_tv_margin"
-                android:layout_marginRight="@dimen/activity_visitor_tv_margin"
-                android:background="@drawable/visitor_tv_bg"
-                android:gravity="center"
-                android:text="@string/girl"
-                android:textColor="@color/titleText"
-                android:textSize="@dimen/activity_vistitor_tv_size" />
+                android:text="@string/girl" />
 
             <TextView
+                android:id="@+id/tvThirdSex"
+                style="@style/ActivityVisitorTvValue"
                 fontPath="fonts/Fan_Big.ttf"
                 android:layout_width="@dimen/activity_visitor_tv_three"
-                android:layout_height="@dimen/activity_visitor_tv_height"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/activity_visitor_tv_margin"
-                android:background="@drawable/visitor_tv_bg"
-                android:gravity="center"
-                android:text="@string/third_sex"
-                android:textColor="@color/titleText"
-                android:textSize="@dimen/activity_vistitor_tv_size" />
+                android:text="@string/third_sex" />
         </LinearLayout>
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <!--sex orientation 性取向-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_visitor_sex_orientation_height">
 
-    <TextView
-        android:id="@+id/tvBig"
-        fontPath="fonts/Fan_Big.ttf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        <TextView
+            style="@style/ActivityVisitorTvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sex_orientation" />
 
-    <TextView
-        android:id="@+id/tvNormal"
-        fontPath="fonts/Fan_Normal.ttf"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_visitor_ll_margin"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvLoveSameSex"
+                    style="@style/ActivityVisitorTvValue"
+                    android:layout_width="@dimen/activity_visitor_tv_four"
+                    android:text="@string/love_same_sex" />
+
+                <TextView
+                    android:id="@+id/tvLoveDifferentSex"
+                    style="@style/ActivityVisitorTvValue"
+                    android:layout_width="@dimen/activity_visitor_tv_four"
+                    android:text="@string/love_different_sex" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvNotCareSex"
+                    style="@style/ActivityVisitorTvValue"
+                    android:layout_width="@dimen/activity_visitor_tv_five"
+                    android:text="@string/not_care_sex" />
+
+                <TextView
+                    android:id="@+id/tvLoveBothSex"
+                    style="@style/ActivityVisitorTvValue"
+                    android:layout_width="@dimen/activity_visitor_tv_four"
+                    android:text="@string/love_both_sex" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="9dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvSecretSex"
+                    style="@style/ActivityVisitorTvValue"
+                    android:layout_width="@dimen/activity_visitor_tv_two"
+                    android:layout_height="match_parent"
+                    android:text="@string/secret_sex" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <!--input age-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etInputAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_visitor_ll_margin"
+            android:layout_marginRight="14dp"
+            android:gravity="center_vertical|right"
+            android:hint="@string/input_age"
+            android:textColor="@color/vistorTvbgNormal"
+            android:textSize="@dimen/activity_vistitor_tv_size" />
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/ActivityVisitorTvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:text="@string/age" />
+
+    </RelativeLayout>
+    <!--confirm 确定-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginTop="48dp">
+
+        <TextView
+            android:id="@+id/tvVisitorConfirm"
+            style="@style/ActivityVisitorTvTitle"
+            android:layout_width="332dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="14dp"
+            android:text="@string/confirm"
+            android:textColor="@color/vistorTvbgNormal" />
+
+    </LinearLayout>
+    <!--skip-->
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_gravity="right"
+        android:layout_marginTop="26dp"
+        android:gravity="right">
+
+        <LinearLayout
+            android:id="@+id/llSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:text="@string/skip"
+                android:textColor="@color/vistorTvbgNormal"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="14dp"
+                android:src="@drawable/iv_skip" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

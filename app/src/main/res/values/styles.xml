@@ -13,4 +13,29 @@
         <item name="android:fitsSystemWindows">true</item>
     </style>
 
+    <!--游客必填页面key-->
+    <style name="ActivityVisitorTvTitle">
+        <item name="android:textColor">@color/vistorTvTitle</item>
+        <item name="android:textSize">@dimen/activity_vistitor_tv_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_height">@dimen/activity_visitor_tv_height</item>
+        <item name="android:layout_marginLeft">@dimen/activity_vistitor_tv_left</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!--游客必填页面value-->
+    <style name="ActivityVisitorTvValue">
+        <item name="android:textColor">@color/titleText</item>
+        <item name="android:layout_width">@dimen/activity_visitor_tv_one</item>
+        <item name="android:textSize">@dimen/activity_vistitor_tv_size</item>
+        <item name="android:layout_height">@dimen/activity_visitor_tv_height</item>
+        <item name="android:layout_marginLeft">@dimen/activity_visitor_tv_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_visitor_tv_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/visitor_tv_bg</item>
+    </style>
+
 </resources>

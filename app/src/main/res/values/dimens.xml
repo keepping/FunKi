@@ -11,4 +11,10 @@
     <dimen name="activity_visitor_tv_margin">7dp</dimen>
     <dimen name="activity_visitor_corner">15dp</dimen>
     <dimen name="activity_visitor_ll_margin">82dp</dimen>
+    <!--性取向边框高度-->
+    <dimen name="activity_visitor_sex_orientation_height">130dp</dimen>
+    <!--性取向4个字宽度-->
+    <dimen name="activity_visitor_tv_four">104dp</dimen>
+    <dimen name="activity_visitor_tv_five">121dp</dimen>
+    <dimen name="activity_visitor_tv_two">71dp</dimen>
 </resources>

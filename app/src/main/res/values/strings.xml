@@ -5,4 +5,14 @@
     <string name="boy">男</string>
     <string name="girl">女</string>
     <string name="third_sex">第三性</string>
+    <string name="sex_orientation">性取向</string>
+    <string name="love_same_sex">我爱同性</string>
+    <string name="love_different_sex">我爱异性</string>
+    <string name="not_care_sex">我都不介意</string>
+    <string name="love_both_sex">男女都爱</string>
+    <string name="secret_sex">保密</string>
+    <string name="input_age">请输入年龄</string>
+    <string name="age">年龄</string>
+    <string name="skip">跳过</string>
+    <string name="confirm">确定</string>
 </resources>
