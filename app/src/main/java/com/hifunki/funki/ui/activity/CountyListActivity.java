@@ -1,22 +1,22 @@
 package com.hifunki.funki.ui.activity;
 
+import com.hifunki.funki.R;
+
 /**
- * MainActivity
+ * 国家页面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.MainActivity.java
+ * @value com.hifunki.funki.ui.activity.CountyListActivity.java
  * @link
  * @since 2017-02-23 20:24:24
  */
-public class MainActivity extends BaseActivity {
-
+public class CountyListActivity extends BaseActivity {
 
     @Override
     protected int getViewResId() {
-        return 0;
+        return R.layout.activity_county_list;
     }
-
 
     @Override
     protected void init() {

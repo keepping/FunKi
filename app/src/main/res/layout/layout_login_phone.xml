@@ -1,92 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="111dp"
     android:background="@color/bgColor"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
+        android:background="@color/vistorTvbg"
         android:orientation="horizontal">
 
-
-        <RelativeLayout
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="54dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:src="@drawable/iv_login_phone" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="14dp"
-                android:src="@drawable/iv_login_phone" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="43dp"
+            android:gravity="center">
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="29dp"
+                android:layout_gravity="center"
+                android:background="@color/vistorTvbgNormal" />
 
             <LinearLayout
-                android:id="@+id/llChooseCountry"
+                android:id="@+id/llCounty"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="57dp"
-                android:gravity="center">
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="29dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="14dp"
-                    android:background="@color/vistorTvbgNormal" />
+                android:paddingRight="14dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="14dp"
                     android:src="@drawable/japan" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="14dp"
                     android:text="+81"
                     android:textColor="@color/titleText"
                     android:textSize="17sp" />
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="29dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="14dp"
-                    android:background="@color/vistorTvbgNormal" />
             </LinearLayout>
 
-        </RelativeLayout>
+            <View
+                android:layout_width="1px"
+                android:layout_height="29dp"
+                android:layout_gravity="center"
 
-        <EditText
-            android:id="@+id/etIuputTel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left|center_vertical"
-            android:hint="请输入行动电话号"
-            android:padding="15dp"
-            android:textColorHint="@color/vistorTvbgNormal"
-            android:textSize="17sp" />
-    </LinearLayout>
+                android:background="@color/vistorTvbgNormal" />
+
+            <EditText
+                android:id="@+id/etIuputTel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="51dp"
+                android:gravity="left|center_vertical"
+                android:hint="请输入行动电话号码"
+                android:maxLines="1"
+                android:paddingLeft="1dp"
+                android:singleLine="true"
+                android:textColorHint="@color/vistorTvbgNormal"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp">
+        android:layout_height="54dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/vistorTvbg">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="51dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_marginLeft="14dp"
                 android:src="@drawable/iv_key" />
@@ -94,28 +103,33 @@
             <View
                 android:layout_width="1px"
                 android:layout_height="29dp"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:layout_marginLeft="14dp"
+                android:layout_marginLeft="43dp"
                 android:background="@color/vistorTvbgNormal" />
 
             <EditText
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/etIuputPwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="58dp"
                 android:hint="请输入6-16位字元的密码"
                 android:maxLines="1"
-                android:padding="15dp"
+                android:paddingLeft="1dp"
                 android:singleLine="true"
                 android:textColorHint="@color/vistorTvbgNormal"
                 android:textSize="17sp" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
-
+            android:id="@+id/ivTelShow"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="14dp"
             android:src="@drawable/iv_eye" />

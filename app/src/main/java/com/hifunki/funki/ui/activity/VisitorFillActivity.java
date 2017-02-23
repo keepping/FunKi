@@ -19,6 +19,12 @@ import butterknife.OnClick;
 
 /**
  * 游客必填信息
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.ui.activity.VisitorFillActivity.java
+ * @link
+ * @since 2017-02-23 20:24:24
  */
 public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItemSelectListeners {
 

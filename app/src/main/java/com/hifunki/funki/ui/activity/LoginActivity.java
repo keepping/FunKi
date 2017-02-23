@@ -1,6 +1,9 @@
 package com.hifunki.funki.ui.activity;
 
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,7 +23,15 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-
+/**
+ * 登录页面信息
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.ui.activity.LoginActivity.java
+ * @link {@link com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType}    {@link com.hifunki.funki.ui.widget.layout.LayoutEmailWithType}
+ * @since 2017-02-23 20:24:24
+ */
 public class LoginActivity extends BaseActivity {
 
     private boolean isPhoneColor;
@@ -68,10 +79,51 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    /**
+     * phone and email listener
+     */
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.llCounty:
+                    Log.e("test", "onClick: llcounty");
+                    break;
+                case R.id.etIuputTel:
+                    Log.e("test", "onClick: etIuputTel");
+                    break;
+                case R.id.etIuputPwd:
+                    Log.e("test", "onClick: etIuputPwd");
+                    break;
+                case R.id.ivTelShow:
+                    Log.e("test", "onClick: ivTelShow");
+                    break;
+            }
+
+        }
+    };
+
+    private TextWatcher etItemListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            Log.e("test", "etItemListener: beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            Log.e("test", "etItemListener: onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            Log.e("test", "etItemListener: afterTextChanged");
+        }
+    };
+
     private void initViewPager() {
         mTabViews = new ArrayList<>();
         //获取第一个视图
-        LayoutPhoneWithType layoutLoginWithType = new LayoutPhoneWithType(this, 0);
+        LayoutPhoneWithType layoutLoginWithType = new LayoutPhoneWithType(etItemListener, onClickListener, LoginActivity.this, this, 0);
         LayoutEmailWithType layoutEmailWithType = new LayoutEmailWithType(this, 1);
         mTabViews.add(layoutLoginWithType);
         mTabViews.add(layoutEmailWithType);

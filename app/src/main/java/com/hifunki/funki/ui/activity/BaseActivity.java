@@ -9,9 +9,14 @@ import com.hifunki.funki.ui.application.ApplicationMain;
 import butterknife.ButterKnife;
 
 /**
- * Created by dell on 2017/2/22.
+ * BaseActivity
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.ui.activity.BaseActivity.java
+ * @link
+ * @since 2017-02-23 20:24:24
  */
-
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override

@@ -10,17 +10,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.hifunki.funki.ui.activity.MainActivity"></activity>
+        <activity android:name=".ui.activity.MainActivity" />
 
         <!-- 游客必填信息页 -->
-        <activity android:name="com.hifunki.funki.ui.activity.VisitorFillActivity">
+        <activity android:name=".ui.activity.VisitorFillActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.hifunki.funki.ui.activity.LoginActivity"></activity>
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.CountyListActivity" />
     </application>
 
 </manifest>
