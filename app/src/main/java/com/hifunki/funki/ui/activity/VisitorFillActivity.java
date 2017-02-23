@@ -60,7 +60,6 @@ public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItem
 
     @Override
     protected void init() {
-//        StatusBarUtil.setStatusBarTrans(this,false);
 
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 

@@ -2,10 +2,99 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColor"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="emailxxx" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="14dp"
+            android:src="@drawable/iv_mail" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="29dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="43dp"
+            android:background="@color/vistorTvbgNormal" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="58dp"
+            android:hint="请输入邮箱地址"
+            android:maxLines="1"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:textColorHint="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+
+        <!--</LinearLayout>-->
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true">-->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="14dp"
+            android:src="@drawable/iv_key" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="29dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="43dp"
+            android:background="@color/vistorTvbgNormal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="58dp"
+            android:hint="请输入6-16位字元的密码"
+            android:maxLines="1"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:textColorHint="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+        <!--26px-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/iv_eye" />
+
+        <!--</LinearLayout>-->
+    </RelativeLayout>
+
 </LinearLayout>

@@ -12,14 +12,14 @@ import com.hifunki.funki.R;
  * Created by dell on 2017/2/23.
  */
 
-public class LayoutLoginWithType extends LinearLayout {
+public class LayoutPhoneWithType extends LinearLayout {
 
     private Context mContext;
 
-    public LayoutLoginWithType(Context context, int type) {
+    public LayoutPhoneWithType(Context context, int type) {
         super(context);
         this.mContext = context;
         View vPhone = LayoutInflater.from(mContext).inflate(R.layout.layout_login_phone, this);
-
+//        请输入行动电话号
     }
 }

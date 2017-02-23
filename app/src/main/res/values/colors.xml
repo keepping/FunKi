@@ -9,5 +9,6 @@
     <color name="vistorTvbgNormal">#4A2F75</color>
     <color name="vistorTvbg">#28114D</color>
     <color name="vistorTvClickbg">#FFD71B</color>
+    <color name="loginTvUnClick">#6B4E9A</color>
 
 </resources>

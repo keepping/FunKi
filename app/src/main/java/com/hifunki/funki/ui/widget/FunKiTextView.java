@@ -19,8 +19,10 @@ public class FunKiTextView extends TextView {
     private boolean isShowLine;
     private int mLineColor;
     private int mLineHeight;
+    private int mLineWidth;
     private int mLocation;
     private final float DEF_LINE_HEIGHT = 1.0f;//线的高度
+    private final float DEF_LINE_WIDTH = 1.0f;//线的高度
     private final int DEF_LINE_LOCATION = 2;//线的位置 0 top 1 bottom 2 both
 
     public FunKiTextView(Context context) {
@@ -36,14 +38,16 @@ public class FunKiTextView extends TextView {
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.JollyTextView);
-            mLineColor = typedArray.getColor(R.styleable.JollyTextView_line_color,R.color.vistorTvbg);
+            mLineColor = typedArray.getColor(R.styleable.JollyTextView_line_color, R.color.vistorTvbg);
             mLineHeight = (int) typedArray.getDimension(R.styleable.JollyTextView_line_height, DEF_LINE_HEIGHT);
+            mLineWidth = (int) typedArray.getDimension(R.styleable.JollyTextView_line_width, DEF_LINE_WIDTH);
             isShowLine = typedArray.getBoolean(R.styleable.JollyTextView_show_line, false);
             mLocation = typedArray.getInt(R.styleable.JollyTextView_line_location, DEF_LINE_LOCATION);
             typedArray.recycle();
         } else {
             mLineColor = getResources().getColor(R.color.colorAccent);
             mLineHeight = (int) DEF_LINE_HEIGHT;
+            mLineWidth = (int) DEF_LINE_WIDTH;
             isShowLine = false;
             mLocation = DEF_LINE_LOCATION;
         }

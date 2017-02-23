@@ -2,62 +2,122 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColor"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="phone" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/iv_login_phone" />
 
-        <TextView
-            android:layout_width="1px"
-            android:layout_height="wrap_content"
-            android:textColor="@color/vistorTvClickbg" />
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/japan" />
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+81" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/iv_login_phone" />
+
+
+            <LinearLayout
+                android:id="@+id/llChooseCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="57dp"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="29dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="14dp"
+                    android:background="@color/vistorTvbgNormal" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/japan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:text="+81"
+                    android:textColor="@color/titleText"
+                    android:textSize="17sp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="29dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="14dp"
+                    android:background="@color/vistorTvbgNormal" />
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <EditText
+            android:id="@+id/etIuputTel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:hint="请输入行动电话号"
+            android:padding="15dp"
+            android:textColorHint="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入行动电话号" />
-    </LinearLayout>
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/iv_key" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="29dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="14dp"
+                android:background="@color/vistorTvbgNormal" />
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="请输入6-16位字元的密码"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColorHint="@color/vistorTvbgNormal"
+                android:textSize="17sp" />
+
+        </LinearLayout>
 
         <ImageView
+
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/japan" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:hint="请输入6-16位字元的密码" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/iv_eye" />
+    </RelativeLayout>
 </LinearLayout>

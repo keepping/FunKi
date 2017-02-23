@@ -5,11 +5,8 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColor"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hifunki.funki.ui.activity.LoginActivity">
 
     <com.hifunki.funki.ui.widget.TitleBar
@@ -26,46 +23,72 @@
         android:layout_gravity="center"
         android:layout_marginTop="43dp"
         android:src="@drawable/iv_logo"
-        android:text="login" />
+        android:text="login"
+        android:visibility="visible" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:text="@string/app_name" />
+        android:text="@string/app_name"
+        android:textSize="14sp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="78dp"
         android:orientation="horizontal">
 
-        <com.hifunki.funki.ui.widget.FunKiTextView
-            android:id="@+id/ftvPhone"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_phone"
-            funkitext:line_color="@color/colorAccent"
-            funkitext:line_height="2dp"
-            funkitext:line_location="bottom"
-            funkitext:show_line="false" />
+            android:orientation="vertical">
 
-        <com.hifunki.funki.ui.widget.FunKiTextView
-            android:id="@+id/ftvEmail"
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_phone"
+                android:textColor="@color/vistorTvTitle"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/ivPhoneLine"
+                android:layout_width="10dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/login_iv_line"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_mail"
-            funkitext:line_color="@color/colorAccent"
-            funkitext:line_height="2dp"
-            funkitext:line_location="bottom"
-            funkitext:show_line="false" />
-    </LinearLayout>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="111dp"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/llTest"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="vertical"></LinearLayout>
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_mail"
+                android:textColor="@color/loginTvUnClick"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/ivEmailLine"
+                android:layout_width="10dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/login_iv_line"
+                android:visibility="visible" />
+        </LinearLayout>
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
