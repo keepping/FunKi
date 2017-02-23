@@ -1,10 +1,10 @@
-package com.hifunki.www.funki.ui.activity;
+package com.hifunki.funki.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.hifunki.www.funki.ui.application.ApplicationMain;
+import com.hifunki.funki.ui.application.ApplicationMain;
 
 import butterknife.ButterKnife;
 
@@ -38,9 +38,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract int getViewResId();
 
 
-    protected abstract void loadDatas();
-
     protected abstract void init();
+
+    protected abstract void loadDatas();
 
 
 }

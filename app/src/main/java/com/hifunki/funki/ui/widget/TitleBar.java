@@ -1,4 +1,4 @@
-package com.hifunki.www.funki.ui.widget;
+package com.hifunki.funki.ui.widget;
 
 import android.content.Context;
 import android.content.res.Resources;

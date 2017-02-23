@@ -1,4 +1,4 @@
-package com.hifunki.www.funki.util;
+package com.hifunki.funki.util;
 
 import android.content.Context;
 import android.graphics.Paint;

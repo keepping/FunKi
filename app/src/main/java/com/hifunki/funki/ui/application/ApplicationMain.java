@@ -1,10 +1,10 @@
-package com.hifunki.www.funki.ui.application;
+package com.hifunki.funki.ui.application;
 
 import android.app.Activity;
 import android.app.Application;
 
-import com.hifunki.www.funki.R;
-import com.hifunki.www.funki.util.AppUtil;
+import com.hifunki.funki.R;
+import com.hifunki.funki.util.AppUtil;
 
 import java.util.LinkedList;
 import java.util.List;

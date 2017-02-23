@@ -1,4 +1,4 @@
-package com.hifunki.www.funki.ui.activity;
+package com.hifunki.funki.ui.activity;
 
 import android.content.Intent;
 import android.text.TextPaint;
@@ -8,10 +8,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hifunki.www.funki.R;
-import com.hifunki.www.funki.ui.widget.TitleBar;
-import com.hifunki.www.funki.util.StatusBarUtil;
-import com.hifunki.www.funki.util.TextUtil;
+import com.hifunki.funki.R;
+import com.hifunki.funki.business.VisitorFillBusiness;
+import com.hifunki.funki.ui.widget.TitleBar;
+import com.hifunki.funki.util.StatusBarUtil;
+import com.hifunki.funki.util.TextUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -103,35 +104,35 @@ public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItem
 
                 break;
             case R.id.tvBoy:
-                changeTvStyle(tvBoy, tvGirl, tvThirdSex);
+                VisitorFillBusiness.changeTvStyle(this, tvBoy, tvGirl, tvThirdSex);
                 sex = 1;
                 break;
             case R.id.tvGirl:
-                changeTvStyle(tvGirl, tvBoy, tvThirdSex);
+                VisitorFillBusiness.changeTvStyle(this, tvGirl, tvBoy, tvThirdSex);
                 sex = 2;
                 break;
             case R.id.tvThirdSex:
-                changeTvStyle(tvThirdSex, tvGirl, tvBoy);
+                VisitorFillBusiness.changeTvStyle(this, tvThirdSex, tvGirl, tvBoy);
                 sexOrientation = 1;
                 break;
             case R.id.tvLoveSameSex:
-                changeTvStyle(tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvLoveBothSex, tvSecretSex);
+                VisitorFillBusiness.changeTvStyle(this, tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvLoveBothSex, tvSecretSex);
                 sexOrientation = 2;
                 break;
             case R.id.tvLoveDifferentSex:
-                changeTvStyle(tvLoveDifferentSex, tvLoveSameSex, tvNotCareSex, tvLoveBothSex, tvSecretSex);
+                VisitorFillBusiness.changeTvStyle(this, tvLoveDifferentSex, tvLoveSameSex, tvNotCareSex, tvLoveBothSex, tvSecretSex);
                 sexOrientation = 3;
                 break;
             case R.id.tvNotCareSex:
-                changeTvStyle(tvNotCareSex, tvLoveSameSex, tvLoveDifferentSex, tvLoveBothSex, tvSecretSex);
+                VisitorFillBusiness.changeTvStyle(this, tvNotCareSex, tvLoveSameSex, tvLoveDifferentSex, tvLoveBothSex, tvSecretSex);
                 sexOrientation = 4;
                 break;
             case R.id.tvLoveBothSex:
-                changeTvStyle(tvLoveBothSex, tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvSecretSex);
+                VisitorFillBusiness.changeTvStyle(this, tvLoveBothSex, tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvSecretSex);
                 sexOrientation = 5;
                 break;
             case R.id.tvSecretSex:
-                changeTvStyle(tvSecretSex, tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvLoveBothSex);
+                VisitorFillBusiness.changeTvStyle(this, tvSecretSex, tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvLoveBothSex);
                 sexOrientation = 6;
                 break;
             case R.id.etInputAge:
@@ -157,24 +158,6 @@ public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItem
             case R.id.activity_visitor_fill://根布局
                 break;
         }
-    }
-
-    /**
-     * 改变字体style
-     *
-     * @param tvs
-     * @param textViews
-     */
-    private void changeTvStyle(TextView tvs, TextView... textViews) {
-
-        tvs.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
-        tvs.setBackground(getResources().getDrawable(R.drawable.visitor_tv_click_bg));
-
-        for (TextView tv : textViews) {
-            tv.setTextColor(getResources().getColor(R.color.vistorTvbg));
-            tv.setBackground(getResources().getDrawable(R.drawable.visitor_tv_bg));
-        }
-
     }
 
 

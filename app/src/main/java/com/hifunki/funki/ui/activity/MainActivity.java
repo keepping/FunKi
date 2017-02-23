@@ -1,4 +1,4 @@
-package com.hifunki.www.funki.ui.activity;
+package com.hifunki.funki.ui.activity;
 
 public class MainActivity extends BaseActivity {
 
