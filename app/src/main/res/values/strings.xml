@@ -22,4 +22,7 @@
     <string name="register">注册</string>
     <string name="phoneNumber">+81</string>
     <string name="refreshWord">点击刷新图片</string>
+    <string name="set_new_pwd">请输入新的密码</string>
+    <string name="pwd_success_ok">新密码设置完成</string>
+    <string name="pwd_success_return">返回登录页</string>
 </resources>

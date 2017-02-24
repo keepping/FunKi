@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pwd_graph"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgColor"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.ui.activity.PwdGraphActivity">
+
+    <com.hifunki.funki.ui.widget.TitleBar
+        android:id="@+id/tbPwdGraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/iv_bg"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="49dp"
+            android:src="@drawable/iv_newpwd" />
+
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:text="@string/pwd_success_ok"
+            android:textColor="@color/newPwd"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="80dp"
+            android:background="@color/vistorTvClickbg"
+            android:gravity="center"
+            android:text="@string/pwd_success_return"
+            android:textColor="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

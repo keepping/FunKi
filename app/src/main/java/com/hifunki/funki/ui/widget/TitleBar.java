@@ -5,9 +5,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,7 +20,7 @@ import java.util.LinkedList;
  * https://github.com/bacy/titlebar
  * 创建时间：2015/9/25 11:36
  */
-public class TitleBar extends ViewGroup implements View.OnClickListener {
+public class TitleBar extends ViewGroup {
     private static final int DEFAULT_MAIN_TEXT_SIZE = 18;
     private static final int DEFAULT_SUB_TEXT_SIZE = 12;
     private static final int DEFAULT_ACTION_TEXT_SIZE = 15;
@@ -247,39 +245,6 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         mCenterText.setOnClickListener(listener);
     }
 
-    @Override
-    public void onClick(View view) {
-        final Object tag = view.getTag();
-        Log.e("test", "title bar onClick: ");
-        if (tag instanceof Action) {
-            final Action action = (Action) tag;
-            Log.e("test", "title bar onClick: in");
-            action.performAction(view);
-
-        }
-    }
-
-    private OnItemSelectListeners listener;
-
-    public void setOnItemSelectListeners(OnItemSelectListeners listener) {
-        this.listener = listener;
-    }
-
-    public interface OnItemSelectListeners {
-        void onItemSelect();
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                if (listener != null) {
-                    listener.onItemSelect();
-                }
-                return true;
-        }
-        return super.onTouchEvent(event);
-    }
 
     /**
      * Adds a list of {@link Action}s.
@@ -385,7 +350,6 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
         view.setPadding(mActionPadding, 0, mActionPadding, 0);
         view.setTag(action);
-        view.setOnClickListener(this);
         return view;
     }
 

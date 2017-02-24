@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pwd_graph"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgColor"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.ui.activity.PwdGraphActivity">
+
+    <com.hifunki.funki.ui.widget.TitleBar
+        android:id="@+id/tbPwdGraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/iv_bg"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="19dp"
+        android:background="@color/vistorTvbg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etIuputTel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="51dp"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:hint="@string/set_new_pwd"
+            android:maxLines="1"
+            android:paddingLeft="1dp"
+            android:singleLine="true"
+            android:textColorHint="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:layout_marginRight="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/iv_eye" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:textColor="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

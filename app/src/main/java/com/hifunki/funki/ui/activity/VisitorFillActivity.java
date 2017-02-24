@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-23 20:24:24
  */
-public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItemSelectListeners {
+public class VisitorFillActivity extends BaseActivity  {
 
 
     @BindView(R.id.tbVisitor)
@@ -69,7 +69,7 @@ public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItem
 
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
-        tbVisitor.setOnItemSelectListeners(this);
+//        tbVisitor.setOnItemSelectListeners(this);
 
 //        initState();
         tbVisitor.setLeftImageResource(R.drawable.iv_back);
@@ -171,8 +171,4 @@ public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItem
     }
 
 
-    @Override
-    public void onItemSelect() {
-//        Log.e("test", "onItemSelect: click");
-    }
 }
