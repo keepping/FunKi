@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.business.VisitorFillBusiness;
 import com.hifunki.funki.ui.widget.TitleBar;
-import com.hifunki.funki.util.StatusBarUtil;
 import com.hifunki.funki.util.TextUtil;
 
 import butterknife.BindView;
@@ -64,13 +63,29 @@ public class VisitorFillActivity extends BaseActivity {
         return R.layout.activity_visitor_fill;
     }
 
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        if (hasFocus && Build.VERSION.SDK_INT >= 19) {
+//            View decorView = getWindow().getDecorView();
+//            decorView.setSystemUiVisibility(
+//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+//        }
+//    }
+
     @Override
     protected void initView() {
+//
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
+//        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
 //        tbVisitor.setHeight(DisplayUtil.px2dip(this, 84));//设置高度
 
+//        tbVisitor.setImmersive(true);
         tbVisitor.setLeftImageResource(R.drawable.iv_back);
         tbVisitor.setTitle(getResources().getString(R.string.visitor_title));
         TextView textView = tbVisitor.getmCenterText();
@@ -90,10 +105,8 @@ public class VisitorFillActivity extends BaseActivity {
         TextPaint paint = textView.getPaint();
         paint.setFakeBoldText(true);
         //设置沉浸式
-//        tbVisitor.setImmersive(true);
 
     }
-
 
 
     @Override

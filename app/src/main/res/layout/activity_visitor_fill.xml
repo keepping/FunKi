@@ -4,7 +4,8 @@
     android:id="@+id/activity_visitor_fill"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@drawable/iv_bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.hifunki.funki.ui.activity.VisitorFillActivity"
     tools:ignore="MissingPrefix">
@@ -13,10 +14,10 @@
         android:id="@+id/tbVisitor"
         android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:background="@drawable/iv_bg"
-        android:clipToPadding="true"
-        android:fitsSystemWindows="true" />
 
+        />
+    <!--android:clipToPadding="true"-->
+    <!--android:fitsSystemWindows="true"-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_visitor_height">

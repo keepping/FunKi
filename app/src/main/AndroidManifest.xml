@@ -13,7 +13,9 @@
         <activity android:name=".ui.activity.MainActivity" />
 
         <!-- 游客必填信息页 -->
-        <activity android:name=".ui.activity.VisitorFillActivity">
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".ui.activity.VisitorFillActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
