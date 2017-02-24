@@ -1,5 +1,6 @@
 package com.hifunki.funki.ui.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.hifunki.funki.ui.application.ApplicationMain;
 
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * BaseActivity
@@ -53,5 +55,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void loadDatas();
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
 }

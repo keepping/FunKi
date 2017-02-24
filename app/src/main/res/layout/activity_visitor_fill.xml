@@ -12,7 +12,7 @@
     <com.hifunki.funki.ui.widget.TitleBar
         android:id="@+id/tbVisitor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:background="@drawable/iv_bg"
         android:clipToPadding="true"
         android:fitsSystemWindows="true" />

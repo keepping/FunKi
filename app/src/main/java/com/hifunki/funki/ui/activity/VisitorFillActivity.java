@@ -1,6 +1,5 @@
 package com.hifunki.funki.ui.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.text.TextPaint;
 import android.util.Log;
@@ -12,13 +11,11 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.business.VisitorFillBusiness;
 import com.hifunki.funki.ui.widget.TitleBar;
-import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 import com.hifunki.funki.util.TextUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * 游客必填信息
@@ -72,7 +69,7 @@ public class VisitorFillActivity extends BaseActivity {
 
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
-        tbVisitor.setHeight(DisplayUtil.px2dip(this, 84));//设置高度
+//        tbVisitor.setHeight(DisplayUtil.px2dip(this, 84));//设置高度
 
         tbVisitor.setLeftImageResource(R.drawable.iv_back);
         tbVisitor.setTitle(getResources().getString(R.string.visitor_title));
@@ -97,10 +94,7 @@ public class VisitorFillActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
+
 
     @Override
     protected void initTitleBar() {
