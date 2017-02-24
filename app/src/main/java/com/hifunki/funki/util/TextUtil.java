@@ -35,7 +35,7 @@ public class TextUtil {
      */
     public static void setFzBigTypeFace(Context context, TextView... textViews) {
         //常规字体
-        Typeface medTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Fan_Big.ttf");
+        Typeface medTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/FZDHTFW.ttf");
         for (int i = 0; i < textViews.length; i++) {
             if (textViews[i] != null) {
                 textViews[i].setTypeface(medTypeface);
@@ -51,7 +51,7 @@ public class TextUtil {
      */
     public static void setFzNormalTypeFace(Context context, TextView... textViews) {
         //常规字体
-        Typeface medTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Fan_Normal.ttf");
+        Typeface medTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/FZZDXFW.ttf");
         for (int i = 0; i < textViews.length; i++) {
             if (textViews[i] != null) {
                 textViews[i].setTypeface(medTypeface);

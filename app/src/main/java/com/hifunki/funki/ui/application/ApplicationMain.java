@@ -35,11 +35,11 @@ public class ApplicationMain extends Application {
 
         //加载自定义字体
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Fan_Big.ttf")
+                .setDefaultFontPath("fonts/FZDHTFW.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build());
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Fan_Normal.ttf")
+                .setDefaultFontPath("fonts/FZZDXFW.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build());
 

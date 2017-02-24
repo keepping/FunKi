@@ -1,5 +1,6 @@
 package com.hifunki.funki.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.text.TextPaint;
 import android.util.Log;
@@ -11,11 +12,13 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.business.VisitorFillBusiness;
 import com.hifunki.funki.ui.widget.TitleBar;
+import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 import com.hifunki.funki.util.TextUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * 游客必填信息
@@ -26,7 +29,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-23 20:24:24
  */
-public class VisitorFillActivity extends BaseActivity  {
+public class VisitorFillActivity extends BaseActivity {
 
 
     @BindView(R.id.tbVisitor)
@@ -69,13 +72,11 @@ public class VisitorFillActivity extends BaseActivity  {
 
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
-//        tbVisitor.setOnItemSelectListeners(this);
+        tbVisitor.setHeight(DisplayUtil.px2dip(this, 84));//设置高度
 
-//        initState();
         tbVisitor.setLeftImageResource(R.drawable.iv_back);
         tbVisitor.setTitle(getResources().getString(R.string.visitor_title));
         TextView textView = tbVisitor.getmCenterText();
-
         //点击返回按键
         tbVisitor.getLeftText().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +95,11 @@ public class VisitorFillActivity extends BaseActivity  {
         //设置沉浸式
 //        tbVisitor.setImmersive(true);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override

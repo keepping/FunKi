@@ -23,7 +23,7 @@
 
         <TextView
             style="@style/ActivityVisitorTvTitle"
-            fontPath="fonts/Fan_Normal.ttf"
+            fontPath="fonts/FZZDXFW.ttf"
             android:text="@string/visitor_sex" />
 
         <LinearLayout
@@ -35,19 +35,19 @@
             <TextView
                 android:id="@+id/tvBoy"
                 style="@style/ActivityVisitorTvValue"
-                fontPath="fonts/Fan_Big.ttf"
+                fontPath="fonts/FZDHTFW.ttf"
                 android:text="@string/boy" />
 
             <TextView
                 android:id="@+id/tvGirl"
                 style="@style/ActivityVisitorTvValue"
-                fontPath="fonts/Fan_Big.ttf"
+                fontPath="fonts/FZDHTFW.ttf"
                 android:text="@string/girl" />
 
             <TextView
                 android:id="@+id/tvThirdSex"
                 style="@style/ActivityVisitorTvValue"
-                fontPath="fonts/Fan_Big.ttf"
+                fontPath="fonts/FZDHTFW.ttf"
                 android:layout_width="@dimen/activity_visitor_tv_three"
                 android:text="@string/third_sex" />
         </LinearLayout>
@@ -61,6 +61,7 @@
 
         <TextView
             style="@style/ActivityVisitorTvTitle"
+            fontPath="fonts/FZZDXFW.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sex_orientation" />
@@ -80,12 +81,14 @@
                 <TextView
                     android:id="@+id/tvLoveSameSex"
                     style="@style/ActivityVisitorTvValue"
+                    fontPath="fonts/FZDHTFW.ttf"
                     android:layout_width="@dimen/activity_visitor_tv_four"
                     android:text="@string/love_same_sex" />
 
                 <TextView
                     android:id="@+id/tvLoveDifferentSex"
                     style="@style/ActivityVisitorTvValue"
+                    fontPath="fonts/FZDHTFW.ttf"
                     android:layout_width="@dimen/activity_visitor_tv_four"
                     android:text="@string/love_different_sex" />
             </LinearLayout>
@@ -100,12 +103,14 @@
                 <TextView
                     android:id="@+id/tvNotCareSex"
                     style="@style/ActivityVisitorTvValue"
+                    fontPath="fonts/FZDHTFW.ttf"
                     android:layout_width="@dimen/activity_visitor_tv_five"
                     android:text="@string/not_care_sex" />
 
                 <TextView
                     android:id="@+id/tvLoveBothSex"
                     style="@style/ActivityVisitorTvValue"
+                    fontPath="fonts/FZDHTFW.ttf"
                     android:layout_width="@dimen/activity_visitor_tv_four"
                     android:text="@string/love_both_sex" />
             </LinearLayout>
@@ -120,6 +125,7 @@
                 <TextView
                     android:id="@+id/tvSecretSex"
                     style="@style/ActivityVisitorTvValue"
+                    fontPath="fonts/FZDHTFW.ttf"
                     android:layout_width="@dimen/activity_visitor_tv_two"
                     android:layout_height="match_parent"
                     android:text="@string/secret_sex" />
@@ -134,10 +140,12 @@
 
         <EditText
             android:id="@+id/etInputAge"
+            fontPath="fonts/FZZDXFW.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_visitor_ll_margin"
             android:layout_marginRight="14dp"
+            android:background="@null"
             android:gravity="center_vertical|right"
             android:hint="@string/input_age"
             android:textColor="@color/vistorTvbgNormal"
@@ -146,6 +154,7 @@
 
         <TextView
             style="@style/ActivityVisitorTvTitle"
+            fontPath="fonts/FZZDXFW.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -165,6 +174,7 @@
         <TextView
             android:id="@+id/tvVisitorConfirm"
             style="@style/ActivityVisitorTvTitle"
+            fontPath="fonts/FZZDXFW.ttf"
             android:layout_width="332dp"
             android:layout_height="match_parent"
             android:layout_marginRight="14dp"
@@ -188,6 +198,7 @@
             android:orientation="horizontal">
 
             <TextView
+                fontPath="fonts/FZZDXFW.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"

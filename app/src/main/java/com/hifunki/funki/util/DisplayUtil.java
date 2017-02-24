@@ -31,4 +31,16 @@ public class DisplayUtil {
         final float scale = context.getResources().getDisplayMetrics().density;
         return dpValue * scale + 0.5f;
     }
+
+    /**
+     * px转换成为dp
+     * @param context
+     * @param pxValue
+     * @return
+     */
+    public static int px2dip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
 }

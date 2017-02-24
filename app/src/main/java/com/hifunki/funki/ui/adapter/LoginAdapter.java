@@ -12,10 +12,10 @@ import java.util.ArrayList;
  * Created by dell on 2017/2/23.
  */
 
-public class AdapterLogin<T extends View> extends PagerAdapter {
+public class LoginAdapter<T extends View> extends PagerAdapter {
     private ArrayList<T> viewList;
 
-    public AdapterLogin(ArrayList<T> viewList) {
+    public LoginAdapter(ArrayList<T> viewList) {
         this.viewList = viewList;
     }
 

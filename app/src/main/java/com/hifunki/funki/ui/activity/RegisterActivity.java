@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.ui.adapter.AdapterLogin;
+import com.hifunki.funki.ui.adapter.LoginAdapter;
 import com.hifunki.funki.ui.widget.TitleBar;
 import com.hifunki.funki.ui.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType;
@@ -102,7 +102,7 @@ public class RegisterActivity extends BaseActivity {
         LayoutEmailWithType layoutEmailWithType = new LayoutEmailWithType(this, 1);
         mTabViews.add(layoutLoginWithType);
         mTabViews.add(layoutEmailWithType);
-        vpPhoneEmail.setAdapter(new AdapterLogin<>(mTabViews));
+        vpPhoneEmail.setAdapter(new LoginAdapter<>(mTabViews));
 
     }
 
