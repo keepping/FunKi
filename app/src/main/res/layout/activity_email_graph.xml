@@ -22,57 +22,20 @@
         android:background="@color/vistorTvbg"
         android:orientation="horizontal">
 
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/etIuputTel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
-
-            <LinearLayout
-                android:id="@+id/llCounty"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="14dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/japan" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="14dp"
-                    android:text="@string/phoneNumber"
-                    android:textColor="@color/titleText"
-                    android:textSize="17sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="29dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-
-                android:background="@color/vistorTvbgNormal" />
-
-            <EditText
-                android:id="@+id/etIuputTel"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="51dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="请输入行动电话号码"
-                android:maxLines="1"
-                android:paddingLeft="1dp"
-                android:singleLine="true"
-                android:textColorHint="@color/vistorTvbgNormal"
-                android:textSize="17sp" />
-        </LinearLayout>
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="51dp"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:hint="请输入邮箱地址"
+            android:maxLines="1"
+            android:paddingLeft="1dp"
+            android:singleLine="true"
+            android:textColorHint="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
 
 
     </RelativeLayout>
@@ -139,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:gravity="center"
-        android:text="由于隐私保护，系统在未验证改行动电话号为您本人所有时，不会告知您改行动电话号是否已注册"
+        android:text="由于隐私保护，系统在未验证改行动电话号为您本人所有时，不会告知您该邮箱是否已注册"
         android:textColor="@color/vistorTvbgNormal"
         android:textSize="13sp"
         android:textStyle="bold" />

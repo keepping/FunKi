@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pwd_graph"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgColor"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.ui.activity.PwdGraphActivity">
+
+    <com.hifunki.funki.ui.widget.TitleBar
+        android:id="@+id/tbPwdGraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/iv_bg"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="37dp"
+        android:text="您的行动电话号：1500 008063"
+        android:textColor="@color/loginTvUnClick"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="10dp"
+        android:text="会收到一条含有验证码的短信"
+        android:textColor="@color/loginTvUnClick"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="19dp"
+        android:background="@color/vistorTvbg"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etIuputTel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="51dp"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:hint="请输入验证码"
+            android:maxLines="1"
+            android:paddingLeft="1dp"
+            android:singleLine="true"
+            android:textColorHint="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:textColor="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="52s"
+            android:textColor="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

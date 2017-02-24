@@ -46,8 +46,8 @@ public class RegisterActivity extends BaseActivity {
     ImageView ivEmailLine;
     @BindView(R.id.vpPhoneEmail)
     ViewPager vpPhoneEmail;
-    @BindView(R.id.llLogin)
-    LinearLayout llLogin;
+    @BindView(R.id.llRegNext)
+    LinearLayout llRegNext;
     @BindView(R.id.ivAgree)
     ImageView ivAgree;
     @BindView(R.id.tvHelpCenter)
@@ -152,27 +152,28 @@ public class RegisterActivity extends BaseActivity {
         }
     };
 
-    @OnClick({R.id.tvPhone, R.id.ivPhoneLine, R.id.tvEmail, R.id.ivEmailLine, R.id.vpPhoneEmail, R.id.llLogin, R.id.ivAgree, R.id.tvHelpCenter, R.id.activity_login})
+    @OnClick({R.id.tvPhone, R.id.ivPhoneLine, R.id.tvEmail, R.id.ivEmailLine, R.id.vpPhoneEmail, R.id.llRegNext, R.id.ivAgree, R.id.tvHelpCenter, R.id.activity_login})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tvPhone:
+            case R.id.tvPhone://行动电话
                 break;
             case R.id.ivPhoneLine:
                 break;
-            case R.id.tvEmail:
+            case R.id.tvEmail://邮箱
                 break;
             case R.id.ivEmailLine:
                 break;
-            case R.id.vpPhoneEmail:
+            case R.id.vpPhoneEmail://中间ViewPager
                 break;
-            case R.id.llLogin:
+            case R.id.llRegNext://注册下一步
                 break;
-            case R.id.ivAgree:
+            case R.id.ivAgree://同意协议
                 break;
-            case R.id.tvHelpCenter:
+            case R.id.tvHelpCenter://协议
                 break;
             case R.id.activity_login:
                 break;
         }
     }
 }
+

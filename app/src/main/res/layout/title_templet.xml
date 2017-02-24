@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flTitleContainer"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@drawable/iv_bg">
+
+    <!-- 左边按钮区域 -->
+    <RelativeLayout
+        android:id="@+id/rlTitleLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|left|center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingStart="5dp">
+
+        <TextView
+            android:id="@+id/tvTitleLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <!-- 中间按钮区域 -->
+    <RelativeLayout
+        android:id="@+id/rlTitleCenter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvTitleCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <!-- 右边按钮区域 -->
+    <LinearLayout
+        android:id="@+id/ll_title_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|right|end"
+        android:orientation="horizontal" />
+
+
+</FrameLayout>

@@ -101,7 +101,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llLogin"
+        android:id="@+id/llRegNext"
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:layout_marginTop="19dp"

@@ -214,7 +214,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 //TODO
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
-            case R.id.tvPhonePwd:
+            case R.id.tvPhonePwd://通过手机号找回密码
+                startActivity(new Intent(LoginActivity.this, PwdGraphActivity.class));
                 break;
             case R.id.tvEmailPwd:
                 break;
@@ -223,7 +224,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
         }
     }
-
 
 
 }

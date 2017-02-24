@@ -19,12 +19,21 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>、
+        <!--登录界面-->
         <activity android:name=".ui.activity.LoginActivity" />
+        <!--国家列表页-->
         <activity android:name=".ui.activity.CountyListActivity" />
+        <!--注册界面-->
         <activity android:name=".ui.activity.RegisterActivity" />
-        <!--图形验证码界面-->
-        <activity android:name=".ui.activity.PwdGraphActivity"></activity>
+        <!-- 图形验证码界面 -->
+        <activity android:name=".ui.activity.PwdGraphActivity" />
+        <!-- 邮箱验证码界面 -->
+        <activity android:name=".ui.activity.EmailGraphActivity" />
+        <!-- 找回密码界面 -->
+        <activity android:name=".ui.activity.FindPwdActivity" />
+        <!--注册认证界面-->
+        <activity android:name=".ui.activity.RegisterAuthActivity"></activity>
     </application>
 
 </manifest>
