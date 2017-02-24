@@ -19,4 +19,16 @@ public class DisplayUtil {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
+
+    /**
+     * dp转换成为px
+     *
+     * @param context
+     * @param dpValue
+     * @return
+     */
+    public static float dip2Px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return dpValue * scale + 0.5f;
+    }
 }

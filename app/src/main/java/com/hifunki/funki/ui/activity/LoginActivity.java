@@ -1,9 +1,11 @@
 package com.hifunki.funki.ui.activity;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,6 +17,8 @@ import com.hifunki.funki.ui.widget.TitleBar;
 import com.hifunki.funki.ui.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.ui.widget.scroller.FixedSpeedScroller;
+import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import java.lang.reflect.Field;
@@ -29,14 +33,20 @@ import butterknife.OnClick;
  * @author monotone
  * @version V1.0 <描述当前版本功能>
  * @value com.hifunki.funki.ui.activity.LoginActivity.java
- * @link {@link com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType}    {@link com.hifunki.funki.ui.widget.layout.LayoutEmailWithType}
+ * @link {@link LayoutPhoneWithType}    {@link LayoutEmailWithType}
  * @since 2017-02-23 20:24:24
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private boolean isPhoneColor;
     private ArrayList<LinearLayout> mTabViews;
 
+    @BindView(R.id.llLogin)
+    LinearLayout llLogin;
+    @BindView(R.id.tvForgetPwd)
+    TextView tvForgetPwd;
+    @BindView(R.id.tvHelpCenter)
+    TextView tvHelpCenter;
     @BindView(R.id.ivPhoneLine)
     ImageView ivPhoneLine;
     @BindView(R.id.ivEmailLine)
@@ -51,6 +61,8 @@ public class LoginActivity extends BaseActivity {
     LinearLayout activityLogin;
     @BindView(R.id.vpPhoneEmail)
     ViewPager vpPhoneEmail;
+    private PopWindowUtil popWindowPwd;
+    private View popViewPwd;
 
     @Override
     protected int getViewResId() {
@@ -59,7 +71,7 @@ public class LoginActivity extends BaseActivity {
 
 
     @Override
-    protected void init() {
+    protected void initView() {
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
         vpPhoneEmail = (ViewPager) findViewById(R.id.vpPhoneEmail);
@@ -76,6 +88,20 @@ public class LoginActivity extends BaseActivity {
 //        vpPhoneEmail.setScanScroll(false);
         initViewPager();
 //        vpPhoneEmail
+
+    }
+
+    @Override
+    protected void initTitleBar() {
+        tbLogin.setLeftImageResource(R.drawable.iv_back);
+        tbLogin.setTitle(getString(R.string.login));
+        tbLogin.getLeftText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("test", "onClick: back tv");
+            }
+        });
+//        tbLogin.set
 
     }
 
@@ -123,7 +149,7 @@ public class LoginActivity extends BaseActivity {
     private void initViewPager() {
         mTabViews = new ArrayList<>();
         //获取第一个视图
-        LayoutPhoneWithType layoutLoginWithType = new LayoutPhoneWithType(etItemListener, onClickListener, LoginActivity.this, this, 0);
+        LayoutPhoneWithType layoutLoginWithType = new LayoutPhoneWithType(etItemListener, onClickListener, this, 0);
         LayoutEmailWithType layoutEmailWithType = new LayoutEmailWithType(this, 1);
         mTabViews.add(layoutLoginWithType);
         mTabViews.add(layoutEmailWithType);
@@ -136,7 +162,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tbLogin, R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail})
+    @OnClick({R.id.tbLogin, R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.llLogin, R.id.tvForgetPwd, R.id.tvHelpCenter})
 //    R.id.vpPhoneEmail,
     public void onClick(View view) {
         switch (view.getId()) {
@@ -167,9 +193,37 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.vpPhoneEmail:
                 break;
-
+            case R.id.llLogin:
+                break;
+            case R.id.tvForgetPwd:
+                //创建PopWindow
+                if (popWindowPwd != null) {
+                    popWindowPwd = PopWindowUtil.getInstance(this);
+                    popViewPwd = LayoutInflater.from(this).inflate(R.layout.pop_forget_pwd, null);
+                    popWindowPwd.init((int) DisplayUtil.dip2Px(this, 173), LinearLayout.LayoutParams.MATCH_PARENT);
+                    popWindowPwd.showPopWindow(popViewPwd, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
+                }
+                TextView tvPhonePwd = (TextView) popViewPwd.findViewById(R.id.tvPhonePwd);
+                TextView tvEmailPwd = (TextView) popViewPwd.findViewById(R.id.tvEmailPwd);
+                ImageView iv_close = (ImageView) popViewPwd.findViewById(R.id.iv_close);
+                tvPhonePwd.setOnClickListener(this);
+                tvEmailPwd.setOnClickListener(this);
+                iv_close.setOnClickListener(this);
+                break;
+            case R.id.tvHelpCenter:
+                //TODO
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                break;
+            case R.id.tvPhonePwd:
+                break;
+            case R.id.tvEmailPwd:
+                break;
+            case R.id.iv_close:
+                popWindowPwd.dismissPopWindow();
+                break;
         }
     }
+
 
 
 }

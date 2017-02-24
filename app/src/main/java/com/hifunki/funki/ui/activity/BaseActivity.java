@@ -28,8 +28,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getViewResId());
         //初始化butterKnife
         ButterKnife.bind(this);
+
+        //初始化titleBar
+        initTitleBar();
+
         //初始化View
-        init();
+        initView();
 
         loadDatas();
     }
@@ -43,7 +47,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract int getViewResId();
 
 
-    protected abstract void init();
+    protected abstract void initView();
+
+    protected abstract void initTitleBar();
 
     protected abstract void loadDatas();
 

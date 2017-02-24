@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.ui.activity.LoginActivity;
 
 
 /**
@@ -35,7 +34,7 @@ public class LayoutPhoneWithType extends LinearLayout {
 //        this.listener = listener;
 //    }
 
-    public LayoutPhoneWithType(TextWatcher textWatcher, OnClickListener onClickListener, LoginActivity loginActivity, Context context, int type) {
+    public LayoutPhoneWithType(TextWatcher textWatcher, OnClickListener onClickListener,  Context context, int type) {
         super(context);
 //        ButterKnife.bind(this);
         this.mContext = context;
@@ -51,6 +50,5 @@ public class LayoutPhoneWithType extends LinearLayout {
         etIuputTel.addTextChangedListener(textWatcher);
         etIuputPwd.addTextChangedListener(textWatcher);
     }
-
 
 }

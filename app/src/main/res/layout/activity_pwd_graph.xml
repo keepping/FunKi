@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pwd_graph"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgColor"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.ui.activity.PwdGraphActivity">
+
+    <com.hifunki.funki.ui.widget.TitleBar
+        android:id="@+id/tbPwdGraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/iv_bg"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@color/vistorTvbg"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/llCounty"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="14dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/japan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="14dp"
+                    android:text="@string/phoneNumber"
+                    android:textColor="@color/titleText"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="29dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+
+                android:background="@color/vistorTvbgNormal" />
+
+            <EditText
+                android:id="@+id/etIuputTel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="51dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="请输入行动电话号码"
+                android:maxLines="1"
+                android:paddingLeft="1dp"
+                android:singleLine="true"
+                android:textColorHint="@color/vistorTvbgNormal"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="104dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/iv_close" />
+
+        <EditText
+            android:id="@+id/etIuputGraph"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="51dp"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:hint="图形验证码错误，请重新输入"
+            android:maxLines="1"
+            android:paddingLeft="1dp"
+            android:singleLine="true"
+            android:textColorHint="@color/vistorTvbgNormal"
+            android:textSize="17sp" />
+    </LinearLayout>
+    <!--点击图片刷新-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:text="@string/refreshWord"
+            android:textColor="@color/vistorTvbgNormal"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
+
+        <TextView
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:textColor="@color/vistorTvbgNormal" />
+
+    </RelativeLayout>
+</LinearLayout>

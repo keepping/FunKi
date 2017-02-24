@@ -65,7 +65,7 @@ public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItem
     }
 
     @Override
-    protected void init() {
+    protected void initView() {
 
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
@@ -93,6 +93,11 @@ public class VisitorFillActivity extends BaseActivity implements TitleBar.OnItem
         paint.setFakeBoldText(true);
         //设置沉浸式
 //        tbVisitor.setImmersive(true);
+
+    }
+
+    @Override
+    protected void initTitleBar() {
 
     }
 

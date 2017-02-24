@@ -19,7 +19,12 @@ public class MainActivity extends BaseActivity {
 
 
     @Override
-    protected void init() {
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initTitleBar() {
 
     }
 

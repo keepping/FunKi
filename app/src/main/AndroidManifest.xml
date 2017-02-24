@@ -22,6 +22,9 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.CountyListActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+        <!--图形验证码界面-->
+        <activity android:name=".ui.activity.PwdGraphActivity"></activity>
     </application>
 
 </manifest>
