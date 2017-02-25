@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.ui.adapter.LoginAdapter;
+import com.hifunki.funki.ui.adapter.PagerBaseAdapter;
 import com.hifunki.funki.ui.widget.TitleBar;
 import com.hifunki.funki.ui.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType;
@@ -113,7 +113,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.llCounty:
-                    Log.e("test", "onClick: llcounty");
+                    //TODO
+                    startActivity(new Intent(LoginActivity.this, CountyListActivity.class));
                     break;
                 case R.id.etIuputTel:
                     Log.e("test", "onClick: etIuputTel");
@@ -153,7 +154,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         LayoutEmailWithType layoutEmailWithType = new LayoutEmailWithType(this, 1);
         mTabViews.add(layoutLoginWithType);
         mTabViews.add(layoutEmailWithType);
-        vpPhoneEmail.setAdapter(new LoginAdapter<>(mTabViews));
+        vpPhoneEmail.setAdapter(new PagerBaseAdapter<>(mTabViews));
 
     }
 

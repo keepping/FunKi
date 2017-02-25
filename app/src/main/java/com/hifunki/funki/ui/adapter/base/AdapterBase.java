@@ -1,17 +1,15 @@
 package com.hifunki.funki.ui.adapter.base;
 
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
 
+import java.util.List;
+
 
 /**
- * @className: AdapterBase
- * @description:Adapter基类处理
- * @author terryzz0601@gmail.com
- * @date: 2014-7-16 下午7:33:34
+ * Adapter基类处理
+ * @param <T>
  */
 public abstract class AdapterBase<T> extends BaseAdapter {
 

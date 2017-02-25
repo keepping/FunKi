@@ -14,8 +14,9 @@
 
         <!-- 游客必填信息页 -->
         <activity
-            android:theme="@style/AppTheme"
-            android:name=".ui.activity.VisitorFillActivity">
+            android:name=".ui.activity.VisitorFillActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,22 +25,38 @@
         </activity>
 
         <!-- 登录界面 -->
-        <activity android:name=".ui.activity.LoginActivity" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:screenOrientation="portrait" />
         <!-- 国家列表页 -->
-        <activity android:name=".ui.activity.CountyListActivity" />
+        <activity
+            android:name=".ui.activity.CountyListActivity"
+            android:screenOrientation="portrait" />
         <!-- 注册界面 -->
-        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity
+            android:name=".ui.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
         <!-- 图形验证码界面 -->
-        <activity android:name=".ui.activity.PwdGraphActivity" />
+        <activity
+            android:name=".ui.activity.PwdGraphActivity"
+            android:screenOrientation="portrait" />
         <!-- 邮箱验证码界面 -->
-        <activity android:name=".ui.activity.EmailGraphActivity" />
+        <activity
+            android:name=".ui.activity.EmailGraphActivity"
+            android:screenOrientation="portrait" />
         <!-- 找回密码界面 -->
         <activity android:name=".ui.activity.FindPwdActivity" />
         <!-- 注册认证界面 -->
-        <activity android:name=".ui.activity.RegisterAuthActivity" />
-        <!-- 设置新密码 -->
-        <activity android:name=".ui.activity.SetPwdActivity" />
-        <activity android:name=".ui.activity.PwdSuccessActivity"></activity>
+        <activity
+            android:name=".ui.activity.RegisterAuthActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SetPwdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.PwdSuccessActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
