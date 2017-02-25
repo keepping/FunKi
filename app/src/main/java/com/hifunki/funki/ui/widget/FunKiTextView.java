@@ -38,7 +38,7 @@ public class FunKiTextView extends TextView {
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.JollyTextView);
-            mLineColor = typedArray.getColor(R.styleable.JollyTextView_line_color, R.color.vistorTvbg);
+            mLineColor = typedArray.getColor(R.styleable.JollyTextView_line_color, context.getResources().getColor(R.color.vistorTvbg));
             mLineHeight = (int) typedArray.getDimension(R.styleable.JollyTextView_line_height, DEF_LINE_HEIGHT);
             mLineWidth = (int) typedArray.getDimension(R.styleable.JollyTextView_line_width, DEF_LINE_WIDTH);
             isShowLine = typedArray.getBoolean(R.styleable.JollyTextView_show_line, false);
@@ -89,4 +89,5 @@ public class FunKiTextView extends TextView {
         this.mLocation = location;
         invalidate();
     }
+
 }

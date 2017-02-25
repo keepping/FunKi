@@ -2,6 +2,7 @@ package com.hifunki.funki.ui.application;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.util.AppUtil;
@@ -16,7 +17,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  */
 
 public class ApplicationMain extends Application {
-
+    static  ApplicationMain application;
+    static Context appContext;
     /**
      * 对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList实现了基于动态数组的数据结构，要移动数据。<br/>
      * LinkedList基于链表的数据结构,便于增加删除. XXX 作用不大
@@ -27,7 +29,8 @@ public class ApplicationMain extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        application = this;
+        appContext = getApplicationContext();
         // 非App进程启动拦截
         if (!AppUtil.isMyProcessStartApp(this)) {
             return;
@@ -43,6 +46,14 @@ public class ApplicationMain extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build());
 
+    }
+
+    public static Context getContext() {
+        return appContext;
+    }
+
+    public static ApplicationMain getInstance() {
+        return application;
     }
 
     /**
