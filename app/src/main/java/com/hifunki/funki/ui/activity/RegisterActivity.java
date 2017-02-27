@@ -63,6 +63,11 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @Override
+    protected void initDatas() {
+
+    }
+
+    @Override
     protected void initTitleBar() {
         tbRegister.setLeftImageResource(R.drawable.iv_back);
         tbRegister.setTitle(getString(R.string.register));
@@ -95,6 +100,16 @@ public class RegisterActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initAdapter() {
+
+    }
+
     private void initViewPager() {
         mTabViews = new ArrayList<>();
         //获取第一个视图
@@ -106,10 +121,7 @@ public class RegisterActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void loadDatas() {
 
-    }
 
     /**
      * phone and email listener

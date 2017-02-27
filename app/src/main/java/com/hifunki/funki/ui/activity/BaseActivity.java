@@ -31,14 +31,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         //初始化butterKnife
         ButterKnife.bind(this);
 
+        //初始化参数
+        initDatas();
+
         //初始化titleBar
         initTitleBar();
 
         //初始化View
         initView();
 
-        loadDatas();
+        //初始化监听
+        initListener();
+        //初始化适配器
+        initAdapter();
     }
+
 
     @Override
     protected void onDestroy() {
@@ -48,12 +55,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract int getViewResId();
 
+    protected abstract void initDatas();
 
-    protected abstract void initView();
 
     protected abstract void initTitleBar();
 
-    protected abstract void loadDatas();
+    protected abstract void initView();
+
+    protected abstract void initListener();
+
+    protected abstract void initAdapter();
 
     @Override
     protected void attachBaseContext(Context newBase) {

@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:funkitext="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgColor"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.ui.activity.LoginActivity">
+    tools:context="com.hifunki.funki.ui.activity.LoginActivity"
+    tools:ignore="MissingPrefix">
 
-    <com.hifunki.funki.ui.widget.TitleBar
-        android:id="@+id/tbLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/iv_bg"
-        android:clipToPadding="true"
-        android:fitsSystemWindows="true" />
+    <!--<com.hifunki.funki.ui.widget.TitleBar-->
+    <!--android:id="@+id/tbLogin"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/iv_bg"-->
+    <!--android:clipToPadding="true"-->
+    <!--/>-->
+
+    <include layout="@layout/title_templet" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -27,6 +30,7 @@
         android:visibility="visible" />
 
     <TextView
+        fontPath="fonts/arial_0.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

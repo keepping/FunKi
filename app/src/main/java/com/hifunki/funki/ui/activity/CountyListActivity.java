@@ -29,7 +29,7 @@ public class CountyListActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    protected void initDatas() {
         cities = new ArrayList<>();
         cities.add(new City("北京", "ss"));
         cities.add(new City("北京", "ss"));
@@ -39,6 +39,21 @@ public class CountyListActivity extends BaseActivity {
         cities.add(new City("北京", "ss"));
         cities.add(new City("北京", "ss"));
         cities.add(new City("北京", "ss"));
+    }
+
+    @Override
+    protected void initView() {
+
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initAdapter() {
         mCityAdapter = new CityListAdapter(this, cities);
         mListView = (ListView) findViewById(R.id.listview_all_city);
         mListView.setAdapter(mCityAdapter);
@@ -49,8 +64,5 @@ public class CountyListActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void loadDatas() {
 
-    }
 }

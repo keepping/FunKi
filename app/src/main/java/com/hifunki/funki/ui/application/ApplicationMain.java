@@ -17,7 +17,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  */
 
 public class ApplicationMain extends Application {
-    static  ApplicationMain application;
+    static ApplicationMain application;
     static Context appContext;
     /**
      * 对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList实现了基于动态数组的数据结构，要移动数据。<br/>
@@ -37,6 +37,10 @@ public class ApplicationMain extends Application {
         }
 
         //加载自定义字体
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/arial_0.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/FZDHTFW.ttf")
                 .setFontAttrId(R.attr.fontPath)

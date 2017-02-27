@@ -2,6 +2,8 @@ package com.hifunki.funki.ui.widget;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.text.TextPaint;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -34,9 +36,9 @@ public class ToolTitleBar {
      * @param onClickListener OnClick监听器 注意：设置在左边按钮的父容器上，即：R.id.rlTitleLeft
      * @return
      */
-    public static TextView showLeftButton(View fragmentView, byte btnType, Object resIdOrTxt,
+    public static TextView showLeftButton(Context context, View fragmentView, byte btnType, Object resIdOrTxt,
                                           View.OnClickListener onClickListener) {
-        TextView tv = showTextViewButton(R.id.tvTitleLeft, fragmentView, btnType, resIdOrTxt, null);
+        TextView tv = showTextViewButton(context, R.id.tvTitleLeft, fragmentView, btnType, resIdOrTxt, null);
 
         if (onClickListener != null) {
             fragmentView.findViewById(R.id.rlTitleLeft).setOnClickListener(onClickListener);
@@ -54,9 +56,9 @@ public class ToolTitleBar {
      * @param onClickListener OnClick监听器 注意：设置在中间按钮上
      * @return
      */
-    public static TextView showCenterButton(View fragmentView, byte btnType, Object resIdOrTxt,
+    public static TextView showCenterButton(Context context, View fragmentView, byte btnType, Object resIdOrTxt,
                                             View.OnClickListener onClickListener) {
-        TextView tv = showTextViewButton(R.id.tvTitleCenter, fragmentView, btnType, resIdOrTxt, onClickListener);
+        TextView tv = showTextViewButton(context, R.id.tvTitleCenter, fragmentView, btnType, resIdOrTxt, onClickListener);
         return tv;
     }
 
@@ -337,6 +339,7 @@ public class ToolTitleBar {
     /**
      * 显示按钮
      *
+     * @param context
      * @param id           按钮id
      * @param fragmentView 当前FragmentView
      * @param btnType      按钮类型，值见{@link #BTN_TYPE_IMAGE} 或 {@link #BTN_TYPE_TEXT}
@@ -344,7 +347,7 @@ public class ToolTitleBar {
      * @param listener     OnClick监听器
      * @return
      */
-    private static TextView showTextViewButton(int id, View fragmentView, byte btnType, Object resIdOrTxt,
+    private static TextView showTextViewButton(Context context, int id, View fragmentView, byte btnType, Object resIdOrTxt,
                                                View.OnClickListener listener) {
         TextView tv = (TextView) fragmentView.findViewById(id);
 
@@ -354,14 +357,22 @@ public class ToolTitleBar {
 
         // 设置背景图片 或 文字
         if (btnType == BTN_TYPE_IMAGE) {
-            tv.setTextSize(14);
+            tv.setTextSize(17);
             tv.setBackgroundResource((Integer) resIdOrTxt);
+
         } else if (btnType == BTN_TYPE_TEXT) {
             if (resIdOrTxt instanceof Integer) {
                 tv.setText((Integer) resIdOrTxt);
             } else if (resIdOrTxt instanceof String) {
                 tv.setText((String) resIdOrTxt);
             }
+            tv.setTextSize(17);
+            tv.setTextColor(context.getResources().getColor(R.color.titleText));
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/FZZDXFW.ttf");
+            tv.setTypeface(typeface);
+            //Bold
+            TextPaint tp = tv.getPaint();
+            tp.setFakeBoldText(true);
         }
 
         // 设置监听器

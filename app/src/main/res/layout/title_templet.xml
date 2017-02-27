@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/flTitleContainer"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:background="@drawable/iv_bg">
+    android:background="@drawable/iv_bg"
+    tools:ignore="MissingPrefix">
 
     <!-- 左边按钮区域 -->
     <RelativeLayout
@@ -11,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|left|center_vertical"
-        android:paddingLeft="5dp"
-        android:paddingStart="5dp">
+        android:paddingLeft="14dp"
+        android:paddingStart="14dp">
 
         <TextView
             android:id="@+id/tvTitleLeft"

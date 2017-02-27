@@ -17,9 +17,24 @@ public class MainActivity extends BaseActivity {
         return 0;
     }
 
+    @Override
+    protected void initDatas() {
+
+    }
+
 
     @Override
     protected void initView() {
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initAdapter() {
 
     }
 
@@ -28,8 +43,5 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void loadDatas() {
 
-    }
 }

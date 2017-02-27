@@ -20,7 +20,22 @@ public class FindPwdActivity extends BaseActivity {
     }
 
     @Override
+    protected void initDatas() {
+
+    }
+
+    @Override
     protected void initView() {
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initAdapter() {
 
     }
 
@@ -29,8 +44,5 @@ public class FindPwdActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void loadDatas() {
 
-    }
 }

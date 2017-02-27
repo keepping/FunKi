@@ -1,8 +1,6 @@
 package com.hifunki.funki.ui.activity;
 
 import android.content.Intent;
-import android.text.TextPaint;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -10,8 +8,9 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.business.VisitorFillBusiness;
-import com.hifunki.funki.ui.widget.TitleBar;
-import com.hifunki.funki.util.TextUtil;
+import com.hifunki.funki.ui.widget.ToolTitleBar;
+import com.hifunki.funki.util.StatusBarUtil;
+import com.hifunki.funki.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,11 +24,9 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-23 20:24:24
  */
-public class VisitorFillActivity extends BaseActivity {
+public class VisitorFillActivity extends BaseActivity implements View.OnClickListener {
 
 
-    @BindView(R.id.tbVisitor)
-    TitleBar tbVisitor;
     @BindView(R.id.tvBoy)
     TextView tvBoy;
     @BindView(R.id.tvGirl)
@@ -63,6 +60,11 @@ public class VisitorFillActivity extends BaseActivity {
         return R.layout.activity_visitor_fill;
     }
 
+    @Override
+    protected void initDatas() {
+
+    }
+
 //    @Override
 //    public void onWindowFocusChanged(boolean hasFocus) {
 //        super.onWindowFocusChanged(hasFocus);
@@ -74,58 +76,56 @@ public class VisitorFillActivity extends BaseActivity {
 //        }
 //    }
 
-    @Override
-    protected void initView() {
-//
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        //透明导航栏
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
-//        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
-
-//        tbVisitor.setHeight(DisplayUtil.px2dip(this, 84));//设置高度
-
-//        tbVisitor.setImmersive(true);
-        tbVisitor.setLeftImageResource(R.drawable.iv_back);
-        tbVisitor.setTitle(getResources().getString(R.string.visitor_title));
-        TextView textView = tbVisitor.getmCenterText();
-        //点击返回按键
-        tbVisitor.getLeftText().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("test", "onClick: tv");
-            }
-        });
-
-        textView.setTextColor(getResources().getColor(R.color.titleText));
-
-        TextUtil.setFzNormalTypeFace(this, textView);
-
-//        http://blog.csdn.net/to_cm/article/details/6002812
-        TextPaint paint = textView.getPaint();
-        paint.setFakeBoldText(true);
-        //设置沉浸式
-
-    }
-
 
     @Override
     protected void initTitleBar() {
+        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
+        ToolTitleBar.showLeftButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
+        ToolTitleBar.showCenterButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_TEXT, R.string.visitor_title, null);
+    }
+
+
+    @Override
+    protected void initView() {
+
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        //透明导航栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        tbVisitor.setHeight(DisplayUtil.px2dip(this, 84));//设置高度
+
+//        tbVisitor.setImmersive(true);
+//        tbVisitor.setLeftImageResource(R.drawable.iv_back);
+//        tbVisitor.setTitle(getResources().getString(R.string.visitor_title));
+//        TextView textView = tbVisitor.getmCenterText();
+//        //点击返回按键
+//        tbVisitor.getLeftText().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e("test", "onClick: tv");
+//            }
+//        });
+//        textView.setTextColor(getResources().getColor(R.color.titleText));
+//        TextUtil.setFzNormalTypeFace(this, textView);
+//        http://blog.csdn.net/to_cm/article/details/6002812
+//        TextPaint paint = textView.getPaint();
+//        paint.setFakeBoldText(true);
+        //设置沉浸式
+    }
+
+    @Override
+    protected void initListener() {
 
     }
 
     @Override
-    protected void loadDatas() {
+    protected void initAdapter() {
 
     }
 
 
-    @OnClick({R.id.tbVisitor, R.id.tvBoy, R.id.tvGirl, R.id.tvThirdSex, R.id.tvLoveSameSex, R.id.tvLoveDifferentSex, R.id.tvNotCareSex, R.id.tvLoveBothSex, R.id.tvSecretSex, R.id.etInputAge, R.id.tvVisitorConfirm, R.id.llSkip, R.id.activity_visitor_fill})
+    @OnClick({R.id.tvBoy, R.id.tvGirl, R.id.tvThirdSex, R.id.tvLoveSameSex, R.id.tvLoveDifferentSex, R.id.tvNotCareSex, R.id.tvLoveBothSex, R.id.tvSecretSex, R.id.etInputAge, R.id.tvVisitorConfirm, R.id.llSkip, R.id.activity_visitor_fill})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tbVisitor:
-
-                break;
             case R.id.tvBoy:
                 VisitorFillBusiness.changeTvStyle(this, tvBoy, tvGirl, tvThirdSex);
                 sex = 1;
@@ -165,6 +165,9 @@ public class VisitorFillActivity extends BaseActivity {
                 if (sex == 0 && sexOrientation == 0) {
                     return;
                 }
+                //设置颜色
+                tvVisitorConfirm.setTextColor(getResources().getColor(R.color.vistorTvbgNormal));
+                tvVisitorConfirm.setBackground(getResources().getDrawable(R.drawable.visitor_confirm_bg_yello));
                 Intent intent = new Intent();
                 intent.setClass(VisitorFillActivity.this, LoginActivity.class);
 
@@ -179,6 +182,9 @@ public class VisitorFillActivity extends BaseActivity {
                 startActivity(new Intent(VisitorFillActivity.this, LoginActivity.class));
                 break;
             case R.id.activity_visitor_fill://根布局
+                break;
+            case R.id.rlTitleLeft:
+                ToastUtil.showToast(this, "back");
                 break;
         }
     }

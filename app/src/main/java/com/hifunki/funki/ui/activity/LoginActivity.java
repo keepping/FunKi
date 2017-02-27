@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.ui.adapter.PagerBaseAdapter;
-import com.hifunki.funki.ui.widget.TitleBar;
+import com.hifunki.funki.ui.widget.ToolTitleBar;
 import com.hifunki.funki.ui.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.ui.widget.scroller.FixedSpeedScroller;
@@ -41,6 +41,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private boolean isPhoneColor;
     private ArrayList<LinearLayout> mTabViews;
 
+    @BindView(R.id.activity_login)
+    LinearLayout activityLogin;
     @BindView(R.id.llLogin)
     LinearLayout llLogin;
     @BindView(R.id.tvForgetPwd)
@@ -55,10 +57,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     TextView tvPhone;
     @BindView(R.id.tvEmail)
     TextView tvEmail;
-    @BindView(R.id.tbLogin)
-    TitleBar tbLogin;
-    @BindView(R.id.activity_login)
-    LinearLayout activityLogin;
+
     @BindView(R.id.vpPhoneEmail)
     ViewPager vpPhoneEmail;
     private PopWindowUtil popWindowPwd;
@@ -69,10 +68,34 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         return R.layout.activity_login;
     }
 
+    @Override
+    protected void initDatas() {
+
+    }
+
+
+    @Override
+    protected void initTitleBar() {
+        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
+        ToolTitleBar.showLeftButton(this,activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, null);
+
+        ToolTitleBar.showCenterButton(this,activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
+        ToolTitleBar.showRightButton(this, activityLogin, R.layout.activity_login_x, ToolTitleBar.BTN_TYPE_TEXT, R.string.register, null);
+
+//        tbLogin.setLeftImageResource(R.drawable.iv_back);
+//        tbLogin.setTitle(getString(R.string.login));
+//        tbLogin.getLeftText().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e("test", "onClick: back tv");
+//            }
+//        });
+//        tbLogin.set
+
+    }
 
     @Override
     protected void initView() {
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
         vpPhoneEmail = (ViewPager) findViewById(R.id.vpPhoneEmail);
         Field mScroller = null;
@@ -92,18 +115,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     @Override
-    protected void initTitleBar() {
-        tbLogin.setLeftImageResource(R.drawable.iv_back);
-        tbLogin.setTitle(getString(R.string.login));
-        tbLogin.getLeftText().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("test", "onClick: back tv");
-            }
-        });
-//        tbLogin.set
+    protected void initListener() {
 
     }
+
+    @Override
+    protected void initAdapter() {
+
+    }
+
 
     /**
      * phone and email listener
@@ -158,17 +178,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-    @Override
-    protected void loadDatas() {
 
-    }
-
-    @OnClick({R.id.tbLogin, R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.llLogin, R.id.tvForgetPwd, R.id.tvHelpCenter})
+    @OnClick({R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.llLogin, R.id.tvForgetPwd, R.id.tvHelpCenter})
 //    R.id.vpPhoneEmail,
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tbLogin:
-                break;
+
             case R.id.activity_login:
                 break;
             case R.id.tvPhone:
