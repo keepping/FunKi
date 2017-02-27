@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix|RtlHardcoded">
+
+    <!--style="@style/LetterIndexTextViewStyle"-->
+    <ImageView
+        android:id="@+id/iv_country_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/iv_close" />
+
+
+
+    <TextView
+        android:layout_toRightOf="@+id/iv_country_flag"
+        android:id="@+id/tv_item_country_name"
+        fontPath="fonts/FZZDXFW.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:textColor="@color/loginTvUnClick"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/tv_item_country_name_letter"
+        fontPath="fonts/FZZDXFW.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:textColor="@color/loginTvUnClick"
+        android:textSize="10sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent" />
+</RelativeLayout>

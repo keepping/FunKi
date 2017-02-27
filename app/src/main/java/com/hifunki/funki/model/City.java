@@ -6,12 +6,12 @@ package com.hifunki.funki.model;
 
 public class City {
     private String name;
+    private String letter;
     private String pinyin;
 
-    public City() {}
-
-    public City(String name, String pinyin) {
+    public City(String name, String letter, String pinyin) {
         this.name = name;
+        this.letter = letter;
         this.pinyin = pinyin;
     }
 
@@ -21,6 +21,14 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLetter() {
+        return letter;
+    }
+
+    public void setLetter(String letter) {
+        this.letter = letter;
     }
 
     public String getPinyin() {
@@ -35,6 +43,7 @@ public class City {
     public String toString() {
         return "City{" +
                 "name='" + name + '\'' +
+                ", letter='" + letter + '\'' +
                 ", pinyin='" + pinyin + '\'' +
                 '}';
     }

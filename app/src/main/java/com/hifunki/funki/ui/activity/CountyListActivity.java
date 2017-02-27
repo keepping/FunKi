@@ -1,5 +1,6 @@
 package com.hifunki.funki.ui.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,7 +14,6 @@ import com.hifunki.funki.model.City;
 import com.hifunki.funki.ui.adapter.CityListAdapter;
 import com.hifunki.funki.ui.adapter.SideLetterBar;
 import com.hifunki.funki.ui.widget.ToolTitleBar;
-import com.hifunki.funki.util.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
     protected void initDatas() {
         cities = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
-            cities.add(new City("北京", "ss"));
+            cities.add(new City("北京", "+011", "ss"));
         }
     }
 
@@ -92,7 +92,6 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initTitleBar() {
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
         ToolTitleBar.showLeftButton(this, activityCountryList, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
         ToolTitleBar.showCenterButton(this, activityCountryList, ToolTitleBar.BTN_TYPE_TEXT, R.string.choose_country, null);
     }
@@ -104,6 +103,8 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
             case R.id.rlTitleLeft://左边的back
                 break;
             case R.id.rl_search://搜索
+                //跳转搜索结果界面
+                startActivity(new Intent(CountyListActivity.this, CountryResultActivity.class));
                 break;
             case R.id.side_letter_bar://右侧bar
                 break;

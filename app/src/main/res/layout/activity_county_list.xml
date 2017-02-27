@@ -19,7 +19,7 @@
         <RelativeLayout
             android:id="@+id/rl_search"
             android:layout_width="332dp"
-            android:layout_height="58dp"
+            android:layout_height="29dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/city_list_bg"
@@ -48,7 +48,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="9dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                     android:layout_width="332dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:background="@color/bgColor"
+                    android:background="@null"
                     android:cacheColorHint="@android:color/transparent"
                     android:divider="@android:color/transparent"
                     android:dividerHeight="0dp"

@@ -10,7 +10,6 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.business.VisitorFillBusiness;
 import com.hifunki.funki.ui.widget.ToolTitleBar;
 import com.hifunki.funki.util.LogUtils;
-import com.hifunki.funki.util.StatusBarUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -79,7 +78,6 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initTitleBar() {
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
         ToolTitleBar.showLeftButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
         ToolTitleBar.showCenterButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_TEXT, R.string.visitor_title, null);
     }

@@ -27,6 +27,7 @@ public class SideLetterBar extends View {
     private TextView overlay;
     private Context context;
     private Bitmap bitmapSearch;
+    private float xPos;
 
     public SideLetterBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -49,12 +50,7 @@ public class SideLetterBar extends View {
 
     private void initViews() {
         paint = new Paint();
-        //通过sp装换成dp
-        int px = DisplayUtil.sp2px(context, 9);
-        paint.setTextSize(px);
-        paint.setColor(getResources().getColor(R.color.loginTvUnClick));
-        paint.setAntiAlias(true);
-        paint.setFakeBoldText(true);
+
 
         mPaint = new Paint();
         bitmapSearch = BitmapFactory.decodeResource(context.getResources(), R.drawable.iv_search_small);
@@ -76,26 +72,40 @@ public class SideLetterBar extends View {
         if (showBg) {
             canvas.drawColor(Color.TRANSPARENT);
         }
-        Rect srcRect = new Rect(0, 0, bitmapSearch.getWidth(), bitmapSearch.getHeight());
-        Rect destRect = new Rect(0, 0, bitmapSearch.getWidth(), bitmapSearch.getHeight());
-
-        canvas.drawBitmap(bitmapSearch, srcRect, destRect, mPaint);
 
         int height = getHeight();
         int width = getWidth();
-        Log.e("test", "onDraw: width" + width + "height=" + height);
-//        int singleHeight = height / b.length;
-        int singleHeight = 6;
+        int widthStart = width / 2 - bitmapSearch.getWidth();
+        Log.e("test", "onDraw: " + width + "test" + widthStart);
+
+
+        int singleHeight = height / b.length;
+//        int singleHeight = (int) (11+paint.measureText(b[0]));
+
+        Log.e("test", "onDraw:singleHeight+ " + singleHeight);
         for (int i = 0; i < b.length; i++) {
-            if (i == choose) {
-                paint.setColor(getResources().getColor(R.color.bgColor));
+            paint.setColor(getResources().getColor(R.color.bgColor));
+            //通过sp装换成dp
+            int px = DisplayUtil.sp2px(context, 9);
+            paint.setTextSize(px);
+            paint.setColor(getResources().getColor(R.color.loginTvUnClick));
+            paint.setAntiAlias(true);
+//            if (i == choose) {
+//                paint.setColor(getResources().getColor(R.color.loginTvUnClick));
+//                paint.setFakeBoldText(true);
+//            }
 //                paint.setFakeBoldText(true);  //加粗
-            }
-            float xPos = width / 2 - paint.measureText(b[i]) / 2;
+
+            xPos = width / 2 - paint.measureText(b[i]) / 2;
             float yPos = singleHeight * i + singleHeight;
             canvas.drawText(b[i], xPos, yPos, paint);
             paint.reset();
         }
+
+        Rect srcRect = new Rect(0, 0, bitmapSearch.getWidth(), bitmapSearch.getHeight());
+        Rect destRect = new Rect((int) xPos, 0, bitmapSearch.getWidth(), bitmapSearch.getHeight());
+
+        canvas.drawBitmap(bitmapSearch, srcRect, destRect, mPaint);
 
     }
 

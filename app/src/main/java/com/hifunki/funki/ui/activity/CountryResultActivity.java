@@ -1,5 +1,11 @@
 package com.hifunki.funki.ui.activity;
 
+import android.widget.RelativeLayout;
+
+import com.hifunki.funki.R;
+import com.hifunki.funki.ui.widget.ToolEditTitleBar;
+import com.hifunki.funki.ui.widget.ToolTitleBar;
+
 /**
  * 在此写用途
  *
@@ -14,7 +20,7 @@ public class CountryResultActivity extends BaseActivity {
 
     @Override
     protected int getViewResId() {
-        return 0;
+        return R.layout.activity_country_result;
     }
 
     @Override
@@ -25,6 +31,14 @@ public class CountryResultActivity extends BaseActivity {
     @Override
     protected void initTitleBar() {
 
+
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_country_result);
+
+        ToolEditTitleBar.showLeftButton(this, relativeLayout, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, null);
+        ToolEditTitleBar.showCenterEditText(this, relativeLayout, null, null);
+        ToolEditTitleBar.showRightButton(this, relativeLayout, R.layout.activity_login_search, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_close, null);
+        //右边的搜索
+        ToolEditTitleBar.showRightButton(this, relativeLayout, R.layout.activity_login_search, ToolTitleBar.BTN_TYPE_TEXT, R.string.search, null);
     }
 
     @Override

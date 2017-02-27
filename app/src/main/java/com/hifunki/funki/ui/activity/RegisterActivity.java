@@ -15,7 +15,6 @@ import com.hifunki.funki.ui.widget.TitleBar;
 import com.hifunki.funki.ui.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.ui.widget.scroller.FixedSpeedScroller;
-import com.hifunki.funki.util.StatusBarUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -81,7 +80,6 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg);
 
         vpPhoneEmail = (ViewPager) findViewById(R.id.vpPhoneEmail);
         Field mScroller = null;

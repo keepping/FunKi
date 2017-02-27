@@ -19,7 +19,6 @@ import com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.ui.widget.scroller.FixedSpeedScroller;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
-import com.hifunki.funki.util.StatusBarUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -76,7 +75,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void initTitleBar() {
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
         ToolTitleBar.showLeftButton(this,activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, null);
 
         ToolTitleBar.showCenterButton(this,activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);

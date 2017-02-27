@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.hifunki.funki.R;
 import com.hifunki.funki.ui.application.ApplicationMain;
+import com.hifunki.funki.util.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -33,6 +35,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         //初始化参数
         initDatas();
+
+        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
 
         //初始化titleBar
         initTitleBar();
