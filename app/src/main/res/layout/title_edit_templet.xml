@@ -22,18 +22,30 @@
             android:layout_height="wrap_content"
             android:textSize="17sp"
             android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_Title_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
     </RelativeLayout>
 
     <!-- 中间按钮区域 -->
     <RelativeLayout
         android:id="@+id/rlTitleCenter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="left"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="5dp"
-        android:gravity="left">
+        android:gravity="left|center_vertical">
         <!--android:layout_toRightOf="@+id/rlTitleLeft"-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/age" />
 
         <EditText
             android:id="@+id/etTitleCenter"
@@ -41,6 +53,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:ellipsize="end"
+            android:gravity="center"
             android:singleLine="true"
             android:textSize="17sp"
             android:visibility="gone" />

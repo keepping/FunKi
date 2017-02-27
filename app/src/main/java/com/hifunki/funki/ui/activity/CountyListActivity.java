@@ -58,7 +58,6 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
     LinearLayout activityCountryList;
     private CityListAdapter mCityAdapter;
     private List<City> cities;
-    private ListView mListView;
 
     @Override
     protected int getViewResId() {

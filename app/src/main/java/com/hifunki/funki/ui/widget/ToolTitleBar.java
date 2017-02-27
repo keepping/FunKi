@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -47,6 +48,32 @@ public class ToolTitleBar {
         }
 
         return tv;
+    }
+
+    public static ImageView showLeftImageView(Context context, View mainLayout, Object resIdOrTxt,
+                                              View.OnClickListener listener) {
+        ImageView iv = (ImageView) mainLayout.findViewById(R.id.iv_Title_left);
+        if (iv == null) {
+            return null;
+        }
+
+        // 设置监听器
+//        if (listener != null) {
+//            iv.setOnClickListener(listener);
+//        }
+
+        LinearLayout.LayoutParams ivLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ivLp.gravity = Gravity.CENTER_VERTICAL;
+        iv.setLayoutParams(ivLp);
+
+        iv.setVisibility(View.VISIBLE);
+
+
+        if (listener != null) {
+            mainLayout.findViewById(rlTitleLeft).setOnClickListener(listener);
+        }
+
+        return iv;
     }
 
     /**
