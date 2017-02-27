@@ -1,59 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_country_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
 
     <include layout="@layout/title_templet" />
 
-    <include layout="@layout/cp_view_search" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@color/bgColor"
+        android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/listview_all_city"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:cacheColorHint="@android:color/transparent"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0dp"
-            android:listSelector="@android:color/transparent" />
-
-        <TextView
-            android:id="@+id/tv_letter_overlay"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/iv_reg_agree"
+        <RelativeLayout
+            android:id="@+id/rl_search"
+            android:layout_width="332dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/city_list_bg"
             android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            android:orientation="horizontal">
 
-        <com.hifunki.funki.ui.adapter.SideLetterBar
-            android:id="@+id/side_letter_bar"
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            tools:ignore="RtlHardcoded" />
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:src="@drawable/iv_search_icon" />
 
-        <ListView
-            android:id="@+id/listview_search_result"
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_search"
+                android:text="@string/search"
+                android:textColor="@color/loginTvUnClick"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:cacheColorHint="@android:color/transparent"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0dp"
-            android:listSelector="@android:color/transparent"
-            android:visibility="gone" />
+            android:layout_height="match_parent">
 
-        <!--<include layout="@layout/cp_view_no_search_result" />-->
-    </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ListView
+                    android:id="@+id/lv_all_country"
+                    android:layout_width="332dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/bgColor"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0dp"
+                    android:listSelector="@android:color/transparent" />
+
+
+            </RelativeLayout>
+
+            <com.hifunki.funki.ui.adapter.SideLetterBar
+                android:id="@+id/side_letter_bar"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="176dp"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+
+    </LinearLayout>
 </LinearLayout>

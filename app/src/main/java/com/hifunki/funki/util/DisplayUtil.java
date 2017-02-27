@@ -1,6 +1,9 @@
 package com.hifunki.funki.util;
 
 import android.content.Context;
+import android.graphics.Rect;
+
+import com.hifunki.funki.ui.activity.MainActivity;
 
 /**
  * Created by dell on 2017/2/22.
@@ -20,6 +23,18 @@ public class DisplayUtil {
         return (int) (spValue * fontScale + 0.5f);
     }
 
+    /**
+     * 将px值转换为sp值
+     *
+     * @param pxValue
+     * @param context
+     *            （DisplayMetrics类中属性scaledDensity）
+     * @return
+     */
+    public static int px2sp(Context context, float pxValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + 0.5f);
+    }
     /**
      * dp转换成为px
      *
@@ -42,5 +57,14 @@ public class DisplayUtil {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
-
+    /**
+     * 获取标题栏的高度
+     * @param activity
+     * @return
+     */
+    public static int getStatusBarHeight(MainActivity activity) {
+        Rect outRect = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
+        return outRect.top;
+    }
 }

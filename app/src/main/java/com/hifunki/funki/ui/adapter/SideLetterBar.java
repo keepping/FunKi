@@ -1,35 +1,63 @@
 package com.hifunki.funki.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.util.DisplayUtil;
 
 
 public class SideLetterBar extends View {
     private static final String[] b = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     private int choose = -1;
-    private Paint paint = new Paint();
+    private Paint paint;
+    private Paint mPaint;
     private boolean showBg = false;
     private OnLetterChangedListener onLetterChangedListener;
     private TextView overlay;
+    private Context context;
+    private Bitmap bitmapSearch;
 
     public SideLetterBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        this.context = context;
+        initViews();
     }
+
 
     public SideLetterBar(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
+        initViews();
     }
 
     public SideLetterBar(Context context) {
         super(context);
+        this.context = context;
+        initViews();
+    }
+
+    private void initViews() {
+        paint = new Paint();
+        //通过sp装换成dp
+        int px = DisplayUtil.sp2px(context, 9);
+        paint.setTextSize(px);
+        paint.setColor(getResources().getColor(R.color.loginTvUnClick));
+        paint.setAntiAlias(true);
+        paint.setFakeBoldText(true);
+
+        mPaint = new Paint();
+        bitmapSearch = BitmapFactory.decodeResource(context.getResources(), R.drawable.iv_search_small);
     }
 
     /**
@@ -48,14 +76,17 @@ public class SideLetterBar extends View {
         if (showBg) {
             canvas.drawColor(Color.TRANSPARENT);
         }
+        Rect srcRect = new Rect(0, 0, bitmapSearch.getWidth(), bitmapSearch.getHeight());
+        Rect destRect = new Rect(0, 0, bitmapSearch.getWidth(), bitmapSearch.getHeight());
+
+        canvas.drawBitmap(bitmapSearch, srcRect, destRect, mPaint);
 
         int height = getHeight();
         int width = getWidth();
-        int singleHeight = height / b.length;
+        Log.e("test", "onDraw: width" + width + "height=" + height);
+//        int singleHeight = height / b.length;
+        int singleHeight = 6;
         for (int i = 0; i < b.length; i++) {
-            paint.setTextSize(getResources().getDimension(R.dimen.activity_horizontal_margin));
-            paint.setColor(getResources().getColor(R.color.colorAccent));
-            paint.setAntiAlias(true);
             if (i == choose) {
                 paint.setColor(getResources().getColor(R.color.bgColor));
 //                paint.setFakeBoldText(true);  //加粗

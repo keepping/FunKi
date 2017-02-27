@@ -25,5 +25,7 @@
     <string name="set_new_pwd">请输入新的密码</string>
     <string name="pwd_success_ok">新密码设置完成</string>
     <string name="pwd_success_return">返回登录页</string>
+    <string name="search">搜索</string>
+    <string name="choose_country">选择分区号</string>
     <item name="adapter_view_holder" type="integer"></item>
 </resources>
