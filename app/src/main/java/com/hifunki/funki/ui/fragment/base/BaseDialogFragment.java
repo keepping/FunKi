@@ -11,7 +11,7 @@
 //
 //import com.hifunki.funki.common.BundleConst;
 //import com.hifunki.funki.global.config.SettingsManager;
-//import com.hifunki.funki.global.config.UserConfig;
+//import com.hifunki.funki.global.config.UserConfigss;
 //import com.hifunki.funki.ui.application.ApplicationMain;
 //import com.hifunki.funki.util.ViewUtil;
 //
@@ -63,7 +63,7 @@
 //        super.onActivityCreated(savedInstanceState);
 //
 //        // 程序内存已被系统回收
-//        if (UserConfig.getInstance(getActivity()).getAppId() != Process.myPid()) {
+//        if (UserConfigss.getInstance(getActivity()).getAppId() != Process.myPid()) {
 //            return;
 //        }
 //
