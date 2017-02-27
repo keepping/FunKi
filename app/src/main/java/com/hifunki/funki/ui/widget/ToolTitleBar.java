@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.util.DisplayUtil;
 
+import static com.hifunki.funki.R.id.rlTitleLeft;
+
 public class ToolTitleBar {
 
     /**
@@ -30,18 +32,18 @@ public class ToolTitleBar {
     /**
      * 显示标题栏 左边 按钮
      *
-     * @param fragmentView    当前FragmentView
+     * @param mainLayout      当前FragmentView
      * @param btnType         按钮类型，值见{@link #BTN_TYPE_IMAGE} 或 {@link #BTN_TYPE_TEXT}
      * @param resIdOrTxt      资源id(int型)或文本(String)
      * @param onClickListener OnClick监听器 注意：设置在左边按钮的父容器上，即：R.id.rlTitleLeft
      * @return
      */
-    public static TextView showLeftButton(Context context, View fragmentView, byte btnType, Object resIdOrTxt,
+    public static TextView showLeftButton(Context context, View mainLayout, byte btnType, Object resIdOrTxt,
                                           View.OnClickListener onClickListener) {
-        TextView tv = showTextViewButton(context, R.id.tvTitleLeft, fragmentView, btnType, resIdOrTxt, null);
+        TextView tv = showTextViewButton(context, R.id.tvTitleLeft, mainLayout, btnType, resIdOrTxt, null);
 
         if (onClickListener != null) {
-            fragmentView.findViewById(R.id.rlTitleLeft).setOnClickListener(onClickListener);
+            mainLayout.findViewById(rlTitleLeft).setOnClickListener(onClickListener);
         }
 
         return tv;
@@ -349,6 +351,8 @@ public class ToolTitleBar {
      */
     private static TextView showTextViewButton(Context context, int id, View fragmentView, byte btnType, Object resIdOrTxt,
                                                View.OnClickListener listener) {
+        fragmentView.findViewById(R.id.rlTitleLeft);
+
         TextView tv = (TextView) fragmentView.findViewById(id);
 
         if (tv == null) {
@@ -360,6 +364,10 @@ public class ToolTitleBar {
             tv.setTextSize(17);
             tv.setBackgroundResource((Integer) resIdOrTxt);
 
+            RelativeLayout.LayoutParams tvLp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//            tvLp.gravity = Gravity.CENTER_VERTICAL;
+
+            tv.setLayoutParams(tvLp);
         } else if (btnType == BTN_TYPE_TEXT) {
             if (resIdOrTxt instanceof Integer) {
                 tv.setText((Integer) resIdOrTxt);
@@ -426,7 +434,8 @@ public class ToolTitleBar {
         LinearLayout linearLayout = new LinearLayout(ctx);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
 //        setRightLeftMargin4anguage(ctx, linearLayout);
-        lp.topMargin = (int) DisplayUtil.dip2Px(ctx, 2f);
+//        lp.topMargin = (int) DisplayUtil.dip2Px(ctx, 2f);
+        lp.rightMargin = (int) DisplayUtil.dip2Px(ctx, 14f);
         linearLayout.setLayoutParams(lp);
         linearLayout.setId(resId);
 
@@ -435,6 +444,11 @@ public class ToolTitleBar {
         }
 
         TextView tv = createRightButtonTextView(ctx, btnType, resIdOrTxt);
+
+//        if (onClickListener != null) {
+//            tv.setOnClickListener(onClickListener);
+//        }
+
         linearLayout.addView(tv);
         return linearLayout;
     }
@@ -457,7 +471,10 @@ public class ToolTitleBar {
             tv.setTextSize(14);
             tv.setBackgroundResource((Integer) resIdOrTxt);
         } else if (btnType == BTN_TYPE_TEXT) {
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            tv.setTextColor(ctx.getResources().getColor(R.color.vistorTvTitle));
+            Typeface typeface = Typeface.createFromAsset(ctx.getAssets(), "fonts/FZDHTFW.ttf");
+            tv.setTypeface(typeface);
             if (resIdOrTxt instanceof Integer) {
                 tv.setText((Integer) resIdOrTxt);
             } else if (resIdOrTxt instanceof String) {

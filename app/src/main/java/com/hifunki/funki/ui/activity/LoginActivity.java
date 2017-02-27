@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
@@ -59,8 +60,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @BindView(R.id.vpPhoneEmail)
     ViewPager vpPhoneEmail;
-    private PopWindowUtil popWindowPwd;
-    private View popViewPwd;
+    private PopWindowUtil pwdPopWindow;
+    private View pwdView;
 
     @Override
     protected int getViewResId() {
@@ -75,10 +76,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void initTitleBar() {
-        ToolTitleBar.showLeftButton(this,activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, null);
+        ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
-        ToolTitleBar.showCenterButton(this,activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
-        ToolTitleBar.showRightButton(this, activityLogin, R.layout.activity_login_x, ToolTitleBar.BTN_TYPE_TEXT, R.string.register, null);
+        ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
+        ToolTitleBar.showRightButton(this, activityLogin, R.layout.activity_login_register, ToolTitleBar.BTN_TYPE_TEXT, R.string.register, this);
 
 //        tbLogin.setLeftImageResource(R.drawable.iv_back);
 //        tbLogin.setTitle(getString(R.string.login));
@@ -181,7 +182,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //    R.id.vpPhoneEmail,
     public void onClick(View view) {
         switch (view.getId()) {
-
+            case R.id.rlTitleLeft:
+                Log.e("test", "onClick:rlTitleLeft ");
+                Intent intent = new Intent(LoginActivity.this, VisitorFillActivity.class);
+//                intent.set
+                startActivity(intent);
+                break;
+            case R.id.tv_register:
+                Log.e("test", "onClick:tv_register ");
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             case R.id.activity_login:
                 break;
             case R.id.tvPhone:
@@ -211,33 +220,42 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.tvForgetPwd:
                 //创建PopWindow
-                if (popWindowPwd != null) {
-                    popWindowPwd = PopWindowUtil.getInstance(this);
-                    popViewPwd = LayoutInflater.from(this).inflate(R.layout.pop_forget_pwd, null);
-                    popWindowPwd.init((int) DisplayUtil.dip2Px(this, 173), LinearLayout.LayoutParams.MATCH_PARENT);
-                    popWindowPwd.showPopWindow(popViewPwd, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
+                if (pwdPopWindow == null) {
+                    pwdPopWindow = PopWindowUtil.getInstance(this);
+                    pwdView = LayoutInflater.from(this).inflate(R.layout.pop_forget_pwd, null);
+                    pwdPopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
-                TextView tvPhonePwd = (TextView) popViewPwd.findViewById(R.id.tvPhonePwd);
-                TextView tvEmailPwd = (TextView) popViewPwd.findViewById(R.id.tvEmailPwd);
-                ImageView iv_close = (ImageView) popViewPwd.findViewById(R.id.iv_close);
+                pwdPopWindow.init((int) DisplayUtil.dip2Px(this, 173), LinearLayout.LayoutParams.MATCH_PARENT);
+                pwdPopWindow.showPopWindow(pwdView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
+                TextView tvPhonePwd = (TextView) pwdView.findViewById(R.id.tv_phone_pwd);
+                TextView tvEmailPwd = (TextView) pwdView.findViewById(R.id.tv_email_pwd);
+                ImageView iv_close = (ImageView) pwdView.findViewById(R.id.iv_close);
                 tvPhonePwd.setOnClickListener(this);
                 tvEmailPwd.setOnClickListener(this);
                 iv_close.setOnClickListener(this);
                 break;
             case R.id.tvHelpCenter:
-                //TODO
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+
                 break;
-            case R.id.tvPhonePwd://通过手机号找回密码
+            case R.id.tv_phone_pwd://通过手机号找回密码
                 startActivity(new Intent(LoginActivity.this, PwdGraphActivity.class));
                 break;
-            case R.id.tvEmailPwd:
+            case R.id.tv_email_pwd:
                 break;
             case R.id.iv_close:
-                popWindowPwd.dismissPopWindow();
+                pwdPopWindow.hidePopWindow();
                 break;
         }
     }
 
+    /**
+     * popupWindow dimiss
+     */
+    PopupWindow.OnDismissListener onDissmissListener = new PopupWindow.OnDismissListener() {
+        @Override
+        public void onDismiss() {
+
+        }
+    };
 
 }
