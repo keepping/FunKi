@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.business.VisitorFillBusiness;
 import com.hifunki.funki.ui.widget.ToolTitleBar;
+import com.hifunki.funki.util.LogUtils;
 import com.hifunki.funki.util.StatusBarUtil;
-import com.hifunki.funki.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -184,7 +184,8 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
             case R.id.activity_visitor_fill://根布局
                 break;
             case R.id.rlTitleLeft:
-                ToastUtil.showToast(this, "back");
+//                ToastUtil.showToast(this, "back");
+                LogUtils.e("back");
                 break;
         }
     }
