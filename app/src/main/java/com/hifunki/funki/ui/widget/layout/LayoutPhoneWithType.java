@@ -43,7 +43,7 @@ public class LayoutPhoneWithType extends LinearLayout {
         llCounty = (LinearLayout) vPhone.findViewById(R.id.llCounty);
         etIuputTel = (EditText) vPhone.findViewById(R.id.etIuputTel);
         etIuputPwd = (EditText) vPhone.findViewById(R.id.etIuputPwd);
-        ivTelShow = (ImageView) vPhone.findViewById(R.id.ivTelShow);
+        ivTelShow = (ImageView) vPhone.findViewById(R.id.iv_tel_show);
         //传入监听
         llCounty.setOnClickListener(onClickListener);
         ivTelShow.setOnClickListener(onClickListener);

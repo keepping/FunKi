@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.hifunki.funki.R.id.ivTelShow;
 
 /**
  * 登录页面信息
@@ -86,7 +85,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
         ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
-        ToolTitleBar.showRightButton(this, activityLogin, R.layout.activity_login_register, ToolTitleBar.BTN_TYPE_TEXT, R.string.register, this);
+        ToolTitleBar.showRightButtonMsg(activityLogin, this, this);
 
 //        tbLogin.setLeftImageResource(R.drawable.iv_back);
 //        tbLogin.setTitle(getString(R.string.login));
@@ -125,70 +124,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-    @Override
-    protected void initAdapter() {
-
-    }
-
-
-    /**
-     * phone and email listener
-     */
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.llCounty:
-                    //TODO
-                    startActivity(new Intent(LoginActivity.this, CountyListActivity.class));
-                    break;
-                case R.id.etIuputTel:
-                    Log.e("test", "onClick: etIuputTel");
-                    break;
-                case R.id.etIuputPwd:
-                    Log.e("test", "onClick: etIuputPwd");
-                    break;
-                case ivTelShow:
-                    Log.e("test", "onClick: ivTelShow");
-                    break;
-            }
-
-        }
-    };
-
-    private TextWatcher etItemListener = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            Log.e("test", "etItemListener: beforeTextChanged");
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            Log.e("test", "etItemListener: onTextChanged");
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            Log.e("test", "etItemListener: afterTextChanged");
-        }
-    };
-
-    private void initViewPager() {
-        mTabViews = new ArrayList<>();
-        //获取第一个视图
-        LayoutPhoneWithType layoutLoginWithType = new LayoutPhoneWithType(etItemListener, onClickListener, this, 0);
-        LayoutEmailWithType layoutEmailWithType = new LayoutEmailWithType(this, 1);
-        mTabViews.add(layoutLoginWithType);
-        mTabViews.add(layoutEmailWithType);
-        vpPhoneEmail.setAdapter(new PagerBaseAdapter<>(mTabViews));
-
-    }
-
-
+    //    R.id.vpPhoneEmail,
     @OnClick({R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.llLogin, R.id.tvForgetPwd, R.id.tvHelpCenter})
-//    R.id.vpPhoneEmail,
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.ll_login_register:
+                RegisterActivity.show(this);
+                break;
             case R.id.rlTitleLeft:
                 VisitorFillActivity.show(this);
                 finish();
@@ -251,6 +193,66 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 pwdPopWindow.hidePopWindow();
                 break;
         }
+    }
+
+
+    @Override
+    protected void initAdapter() {
+
+    }
+
+    /**
+     * phone and email listener
+     */
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.llCounty:
+                    //TODO
+                    startActivity(new Intent(LoginActivity.this, CountyListActivity.class));
+                    break;
+                case R.id.etIuputTel:
+                    Log.e("test", "onClick: etIuputTel");
+                    break;
+                case R.id.etIuputPwd:
+                    Log.e("test", "onClick: etIuputPwd");
+                    break;
+                case R.id.iv_tel_show:
+                    Log.e("test", "onClick: ivTelShow");
+                    break;
+            }
+
+        }
+    };
+
+    private TextWatcher etItemListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            Log.e("test", "etItemListener: beforeTextChanged");
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            Log.e("test", "etItemListener: onTextChanged");
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            Log.e("test", "etItemListener: afterTextChanged");
+        }
+    };
+
+
+    private void initViewPager() {
+        mTabViews = new ArrayList<>();
+        //获取第一个视图
+        LayoutPhoneWithType layoutLoginWithType = new LayoutPhoneWithType(etItemListener, onClickListener, this, 0);
+        LayoutEmailWithType layoutEmailWithType = new LayoutEmailWithType(this, 1);
+        mTabViews.add(layoutLoginWithType);
+        mTabViews.add(layoutEmailWithType);
+        vpPhoneEmail.setAdapter(new PagerBaseAdapter<>(mTabViews));
+
     }
 
     /**

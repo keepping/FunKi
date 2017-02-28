@@ -1,5 +1,7 @@
 package com.hifunki.funki.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -55,6 +57,10 @@ public class RegisterActivity extends BaseActivity {
     LinearLayout activityLogin;
 
     private ArrayList<LinearLayout> mTabViews;
+
+    public static void show(Context context){
+        context.startActivity(new Intent(context,RegisterActivity.class));
+    }
 
     @Override
     protected int getViewResId() {
@@ -120,7 +126,6 @@ public class RegisterActivity extends BaseActivity {
     }
 
 
-
     /**
      * phone and email listener
      */
@@ -137,7 +142,7 @@ public class RegisterActivity extends BaseActivity {
                 case R.id.etIuputPwd:
                     Log.e("test", "onClick: etIuputPwd");
                     break;
-                case R.id.ivTelShow:
+                case R.id.iv_tel_show:
                     Log.e("test", "onClick: ivTelShow");
                     break;
             }

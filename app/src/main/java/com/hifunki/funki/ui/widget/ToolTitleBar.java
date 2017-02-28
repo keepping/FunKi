@@ -6,9 +6,9 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,31 +50,31 @@ public class ToolTitleBar {
         return tv;
     }
 
-    public static ImageView showLeftImageView(Context context, View mainLayout, Object resIdOrTxt,
-                                              View.OnClickListener listener) {
-        ImageView iv = (ImageView) mainLayout.findViewById(R.id.iv_Title_left);
-        if (iv == null) {
-            return null;
-        }
-
-        // 设置监听器
-//        if (listener != null) {
-//            iv.setOnClickListener(listener);
+//    public static ImageView showLeftImageView(Context context, View mainLayout, Object resIdOrTxt,
+//                                              View.OnClickListener listener) {
+//        ImageView iv = (ImageView) mainLayout.findViewById(R.id.iv_Title_left);
+//        if (iv == null) {
+//            return null;
 //        }
-
-        LinearLayout.LayoutParams ivLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        ivLp.gravity = Gravity.CENTER_VERTICAL;
-        iv.setLayoutParams(ivLp);
-
-        iv.setVisibility(View.VISIBLE);
-
-
-        if (listener != null) {
-            mainLayout.findViewById(rlTitleLeft).setOnClickListener(listener);
-        }
-
-        return iv;
-    }
+//
+//        // 设置监听器
+////        if (listener != null) {
+////            iv.setOnClickListener(listener);
+////        }
+//
+////        LinearLayout.LayoutParams ivLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+////        ivLp.gravity = Gravity.CENTER_VERTICAL;
+////        iv.setLayoutParams(ivLp);
+//
+//        iv.setVisibility(View.VISIBLE);
+//
+//
+//        if (listener != null) {
+//            mainLayout.findViewById(rlTitleLeft).setOnClickListener(listener);
+//        }
+//
+//        return iv;
+//    }
 
     /**
      * 显示标题栏 中间 按钮
@@ -251,17 +251,17 @@ public class ToolTitleBar {
      * @param ctx             上下文
      * @param onClickListener 点击监听  即 R.id.fl_title_right_msg
      */
-//    public static void showRightButtonMsg(View rootView, Context ctx, View.OnClickListener onClickListener) {
-//        LinearLayout rightRootView = (LinearLayout) rootView.findViewById(R.id.ll_title_right);
-//        View rightBtnMsgView = LayoutInflater.from(ctx).inflate(R.layout.layout_title_right_message, rightRootView, false);
-//        if (rightBtnMsgView != null) {
-//            if (onClickListener != null) {
-//                rightBtnMsgView.setOnClickListener(onClickListener);
-//            }
-////            setRightLeftMargin4Language(ctx, rightBtnMsgView);
-//            rightRootView.addView(rightBtnMsgView);
-//        }
-//    }
+    public static void showRightButtonMsg(View rootView, Context ctx, View.OnClickListener onClickListener) {
+        LinearLayout rightRootView = (LinearLayout) rootView.findViewById(R.id.ll_title_right);
+        View rightBtnMsgView = LayoutInflater.from(ctx).inflate(R.layout.activity_login_register, rightRootView, false);
+        if (rightBtnMsgView != null) {
+            if (onClickListener != null) {
+                rightBtnMsgView.setOnClickListener(onClickListener);
+            }
+//            setRightLeftMargin4Language(ctx, rightBtnMsgView);
+            rightRootView.addView(rightBtnMsgView);
+        }
+    }
 
     /**
      * 显示标题栏右侧购物车图标
@@ -459,7 +459,7 @@ public class ToolTitleBar {
                                                               View.OnClickListener onClickListener) {
         //设置最外层容器，加大点击区域
         LinearLayout linearLayout = new LinearLayout(ctx);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //        setRightLeftMargin4anguage(ctx, linearLayout);
 //        lp.topMargin = (int) DisplayUtil.dip2Px(ctx, 2f);
         lp.rightMargin = (int) DisplayUtil.dip2Px(ctx, 14f);

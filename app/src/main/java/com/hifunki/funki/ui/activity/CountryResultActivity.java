@@ -1,5 +1,7 @@
 package com.hifunki.funki.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -34,6 +36,10 @@ public class CountryResultActivity extends BaseActivity implements View.OnClickL
     private List<City> cities;
     private CityListAdapter mCityAdapter;
 
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, CountryResultActivity.class));
+    }
+
     @Override
     protected int getViewResId() {
         return R.layout.activity_country_result;
@@ -52,10 +58,11 @@ public class CountryResultActivity extends BaseActivity implements View.OnClickL
 
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_country_result);
         //设置左边的search ImageView
-        ToolEditTitleBar.showLeftImageView(this, relativeLayout, R.drawable.iv_search, this);
+//        ToolEditTitleBar.showLeftImageView(this, relativeLayout, R.drawable.iv_search, this);
 //        ToolEditTitleBar.showLeftButton(this, relativeLayout, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_search, null);
         ToolEditTitleBar.showCenterEditText(this, relativeLayout, null, null);
-        ToolEditTitleBar.showRightButton(this, relativeLayout, R.layout.activity_login_search, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_close, null);
+        //iv_close
+        ToolEditTitleBar.showRightButton(this, relativeLayout, R.layout.activity_login_search, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, null);
         //右边的搜索
         ToolEditTitleBar.showRightButton(this, relativeLayout, R.layout.activity_login_search, ToolTitleBar.BTN_TYPE_TEXT, R.string.search, null);
     }
@@ -76,7 +83,7 @@ public class CountryResultActivity extends BaseActivity implements View.OnClickL
         lvResCountry.setAdapter(mCityAdapter);
     }
 
-    @OnClick({ R.id.activity_country_result})
+    @OnClick({R.id.activity_country_result})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.activity_country_result:

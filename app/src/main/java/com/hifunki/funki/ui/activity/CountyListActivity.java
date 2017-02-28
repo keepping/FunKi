@@ -1,6 +1,5 @@
 package com.hifunki.funki.ui.activity;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -103,7 +102,7 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.rl_search://搜索
                 //跳转搜索结果界面
-                startActivity(new Intent(CountyListActivity.this, CountryResultActivity.class));
+                CountryResultActivity.show(this);
                 break;
             case R.id.side_letter_bar://右侧bar
                 break;
