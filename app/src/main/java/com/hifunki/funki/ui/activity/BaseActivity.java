@@ -12,6 +12,28 @@ import com.hifunki.funki.util.StatusBarUtil;
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+/*
+ *   ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *     ┃　　　┃
+ *     ┃　　　┃
+ *     ┃　　　┗━━━┓
+ *     ┃　　　　　　　┣┓
+ *     ┃　　　　　　　┏┛
+ *     ┗┓┓┏━┳┓┏┛
+ *       ┃┫┫　┃┫┫
+ *       ┗┻┛　┗┻┛
+ *        神兽保佑
+ *        代码无BUG!
+ */
+
 /**
  * BaseActivity
  *
@@ -48,6 +70,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         initListener();
         //初始化适配器
         initAdapter();
+
+        //请求数据
+//        loadDatas();
     }
 
 

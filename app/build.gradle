@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     dexOptions {
         //方法超过65535快速解决
@@ -60,6 +61,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //RecycleView
     compile 'com.android.support:recyclerview-v7:25.1.1'
+    //Permission
+    compile 'pub.devrel:easypermissions:0.3.0'
 
     /**=============== TODO 下面发布注释 =============== **/
     // leakcanary

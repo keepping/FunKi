@@ -49,13 +49,19 @@
                 android:textSize="17sp" />
 
             <EditText
+                android:layout_marginRight="27dp"
                 android:id="@+id/et_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="26dp"
                 android:hint="请输入36个字元的字符" />
         </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvResultPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
+            />
         <TextView
             fontPath="fonts/FZDHTFW.ttf"
             android:layout_width="wrap_content"

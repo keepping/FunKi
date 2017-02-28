@@ -2,6 +2,8 @@ package com.hifunki.funki.util;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import com.hifunki.funki.ui.activity.MainActivity;
 
@@ -67,4 +69,17 @@ public class DisplayUtil {
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
         return outRect.top;
     }
+    /**
+     * 获得屏幕高度
+     *
+     * @param context context
+     * @return 屏幕高度
+     */
+    public static int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
+    }
+
 }

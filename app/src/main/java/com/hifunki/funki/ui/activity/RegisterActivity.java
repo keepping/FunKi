@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.ui.adapter.PagerBaseAdapter;
-import com.hifunki.funki.ui.widget.TitleBar;
+import com.hifunki.funki.ui.widget.ToolTitleBar;
 import com.hifunki.funki.ui.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.ui.widget.scroller.FixedSpeedScroller;
@@ -33,10 +33,11 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-24 10:36:36
  */
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(R.id.tbRegister)
-    TitleBar tbRegister;
+
+    private boolean isPhoneColor;
+
     @BindView(R.id.tvPhone)
     TextView tvPhone;
     @BindView(R.id.ivPhoneLine)
@@ -58,8 +59,8 @@ public class RegisterActivity extends BaseActivity {
 
     private ArrayList<LinearLayout> mTabViews;
 
-    public static void show(Context context){
-        context.startActivity(new Intent(context,RegisterActivity.class));
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, RegisterActivity.class));
     }
 
     @Override
@@ -74,14 +75,9 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initTitleBar() {
-        tbRegister.setLeftImageResource(R.drawable.iv_back);
-        tbRegister.setTitle(getString(R.string.register));
-        tbRegister.getLeftText().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("test", "onClick: back tv");
-            }
-        });
+        ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
+
+        ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.register, null);
     }
 
     @Override
@@ -170,17 +166,35 @@ public class RegisterActivity extends BaseActivity {
     @OnClick({R.id.tvPhone, R.id.ivPhoneLine, R.id.tvEmail, R.id.ivEmailLine, R.id.vpPhoneEmail, R.id.llRegNext, R.id.ivAgree, R.id.tvHelpCenter, R.id.activity_login})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.rlTitleLeft:
+                //跳到登录界面
+                LoginActivity.show(this);
+                break;
             case R.id.tvPhone://行动电话
+                ivPhoneLine.setVisibility(View.VISIBLE);
+                ivEmailLine.setVisibility(View.INVISIBLE);
+                isPhoneColor = !isPhoneColor;
+                //设置行动电话的字体颜色
+                tvEmail.setTextColor(getResources().getColor(R.color.loginTvUnClick));
+                tvPhone.setTextColor(getResources().getColor(R.color.vistorTvTitle));
+                vpPhoneEmail.setCurrentItem(0);
                 break;
             case R.id.ivPhoneLine:
                 break;
             case R.id.tvEmail://邮箱
+                ivPhoneLine.setVisibility(View.INVISIBLE);
+                ivEmailLine.setVisibility(View.VISIBLE);
+                isPhoneColor = !isPhoneColor;
+                tvEmail.setTextColor(getResources().getColor(R.color.vistorTvTitle));
+                tvPhone.setTextColor(getResources().getColor(R.color.loginTvUnClick));
+                vpPhoneEmail.setCurrentItem(1);
                 break;
             case R.id.ivEmailLine:
                 break;
             case R.id.vpPhoneEmail://中间ViewPager
                 break;
             case R.id.llRegNext://注册下一步
+                SelectImageActivity.show(this);
                 break;
             case R.id.ivAgree://同意协议
                 break;

@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hifunki.funki">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--读取文件权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--写入数据权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,8 +19,8 @@
 
         <!-- 游客必填信息页 -->
         <activity
-            android:launchMode="singleTask"
             android:name=".ui.activity.VisitorFillActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -26,8 +33,8 @@
         <!--android:launchMode="singleTop"-->
         <!-- 登录界面 -->
         <activity
-            android:launchMode="singleTask"
             android:name=".ui.activity.LoginActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!-- 国家列表页 -->
         <activity
@@ -61,8 +68,30 @@
             android:name=".ui.activity.CountryResultActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.SelectImageActivity"></activity>
+
+        <activity
+            android:name="com.hifunki.funki.ui.activity.imageselect.GalleryPickActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/GalleryTheme" />
+
+        <activity
+            android:name="com.hifunki.funki.ui.activity.imageselect.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.hifunki.funki.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
