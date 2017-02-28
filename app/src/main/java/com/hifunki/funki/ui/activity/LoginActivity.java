@@ -1,5 +1,6 @@
 package com.hifunki.funki.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.hifunki.funki.R.id.ivTelShow;
 
 /**
  * 登录页面信息
@@ -62,6 +65,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     ViewPager vpPhoneEmail;
     private PopWindowUtil pwdPopWindow;
     private View pwdView;
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, LoginActivity.class));
+    }
 
     @Override
     protected int getViewResId() {
@@ -141,7 +148,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 case R.id.etIuputPwd:
                     Log.e("test", "onClick: etIuputPwd");
                     break;
-                case R.id.ivTelShow:
+                case ivTelShow:
                     Log.e("test", "onClick: ivTelShow");
                     break;
             }
@@ -183,10 +190,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rlTitleLeft:
-                Log.e("test", "onClick:rlTitleLeft ");
-                Intent intent = new Intent(LoginActivity.this, VisitorFillActivity.class);
-//                intent.set
-                startActivity(intent);
+                VisitorFillActivity.show(this);
+                finish();
                 break;
             case R.id.tv_register:
                 Log.e("test", "onClick:tv_register ");

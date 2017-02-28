@@ -148,6 +148,7 @@
             android:layout_gravity="center">
 
             <EditText
+                android:inputType="number"
                 android:id="@+id/etInputAge"
                 fontPath="fonts/FZZDXFW.ttf"
                 android:layout_width="match_parent"

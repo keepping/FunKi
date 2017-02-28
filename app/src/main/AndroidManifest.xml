@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hifunki.funki">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,6 +12,7 @@
 
         <!-- 游客必填信息页 -->
         <activity
+            android:launchMode="singleTask"
             android:name=".ui.activity.VisitorFillActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
@@ -24,8 +23,10 @@
             </intent-filter>
         </activity>
 
+        <!--android:launchMode="singleTop"-->
         <!-- 登录界面 -->
         <activity
+            android:launchMode="singleTask"
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait" />
         <!-- 国家列表页 -->
@@ -58,7 +59,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.CountryResultActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.SelectImageActivity"></activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

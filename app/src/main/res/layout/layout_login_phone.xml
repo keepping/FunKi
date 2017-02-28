@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    tools:ignore="MissingPrefix"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="111dp"
     android:background="@color/bgColor"
     android:orientation="vertical">
@@ -62,6 +64,8 @@
                 android:background="@color/vistorTvbgNormal" />
 
             <EditText
+                fontPath="fonts/FZZDXFW.ttf"
+                android:textCursorDrawable="@color/vistorTvTitle"
                 android:id="@+id/etIuputTel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -110,6 +114,9 @@
                 android:background="@color/vistorTvbgNormal" />
 
             <EditText
+                fontPath="fonts/FZZDXFW.ttf"
+                android:minLines="1"
+                android:inputType="textPassword"
                 android:id="@+id/etIuputPwd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -119,14 +126,15 @@
                 android:hint="请输入6-16位字元的密码"
                 android:maxLines="1"
                 android:paddingLeft="1dp"
-                android:singleLine="true"
+                android:textCursorDrawable="@color/vistorTvTitle"
                 android:textColorHint="@color/vistorTvbgNormal"
                 android:textSize="17sp" />
 
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/ivTelShow"
+            android:background="@drawable/login_iv_eye_bg"
+            android:id="@+id/iv_tel_show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

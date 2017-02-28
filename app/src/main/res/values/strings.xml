@@ -27,5 +27,10 @@
     <string name="pwd_success_return">返回登录页</string>
     <string name="search">搜索</string>
     <string name="choose_country">选择分区号</string>
+    <string name="select_image_head">头像</string>
+    <string name="select_image_nickname">昵称</string>
+    <string name="complete">完成</string>
+    <string name="login_input_password">请输入6-16位字元的密码</string>
+    <string name="login_input_email">请输入邮箱地址</string>
     <item name="adapter_view_holder" type="integer"></item>
 </resources>

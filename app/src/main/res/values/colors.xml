@@ -13,5 +13,6 @@
     <color name="forgetPwdBg">#0C001F</color>
     <color name="newPwd">#61E46D</color>
     <color name="funkiText">#FDFFFF</color>
+    <color name="selectImageWrong">#AB2D2D</color>
 
 </resources>

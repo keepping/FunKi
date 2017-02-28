@@ -1,5 +1,6 @@
 package com.hifunki.funki.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
@@ -8,8 +9,8 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.business.VisitorFillBusiness;
+import com.hifunki.funki.ui.application.ApplicationMain;
 import com.hifunki.funki.ui.widget.ToolTitleBar;
-import com.hifunki.funki.util.LogUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,7 +53,15 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
     LinearLayout activityVisitorFill;
 
     private int sex;
-    private int sexOrientation;
+    private boolean isDifferentSex;
+    private boolean isSameSex;
+    private boolean isNotCareSex;
+    private boolean isBothSex;
+    private boolean isSecretSex;
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, VisitorFillActivity.class));
+    }
 
     @Override
     protected int getViewResId() {
@@ -134,56 +143,57 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.tvThirdSex:
                 VisitorFillBusiness.changeTvStyle(this, tvThirdSex, tvGirl, tvBoy);
-                sexOrientation = 1;
-                break;
-            case R.id.tvLoveSameSex:
-                VisitorFillBusiness.changeTvStyle(this, tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvLoveBothSex, tvSecretSex);
-                sexOrientation = 2;
+                sex = 3;
                 break;
             case R.id.tvLoveDifferentSex:
-                VisitorFillBusiness.changeTvStyle(this, tvLoveDifferentSex, tvLoveSameSex, tvNotCareSex, tvLoveBothSex, tvSecretSex);
-                sexOrientation = 3;
+                isDifferentSex = !isDifferentSex;
+                VisitorFillBusiness.changeTvStyle(this, isDifferentSex, tvLoveDifferentSex);
+                break;
+            case R.id.tvLoveSameSex:
+                isSameSex = !isSameSex;
+                VisitorFillBusiness.changeTvStyle(this, isSameSex, tvLoveSameSex);
                 break;
             case R.id.tvNotCareSex:
-                VisitorFillBusiness.changeTvStyle(this, tvNotCareSex, tvLoveSameSex, tvLoveDifferentSex, tvLoveBothSex, tvSecretSex);
-                sexOrientation = 4;
+                isNotCareSex = !isNotCareSex;
+                VisitorFillBusiness.changeTvStyle(this, isNotCareSex, tvNotCareSex);
                 break;
             case R.id.tvLoveBothSex:
-                VisitorFillBusiness.changeTvStyle(this, tvLoveBothSex, tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvSecretSex);
-                sexOrientation = 5;
+                isBothSex = !isBothSex;
+                VisitorFillBusiness.changeTvStyle(this, isBothSex, tvLoveBothSex);
                 break;
             case R.id.tvSecretSex:
-                VisitorFillBusiness.changeTvStyle(this, tvSecretSex, tvLoveSameSex, tvLoveDifferentSex, tvNotCareSex, tvLoveBothSex);
-                sexOrientation = 6;
+                isSecretSex = !isSecretSex;
+                VisitorFillBusiness.changeTvStyle(this, isSecretSex, tvSecretSex);
                 break;
             case R.id.etInputAge:
 
                 break;
             case R.id.tvVisitorConfirm:
-                if (sex == 0 && sexOrientation == 0) {
+//                Log.e("test", "onClick: " + sex + "isDifferentSex=" + isDifferentSex + "isBothSex=" + isBothSex + "isNotCareSex=" + isNotCareSex + "isSameSex=" + isSameSex + "isSecretSex=" + isSecretSex);
+//                if (sex == 0 || !isDifferentSex || !isBothSex || !isNotCareSex || !isSameSex || !isSecretSex) {
+//                    return;
+//                }
+                //跳转规则
+                boolean isJump = ((sex != 0) || isDifferentSex || isBothSex || isNotCareSex || isSameSex || isSecretSex);
+                if (!isJump) {
                     return;
                 }
                 //设置颜色
                 tvVisitorConfirm.setTextColor(getResources().getColor(R.color.vistorTvbgNormal));
                 tvVisitorConfirm.setBackground(getResources().getDrawable(R.drawable.visitor_confirm_bg_yello));
-                Intent intent = new Intent();
-                intent.setClass(VisitorFillActivity.this, LoginActivity.class);
-
                 //获取年龄
                 String age = etInputAge.getText().toString();
 
-
-                startActivity(intent);
+                LoginActivity.show(this);
                 break;
             case R.id.llSkip:
-
-                startActivity(new Intent(VisitorFillActivity.this, LoginActivity.class));
+                LoginActivity.show(this);
                 break;
             case R.id.activity_visitor_fill://根布局
                 break;
             case R.id.rlTitleLeft:
 //                ToastUtil.showToast(this, "back");
-                LogUtils.e("back");
+                ApplicationMain.finishAllActivity();
                 break;
         }
     }
