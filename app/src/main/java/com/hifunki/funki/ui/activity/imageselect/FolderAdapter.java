@@ -29,6 +29,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     private GalleryConfig galleryConfig = GalleryPick.getInstance().getGalleryConfig();
     private int mSelector = 0;
     private OnClickListener onClickListener;
+    private float mAlpha = (float) 0.9;
 
     public FolderAdapter(Activity mActivity, Context mContext, List<FolderInfo> result) {
         mLayoutInflater = LayoutInflater.from(mContext);
@@ -63,10 +64,10 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
             if (mSelector == 0) {
                 holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.vistorTvbgNormal));
                 //设置透明度
-                holder.ivGalleryFolderbg.setAlpha((float) 0.9);
+                holder.ivGalleryFolderbg.setAlpha(mAlpha);
             } else {
                 holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.forgetPwdBg));
-                holder.ivGalleryFolderbg.setAlpha((float) 0.9);
+                holder.ivGalleryFolderbg.setAlpha(mAlpha);
             }
             return;
         }
@@ -86,10 +87,10 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
         if (mSelector == holder.getAdapterPosition() + 1) {
             holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.vistorTvbgNormal));
             //设置透明度
-            holder.ivGalleryFolderbg.setAlpha((float) 0.9);
+            holder.ivGalleryFolderbg.setAlpha(mAlpha);
         } else {
             holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.forgetPwdBg));
-            holder.ivGalleryFolderbg.setAlpha((float) 0.9);
+            holder.ivGalleryFolderbg.setAlpha(mAlpha);
         }
     }
 
