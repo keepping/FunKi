@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
@@ -45,11 +45,13 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         if (position == 0) {
-            holder.tvGalleryFolderName.setText(mContext.getString(R.string.gallery_all_folder));
-            holder.tvGalleryPhotoNum.setText(mContext.getString(R.string.gallery_photo_num, getTotalImageSize()));
+            String allImageSize = String.format(mContext.getString(R.string.gallery_folder_name), mContext.getString(R.string.gallery_all_folder), getTotalImageSize());
+            holder.tvGalleryFolderName.setText(allImageSize);
+
             if (result.size() > 0) {
                 galleryConfig.getImageLoader().displayImage(mActivity, mContext, result.get(0).photoInfo.path, holder.ivGalleryFolderImage, DisplayUtil.getScreenWidth(mContext) / 3, DisplayUtil.getScreenWidth(mContext) / 3);
             }
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -59,16 +61,19 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
             });
 
             if (mSelector == 0) {
-                holder.ivGalleryIndicator.setVisibility(View.VISIBLE);
+                holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.vistorTvbgNormal));
+                //设置透明度
+                holder.ivGalleryFolderbg.setAlpha((float) 0.9);
             } else {
-                holder.ivGalleryIndicator.setVisibility(View.GONE);
+                holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.forgetPwdBg));
+                holder.ivGalleryFolderbg.setAlpha((float) 0.9);
             }
             return;
         }
         final FolderInfo folderInfo = result.get(position - 1);
-        holder.tvGalleryFolderName.setText(folderInfo.name);
-        holder.tvGalleryPhotoNum.setText(mContext.getString(R.string.gallery_photo_num, folderInfo.photoInfoList.size()));
-        holder.tvGalleryPhotoNum.setText(mContext.getString(R.string.gallery_photo_num, folderInfo.photoInfoList.size()));
+
+        String format = String.format(mContext.getString(R.string.gallery_folder_name), folderInfo.name, folderInfo.photoInfoList.size());
+        holder.tvGalleryFolderName.setText(format);
         galleryConfig.getImageLoader().displayImage(mActivity, mContext, folderInfo.photoInfo.path, holder.ivGalleryFolderImage, DisplayUtil.getScreenWidth(mContext) / 3, DisplayUtil.getScreenWidth(mContext) / 3);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,9 +84,12 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
         });
 
         if (mSelector == holder.getAdapterPosition() + 1) {
-            holder.ivGalleryIndicator.setVisibility(View.VISIBLE);
+            holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.vistorTvbgNormal));
+            //设置透明度
+            holder.ivGalleryFolderbg.setAlpha((float) 0.9);
         } else {
-            holder.ivGalleryIndicator.setVisibility(View.GONE);
+            holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.forgetPwdBg));
+            holder.ivGalleryFolderbg.setAlpha((float) 0.9);
         }
     }
 
@@ -91,21 +99,18 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private RelativeLayout ivGalleryFolderbg;
         private GalleryImageView ivGalleryFolderImage;
         private TextView tvGalleryFolderName;
-        private TextView tvGalleryPhotoNum;
-        private ImageView ivGalleryIndicator;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            ivGalleryFolderbg = (RelativeLayout) itemView.findViewById(R.id.ivGalleryFolderbg);
             ivGalleryFolderImage = (GalleryImageView) itemView.findViewById(R.id.ivGalleryFolderImage);
             tvGalleryFolderName = (TextView) itemView.findViewById(R.id.tvGalleryFolderName);
-            tvGalleryPhotoNum = (TextView) itemView.findViewById(R.id.tvGalleryPhotoNum);
-            ivGalleryIndicator = (ImageView) itemView.findViewById(R.id.ivGalleryIndicator);
+
         }
-
     }
-
 
     public interface OnClickListener {
         void onClick(FolderInfo folderInfo);
@@ -128,24 +133,3 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
         this.onClickListener = onClickListener;
     }
 }
-/*
- *   ┏┓　　　┏┓
- * ┏┛┻━━━┛┻┓
- * ┃　　　　　　　┃
- * ┃　　　━　　　┃
- * ┃　┳┛　┗┳　┃
- * ┃　　　　　　　┃
- * ┃　　　┻　　　┃
- * ┃　　　　　　　┃
- * ┗━┓　　　┏━┛
- *     ┃　　　┃
- *     ┃　　　┃
- *     ┃　　　┗━━━┓
- *     ┃　　　　　　　┣┓
- *     ┃　　　　　　　┏┛
- *     ┗┓┓┏━┳┓┏┛
- *       ┃┫┫　┃┫┫
- *       ┗┻┛　┗┻┛
- *        神兽保佑
- *        代码无BUG!
- */

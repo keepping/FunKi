@@ -1,6 +1,5 @@
 package com.hifunki.funki.ui.activity.imageselect;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,6 +26,7 @@ import com.hifunki.funki.ui.activity.base.BaseActivity;
 import com.hifunki.funki.ui.activity.imageselect.src.PhotoAdapter;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;
+import com.hifunki.funki.util.ListUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import java.io.File;
@@ -40,7 +40,7 @@ import java.util.List;
 public class GalleryPickActivity extends BaseActivity {
 
     private Context mContext = null;
-    private Activity mActivity = null;
+    private GalleryPickActivity mActivity = null;
     private final static String TAG = "GalleryPickActivity";
 
     private ArrayList<String> resultPhoto;
@@ -110,7 +110,7 @@ public class GalleryPickActivity extends BaseActivity {
 
     @Override
     protected void initTitleBar() {
-        StatusBarUtil.setStatusBarBackground(this,R.drawable.iv_bg_status);
+        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
     }
 
     /**
@@ -205,6 +205,7 @@ public class GalleryPickActivity extends BaseActivity {
             }
         });
 
+
         tvGalleryFolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,11 +213,16 @@ public class GalleryPickActivity extends BaseActivity {
                     folderListPopupWindow.dismiss();
                     return;
                 }
-                folderListPopupWindow = new FolderListPopupWindow(mActivity, mContext, folderAdapter);
-                folderListPopupWindow.showAsDropDown(tvGalleryFolder);
+                if (!ListUtil.isEmpty(folderInfoList)) {
+                    int size = folderInfoList.size();
+                    folderListPopupWindow = new FolderListPopupWindow(mActivity, mContext, folderAdapter, size);
+                    folderListPopupWindow.showAsDropDown(tvGalleryFolder);
+                }
+
             }
         });
 
+        //设置文件夹适配器
         folderAdapter = new FolderAdapter(mActivity, mContext, folderInfoList);
         folderAdapter.setOnClickListener(new FolderAdapter.OnClickListener() {
             @Override
@@ -227,6 +233,10 @@ public class GalleryPickActivity extends BaseActivity {
                 } else {
                     photoInfoList.clear();
                     photoInfoList.addAll(folderInfo.photoInfoList);
+
+                    //刷新PopupWindow高度
+                    folderListPopupWindow.setPopupWindowHeight(photoInfoList.size());
+
                     photoAdapter.notifyDataSetChanged();
                     tvGalleryFolder.setText(folderInfo.name);
                 }
@@ -429,4 +439,5 @@ public class GalleryPickActivity extends BaseActivity {
         }
         return true;
     }
+
 }

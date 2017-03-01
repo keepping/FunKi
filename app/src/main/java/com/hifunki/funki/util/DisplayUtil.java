@@ -5,7 +5,7 @@ import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.hifunki.funki.ui.activity.login.MainActivity;
+import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
  * Created by dell on 2017/2/22.
@@ -64,7 +64,7 @@ public class DisplayUtil {
      * @param activity
      * @return
      */
-    public static int getStatusBarHeight(MainActivity activity) {
+    public static int getStatusBarHeight(BaseActivity activity) {
         Rect outRect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
         return outRect.top;
@@ -82,4 +82,10 @@ public class DisplayUtil {
         return outMetrics.widthPixels;
     }
 
+    public static int getScreenHeight(Context context){
+        WindowManager wm= (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics=new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.heightPixels;
+    }
 }

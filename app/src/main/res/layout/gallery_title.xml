@@ -23,6 +23,7 @@
 
     <TextView
         android:id="@+id/tvGalleryFolder"
+        fontPath="fonts/FZZDXFW.ttf"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
@@ -30,18 +31,20 @@
         android:drawableRight="@drawable/gallery_pick_dropdown_white"
         android:gravity="center"
         android:text="@string/gallery_all_folder"
-        android:textColor="@color/gallery_white"
-        android:textSize="17sp" />
+        android:textColor="@color/titleText"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvFinish"
+        fontPath="fonts/FZZDXFW.ttf"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:gravity="center"
         android:text="@string/confirm"
-        android:textColor="@color/gallery_white"
+        android:textColor="@color/vistorTvTitle"
         android:textSize="18sp"
         android:textStyle="bold" />
 

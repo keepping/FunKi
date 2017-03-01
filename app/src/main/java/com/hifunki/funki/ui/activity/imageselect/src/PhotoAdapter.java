@@ -57,8 +57,11 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         // 设置 每个imageView 的大小
         ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
-        params.height = DisplayUtil.getScreenWidth(mContext) / 3;
-        params.width = DisplayUtil.getScreenWidth(mContext) / 3;
+//        params.height = DisplayUtil.getScreenWidth(mContext) / 3;
+        params.height = (int) DisplayUtil.dip2Px(mContext,(float)111);
+//        params.width = DisplayUtil.getScreenWidth(mContext) / 3;
+        params.width = (int) DisplayUtil.dip2Px(mContext,(float)111);
+
         holder.itemView.setLayoutParams(params);
 
         if (getItemViewType(position) == HEAD) {

@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gallery_folder_bg"
+    android:background="@color/forgetPwdBg"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvFolderList"
-        android:background="@color/bgColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
