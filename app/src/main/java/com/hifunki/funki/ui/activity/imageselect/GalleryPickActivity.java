@@ -429,6 +429,4 @@ public class GalleryPickActivity extends BaseActivity {
         }
         return true;
     }
-
-
 }

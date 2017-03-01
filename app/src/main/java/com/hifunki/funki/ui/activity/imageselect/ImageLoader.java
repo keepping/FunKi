@@ -14,24 +14,3 @@ public interface ImageLoader extends Serializable {
 
     void clearMemoryCache();
 }
-/*
- *   ┏┓　　　┏┓
- * ┏┛┻━━━┛┻┓
- * ┃　　　　　　　┃
- * ┃　　　━　　　┃
- * ┃　┳┛　┗┳　┃
- * ┃　　　　　　　┃
- * ┃　　　┻　　　┃
- * ┃　　　　　　　┃
- * ┗━┓　　　┏━┛
- *     ┃　　　┃
- *     ┃　　　┃
- *     ┃　　　┗━━━┓
- *     ┃　　　　　　　┣┓
- *     ┃　　　　　　　┏┛
- *     ┗┓┓┏━┳┓┏┛
- *       ┃┫┫　┃┫┫
- *       ┗┻┛　┗┻┛
- *        神兽保佑
- *        代码无BUG!
- */

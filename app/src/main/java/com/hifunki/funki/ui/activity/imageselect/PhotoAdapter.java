@@ -59,24 +59,3 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
 
 
 }
-/*
- *   ┏┓　　　┏┓
- * ┏┛┻━━━┛┻┓
- * ┃　　　　　　　┃
- * ┃　　　━　　　┃
- * ┃　┳┛　┗┳　┃
- * ┃　　　　　　　┃
- * ┃　　　┻　　　┃
- * ┃　　　　　　　┃
- * ┗━┓　　　┏━┛
- *     ┃　　　┃
- *     ┃　　　┃
- *     ┃　　　┗━━━┓
- *     ┃　　　　　　　┣┓
- *     ┃　　　　　　　┏┛
- *     ┗┓┓┏━┳┓┏┛
- *       ┃┫┫　┃┫┫
- *       ┗┻┛　┗┻┛
- *        神兽保佑
- *        代码无BUG!
- */

@@ -34,10 +34,10 @@
             android:textColor="@color/loginTvUnClick" />
 
         <LinearLayout
-            android:background="@color/vistorTvbg"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="57dp"
+            android:background="@color/vistorTvbg"
             android:orientation="horizontal">
 
             <TextView
@@ -50,19 +50,20 @@
                 android:textSize="17sp" />
 
             <EditText
-                android:layout_marginRight="27dp"
                 android:id="@+id/et_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="26dp"
-                android:hint="请输入36个字元的字符" />
+                android:layout_marginRight="27dp"
+                android:background="@null"
+                android:hint="@string/select_image_word" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvResultPhoto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content" />
 
-            />
         <TextView
             fontPath="fonts/FZDHTFW.ttf"
             android:layout_width="wrap_content"
@@ -70,17 +71,17 @@
             android:layout_gravity="left"
             android:layout_marginLeft="75dp"
             android:layout_marginTop="9dp"
-            android:text="该昵称已有人使用"
+            android:text="@string/select_image_nickname_use"
             android:textColor="@color/selectImageWrong"
             android:textSize="11sp" />
         <!--android:visibility="gone"-->
         <TextView
-            android:background="@color/vistorTvbg"
             android:id="@+id/tv_complete"
             fontPath="fonts/FZDHTFW.ttf"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="38dp"
+            android:background="@color/vistorTvbg"
             android:gravity="center"
             android:text="@string/complete"
             android:textColor="@color/vistorTvbgNormal"

@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 在此写用途
+ * 注册界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

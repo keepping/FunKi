@@ -17,9 +17,6 @@ public class PhotoInfo {
     }
 
 
-
-
-
     @Override
     public String toString() {
         return "PhotoInfo{" +
@@ -39,27 +36,4 @@ public class PhotoInfo {
         }
         return super.equals(object);
     }
-
-
 }
-/*
- *   ┏┓　　　┏┓
- * ┏┛┻━━━┛┻┓
- * ┃　　　　　　　┃
- * ┃　　　━　　　┃
- * ┃　┳┛　┗┳　┃
- * ┃　　　　　　　┃
- * ┃　　　┻　　　┃
- * ┃　　　　　　　┃
- * ┗━┓　　　┏━┛
- *     ┃　　　┃
- *     ┃　　　┃
- *     ┃　　　┗━━━┓
- *     ┃　　　　　　　┣┓
- *     ┃　　　　　　　┏┛
- *     ┗┓┓┏━┳┓┏┛
- *       ┃┫┫　┃┫┫
- *       ┗┻┛　┗┻┛
- *        神兽保佑
- *        代码无BUG!
- */

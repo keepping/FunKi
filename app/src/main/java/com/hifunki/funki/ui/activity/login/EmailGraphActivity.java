@@ -3,7 +3,7 @@ package com.hifunki.funki.ui.activity.login;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
- * 在此写用途
+ * email的图表界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

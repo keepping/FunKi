@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 国家页面
+ * 国家选择页面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

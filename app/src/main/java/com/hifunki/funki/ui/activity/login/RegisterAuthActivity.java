@@ -4,7 +4,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
- * 在此写用途
+ * 注册结果界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

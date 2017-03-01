@@ -4,8 +4,9 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
- * 在此写用途
+ *
  * 图形验证码界面
+ *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
  * @value com.hifunki.funki.ui.activity.login.PwdGraphActivity.java
