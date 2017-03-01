@@ -23,9 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.ui.activity.BaseActivity;
 import com.hifunki.funki.ui.activity.imageselect.src.PhotoAdapter;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;
+import com.hifunki.funki.util.StatusBarUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -74,12 +76,11 @@ public class GalleryPickActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gallery_main);
 
         mContext = this;
         mActivity = this;
-
-        UIUtils.hideTitleBar(mActivity, R.id.ll_gallery_pick_main);
+        //4.4 hideTitleBar
+//        UIUtils.hideTitleBar(mActivity, R.id.ll_gallery_pick_main);
 
 
         galleryConfig = GalleryPick.getInstance().getGalleryConfig();
@@ -90,21 +91,47 @@ public class GalleryPickActivity extends BaseActivity {
             showCameraAction();
         }
 
-        initView();
+
         init();
         initPhoto();
 
 
     }
 
+    @Override
+    protected int getViewResId() {
+        return R.layout.gallery_main;
+    }
+
+    @Override
+    protected void initDatas() {
+
+    }
+
+    @Override
+    protected void initTitleBar() {
+        StatusBarUtil.setStatusBarBackground(this,R.drawable.iv_bg_status);
+    }
+
     /**
      * 初始化视图
      */
-    private void initView() {
+    @Override
+    protected void initView() {
         tvFinish = (TextView) super.findViewById(R.id.tvFinish);
         tvGalleryFolder = (TextView) super.findViewById(R.id.tvGalleryFolder);
         btnGalleryPickBack = (LinearLayout) super.findViewById(R.id.btnGalleryPickBack);
         rvGalleryImage = (RecyclerView) super.findViewById(R.id.rvGalleryImage);
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initAdapter() {
+
     }
 
     /**
@@ -116,7 +143,7 @@ public class GalleryPickActivity extends BaseActivity {
 
         resultPhoto = galleryConfig.getPathList();
 
-        tvFinish.setText(getString(R.string.gallery_finish, resultPhoto.size(), galleryConfig.getMaxSize()));
+//        tvFinish.setText(getString(R.string.gallery_finish, resultPhoto.size(), galleryConfig.getMaxSize()));
 
         btnGalleryPickBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,7 +166,7 @@ public class GalleryPickActivity extends BaseActivity {
 
             @Override
             public void OnClickPhoto(List<String> selectPhotoList) {
-                tvFinish.setText(getString(R.string.gallery_finish, selectPhotoList.size(), galleryConfig.getMaxSize()));
+//                tvFinish.setText(getString(R.string.gallery_finish, selectPhotoList.size(), galleryConfig.getMaxSize()));
 
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);

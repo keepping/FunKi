@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@color/gallery_blue">
+    android:background="@drawable/iv_bg"
+    android:fitsSystemWindows="true"
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:id="@+id/btnGalleryPickBack"
@@ -24,11 +27,11 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:drawablePadding="5dp"
-        android:drawableRight="@mipmap/gallery_pick_dropdown_white"
+        android:drawableRight="@drawable/gallery_pick_dropdown_white"
         android:gravity="center"
         android:text="@string/gallery_all_folder"
         android:textColor="@color/gallery_white"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/tvFinish"
@@ -37,9 +40,10 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:gravity="center"
-        android:text="@string/gallery_finish"
+        android:text="@string/confirm"
         android:textColor="@color/gallery_white"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
