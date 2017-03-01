@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.hifunki.funki.R;
@@ -50,6 +51,11 @@ public class FolderListPopupWindow extends PopupWindow {
     }
 
     private void initView() {
+        //设置透明度
+        LinearLayout popopWindowLL =  (LinearLayout) popupWindow.findViewById(R.id.galley_popup_window);
+
+        popopWindowLL.setAlpha((float) 0.9);
+
         rvFolderList = (RecyclerView) popupWindow.findViewById(R.id.rvFolderList);
     }
 
