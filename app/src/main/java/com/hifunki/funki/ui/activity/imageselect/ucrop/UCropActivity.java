@@ -4,8 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,13 +12,8 @@ import android.support.annotation.IdRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -43,6 +36,8 @@ import com.hifunki.funki.ui.activity.imageselect.ucrop.view.TransformImageView;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.view.UCropView;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.view.widget.AspectRatioTextView;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.view.widget.HorizontalProgressWheelView;
+import com.hifunki.funki.ui.widget.ToolTitleBar;
+import com.hifunki.funki.util.StatusBarUtil;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -55,7 +50,7 @@ import java.util.Locale;
  */
 
 @SuppressWarnings("ConstantConditions")
-public class UCropActivity extends AppCompatActivity {
+public class UCropActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final int DEFAULT_COMPRESS_QUALITY = 90;
     public static final Bitmap.CompressFormat DEFAULT_COMPRESS_FORMAT = Bitmap.CompressFormat.JPEG;
@@ -64,6 +59,8 @@ public class UCropActivity extends AppCompatActivity {
     public static final int SCALE = 1;
     public static final int ROTATE = 2;
     public static final int ALL = 3;
+    private ViewGroup photoBox;
+
 
     @IntDef({NONE, SCALE, ROTATE, ALL})
     @Retention(RetentionPolicy.SOURCE)
@@ -108,6 +105,15 @@ public class UCropActivity extends AppCompatActivity {
         setContentView(R.layout.ucrop_activity_photobox);
 
         final Intent intent = getIntent();
+        photoBox = (ViewGroup) findViewById(R.id.ucrop_photobox);
+
+        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
+
+        ToolTitleBar.showLeftButton(this, photoBox, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
+
+        ToolTitleBar.showCenterButton(this, photoBox, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
+
+        ToolTitleBar.showRightButtonMsg(photoBox, this, this);
 
         setupViews(intent);
         setImageData(intent);
@@ -116,50 +122,15 @@ public class UCropActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.ucrop_menu_activity, menu);
-
-        // Change crop & loader menu icons color to match the rest of the UI colors
-
-        MenuItem menuItemLoader = menu.findItem(R.id.menu_loader);
-        Drawable menuItemLoaderIcon = menuItemLoader.getIcon();
-        if (menuItemLoaderIcon != null) {
-            try {
-                menuItemLoaderIcon.mutate();
-                menuItemLoaderIcon.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
-                menuItemLoader.setIcon(menuItemLoaderIcon);
-            } catch (IllegalStateException e) {
-                Log.i(TAG, String.format("%s - %s", e.getMessage(), getString(R.string.ucrop_mutate_exception_hint)));
-            }
-//            ((Animatable) menuItemLoader.getIcon()).start();
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.rlTitleLeft:
+                onBackPressed();
+                break;
+            case R.id.ll_login_register:
+                cropAndSaveImage();
+                break;
         }
-
-        MenuItem menuItemCrop = menu.findItem(R.id.menu_crop);
-        Drawable menuItemCropIcon = menuItemCrop.getIcon();
-        if (menuItemCropIcon != null) {
-            menuItemCropIcon.mutate();
-            menuItemCropIcon.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
-            menuItemCrop.setIcon(menuItemCropIcon);
-        }
-
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_crop).setVisible(!mShowLoader);
-        menu.findItem(R.id.menu_loader).setVisible(mShowLoader);
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_crop) {
-            cropAndSaveImage();
-        } else if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -192,7 +163,7 @@ public class UCropActivity extends AppCompatActivity {
     }
 
     /**
-     * This method extracts {@link  #optionsBundle} from incoming intent
+     * This method extracts {@link  #} from incoming intent
      * and setups Activity, {@link OverlayView} and {@link CropImageView} properly.
      */
 //    com.yalantis.ucrop.UCrop.Options
@@ -275,11 +246,11 @@ public class UCropActivity extends AppCompatActivity {
         mLogoColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_default_logo));
         mShowBottomControls = !intent.getBooleanExtra(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
 
-        setupAppBar();
+//        setupAppBar();
         initiateRootViews();
 
         if (mShowBottomControls) {
-            ViewGroup photoBox = (ViewGroup) findViewById(R.id.ucrop_photobox);
+
             View.inflate(this, R.layout.ucrop_controls, photoBox);
 
             mWrapperStateAspectRatio = (ViewGroup) findViewById(R.id.state_aspect_ratio);
@@ -303,31 +274,30 @@ public class UCropActivity extends AppCompatActivity {
     /**
      * Configures and styles both status bar and toolbar.
      */
-    private void setupAppBar() {
-        setStatusBarColor(mStatusBarColor);
-
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        // Set all of the Toolbar coloring
-        toolbar.setBackgroundColor(mToolbarColor);
-        toolbar.setTitleTextColor(mToolbarWidgetColor);
-
-        final TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        toolbarTitle.setTextColor(mToolbarWidgetColor);
-        toolbarTitle.setText(mToolbarTitle);
-
-        // Color buttons inside the Toolbar
-        Drawable stateButtonDrawable = ContextCompat.getDrawable(this, R.drawable.ucrop_ic_cross).mutate();
-        stateButtonDrawable.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
-        toolbar.setNavigationIcon(stateButtonDrawable);
-
-        setSupportActionBar(toolbar);
-        final ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
-    }
-
+//    private void setupAppBar() {
+//        setStatusBarColor(mStatusBarColor);
+//
+//        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//
+//        // Set all of the Toolbar coloring
+//        toolbar.setBackgroundColor(mToolbarColor);
+//        toolbar.setTitleTextColor(mToolbarWidgetColor);
+//
+//        final TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+//        toolbarTitle.setTextColor(mToolbarWidgetColor);
+//        toolbarTitle.setText(mToolbarTitle);
+//
+//        // Color buttons inside the Toolbar
+//        Drawable stateButtonDrawable = ContextCompat.getDrawable(this, R.drawable.ucrop_ic_cross).mutate();
+//        stateButtonDrawable.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
+//        toolbar.setNavigationIcon(stateButtonDrawable);
+//
+//        setSupportActionBar(toolbar);
+//        final ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setDisplayShowTitleEnabled(false);
+//        }
+//    }
     private void initiateRootViews() {
         mUCropView = (UCropView) findViewById(R.id.ucrop);
         mGestureCropImageView = mUCropView.getCropImageView();
@@ -590,7 +560,10 @@ public class UCropActivity extends AppCompatActivity {
         if (mBlockingView == null) {
             mBlockingView = new View(this);
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            lp.addRule(RelativeLayout.BELOW, R.id.toolbar);
+            lp.addRule(RelativeLayout.BELOW, R.id.flTitleContainer);
+
+//            mBlockingView.setBackgroundColor(getResources().getColor(R.color.bgColor));
+
             mBlockingView.setLayoutParams(lp);
             mBlockingView.setClickable(true);
         }
