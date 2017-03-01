@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity;
+package com.hifunki.funki.ui.activity.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.business.VisitorFillBusiness;
+import com.hifunki.funki.ui.activity.base.BaseActivity;
 import com.hifunki.funki.ui.application.ApplicationMain;
 import com.hifunki.funki.ui.widget.ToolTitleBar;
 
@@ -20,7 +21,7 @@ import butterknife.OnClick;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.VisitorFillActivity.java
+ * @value com.hifunki.funki.ui.activity.login.VisitorFillActivity.java
  * @link
  * @since 2017-02-23 20:24:24
  */

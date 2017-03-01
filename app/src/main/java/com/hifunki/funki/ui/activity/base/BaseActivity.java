@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity;
+package com.hifunki.funki.ui.activity.base;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -41,7 +41,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.BaseActivity.java
+ * @value com.hifunki.funki.ui.activity.base.BaseActivity.java
  * @link
  * @since 2017-02-23 20:24:24
  */

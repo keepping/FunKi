@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity;
+package com.hifunki.funki.ui.activity.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.ui.activity.base.BaseActivity;
 import com.hifunki.funki.ui.adapter.PagerBaseAdapter;
 import com.hifunki.funki.ui.widget.ToolTitleBar;
 import com.hifunki.funki.ui.widget.layout.LayoutEmailWithType;
@@ -34,7 +35,7 @@ import butterknife.OnClick;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.LoginActivity.java
+ * @value com.hifunki.funki.ui.activity.login.LoginActivity.java
  * @link {@link LayoutPhoneWithType}    {@link LayoutEmailWithType}
  * @since 2017-02-23 20:24:24
  */

@@ -1,11 +1,13 @@
-package com.hifunki.funki.ui.activity;
+package com.hifunki.funki.ui.activity.login;
+
+import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
  * MainActivity
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.MainActivity.java
+ * @value com.hifunki.funki.ui.activity.login.MainActivity.java
  * @link
  * @since 2017-02-23 20:24:24
  */

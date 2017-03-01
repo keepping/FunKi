@@ -15,11 +15,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.login.MainActivity" />
 
         <!-- 游客必填信息页 -->
         <activity
-            android:name=".ui.activity.VisitorFillActivity"
+            android:name=".ui.activity.login.VisitorFillActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
@@ -33,41 +33,41 @@
         <!--android:launchMode="singleTop"-->
         <!-- 登录界面 -->
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.login.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!-- 国家列表页 -->
         <activity
-            android:name=".ui.activity.CountyListActivity"
+            android:name=".ui.activity.login.CountyListActivity"
             android:screenOrientation="portrait" />
         <!-- 注册界面 -->
         <activity
-            android:name=".ui.activity.RegisterActivity"
+            android:name=".ui.activity.login.RegisterActivity"
             android:screenOrientation="portrait" />
         <!-- 图形验证码界面 -->
         <activity
-            android:name=".ui.activity.PwdGraphActivity"
+            android:name=".ui.activity.login.PwdGraphActivity"
             android:screenOrientation="portrait" />
         <!-- 邮箱验证码界面 -->
         <activity
-            android:name=".ui.activity.EmailGraphActivity"
+            android:name=".ui.activity.login.EmailGraphActivity"
             android:screenOrientation="portrait" />
         <!-- 找回密码界面 -->
-        <activity android:name=".ui.activity.FindPwdActivity" />
+        <activity android:name=".ui.activity.login.FindPwdActivity" />
         <!-- 注册认证界面 -->
         <activity
-            android:name=".ui.activity.RegisterAuthActivity"
+            android:name=".ui.activity.login.RegisterAuthActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.SetPwdActivity"
+            android:name=".ui.activity.login.SetPwdActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.PwdSuccessActivity"
+            android:name=".ui.activity.login.PwdSuccessActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.CountryResultActivity"
+            android:name=".ui.activity.login.CountryResultActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.SelectImageActivity"></activity>
+        <activity android:name=".ui.activity.imageselect.SelectImageActivity"></activity>
 
         <activity
             android:name="com.hifunki.funki.ui.activity.imageselect.GalleryPickActivity"

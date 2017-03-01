@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity;
+package com.hifunki.funki.ui.activity.imageselect;
 
 import android.Manifest;
 import android.content.Context;
@@ -19,11 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.ui.activity.imageselect.GalleryConfig;
-import com.hifunki.funki.ui.activity.imageselect.GalleryPick;
-import com.hifunki.funki.ui.activity.imageselect.GlideImageLoader;
-import com.hifunki.funki.ui.activity.imageselect.IHandlerCallBack;
-import com.hifunki.funki.ui.activity.imageselect.PhotoAdapter;
+import com.hifunki.funki.ui.activity.base.BaseActivity;
 import com.hifunki.funki.ui.widget.ToolTitleBar;
 
 import java.util.ArrayList;
@@ -37,7 +33,7 @@ import butterknife.OnClick;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.SelectImageActivity.java
+ * @value com.hifunki.funki.ui.activity.imageselect.SelectImageActivity.java
  * @link
  * @since 2017-02-28 09:42:42
  */

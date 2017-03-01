@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity;
+package com.hifunki.funki.ui.activity.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.model.City;
+import com.hifunki.funki.ui.activity.base.BaseActivity;
 import com.hifunki.funki.ui.adapter.CityListAdapter;
 import com.hifunki.funki.ui.widget.ToolEditTitleBar;
 import com.hifunki.funki.ui.widget.ToolTitleBar;
@@ -23,7 +24,7 @@ import butterknife.OnClick;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.CountryResultActivity.java
+ * @value com.hifunki.funki.ui.activity.login.CountryResultActivity.java
  * @link
  * @since 2017-02-27 14:55:55
  */

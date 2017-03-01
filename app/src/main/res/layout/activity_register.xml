@@ -7,7 +7,7 @@
     android:background="@color/bgColor"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.ui.activity.LoginActivity"
+    tools:context="com.hifunki.funki.ui.activity.login.LoginActivity"
     tools:ignore="MissingPrefix">
 
     <!--<com.hifunki.funki.ui.widget.TitleBar-->
