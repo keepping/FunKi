@@ -21,19 +21,27 @@
 
     </LinearLayout>
 
+
     <TextView
         android:id="@+id/tvGalleryFolder"
         fontPath="fonts/FZZDXFW.ttf"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:drawablePadding="5dp"
-        android:drawableRight="@drawable/gallery_pick_dropdown_white"
         android:gravity="center"
         android:text="@string/gallery_all_folder"
         android:textColor="@color/titleText"
         android:textSize="17sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_gallery_folder"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tvGalleryFolder"
+        android:gravity="center"
+        android:src="@drawable/gallery_pick_dropdown_white" />
 
     <TextView
         android:id="@+id/tvFinish"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.imageselect.GalleryConfig;
@@ -57,10 +58,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         // 设置 每个imageView 的大小
         ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
-//        params.height = DisplayUtil.getScreenWidth(mContext) / 3;
-        params.height = (int) DisplayUtil.dip2Px(mContext,(float)111);
-//        params.width = DisplayUtil.getScreenWidth(mContext) / 3;
-        params.width = (int) DisplayUtil.dip2Px(mContext,(float)111);
+
+        //平均分配宽高
+        params.height = DisplayUtil.getScreenWidth(mContext) / 3;
+        params.width = DisplayUtil.getScreenWidth(mContext) / 3;
+
+        //自定义高度
+//        params.height = (int) DisplayUtil.dip2Px(mContext, (float) 111);
+//        params.width = (int) DisplayUtil.dip2Px(mContext, (float) 111);
 
         holder.itemView.setLayoutParams(params);
 
@@ -84,6 +89,13 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             photoInfo = photoInfoList.get(position);
         }
         final ViewHolder viewHolder = (ViewHolder) holder;
+
+        //给列表1设置paddingTop
+        if (position == 0) {
+            viewHolder.flGalleryPhoto.setPadding(0, (int) DisplayUtil.dip2Px(mContext, 100), 0, 0);
+
+        }
+
         galleryConfig.getImageLoader().displayImage(mActivity, mContext, photoInfo.path, viewHolder.ivPhotoImage, DisplayUtil.getScreenWidth(mContext) / 3, DisplayUtil.getScreenWidth(mContext) / 3);
 
 
@@ -142,12 +154,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private GalleryImageView ivPhotoImage;
         private View vPhotoMask;
         private CheckBox chkPhotoSelector;
+        private FrameLayout flGalleryPhoto;
 
         private ViewHolder(View itemView) {
             super(itemView);
             ivPhotoImage = (GalleryImageView) itemView.findViewById(R.id.ivGalleryPhotoImage);
             vPhotoMask = itemView.findViewById(R.id.vGalleryPhotoMask);
             chkPhotoSelector = (CheckBox) itemView.findViewById(R.id.chkGalleryPhotoSelector);
+            flGalleryPhoto = (FrameLayout) itemView.findViewById(R.id.fl_gallery_photo_image);
         }
     }
 

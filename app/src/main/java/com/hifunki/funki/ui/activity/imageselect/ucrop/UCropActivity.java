@@ -271,33 +271,7 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    /**
-     * Configures and styles both status bar and toolbar.
-     */
-//    private void setupAppBar() {
-//        setStatusBarColor(mStatusBarColor);
-//
-//        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//
-//        // Set all of the Toolbar coloring
-//        toolbar.setBackgroundColor(mToolbarColor);
-//        toolbar.setTitleTextColor(mToolbarWidgetColor);
-//
-//        final TextView toolbarTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-//        toolbarTitle.setTextColor(mToolbarWidgetColor);
-//        toolbarTitle.setText(mToolbarTitle);
-//
-//        // Color buttons inside the Toolbar
-//        Drawable stateButtonDrawable = ContextCompat.getDrawable(this, R.drawable.ucrop_ic_cross).mutate();
-//        stateButtonDrawable.setColorFilter(mToolbarWidgetColor, PorterDuff.Mode.SRC_ATOP);
-//        toolbar.setNavigationIcon(stateButtonDrawable);
-//
-//        setSupportActionBar(toolbar);
-//        final ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayShowTitleEnabled(false);
-//        }
-//    }
+
     private void initiateRootViews() {
         mUCropView = (UCropView) findViewById(R.id.ucrop);
         mGestureCropImageView = mUCropView.getCropImageView();
@@ -574,7 +548,8 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
     protected void cropAndSaveImage() {
         mBlockingView.setClickable(true);
         mShowLoader = true;
-        supportInvalidateOptionsMenu();
+
+//        supportInvalidateOptionsMenu();
 
         mGestureCropImageView.cropAndSaveImage(mCompressFormat, mCompressQuality, new BitmapCropCallback() {
 

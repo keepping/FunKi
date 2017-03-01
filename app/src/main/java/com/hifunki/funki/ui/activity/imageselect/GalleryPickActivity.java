@@ -72,6 +72,7 @@ public class GalleryPickActivity extends BaseActivity {
 
     private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallback;
 
+    private boolean isOpenImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,6 +210,17 @@ public class GalleryPickActivity extends BaseActivity {
         tvGalleryFolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                isOpenImage = !isOpenImage;
+//                Drawable drawableDown = getResources().getDrawable(R.drawable.gallery_pick_dropdown_white);
+//                Drawable drawableUp = getResources().getDrawable(R.drawable.gallery_pick_up_white);
+//                if (isOpenImage) {
+//                    tvGalleryFolder.setCompoundDrawables(null, null, drawableUp, null);
+//                } else {
+//                    tvGalleryFolder.setCompoundDrawables(null, null, drawableDown, null);
+//                }
+
+
                 if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
                     folderListPopupWindow.dismiss();
                     return;
