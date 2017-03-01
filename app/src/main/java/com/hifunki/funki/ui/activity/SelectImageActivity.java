@@ -14,7 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +51,7 @@ public class SelectImageActivity extends BaseActivity implements View.OnClickLis
     @BindView(R.id.tv_complete)
     TextView tvComplete;
     @BindView(R.id.activity_select_image)
-    RelativeLayout activitySelectImage;
+    LinearLayout activitySelectImage;
 
 
     private RecyclerView rvResultPhoto;

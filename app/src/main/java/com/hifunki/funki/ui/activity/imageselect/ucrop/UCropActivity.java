@@ -131,7 +131,7 @@ public class UCropActivity extends AppCompatActivity {
             } catch (IllegalStateException e) {
                 Log.i(TAG, String.format("%s - %s", e.getMessage(), getString(R.string.ucrop_mutate_exception_hint)));
             }
-            ((Animatable) menuItemLoader.getIcon()).start();
+//            ((Animatable) menuItemLoader.getIcon()).start();
         }
 
         MenuItem menuItemCrop = menu.findItem(R.id.menu_crop);
@@ -192,9 +192,10 @@ public class UCropActivity extends AppCompatActivity {
     }
 
     /**
-     * This method extracts {@link com.yalantis.ucrop.UCrop.Options #optionsBundle} from incoming intent
+     * This method extracts {@link  #optionsBundle} from incoming intent
      * and setups Activity, {@link OverlayView} and {@link CropImageView} properly.
      */
+//    com.yalantis.ucrop.UCrop.Options
     @SuppressWarnings("deprecation")
     private void processOptions(@NonNull Intent intent) {
         // Bitmap compression options
