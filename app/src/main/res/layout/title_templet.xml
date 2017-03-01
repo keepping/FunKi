@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/flTitleContainer"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="42dp"
     android:background="@drawable/iv_bg"
     tools:ignore="MissingPrefix">
 

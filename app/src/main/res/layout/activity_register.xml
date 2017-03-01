@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgColor"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.hifunki.funki.ui.activity.LoginActivity">
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.ui.activity.LoginActivity"
+    tools:ignore="MissingPrefix">
 
     <!--<com.hifunki.funki.ui.widget.TitleBar-->
-        <!--android:id="@+id/tbRegister"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@drawable/iv_bg"-->
-        <!--android:clipToPadding="true"-->
-        <!--android:fitsSystemWindows="true" />-->
+    <!--android:id="@+id/tbRegister"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/iv_bg"-->
+    <!--android:clipToPadding="true"-->
+    <!--android:fitsSystemWindows="true" />-->
 
     <include layout="@layout/title_templet" />
 
@@ -29,17 +30,20 @@
         android:visibility="visible" />
 
     <TextView
+        fontPath="fonts/arial_0.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:text="@string/app_name"
+        android:textColor="@color/funkiText"
         android:textSize="14sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="78dp"
+        android:layout_marginTop="37dp"
         android:orientation="horizontal">
 
         <LinearLayout
