@@ -13,7 +13,7 @@ import com.hifunki.funki.R;
 import java.util.List;
 
 /**
- * PhotoAdapter
+ * PhotoGalleryAdapter
  * Created by Yancy on 2016/9/29.
  */
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
@@ -21,7 +21,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     private Context context;
     private LayoutInflater mLayoutInflater;
     private List<String> result;
-    private final static String TAG = "PhotoAdapter";
+    private final static String TAG = "PhotoGalleryAdapter";
 
     public PhotoAdapter(Context context, List<String> result) {
         mLayoutInflater = LayoutInflater.from(context);

@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
-import com.hifunki.funki.ui.activity.imageselect.src.PhotoAdapter;
+import com.hifunki.funki.ui.activity.imageselect.galleryadapter.PhotoGalleryAdapter;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.ListUtil;
@@ -50,7 +50,7 @@ public class GalleryPickActivity extends BaseActivity {
     private LinearLayout btnGalleryPickBack;    // 返回按钮
     private RecyclerView rvGalleryImage;        // 图片列表
 
-    private com.hifunki.funki.ui.activity.imageselect.src.PhotoAdapter photoAdapter;              // 图片适配器
+    private PhotoGalleryAdapter photoAdapter;              // 图片适配器
     private FolderAdapter folderAdapter;            // 文件夹适配器
 
 
@@ -156,8 +156,8 @@ public class GalleryPickActivity extends BaseActivity {
 
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
         rvGalleryImage.setLayoutManager(gridLayoutManager);
-        photoAdapter = new PhotoAdapter(mActivity, mContext, photoInfoList);
-        photoAdapter.setOnCallBack(new PhotoAdapter.OnCallBack() {
+        photoAdapter = new PhotoGalleryAdapter(mActivity, mContext, photoInfoList);
+        photoAdapter.setOnCallBack(new PhotoGalleryAdapter.OnCallBack() {
             @Override
             public void OnClickCamera(List<String> selectPhotoList) {
                 resultPhoto.clear();

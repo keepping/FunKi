@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity.imageselect.src;
+package com.hifunki.funki.ui.activity.imageselect.galleryadapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,7 +23,7 @@ import java.util.List;
  * 列表中图片的适配器
  * Created by Yancy on 2016/1/27.
  */
-public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
     private Activity mActivity;
@@ -31,14 +31,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<PhotoInfo> photoInfoList;                      // 本地照片数据
     private List<String> selectPhoto = new ArrayList<>();                   // 选择的图片数据
     private OnCallBack onCallBack;
-    private final static String TAG = "PhotoAdapter";
+    private final static String TAG = "PhotoGalleryAdapter";
 
     private GalleryConfig galleryConfig = GalleryPick.getInstance().getGalleryConfig();
 
     private final static int HEAD = 0;    // 开启相机时需要显示的布局
     private final static int ITEM = 1;    // 照片布局
 
-    public PhotoAdapter(Activity mActivity, Context mContext, List<PhotoInfo> photoInfoList) {
+    public PhotoGalleryAdapter(Activity mActivity, Context mContext, List<PhotoInfo> photoInfoList) {
         mLayoutInflater = LayoutInflater.from(mContext);
         this.mContext = mContext;
         this.photoInfoList = photoInfoList;
