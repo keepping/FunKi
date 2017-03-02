@@ -17,7 +17,7 @@ public class GalleryConfig {
     private int maxSize;                // 配置开启多选时 最大可选择的图片数量。   默认：9
     private boolean isShowCamera;       // 是否开启相机 默认：true
     private String provider;            // 兼容android 7.0 设置
-    private String filePath;            // 拍照以及截图后 存放的位置。    默认：/Gallery/Pictures
+    private String filePath;            // 拍照以及截图后 存放的位置。    默认：/Funki/Pictures
     private ArrayList<String> pathList;      // 已选择照片的路径
     private boolean isOpenCamera;             // 是否直接开启相机    默认：false
 
@@ -63,7 +63,7 @@ public class GalleryConfig {
         private boolean multiSelect = false;
         private int maxSize = 9;
         private boolean isShowCamera = true;
-        private String filePath = "/Gallery/Pictures";
+        private String filePath = "/Funki/Pictures";
 
         private boolean isCrop = false;
         private float aspectRatioX = 1;

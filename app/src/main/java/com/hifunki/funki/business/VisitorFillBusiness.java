@@ -28,17 +28,6 @@ public class VisitorFillBusiness {
             tv.setTextColor(context.getResources().getColor(R.color.titleText));
             tv.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_bg));
         }
-//        } else {
-//            tvs.setTextColor(context.getResources().getColor(R.color.vistorTvClickbg, context.getTheme()));
-//            tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_click_bg, context.getTheme()));
-//
-//            for (TextView tv : textViews) {
-//                tv.setTextColor(context.getResources().getColor(R.color.vistorTvbg, context.getTheme()));
-//                tv.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_bg, context.getTheme()));
-//            }
-//        }
-
-
     }
 
     @SuppressWarnings("deprecation")
@@ -51,17 +40,6 @@ public class VisitorFillBusiness {
             tvs.setTextColor(context.getResources().getColor(R.color.titleText));
             tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_bg));
         }
-
-//        } else {
-//            tvs.setTextColor(context.getResources().getColor(R.color.vistorTvClickbg, context.getTheme()));
-//            tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_click_bg, context.getTheme()));
-//
-//            for (TextView tv : textViews) {
-//                tv.setTextColor(context.getResources().getColor(R.color.vistorTvbg, context.getTheme()));
-//                tv.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_bg, context.getTheme()));
-//            }
-//        }
-
 
     }
 }
