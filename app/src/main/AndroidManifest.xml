@@ -67,16 +67,16 @@
         <activity
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.imageselect.SelectImageActivity"></activity>
+        <activity android:name=".module.photo.SelectImageActivity"></activity>
 
         <activity
-            android:name="com.hifunki.funki.ui.activity.imageselect.GalleryPickActivity"
+            android:name=".module.photo.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/GalleryTheme" />
 
         <activity
-            android:name="com.hifunki.funki.ui.activity.imageselect.ucrop.UCropActivity"
+            android:name=".module.photo.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 

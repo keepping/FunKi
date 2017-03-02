@@ -7,7 +7,7 @@
     android:background="@color/vistorTvbgNormal"
     tools:ignore="MissingPrefix">
 
-    <com.hifunki.funki.ui.activity.imageselect.GalleryImageView
+    <com.hifunki.funki.module.photo.GalleryImageView
         android:id="@+id/ivGalleryFolderImage"
         android:layout_width="86dp"
         android:layout_height="86dp"

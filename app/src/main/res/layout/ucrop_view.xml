@@ -5,13 +5,13 @@
 
     <!-- Padding for both views can be different -->
 
-    <com.hifunki.funki.ui.activity.imageselect.ucrop.view.GestureCropImageView
+    <com.hifunki.funki.module.photo.ucrop.view.GestureCropImageView
         android:id="@+id/image_view_crop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/ucrop_padding_crop_frame"/>
 
-    <com.hifunki.funki.ui.activity.imageselect.ucrop.view.OverlayView
+    <com.hifunki.funki.module.photo.ucrop.view.OverlayView
         android:id="@+id/view_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

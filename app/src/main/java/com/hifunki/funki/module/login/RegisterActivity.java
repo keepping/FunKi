@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.application.base.BaseActivity;
-import com.hifunki.funki.ui.activity.imageselect.SelectImageActivity;
+import com.hifunki.funki.module.photo.SelectImageActivity;
 import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;

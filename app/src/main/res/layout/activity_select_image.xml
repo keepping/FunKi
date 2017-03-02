@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.ui.activity.imageselect.SelectImageActivity"
+    tools:context=".module.photo.SelectImageActivity"
     tools:ignore="MissingPrefix">
 
     <include layout="@layout/title_templet" />
