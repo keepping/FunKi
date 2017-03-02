@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.inter;
 
 import java.util.List;
 

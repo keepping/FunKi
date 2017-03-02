@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.widget;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
 import com.hifunki.funki.util.DisplayUtil;
 
 

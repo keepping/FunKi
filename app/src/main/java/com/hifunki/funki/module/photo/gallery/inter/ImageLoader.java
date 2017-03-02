@@ -1,7 +1,9 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.inter;
 
 import android.app.Activity;
 import android.content.Context;
+
+import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
 
 import java.io.Serializable;
 

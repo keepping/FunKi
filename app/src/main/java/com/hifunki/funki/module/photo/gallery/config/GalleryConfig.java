@@ -1,4 +1,7 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.config;
+
+import com.hifunki.funki.module.photo.gallery.inter.IHandlerCallBack;
+import com.hifunki.funki.module.photo.gallery.inter.ImageLoader;
 
 import java.io.Serializable;
 import java.util.ArrayList;

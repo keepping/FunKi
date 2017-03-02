@@ -1,10 +1,11 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.inter;
 
 import android.app.Activity;
 import android.content.Context;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
+import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
 
 /**
  * GlideImageLoader

@@ -1,10 +1,11 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.config;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.hifunki.funki.module.photo.GalleryPickActivity;
 import com.hifunki.funki.util.FileUtils;
 
 /**

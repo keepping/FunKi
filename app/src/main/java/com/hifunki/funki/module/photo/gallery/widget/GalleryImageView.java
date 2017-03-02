@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

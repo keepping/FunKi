@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.util;
 
 import android.app.Activity;
 import android.net.Uri;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.hifunki.funki.module.photo.GalleryImageView
+    <com.hifunki.funki.module.photo.gallery.widget.GalleryImageView
         android:id="@+id/ivGalleryPhotoImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

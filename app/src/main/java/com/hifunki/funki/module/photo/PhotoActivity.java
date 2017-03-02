@@ -21,6 +21,11 @@ import android.widget.Toast;
 import com.hifunki.funki.R;
 import com.hifunki.funki.application.base.BaseActivity;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
+import com.hifunki.funki.module.photo.gallery.adapter.PhotoAdapter;
+import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
+import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
+import com.hifunki.funki.module.photo.gallery.inter.GlideImageLoader;
+import com.hifunki.funki.module.photo.gallery.inter.IHandlerCallBack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +38,11 @@ import butterknife.OnClick;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.imageselect.SelectImageActivity.java
+ * @value com.hifunki.funki.ui.activity.imageselect.PhotoActivity.java
  * @link
  * @since 2017-02-28 09:42:42
  */
-public class SelectImageActivity extends BaseActivity implements View.OnClickListener {
+public class PhotoActivity extends BaseActivity implements View.OnClickListener {
 
 
     @BindView(R.id.iv_selectimage)
@@ -61,7 +66,7 @@ public class SelectImageActivity extends BaseActivity implements View.OnClickLis
 
 
     public static void show(Context context) {
-        context.startActivity(new Intent(context, SelectImageActivity.class));
+        context.startActivity(new Intent(context, PhotoActivity.class));
     }
 
     @Override
@@ -194,7 +199,7 @@ public class SelectImageActivity extends BaseActivity implements View.OnClickLis
             }
         } else {
             Log.i(TAG, "不需要授权 ");
-            GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(SelectImageActivity.this);
+            GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(PhotoActivity.this);
         }
     }
 
@@ -203,7 +208,7 @@ public class SelectImageActivity extends BaseActivity implements View.OnClickLis
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Log.i(TAG, "同意授权");
-                GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(SelectImageActivity.this);
+                GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(PhotoActivity.this);
             } else {
                 Log.i(TAG, "拒绝授权");
             }

@@ -23,7 +23,15 @@ import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.application.base.BaseActivity;
-import com.hifunki.funki.module.photo.galleryadapter.PhotoGalleryAdapter;
+import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
+import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
+import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
+import com.hifunki.funki.module.photo.gallery.inter.IHandlerCallBack;
+import com.hifunki.funki.module.photo.gallery.pojo.FolderInfo;
+import com.hifunki.funki.module.photo.gallery.pojo.PhotoInfo;
+import com.hifunki.funki.module.photo.gallery.util.UCropUtils;
+import com.hifunki.funki.module.photo.gallery.widget.FolderListPopupWindow;
+import com.hifunki.funki.module.photo.gallery.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.ListUtil;

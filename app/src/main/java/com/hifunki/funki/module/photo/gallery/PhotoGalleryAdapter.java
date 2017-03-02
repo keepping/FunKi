@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo.galleryadapter;
+package com.hifunki.funki.module.photo.gallery;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,10 +10,10 @@ import android.widget.CheckBox;
 import android.widget.FrameLayout;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.photo.GalleryConfig;
-import com.hifunki.funki.module.photo.GalleryImageView;
-import com.hifunki.funki.module.photo.GalleryPick;
-import com.hifunki.funki.module.photo.PhotoInfo;
+import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
+import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
+import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
+import com.hifunki.funki.module.photo.gallery.pojo.PhotoInfo;
 import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.ArrayList;

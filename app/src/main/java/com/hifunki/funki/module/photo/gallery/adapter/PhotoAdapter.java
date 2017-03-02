@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

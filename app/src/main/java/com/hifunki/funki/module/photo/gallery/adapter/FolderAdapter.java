@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
+import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
+import com.hifunki.funki.module.photo.gallery.pojo.FolderInfo;
+import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
 import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.List;

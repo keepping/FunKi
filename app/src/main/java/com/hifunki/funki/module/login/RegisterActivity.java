@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.application.base.BaseActivity;
-import com.hifunki.funki.module.photo.SelectImageActivity;
+import com.hifunki.funki.module.photo.PhotoActivity;
 import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
@@ -196,7 +196,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             case R.id.vpPhoneEmail://中间ViewPager
                 break;
             case R.id.llRegNext://注册下一步
-                SelectImageActivity.show(this);
+                PhotoActivity.show(this);
                 break;
             case R.id.ivAgree://同意协议
                 break;
