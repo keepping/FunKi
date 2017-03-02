@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,12 +18,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.module.photo.gallery.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
@@ -31,7 +34,6 @@ import com.hifunki.funki.module.photo.gallery.pojo.FolderInfo;
 import com.hifunki.funki.module.photo.gallery.pojo.PhotoInfo;
 import com.hifunki.funki.module.photo.gallery.util.UCropUtils;
 import com.hifunki.funki.module.photo.gallery.widget.FolderListPopupWindow;
-import com.hifunki.funki.module.photo.gallery.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.ListUtil;
@@ -81,6 +83,7 @@ public class GalleryPickActivity extends BaseActivity {
     private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallback;
 
     private boolean isOpenImage;
+    private ImageView ivGalleryFolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +132,7 @@ public class GalleryPickActivity extends BaseActivity {
     protected void initView() {
         tvFinish = (TextView) super.findViewById(R.id.tvFinish);
         tvGalleryFolder = (TextView) super.findViewById(R.id.tvGalleryFolder);
+        ivGalleryFolder = (ImageView) super.findViewById(R.id.iv_gallery_folder);//图片角标
         btnGalleryPickBack = (LinearLayout) super.findViewById(R.id.btnGalleryPickBack);
         rvGalleryImage = (RecyclerView) super.findViewById(R.id.rvGalleryImage);
     }
@@ -218,15 +222,7 @@ public class GalleryPickActivity extends BaseActivity {
         tvGalleryFolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                isOpenImage = !isOpenImage;
-//                Drawable drawableDown = getResources().getDrawable(R.drawable.gallery_pick_dropdown_white);
-//                Drawable drawableUp = getResources().getDrawable(R.drawable.gallery_pick_up_white);
-//                if (isOpenImage) {
-//                    tvGalleryFolder.setCompoundDrawables(null, null, drawableUp, null);
-//                } else {
-//                    tvGalleryFolder.setCompoundDrawables(null, null, drawableDown, null);
-//                }
+                changeImageState();
 
 
                 if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
@@ -346,10 +342,7 @@ public class GalleryPickActivity extends BaseActivity {
                                 photoInfoList.add(0, photoInfo);
                             }
                         }
-
-
                         photoAdapter.notifyDataSetChanged();
-
                         hasFolderScan = true;
                     }
                 }
@@ -458,6 +451,20 @@ public class GalleryPickActivity extends BaseActivity {
             exit();
         }
         return true;
+    }
+
+    /**
+     * 改变图片的选中状态
+     */
+    private void changeImageState() {
+        isOpenImage = !isOpenImage;
+        Drawable drawableDown = getResources().getDrawable(R.drawable.gallery_pick_dropdown_white);
+        Drawable drawableUp = getResources().getDrawable(R.drawable.gallery_pick_up_white);
+        if (isOpenImage) {
+            ivGalleryFolder.setImageDrawable(drawableUp);
+        } else {
+            ivGalleryFolder.setImageDrawable(drawableDown);
+        }
     }
 
 }
