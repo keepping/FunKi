@@ -1,6 +1,6 @@
 package com.hifunki.funki.module.login;
 
-import com.hifunki.funki.application.base.BaseActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 
 /**
  * MainActivity

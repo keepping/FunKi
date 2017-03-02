@@ -1,4 +1,4 @@
-package com.hifunki.funki.application;
+package com.hifunki.funki.base.application;
 
 import android.app.Activity;
 import android.app.Application;

@@ -1,7 +1,7 @@
 package com.hifunki.funki.module.login;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.application.base.BaseActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 
 /**
  * 注册结果界面

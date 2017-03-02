@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.login.pojo.City;
-import com.hifunki.funki.application.base.BaseActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.login.adapter.CityListAdapter;
 import com.hifunki.funki.module.login.widget.ToolEditTitleBar;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;

@@ -1,4 +1,4 @@
-package com.hifunki.funki.application.base;
+package com.hifunki.funki.base.activity;
 
 /**
  * Created by JuQiu

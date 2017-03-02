@@ -1,4 +1,4 @@
-package com.hifunki.funki.application.base;
+package com.hifunki.funki.base.activity;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.application.ApplicationMain;
+import com.hifunki.funki.base.application.ApplicationMain;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import butterknife.ButterKnife;
@@ -41,7 +41,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.application.base.BaseActivity.java
+ * @value com.hifunki.funki.base.activity.BaseActivity.java
  * @link
  * @since 2017-02-23 20:24:24
  */
