@@ -1,7 +1,7 @@
 package com.hifunki.funki.module.login;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.ui.activity.base.BaseActivity;
+import com.hifunki.funki.application.base.BaseActivity;
 
 /**
  *

@@ -70,7 +70,7 @@
 
             </RelativeLayout>
 
-            <com.hifunki.funki.ui.adapter.SideLetterBar
+            <com.hifunki.funki.module.login.adapter.SideLetterBar
                 android:id="@+id/side_letter_bar"
                 android:layout_width="20dp"
                 android:layout_height="match_parent"

@@ -9,7 +9,7 @@
     tools:context=".module.login.VisitorFillActivity"
     tools:ignore="MissingPrefix">
 
-    <!--<com.hifunki.funki.ui.widget.TitleBar-->
+    <!--<com.hifunki.funki.module.login.widget.TitleBar-->
     <!--android:id="@+id/tbVisitor"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="42dp"-->

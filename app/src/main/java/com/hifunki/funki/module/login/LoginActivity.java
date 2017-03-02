@@ -14,12 +14,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.ui.activity.base.BaseActivity;
-import com.hifunki.funki.ui.adapter.PagerBaseAdapter;
-import com.hifunki.funki.ui.widget.ToolTitleBar;
-import com.hifunki.funki.ui.widget.layout.LayoutEmailWithType;
-import com.hifunki.funki.ui.widget.layout.LayoutPhoneWithType;
-import com.hifunki.funki.ui.widget.scroller.FixedSpeedScroller;
+import com.hifunki.funki.application.base.BaseActivity;
+import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
+import com.hifunki.funki.module.login.widget.ToolTitleBar;
+import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
+import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
+import com.hifunki.funki.module.login.widget.scroller.FixedSpeedScroller;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
 

@@ -9,11 +9,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.model.City;
-import com.hifunki.funki.ui.activity.base.BaseActivity;
-import com.hifunki.funki.ui.adapter.CityListAdapter;
-import com.hifunki.funki.ui.adapter.SideLetterBar;
-import com.hifunki.funki.ui.widget.ToolTitleBar;
+import com.hifunki.funki.module.login.pojo.City;
+import com.hifunki.funki.application.base.BaseActivity;
+import com.hifunki.funki.module.login.adapter.CityListAdapter;
+import com.hifunki.funki.module.login.adapter.SideLetterBar;
+import com.hifunki.funki.module.login.widget.ToolTitleBar;
 
 import java.util.ArrayList;
 import java.util.List;

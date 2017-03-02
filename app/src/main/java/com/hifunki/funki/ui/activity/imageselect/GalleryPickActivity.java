@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.ui.activity.base.BaseActivity;
+import com.hifunki.funki.application.base.BaseActivity;
 import com.hifunki.funki.ui.activity.imageselect.galleryadapter.PhotoGalleryAdapter;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;

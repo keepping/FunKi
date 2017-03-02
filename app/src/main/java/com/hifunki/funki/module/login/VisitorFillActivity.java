@@ -8,10 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.business.VisitorFillBusiness;
-import com.hifunki.funki.ui.activity.base.BaseActivity;
-import com.hifunki.funki.ui.application.ApplicationMain;
-import com.hifunki.funki.ui.widget.ToolTitleBar;
+import com.hifunki.funki.module.login.business.VisitorFillBusiness;
+import com.hifunki.funki.application.base.BaseActivity;
+import com.hifunki.funki.application.ApplicationMain;
+import com.hifunki.funki.module.login.widget.ToolTitleBar;
 
 import butterknife.BindView;
 import butterknife.OnClick;

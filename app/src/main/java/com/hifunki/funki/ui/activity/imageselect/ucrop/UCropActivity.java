@@ -36,7 +36,7 @@ import com.hifunki.funki.ui.activity.imageselect.ucrop.view.TransformImageView;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.view.UCropView;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.view.widget.AspectRatioTextView;
 import com.hifunki.funki.ui.activity.imageselect.ucrop.view.widget.HorizontalProgressWheelView;
-import com.hifunki.funki.ui.widget.ToolTitleBar;
+import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import java.lang.annotation.Retention;

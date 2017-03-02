@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".module.login.PwdGraphActivity">
 
-    <com.hifunki.funki.ui.widget.TitleBar
+    <com.hifunki.funki.module.login.widget.TitleBar
         android:id="@+id/tbPwdGraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

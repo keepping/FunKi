@@ -19,8 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.ui.activity.base.BaseActivity;
-import com.hifunki.funki.ui.widget.ToolTitleBar;
+import com.hifunki.funki.application.base.BaseActivity;
+import com.hifunki.funki.module.login.widget.ToolTitleBar;
 
 import java.util.ArrayList;
 import java.util.List;

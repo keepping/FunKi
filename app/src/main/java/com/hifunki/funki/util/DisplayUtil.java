@@ -5,7 +5,7 @@ import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.hifunki.funki.ui.activity.base.BaseActivity;
+import com.hifunki.funki.application.base.BaseActivity;
 
 /**
  * Created by dell on 2017/2/22.
