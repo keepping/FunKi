@@ -3,7 +3,6 @@ package com.hifunki.funki.module.photo.gallery.util;
 import android.app.Activity;
 import android.net.Uri;
 
-import com.hifunki.funki.R;
 import com.hifunki.funki.module.photo.ucrop.UCrop;
 
 import java.io.File;
@@ -19,10 +18,10 @@ public class UCropUtils {
                 .withAspectRatio(aspectRatioX, aspectRatioY)
                 .withMaxResultSize(maxWidth, maxHeight);
 
-        UCrop.Options options = new UCrop.Options();
-        options.setToolbarColor(mActivity.getResources().getColor(R.color.gallery_blue));
-        options.setStatusBarColor(mActivity.getResources().getColor(R.color.gallery_blue));
-        uCrop.withOptions(options);
+//        UCrop.Options options = new UCrop.Options();
+//        options.setToolbarColor(mActivity.getResources().getColor(R.color.gallery_blue));
+//        options.setStatusBarColor(mActivity.getResources().getColor(R.color.gallery_blue));
+//        uCrop.withOptions(options);
 
 
         uCrop.start(mActivity);

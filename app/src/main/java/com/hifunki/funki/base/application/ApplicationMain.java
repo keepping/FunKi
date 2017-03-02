@@ -61,6 +61,23 @@ public class ApplicationMain extends Application {
     }
 
     /**
+     * 获取所有activity的list
+     *
+     * @return
+     */
+    public static List<Activity> getActivityList() {
+        return mActivityList;
+    }
+
+    /**
+     * 退出栈顶的activity
+     */
+    public static void removeCurrentActivity() {
+        mActivityList.size();
+        mActivityList.remove(mActivityList.size()-1);
+    }
+
+    /**
      * 添加Activity到容器中
      *
      * @param activity

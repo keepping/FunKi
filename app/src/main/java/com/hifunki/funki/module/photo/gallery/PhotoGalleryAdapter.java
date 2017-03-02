@@ -26,11 +26,14 @@ import java.util.List;
  */
 public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private boolean mSelected;//当前选中图片
+    private boolean mIsChoose;//是有选中图片
+
     private Context mContext;
     private Activity mActivity;
     private LayoutInflater mLayoutInflater;
     private List<PhotoInfo> photoInfoList;                      // 本地照片数据
-    private List<String> selectPhoto = new ArrayList<>();                   // 选择的图片数据
+    private List<String> selectPhoto = new ArrayList<>();                   // 选择的图片路径数据
     private OnCallBack onCallBack;
     private final static String TAG = "PhotoGalleryAdapter";
 
@@ -44,9 +47,6 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.mContext = mContext;
         this.photoInfoList = photoInfoList;
         this.mActivity = mActivity;
-
-        System.out.println("photoInfoList info=" + photoInfoList);
-
     }
 
     @Override
@@ -77,9 +77,6 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (galleryConfig.getMaxSize() <= selectPhoto.size()) {        // 当选择图片达到上限时， 禁止继续添加
-                        return;
-                    }
                     onCallBack.OnClickCamera(selectPhoto);
                 }
             });
@@ -92,28 +89,10 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         } else {
             photoInfo = photoInfoList.get(position);
         }
+
         final ViewHolder viewHolder = (ViewHolder) holder;
 
-        //给列表1设置paddingTop
-//        if (position == 0) {
-//            viewHolder.flGalleryPhoto.setPadding(0, (int) DisplayUtil.dip2Px(mContext, 100), 0, 0);
-//        }
-
         galleryConfig.getImageLoader().displayImage(mActivity, mContext, photoInfo.path, viewHolder.ivPhotoImage, DisplayUtil.getScreenWidth(mContext) / 3, DisplayUtil.getScreenWidth(mContext) / 3);
-
-        if (selectPhoto.contains(photoInfo.path)) {
-            viewHolder.imageViewSelected.setClickable(true);
-            Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
-            viewHolder.imageViewSelected.setImageDrawable(drawable);
-
-        } else {
-            viewHolder.imageViewSelected.setClickable(false);
-            Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
-            viewHolder.imageViewSelected.setImageDrawable(drawable);
-        }
-
-        viewHolder.imageViewSelected.setVisibility(View.VISIBLE);
-
 
         //图片点击
         viewHolder.ivPhotoImage.setOnClickListener(new View.OnClickListener() {
@@ -126,32 +105,36 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     return;
                 }
 
-                if (selectPhoto.contains(photoInfo.path)) {
-                    selectPhoto.remove(photoInfo.path);
-                    viewHolder.imageViewSelected.setClickable(false);
-
-                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
-                    viewHolder.imageViewSelected.setImageDrawable(drawable);
-
-                } else {
-                    if (galleryConfig.getMaxSize() <= selectPhoto.size()) {        // 当选择图片达到上限时， 禁止继续添加
-                        return;
-                    }
-                    selectPhoto.add(photoInfo.path);
-
-                    viewHolder.imageViewSelected.setClickable(true);
-                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
-                    viewHolder.imageViewSelected.setImageDrawable(drawable);
-
-                }
                 onCallBack.OnClickPhoto(selectPhoto);
             }
         });
 
+//        Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
+//        viewHolder.imageViewSelected.setImageDrawable(drawable);
+
         viewHolder.imageViewSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mSelected = !mSelected;
+                if (mSelected) {
+                    ImageView imageView = (ImageView) v;
+                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
+                    imageView.setImageDrawable(drawable);
 
+                    selectPhoto.clear();
+                    selectPhoto.add(photoInfo.path);
+                    onCallBack.OnSelectPhoto(selectPhoto);
+                } else {
+                    ImageView imageView = (ImageView) v;
+                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
+                    imageView.setImageDrawable(drawable);
+
+                    selectPhoto.clear();
+                    selectPhoto.add(photoInfo.path);
+                    onCallBack.OnNoSelectPhoto(selectPhoto);
+                }
+
+                mIsChoose = !mIsChoose;
             }
         });
     }
@@ -203,6 +186,10 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         void OnClickPhoto(List<String> selectPhoto);
 
         void OnClickCamera(List<String> selectPhoto);
+
+        void OnSelectPhoto(List<String> selectPhoto);//选择了照片的回调
+
+        void OnNoSelectPhoto(List<String> selectPhoto);//没有选中照片回调
     }
 
     public void setOnCallBack(OnCallBack onCallBack) {
@@ -245,5 +232,39 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 //        return null;
 //    }
 
+
+//                if (selectPhoto.contains(photoInfo.path)) {
+//                    selectPhoto.remove(photoInfo.path);
+//                    viewHolder.imageViewSelected.setClickable(false);
+//
+//                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
+//                    viewHolder.imageViewSelected.setImageDrawable(drawable);
+//                } else {
+//                    if (galleryConfig.getMaxSize() <= selectPhoto.size()) {        // 当选择图片达到上限时， 禁止继续添加
+//                        return;
+//                    }
+//                    selectPhoto.add(photoInfo.path);
+//
+//                    viewHolder.imageViewSelected.setClickable(true);
+//                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
+//                    viewHolder.imageViewSelected.setImageDrawable(drawable);
+//
+//                }
+
+
+    //        Log.e(TAG, "selectPhoto: " + selectPhoto);
+//
+//        if (selectPhoto.contains(photoInfo.path)) {
+//            viewHolder.imageViewSelected.setClickable(true);
+//            Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
+//            viewHolder.imageViewSelected.setImageDrawable(drawable);
+//
+//        } else {
+//            viewHolder.imageViewSelected.setClickable(false);
+//            Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
+//            viewHolder.imageViewSelected.setImageDrawable(drawable);
+//        }
+
+//        viewHolder.imageViewSelected.setVisibility(View.VISIBLE);
 
 }

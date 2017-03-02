@@ -8,12 +8,14 @@ public class PhotoInfo {
 
     public String name;                 // 图片名
     public String path;                 // 图片路径
-    public long time;                   // 图片添加时间
+    public long time;                    // 图片添加时间
+    public int size;
 
-    public PhotoInfo(String path, String name, long time) {
+    public PhotoInfo(String path, String name, long time,int size) {
         this.path = path;
         this.name = name;
         this.time = time;
+        this.size=size;
     }
 
 
@@ -23,6 +25,7 @@ public class PhotoInfo {
                 "name='" + name + '\'' +
                 ", path='" + path + '\'' +
                 ", time=" + time +
+                ", size=" + size +
                 '}';
     }
 

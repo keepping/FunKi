@@ -15,7 +15,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -53,7 +52,7 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     private GalleryPickActivity mActivity = null;
     private final static String TAG = "GalleryPickActivity";
 
-    private ArrayList<String> resultPhoto;
+    private ArrayList<String> resultPhoto;      //照片路径集合
     private boolean isOpenImage;                //是否点击所有图片
     private TextView tvFinish;                  // 完成按钮
     private TextView tvGalleryFolder;           // 文件夹按钮
@@ -92,17 +91,8 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
 
         mContext = this;
         mActivity = this;
-        //4.4 hideTitleBar
-//        UIUtils.hideTitleBar(mActivity, R.id.ll_gallery_pick_main);
 
         galleryConfig = GalleryPick.getInstance().getGalleryConfig();
-        Intent intent = getIntent();
-        boolean isOpenCamera = intent.getBooleanExtra("isOpenCamera", false);
-        if (isOpenCamera || galleryConfig.isOpenCamera()) {
-            galleryConfig.getBuilder().isOpenCamera(true).build();
-            showCameraAction();
-        }
-
         init();
         initPhoto();  //加载图片
 
@@ -175,7 +165,6 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
 
             @Override
             public void OnClickPhoto(List<String> selectPhotoList) {
-//                tvFinish.setText(getString(R.string.gallery_finish, selectPhotoList.size(), galleryConfig.getMaxSize()));
 
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
@@ -191,15 +180,29 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                     exit();
                 }
             }
+
+            //选中照片操作
+            @Override
+            public void OnSelectPhoto(List<String> selectPhotoList) {
+                resultPhoto.clear();
+                resultPhoto.addAll(selectPhotoList);
+                tvFinish.setVisibility(View.VISIBLE);
+            }
+
+            //未选中照片操作
+            @Override
+            public void OnNoSelectPhoto(List<String> selectPhotoList) {
+                resultPhoto.clear();
+                resultPhoto.addAll(selectPhotoList);
+                tvFinish.setVisibility(View.GONE);
+            }
         });
 
+
+//        Log.e("test", "init: "+resultPhoto);
         photoAdapter.setSelectPhoto(resultPhoto);
         rvGalleryImage.setAdapter(photoAdapter);
 
-
-        if (!galleryConfig.isMultiSelect()) {
-            tvFinish.setVisibility(View.GONE);
-        }
 
         //设置文件夹适配器
         folderAdapter = new FolderAdapter(mActivity, mContext, folderInfoList);
@@ -264,9 +267,10 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                             String path = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));
                             String name = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[1]));
                             long dateTime = data.getLong(data.getColumnIndexOrThrow(IMAGE_PROJECTION[2]));
-                            int size = data.getInt(data.getColumnIndexOrThrow(IMAGE_PROJECTION[4]));
+                            int size = data.getInt(data.getColumnIndexOrThrow(IMAGE_PROJECTION[4]));//获取图片大小，单位bytes
+
                             boolean showFlag = size > 1024 * 5;                           //是否大于5K
-                            PhotoInfo photoInfo = new PhotoInfo(path, name, dateTime);
+                            PhotoInfo photoInfo = new PhotoInfo(path, name, dateTime, size);
                             if (showFlag) {
                                 tempPhotoList.add(photoInfo);
                             }
@@ -283,12 +287,12 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                                     photoInfoList.add(photoInfo);
                                     folderInfo.photoInfoList = photoInfoList;
                                     folderInfoList.add(folderInfo);
+
                                 } else {
                                     FolderInfo f = folderInfoList.get(folderInfoList.indexOf(folderInfo));
                                     f.photoInfoList.add(photoInfo);
                                 }
                             }
-
                         } while (data.moveToNext());
 
                         photoInfoList.clear();
@@ -298,9 +302,10 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                         for (PhotoInfo photoInfo : photoInfoList) {
                             tempPhotoPathList.add(photoInfo.path);
                         }
+                        //添加之前初始化选中的图片
                         for (String mPhotoPath : galleryConfig.getPathList()) {
                             if (!tempPhotoPathList.contains(mPhotoPath)) {
-                                PhotoInfo photoInfo = new PhotoInfo(mPhotoPath, null, 0L);
+                                PhotoInfo photoInfo = new PhotoInfo(mPhotoPath, null, 0L, 0);
                                 photoInfoList.add(0, photoInfo);
                             }
                         }
@@ -352,13 +357,14 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CAMERA) {
-            Log.i(TAG, "onActivityResult: " + resultCode);
+//            Log.i(TAG, "onActivityResult: " + resultCode);
             if (resultCode == RESULT_OK) {
                 if (cameraTempFile != null) {
                     if (!galleryConfig.isMultiSelect()) {
                         resultPhoto.clear();
                         if (galleryConfig.isCrop()) {
                             cropTempFile = FileUtils.getCorpFile(galleryConfig.getFilePath());
+                            //启动裁剪
                             UCropUtils.start(mActivity, cameraTempFile, cropTempFile, galleryConfig.getAspectRatioX(), galleryConfig.getAspectRatioY(), galleryConfig.getMaxWidth(), galleryConfig.getMaxHeight());
                             return;
                         }
@@ -398,6 +404,19 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     private void exit() {
         mHandlerCallBack.onFinish();
         finish();
+
+//        移除栈顶的activity
+//        ApplicationMain.removeCurrentActivity();
+
+    }
+
+//        http://stackoverflow.com/questions/6092862/will-calling-finish-from-an-activity-free-up-my-memory-space
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //释放资源
+        Runtime.getRuntime().gc();
     }
 
     /**

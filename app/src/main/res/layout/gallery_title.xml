@@ -44,6 +44,7 @@
         android:src="@drawable/gallery_pick_dropdown_white" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tvFinish"
         fontPath="fonts/FZZDXFW.ttf"
         android:layout_width="wrap_content"

@@ -122,7 +122,7 @@ public class GalleryPickView extends RelativeLayout {
                             long dateTime = data.getLong(data.getColumnIndexOrThrow(IMAGE_PROJECTION[2]));
                             int size = data.getInt(data.getColumnIndexOrThrow(IMAGE_PROJECTION[4]));
                             boolean showFlag = size > 1024 * 5;                           //是否大于5K
-                            PhotoInfo photoInfo = new PhotoInfo(path, name, dateTime);
+                            PhotoInfo photoInfo = new PhotoInfo(path, name, dateTime,size);
                             if (showFlag) {
                                 tempPhotoList.add(photoInfo);
                             }
@@ -147,24 +147,3 @@ public class GalleryPickView extends RelativeLayout {
     }
 
 }
-/*
- *   ┏┓　　　┏┓
- * ┏┛┻━━━┛┻┓
- * ┃　　　　　　　┃
- * ┃　　　━　　　┃
- * ┃　┳┛　┗┳　┃
- * ┃　　　　　　　┃
- * ┃　　　┻　　　┃
- * ┃　　　　　　　┃
- * ┗━┓　　　┏━┛
- *     ┃　　　┃
- *     ┃　　　┃
- *     ┃　　　┗━━━┓
- *     ┃　　　　　　　┣┓
- *     ┃　　　　　　　┏┛
- *     ┗┓┓┏━┳┓┏┛
- *       ┃┫┫　┃┫┫
- *       ┗┻┛　┗┻┛
- *        神兽保佑
- *        代码无BUG!
- */

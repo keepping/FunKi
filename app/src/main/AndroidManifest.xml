@@ -23,11 +23,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!--android:launchMode="singleTop"-->
@@ -67,7 +63,13 @@
         <activity
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".module.photo.PhotoActivity"></activity>
+        <activity android:name=".module.photo.PhotoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".module.photo.GalleryPickActivity"
@@ -79,8 +81,7 @@
             android:name=".module.photo.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-
+        
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.hifunki.funki.fileprovider"
