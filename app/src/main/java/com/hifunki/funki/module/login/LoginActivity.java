@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity.login;
+package com.hifunki.funki.module.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -35,7 +35,7 @@ import butterknife.OnClick;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.login.LoginActivity.java
+ * @value com.hifunki.funki.module.login.LoginActivity.java
  * @link {@link LayoutPhoneWithType}    {@link LayoutEmailWithType}
  * @since 2017-02-23 20:24:24
  */

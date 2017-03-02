@@ -1,29 +1,29 @@
-package com.hifunki.funki.ui.activity.login;
+package com.hifunki.funki.module.login;
 
+import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
- * MainActivity
+ * 注册结果界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.login.MainActivity.java
+ * @value com.hifunki.funki.module.login.RegisterAuthActivity.java
  * @link
- * @since 2017-02-23 20:24:24
+ * @since 2017-02-24 14:08:08
  */
-public class MainActivity extends BaseActivity {
+public class RegisterAuthActivity extends BaseActivity {
 
 
     @Override
     protected int getViewResId() {
-        return 0;
+        return R.layout.activity_register_auth;
     }
 
     @Override
     protected void initDatas() {
 
     }
-
 
     @Override
     protected void initView() {
@@ -47,3 +47,4 @@ public class MainActivity extends BaseActivity {
 
 
 }
+

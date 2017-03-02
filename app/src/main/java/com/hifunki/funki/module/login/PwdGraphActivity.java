@@ -1,23 +1,24 @@
-package com.hifunki.funki.ui.activity.login;
+package com.hifunki.funki.module.login;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
- * 注册结果界面
+ *
+ * 图形验证码界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.login.RegisterAuthActivity.java
+ * @value com.hifunki.funki.module.login.PwdGraphActivity.java
  * @link
- * @since 2017-02-24 14:08:08
+ * @since 2017-02-24 12:03:03
  */
-public class RegisterAuthActivity extends BaseActivity {
+public class PwdGraphActivity extends BaseActivity {
 
 
     @Override
     protected int getViewResId() {
-        return R.layout.activity_register_auth;
+        return R.layout.activity_pwd_graph;
     }
 
     @Override
@@ -47,4 +48,5 @@ public class RegisterAuthActivity extends BaseActivity {
 
 
 }
+
 

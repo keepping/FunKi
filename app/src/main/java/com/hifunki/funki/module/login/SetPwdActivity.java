@@ -1,23 +1,22 @@
-package com.hifunki.funki.ui.activity.login;
+package com.hifunki.funki.module.login;
 
+import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
- * email的图表界面
+ * 设置密码界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.login.EmailGraphActivity.java
+ * @value com.hifunki.funki.module.login.SetPwdActivity.java
  * @link
- * @since 2017-02-24 13:47:47
+ * @since 2017-02-24 15:56:56
  */
-
-public class EmailGraphActivity extends BaseActivity {
-
+public class SetPwdActivity extends BaseActivity {
 
     @Override
     protected int getViewResId() {
-        return 0;
+        return R.layout.activity_set_pwd;
     }
 
     @Override
@@ -44,5 +43,6 @@ public class EmailGraphActivity extends BaseActivity {
     protected void initTitleBar() {
 
     }
+
 
 }

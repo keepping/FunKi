@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity.login;
+package com.hifunki.funki.module.login;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
@@ -8,7 +8,7 @@ import com.hifunki.funki.ui.activity.base.BaseActivity;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.login.FindPwdActivity.java
+ * @value com.hifunki.funki.module.login.FindPwdActivity.java
  * @link
  * @since 2017-02-24 13:52:52
  */

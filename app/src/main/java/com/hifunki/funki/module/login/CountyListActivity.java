@@ -1,4 +1,4 @@
-package com.hifunki.funki.ui.activity.login;
+package com.hifunki.funki.module.login;
 
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,7 +26,7 @@ import butterknife.OnClick;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.login.CountyListActivity.java
+ * @value com.hifunki.funki.module.login.CountyListActivity.java
  * @link
  * @since 2017-02-23 20:24:24
  */

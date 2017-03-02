@@ -1,28 +1,29 @@
-package com.hifunki.funki.ui.activity.login;
+package com.hifunki.funki.module.login;
 
-import com.hifunki.funki.R;
 import com.hifunki.funki.ui.activity.base.BaseActivity;
 
 /**
- * 找回密码成功界面
+ * MainActivity
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.ui.activity.login.PwdSuccessActivity.java
+ * @value com.hifunki.funki.module.login.MainActivity.java
  * @link
- * @since 2017-02-24 16:06:06
+ * @since 2017-02-23 20:24:24
  */
-public class PwdSuccessActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
+
 
     @Override
     protected int getViewResId() {
-        return R.layout.activity_pwd_success;
+        return 0;
     }
 
     @Override
     protected void initDatas() {
 
     }
+
 
     @Override
     protected void initView() {
