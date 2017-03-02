@@ -2,18 +2,19 @@ package com.hifunki.funki.module.photo.gallery;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
-import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
 import com.hifunki.funki.module.photo.gallery.pojo.PhotoInfo;
+import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
 import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.ArrayList;
@@ -43,6 +44,9 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.mContext = mContext;
         this.photoInfoList = photoInfoList;
         this.mActivity = mActivity;
+
+        System.out.println("photoInfoList info=" + photoInfoList);
+
     }
 
     @Override
@@ -91,31 +95,28 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final ViewHolder viewHolder = (ViewHolder) holder;
 
         //给列表1设置paddingTop
-        if (position == 0) {
-            viewHolder.flGalleryPhoto.setPadding(0, (int) DisplayUtil.dip2Px(mContext, 100), 0, 0);
-
-        }
+//        if (position == 0) {
+//            viewHolder.flGalleryPhoto.setPadding(0, (int) DisplayUtil.dip2Px(mContext, 100), 0, 0);
+//        }
 
         galleryConfig.getImageLoader().displayImage(mActivity, mContext, photoInfo.path, viewHolder.ivPhotoImage, DisplayUtil.getScreenWidth(mContext) / 3, DisplayUtil.getScreenWidth(mContext) / 3);
 
-
         if (selectPhoto.contains(photoInfo.path)) {
-            viewHolder.chkPhotoSelector.setChecked(true);
-            viewHolder.chkPhotoSelector.setButtonDrawable(R.mipmap.gallery_pick_select_checked);
-            viewHolder.vPhotoMask.setVisibility(View.VISIBLE);
+            viewHolder.imageViewSelected.setClickable(true);
+            Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
+            viewHolder.imageViewSelected.setImageDrawable(drawable);
+
         } else {
-            viewHolder.chkPhotoSelector.setChecked(false);
-            viewHolder.chkPhotoSelector.setButtonDrawable(R.mipmap.gallery_pick_select_unchecked);
-            viewHolder.vPhotoMask.setVisibility(View.GONE);
+            viewHolder.imageViewSelected.setClickable(false);
+            Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
+            viewHolder.imageViewSelected.setImageDrawable(drawable);
         }
 
-        if (!galleryConfig.isMultiSelect()) {
-            viewHolder.chkPhotoSelector.setVisibility(View.GONE);
-            viewHolder.vPhotoMask.setVisibility(View.GONE);
-        }
+        viewHolder.imageViewSelected.setVisibility(View.VISIBLE);
 
 
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        //图片点击
+        viewHolder.ivPhotoImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!galleryConfig.isMultiSelect()) {
@@ -127,40 +128,47 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                 if (selectPhoto.contains(photoInfo.path)) {
                     selectPhoto.remove(photoInfo.path);
-                    viewHolder.chkPhotoSelector.setChecked(false);
-                    viewHolder.chkPhotoSelector.setButtonDrawable(R.mipmap.gallery_pick_select_unchecked);
-                    viewHolder.vPhotoMask.setVisibility(View.GONE);
+                    viewHolder.imageViewSelected.setClickable(false);
+
+                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
+                    viewHolder.imageViewSelected.setImageDrawable(drawable);
+
                 } else {
                     if (galleryConfig.getMaxSize() <= selectPhoto.size()) {        // 当选择图片达到上限时， 禁止继续添加
                         return;
                     }
                     selectPhoto.add(photoInfo.path);
-                    viewHolder.chkPhotoSelector.setChecked(true);
-                    viewHolder.chkPhotoSelector.setButtonDrawable(R.mipmap.gallery_pick_select_checked);
-                    viewHolder.vPhotoMask.setVisibility(View.VISIBLE);
+
+                    viewHolder.imageViewSelected.setClickable(true);
+                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
+                    viewHolder.imageViewSelected.setImageDrawable(drawable);
+
                 }
                 onCallBack.OnClickPhoto(selectPhoto);
             }
         });
 
+        viewHolder.imageViewSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
-
 
     /**
      * 照片的 Holder
      */
     private class ViewHolder extends RecyclerView.ViewHolder {
         private GalleryImageView ivPhotoImage;
-        private View vPhotoMask;
-        private CheckBox chkPhotoSelector;
+
         private FrameLayout flGalleryPhoto;
+        private ImageView imageViewSelected;
 
         private ViewHolder(View itemView) {
             super(itemView);
             ivPhotoImage = (GalleryImageView) itemView.findViewById(R.id.ivGalleryPhotoImage);
-            vPhotoMask = itemView.findViewById(R.id.vGalleryPhotoMask);
-            chkPhotoSelector = (CheckBox) itemView.findViewById(R.id.chkGalleryPhotoSelector);
+            imageViewSelected = (ImageView) itemView.findViewById(R.id.iv_gallery_selected);
             flGalleryPhoto = (FrameLayout) itemView.findViewById(R.id.fl_gallery_photo_image);
         }
     }

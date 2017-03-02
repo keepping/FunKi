@@ -47,18 +47,21 @@ import java.util.List;
  * 图片选择页面
  * Created by Yancy on 2016/1/26.
  */
-public class GalleryPickActivity extends BaseActivity {
+public class GalleryPickActivity extends BaseActivity implements View.OnClickListener {
 
     private Context mContext = null;
     private GalleryPickActivity mActivity = null;
     private final static String TAG = "GalleryPickActivity";
 
     private ArrayList<String> resultPhoto;
-
+    private boolean isOpenImage;                //是否点击所有图片
     private TextView tvFinish;                  // 完成按钮
     private TextView tvGalleryFolder;           // 文件夹按钮
     private LinearLayout btnGalleryPickBack;    // 返回按钮
     private RecyclerView rvGalleryImage;        // 图片列表
+    private ImageView ivGalleryFolder;          //图片向下角标
+    private TextView tvGalleryPreview;          //预览图片
+    private LinearLayout llGallerySourceImage;  //原图控件
 
     private PhotoGalleryAdapter photoAdapter;              // 图片适配器
     private FolderAdapter folderAdapter;            // 文件夹适配器
@@ -82,8 +85,6 @@ public class GalleryPickActivity extends BaseActivity {
 
     private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallback;
 
-    private boolean isOpenImage;
-    private ImageView ivGalleryFolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,6 @@ public class GalleryPickActivity extends BaseActivity {
         //4.4 hideTitleBar
 //        UIUtils.hideTitleBar(mActivity, R.id.ll_gallery_pick_main);
 
-
         galleryConfig = GalleryPick.getInstance().getGalleryConfig();
         Intent intent = getIntent();
         boolean isOpenCamera = intent.getBooleanExtra("isOpenCamera", false);
@@ -103,10 +103,8 @@ public class GalleryPickActivity extends BaseActivity {
             showCameraAction();
         }
 
-
         init();
-        initPhoto();
-
+        initPhoto();  //加载图片
 
     }
 
@@ -135,6 +133,14 @@ public class GalleryPickActivity extends BaseActivity {
         ivGalleryFolder = (ImageView) super.findViewById(R.id.iv_gallery_folder);//图片角标
         btnGalleryPickBack = (LinearLayout) super.findViewById(R.id.btnGalleryPickBack);
         rvGalleryImage = (RecyclerView) super.findViewById(R.id.rvGalleryImage);
+        tvGalleryPreview = (TextView) super.findViewById(R.id.tv_gallery_preview);
+        llGallerySourceImage = (LinearLayout) super.findViewById(R.id.ll_gallery_sourceimage);
+
+        tvFinish.setOnClickListener(this);
+        btnGalleryPickBack.setOnClickListener(this);
+        tvGalleryFolder.setOnClickListener(this);
+        tvGalleryPreview.setOnClickListener(this);
+        llGallerySourceImage.setOnClickListener(this);
     }
 
     @Override
@@ -155,16 +161,6 @@ public class GalleryPickActivity extends BaseActivity {
         mHandlerCallBack.onStart();
 
         resultPhoto = galleryConfig.getPathList();
-
-//        tvFinish.setText(getString(R.string.gallery_finish, resultPhoto.size(), galleryConfig.getMaxSize()));
-
-        btnGalleryPickBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mHandlerCallBack.onCancel();
-                exit();
-            }
-        });
 
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
         rvGalleryImage.setLayoutManager(gridLayoutManager);
@@ -194,10 +190,9 @@ public class GalleryPickActivity extends BaseActivity {
                     mHandlerCallBack.onSuccess(resultPhoto);
                     exit();
                 }
-
             }
-
         });
+
         photoAdapter.setSelectPhoto(resultPhoto);
         rvGalleryImage.setAdapter(photoAdapter);
 
@@ -205,38 +200,6 @@ public class GalleryPickActivity extends BaseActivity {
         if (!galleryConfig.isMultiSelect()) {
             tvFinish.setVisibility(View.GONE);
         }
-
-
-        tvFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (resultPhoto != null && resultPhoto.size() > 0) {
-                    mHandlerCallBack.onSuccess(resultPhoto);
-                    exit();
-                }
-
-            }
-        });
-
-
-        tvGalleryFolder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeImageState();
-
-
-                if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
-                    folderListPopupWindow.dismiss();
-                    return;
-                }
-                if (!ListUtil.isEmpty(folderInfoList)) {
-                    int size = folderInfoList.size();
-                    folderListPopupWindow = new FolderListPopupWindow(mActivity, mContext, folderAdapter, size);
-                    folderListPopupWindow.showAsDropDown(tvGalleryFolder);
-                }
-
-            }
-        });
 
         //设置文件夹适配器
         folderAdapter = new FolderAdapter(mActivity, mContext, folderInfoList);
@@ -260,7 +223,6 @@ public class GalleryPickActivity extends BaseActivity {
                 gridLayoutManager.scrollToPosition(0);
             }
         });
-
 
     }
 
@@ -452,6 +414,43 @@ public class GalleryPickActivity extends BaseActivity {
         }
         return true;
     }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tvFinish://确定按钮
+                if (resultPhoto != null && resultPhoto.size() > 0) {
+                    mHandlerCallBack.onSuccess(resultPhoto);
+                    exit();
+                }
+                break;
+            case R.id.btnGalleryPickBack://返回键
+                mHandlerCallBack.onCancel();
+                exit();
+                break;
+            case R.id.tvGalleryFolder://所有图片文件夹
+                changeImageState();
+
+                if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
+                    folderListPopupWindow.dismiss();
+                    return;
+                }
+                if (!ListUtil.isEmpty(folderInfoList)) {
+                    int size = folderInfoList.size();
+                    folderListPopupWindow = new FolderListPopupWindow(mActivity, mContext, folderAdapter, size);
+                    folderListPopupWindow.showAsDropDown(tvGalleryFolder);
+                }
+                break;
+            case R.id.tv_gallery_preview://预览按钮
+
+                break;
+            case R.id.ll_gallery_sourceimage://点击原图
+
+                break;
+        }
+    }
+
 
     /**
      * 改变图片的选中状态

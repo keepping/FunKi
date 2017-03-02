@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="5dp"
     android:id="@+id/fl_gallery_photo_image"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="5dp">
+
 
     <com.hifunki.funki.module.photo.gallery.widget.GalleryImageView
         android:id="@+id/ivGalleryPhotoImage"
@@ -14,23 +15,32 @@
         android:scaleType="centerInside"
         android:src="@mipmap/gallery_pick_photo" />
 
-    <View
-        android:id="@+id/vGalleryPhotoMask"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="0.5dp"
-        android:background="@color/gallery_photo_mask"
-        android:scaleType="centerInside"
-        android:visibility="visible" />
-
-    <CheckBox
-        android:id="@+id/chkGalleryPhotoSelector"
+    <ImageView
+        android:id="@+id/iv_gallery_selected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:button="@mipmap/gallery_pick_select_unchecked"
-        android:clickable="false"
-        android:contentDescription="@null" />
+        android:padding="10dp"
+        android:src="@drawable/iv_photo_noselect" />
+    <!--一层黑色遮罩-->
+    <!--<View-->
+    <!--android:id="@+id/vGalleryPhotoMask"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_margin="0.5dp"-->
+    <!--android:background="@color/gallery_photo_mask"-->
+    <!--android:scaleType="centerInside"-->
+    <!--android:visibility="visible" />-->
+
+
+    <!--<CheckBox-->
+    <!--android:id="@+id/chkGalleryPhotoSelector"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="right"-->
+    <!--android:button="@mipmap/gallery_pick_select_unchecked"-->
+    <!--android:clickable="false"-->
+    <!--android:contentDescription="@null" />-->
 
 
 </FrameLayout>

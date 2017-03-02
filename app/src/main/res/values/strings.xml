@@ -46,4 +46,7 @@
     <string name="gallery_photo_num">(%d)</string>
     <string name="select_image_nickname_use">*该昵称已有人使用</string>
     <string name="select_image_word">请输入36个字元的字符</string>
+    <string name="preview">预览</string>
+    <string name="sourceImage">原图</string>
+    <string name="sourceImageM">原图(%SM)</string>
 </resources>
