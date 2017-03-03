@@ -88,6 +88,7 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallback;
     private HashMap<Integer, Boolean> isSelected;
 
+    private int mSelectedPosition;//选中图片的下表
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +181,7 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                     if (galleryConfig.isCrop()) {
                         cameraTempFile = new File(resultPhoto.get(0));
                         cropTempFile = FileUtils.getCorpFile(galleryConfig.getFilePath());
-                        UCropUtils.start(mActivity, cameraTempFile, cropTempFile, galleryConfig.getAspectRatioX(), galleryConfig.getAspectRatioY(), galleryConfig.getMaxWidth(), galleryConfig.getMaxHeight());
+                        startCropImage();
                         return;
                     }
                     mHandlerCallBack.onSuccess(resultPhoto);
@@ -190,17 +191,30 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
 
             //选中照片操作
             @Override
-            public void OnSelectPhoto(List<String> selectPhotoList) {
+            public void OnSelectPhoto(List<String> selectPhotoList, int position) {
+
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
+
+                if(resultPhoto!=null&&resultPhoto.size()>0){
+                    cameraTempFile = new File(resultPhoto.get(0));
+                    cropTempFile = FileUtils.getCorpFile(galleryConfig.getFilePath());
+                }
+                mSelectedPosition = position;
+
+                tvGalleryPreview.setClickable(true);
                 tvFinish.setVisibility(View.VISIBLE);
             }
 
             //未选中照片操作
             @Override
-            public void OnNoSelectPhoto(List<String> selectPhotoList) {
+            public void OnNoSelectPhoto(List<String> selectPhotoList, int position) {
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
+
+                mSelectedPosition = -1;
+
+                tvGalleryPreview.setClickable(false);
                 tvFinish.setVisibility(View.GONE);
             }
         });
@@ -222,8 +236,6 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                 } else {
                     photoInfoList.clear();
                     photoInfoList.addAll(folderInfo.photoInfoList);
-
-
 
                     //刷新PopupWindow高度
                     folderListPopupWindow.setPopupWindowHeight(photoInfoList.size());
@@ -250,7 +262,7 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
             }
         }
 
-        for (int i = 0; i < photoInfoList.size()+1; i++) {
+        for (int i = 0; i < photoInfoList.size() + 1; i++) {
             isSelected.put(i, false);
         }
     }
@@ -396,7 +408,7 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                         if (galleryConfig.isCrop()) {
                             cropTempFile = FileUtils.getCorpFile(galleryConfig.getFilePath());
                             //启动裁剪
-                            UCropUtils.start(mActivity, cameraTempFile, cropTempFile, galleryConfig.getAspectRatioX(), galleryConfig.getAspectRatioY(), galleryConfig.getMaxWidth(), galleryConfig.getMaxHeight());
+                            startCropImage();
                             return;
                         }
                     }
@@ -470,10 +482,11 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvFinish://确定按钮
-                if (resultPhoto != null && resultPhoto.size() > 0) {
-                    mHandlerCallBack.onSuccess(resultPhoto);
-                    exit();
-                }
+//                if (resultPhoto != null && resultPhoto.size() > 0) {
+//                    mHandlerCallBack.onSuccess(resultPhoto);
+//                    exit();
+//                }
+                startCropImage();
                 break;
             case R.id.btnGalleryPickBack://返回键
                 mHandlerCallBack.onCancel();
@@ -493,6 +506,9 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                 }
                 break;
             case R.id.tv_gallery_preview://预览按钮
+                if (mSelectedPosition != -1&&mSelectedPosition!=0) {
+                    startCropImage();
+                }
 
                 break;
             case R.id.ll_gallery_sourceimage://点击原图
@@ -515,5 +531,14 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
             ivGalleryFolder.setImageDrawable(drawableDown);
         }
     }
+
+    /**
+     * 启动裁剪
+     */
+    private void startCropImage() {
+        UCropUtils.start(mActivity, cameraTempFile, cropTempFile, galleryConfig.getAspectRatioX(), galleryConfig.getAspectRatioY(), galleryConfig.getMaxWidth(), galleryConfig.getMaxHeight());
+    }
+
+
 
 }

@@ -27,9 +27,6 @@ import java.util.List;
  */
 public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private boolean mSelected;//当前选中图片
-    private boolean mIsChoose;//是有选中图片
-
     private Context mContext;
     private Activity mActivity;
     private LayoutInflater mLayoutInflater;
@@ -46,7 +43,6 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private HashMap<Integer, Boolean> isSelected;
     private final Drawable noSelectDrawable;
     private final Drawable selectDrawable;
-    private int mCount;
 
     public PhotoGalleryAdapter(Activity mActivity, Context mContext, List<PhotoInfo> photoInfoList, HashMap<Integer, Boolean> isSelected) {
         mLayoutInflater = LayoutInflater.from(mContext);
@@ -57,8 +53,6 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         selectDrawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
         noSelectDrawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
-
-
     }
 
     @Override
@@ -139,7 +133,7 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     isSelected.put(tag, false);
                     selectPhoto.clear();
                     selectPhoto.add(photoInfo.path);
-                    onCallBack.OnNoSelectPhoto(selectPhoto);
+                    onCallBack.OnNoSelectPhoto(selectPhoto, tag);
                 } else {
                     for (int i = 0; i < isSelected.size(); i++) {
                         isSelected.put(i, false);
@@ -147,12 +141,12 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
                     selectPhoto.clear();
                     selectPhoto.add(photoInfo.path);
-                    onCallBack.OnSelectPhoto(selectPhoto);
+                    onCallBack.OnSelectPhoto(selectPhoto, tag);
                 }
 
                 notifyDataSetChanged();
 
-                mIsChoose = !mIsChoose;
+
             }
         });
     }
@@ -205,9 +199,9 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         void OnClickCamera(List<String> selectPhoto);
 
-        void OnSelectPhoto(List<String> selectPhoto);//选择了照片的回调
+        void OnSelectPhoto(List<String> selectPhoto, int position);//选择了照片的回调
 
-        void OnNoSelectPhoto(List<String> selectPhoto);//没有选中照片回调
+        void OnNoSelectPhoto(List<String> selectPhoto, int position);//没有选中照片回调
     }
 
     public void setOnCallBack(OnCallBack onCallBack) {
