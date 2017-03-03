@@ -46,13 +46,14 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private HashMap<Integer, Boolean> isSelected;
     private final Drawable noSelectDrawable;
     private final Drawable selectDrawable;
+    private int mCount;
 
-    public PhotoGalleryAdapter(Activity mActivity, Context mContext, List<PhotoInfo> photoInfoList,HashMap<Integer,Boolean> isSelected) {
+    public PhotoGalleryAdapter(Activity mActivity, Context mContext, List<PhotoInfo> photoInfoList, HashMap<Integer, Boolean> isSelected) {
         mLayoutInflater = LayoutInflater.from(mContext);
         this.mContext = mContext;
         this.photoInfoList = photoInfoList;
         this.mActivity = mActivity;
-        this.isSelected=isSelected;
+        this.isSelected = isSelected;
 
         selectDrawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
         noSelectDrawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
@@ -132,7 +133,6 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         viewHolder.imageViewSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSelected = !mSelected;
 
                 Integer tag = (Integer) v.getTag();
                 if (isSelected.get(tag)) {
@@ -141,11 +141,13 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     selectPhoto.add(photoInfo.path);
                     onCallBack.OnNoSelectPhoto(selectPhoto);
                 } else {
-                    isSelected.put(tag, true);
+                    for (int i = 0; i < isSelected.size(); i++) {
+                        isSelected.put(i, false);
+                        isSelected.put(tag, true);
+                    }
                     selectPhoto.clear();
                     selectPhoto.add(photoInfo.path);
                     onCallBack.OnSelectPhoto(selectPhoto);
-
                 }
 
                 notifyDataSetChanged();
