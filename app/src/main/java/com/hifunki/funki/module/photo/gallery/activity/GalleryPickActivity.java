@@ -15,7 +15,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,8 +24,8 @@ import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.photo.gallery.adapter.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
+import com.hifunki.funki.module.photo.gallery.adapter.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
 import com.hifunki.funki.module.photo.gallery.inter.IHandlerCallBack;
@@ -36,13 +35,13 @@ import com.hifunki.funki.module.photo.gallery.util.UCropUtils;
 import com.hifunki.funki.module.photo.gallery.widget.FolderListPopupWindow;
 import com.hifunki.funki.module.photo.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;
+import com.hifunki.funki.util.HashMapUtil;
 import com.hifunki.funki.util.ListUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -252,21 +251,6 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
             }
         });
 
-    }
-
-    private void fillIsSelected() {
-        if (!isSelected.isEmpty()) {
-            Iterator<Integer> iterator = isSelected.keySet().iterator();
-            while (iterator.hasNext()) {
-                Integer integer = iterator.next();
-                Log.e(TAG, "fillIsSelected: " + integer);
-                iterator.remove();
-            }
-        }
-
-        for (int i = 0; i < photoInfoList.size() + 1; i++) {
-            isSelected.put(i, false);
-        }
     }
 
 
@@ -506,8 +490,8 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.tv_gallery_preview://预览按钮
 
-                if (!ListUtil.isEmpty(photoInfoList)&&mSelectedPosition != -1 && mSelectedPosition != 0) {
-                    GalleryVpActivity.show(this, mSelectedPosition,photoInfoList.size());
+                if (!ListUtil.isEmpty(photoInfoList) && mSelectedPosition != -1 && mSelectedPosition != 0) {
+                    GalleryVpActivity.show(this, mSelectedPosition, photoInfoList.size());
                 }
                 break;
             case R.id.ll_gallery_sourceimage://点击原图
@@ -538,5 +522,14 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
         UCropUtils.start(mActivity, cameraTempFile, cropTempFile, galleryConfig.getAspectRatioX(), galleryConfig.getAspectRatioY(), galleryConfig.getMaxWidth(), galleryConfig.getMaxHeight());
     }
 
+    /**
+     * 填充hashmap数据
+     */
+    private void fillIsSelected() {
+        HashMapUtil.removeHashMap(isSelected);
+        for (int i = 0; i < photoInfoList.size() + 1; i++) {
+            isSelected.put(i, false);
+        }
+    }
 
 }

@@ -87,14 +87,12 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-    @OnClick({R.id.iv_gallery_photo, R.id.vp_gallery_photo, R.id.activity_gallery_vp})
+    @OnClick({R.id.iv_gallery_photo, R.id.activity_gallery_vp})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_gallery_photo:
                 break;
             case R.id.vp_gallery_photo:
-                break;
-            case R.id.activity_gallery_vp:
                 break;
         }
     }
