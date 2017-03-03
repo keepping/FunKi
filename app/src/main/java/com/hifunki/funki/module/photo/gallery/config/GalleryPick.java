@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.hifunki.funki.module.photo.GalleryPickActivity;
+import com.hifunki.funki.module.photo.gallery.activity.GalleryPickActivity;
 import com.hifunki.funki.util.FileUtils;
 
 /**

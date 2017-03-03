@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.photo.gallery.PhotoGalleryAdapter;
+import com.hifunki.funki.module.photo.gallery.adapter.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
@@ -86,9 +86,11 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     private FolderListPopupWindow folderListPopupWindow;   // 文件夹选择弹出框
 
     private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallback;
-    private HashMap<Integer, Boolean> isSelected;
+    private HashMap<Integer, Boolean> isSelected;   //是否已经选中hashmap
 
-    private int mSelectedPosition;//选中图片的下表
+    private File cameraTempFile;           //原始图片
+    private File cropTempFile;           //待裁剪图片
+    private int mSelectedPosition;       //选中图片的下表
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,7 +198,7 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
 
-                if(resultPhoto!=null&&resultPhoto.size()>0){
+                if (resultPhoto != null && resultPhoto.size() > 0) {
                     cameraTempFile = new File(resultPhoto.get(0));
                     cropTempFile = FileUtils.getCorpFile(galleryConfig.getFilePath());
                 }
@@ -367,9 +369,6 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    private File cameraTempFile;
-    private File cropTempFile;
-
     /**
      * 选择相机
      */
@@ -506,10 +505,10 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                 }
                 break;
             case R.id.tv_gallery_preview://预览按钮
-                if (mSelectedPosition != -1&&mSelectedPosition!=0) {
-                    startCropImage();
-                }
 
+                if (!ListUtil.isEmpty(photoInfoList)&&mSelectedPosition != -1 && mSelectedPosition != 0) {
+                    GalleryVpActivity.show(this, mSelectedPosition,photoInfoList.size());
+                }
                 break;
             case R.id.ll_gallery_sourceimage://点击原图
 
@@ -538,7 +537,6 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     private void startCropImage() {
         UCropUtils.start(mActivity, cameraTempFile, cropTempFile, galleryConfig.getAspectRatioX(), galleryConfig.getAspectRatioY(), galleryConfig.getMaxWidth(), galleryConfig.getMaxHeight());
     }
-
 
 
 }

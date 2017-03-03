@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo.gallery;
+package com.hifunki.funki.module.photo.gallery.adapter;
 
 import android.app.Activity;
 import android.content.Context;

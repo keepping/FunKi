@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_gallery_vp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.hifunki.funki.module.photo.gallery.activity.GalleryVpActivity">
+
+    <include layout="@layout/title_templet" />
+
+    <ImageView
+        android:id="@+id/iv_gallery_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/flTitleContainer"
+        android:layout_marginRight="20dp"
+
+        android:layout_marginTop="20dp"
+        android:src="@drawable/iv_photo_noselect" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_gallery_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/flTitleContainer"
+        android:background="@color/bgColor"></android.support.v4.view.ViewPager>
+
+</RelativeLayout>

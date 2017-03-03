@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo;
+package com.hifunki.funki.module.photo.gallery.activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -53,7 +53,6 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
     TextView tvComplete;
     @BindView(R.id.activity_select_image)
     LinearLayout activitySelectImage;
-
 
     private RecyclerView rvResultPhoto;
     private String TAG = "TAG";
