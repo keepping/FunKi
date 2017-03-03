@@ -15,6 +15,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,6 +41,8 @@ import com.hifunki.funki.util.StatusBarUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -83,6 +86,7 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
     private FolderListPopupWindow folderListPopupWindow;   // 文件夹选择弹出框
 
     private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallback;
+    private HashMap<Integer, Boolean> isSelected;
 
 
     @Override
@@ -154,7 +158,10 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
 
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
         rvGalleryImage.setLayoutManager(gridLayoutManager);
-        photoAdapter = new PhotoGalleryAdapter(mActivity, mContext, photoInfoList);
+
+        isSelected = new HashMap<>();
+
+        photoAdapter = new PhotoGalleryAdapter(mActivity, mContext, photoInfoList, isSelected);
         photoAdapter.setOnCallBack(new PhotoGalleryAdapter.OnCallBack() {
             @Override
             public void OnClickCamera(List<String> selectPhotoList) {
@@ -216,8 +223,12 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                     photoInfoList.clear();
                     photoInfoList.addAll(folderInfo.photoInfoList);
 
+
+
                     //刷新PopupWindow高度
                     folderListPopupWindow.setPopupWindowHeight(photoInfoList.size());
+
+                    fillIsSelected();
 
                     photoAdapter.notifyDataSetChanged();
                     tvGalleryFolder.setText(folderInfo.name);
@@ -227,6 +238,21 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
             }
         });
 
+    }
+
+    private void fillIsSelected() {
+        if (!isSelected.isEmpty()) {
+            Iterator<Integer> iterator = isSelected.keySet().iterator();
+            while (iterator.hasNext()) {
+                Integer integer = iterator.next();
+                Log.e(TAG, "fillIsSelected: " + integer);
+                iterator.remove();
+            }
+        }
+
+        for (int i = 0; i < photoInfoList.size()+1; i++) {
+            isSelected.put(i, false);
+        }
     }
 
 
@@ -298,6 +324,7 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                         photoInfoList.clear();
                         photoInfoList.addAll(tempPhotoList);
 
+
                         List<String> tempPhotoPathList = new ArrayList<>();
                         for (PhotoInfo photoInfo : photoInfoList) {
                             tempPhotoPathList.add(photoInfo.path);
@@ -307,8 +334,12 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
                             if (!tempPhotoPathList.contains(mPhotoPath)) {
                                 PhotoInfo photoInfo = new PhotoInfo(mPhotoPath, null, 0L, 0);
                                 photoInfoList.add(0, photoInfo);
+
                             }
                         }
+
+                        fillIsSelected();
+
                         photoAdapter.notifyDataSetChanged();
                         hasFolderScan = true;
                     }

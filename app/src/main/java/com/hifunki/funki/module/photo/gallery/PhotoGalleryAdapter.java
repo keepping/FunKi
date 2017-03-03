@@ -18,6 +18,7 @@ import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
 import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,11 +43,21 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private final static int HEAD = 0;    // 开启相机时需要显示的布局
     private final static int ITEM = 1;    // 照片布局
 
-    public PhotoGalleryAdapter(Activity mActivity, Context mContext, List<PhotoInfo> photoInfoList) {
+    private HashMap<Integer, Boolean> isSelected;
+    private final Drawable noSelectDrawable;
+    private final Drawable selectDrawable;
+
+    public PhotoGalleryAdapter(Activity mActivity, Context mContext, List<PhotoInfo> photoInfoList,HashMap<Integer,Boolean> isSelected) {
         mLayoutInflater = LayoutInflater.from(mContext);
         this.mContext = mContext;
         this.photoInfoList = photoInfoList;
         this.mActivity = mActivity;
+        this.isSelected=isSelected;
+
+        selectDrawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
+        noSelectDrawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
+
+
     }
 
     @Override
@@ -109,30 +120,35 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
         });
 
-//        Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
-//        viewHolder.imageViewSelected.setImageDrawable(drawable);
+
+        viewHolder.imageViewSelected.setTag(position);
+
+        if (isSelected.get(position)) {
+            viewHolder.imageViewSelected.setImageDrawable(selectDrawable);
+        } else {
+            viewHolder.imageViewSelected.setImageDrawable(noSelectDrawable);
+        }
 
         viewHolder.imageViewSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mSelected = !mSelected;
-                if (mSelected) {
-                    ImageView imageView = (ImageView) v;
-                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_select);
-                    imageView.setImageDrawable(drawable);
 
-                    selectPhoto.clear();
-                    selectPhoto.add(photoInfo.path);
-                    onCallBack.OnSelectPhoto(selectPhoto);
-                } else {
-                    ImageView imageView = (ImageView) v;
-                    Drawable drawable = mContext.getResources().getDrawable(R.drawable.iv_photo_noselect);
-                    imageView.setImageDrawable(drawable);
-
+                Integer tag = (Integer) v.getTag();
+                if (isSelected.get(tag)) {
+                    isSelected.put(tag, false);
                     selectPhoto.clear();
                     selectPhoto.add(photoInfo.path);
                     onCallBack.OnNoSelectPhoto(selectPhoto);
+                } else {
+                    isSelected.put(tag, true);
+                    selectPhoto.clear();
+                    selectPhoto.add(photoInfo.path);
+                    onCallBack.OnSelectPhoto(selectPhoto);
+
                 }
+
+                notifyDataSetChanged();
 
                 mIsChoose = !mIsChoose;
             }
