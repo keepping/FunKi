@@ -74,7 +74,7 @@
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/GalleryTheme" />
+             />
         <activity
             android:name=".module.photo.ucrop.UCropActivity"
             android:screenOrientation="portrait"

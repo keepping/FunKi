@@ -28,14 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/8/11
- *     desc  : 文件相关工具类
- * </pre>
- */
+
 public class FileUtils {
 
     private final static String PATTERN = "yyyyMMddHHmmss";    // 时间戳命名

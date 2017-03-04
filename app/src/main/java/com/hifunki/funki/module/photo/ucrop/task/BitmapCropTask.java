@@ -12,9 +12,9 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.hifunki.funki.module.photo.ucrop.callback.BitmapCropCallback;
-import com.hifunki.funki.module.photo.ucrop.model.CropParameters;
-import com.hifunki.funki.module.photo.ucrop.model.ExifInfo;
-import com.hifunki.funki.module.photo.ucrop.model.ImageState;
+import com.hifunki.funki.module.photo.ucrop.entity.CropParameters;
+import com.hifunki.funki.module.photo.ucrop.entity.ExifInfo;
+import com.hifunki.funki.module.photo.ucrop.entity.ImageState;
 import com.hifunki.funki.module.photo.ucrop.util.BitmapLoadUtils;
 import com.hifunki.funki.module.photo.ucrop.util.FileUtils;
 import com.hifunki.funki.module.photo.ucrop.util.ImageHeaderParser;

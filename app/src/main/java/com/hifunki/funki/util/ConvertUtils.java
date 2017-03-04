@@ -17,14 +17,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/8/13
- *     desc  : 转换相关工具类
- * </pre>
- */
+
 public class ConvertUtils {
 
     private ConvertUtils() {

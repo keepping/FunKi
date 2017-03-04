@@ -12,14 +12,7 @@ import android.provider.MediaStore;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/9/19
- *     desc  : 相机相关工具类
- * </pre>
- */
+
 public class CameraUtils {
 
     private CameraUtils() {

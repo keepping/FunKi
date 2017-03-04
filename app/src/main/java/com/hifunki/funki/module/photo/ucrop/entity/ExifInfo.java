@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo.ucrop.model;
+package com.hifunki.funki.module.photo.ucrop.entity;
 
 /**
  * Created by Oleksii Shliama [https://github.com/shliama] on 6/21/16.

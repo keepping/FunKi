@@ -12,9 +12,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-/**
- * Created by sunfusheng on 16/11/20.
- */
+
 public class StatusBarUtil {
 
     // 设置状态栏透明与字体颜色

@@ -1,13 +1,6 @@
 package com.hifunki.funki.util;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/8/11
- *     desc  : 常量相关工具类
- * </pre>
- */
+
 public class ConstUtils {
 
     private ConstUtils() {

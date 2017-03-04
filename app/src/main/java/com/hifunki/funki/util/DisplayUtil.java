@@ -7,9 +7,6 @@ import android.view.WindowManager;
 
 import com.hifunki.funki.base.activity.BaseActivity;
 
-/**
- * Created by dell on 2017/2/22.
- */
 
 public class DisplayUtil {
 

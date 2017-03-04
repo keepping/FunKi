@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.login.pojo;
+package com.hifunki.funki.module.login.entity;
 
 /**
  * Created by WangTest on 2017/2/25.

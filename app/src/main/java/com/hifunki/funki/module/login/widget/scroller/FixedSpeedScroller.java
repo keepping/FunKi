@@ -4,10 +4,6 @@ import android.content.Context;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-/**
- * Created by dell on 2017/2/23.
- */
-
 public class FixedSpeedScroller extends Scroller {
     private int mDuration = 0;
 

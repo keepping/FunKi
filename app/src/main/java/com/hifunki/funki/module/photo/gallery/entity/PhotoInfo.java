@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo.gallery.pojo;
+package com.hifunki.funki.module.photo.gallery.entity;
 
 /**
  * 图片信息

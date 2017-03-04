@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.hifunki.funki.module.photo.ucrop.callback.BitmapLoadCallback;
-import com.hifunki.funki.module.photo.ucrop.model.ExifInfo;
+import com.hifunki.funki.module.photo.ucrop.entity.ExifInfo;
 import com.hifunki.funki.module.photo.ucrop.util.BitmapLoadUtils;
 import com.hifunki.funki.module.photo.ucrop.util.FileUtils;
 

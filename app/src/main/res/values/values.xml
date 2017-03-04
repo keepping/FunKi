@@ -14,8 +14,26 @@
     <color name="ucrop_color_widget_active">#FF6E40</color>
     <color name="ucrop_color_widget_background">#fff</color>
     <color name="ucrop_color_widget_text">#000</color>
-    <declare-styleable name="ucrop_AspectRatioTextView"><attr format="string" name="ucrop_artv_ratio_title"/><attr format="float" name="ucrop_artv_ratio_x"/><attr format="float" name="ucrop_artv_ratio_y"/></declare-styleable>
-    <declare-styleable name="ucrop_UCropView"><attr format="float" name="ucrop_aspect_ratio_x"/><attr format="float" name="ucrop_aspect_ratio_y"/><attr format="boolean" name="ucrop_show_oval_crop_frame"/><attr format="boolean" name="ucrop_circle_dimmed_layer"/><attr format="color" name="ucrop_dimmed_color"/><attr format="dimension" name="ucrop_grid_stroke_size"/><attr format="color" name="ucrop_grid_color"/><attr format="integer" name="ucrop_grid_row_count"/><attr format="integer" name="ucrop_grid_column_count"/><attr format="boolean" name="ucrop_show_grid"/><attr format="dimension" name="ucrop_frame_stroke_size"/><attr format="color" name="ucrop_frame_color"/><attr format="boolean" name="ucrop_show_frame"/></declare-styleable>
+    <declare-styleable name="ucrop_AspectRatioTextView">
+        <attr name="ucrop_artv_ratio_title" format="string" />
+        <attr name="ucrop_artv_ratio_x" format="float" />
+        <attr name="ucrop_artv_ratio_y" format="float" />
+    </declare-styleable>
+    <declare-styleable name="ucrop_UCropView">
+        <attr name="ucrop_aspect_ratio_x" format="float" />
+        <attr name="ucrop_aspect_ratio_y" format="float" />
+        <attr name="ucrop_show_oval_crop_frame" format="boolean" />
+        <attr name="ucrop_circle_dimmed_layer" format="boolean" />
+        <attr name="ucrop_dimmed_color" format="color" />
+        <attr name="ucrop_grid_stroke_size" format="dimension" />
+        <attr name="ucrop_grid_color" format="color" />
+        <attr name="ucrop_grid_row_count" format="integer" />
+        <attr name="ucrop_grid_column_count" format="integer" />
+        <attr name="ucrop_show_grid" format="boolean" />
+        <attr name="ucrop_frame_stroke_size" format="dimension" />
+        <attr name="ucrop_frame_color" format="color" />
+        <attr name="ucrop_show_frame" format="boolean" />
+    </declare-styleable>
     <dimen name="ucrop_default_crop_frame_stoke_width">1dp</dimen>
     <dimen name="ucrop_default_crop_grid_stoke_width">1dp</dimen>
     <dimen name="ucrop_default_crop_rect_corner_touch_area_line_length">10dp</dimen>
@@ -40,6 +58,7 @@
     <string name="ucrop_label_original">Original</string>
     <string name="ucrop_menu_crop">Crop</string>
     <string name="ucrop_mutate_exception_hint">Therefore, override color resource (ucrop_color_toolbar_widget) in your app to make it work on pre-L devices</string>
+
     <style name="ucrop_ImageViewWidgetIcon">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -47,6 +66,7 @@
         <item name="android:scaleType">fitCenter</item>
         <item name="android:duplicateParentState">true</item>
     </style>
+
     <style name="ucrop_TextViewCropAspectRatio">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/ucrop_height_crop_aspect_ratio_text</item>
@@ -54,6 +74,7 @@
         <item name="android:duplicateParentState">true</item>
         <item name="android:textColor">@color/ucrop_scale_text_view_selector</item>
     </style>
+
     <style name="ucrop_TextViewWidgetText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -62,6 +83,7 @@
         <item name="android:textColor">@color/ucrop_color_widget_text</item>
         <item name="android:textSize">@dimen/ucrop_text_size_widget_text</item>
     </style>
+
     <style name="ucrop_WrapperIconState">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -69,6 +91,7 @@
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
     </style>
+
     <style name="ucrop_WrapperRotateButton">
         <item name="android:layout_width">@dimen/ucrop_size_wrapper_rotate_button</item>
         <item name="android:layout_height">@dimen/ucrop_size_wrapper_rotate_button</item>

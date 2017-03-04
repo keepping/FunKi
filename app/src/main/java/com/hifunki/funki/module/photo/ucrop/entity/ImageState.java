@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.photo.ucrop.model;
+package com.hifunki.funki.module.photo.ucrop.entity;
 
 import android.graphics.RectF;
 

@@ -5,14 +5,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/8/7
- *     desc  : Shell相关工具类
- * </pre>
- */
+
 public class ShellUtils {
 
     private ShellUtils() {

@@ -8,9 +8,6 @@ import android.text.TextUtils;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by dell on 2017/2/22.
- */
 
 public class AppUtil {
 
