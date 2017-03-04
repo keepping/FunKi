@@ -37,12 +37,12 @@ public class FunKiTextView extends TextView {
 
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
-            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.JollyTextView);
-            mLineColor = typedArray.getColor(R.styleable.JollyTextView_line_color, context.getResources().getColor(R.color.vistorTvbg));
-            mLineHeight = (int) typedArray.getDimension(R.styleable.JollyTextView_line_height, DEF_LINE_HEIGHT);
-            mLineWidth = (int) typedArray.getDimension(R.styleable.JollyTextView_line_width, DEF_LINE_WIDTH);
-            isShowLine = typedArray.getBoolean(R.styleable.JollyTextView_show_line, false);
-            mLocation = typedArray.getInt(R.styleable.JollyTextView_line_location, DEF_LINE_LOCATION);
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FunkiTextView);
+            mLineColor = typedArray.getColor(R.styleable.FunkiTextView_line_color, context.getResources().getColor(R.color.vistorTvbg));
+            mLineHeight = (int) typedArray.getDimension(R.styleable.FunkiTextView_line_height, DEF_LINE_HEIGHT);
+            mLineWidth = (int) typedArray.getDimension(R.styleable.FunkiTextView_line_width, DEF_LINE_WIDTH);
+            isShowLine = typedArray.getBoolean(R.styleable.FunkiTextView_show_line, false);
+            mLocation = typedArray.getInt(R.styleable.FunkiTextView_line_location, DEF_LINE_LOCATION);
             typedArray.recycle();
         } else {
             mLineColor = getResources().getColor(R.color.colorAccent);
