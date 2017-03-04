@@ -22,7 +22,13 @@
             android:name=".module.login.VisitorFillActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- android:launchMode="singleTop" -->
         <!-- 登录界面 -->
@@ -62,11 +68,7 @@
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".module.photo.gallery.activity.PhotoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"

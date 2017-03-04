@@ -88,7 +88,7 @@
             android:id="@+id/tvConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nextStep"
+            android:text="@string/next_step"
             android:textColor="@color/vistorTvbgNormal"
             android:textSize="17sp" />
 
