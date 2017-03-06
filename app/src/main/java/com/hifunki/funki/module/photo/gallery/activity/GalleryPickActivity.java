@@ -491,7 +491,9 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
             case R.id.tv_gallery_preview://预览按钮
 
                 if (!ListUtil.isEmpty(photoInfoList) && mSelectedPosition != -1 && mSelectedPosition != 0) {
-                    GalleryVpActivity.show(this, mSelectedPosition, photoInfoList.size());
+                    ArrayList<PhotoInfo> arrayList=new ArrayList<>();
+                    arrayList.addAll(photoInfoList);
+                    GalleryVpActivity.show(this, mSelectedPosition, arrayList);
                 }
                 break;
             case R.id.ll_gallery_sourceimage://点击原图

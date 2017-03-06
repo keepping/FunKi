@@ -5,14 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.common.BundleConst;
+import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
+import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;
+import com.hifunki.funki.module.photo.gallery.widget.LayoutGalleryPhoto;
 import com.hifunki.funki.util.StatusBarUtil;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,19 +32,19 @@ import butterknife.OnClick;
  */
 public class GalleryVpActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(R.id.iv_gallery_photo)
-    ImageView ivGalleryPhoto;
     @BindView(R.id.vp_gallery_photo)
     ViewPager vpGalleryPhoto;
     @BindView(R.id.activity_gallery_vp)
     RelativeLayout activityGalleryVp;
     private int anInt;
-    private int size;
+    private int mSize;
+    private ArrayList<RelativeLayout> mTabViews;
+    private ArrayList<PhotoInfo> photoInfoList;
 
-    public static void show(Context context, int position, int size) {
+    public static void show(Context context, int position, ArrayList<PhotoInfo> photoInfoList ) {
         Intent intent = new Intent(context, GalleryVpActivity.class);
         intent.putExtra(BundleConst.KEY_GALLERY_PHOTO_NUMBER, position);
-        intent.putExtra(BundleConst.KEY_GALLERY_PHOTO_ALL_NUMBER, size);
+        intent.putParcelableArrayListExtra(BundleConst.KEY_GALLERY_PHOTO_ALL_NUMBER, photoInfoList);
         context.startActivity(intent);
     }
 
@@ -59,7 +63,8 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         anInt = extras.getInt(BundleConst.KEY_GALLERY_PHOTO_NUMBER);
-        size = extras.getInt(BundleConst.KEY_GALLERY_PHOTO_ALL_NUMBER);
+        photoInfoList = extras.getParcelableArrayList(BundleConst.KEY_GALLERY_PHOTO_ALL_NUMBER);
+        mSize=photoInfoList.size();
     }
 
     @Override
@@ -67,14 +72,30 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
         ToolTitleBar.showLeftButton(this, activityGalleryVp, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
-        String number = String.format(getString(R.string.gallery_photo), anInt, size);
+        String number = String.format(getString(R.string.gallery_photo), anInt, mSize);
 
         ToolTitleBar.showCenterButton(this, activityGalleryVp, ToolTitleBar.BTN_TYPE_TEXT, number, null);
+
+        ToolTitleBar.showRightButtonMsg(this, activityGalleryVp, R.string.confirm, this);
+
     }
 
     @Override
     protected void initView() {
+        initViewPager();
+    }
 
+    private void initViewPager() {
+        mTabViews = new ArrayList<>();
+        if(!photoInfoList.isEmpty()){
+            for(int i=0;i<photoInfoList.size();i++){
+                LayoutGalleryPhoto layoutGalleryPhoto = new LayoutGalleryPhoto( this,photoInfoList,i);
+                mTabViews.add(layoutGalleryPhoto);
+            }
+        }
+        //获取第一个视图
+
+        vpGalleryPhoto.setAdapter(new PagerBaseAdapter<>(mTabViews));
     }
 
     @Override
@@ -87,11 +108,10 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-    @OnClick({R.id.iv_gallery_photo, R.id.activity_gallery_vp})
+    @OnClick({ R.id.activity_gallery_vp})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_gallery_photo:
-                break;
+
             case R.id.vp_gallery_photo:
                 break;
         }

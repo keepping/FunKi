@@ -251,10 +251,16 @@ public class ToolTitleBar {
      * @param ctx             上下文
      * @param onClickListener 点击监听  即 R.id.fl_title_right_msg
      */
-    public static void showRightButtonMsg(View rootView, Context ctx, View.OnClickListener onClickListener) {
+    public static void showRightButtonMsg( Context ctx,View rootView,Object resIdOrTxt, View.OnClickListener onClickListener) {
         LinearLayout rightRootView = (LinearLayout) rootView.findViewById(R.id.ll_title_right);
         View rightBtnMsgView = LayoutInflater.from(ctx).inflate(R.layout.activity_login_register, rightRootView, false);
         if (rightBtnMsgView != null) {
+            TextView tv= (TextView) rightBtnMsgView.findViewById(R.id.tv_register);
+            if (resIdOrTxt instanceof Integer) {
+                tv.setText((Integer) resIdOrTxt);
+            } else if (resIdOrTxt instanceof String) {
+                tv.setText((String) resIdOrTxt);
+            }
             if (onClickListener != null) {
                 rightBtnMsgView.setOnClickListener(onClickListener);
             }
@@ -401,6 +407,7 @@ public class ToolTitleBar {
             } else if (resIdOrTxt instanceof String) {
                 tv.setText((String) resIdOrTxt);
             }
+            //以下是根据ui的要求设置style
             tv.setTextSize(17);
             tv.setTextColor(context.getResources().getColor(R.color.titleText));
             Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/FZZDXFW.ttf");

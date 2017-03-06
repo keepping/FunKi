@@ -103,7 +103,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
         ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
-        ToolTitleBar.showRightButtonMsg(activityLogin, this, this);
+        ToolTitleBar.showRightButtonMsg(this, activityLogin, R.string.register,this);
 
     }
 
