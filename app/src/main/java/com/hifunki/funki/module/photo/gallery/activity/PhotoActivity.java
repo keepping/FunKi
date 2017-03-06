@@ -4,12 +4,17 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -21,7 +26,6 @@ import android.widget.Toast;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
-import com.hifunki.funki.module.photo.gallery.adapter.PhotoAdapter;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
 import com.hifunki.funki.module.photo.gallery.inter.GlideImageLoader;
@@ -54,14 +58,11 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
     @BindView(R.id.activity_select_image)
     LinearLayout activitySelectImage;
 
-    private RecyclerView rvResultPhoto;
-    private String TAG = "TAG";
-
-    private PhotoAdapter photoAdapter;
     private GalleryConfig galleryConfig;
     private IHandlerCallBack iHandlerCallBack;
     private List<String> path = new ArrayList<>();
     private final int PERMISSIONS_REQUEST_READ_CONTACTS = 8;
+    private String TAG = "PhotoActivity";
 
 
     public static void show(Context context) {
@@ -87,8 +88,6 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void initView() {
-
-        rvResultPhoto = (RecyclerView) findViewById(R.id.rvResultPhoto);
 
         initGallery();
 
@@ -130,13 +129,6 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.iv_selectimage:
                 initPermissions();
-
-                GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-                gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                rvResultPhoto.setLayoutManager(gridLayoutManager);
-
-                photoAdapter = new PhotoAdapter(this, path);
-                rvResultPhoto.setAdapter(photoAdapter);
                 break;
             case R.id.et_nickname:
                 break;
@@ -157,13 +149,21 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void onSuccess(List<String> photoList) {
-                Log.i(TAG, "onSuccess: 返回数据");
                 path.clear();
                 for (String s : photoList) {
                     Log.i(TAG, s);
                     path.add(s);
                 }
-                photoAdapter.notifyDataSetChanged();
+
+                String filePath = path.get(0);
+                Bitmap bitmapSquare = BitmapFactory.decodeFile(filePath);//方形原图
+
+                RoundedBitmapDrawable drawableA = RoundedBitmapDrawableFactory.create(getResources(), bitmapSquare);
+                drawableA.setCircular(true);
+                Bitmap bitmapCircle = drawableToBitmap(drawableA);
+
+                ivSelectimage.setImageDrawable(new BitmapDrawable(getResources(), bitmapCircle));//设置头像
+
             }
 
             @Override
@@ -212,6 +212,25 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
                 Log.i(TAG, "拒绝授权");
             }
         }
+    }
+
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        // 取 drawable 的长宽
+        int w = drawable.getIntrinsicWidth();
+        int h = drawable.getIntrinsicHeight();
+
+        // 取 drawable 的颜色格式
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                : Bitmap.Config.RGB_565;
+        // 建立对应 bitmap
+        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
+        // 建立对应 bitmap 的画布
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, w, h);
+        // 把 drawable 内容画到画布中
+        drawable.draw(canvas);
+        return bitmap;
     }
 
 }
