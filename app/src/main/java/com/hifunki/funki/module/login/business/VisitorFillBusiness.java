@@ -41,4 +41,42 @@ public class VisitorFillBusiness {
         }
 
     }
+
+    /**
+     * 设置确定的背景颜色
+     *
+     * @param context
+     * @param textView
+     * @param sex
+     * @param jump
+     */
+    public static void isJump(Context context, TextView textView, int sex, boolean... jump) {
+        if (jump.length != 5) {
+            return;
+        }
+        boolean isJump = ((sex != 0) || jump[0] || jump[1] || jump[2] || jump[3] || jump[4]);
+        if (!isJump) {
+            textView.setBackground(context.getResources().getDrawable(R.drawable.visitor_unconfirm_bg));
+        } else {
+            textView.setBackground(context.getResources().getDrawable(R.drawable.visitor_confirm_bg));
+        }
+    }
+
+    /**
+     * 判断是否能跳转
+     * @param sex
+     * @param jump
+     * @return
+     */
+    public static boolean isJump( int sex, boolean... jump) {
+        if (jump.length != 5) {
+            return false;
+        }
+        boolean isJump = ((sex != 0) || jump[0] || jump[1] || jump[2] || jump[3] || jump[4]);
+        if (!isJump) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -2,15 +2,17 @@ package com.hifunki.funki.module.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.login.business.VisitorFillBusiness;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.application.ApplicationMain;
+import com.hifunki.funki.module.login.business.VisitorFillBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 
 import butterknife.BindView;
@@ -59,6 +61,7 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
     private boolean isNotCareSex;
     private boolean isBothSex;
     private boolean isSecretSex;
+    private String TAG = "VisitorFillActivity";
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, VisitorFillActivity.class));
@@ -74,7 +77,6 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-
     @Override
     protected void initTitleBar() {
         ToolTitleBar.showLeftButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
@@ -89,7 +91,7 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initListener() {
-
+        etInputAge.addTextChangedListener(etAgeTextWatcher);
     }
 
     @Override
@@ -98,57 +100,57 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    @OnClick({R.id.tvBoy, R.id.tvGirl, R.id.tvThirdSex, R.id.tvLoveSameSex, R.id.tvLoveDifferentSex, R.id.tvNotCareSex, R.id.tvLoveBothSex, R.id.tvSecretSex, R.id.etInputAge, R.id.tvVisitorConfirm, R.id.llSkip, R.id.activity_visitor_fill})
+    @OnClick({R.id.tvBoy, R.id.tvGirl, R.id.tvThirdSex, R.id.tvLoveSameSex, R.id.tvLoveDifferentSex, R.id.tvNotCareSex, R.id.tvLoveBothSex, R.id.tvSecretSex, R.id.tvVisitorConfirm, R.id.llSkip, R.id.activity_visitor_fill})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tvBoy:
+            case R.id.tvBoy://男
                 VisitorFillBusiness.changeTvStyle(this, tvBoy, tvGirl, tvThirdSex);
                 sex = 1;
+                VisitorFillBusiness.isJump(this, tvVisitorConfirm, sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
                 break;
-            case R.id.tvGirl:
+            case R.id.tvGirl://女
                 VisitorFillBusiness.changeTvStyle(this, tvGirl, tvBoy, tvThirdSex);
                 sex = 2;
+                VisitorFillBusiness.isJump(this, tvVisitorConfirm, sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
                 break;
-            case R.id.tvThirdSex:
+            case R.id.tvThirdSex://第三性
                 VisitorFillBusiness.changeTvStyle(this, tvThirdSex, tvGirl, tvBoy);
                 sex = 3;
+                VisitorFillBusiness.isJump(this, tvVisitorConfirm, sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
                 break;
-            case R.id.tvLoveDifferentSex:
-                isDifferentSex = !isDifferentSex;
-                VisitorFillBusiness.changeTvStyle(this, isDifferentSex, tvLoveDifferentSex);
-                break;
-            case R.id.tvLoveSameSex:
+            case R.id.tvLoveSameSex://我爱同性
                 isSameSex = !isSameSex;
                 VisitorFillBusiness.changeTvStyle(this, isSameSex, tvLoveSameSex);
+                VisitorFillBusiness.isJump(this, tvVisitorConfirm, sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
                 break;
-            case R.id.tvNotCareSex:
+            case R.id.tvLoveDifferentSex://我爱异性
+                isDifferentSex = !isDifferentSex;
+                VisitorFillBusiness.changeTvStyle(this, isDifferentSex, tvLoveDifferentSex);
+                VisitorFillBusiness.isJump(this, tvVisitorConfirm, sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
+                break;
+            case R.id.tvNotCareSex://我都不介意
                 isNotCareSex = !isNotCareSex;
                 VisitorFillBusiness.changeTvStyle(this, isNotCareSex, tvNotCareSex);
+                VisitorFillBusiness.isJump(this, tvVisitorConfirm, sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
                 break;
-            case R.id.tvLoveBothSex:
+            case R.id.tvLoveBothSex://男女都爱
                 isBothSex = !isBothSex;
                 VisitorFillBusiness.changeTvStyle(this, isBothSex, tvLoveBothSex);
+                VisitorFillBusiness.isJump(this, tvVisitorConfirm, sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
                 break;
-            case R.id.tvSecretSex:
+            case R.id.tvSecretSex://保密
                 isSecretSex = !isSecretSex;
                 VisitorFillBusiness.changeTvStyle(this, isSecretSex, tvSecretSex);
-                break;
-            case R.id.etInputAge:
-
+                VisitorFillBusiness.isJump(this, tvVisitorConfirm, sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
                 break;
             case R.id.tvVisitorConfirm:
                 //跳转规则
-                boolean isJump = ((sex != 0) || isDifferentSex || isBothSex || isNotCareSex || isSameSex || isSecretSex);
-                if (!isJump) {
-                    return;
+                boolean jump = VisitorFillBusiness.isJump(sex, isDifferentSex, isBothSex, isNotCareSex, isSameSex, isSecretSex);
+                if (jump) {
+                    //获取年龄
+                    String age = etInputAge.getText().toString();
+                    LoginActivity.show(this);
                 }
-                //设置颜色
-                tvVisitorConfirm.setTextColor(getResources().getColor(R.color.vistorTvbgNormal));
-                tvVisitorConfirm.setBackground(getResources().getDrawable(R.drawable.visitor_confirm_bg_yello));
-                //获取年龄
-                String age = etInputAge.getText().toString();
-
-                LoginActivity.show(this);
                 break;
             case R.id.llSkip:
                 LoginActivity.show(this);
@@ -161,5 +163,31 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
+
+    /**
+     * 年龄监听
+     */
+    private TextWatcher etAgeTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            etInputAge.setCursorVisible(true);
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            int length = s.length();
+            etInputAge.setSelection(length);
+            if (length == 0) {
+                etInputAge.setCursorVisible(false);
+            }
+
+        }
+    };
 
 }
