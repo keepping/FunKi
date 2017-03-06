@@ -34,7 +34,7 @@ public class LayoutPhoneWithType extends LinearLayout {
 //        this.listener = listener;
 //    }
 
-    public LayoutPhoneWithType(TextWatcher textWatcher, OnClickListener onClickListener,  Context context, int type) {
+    public LayoutPhoneWithType(TextWatcher textWatcher, OnClickListener onClickListener, Context context, int type) {
         super(context);
 //        ButterKnife.bind(this);
         this.mContext = context;
@@ -51,4 +51,27 @@ public class LayoutPhoneWithType extends LinearLayout {
         etIuputPwd.addTextChangedListener(textWatcher);
     }
 
+    /**
+     * 获取电话et
+     * @return
+     */
+    public EditText getEtIuputTel() {
+        if (etIuputTel != null) {
+            return etIuputTel;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 获取密码et
+     * @return
+     */
+    public EditText getEtIuputPwd() {
+        if (etIuputPwd != null) {
+            return etIuputPwd;
+        } else {
+            return null;
+        }
+    }
 }

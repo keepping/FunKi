@@ -40,6 +40,9 @@
         <item name="android:background">@drawable/visitor_tv_bg</item>
     </style>
 
+    <style name="BaseEditText">
+
+    </style>
 
     <!--gallerypick PopupWindow动画-->
     <style name="popupAnimation" parent="android:Animation">

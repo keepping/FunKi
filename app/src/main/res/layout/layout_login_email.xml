@@ -39,6 +39,7 @@
 
             <EditText
                 android:id="@+id/etInputEmail"
+                style="@style/BaseEditText"
                 fontPath="fonts/FZZDXFW.ttf"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -49,8 +50,10 @@
                 android:maxLines="1"
                 android:paddingLeft="1dp"
                 android:singleLine="true"
+                android:textColor="@color/titleText"
                 android:textColorHint="@color/vistorTvbgNormal"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
             <!--</LinearLayout>-->
         </RelativeLayout>
@@ -96,8 +99,10 @@
                 android:maxLines="1"
                 android:paddingLeft="1dp"
                 android:singleLine="true"
+                android:textColor="@color/titleText"
                 android:textColorHint="@color/vistorTvbgNormal"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <ImageView

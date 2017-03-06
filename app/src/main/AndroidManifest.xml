@@ -67,14 +67,11 @@
         <activity
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".module.photo.gallery.activity.PhotoActivity">
-
-        </activity>
+        <activity android:name=".module.photo.gallery.activity.PhotoActivity"></activity>
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-             />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.photo.ucrop.UCropActivity"
             android:screenOrientation="portrait"
@@ -90,7 +87,8 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
-        <activity android:name=".module.photo.gallery.activity.GalleryVpActivity"></activity>
+        <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
+        <activity android:name=".base.activity.AccountBaseActivity"></activity>
     </application>
 
 </manifest>

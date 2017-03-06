@@ -99,7 +99,6 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-
     @OnClick({R.id.tvBoy, R.id.tvGirl, R.id.tvThirdSex, R.id.tvLoveSameSex, R.id.tvLoveDifferentSex, R.id.tvNotCareSex, R.id.tvLoveBothSex, R.id.tvSecretSex, R.id.tvVisitorConfirm, R.id.llSkip, R.id.activity_visitor_fill})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -189,5 +188,6 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
 
         }
     };
+
 
 }

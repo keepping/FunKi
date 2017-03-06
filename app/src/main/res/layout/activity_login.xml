@@ -18,32 +18,42 @@
     <!--android:clipToPadding="true"-->
     <!--/>-->
 
-    <include layout="@layout/title_templet" />
+    <include
+        android:id="@+id/fl_title"
+        layout="@layout/title_templet" />
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_icon"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="43dp"
-        android:src="@drawable/iv_logo"
-        android:text="login"
-        android:visibility="visible" />
+        android:orientation="vertical">
 
-    <TextView
-        fontPath="fonts/arial_0.ttf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:text="@string/app_name"
-        android:textColor="@color/funkiText"
-        android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="43dp"
+            android:src="@drawable/iv_logo"
+            android:text="login"
+            android:visibility="visible" />
+
+        <TextView
+            fontPath="fonts/arial_0.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="37dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/app_name"
+            android:textColor="@color/funkiText"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="78dp"
-        android:layout_marginTop="37dp"
         android:orientation="horizontal">
 
         <LinearLayout
