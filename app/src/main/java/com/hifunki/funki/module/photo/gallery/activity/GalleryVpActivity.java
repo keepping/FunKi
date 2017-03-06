@@ -41,7 +41,7 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
     private ArrayList<RelativeLayout> mTabViews;
     private ArrayList<PhotoInfo> photoInfoList;
 
-    public static void show(Context context, int position, ArrayList<PhotoInfo> photoInfoList ) {
+    public static void show(Context context, int position, ArrayList<PhotoInfo> photoInfoList) {
         Intent intent = new Intent(context, GalleryVpActivity.class);
         intent.putExtra(BundleConst.KEY_GALLERY_PHOTO_NUMBER, position);
         intent.putParcelableArrayListExtra(BundleConst.KEY_GALLERY_PHOTO_ALL_NUMBER, photoInfoList);
@@ -64,7 +64,7 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
         Bundle extras = intent.getExtras();
         anInt = extras.getInt(BundleConst.KEY_GALLERY_PHOTO_NUMBER);
         photoInfoList = extras.getParcelableArrayList(BundleConst.KEY_GALLERY_PHOTO_ALL_NUMBER);
-        mSize=photoInfoList.size();
+        mSize = photoInfoList.size();
     }
 
     @Override
@@ -87,9 +87,9 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
 
     private void initViewPager() {
         mTabViews = new ArrayList<>();
-        if(!photoInfoList.isEmpty()){
-            for(int i=0;i<photoInfoList.size();i++){
-                LayoutGalleryPhoto layoutGalleryPhoto = new LayoutGalleryPhoto( this,photoInfoList,i);
+        if (!photoInfoList.isEmpty()) {
+            for (int i = 0; i < photoInfoList.size(); i++) {
+                LayoutGalleryPhoto layoutGalleryPhoto = new LayoutGalleryPhoto(this, photoInfoList, i);
                 mTabViews.add(layoutGalleryPhoto);
             }
         }
@@ -108,7 +108,7 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-    @OnClick({ R.id.activity_gallery_vp})
+    @OnClick({R.id.activity_gallery_vp})
     public void onClick(View view) {
         switch (view.getId()) {
 
@@ -121,5 +121,11 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
     }
 }

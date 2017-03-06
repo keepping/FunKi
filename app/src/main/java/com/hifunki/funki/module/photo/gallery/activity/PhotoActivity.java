@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -23,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
@@ -151,7 +151,6 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
             public void onSuccess(List<String> photoList) {
                 path.clear();
                 for (String s : photoList) {
-                    Log.i(TAG, s);
                     path.add(s);
                 }
 
@@ -162,23 +161,21 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
                 drawableA.setCircular(true);
                 Bitmap bitmapCircle = drawableToBitmap(drawableA);
 
-                ivSelectimage.setImageDrawable(new BitmapDrawable(getResources(), bitmapCircle));//设置头像
+                //设置头像
+                Glide.with(PhotoActivity.this).load(bitmapCircle).into(ivSelectimage);
 
             }
 
             @Override
             public void onCancel() {
-                Log.i(TAG, "onCancel: 取消");
             }
 
             @Override
             public void onFinish() {
-                Log.i(TAG, "onFinish: 结束");
             }
 
             @Override
             public void onError() {
-                Log.i(TAG, "onError: 出错");
             }
         };
 
