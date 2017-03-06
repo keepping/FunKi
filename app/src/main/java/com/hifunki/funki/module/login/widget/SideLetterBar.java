@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.login.adapter;
+package com.hifunki.funki.module.login.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;

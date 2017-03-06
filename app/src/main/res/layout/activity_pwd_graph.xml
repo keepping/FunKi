@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="14dp"
-                    android:text="@string/phoneNumber"
+                    android:text="@string/phone_number"
                     android:textColor="@color/titleText"
                     android:textSize="17sp" />
             </LinearLayout>
@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="17dp"
-            android:text="@string/refreshWord"
+            android:text="@string/refresh_word"
             android:textColor="@color/vistorTvbgNormal"
             android:textSize="13sp" />
     </RelativeLayout>

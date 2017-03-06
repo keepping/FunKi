@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.photo.ucrop.callback.BitmapCropCallback;
-import com.hifunki.funki.module.photo.ucrop.model.AspectRatio;
+import com.hifunki.funki.module.photo.ucrop.entity.AspectRatio;
 import com.hifunki.funki.module.photo.ucrop.util.SelectedStateListDrawable;
 import com.hifunki.funki.module.photo.ucrop.view.CropImageView;
 import com.hifunki.funki.module.photo.ucrop.view.GestureCropImageView;

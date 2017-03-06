@@ -16,7 +16,7 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.hifunki.funki.module.photo.ucrop.model.AspectRatio;
+import com.hifunki.funki.module.photo.ucrop.entity.AspectRatio;
 
 import java.util.ArrayList;
 import java.util.Arrays;

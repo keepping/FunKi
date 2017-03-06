@@ -37,7 +37,6 @@ import butterknife.OnClick;
  */
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
-
     private boolean isPhoneColor;
 
     @BindView(R.id.tvPhone)
@@ -96,10 +95,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             e.printStackTrace();
         }
 
-//        vpPhoneEmail.setScanScroll(false);
         initViewPager();
-//        vpPhoneEmail
-
     }
 
     @Override

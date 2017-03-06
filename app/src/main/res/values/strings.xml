@@ -15,13 +15,13 @@
     <string name="age">年龄</string>
     <string name="skip">跳过</string>
     <string name="confirm">确定</string>
-    <string name="nextStep">下一步</string>
+    <string name="next_step">下一步</string>
     <string name="login_phone">行动电话</string>
     <string name="login_mail">邮箱</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
-    <string name="phoneNumber">+81</string>
-    <string name="refreshWord">点击刷新图片</string>
+    <string name="phone_number">+81</string>
+    <string name="refresh_word">点击刷新图片</string>
     <string name="set_new_pwd">请输入新的密码</string>
     <string name="pwd_success_ok">新密码设置完成</string>
     <string name="pwd_success_return">返回登录页</string>
@@ -41,13 +41,12 @@
     <string name="gallery_gallery">相册</string>
     <string name="gallery_send">发送</string>
     <string name="gallery_msg_no_camera">没有系统相机</string>
-    <!--<string name="gallery_folder_name">文件夹名</string>-->
     <string name="gallery_folder_name">%1$S(%2$d)</string>
     <string name="gallery_photo_num">(%d)</string>
     <string name="select_image_nickname_use">*该昵称已有人使用</string>
     <string name="select_image_word">请输入36个字元的字符</string>
     <string name="preview">预览</string>
-    <string name="sourceImage">原图</string>
-    <string name="sourceImageM">原图(%SM)</string>
+    <string name="source_image">原图</string>
+    <string name="source_image_m">原图(%SM)</string>
     <string name="gallery_photo">(%1$d/%2$d)</string>
 </resources>

@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
-import com.hifunki.funki.module.photo.gallery.pojo.PhotoInfo;
+import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;
 import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
 import com.hifunki.funki.util.DisplayUtil;
 

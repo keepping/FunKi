@@ -6,9 +6,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.widget.TextView;
 
-/**
- * Created by dell on 2017/2/22.
- */
+
 
 public class TextUtil {
     /**

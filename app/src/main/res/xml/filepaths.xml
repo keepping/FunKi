@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--用于GalleryPick功能-->
     <paths>
         <external-path
             name="pictures"

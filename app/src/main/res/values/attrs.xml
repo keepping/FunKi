@@ -2,7 +2,7 @@
 <resources>
     <attr name="fontPath" format="string" />
 
-    <declare-styleable name="JollyTextView">
+    <declare-styleable name="FunkiTextView">
         <attr name="line_color" format="color"></attr>
         <attr name="line_location">
             <enum name="top" value="0"></enum>

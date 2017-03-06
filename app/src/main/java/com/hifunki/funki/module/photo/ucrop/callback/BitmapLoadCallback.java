@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.hifunki.funki.module.photo.ucrop.model.ExifInfo;
+import com.hifunki.funki.module.photo.ucrop.entity.ExifInfo;
 
 
 public interface BitmapLoadCallback {

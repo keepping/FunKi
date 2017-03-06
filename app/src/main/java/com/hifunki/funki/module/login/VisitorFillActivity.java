@@ -74,17 +74,6 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
 
     }
 
-//    @Override
-//    public void onWindowFocusChanged(boolean hasFocus) {
-//        super.onWindowFocusChanged(hasFocus);
-//        if (hasFocus && Build.VERSION.SDK_INT >= 19) {
-//            View decorView = getWindow().getDecorView();
-//            decorView.setSystemUiVisibility(
-//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-//        }
-//    }
-
 
     @Override
     protected void initTitleBar() {
@@ -96,28 +85,6 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initView() {
 
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        //透明导航栏
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        tbVisitor.setHeight(DisplayUtil.px2dip(this, 84));//设置高度
-
-//        tbVisitor.setImmersive(true);
-//        tbVisitor.setLeftImageResource(R.drawable.iv_back);
-//        tbVisitor.setTitle(getResources().getString(R.string.visitor_title));
-//        TextView textView = tbVisitor.getmCenterText();
-//        //点击返回按键
-//        tbVisitor.getLeftText().setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.e("test", "onClick: tv");
-//            }
-//        });
-//        textView.setTextColor(getResources().getColor(R.color.titleText));
-//        TextUtil.setFzNormalTypeFace(this, textView);
-//        http://blog.csdn.net/to_cm/article/details/6002812
-//        TextPaint paint = textView.getPaint();
-//        paint.setFakeBoldText(true);
-        //设置沉浸式
     }
 
     @Override
@@ -170,10 +137,6 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.tvVisitorConfirm:
-//                Log.e("test", "onClick: " + sex + "isDifferentSex=" + isDifferentSex + "isBothSex=" + isBothSex + "isNotCareSex=" + isNotCareSex + "isSameSex=" + isSameSex + "isSecretSex=" + isSecretSex);
-//                if (sex == 0 || !isDifferentSex || !isBothSex || !isNotCareSex || !isSameSex || !isSecretSex) {
-//                    return;
-//                }
                 //跳转规则
                 boolean isJump = ((sex != 0) || isDifferentSex || isBothSex || isNotCareSex || isSameSex || isSecretSex);
                 if (!isJump) {
@@ -193,7 +156,6 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
             case R.id.activity_visitor_fill://根布局
                 break;
             case R.id.rlTitleLeft:
-//                ToastUtil.showToast(this, "back");
                 ApplicationMain.finishAllActivity();
                 break;
         }

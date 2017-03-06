@@ -1,7 +1,6 @@
 package com.hifunki.funki.module.login.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.login.pojo.City;
+import com.hifunki.funki.module.login.entity.City;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,16 +39,16 @@ public class CityListAdapter extends BaseAdapter {
         int size = mCities.size();
         letterIndexes = new HashMap<>();
         sections = new String[size];
-        for (int index = 0; index < size; index++) {
+//        for (int index = 0; index < size; index++) {
             //当前城市拼音首字母
-            String currentLetter = PinyinUtils.getFirstLetter(mCities.get(index).getPinyin());
+//            String currentLetter = PinyinUtils.getFirstLetter(mCities.get(index).getPinyin());
             //上个首字母，如果不存在设为""
-            String previousLetter = index >= 1 ? PinyinUtils.getFirstLetter(mCities.get(index - 1).getPinyin()) : "";
-            if (!TextUtils.equals(currentLetter, previousLetter)) {
-                letterIndexes.put(currentLetter, index);
-                sections[index] = currentLetter;
-            }
-        }
+//            String previousLetter = index >= 1 ? PinyinUtils.getFirstLetter(mCities.get(index - 1).getPinyin()) : "";
+//            if (!TextUtils.equals(currentLetter, previousLetter)) {
+//                letterIndexes.put(currentLetter, index);
+//                sections[index] = currentLetter;
+//            }
+//        }
     }
 
 
@@ -111,14 +110,14 @@ public class CityListAdapter extends BaseAdapter {
                     holder.name.setText(city);
                     //获取区号
                     holder.letter.setText(mCities.get(position).getLetter());
-                    String currentLetter = PinyinUtils.getFirstLetter(mCities.get(position).getPinyin());
-                    String previousLetter = position >= 1 ? PinyinUtils.getFirstLetter(mCities.get(position - 1).getPinyin()) : "";
-                    if (!TextUtils.equals(currentLetter, previousLetter)) {
+//                    String currentLetter = PinyinUtils.getFirstLetter(mCities.get(position).getPinyin());
+//                    String previousLetter = position >= 1 ? PinyinUtils.getFirstLetter(mCities.get(position - 1).getPinyin()) : "";
+//                    if (!TextUtils.equals(currentLetter, previousLetter)) {
                         holder.letter.setVisibility(View.VISIBLE);
-                        holder.letter.setText(currentLetter);
-                    } else {
-                        holder.letter.setVisibility(View.GONE);
-                    }
+//                        holder.letter.setText(currentLetter);
+//                    } else {
+//                        holder.letter.setVisibility(View.GONE);
+//                    }
                     holder.name.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
