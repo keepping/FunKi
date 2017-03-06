@@ -4,14 +4,29 @@
     android:id="@+id/ucrop_photobox"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:ignore="MissingPrefix">
+
     <include layout="@layout/title_templet" />
+
+
+    <TextView
+        android:id="@+id/tv_ucrop_finish"
+        fontPath="fonts/FZDHTFW.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/vistorTvbg"
+        android:gravity="center"
+        android:text="@string/finish"
+        android:textColor="@color/vistorTvTitle"
+        android:textSize="17sp" />
 
     <FrameLayout
         android:id="@+id/ucrop_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/wrapper_controls"
+        android:layout_above="@+id/tv_ucrop_finish"
         android:layout_below="@+id/flTitleContainer"
         android:background="@color/ucrop_color_crop_background">
 

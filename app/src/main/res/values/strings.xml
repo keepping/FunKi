@@ -49,4 +49,7 @@
     <string name="source_image">原图</string>
     <string name="source_image_m">原图(%SM)</string>
     <string name="gallery_photo">(%1$d/%2$d)</string>
+
+    <string name="ucrop_tailor_photo">头像裁剪</string>
+    <string name="finish">完成</string>
 </resources>

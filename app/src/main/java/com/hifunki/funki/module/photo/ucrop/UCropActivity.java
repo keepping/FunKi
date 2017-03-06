@@ -1,23 +1,15 @@
 package com.hifunki.funki.module.photo.ucrop;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -26,6 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.photo.ucrop.callback.BitmapCropCallback;
 import com.hifunki.funki.module.photo.ucrop.entity.AspectRatio;
 import com.hifunki.funki.module.photo.ucrop.util.SelectedStateListDrawable;
@@ -36,7 +30,6 @@ import com.hifunki.funki.module.photo.ucrop.view.TransformImageView;
 import com.hifunki.funki.module.photo.ucrop.view.UCropView;
 import com.hifunki.funki.module.photo.ucrop.view.widget.AspectRatioTextView;
 import com.hifunki.funki.module.photo.ucrop.view.widget.HorizontalProgressWheelView;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import java.lang.annotation.Retention;
@@ -50,7 +43,7 @@ import java.util.Locale;
  */
 
 @SuppressWarnings("ConstantConditions")
-public class UCropActivity extends AppCompatActivity implements View.OnClickListener {
+public class UCropActivity extends BaseActivity implements View.OnClickListener {
 
     public static final int DEFAULT_COMPRESS_QUALITY = 90;
     public static final Bitmap.CompressFormat DEFAULT_COMPRESS_FORMAT = Bitmap.CompressFormat.JPEG;
@@ -60,6 +53,7 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
     public static final int ROTATE = 2;
     public static final int ALL = 3;
     private ViewGroup photoBox;
+    private TextView tvFinish;
 
 
     @IntDef({NONE, SCALE, ROTATE, ALL})
@@ -77,14 +71,10 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
     private String mToolbarTitle;
 
     // Enables dynamic coloring
-    private int mToolbarColor;
-    private int mStatusBarColor;
     private int mActiveWidgetColor;
-    private int mToolbarWidgetColor;
     private int mLogoColor;
 
     private boolean mShowBottomControls;
-    private boolean mShowLoader = true;
 
     private UCropView mUCropView;
     private GestureCropImageView mGestureCropImageView;
@@ -100,25 +90,48 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
     private int[] mAllowedGestures = new int[]{SCALE, ROTATE, ALL};
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.ucrop_activity_photobox);
+    protected int getViewResId() {
+        return R.layout.ucrop_activity_photobox;
+    }
 
-        final Intent intent = getIntent();
+    @Override
+    protected void initDatas() {
+
+    }
+
+    @Override
+    protected void initTitleBar() {
         photoBox = (ViewGroup) findViewById(R.id.ucrop_photobox);
 
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
 
         ToolTitleBar.showLeftButton(this, photoBox, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
-        ToolTitleBar.showCenterButton(this, photoBox, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
+        ToolTitleBar.showCenterButton(this, photoBox, ToolTitleBar.BTN_TYPE_TEXT, R.string.ucrop_tailor_photo, null);
 
-        ToolTitleBar.showRightButtonMsg(photoBox, this, this);
+    }
+
+    @Override
+    protected void initView() {
+        final Intent intent = getIntent();
+        tvFinish = (TextView) findViewById(R.id.tv_ucrop_finish);
+        tvFinish.setOnClickListener(this);//设置完成监听
 
         setupViews(intent);
         setImageData(intent);
         setInitialState();
         addBlockingView();
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initAdapter() {
+
     }
 
     @Override
@@ -127,7 +140,7 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
             case R.id.rlTitleLeft:
                 onBackPressed();
                 break;
-            case R.id.ll_login_register:
+            case R.id.tv_ucrop_finish:
                 cropAndSaveImage();
                 break;
         }
@@ -237,15 +250,8 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setupViews(@NonNull Intent intent) {
-        mStatusBarColor = intent.getIntExtra(UCrop.Options.EXTRA_STATUS_BAR_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_statusbar));
-        mToolbarColor = intent.getIntExtra(UCrop.Options.EXTRA_TOOL_BAR_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_toolbar));
-        mActiveWidgetColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_COLOR_WIDGET_ACTIVE, ContextCompat.getColor(this, R.color.ucrop_color_widget_active));
-        mToolbarWidgetColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_COLOR_TOOLBAR, ContextCompat.getColor(this, R.color.ucrop_color_toolbar_widget));
-        mToolbarTitle = intent.getStringExtra(UCrop.Options.EXTRA_UCROP_TITLE_TEXT_TOOLBAR);
-        mToolbarTitle = !TextUtils.isEmpty(mToolbarTitle) ? mToolbarTitle : getResources().getString(R.string.ucrop_label_edit_photo);
-        mLogoColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_default_logo));
         mShowBottomControls = !intent.getBooleanExtra(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
-
+        mShowBottomControls = false;//这参数设置为false，不显示底部栏
 //        setupAppBar();
         initiateRootViews();
 
@@ -255,7 +261,7 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
 
             mWrapperStateAspectRatio = (ViewGroup) findViewById(R.id.state_aspect_ratio);
             mWrapperStateAspectRatio.setOnClickListener(mStateClickListener);
-            mWrapperStateRotate = (ViewGroup) findViewById(R.id.state_rotate);
+            mWrapperStateRotate = (ViewGroup) findViewById(R.id.state_rotate);//旋转
             mWrapperStateRotate.setOnClickListener(mStateClickListener);
             mWrapperStateScale = (ViewGroup) findViewById(R.id.state_scale);
             mWrapperStateScale.setOnClickListener(mStateClickListener);
@@ -270,7 +276,6 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
             setupStatesWrapper();
         }
     }
-
 
     private void initiateRootViews() {
         mUCropView = (UCropView) findViewById(R.id.ucrop);
@@ -297,7 +302,7 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
         public void onLoadComplete() {
             mUCropView.animate().alpha(1).setDuration(300).setInterpolator(new AccelerateInterpolator());
             mBlockingView.setClickable(false);
-            mShowLoader = false;
+//            mShowLoader = false;
             supportInvalidateOptionsMenu();
         }
 
@@ -320,23 +325,6 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
         stateScaleImageView.setImageDrawable(new SelectedStateListDrawable(stateScaleImageView.getDrawable(), mActiveWidgetColor));
         stateRotateImageView.setImageDrawable(new SelectedStateListDrawable(stateRotateImageView.getDrawable(), mActiveWidgetColor));
         stateAspectRatioImageView.setImageDrawable(new SelectedStateListDrawable(stateAspectRatioImageView.getDrawable(), mActiveWidgetColor));
-    }
-
-
-    /**
-     * Sets status-bar color for L devices.
-     *
-     * @param color - status-bar color
-     */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void setStatusBarColor(@ColorInt int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            final Window window = getWindow();
-            if (window != null) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(color);
-            }
-        }
     }
 
     private void setupAspectRatioWidget(@NonNull Intent intent) {
@@ -547,7 +535,7 @@ public class UCropActivity extends AppCompatActivity implements View.OnClickList
 
     protected void cropAndSaveImage() {
         mBlockingView.setClickable(true);
-        mShowLoader = true;
+//        mShowLoader = true;
 
 //        supportInvalidateOptionsMenu();
 
