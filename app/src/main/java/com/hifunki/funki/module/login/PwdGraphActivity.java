@@ -1,5 +1,8 @@
 package com.hifunki.funki.module.login;
 
+import android.content.Context;
+import android.content.Intent;
+
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 
@@ -15,6 +18,9 @@ import com.hifunki.funki.base.activity.BaseActivity;
  */
 public class PwdGraphActivity extends BaseActivity {
 
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, PwdGraphActivity.class));
+    }
 
     @Override
     protected int getViewResId() {

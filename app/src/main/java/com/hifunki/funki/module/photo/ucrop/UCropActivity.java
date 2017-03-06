@@ -484,7 +484,7 @@ public class UCropActivity extends BaseActivity implements View.OnClickListener 
                 setWidgetState(R.id.state_scale);
             }
         } else {
-            setAllowedGestures(0);
+            setAllowedGestures(2);//初始化裁剪状态，可以旋转和缩放
         }
     }
 

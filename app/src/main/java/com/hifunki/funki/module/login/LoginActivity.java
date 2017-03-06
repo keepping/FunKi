@@ -105,16 +105,6 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
         ToolTitleBar.showRightButtonMsg(activityLogin, this, this);
 
-//        tbLogin.setLeftImageResource(R.drawable.iv_back);
-//        tbLogin.setTitle(getString(R.string.login));
-//        tbLogin.getLeftText().setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.e("test", "onClick: back tv");
-//            }
-//        });
-//        tbLogin.set
-
     }
 
     @Override
@@ -157,8 +147,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.tv_register:
-                Log.e("test", "onClick:tv_register ");
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                RegisterActivity.show(this);
             case R.id.tvPhone:
                 ivPhoneLine.setVisibility(View.VISIBLE);
                 ivEmailLine.setVisibility(View.INVISIBLE);
@@ -204,7 +193,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 
                 break;
             case R.id.tv_phone_pwd://通过手机号找回密码
-                startActivity(new Intent(LoginActivity.this, PwdGraphActivity.class));
+                PwdGraphActivity.show(this);
                 break;
             case R.id.tv_email_pwd:
                 break;
@@ -304,7 +293,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         flTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
     }
 
-
+    //设置editText的点击监听
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         int id = v.getId();
@@ -326,6 +315,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         }
     }
 
+    //注册监听视图树的观察者
     @Override
     public void onGlobalLayout() {
         final LinearLayout llIcon = this.mLlIcon;
