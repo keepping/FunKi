@@ -1,13 +1,38 @@
 package com.hifunki.funki.module.home;
 
-/**
- * 在此写用途
- *
- * @author monotone
- * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.HomeActivity.java
- * @link
- * @since 2017-03-07 11:33:33
- */
-public class HomeActivity {
+import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseActivity;
+
+
+public class HomeActivity extends BaseActivity {
+
+    @Override
+    protected int getViewResId() {
+        return R.layout.activity_home;
+    }
+
+    @Override
+    protected void initDatas() {
+
+    }
+
+    @Override
+    protected void initTitleBar() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initAdapter() {
+
+    }
 }

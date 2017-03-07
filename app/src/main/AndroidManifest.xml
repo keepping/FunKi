@@ -67,7 +67,7 @@
         <activity
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".module.photo.gallery.activity.PhotoActivity"></activity>
+        <activity android:name=".module.photo.gallery.activity.PhotoActivity" />
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -88,7 +88,8 @@
         </provider>
 
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
-        <activity android:name=".base.activity.AccountBaseActivity"></activity>
+        <activity android:name=".base.activity.AccountBaseActivity" />
+        <activity android:name=".module.home.HomeActivity"></activity>
     </application>
 
 </manifest>
