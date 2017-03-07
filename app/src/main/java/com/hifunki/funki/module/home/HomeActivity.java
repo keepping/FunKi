@@ -3,7 +3,9 @@ package com.hifunki.funki.module.home;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 
-
+/**
+ * test
+ */
 public class HomeActivity extends BaseActivity {
 
     @Override
