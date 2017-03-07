@@ -1,5 +1,6 @@
 package com.hifunki.funki.module.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.AccountBaseActivity;
+import com.hifunki.funki.module.home.HomeActivity;
 import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.business.LoginBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
@@ -58,8 +60,8 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     LinearLayout mLlIcon;
     @BindView(R.id.iv_logo)
     ImageView mIvLogo;
-    @BindView(R.id.llLogin)
-    LinearLayout llLogin;
+    @BindView(R.id.tv_login)
+    TextView tvLogin;
     @BindView(R.id.tvForgetPwd)
     TextView tvForgetPwd;
     @BindView(R.id.tvHelpCenter)
@@ -82,6 +84,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     private int mLogoHeight;
     private int mLogoWidth;
     protected InputMethodManager mInputMethodManager;
+    private Activity mActivity;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, LoginActivity.class));
@@ -95,6 +98,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     @Override
     protected void initDatas() {
         super.initDatas();//必须要调用,用来注册本地广播
+        mActivity=LoginActivity.this;
     }
 
 
@@ -133,7 +137,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     }
 
     //    R.id.vpPhoneEmail,
-    @OnClick({R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.llLogin, R.id.tvForgetPwd, R.id.tvHelpCenter})
+    @OnClick({R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.tv_login, R.id.tvForgetPwd, R.id.tvHelpCenter})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.activity_login:
@@ -171,7 +175,8 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
                 break;
             case R.id.vpPhoneEmail:
                 break;
-            case R.id.llLogin:
+            case R.id.tv_login:
+                HomeActivity.show(this,mActivity);
                 break;
             case R.id.tvForgetPwd:
                 //创建PopWindow

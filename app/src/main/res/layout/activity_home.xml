@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hifunki.funki.module.home.HomeActivity">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/activity_main_ui"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.hifunki.funki.module.home.HomeActivity">
+
+        <FrameLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/fag_nav"
+            android:name="com.hifunki.funki.module.home.fragment.NavFragment"
+            android:layout_width="match_parent"
+            android:layout_height="47dp" />
+    </LinearLayout>
+</FrameLayout>

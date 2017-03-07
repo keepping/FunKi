@@ -89,7 +89,10 @@
 
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
         <activity android:name=".base.activity.AccountBaseActivity" />
-        <activity android:name=".module.home.HomeActivity"></activity>
+        <activity
+            android:name=".module.home.HomeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

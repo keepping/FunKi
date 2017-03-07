@@ -117,23 +117,17 @@
             android:layout_height="111dp"></com.hifunki.funki.module.login.widget.ViewpagerNotScroll>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llLogin"
+    <TextView
+        android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="49dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginTop="19dp"
         android:background="@color/vistorTvbg"
         android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="登录"
-            android:textColor="@color/vistorTvbgNormal"
-            android:textSize="17sp" />
-    </LinearLayout>
+        android:text="登录"
+        android:textColor="@color/vistorTvbgNormal"
+        android:textSize="17sp" />
 
     <RelativeLayout
 
