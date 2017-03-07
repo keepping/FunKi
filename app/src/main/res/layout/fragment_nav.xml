@@ -23,7 +23,7 @@
         android:paddingRight="12dp" />
 
     <ImageView
-        android:id="@+id/nav_item_tweet_pub"
+        android:id="@+id/nav_item"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"

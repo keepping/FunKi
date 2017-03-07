@@ -2,20 +2,21 @@ package com.hifunki.funki.module.home.fragment;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.home.BaseFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
-import com.hifunki.funki.util.ToastUtil;
-import com.hifunki.funki.util.ViewUtil;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 在此写用途
@@ -29,21 +30,18 @@ import java.util.List;
 public class NavFragment extends BaseFragment {
 
 
-    NavigationButton mNavHome;
-    NavigationButton mNavMsg;
-    NavigationButton mNavStore;
-    NavigationButton mNavMe;
+    @BindView(R.id.nav_item_home)
+    NavigationButton navItemHome;
+    @BindView(R.id.nav_item_msg)
+    NavigationButton navItemMsg;
+    @BindView(R.id.nav_item)
+    ImageView navItem;
+    @BindView(R.id.nav_item_store)
+    NavigationButton navItemStore;
+    @BindView(R.id.nav_item_me)
+    NavigationButton navItemMe;
 
     private OnNavigationReselectListener mOnNavigationReselectListener;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private Context mContext;
     private int mContainerId;
     private FragmentManager mFragmentManager;
@@ -54,23 +52,6 @@ public class NavFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    public static NavFragment newInstance(String param1, String param2) {
-        NavFragment fragment = new NavFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     protected int getLayoutId() {
@@ -81,33 +62,19 @@ public class NavFragment extends BaseFragment {
     protected void initWidget(View root) {
         super.initWidget(root);
 
-        mNavHome = (NavigationButton) root.findViewById(R.id.nav_item_home);
-
-        // do clear
-//        clearOldFragment();
-
-        // do select first
-//        doSelect(mNavHome);
-
-        mNavMsg = (NavigationButton) root.findViewById(R.id.nav_item_msg);
-        mNavStore = (NavigationButton) root.findViewById(R.id.nav_item_store);
-        mNavMe = (NavigationButton) root.findViewById(R.id.nav_item_me);
-
-        ViewUtil.setViewsOnClickListener(onClickListener, mNavHome, mNavMsg, mNavStore, mNavMe);//设置监听
-
-        mNavHome.init(R.drawable.tab_icon_home,
+        navItemHome.init(R.drawable.tab_icon_home,
                 R.string.app_name,
                 HomeFragment.class);
 
-        mNavMsg.init(R.drawable.tab_icon_msg,
+        navItemMsg.init(R.drawable.tab_icon_msg,
                 R.string.app_name,
                 MsgFragment.class);
 
-        mNavStore.init(R.drawable.tab_icon_store,
+        navItemStore.init(R.drawable.tab_icon_store,
                 R.string.app_name,
                 StoreFragment.class);
 
-        mNavMe.init(R.drawable.tab_icon_me,
+        navItemMe.init(R.drawable.tab_icon_me,
                 R.string.app_name,
                 MeFragment.class);
     }
@@ -139,11 +106,14 @@ public class NavFragment extends BaseFragment {
     public void setup(Context context, FragmentManager fragmentManager, int contentId, OnNavigationReselectListener listener) {
         mContext = context;
         mFragmentManager = fragmentManager;
-        if (mFragmentManager != null) {
-            Log.e("test", "setup: " + "not null");
-        }
         mContainerId = contentId;
         mOnNavigationReselectListener = listener;
+
+        // do clear
+        clearOldFragment();
+
+        // do select first
+        doSelect(navItemHome);
     }
 
     @SuppressWarnings("RestrictedApi")
@@ -158,7 +128,6 @@ public class NavFragment extends BaseFragment {
                 transaction.remove(fragment);
                 doCommit = true;
             }
-
         }
         if (doCommit)
             transaction.commitNow();
@@ -223,6 +192,17 @@ public class NavFragment extends BaseFragment {
     }
 
 
+    @OnClick({R.id.nav_item_home, R.id.nav_item_msg, R.id.nav_item, R.id.nav_item_store, R.id.nav_item_me})
+    public void onClick(View view) {
+        if (view instanceof NavigationButton) {
+            NavigationButton nav = (NavigationButton) view;
+            doSelect(nav);
+        } else if (view.getId() == R.id.nav_item) {//TODO show popupWindow
+            Toast.makeText(mContext, "开启popWindow", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
     public interface OnNavigationReselectListener {
         void onReselect(NavigationButton navigationButton);
     }
@@ -231,19 +211,4 @@ public class NavFragment extends BaseFragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    /**
-     * 监听
-     */
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            if (v instanceof NavigationButton) {
-                NavigationButton nav = (NavigationButton) v;
-                doSelect(nav);
-            } else if (v.getId() == R.id.nav_item_tweet_pub) {//TODO show popupWindow
-                ToastUtil.showToast(getContext(), "开启预直播");
-            }
-        }
-    };
 }
