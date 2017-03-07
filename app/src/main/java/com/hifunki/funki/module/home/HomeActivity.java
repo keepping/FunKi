@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -14,7 +15,11 @@ import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.module.home.fragment.HomeFragment;
+import com.hifunki.funki.module.home.fragment.MeFragment;
+import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
+import com.hifunki.funki.module.home.fragment.StoreFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 
@@ -33,8 +38,10 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-07 11:49:49
  */
-public class HomeActivity extends BaseActivity implements NavFragment.OnNavigationReselectListener,NavFragment.OnFragmentInteractionListener {
-
+public class HomeActivity extends BaseActivity implements NavFragment.OnNavigationReselectListener,
+        HomeFragment.OnFragmentInteractionListener, NavFragment.OnFragmentInteractionListener,
+        MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
+        MeFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.main_container)
     FrameLayout mainContainer;
@@ -44,8 +51,8 @@ public class HomeActivity extends BaseActivity implements NavFragment.OnNavigati
     private List<TurnBackListener> mTurnBackListeners = new ArrayList<>();
     private long mBackPressedTime;
 
-    public static void show(Context context, Activity activity){
-        context.startActivity(new Intent(context,HomeActivity.class));
+    public static void show(Context context, Activity activity) {
+        context.startActivity(new Intent(context, HomeActivity.class));
         activity.finish();
     }
 
@@ -77,7 +84,11 @@ public class HomeActivity extends BaseActivity implements NavFragment.OnNavigati
     protected void initView() {
         FragmentManager manager = getSupportFragmentManager();
         mNavBar = ((NavFragment) manager.findFragmentById(R.id.fag_nav));
-        mNavBar.setup(this, manager, R.id.main_container, this);
+        if (mNavBar != null) {
+            mNavBar.setup(this, manager, R.id.main_container, this);
+        } else {
+            Log.e("test", "initView: " + "null");
+        }
     }
 
     @Override

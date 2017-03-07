@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.hifunki.funki.R;
@@ -53,15 +54,6 @@ public class NavFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NavFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static NavFragment newInstance(String param1, String param2) {
         NavFragment fragment = new NavFragment();
         Bundle args = new Bundle();
@@ -88,10 +80,14 @@ public class NavFragment extends BaseFragment {
     @Override
     protected void initWidget(View root) {
         super.initWidget(root);
+
         mNavHome = (NavigationButton) root.findViewById(R.id.nav_item_home);
 
+        // do clear
+//        clearOldFragment();
+
         // do select first
-        doSelect(mNavHome);
+//        doSelect(mNavHome);
 
         mNavMsg = (NavigationButton) root.findViewById(R.id.nav_item_msg);
         mNavStore = (NavigationButton) root.findViewById(R.id.nav_item_store);
@@ -99,19 +95,19 @@ public class NavFragment extends BaseFragment {
 
         ViewUtil.setViewsOnClickListener(onClickListener, mNavHome, mNavMsg, mNavStore, mNavMe);//设置监听
 
-        mNavHome.init(R.drawable.tab_icon_new,
+        mNavHome.init(R.drawable.tab_icon_home,
                 R.string.app_name,
                 HomeFragment.class);
 
-        mNavMsg.init(R.drawable.tab_icon_new,
+        mNavMsg.init(R.drawable.tab_icon_msg,
                 R.string.app_name,
                 MsgFragment.class);
 
-        mNavStore.init(R.drawable.tab_icon_new,
+        mNavStore.init(R.drawable.tab_icon_store,
                 R.string.app_name,
                 StoreFragment.class);
 
-        mNavMe.init(R.drawable.tab_icon_new,
+        mNavMe.init(R.drawable.tab_icon_me,
                 R.string.app_name,
                 MeFragment.class);
     }
@@ -143,11 +139,11 @@ public class NavFragment extends BaseFragment {
     public void setup(Context context, FragmentManager fragmentManager, int contentId, OnNavigationReselectListener listener) {
         mContext = context;
         mFragmentManager = fragmentManager;
+        if (mFragmentManager != null) {
+            Log.e("test", "setup: " + "not null");
+        }
         mContainerId = contentId;
         mOnNavigationReselectListener = listener;
-
-        // do clear
-        clearOldFragment();
     }
 
     @SuppressWarnings("RestrictedApi")
@@ -170,14 +166,6 @@ public class NavFragment extends BaseFragment {
 
 
     private void doSelect(NavigationButton newNavButton) {
-        // If the new navigation is me info fragment, we intercept it
-        /*
-        if (newNavButton == mNavMe) {
-            if (interceptMessageSkip())
-                return;
-        }
-        */
-
         NavigationButton oldNavButton = null;
         if (mCurrentNavButton != null) {
             oldNavButton = mCurrentNavButton;
@@ -214,17 +202,17 @@ public class NavFragment extends BaseFragment {
         }
         if (newNavButton != null) {
             if (newNavButton.getFragment() == null) {
-//                Fragment fragment = Fragment.instantiate(mContext, newNavButton.getClx().getName(), null);
-                Fragment fragment = null;
-                if (newNavButton.equals(mNavHome)) {
-                    fragment = NavFragment.newInstance("", "");
-                } else if (newNavButton.equals(mNavMsg)) {
-                    fragment = MsgFragment.newInstance("", "");
-                } else if (newNavButton.equals(mNavStore)) {
-                    fragment = StoreFragment.newInstance("", "");
-                } else if (newNavButton.equals(mNavMe)) {
-                    fragment = MeFragment.newInstance("", "");
-                }
+                Fragment fragment = Fragment.instantiate(mContext, newNavButton.getClx().getName(), null);
+//                Fragment fragment = null;
+//                if (newNavButton.equals(mNavHome)) {
+//                    fragment = HomeFragment.newInstance("te", "te");
+//                } else if (newNavButton.equals(mNavMsg)) {
+//                    fragment = MsgFragment.newInstance("te", "te");
+//                } else if (newNavButton.equals(mNavStore)) {
+//                    fragment = StoreFragment.newInstance("te", "te");
+//                } else if (newNavButton.equals(mNavMe)) {
+//                    fragment = MeFragment.newInstance("te", "te");
+//                }
                 ft.add(mContainerId, fragment, newNavButton.getTag());
                 newNavButton.setFragment(fragment);
             } else {

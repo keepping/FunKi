@@ -31,7 +31,7 @@
         android:contentDescription="@null"
         android:padding="2dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_nav_add_selector" />
+        android:src="@drawable/ic_nav" />
 
     <com.hifunki.funki.module.home.widget.NavigationButton
         android:id="@+id/nav_item_store"

@@ -4,5 +4,5 @@
     <item android:state_pressed="true" android:drawable="@drawable/ic_nav_home_actived" />
     <item android:state_checked="true" android:drawable="@drawable/ic_nav_home_actived" />
     <item android:state_selected="true" android:drawable="@drawable/ic_nav_home_actived" />
-    <item android:drawable="@drawable/ic_nav_home_actived" />
+    <item android:drawable="@drawable/ic_nav_home_normal" />
 </selector>
