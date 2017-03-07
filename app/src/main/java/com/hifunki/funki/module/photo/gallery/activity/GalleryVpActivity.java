@@ -14,7 +14,6 @@ import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;
 import com.hifunki.funki.module.photo.gallery.widget.LayoutGalleryPhoto;
-import com.hifunki.funki.util.StatusBarUtil;
 
 import java.util.ArrayList;
 
@@ -69,7 +68,6 @@ public class GalleryVpActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initTitleBar() {
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
         ToolTitleBar.showLeftButton(this, activityGalleryVp, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
         String number = String.format(getString(R.string.gallery_photo), anInt, mSize);

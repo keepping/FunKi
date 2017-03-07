@@ -28,16 +28,15 @@ import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
 import com.hifunki.funki.module.photo.gallery.adapter.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
-import com.hifunki.funki.module.photo.gallery.inter.IHandlerCallBack;
 import com.hifunki.funki.module.photo.gallery.entity.FolderInfo;
 import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;
+import com.hifunki.funki.module.photo.gallery.inter.IHandlerCallBack;
 import com.hifunki.funki.module.photo.gallery.util.UCropUtils;
 import com.hifunki.funki.module.photo.gallery.widget.FolderListPopupWindow;
 import com.hifunki.funki.module.photo.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.HashMapUtil;
 import com.hifunki.funki.util.ListUtil;
-import com.hifunki.funki.util.StatusBarUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -116,7 +115,6 @@ public class GalleryPickActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initTitleBar() {
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
     }
 
     /**

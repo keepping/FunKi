@@ -30,7 +30,6 @@ import com.hifunki.funki.module.photo.ucrop.view.TransformImageView;
 import com.hifunki.funki.module.photo.ucrop.view.UCropView;
 import com.hifunki.funki.module.photo.ucrop.view.widget.AspectRatioTextView;
 import com.hifunki.funki.module.photo.ucrop.view.widget.HorizontalProgressWheelView;
-import com.hifunki.funki.util.StatusBarUtil;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -103,7 +102,6 @@ public class UCropActivity extends BaseActivity implements View.OnClickListener 
     protected void initTitleBar() {
         photoBox = (ViewGroup) findViewById(R.id.ucrop_photobox);
 
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
 
         ToolTitleBar.showLeftButton(this, photoBox, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
