@@ -60,4 +60,7 @@
     <string name="msg_fragment">消息</string>
     <string name="me_fragment">我的</string>
     <string name="home_fragment">主页</string>
+    <string name="home_fragment_hot">热门</string>
+    <string name="home_fragment_focus">关注</string>
+    <string name="home_fragment_latest">最新</string>
 </resources>
