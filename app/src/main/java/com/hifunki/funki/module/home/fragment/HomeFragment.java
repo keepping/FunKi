@@ -7,7 +7,15 @@ import android.os.Bundle;
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.home.BaseFragment;
 
-
+/**
+ * 在此写用途
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.module.home.fragment.HomeFragment.java
+ * @link
+ * @since 2017-03-08 10:06:06
+ */
 public class HomeFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
