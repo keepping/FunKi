@@ -15,6 +15,11 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <style name="AppThemeFullScreen">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <!--游客必填页面key-->
     <style name="ActivityVisitorTvTitle">
         <item name="android:textColor">@color/vistorTvTitle</item>

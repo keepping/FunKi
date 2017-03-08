@@ -92,7 +92,12 @@
         <activity
             android:name=".module.home.HomeActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".module.login.EighteenBearActivity"
+            android:theme="@style/AppThemeFullScreen" />
+
     </application>
 
 </manifest>
