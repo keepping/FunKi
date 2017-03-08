@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.home.BaseFragment;
@@ -34,8 +32,8 @@ public class NavFragment extends BaseFragment {
     NavigationButton navItemHome;
     @BindView(R.id.nav_item_msg)
     NavigationButton navItemMsg;
-    @BindView(R.id.nav_item)
-    ImageView navItem;
+//    @BindView(R.id.nav_item)
+//    ImageView navItem;
     @BindView(R.id.nav_item_store)
     NavigationButton navItemStore;
     @BindView(R.id.nav_item_me)
@@ -192,14 +190,15 @@ public class NavFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.nav_item_home, R.id.nav_item_msg, R.id.nav_item, R.id.nav_item_store, R.id.nav_item_me})
+    @OnClick({R.id.nav_item_home, R.id.nav_item_msg, R.id.nav_item_store, R.id.nav_item_me})
     public void onClick(View view) {
         if (view instanceof NavigationButton) {
             NavigationButton nav = (NavigationButton) view;
             doSelect(nav);
-        } else if (view.getId() == R.id.nav_item) {//TODO show popupWindow
-            Toast.makeText(mContext, "开启popWindow", Toast.LENGTH_LONG).show();
         }
+//        else if (view.getId() == R.id.nav_item) {//TODO show popupWindow
+//            Toast.makeText(mContext, "开启popWindow", Toast.LENGTH_LONG).show();
+//        }
     }
 
 

@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.hifunki.funki.module.home.HomeActivity">
 
-    <LinearLayout
-        android:id="@+id/activity_main_ui"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context="com.hifunki.funki.module.home.HomeActivity">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/main_container"
+        <LinearLayout
+            android:id="@+id/activity_main_ui"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/bgColor" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context="com.hifunki.funki.module.home.HomeActivity">
 
-        <fragment
-            android:id="@+id/fag_nav"
-            android:name="com.hifunki.funki.module.home.fragment.NavFragment"
-            android:layout_width="match_parent"
-            android:layout_height="47dp" />
-    </LinearLayout>
+            <FrameLayout
+                android:id="@+id/main_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/bgColor" />
+
+
+            <fragment
+                android:id="@+id/fag_nav"
+                android:name="com.hifunki.funki.module.home.fragment.NavFragment"
+                android:layout_width="match_parent"
+                android:layout_height="47dp" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/nav_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/ic_nav" />
+
+    </RelativeLayout>
 </FrameLayout>
