@@ -21,6 +21,7 @@
     <string name="login">登录</string>
     <string name="register">注册</string>
     <string name="phone_number">+81</string>
+    <string name="find_pwd">找回密码</string>
     <string name="refresh_word">点击刷新图片</string>
     <string name="set_new_pwd">请输入新的密码</string>
     <string name="pwd_success_ok">新密码设置完成</string>
@@ -63,4 +64,5 @@
     <string name="home_fragment_hot">热门</string>
     <string name="home_fragment_focus">关注</string>
     <string name="home_fragment_latest">最新</string>
+    <string name="login_pwd_graph">由于隐私保护，系统在未验证改行动电话号为您本人所有时，不会告知您改行动电话号是否已注册</string>
 </resources>
