@@ -1,10 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="@android:color/transparent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context="com.hifunki.funki.module.home.fragment.NavFragment">
 
     <View
@@ -14,8 +13,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:background="@drawable/iv_home_bottom_bg">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/iv_home_bottom_bg"
+        android:gravity="center_vertical">
 
         <com.hifunki.funki.module.home.widget.NavigationButton
             android:id="@+id/nav_item_home"
@@ -51,6 +52,6 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
 
 
