@@ -22,12 +22,7 @@ import butterknife.OnClick;
  */
 public class EighteenBearActivity extends BaseActivity {
 
-    @BindView(R.id.rl_eighteen_choose)
-    RelativeLayout rlEighteenChoose;
-    @BindView(R.id.rv_eighteen_choose)
-    RecyclerView rvEighteenChoose;
-    @BindView(R.id.rl_eighteen)
-    RelativeLayout rlEighteen;
+
 
     @Override
     protected int getViewResId() {
@@ -60,15 +55,5 @@ public class EighteenBearActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.rl_eighteen_choose, R.id.rv_eighteen_choose, R.id.rl_eighteen})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.rl_eighteen_choose:
-                break;
-            case R.id.rv_eighteen_choose:
-                break;
-            case R.id.rl_eighteen:
-                break;
-        }
-    }
+
 }

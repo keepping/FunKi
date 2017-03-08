@@ -16,6 +16,7 @@
         android:layout_alignParentBottom="true">
 
         <TextView
+            android:id="@+id/tv_exit"
             fontPath="fonts/FZDHTFW.ttf"
             android:layout_width="144dp"
             android:layout_height="39dp"
@@ -26,6 +27,7 @@
             android:textSize="19sp" />
 
         <TextView
+            android:id="@+id/tv_enter"
             fontPath="fonts/FZDHTFW.ttf"
             android:layout_width="144dp"
             android:layout_height="39dp"
