@@ -62,8 +62,8 @@ public class NavFragment extends BaseFragment {
     }
 
     @Override
-    protected void initWidget(View root) {
-        super.initWidget(root);
+    protected void initView(View root) {
+        super.initView(root);
 
         navItemHome.init(R.drawable.tab_icon_home,
                 R.string.app_name,
