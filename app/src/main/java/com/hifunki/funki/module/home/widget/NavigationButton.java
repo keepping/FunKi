@@ -21,7 +21,6 @@ import com.hifunki.funki.R;
  */
 public class NavigationButton extends FrameLayout {
     private Fragment mFragment = null;
-    private Class<?> mClx;
     private ImageView mIconView;
     private TextView mTitleView;
     private TextView mDot;
@@ -68,15 +67,10 @@ public class NavigationButton extends FrameLayout {
         mDot.setText(String.valueOf(count));
     }
 
-    public void init(@DrawableRes int resId, @StringRes int strId, Class<?> clx) {
+    public void init(@DrawableRes int resId, @StringRes int strId, String mTag) {
         mIconView.setImageResource(resId);
         mTitleView.setText(strId);
-        mClx = clx;
-        mTag = mClx.getName();
-    }
-
-    public Class<?> getClx() {
-        return mClx;
+        this.mTag = mTag;
     }
 
     public Fragment getFragment() {

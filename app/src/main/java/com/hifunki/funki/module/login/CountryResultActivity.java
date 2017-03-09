@@ -8,10 +8,8 @@ import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.module.login.entity.City;
 import com.hifunki.funki.module.login.adapter.CityListAdapter;
-import com.hifunki.funki.module.login.widget.ToolEditTitleBar;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
+import com.hifunki.funki.module.login.entity.City;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,15 +55,6 @@ public class CountryResultActivity extends BaseTitleActivity implements View.OnC
     @Override
     protected void initTitleBar() {
 
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_country_result);
-        //设置左边的search ImageView
-//        ToolEditTitleBar.showLeftImageView(this, relativeLayout, R.drawable.iv_search, this);
-//        ToolEditTitleBar.showLeftButton(this, relativeLayout, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_search, null);
-        ToolEditTitleBar.showCenterEditText(this, relativeLayout, null, null);
-        //iv_close
-        ToolEditTitleBar.showRightButton(this, relativeLayout, R.layout.activity_login_search, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, null);
-        //右边的搜索
-        ToolEditTitleBar.showRightButton(this, relativeLayout, R.layout.activity_login_search, ToolTitleBar.BTN_TYPE_TEXT, R.string.search, null);
     }
 
     @Override

@@ -3,22 +3,25 @@ package com.hifunki.funki.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.hifunki.funki.base.application.ApplicationMain;
+
 import java.util.Map;
 
 
 public class SPUtils {
 
-    private SharedPreferences        sp;
+    private SharedPreferences sp;
     private SharedPreferences.Editor editor;
 
     /**
      * SPUtils构造函数
      * <p>在Application中初始化</p>
      *
-     * @param spName  spName
+     * @param spName spName
      */
     public SPUtils(String spName) {
-        sp = Utils.getContext().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        sp = ApplicationMain.getContext().getSharedPreferences(spName, Context.MODE_PRIVATE);
+
         editor = sp.edit();
         editor.apply();
     }

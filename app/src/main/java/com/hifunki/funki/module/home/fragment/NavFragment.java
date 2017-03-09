@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.home.BaseFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 
@@ -32,7 +33,7 @@ public class NavFragment extends BaseFragment {
     NavigationButton navItemHome;
     @BindView(R.id.nav_item_msg)
     NavigationButton navItemMsg;
-//    @BindView(R.id.nav_item)
+    //    @BindView(R.id.nav_item)
 //    ImageView navItem;
     @BindView(R.id.nav_item_store)
     NavigationButton navItemStore;
@@ -62,19 +63,19 @@ public class NavFragment extends BaseFragment {
 
         navItemHome.init(R.drawable.tab_icon_home,
                 R.string.app_name,
-                HomeFragment.class);
+                FragmentConst.HomeFragment);
 
         navItemMsg.init(R.drawable.tab_icon_msg,
                 R.string.app_name,
-                MsgFragment.class);
+                FragmentConst.MsgFragment);
 
         navItemStore.init(R.drawable.tab_icon_store,
                 R.string.app_name,
-                StoreFragment.class);
+                FragmentConst.StoreFragment);
 
         navItemMe.init(R.drawable.tab_icon_me,
                 R.string.app_name,
-                MeFragment.class);
+                FragmentConst.MeFragment);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -169,17 +170,16 @@ public class NavFragment extends BaseFragment {
         }
         if (newNavButton != null) {
             if (newNavButton.getFragment() == null) {
-                Fragment fragment = Fragment.instantiate(mContext, newNavButton.getClx().getName(), null);
-//                Fragment fragment = null;
-//                if (newNavButton.equals(mNavHome)) {
-//                    fragment = HomeFragment.newInstance("te", "te");
-//                } else if (newNavButton.equals(mNavMsg)) {
-//                    fragment = MsgFragment.newInstance("te", "te");
-//                } else if (newNavButton.equals(mNavStore)) {
-//                    fragment = StoreFragment.newInstance("te", "te");
-//                } else if (newNavButton.equals(mNavMe)) {
-//                    fragment = MeFragment.newInstance("te", "te");
-//                }
+                Fragment fragment = null;
+                if (newNavButton.equals(navItemHome)) {
+                    fragment = HomeFragment.newInstance("te", "te");
+                } else if (newNavButton.equals(navItemMsg)) {
+                    fragment = MsgFragment.newInstance("te", "te");
+                } else if (newNavButton.equals(navItemStore)) {
+                    fragment = StoreFragment.newInstance("te", "te");
+                } else if (newNavButton.equals(navItemMe)) {
+                    fragment = MeFragment.newInstance("te", "te");
+                }
                 ft.add(mContainerId, fragment, newNavButton.getTag());
                 newNavButton.setFragment(fragment);
             } else {

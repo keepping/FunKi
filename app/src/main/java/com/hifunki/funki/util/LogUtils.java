@@ -3,6 +3,8 @@ package com.hifunki.funki.util;
 import android.os.Environment;
 import android.util.Log;
 
+import com.hifunki.funki.base.application.ApplicationMain;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -45,9 +47,9 @@ public class LogUtils {
      */
     public static void init(boolean logSwitch, boolean log2FileSwitch, char logFilter, String tag) {
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            dir = Utils.getContext().getExternalCacheDir().getPath() + File.separator;
+            dir = ApplicationMain.getContext().getExternalCacheDir().getPath() + File.separator;
         } else {
-            dir = Utils.getContext().getCacheDir().getPath() + File.separator;
+            dir = ApplicationMain.getContext().getCacheDir().getPath() + File.separator;
         }
         LogUtils.logSwitch = logSwitch;
         LogUtils.log2FileSwitch = log2FileSwitch;
@@ -63,9 +65,9 @@ public class LogUtils {
      */
     public static Builder getBuilder() {
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            dir = Utils.getContext().getExternalCacheDir().getPath() + File.separator + "log" + File.separator;
+            dir = ApplicationMain.getContext().getExternalCacheDir().getPath() + File.separator + "log" + File.separator;
         } else {
-            dir = Utils.getContext().getCacheDir().getPath() + File.separator + "log" + File.separator;
+            dir = ApplicationMain.getContext().getCacheDir().getPath() + File.separator + "log" + File.separator;
         }
         return new Builder();
     }

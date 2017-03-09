@@ -3,9 +3,27 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.common.FragmentConst;
+import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.BaseFragment;
+import com.hifunki.funki.module.home.HomeActivity;
+import com.hifunki.funki.module.login.LoginActivity;
+import com.hifunki.funki.util.ListUtil;
+import com.hifunki.funki.util.SPUtils;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 在此写用途
@@ -19,10 +37,25 @@ import com.hifunki.funki.module.home.BaseFragment;
 public class HomeFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.iv_home_search)
+    ImageView ivHomeSearch;
+    @BindView(R.id.iv_home_ticket)
+    ImageView ivHomeTicket;
+    @BindView(R.id.iv_home_list)
+    ImageView ivHomeList;
+    @BindView(R.id.tv_home_focus)
+    TextView tvHomeFocus;
+    @BindView(R.id.tv_home_latest)
+    TextView tvHomeLatest;
+    @BindView(R.id.tv_home_hot)
+    TextView tvHomeHot;
+    @BindView(R.id.vp_home)
+    ViewPager vpHome;
 
     private String mParam1;
     private String mParam2;
 
+    private FragmentManager mFragmentManager;
     private OnFragmentInteractionListener mListener;
 
     public HomeFragment() {
@@ -41,6 +74,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFragmentManager = getFragmentManager();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -73,6 +107,50 @@ public class HomeFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @SuppressWarnings("RestrictedApi")
+    @OnClick({R.id.iv_home_search, R.id.iv_home_ticket, R.id.iv_home_list, R.id.tv_home_focus, R.id.tv_home_latest, R.id.tv_home_hot, R.id.vp_home})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_home_search:
+
+                SPUtils spUtils = new SPUtils(Spkey.FILE_LOGIN);
+                if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
+                    HomeActivity homeActivity = (HomeActivity) getActivity();
+                    LoginActivity.show(homeActivity);
+                } else {
+                    HomeSearchFragment homeSearchFragment = HomeSearchFragment.newInstance("trest", "tes");
+                    FragmentTransaction ft = mFragmentManager.beginTransaction();
+                    //TODO res id 需要确认
+                    ft.add(R.id.main_container, homeSearchFragment, FragmentConst.HomeSearchFragment);
+
+                    List<Fragment> fragments = mFragmentManager.getFragments();
+                    if (!ListUtil.isEmpty(fragments)) {
+                        for (Fragment fragment : fragments) {
+                            if (fragment.isVisible()) {
+                                ft.hide(fragment);
+                            }
+                        }
+                    }
+                    ft.show(homeSearchFragment);
+                    ft.commit();
+                }
+
+                break;
+            case R.id.iv_home_ticket:
+                break;
+            case R.id.iv_home_list:
+                break;
+            case R.id.tv_home_focus:
+                break;
+            case R.id.tv_home_latest:
+                break;
+            case R.id.tv_home_hot:
+                break;
+            case R.id.vp_home:
+                break;
+        }
     }
 
     public interface OnFragmentInteractionListener {

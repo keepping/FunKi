@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_fragment_focus"
-                    android:textColor="@color/vistorTvClickbg"
+                    android:textColor="@color/titleText"
                     android:textSize="17sp" />
 
             </LinearLayout>
@@ -89,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_fragment_latest"
-                    android:textColor="@color/vistorTvClickbg"
+                    android:textColor="@color/titleText"
                     android:textSize="17sp" />
             </LinearLayout>
 
@@ -115,4 +115,8 @@
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:background="@color/vistorTvClickbg" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

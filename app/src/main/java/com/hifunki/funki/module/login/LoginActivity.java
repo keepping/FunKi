@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.AccountBaseActivity;
+import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.HomeActivity;
 import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.business.LoginBusiness;
@@ -30,6 +31,8 @@ import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.module.login.widget.scroller.FixedSpeedScroller;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
+import com.hifunki.funki.util.SPUtils;
+import com.hifunki.funki.util.ToastUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -98,7 +101,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     @Override
     protected void initDatas() {
         super.initDatas();//必须要调用,用来注册本地广播
-        mActivity=LoginActivity.this;
+        mActivity = LoginActivity.this;
     }
 
 
@@ -107,7 +110,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
         ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
-        ToolTitleBar.showRightButtonMsg(this, activityLogin, R.string.register,this);
+        ToolTitleBar.showRightButtonMsg(this, activityLogin, R.string.register, this);
 
     }
 
@@ -176,7 +179,15 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
             case R.id.vpPhoneEmail:
                 break;
             case R.id.tv_login:
-                HomeActivity.show(this,mActivity);
+                if (mEtIuputTel.getText().toString().equals("0") && mEtIuputPwd.getText().toString().equals("0")) {
+                    //保存到sp中
+                    SPUtils spUtils=new SPUtils(Spkey.FILE_LOGIN);
+                    spUtils.put(Spkey.KEY_LOGIN_SUCCESS,1);
+
+                    ToastUtils.showShortToastSafe("login success");
+                    HomeActivity.show(this, mActivity);
+                }
+                ToastUtils.showShortToastSafe("username=0,password=0");
                 break;
             case R.id.tvForgetPwd:
                 //创建PopWindow
