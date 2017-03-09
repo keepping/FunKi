@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.hifunki.funki.R;
@@ -16,6 +17,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * 在此写用途
@@ -46,6 +49,7 @@ public class NavFragment extends BaseFragment {
     private FragmentManager mFragmentManager;
     private NavigationButton mCurrentNavButton;
     private OnFragmentInteractionListener mListener;
+    private String mNavTag;
 
     public NavFragment() {
         // Required empty public constructor
@@ -102,12 +106,12 @@ public class NavFragment extends BaseFragment {
         mListener = null;
     }
 
-    public void setup(Context context, FragmentManager fragmentManager, int contentId, OnNavigationReselectListener listener) {
+    public void setup(Context context, FragmentManager fragmentManager, int contentId, OnNavigationReselectListener listener, String navFragment) {
         mContext = context;
         mFragmentManager = fragmentManager;
         mContainerId = contentId;
         mOnNavigationReselectListener = listener;
-
+        this.mNavTag=navFragment;
         // do clear
         clearOldFragment();
 
@@ -181,6 +185,7 @@ public class NavFragment extends BaseFragment {
                     fragment = MeFragment.newInstance("te", "te");
                 }
                 ft.add(mContainerId, fragment, newNavButton.getTag());
+                Log.e(TAG, "doTabChanged: "+newNavButton.getTag());
                 newNavButton.setFragment(fragment);
             } else {
                 ft.attach(newNavButton.getFragment());

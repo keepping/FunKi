@@ -68,4 +68,13 @@
     <string name="home_fragment_focus">关注</string>
     <string name="home_fragment_latest">最新</string>
     <string name="login_pwd_graph">由于隐私保护，系统在未验证改行动电话号为您本人所有时，不会告知您改行动电话号是否已注册</string>
+
+    <!--navFragment-tag-->
+    <string name="nav_fragment">navfragment</string>
+    <string name="fragmenthome_search_user">用户</string>
+    <string name="fragmenthome_search_live">直播</string>
+    <string name="fragmenthome_search_video">视频</string>
+    <string name="fragmenthome_search_dymic">动态</string>
+
+
 </resources>

@@ -124,15 +124,20 @@ public class HomeFragment extends BaseFragment {
                     FragmentTransaction ft = mFragmentManager.beginTransaction();
                     //TODO res id 需要确认
                     ft.add(R.id.main_container, homeSearchFragment, FragmentConst.HomeSearchFragment);
+                    Fragment navFragment = mFragmentManager.findFragmentByTag(FragmentConst.NavFragment);
 
                     List<Fragment> fragments = mFragmentManager.getFragments();
                     if (!ListUtil.isEmpty(fragments)) {
                         for (Fragment fragment : fragments) {
                             if (fragment.isVisible()) {
-                                ft.hide(fragment);
+                                if (!fragment.equals(navFragment)) {
+                                    ft.hide(fragment);
+                                }
+
                             }
                         }
                     }
+//                    ft.show(navFragment);
                     ft.show(homeSearchFragment);
                     ft.commit();
                 }

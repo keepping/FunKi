@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.MeFragment;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
@@ -84,8 +85,9 @@ public class HomeActivity extends BaseTitleActivity implements NavFragment.OnNav
     protected void initView() {
         FragmentManager manager = getSupportFragmentManager();
         mNavBar = ((NavFragment) manager.findFragmentById(R.id.fag_nav));
+
         if (mNavBar != null) {
-            mNavBar.setup(this, manager, R.id.main_container, this);
+            mNavBar.setup(this, manager, R.id.main_container, this, FragmentConst.NavFragment);
         } else {
             Log.e("test", "initView: " + "null");
         }

@@ -26,6 +26,7 @@
 
 
             <fragment
+                android:tag="@string/nav_fragment"
                 android:id="@+id/fag_nav"
                 android:name="com.hifunki.funki.module.home.fragment.NavFragment"
                 android:layout_width="match_parent"
