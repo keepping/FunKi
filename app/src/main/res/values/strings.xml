@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">FunKi</string>
+    <string name="exit_app">即将退出Funki</string>
     <string name="exit">退出</string>
     <string name="enter">进入</string>
     <string name="visitor_title">必填信息</string>

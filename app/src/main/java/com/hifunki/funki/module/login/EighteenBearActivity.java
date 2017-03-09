@@ -1,5 +1,6 @@
 package com.hifunki.funki.module.login;
 
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,6 +13,8 @@ import com.hifunki.funki.base.application.ApplicationMain;
 import com.hifunki.funki.module.home.HomeActivity;
 import com.hifunki.funki.module.login.adapter.EighteenAdapter;
 import com.hifunki.funki.module.login.entity.EighteenEntity;
+import com.hifunki.funki.util.ToastUtils;
+import com.hifunki.funki.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +54,8 @@ public class EighteenBearActivity extends BaseActivity {
 
     @Override
     protected void initDatas() {
+//        Utils.init(getApplicationContext());
+        Utils.init(ApplicationMain.getContext());
         eighteenEntities = new ArrayList<>();
 
         EighteenEntity eighteenEntity1 = new EighteenEntity("1.以上所张氏的信息由企业自行提供，内容的真实性、准确性和合法性有发布企业负责。金泉刚对此不承担任何责任。");
@@ -95,8 +100,16 @@ public class EighteenBearActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_exit:
-                ApplicationMain.finishAllActivity();
-                ApplicationMain.exit(1000);
+
+                ToastUtils.showShortToastSafe(R.string.exit_app);
+                //延迟1秒执行
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ApplicationMain.finishAllActivity();
+                    }
+                }, 1000);
+
                 break;
             case R.id.tv_enter:
                 HomeActivity.show(this, EighteenBearActivity.this);
