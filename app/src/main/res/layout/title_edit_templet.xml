@@ -5,30 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:background="@drawable/iv_bg"
-    android:gravity="center_vertical"
     tools:ignore="MissingPrefix">
 
     <ImageView
         android:id="@+id/iv_Title_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="14dp"
-        android:src="@drawable/iv_search"
-        android:visibility="gone" />
+        android:src="@drawable/iv_search" />
 
     <TextView
         android:id="@+id/tv_et_search"
+        fontPath="fonts/FZZDXFW.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="14dp"
         android:text="@string/search"
-        android:textSize="14sp"
+        android:textColor="@color/titleText"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/iv_et_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginRight="24dp"
         android:layout_toLeftOf="@+id/tv_et_search"
         android:src="@drawable/iv_close" />
@@ -36,14 +40,18 @@
     <EditText
         android:id="@+id/etTitleCenter"
         android:layout_width="match_parent"
-        android:layout_height="17dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="14dp"
         android:layout_toLeftOf="@+id/iv_et_close"
         android:layout_toRightOf="@+id/iv_Title_left"
         android:background="@null"
         android:ellipsize="end"
-        android:gravity="center"
+        android:gravity="left|center_vertical"
         android:singleLine="true"
-        android:textSize="17sp"
-        android:visibility="gone" />
+        android:textColor="@color/titleText"
+        android:textColorHint="@color/titleText"
+        android:textCursorDrawable="@drawable/et_home_search_bg"
+        android:textSize="17sp" />
 
 </RelativeLayout>
