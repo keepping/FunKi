@@ -111,7 +111,7 @@ public class NavFragment extends BaseFragment {
         mFragmentManager = fragmentManager;
         mContainerId = contentId;
         mOnNavigationReselectListener = listener;
-        this.mNavTag=navFragment;
+        this.mNavTag = navFragment;
         // do clear
         clearOldFragment();
 
@@ -185,7 +185,7 @@ public class NavFragment extends BaseFragment {
                     fragment = MeFragment.newInstance("te", "te");
                 }
                 ft.add(mContainerId, fragment, newNavButton.getTag());
-                Log.e(TAG, "doTabChanged: "+newNavButton.getTag());
+                Log.e(TAG, "doTabChanged: " + newNavButton.getTag());
                 newNavButton.setFragment(fragment);
             } else {
                 ft.attach(newNavButton.getFragment());
