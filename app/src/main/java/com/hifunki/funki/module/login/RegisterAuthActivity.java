@@ -1,7 +1,7 @@
 package com.hifunki.funki.module.login;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 
 /**
  * 注册结果界面
@@ -12,7 +12,7 @@ import com.hifunki.funki.base.activity.BaseActivity;
  * @link
  * @since 2017-02-24 14:08:08
  */
-public class RegisterAuthActivity extends BaseActivity {
+public class RegisterAuthActivity extends BaseTitleActivity {
 
 
     @Override

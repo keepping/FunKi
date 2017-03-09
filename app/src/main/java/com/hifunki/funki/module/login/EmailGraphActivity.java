@@ -1,6 +1,6 @@
 package com.hifunki.funki.module.login;
 
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 
 /**
  * email的图表界面
@@ -12,7 +12,7 @@ import com.hifunki.funki.base.activity.BaseActivity;
  * @since 2017-02-24 13:47:47
  */
 
-public class EmailGraphActivity extends BaseActivity {
+public class EmailGraphActivity extends BaseTitleActivity {
 
 
     @Override

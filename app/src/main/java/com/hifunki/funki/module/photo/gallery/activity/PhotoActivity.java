@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
@@ -46,7 +46,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-28 09:42:42
  */
-public class PhotoActivity extends BaseActivity implements View.OnClickListener {
+public class PhotoActivity extends BaseTitleActivity implements View.OnClickListener {
 
 
     @BindView(R.id.iv_selectimage)

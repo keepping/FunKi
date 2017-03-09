@@ -5,7 +5,7 @@ package com.hifunki.funki.base.activity;
  * on 16/6/20.
  */
 
-public abstract class BaseBackActivity extends BaseActivity {
+public abstract class BaseBackActivity extends BaseTitleActivity {
 
 //    @Override
 //    protected void initWindow() {

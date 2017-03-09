@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
 import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
@@ -35,7 +35,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-24 10:36:36
  */
-public class RegisterActivity extends BaseActivity implements View.OnClickListener {
+public class RegisterActivity extends BaseTitleActivity implements View.OnClickListener {
 
     private boolean isPhoneColor;
 

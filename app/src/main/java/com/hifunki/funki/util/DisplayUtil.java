@@ -5,7 +5,7 @@ import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 
 
 public class DisplayUtil {
@@ -61,7 +61,7 @@ public class DisplayUtil {
      * @param activity
      * @return
      */
-    public static int getStatusBarHeight(BaseActivity activity) {
+    public static int getStatusBarHeight(BaseTitleActivity activity) {
         Rect outRect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
         return outRect.top;

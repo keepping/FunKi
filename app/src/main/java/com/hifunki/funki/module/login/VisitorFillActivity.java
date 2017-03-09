@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.base.application.ApplicationMain;
 import com.hifunki.funki.module.login.business.VisitorFillBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-23 20:24:24
  */
-public class VisitorFillActivity extends BaseActivity implements View.OnClickListener {
+public class VisitorFillActivity extends BaseTitleActivity implements View.OnClickListener {
 
 
     @BindView(R.id.tvBoy)

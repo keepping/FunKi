@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.MeFragment;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-07 11:49:49
  */
-public class HomeActivity extends BaseActivity implements NavFragment.OnNavigationReselectListener,
+public class HomeActivity extends BaseTitleActivity implements NavFragment.OnNavigationReselectListener,
         HomeFragment.OnFragmentInteractionListener, NavFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
         MeFragment.OnFragmentInteractionListener {

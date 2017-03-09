@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FunKi</string>
     <string name="exit">退出</string>
-    <string name="enter">退出</string>
+    <string name="enter">进入</string>
     <string name="visitor_title">必填信息</string>
     <string name="visitor_sex">性别</string>
     <string name="boy">男</string>

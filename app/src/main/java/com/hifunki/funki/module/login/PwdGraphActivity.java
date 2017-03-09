@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.login.widget.PwdGraphView;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 
@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-24 12:03:03
  */
-public class PwdGraphActivity extends BaseActivity implements View.OnClickListener {
+public class PwdGraphActivity extends BaseTitleActivity implements View.OnClickListener {
 
     @BindView(R.id.iv_pwd_country)
     ImageView ivPwdCountry;

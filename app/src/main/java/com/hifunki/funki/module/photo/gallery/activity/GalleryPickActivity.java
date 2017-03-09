@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
 import com.hifunki.funki.module.photo.gallery.adapter.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
@@ -47,7 +47,7 @@ import java.util.List;
  * 图片选择页面
  * Created by Yancy on 2016/1/26.
  */
-public class GalleryPickActivity extends BaseActivity implements View.OnClickListener {
+public class GalleryPickActivity extends BaseTitleActivity implements View.OnClickListener {
 
     private Context mContext = null;
     private GalleryPickActivity mActivity = null;

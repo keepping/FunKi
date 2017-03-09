@@ -9,8 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.login.entity.City;
-import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.login.adapter.CityListAdapter;
 import com.hifunki.funki.module.login.widget.SideLetterBar;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-23 20:24:24
  */
-public class CountyListActivity extends BaseActivity implements View.OnClickListener {
+public class CountyListActivity extends BaseTitleActivity implements View.OnClickListener {
 
     @BindView(R.id.tvTitleLeft)
     TextView tvTitleLeft;

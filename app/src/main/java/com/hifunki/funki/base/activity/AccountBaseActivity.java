@@ -18,7 +18,7 @@ import com.hifunki.funki.R;
  * @link
  * @since 2017-03-06 14:26:26
  */
-public class AccountBaseActivity extends BaseActivity {
+public class AccountBaseActivity extends BaseTitleActivity {
 
     public static final String ACTION_ACCOUNT_FINISH_ALL = "funki.hifunki.com.action.finish.all";
 

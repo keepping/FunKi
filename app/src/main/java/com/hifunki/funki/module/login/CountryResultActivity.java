@@ -7,8 +7,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.login.entity.City;
-import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.login.adapter.CityListAdapter;
 import com.hifunki.funki.module.login.widget.ToolEditTitleBar;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
@@ -28,7 +28,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-27 14:55:55
  */
-public class CountryResultActivity extends BaseActivity implements View.OnClickListener {
+public class CountryResultActivity extends BaseTitleActivity implements View.OnClickListener {
 
     @BindView(R.id.lv_res_country)
     ListView lvResCountry;

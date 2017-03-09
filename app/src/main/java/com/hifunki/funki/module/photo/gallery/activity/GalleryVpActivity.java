@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
@@ -29,7 +29,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-03 17:36:36
  */
-public class GalleryVpActivity extends BaseActivity implements View.OnClickListener {
+public class GalleryVpActivity extends BaseTitleActivity implements View.OnClickListener {
 
     @BindView(R.id.vp_gallery_photo)
     ViewPager vpGalleryPhoto;

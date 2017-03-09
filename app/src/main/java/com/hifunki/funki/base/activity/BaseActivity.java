@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.hifunki.funki.R;
 import com.hifunki.funki.base.application.ApplicationMain;
-import com.hifunki.funki.util.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -37,16 +35,15 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 
 /**
- * BaseActivity
+ * 没有标题栏的activity
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
  * @value com.hifunki.funki.base.activity.BaseActivity.java
  * @link
- * @since 2017-02-23 20:24:24
+ * @since 2017-03-09 10:27:27
  */
-public abstract class BaseActivity extends AppCompatActivity {
-
+public abstract class BaseActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +56,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         //初始化参数
         initDatas();
-
-        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
 
         //初始化titleBar
         initTitleBar();
