@@ -10,34 +10,35 @@
     tools:context=".module.login.LoginActivity"
     tools:ignore="MissingPrefix">
 
-    <!--<com.hifunki.funki.module.login.widget.TitleBar-->
-    <!--android:id="@+id/tbRegister"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@drawable/iv_bg"-->
-    <!--android:clipToPadding="true"-->
-    <!--android:fitsSystemWindows="true" />-->
+    <include
+        android:id="@id/fl_title"
+        layout="@layout/title_templet" />
 
-    <include layout="@layout/title_templet" />
-
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_icon"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="43dp"
-        android:src="@drawable/iv_logo"
-        android:text="login"
-        android:visibility="visible" />
+        android:orientation="vertical">
 
-    <TextView
-        fontPath="fonts/arial_0.ttf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:text="@string/app_name"
-        android:textColor="@color/funkiText"
-        android:textSize="14sp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="43dp"
+            android:src="@drawable/iv_logo"
+            android:text="login"
+            android:visibility="visible" />
+
+        <TextView
+            fontPath="fonts/arial_0.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="@string/app_name"
+            android:textColor="@color/funkiText"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

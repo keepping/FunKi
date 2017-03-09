@@ -2,23 +2,27 @@ package com.hifunki.funki.module.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
+import com.hifunki.funki.base.activity.AccountBaseActivity;
 import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
+import com.hifunki.funki.module.login.business.LoginBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.module.login.widget.scroller.FixedSpeedScroller;
+import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -35,10 +39,14 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-24 10:36:36
  */
-public class RegisterActivity extends BaseTitleActivity implements View.OnClickListener {
+public class RegisterActivity extends AccountBaseActivity implements View.OnClickListener, ViewTreeObserver.OnGlobalLayoutListener {
 
     private boolean isPhoneColor;
 
+    @BindView(R.id.fl_title)
+    FrameLayout flTitle;
+    @BindView(R.id.ll_icon)
+    LinearLayout mLlIcon;
     @BindView(R.id.tvPhone)
     TextView tvPhone;
     @BindView(R.id.ivPhoneLine)
@@ -57,6 +65,8 @@ public class RegisterActivity extends BaseTitleActivity implements View.OnClickL
     TextView tvHelpCenter;
     @BindView(R.id.activity_login)
     LinearLayout activityLogin;
+    private int mLogoHeight;
+    private int mLogoWidth;
 
     private ArrayList<LinearLayout> mTabViews;
 
@@ -161,6 +171,18 @@ public class RegisterActivity extends BaseTitleActivity implements View.OnClickL
         }
     };
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        flTitle.getViewTreeObserver().addOnGlobalLayoutListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        flTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+    }
+
     @OnClick({R.id.tvPhone, R.id.ivPhoneLine, R.id.tvEmail, R.id.ivEmailLine, R.id.vpPhoneEmail, R.id.llRegNext, R.id.ivAgree, R.id.tvHelpCenter, R.id.activity_login})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -200,6 +222,41 @@ public class RegisterActivity extends BaseTitleActivity implements View.OnClickL
                 break;
             case R.id.activity_login:
                 break;
+        }
+    }
+
+    @Override
+    public void onGlobalLayout() {
+        final LinearLayout llIcon = this.mLlIcon;
+        Rect KeypadRect = new Rect();
+
+        flTitle.getWindowVisibleDisplayFrame(KeypadRect);
+
+        int screenHeight = flTitle.getRootView().getHeight();
+
+        int keypadHeight = screenHeight - KeypadRect.bottom;
+
+        //更新键盘激活状态
+        if (keypadHeight > 0) {
+            updateKeyBoardActiveStatus(true);
+        } else {
+            updateKeyBoardActiveStatus(false);
+        }
+
+        if (keypadHeight > 0 && llIcon.getTag() == null) {
+            final int height = llIcon.getHeight();
+            final int width = llIcon.getWidth();
+            this.mLogoHeight = height;
+            this.mLogoWidth = width;
+            llIcon.setTag(true);
+            LoginBusiness.setTopMarginAnimator(llIcon, height, 0, 1);
+
+            LoginBusiness.setAlphaAnimator(llIcon, 1, 0);
+        } else if (keypadHeight == 0 && llIcon.getTag() != null) {
+            final int height = mLogoHeight;
+            llIcon.setTag(null);
+            LoginBusiness.setTopMarginAnimator(llIcon, height, 1, 0);
+            LoginBusiness.setAlphaAnimator(llIcon, 0, 1);
         }
     }
 }
