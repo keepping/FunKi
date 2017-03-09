@@ -75,6 +75,9 @@
     <string name="fragmenthome_search_live">直播</string>
     <string name="fragmenthome_search_video">视频</string>
     <string name="fragmenthome_search_dymic">动态</string>
+    <string name="login_register_agree">注册代表您同意</string>
+    <string name="login_register_forget">忘记密码</string>
+    <string name="login_register_deal">FunKi使用协议</string>
 
 
 </resources>

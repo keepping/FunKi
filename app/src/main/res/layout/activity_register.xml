@@ -139,13 +139,13 @@
             android:layout_gravity="center"
             android:layout_marginLeft="14dp"
             android:src="@drawable/iv_reg_agree"
-            android:text="忘记密码" />
+            android:text="@string/login_register_forget" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
-            android:text="注册代表您同意"
+            android:text="@string/login_register_agree"
             android:textColor="@color/vistorTvbgNormal"
             android:textSize="15dp"
             android:textStyle="bold" />
@@ -154,7 +154,7 @@
             android:id="@+id/tvHelpCenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FunKi使用协议"
+            android:text="@string/login_register_deal"
             android:textColor="@color/vistorTvTitle"
             android:textSize="15dp"
             android:textStyle="bold" />
