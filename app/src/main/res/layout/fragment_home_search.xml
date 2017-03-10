@@ -10,17 +10,21 @@
     <include layout="@layout/title_edit_templet" />
 
     <android.support.design.widget.TabLayout
+        fontPath="fonts/FZDHTFW.ttf"
         android:id="@+id/tb_home_search"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/vistorTvbgNormal"
+        app:tabBackground="@color/vistorTvbgNormal"
         app:tabIndicatorColor="@color/vistorTvTitle"
         app:tabIndicatorHeight="2px"
+        app:tabMinWidth="39dp"
+        app:tabSelectedTextColor="@color/vistorTvTitle"
         app:tabTextColor="@color/loginTvUnClick" />
 
     <android.support.v4.view.ViewPager
-        android:background="@color/vistorTvbg"
         android:id="@+id/vp_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/vistorTvbg" />
 </LinearLayout>

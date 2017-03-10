@@ -68,8 +68,9 @@ public abstract class BaseFragment extends Fragment {
             if (savedInstanceState != null)
                 onRestartInstance(savedInstanceState);
             // Init
-            initView(mRoot);
             initData();
+            initView(mRoot);
+
         }
         return mRoot;
     }

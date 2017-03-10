@@ -46,6 +46,7 @@ public class HomeSearchFragment extends BaseFragment {
     TabLayout tbHomeSearch;
     @BindView(R.id.vp_search)
     ViewPager vpSearch;
+    private List<String> mTabTitle;
 
     public static HomeSearchFragment newInstance(String param1, String param2) {
         HomeSearchFragment fragment = new HomeSearchFragment();
@@ -60,7 +61,7 @@ public class HomeSearchFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
-        List<String> mTabTitle = new ArrayList<>();
+        mTabTitle = new ArrayList<>();
         mTabTitle.add("用户");
         mTabTitle.add("直播");
         mTabTitle.add("视频");
@@ -71,13 +72,18 @@ public class HomeSearchFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(getActivity().getSupportFragmentManager());
-        tbHomeSearch.addTab(tbHomeSearch.newTab().setText("用户"));
-        tbHomeSearch.addTab(tbHomeSearch.newTab().setText("直播"));
-        tbHomeSearch.addTab(tbHomeSearch.newTab().setText("视频"));
-        tbHomeSearch.addTab(tbHomeSearch.newTab().setText("动态"));
-        tbHomeSearch.setupWithViewPager(vpSearch);
+        tbHomeSearch= (TabLayout) root.findViewById(R.id.tb_home_search);
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(0)));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(1)));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(2)));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(3)));
+
+        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(getActivity().getSupportFragmentManager(),mTabTitle);
+
         vpSearch.setAdapter(homeSearchAdapter);
+
+        tbHomeSearch.setupWithViewPager(vpSearch);
+
 
     }
 
