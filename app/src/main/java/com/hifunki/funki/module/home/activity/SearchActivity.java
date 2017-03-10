@@ -32,12 +32,12 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-10 13:23:23
  */
-public class SearchActivity extends BaseTitleActivity implements UserListFragment.OnFragmentInteractionListener{
+public class SearchActivity extends BaseTitleActivity implements UserListFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.iv_Title_left)
     ImageView ivTitleLeft;
-    @BindView(R.id.tv_et_search)
-    TextView tvEtSearch;
+    @BindView(R.id.tv_et_cancel)
+    TextView tvEtCancel;
     @BindView(R.id.iv_et_close)
     ImageView ivEtClose;
     @BindView(R.id.etTitleCenter)
@@ -98,13 +98,13 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     }
 
 
-
-    @OnClick({R.id.iv_Title_left, R.id.tv_et_search, R.id.iv_et_close, R.id.etTitleCenter, R.id.rlEtTitle, R.id.tb_home_search, R.id.vp_search})
+    @OnClick({R.id.iv_Title_left, R.id.tv_et_cancel, R.id.iv_et_close, R.id.etTitleCenter, R.id.rlEtTitle, R.id.tb_home_search, R.id.vp_search})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_Title_left:
                 break;
-            case R.id.tv_et_search:
+            case R.id.tv_et_cancel:
+                finish();
                 break;
             case R.id.iv_et_close:
                 break;

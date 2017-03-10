@@ -30,6 +30,7 @@
     <string name="pwd_success_ok">新密码设置完成</string>
     <string name="pwd_success_return">返回登录页</string>
     <string name="search">搜索</string>
+    <string name="cancel">取消</string>
     <string name="choose_country">选择分区号</string>
     <string name="select_image_head">头像</string>
     <string name="select_image_nickname">昵称</string>

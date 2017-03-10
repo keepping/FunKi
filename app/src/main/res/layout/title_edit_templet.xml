@@ -16,14 +16,14 @@
         android:src="@drawable/iv_search" />
 
     <TextView
-        android:id="@+id/tv_et_search"
+        android:id="@+id/tv_et_cancel"
         fontPath="fonts/FZZDXFW.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="14dp"
-        android:text="@string/search"
+        android:text="@string/cancel"
         android:textColor="@color/titleText"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="24dp"
-        android:layout_toLeftOf="@+id/tv_et_search"
+        android:layout_toLeftOf="@+id/tv_et_cancel"
         android:src="@drawable/iv_close" />
 
     <EditText
