@@ -81,5 +81,8 @@
     <string name="login_register_deal">FunKi使用协议</string>
 
     <string name="search_hot_recommend">热度推荐</string>
+    <string name="search_live">LIVE</string>
+    <string name="search_name">水原希子</string>
+    <string name="search_lv">LV.74</string>
 
 </resources>
