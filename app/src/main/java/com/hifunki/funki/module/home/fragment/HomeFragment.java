@@ -3,24 +3,19 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.BaseFragment;
 import com.hifunki.funki.module.home.HomeActivity;
+import com.hifunki.funki.module.home.activity.SearchActivity;
 import com.hifunki.funki.module.login.LoginActivity;
-import com.hifunki.funki.util.ListUtil;
 import com.hifunki.funki.util.SPUtils;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -109,37 +104,19 @@ public class HomeFragment extends BaseFragment {
         mListener = null;
     }
 
+
     @SuppressWarnings("RestrictedApi")
     @OnClick({R.id.iv_home_search, R.id.iv_home_ticket, R.id.iv_home_list, R.id.tv_home_focus, R.id.tv_home_latest, R.id.tv_home_hot, R.id.vp_home})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_home_search:
+                HomeActivity homeActivity = (HomeActivity) getActivity();
 
                 SPUtils spUtils = new SPUtils(Spkey.FILE_LOGIN);
                 if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
-                    HomeActivity homeActivity = (HomeActivity) getActivity();
                     LoginActivity.show(homeActivity);
                 } else {
-                    HomeSearchFragment homeSearchFragment = HomeSearchFragment.newInstance("trest", "tes");
-                    FragmentTransaction ft = mFragmentManager.beginTransaction();
-                    //TODO res id 需要确认
-                    ft.add(R.id.main_container, homeSearchFragment, FragmentConst.HomeSearchFragment);
-                    Fragment navFragment = mFragmentManager.findFragmentByTag(FragmentConst.NavFragment);
-
-                    List<Fragment> fragments = mFragmentManager.getFragments();
-                    if (!ListUtil.isEmpty(fragments)) {
-                        for (Fragment fragment : fragments) {
-                            if (fragment.isVisible()) {
-                                if (!fragment.equals(navFragment)) {
-                                    ft.hide(fragment);
-                                }
-
-                            }
-                        }
-                    }
-//                    ft.show(navFragment);
-                    ft.show(homeSearchFragment);
-                    ft.commit();
+                    SearchActivity.show(homeActivity);
                 }
 
                 break;

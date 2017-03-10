@@ -1,6 +1,8 @@
-package com.hifunki.funki.module.home.fragment;
+package com.hifunki.funki.module.home.activity;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -10,8 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.home.BaseFragment;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.home.adapter.HomeSearchAdapter;
+import com.hifunki.funki.module.home.fragment.UserListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +22,18 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+
 /**
  * 在此写用途
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.fragment.HomeSearchFragment.java
+ * @value com.hifunki.funki.module.home.activity.SearchActivity.java
  * @link
- * @since 2017-03-09 14:22:22
+ * @since 2017-03-10 13:23:23
  */
-public class HomeSearchFragment extends BaseFragment {
+public class SearchActivity extends BaseTitleActivity implements UserListFragment.OnFragmentInteractionListener{
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     @BindView(R.id.iv_Title_left)
     ImageView ivTitleLeft;
     @BindView(R.id.tv_et_search)
@@ -48,49 +50,53 @@ public class HomeSearchFragment extends BaseFragment {
     ViewPager vpSearch;
     private List<String> mTabTitle;
 
-    public static HomeSearchFragment newInstance(String param1, String param2) {
-        HomeSearchFragment fragment = new HomeSearchFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, SearchActivity.class));
     }
 
+    @Override
+    protected int getViewResId() {
+        return R.layout.activity_search;
+    }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initDatas() {
         mTabTitle = new ArrayList<>();
         mTabTitle.add("用户");
         mTabTitle.add("直播");
         mTabTitle.add("视频");
         mTabTitle.add("动态");
+    }
+
+    @Override
+    protected void initTitleBar() {
 
     }
 
     @Override
-    protected void initView(View root) {
-        super.initView(root);
-        tbHomeSearch= (TabLayout) root.findViewById(R.id.tb_home_search);
+    protected void initView() {
         tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(0)));
         tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(1)));
         tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(2)));
         tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(3)));
 
-        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(getActivity().getSupportFragmentManager(),mTabTitle);
+        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(this.getSupportFragmentManager(), mTabTitle);
 
         vpSearch.setAdapter(homeSearchAdapter);
 
         tbHomeSearch.setupWithViewPager(vpSearch);
+    }
 
+    @Override
+    protected void initListener() {
 
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_home_search;
+    protected void initAdapter() {
+
     }
+
 
 
     @OnClick({R.id.iv_Title_left, R.id.tv_et_search, R.id.iv_et_close, R.id.etTitleCenter, R.id.rlEtTitle, R.id.tb_home_search, R.id.vp_search})
@@ -111,5 +117,10 @@ public class HomeSearchFragment extends BaseFragment {
             case R.id.vp_search:
                 break;
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

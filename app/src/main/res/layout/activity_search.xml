@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:ignore="MissingPrefix">
+    android:fitsSystemWindows="true"
+    tools:context="com.hifunki.funki.module.home.activity.SearchActivity">
 
     <include layout="@layout/title_edit_templet" />
 
     <android.support.design.widget.TabLayout
-        fontPath="fonts/FZDHTFW.ttf"
         android:id="@+id/tb_home_search"
+        fontPath="fonts/FZDHTFW.ttf"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         app:tabBackground="@color/vistorTvbgNormal"
@@ -27,4 +28,5 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/vistorTvbg" />
+
 </LinearLayout>
