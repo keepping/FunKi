@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.home.BaseFragment;
+import com.hifunki.funki.module.home.adapter.HomeSearchAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,6 +56,30 @@ public class HomeSearchFragment extends BaseFragment {
         return fragment;
     }
 
+
+    @Override
+    protected void initData() {
+        super.initData();
+        List<String> mTabTitle = new ArrayList<>();
+        mTabTitle.add("用户");
+        mTabTitle.add("直播");
+        mTabTitle.add("视频");
+        mTabTitle.add("动态");
+
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(getActivity().getSupportFragmentManager());
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText("用户"));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText("直播"));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText("视频"));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText("动态"));
+        tbHomeSearch.setupWithViewPager(vpSearch);
+        vpSearch.setAdapter(homeSearchAdapter);
+
+    }
 
     @Override
     protected int getLayoutId() {

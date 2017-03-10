@@ -4,3 +4,7 @@
 /build
 .idea/
 /app/build
+.gitignore
+build.gradle
+proguard-rules.pro
+src/
