@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.AccountBaseActivity;
 import com.hifunki.funki.common.Spkey;
-import com.hifunki.funki.module.home.HomeActivity;
+import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.login.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.business.LoginBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;

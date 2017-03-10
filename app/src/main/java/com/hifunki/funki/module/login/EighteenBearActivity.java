@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.application.ApplicationMain;
-import com.hifunki.funki.module.home.HomeActivity;
+import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.login.adapter.EighteenAdapter;
 import com.hifunki.funki.module.login.entity.EighteenEntity;
 import com.hifunki.funki.util.ToastUtils;

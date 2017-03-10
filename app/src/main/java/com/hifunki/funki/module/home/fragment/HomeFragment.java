@@ -12,8 +12,8 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.BaseFragment;
-import com.hifunki.funki.module.home.HomeActivity;
-import com.hifunki.funki.module.home.activity.SearchActivity;
+import com.hifunki.funki.module.home.activity.HomeActivity;
+import com.hifunki.funki.module.search.activity.SearchActivity;
 import com.hifunki.funki.module.login.LoginActivity;
 import com.hifunki.funki.util.SPUtils;
 

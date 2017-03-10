@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.home.adapter;
+package com.hifunki.funki.module.search.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.adapter.HomeSearchAdapter.java
+ * @value com.hifunki.funki.module.search.adapter.HomeSearchAdapter.java
  * @link
  * @since 2017-03-10 10:25:25
  */

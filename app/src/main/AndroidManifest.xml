@@ -20,11 +20,7 @@
         <activity
             android:name=".module.login.EighteenBearActivity"
             android:theme="@style/AppThemeFullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".module.login.MainActivity" />
@@ -96,12 +92,18 @@
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
         <activity android:name=".base.activity.AccountBaseActivity" />
         <activity
-            android:name=".module.home.HomeActivity"
+            android:name=".module.home.activity.HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
 
-        <activity android:name=".module.home.activity.SearchActivity"></activity>
+        <activity android:name=".module.search.activity.SearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

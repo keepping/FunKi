@@ -80,5 +80,6 @@
     <string name="login_register_forget">忘记密码</string>
     <string name="login_register_deal">FunKi使用协议</string>
 
+    <string name="search_hot_recommend">热度推荐</string>
 
 </resources>

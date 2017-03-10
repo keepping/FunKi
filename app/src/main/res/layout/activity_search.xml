@@ -4,29 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.hifunki.funki.module.home.activity.SearchActivity">
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.search.activity.SearchActivity">
 
     <include layout="@layout/title_edit_templet" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tb_home_search"
-        fontPath="fonts/FZDHTFW.ttf"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        app:tabBackground="@color/vistorTvbgNormal"
-        app:tabIndicatorColor="@color/vistorTvTitle"
-        app:tabIndicatorHeight="2px"
-        app:tabMinWidth="39dp"
-        app:tabSelectedTextColor="@color/vistorTvTitle"
-        app:tabTextColor="@color/loginTvUnClick" />
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_result"-->
+        <!--android:visibility="invisible"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_search"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/vistorTvbg" />
+        <!--<android.support.design.widget.TabLayout-->
+            <!--android:id="@+id/tb_home_search"-->
+            <!--fontPath="fonts/FZDHTFW.ttf"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--app:tabBackground="@color/vistorTvbgNormal"-->
+            <!--app:tabIndicatorColor="@color/vistorTvTitle"-->
+            <!--app:tabIndicatorHeight="2px"-->
+            <!--app:tabMinWidth="39dp"-->
+            <!--app:tabSelectedTextColor="@color/vistorTvTitle"-->
+            <!--app:tabTextColor="@color/loginTvUnClick" />-->
+
+        <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/vp_search"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/vistorTvbg" />-->
+    <!--</LinearLayout>-->
+
+    <!--<com.handmark.pulltorefresh.library.PullToRefreshScrollView-->
+        <!--xmlns:ptr="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/pull_recommend"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:visibility="visible"-->
+        <!--ptr:ptrAnimationStyle="flip"-->
+        <!--ptr:ptrMode="both" >-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_hot_recommend" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_hot_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+        </LinearLayout>
+    <!--</com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
 
 </LinearLayout>
