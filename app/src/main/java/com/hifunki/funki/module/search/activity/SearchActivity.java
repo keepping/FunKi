@@ -2,15 +2,18 @@ package com.hifunki.funki.module.search.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ import com.hifunki.funki.module.search.adapter.HotSearchAdapter;
 import com.hifunki.funki.module.search.entity.ActivityEntity;
 import com.hifunki.funki.module.search.entity.Join;
 import com.hifunki.funki.module.search.entity.PersonEntity;
+import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,7 +118,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         personEntities.add(personEntity2);
 
         List<Join> joinList = new ArrayList<>();
-        for(int i=0;i<15;i++) {
+        for (int i = 0; i < 15; i++) {
             Join join = new Join("酱油泡芙", imagePathss);
             joinList.add(join);
         }
@@ -154,7 +158,8 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         rvActivityRecommend.setLayoutManager(linearLayoutManager1);
         rvActivityRecommend.setAdapter(activitySearchAdapter);
 
-        activitySearchAdapter.addHeaderView(getHeadView());
+        activitySearchAdapter.addHeaderView(getHeadView(), 0);
+        activitySearchAdapter.addHeaderView(getHeadView1(), 1);
 
         //TabLayout
 //        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(this.getSupportFragmentManager(), mTabTitle);
@@ -218,6 +223,8 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
      * @return
      */
     private View getHeadView() {
+
+
         View headView = getLayoutInflater().inflate(R.layout.activity_search_head, (ViewGroup) rvActivityRecommend.getParent(), false);
         RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
         //设置rl的adapter
@@ -226,6 +233,22 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         rvHotRecommend.setLayoutManager(linearLayoutManager);
         rvHotRecommend.setAdapter(eighteenAdapter);
         return headView;
+    }
+
+    private View getHeadView1() {
+        TextView textView = new TextView(getApplicationContext());
+        textView.setText(getResources().getString(R.string.search_activity_recommend));
+        textView.setGravity(Gravity.LEFT);
+        textView.setTextColor(getResources().getColor(R.color.loginTvUnClick));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0,0,0, (int) DisplayUtil.dip2Px(getApplicationContext(),17));
+        textView.setLayoutParams(params);
+//        textView.setTextSize(DisplayUtil.sp2px(getApplicationContext(),17));
+        textView.setTextSize(17);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FZZDXFW.ttf");
+        textView.setTypeface(typeface,Typeface.BOLD);
+        textView.setPadding((int) DisplayUtil.dip2Px(getApplicationContext(), 10), 0, 0, 0);
+        return textView;
     }
 
 }
