@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -60,8 +61,6 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 
     //    @BindView(R.id.pull_recommend)
 //    PullToRefreshScrollView pullRecommend;
-    @BindView(R.id.rv_hot_recommend)
-    RecyclerView rvHotRecommend;
     @BindView(R.id.rv_activity_recommend)
     RecyclerView rvActivityRecommend;
 
@@ -70,6 +69,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     private boolean isSearch;
     private List<PersonEntity> personEntities;
     private List<ActivityEntity> activityList;
+    private View headView;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, SearchActivity.class));
@@ -118,14 +118,13 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         List<Join> joinList = new ArrayList<>();
         joinList.add(join);
         joinList.add(join1);
-        ActivityEntity activityEntity = new ActivityEntity("波多野结衣", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
+        ActivityEntity activityEntity = new ActivityEntity("酱油泡芙 ", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
                 joinList);
-        ActivityEntity activityEntity2 = new ActivityEntity("波多野结衣", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
+        ActivityEntity activityEntity2 = new ActivityEntity("酱油泡芙", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
                 joinList);
         activityList = new ArrayList<>();
         activityList.add(activityEntity);
         activityList.add(activityEntity2);
-
     }
 
     @Override
@@ -139,8 +138,6 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 //        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(1)));
 //        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(2)));
 //        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(3)));
-
-
     }
 
     @Override
@@ -150,14 +147,6 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 
     @Override
     protected void initAdapter() {
-        //设置rl的adapter
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
-        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
-
-        rvHotRecommend.setLayoutManager(linearLayoutManager);
-
-        rvHotRecommend.setAdapter(eighteenAdapter);
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         ActivitySearchAdapter activitySearchAdapter = new ActivitySearchAdapter(getApplicationContext(), R.layout.list_search_activity_recommend, activityList);
@@ -165,14 +154,15 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         rvActivityRecommend.setLayoutManager(linearLayoutManager1);
         rvActivityRecommend.setAdapter(activitySearchAdapter);
 
+        activitySearchAdapter.addHeaderView(getHeadView());
+
+        //TabLayout
 //        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(this.getSupportFragmentManager(), mTabTitle);
 //        vpSearch.setAdapter(homeSearchAdapter);
 //        tbHomeSearch.setupWithViewPager(vpSearch);
     }
-//    R.id.pull_recommend
-//    R.id.tb_home_search, R.id.vp_search, R.id.ll_result,
 
-    @OnClick({R.id.iv_Title_left, R.id.tv_et_cancel, R.id.iv_et_close, R.id.etTitleCenter, R.id.rlEtTitle, R.id.rv_hot_recommend})
+    @OnClick({R.id.iv_Title_left, R.id.tv_et_cancel, R.id.iv_et_close, R.id.etTitleCenter, R.id.rlEtTitle})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_Title_left:
@@ -186,8 +176,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
                 break;
             case R.id.rlEtTitle:
                 break;
-            case R.id.rv_hot_recommend:
-                break;
+
 
 //            case R.id.tb_home_search:
 //                break;
@@ -233,5 +222,24 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 //            }
         }
     };
+
+    /**
+     * 获取头部的热门
+     * @return
+     */
+    private View getHeadView() {
+        View headView = getLayoutInflater().inflate(R.layout.activity_search_head, (ViewGroup) rvActivityRecommend.getParent(), false);
+        RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
+        //设置rl的adapter
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
+
+        rvHotRecommend.setLayoutManager(linearLayoutManager);
+
+        rvHotRecommend.setAdapter(eighteenAdapter);
+
+        return headView;
+    }
 
 }

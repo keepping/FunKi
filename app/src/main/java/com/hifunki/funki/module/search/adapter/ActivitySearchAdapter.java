@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.search.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +28,8 @@ public class ActivitySearchAdapter extends BaseQuickAdapter<ActivityEntity, Base
     @Override
     protected void convert(BaseViewHolder helper, ActivityEntity item) {
         Glide.with(mContext).load(item.getActivityImage()).into((ImageView) helper.getView(R.id.iv_activity_image));
+        RecyclerView recycleView = helper.getView(R.id.rv_activity_join);
+
     }
 
     public void setContextView(int contextView) {

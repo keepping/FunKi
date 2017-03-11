@@ -48,38 +48,17 @@
     <!--ptr:ptrMode="both" >-->
 
     <LinearLayout
+        android:id="@+id/ll_activity_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/vistorTvbg"
         android:orientation="vertical">
 
-        <TextView
-            fontPath="fonts/FZZDXFW.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_hot_recommend"
-            android:textColor="@color/loginTvUnClick"
-            android:textSize="17sp" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_hot_recommend"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
-
-        <TextView
-            fontPath="fonts/FZZDXFW.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_activity_recommend"
-            android:textColor="@color/loginTvUnClick"
-            android:textSize="17sp" />
-
-
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_activity_recommend"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </LinearLayout>
     <!--</com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
 
