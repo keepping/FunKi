@@ -22,5 +22,6 @@
     <color name="selectImageWrong">#AB2D2D</color>
     <color name="galleryText">#FFFFFF</color>
     <color name="eighteenrTvBg">#6B4E9A</color>
+    <color name="searchHotBg">#432376</color>
 
 </resources>

@@ -131,7 +131,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     @Override
     protected void initAdapter() {
         //设置rl的adapter
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
 
