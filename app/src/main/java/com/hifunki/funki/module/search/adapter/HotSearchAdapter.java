@@ -33,15 +33,14 @@ public class HotSearchAdapter extends BaseQuickAdapter<PersonEntity, BaseViewHol
 
     @Override
     protected void convert(BaseViewHolder helper, PersonEntity item) {
-        if(item.getLiveStatus()==1) {
-            ((TextView) helper.getView(R.id.tv_live_status)).setText("LIVEING");
+        if (item.getLiveStatus() == 1) {
+            ((TextView) helper.getView(R.id.tv_live_status)).setText("LIVE");
         }
 
 //        helper.setText(R.id.tv_name, item.getName());
 //        helper.setText(R.id.tv_name, item.getName());
 //        Log.e("test", "convert: "+item.getImagePath() );
         Glide.with(mContext).load(item.getPhoto()).into((ImageView) helper.getView(R.id.iv_photo));
-
 
 
         Glide.with(mContext).load(item.getImagePath().get(0)).into((ImageView) helper.getView(R.id.iv_imagePath1));

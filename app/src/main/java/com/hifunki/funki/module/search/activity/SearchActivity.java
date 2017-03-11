@@ -113,11 +113,12 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         personEntities.add(personEntity1);
         personEntities.add(personEntity2);
 
-        Join join = new Join("酱油泡芙", imagePathss);
-        Join join1 = new Join("酱油泡芙", imagePathss);
         List<Join> joinList = new ArrayList<>();
-        joinList.add(join);
-        joinList.add(join1);
+        for(int i=0;i<15;i++) {
+            Join join = new Join("酱油泡芙", imagePathss);
+            joinList.add(join);
+        }
+
         ActivityEntity activityEntity = new ActivityEntity("酱油泡芙 ", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
                 joinList);
         ActivityEntity activityEntity2 = new ActivityEntity("酱油泡芙", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
@@ -175,17 +176,6 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
                 break;
             case R.id.rlEtTitle:
                 break;
-
-
-//            case R.id.tb_home_search:
-//                break;
-//            case R.id.vp_search:
-//                break;
-//            case R.id.ll_result:
-//                break;
-//
-//            case R.id.pull_recommend:
-//                break;
         }
     }
 
@@ -232,13 +222,9 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
         //设置rl的adapter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
         HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
-
         rvHotRecommend.setLayoutManager(linearLayoutManager);
-
         rvHotRecommend.setAdapter(eighteenAdapter);
-
         return headView;
     }
 
