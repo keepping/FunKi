@@ -21,9 +21,9 @@ public class ActivitySearchAdapter extends BaseQuickAdapter<ActivityEntity, Base
     private Context mContext;
     private int contextView;
 
-    public ActivitySearchAdapter(Context context,int layoutResId, List<ActivityEntity> data) {
+    public ActivitySearchAdapter(Context context, int layoutResId, List<ActivityEntity> data) {
         super(layoutResId, data);
-        this.mContext=context;
+        this.mContext = context;
 
     }
 
@@ -32,8 +32,8 @@ public class ActivitySearchAdapter extends BaseQuickAdapter<ActivityEntity, Base
         Glide.with(mContext).load(item.getActivityImage()).into((ImageView) helper.getView(R.id.iv_activity_image));
 
         RecyclerView recycleView = helper.getView(R.id.rv_activity_join);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false);
-        ActivityPhotoAdapter activityPhotoAdapter=new ActivityPhotoAdapter(mContext,R.layout.list_search_activity_photo,item.getJoinList());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+        ActivityPhotoAdapter activityPhotoAdapter = new ActivityPhotoAdapter(mContext, R.layout.list_search_activity_photo, item.getJoinList());
         recycleView.setLayoutManager(linearLayoutManager);
         recycleView.setAdapter(activityPhotoAdapter);
 

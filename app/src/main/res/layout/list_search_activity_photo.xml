@@ -2,16 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:paddingTop="10dp"
-    android:layout_height="55dp"
+    android:layout_height="wrap_content"
+    android:gravity="clip_horizontal"
     android:orientation="vertical"
+    android:paddingTop="10dp"
     tools:ignore="MissingPrefix">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_activity_photo"
         android:layout_width="46dp"
         android:layout_height="46dp"
-        android:paddingLeft="10dp" />
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
 
     <TextView
         android:id="@+id/tv_activity_name"

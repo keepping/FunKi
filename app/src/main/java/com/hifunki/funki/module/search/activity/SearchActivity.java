@@ -150,6 +150,23 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         etTitleCenter.addTextChangedListener(textWatcher);
     }
 
+    /**
+     * 获取头部的热门
+     *
+     * @return
+     */
+    private View getHeadView() {
+
+        View headView = getLayoutInflater().inflate(R.layout.activity_search_head, (ViewGroup) rvActivityRecommend.getParent(), false);
+        RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
+        //设置rl的adapter
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
+        rvHotRecommend.setLayoutManager(linearLayoutManager);
+        rvHotRecommend.setAdapter(eighteenAdapter);
+        return headView;
+    }
+
     @Override
     protected void initAdapter() {
 
@@ -158,8 +175,9 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         rvActivityRecommend.setLayoutManager(linearLayoutManager1);
         rvActivityRecommend.setAdapter(activitySearchAdapter);
 
-        activitySearchAdapter.addHeaderView(getHeadView(), 0);
-        activitySearchAdapter.addHeaderView(getHeadView1(), 1);
+//        activitySearchAdapter.addHeaderView(getHeadView1(getResources().getString(R.string.search_hot_recommend)), 0);
+        activitySearchAdapter.addHeaderView(getHeadView(), 1);
+//        activitySearchAdapter.addHeaderView(getHeadView1(getResources().getString(R.string.search_activity_recommend)), 2);
 
         //TabLayout
 //        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(this.getSupportFragmentManager(), mTabTitle);
@@ -217,27 +235,11 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         }
     };
 
-    /**
-     * 获取头部的热门
-     *
-     * @return
-     */
-    private View getHeadView() {
 
 
-        View headView = getLayoutInflater().inflate(R.layout.activity_search_head, (ViewGroup) rvActivityRecommend.getParent(), false);
-        RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
-        //设置rl的adapter
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
-        rvHotRecommend.setLayoutManager(linearLayoutManager);
-        rvHotRecommend.setAdapter(eighteenAdapter);
-        return headView;
-    }
-
-    private View getHeadView1() {
+    private View getHeadView1(String text) {
         TextView textView = new TextView(getApplicationContext());
-        textView.setText(getResources().getString(R.string.search_activity_recommend));
+        textView.setText(text);
         textView.setGravity(Gravity.LEFT);
         textView.setTextColor(getResources().getColor(R.color.loginTvUnClick));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
