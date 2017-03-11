@@ -23,6 +23,6 @@ public class EighteenAdapter extends BaseQuickAdapter<EighteenEntity, BaseViewHo
 
     @Override
     protected void convert(BaseViewHolder helper, EighteenEntity item) {
-        helper.setText(R.id.tv_eighteen,item.getText());
+        helper.setText(R.id.tv_eighteen, item.getText());
     }
 }

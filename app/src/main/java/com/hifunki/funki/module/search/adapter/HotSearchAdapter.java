@@ -1,7 +1,10 @@
 package com.hifunki.funki.module.search.adapter;
 
 import android.content.Context;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.hifunki.funki.R;
@@ -22,7 +25,7 @@ public class HotSearchAdapter extends BaseQuickAdapter<PersonEntity, BaseViewHol
 
     private Context mContext;
 
-    public HotSearchAdapter(Context context, int layoutResId, List<PersonEntity> data) {
+    public HotSearchAdapter(Context context, int layoutResId, List data) {
         super(layoutResId, data);
         this.mContext = context;
 
@@ -30,9 +33,21 @@ public class HotSearchAdapter extends BaseQuickAdapter<PersonEntity, BaseViewHol
 
     @Override
     protected void convert(BaseViewHolder helper, PersonEntity item) {
-        helper.setText(R.id.tv_live_status, item.getName());
-        helper.setText(R.id.tv_name, item.getName());
-//        Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_photo));
+        if(item.getLiveStatus()==1) {
+            ((TextView) helper.getView(R.id.tv_live_status)).setText("LIVEING");
+        }
+
+//        helper.setText(R.id.tv_name, item.getName());
+//        helper.setText(R.id.tv_name, item.getName());
+//        Log.e("test", "convert: "+item.getImagePath() );
+        Glide.with(mContext).load(item.getPhoto()).into((ImageView) helper.getView(R.id.iv_photo));
+
+
+
+        Glide.with(mContext).load(item.getImagePath().get(0)).into((ImageView) helper.getView(R.id.iv_imagePath1));
+        Glide.with(mContext).load(item.getImagePath().get(1)).into((ImageView) helper.getView(R.id.iv_imagePath2));
+        Glide.with(mContext).load(item.getImagePath().get(2)).into((ImageView) helper.getView(R.id.iv_imagePath3));
+        Glide.with(mContext).load(item.getImagePath().get(3)).into((ImageView) helper.getView(R.id.iv_imagePath4));
 
 
     }

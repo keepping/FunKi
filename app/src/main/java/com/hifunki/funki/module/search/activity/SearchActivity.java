@@ -16,7 +16,10 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.home.fragment.UserListFragment;
+import com.hifunki.funki.module.search.adapter.ActivitySearchAdapter;
 import com.hifunki.funki.module.search.adapter.HotSearchAdapter;
+import com.hifunki.funki.module.search.entity.ActivityEntity;
+import com.hifunki.funki.module.search.entity.Join;
 import com.hifunki.funki.module.search.entity.PersonEntity;
 
 import java.util.ArrayList;
@@ -59,11 +62,14 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 //    PullToRefreshScrollView pullRecommend;
     @BindView(R.id.rv_hot_recommend)
     RecyclerView rvHotRecommend;
+    @BindView(R.id.rv_activity_recommend)
+    RecyclerView rvActivityRecommend;
 
-
+    public String imagePathss = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg";
     private List<String> mTabTitle;
     private boolean isSearch;
     private List<PersonEntity> personEntities;
+    private List<ActivityEntity> activityList;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, SearchActivity.class));
@@ -82,21 +88,23 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         mTabTitle.add("视频");
         mTabTitle.add("动态");
         List<String> imagePath = new ArrayList<>();
-        imagePath.add("https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D200/sign=8e07ecabb7fb4316051f7d7a10a54642/5882b2b7d0a20cf482c772bf73094b36acaf997f.jpg");
-        imagePath.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489148926748&di=f84808bb9a10572a964b824b3cf95545&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F10dfa9ec8a1363270c254f53948fa0ec09fac782.jpg");
-        imagePath.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489148926912&di=61a3f3d5128f3fefb556d06deb159f99&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0823dd54564e925838c205c89982d158ccbf4e26.jpg");
-        imagePath.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489148926912&di=61a3f3d5128f3fefb556d06deb159f99&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0823dd54564e925838c205c89982d158ccbf4e26.jpg");
+        imagePath.add("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489226909&di=838a1cbd7a5ac44cd14a75defdbb3e15&src=http://pic1.5442.com:82/2015/0409/01/15.jpg!960.jpg");
+        imagePath.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953985&di=5972d42ed1127338cf6e55fee281c2d7&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F17%2F14%2F25%2F43Y58PICfJB_1024.jpg");
+        imagePath.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=14bea02cb3b79970900533f7150d4cc5&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F150604%2F139-150604162F5.jpg");
+        imagePath.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=14bea02cb3b79970900533f7150d4cc5&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F150604%2F139-150604162F5.jpg");
 
         PersonEntity personEntity = new PersonEntity(
-                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489148832678&di=5d40ed37ef50274bcf1fe644ffd757ab&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20160324%2F1458835090861273.jpg",
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
                 1, "水源席子", 1, 31, "我爱北京天安门", imagePath
         );
+
         PersonEntity personEntity1 = new PersonEntity(
-                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489148832678&di=5d40ed37ef50274bcf1fe644ffd757ab&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20160324%2F1458835090861273.jpg",
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
                 1, "水源席子", 1, 31, "我爱北京天安门", imagePath
         );
+
         PersonEntity personEntity2 = new PersonEntity(
-                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489148832678&di=5d40ed37ef50274bcf1fe644ffd757ab&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20160324%2F1458835090861273.jpg",
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
                 1, "水源席子", 1, 31, "我爱北京天安门", imagePath
         );
 
@@ -105,6 +113,18 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         personEntities.add(personEntity1);
         personEntities.add(personEntity2);
 
+        Join join = new Join("酱油泡芙", imagePathss);
+        Join join1 = new Join("酱油泡芙", imagePathss);
+        List<Join> joinList = new ArrayList<>();
+        joinList.add(join);
+        joinList.add(join1);
+        ActivityEntity activityEntity = new ActivityEntity("波多野结衣", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
+                joinList);
+        ActivityEntity activityEntity2 = new ActivityEntity("波多野结衣", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
+                joinList);
+        activityList = new ArrayList<>();
+        activityList.add(activityEntity);
+        activityList.add(activityEntity2);
 
     }
 
@@ -139,6 +159,11 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 
         rvHotRecommend.setAdapter(eighteenAdapter);
 
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        ActivitySearchAdapter activitySearchAdapter = new ActivitySearchAdapter(getApplicationContext(), R.layout.list_search_activity_recommend, activityList);
+        activitySearchAdapter.setContextView(R.layout.list_search_activity_recommend);
+        rvActivityRecommend.setLayoutManager(linearLayoutManager1);
+        rvActivityRecommend.setAdapter(activitySearchAdapter);
 
 //        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(this.getSupportFragmentManager(), mTabTitle);
 //        vpSearch.setAdapter(homeSearchAdapter);
