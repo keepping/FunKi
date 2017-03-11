@@ -31,7 +31,7 @@ import butterknife.OnClick;
 
 
 /**
- * 在此写用途
+ * 搜索的界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
@@ -150,7 +150,6 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         ActivitySearchAdapter activitySearchAdapter = new ActivitySearchAdapter(getApplicationContext(), R.layout.list_search_activity_recommend, activityList);
-        activitySearchAdapter.setContextView(R.layout.list_search_activity_recommend);
         rvActivityRecommend.setLayoutManager(linearLayoutManager1);
         rvActivityRecommend.setAdapter(activitySearchAdapter);
 
@@ -225,6 +224,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 
     /**
      * 获取头部的热门
+     *
      * @return
      */
     private View getHeadView() {

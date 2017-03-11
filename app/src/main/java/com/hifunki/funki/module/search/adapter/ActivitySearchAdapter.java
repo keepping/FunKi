@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.search.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
@@ -23,12 +24,19 @@ public class ActivitySearchAdapter extends BaseQuickAdapter<ActivityEntity, Base
     public ActivitySearchAdapter(Context context,int layoutResId, List<ActivityEntity> data) {
         super(layoutResId, data);
         this.mContext=context;
+
     }
 
     @Override
     protected void convert(BaseViewHolder helper, ActivityEntity item) {
         Glide.with(mContext).load(item.getActivityImage()).into((ImageView) helper.getView(R.id.iv_activity_image));
+
         RecyclerView recycleView = helper.getView(R.id.rv_activity_join);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false);
+        ActivityPhotoAdapter activityPhotoAdapter=new ActivityPhotoAdapter(mContext,R.layout.list_search_activity_photo,item.getJoinList());
+        recycleView.setLayoutManager(linearLayoutManager);
+        recycleView.setAdapter(activityPhotoAdapter);
+
 
     }
 
