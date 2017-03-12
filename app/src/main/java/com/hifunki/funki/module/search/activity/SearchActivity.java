@@ -2,13 +2,13 @@ package com.hifunki.funki.module.search.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -21,11 +21,12 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.home.fragment.UserListFragment;
 import com.hifunki.funki.module.search.adapter.ActivitySearchAdapter;
+import com.hifunki.funki.module.search.adapter.HomeSearchAdapter;
 import com.hifunki.funki.module.search.adapter.HotSearchAdapter;
 import com.hifunki.funki.module.search.entity.ActivityEntity;
 import com.hifunki.funki.module.search.entity.Join;
 import com.hifunki.funki.module.search.entity.PersonEntity;
-import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,15 +57,17 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     @BindView(R.id.rlEtTitle)
     RelativeLayout rlEtTitle;
 
-//    @BindView(R.id.ll_result)
-//    LinearLayout llResult;
-//    @BindView(R.id.tb_home_search)
-//    TabLayout tbHomeSearch;
-//    @BindView(R.id.vp_search)
-//    ViewPager vpSearch;
+    @BindView(R.id.ll_result)
+    LinearLayout llResult;
+    @BindView(R.id.tb_home_search)
+    TabLayout tbHomeSearch;
+    @BindView(R.id.vp_search)
+    ViewPager vpSearch;
 
     //    @BindView(R.id.pull_recommend)
 //    PullToRefreshScrollView pullRecommend;
+    @BindView(R.id.ll_activity_search)
+    LinearLayout llActivitySearch;
     @BindView(R.id.rv_activity_recommend)
     RecyclerView rvActivityRecommend;
 
@@ -73,7 +76,6 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     private boolean isSearch;
     private List<PersonEntity> personEntities;
     private List<ActivityEntity> activityList;
-    private View headView;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, SearchActivity.class));
@@ -139,10 +141,10 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 
     @Override
     protected void initView() {
-//        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(0)));
-//        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(1)));
-//        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(2)));
-//        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(3)));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(0)));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(1)));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(2)));
+        tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(3)));
     }
 
     @Override
@@ -150,39 +152,21 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         etTitleCenter.addTextChangedListener(textWatcher);
     }
 
-    /**
-     * 获取头部的热门
-     *
-     * @return
-     */
-    private View getHeadView() {
-
-        View headView = getLayoutInflater().inflate(R.layout.activity_search_head, (ViewGroup) rvActivityRecommend.getParent(), false);
-        RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
-        //设置rl的adapter
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
-        rvHotRecommend.setLayoutManager(linearLayoutManager);
-        rvHotRecommend.setAdapter(eighteenAdapter);
-        return headView;
-    }
 
     @Override
     protected void initAdapter() {
+        //TabLayout
+        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(this.getSupportFragmentManager(), mTabTitle);
+        vpSearch.setAdapter(homeSearchAdapter);
+        tbHomeSearch.setupWithViewPager(vpSearch);
 
+        //RecyclerView
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         ActivitySearchAdapter activitySearchAdapter = new ActivitySearchAdapter(getApplicationContext(), R.layout.list_search_activity_recommend, activityList);
         rvActivityRecommend.setLayoutManager(linearLayoutManager1);
         rvActivityRecommend.setAdapter(activitySearchAdapter);
-
-//        activitySearchAdapter.addHeaderView(getHeadView1(getResources().getString(R.string.search_hot_recommend)), 0);
         activitySearchAdapter.addHeaderView(getHeadView(), 1);
-//        activitySearchAdapter.addHeaderView(getHeadView1(getResources().getString(R.string.search_activity_recommend)), 2);
 
-        //TabLayout
-//        HomeSearchAdapter homeSearchAdapter = new HomeSearchAdapter(this.getSupportFragmentManager(), mTabTitle);
-//        vpSearch.setAdapter(homeSearchAdapter);
-//        tbHomeSearch.setupWithViewPager(vpSearch);
     }
 
     @OnClick({R.id.iv_Title_left, R.id.tv_et_cancel, R.id.iv_et_close, R.id.etTitleCenter, R.id.rlEtTitle})
@@ -194,6 +178,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
                 finish();
                 break;
             case R.id.iv_et_close:
+                etTitleCenter.getText().clear();
                 break;
             case R.id.etTitleCenter:
                 break;
@@ -223,34 +208,33 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 
         @Override
         public void afterTextChanged(Editable s) {
-//            if (!StringUtils.isEmpty(s)) {
-//                isSearch = true;
-//                pullRecommend.setVisibility(View.GONE);
-//                llResult.setVisibility(View.VISIBLE);
-//            } else {
-//                isSearch = false;
-//                pullRecommend.setVisibility(View.VISIBLE);
-//                llResult.setVisibility(View.GONE);
-//            }
+            if (!StringUtils.isEmpty(s)) {
+                isSearch = true;
+                llActivitySearch.setVisibility(View.GONE);
+                llResult.setVisibility(View.VISIBLE);
+            } else {
+                isSearch = false;
+                llActivitySearch.setVisibility(View.VISIBLE);
+                llResult.setVisibility(View.GONE);
+            }
         }
     };
 
+    /**
+     * 获取头部的热门
+     *
+     * @return
+     */
+    private View getHeadView() {
 
-
-    private View getHeadView1(String text) {
-        TextView textView = new TextView(getApplicationContext());
-        textView.setText(text);
-        textView.setGravity(Gravity.LEFT);
-        textView.setTextColor(getResources().getColor(R.color.loginTvUnClick));
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0,0,0, (int) DisplayUtil.dip2Px(getApplicationContext(),17));
-        textView.setLayoutParams(params);
-//        textView.setTextSize(DisplayUtil.sp2px(getApplicationContext(),17));
-        textView.setTextSize(17);
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FZZDXFW.ttf");
-        textView.setTypeface(typeface,Typeface.BOLD);
-        textView.setPadding((int) DisplayUtil.dip2Px(getApplicationContext(), 10), 0, 0, 0);
-        return textView;
+        View headView = getLayoutInflater().inflate(R.layout.activity_search_head, (ViewGroup) rvActivityRecommend.getParent(), false);
+        RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
+        //设置rl的adapter
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
+        rvHotRecommend.setLayoutManager(linearLayoutManager);
+        rvHotRecommend.setAdapter(eighteenAdapter);
+        return headView;
     }
 
 }

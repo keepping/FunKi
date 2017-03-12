@@ -27,7 +27,11 @@ public class HomeSearchAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return UserListFragment.newInstance("t", "a");
+        if(position==0) {
+            return UserListFragment.newInstance("t", "a");
+        }else{
+            return UserListFragment.newInstance("t", "a");
+        }
     }
 
     @Override
