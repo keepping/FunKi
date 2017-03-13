@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/vistorTvbg"
-    android:layout_height="403dp"
-    android:layout_marginBottom="7dp"
+    android:layout_height="255dp"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -27,10 +25,9 @@
         android:id="@+id/rl_live_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/iv_live_normal_title_bg">
+        android:background="@drawable/iv_live_title_bg">
 
         <TextView
-            android:textStyle="bold"
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +35,7 @@
             android:layout_marginLeft="47dp"
             android:layout_marginTop="10dp"
             android:text="@string/serach_name"
-            android:textColor="@color/titleText"
+            android:textColor="@color/vistorTvbg"
             android:textSize="14sp" />
 
         <ImageView
@@ -51,8 +48,6 @@
             android:src="@drawable/iv_location" />
 
         <TextView
-            android:textStyle="bold"
-            android:textColor="@color/loginTvUnClick"
             android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,8 +67,6 @@
             android:src="@drawable/japan" />
 
         <TextView
-            android:textStyle="bold"
-            android:textColor="@color/loginTvUnClick"
             android:id="@+id/tv_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,11 +84,10 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/serach_count_person"
-            android:textColor="@color/titleText"
+            android:textColor="@color/vistorTvbg"
             android:textSize="14sp" />
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -103,7 +95,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="7dp"
             android:text="在看"
-            android:textColor="@color/titleText"
+            android:textColor="@color/vistorTvbg"
             android:textSize="11sp" />
 
 
@@ -111,8 +103,6 @@
 
 
     <TextView
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,7 +110,6 @@
         android:text="@string/search_welcome" />
 
     <TextView
-        android:textStyle="bold"
         android:id="@+id/tv_signature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -135,7 +124,6 @@
         android:textSize="14sp" />
 
     <TextView
-        android:textStyle="bold"
         android:id="@+id/tv_signature2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -163,8 +151,8 @@
         android:id="@+id/rl_vip_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/tv_signature">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true">
 
         <ImageView
             android:id="@+id/iv_vip_diamond"
@@ -172,8 +160,35 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/iv_search_lv_bg" />
+            android:layout_marginRight="6dp"
+            android:src="@drawable/iv_vip_diamond" />
+
+        <TextView
+            android:id="@+id/tv_vip_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/iv_vip_diamond"
+            android:text="@string/search_price" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_vip_price">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/iv_search_vip_save" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="%25" />
+        </RelativeLayout>
 
     </RelativeLayout>
 

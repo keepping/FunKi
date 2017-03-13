@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="255dp"
+    android:layout_marginBottom="7dp"
+    android:background="@color/vistorTvbg"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -16,7 +18,7 @@
     <ImageView
         android:id="@+id/iv_imagepath"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/iv_photo"
         android:layout_marginTop="4dp"
         android:scaleType="fitXY" />
@@ -107,7 +109,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_live_head"
-        android:text="@string/search_welcome" />
+        android:text="@string/search_welcome"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/tv_signature"
@@ -150,44 +153,64 @@
     <RelativeLayout
         android:id="@+id/rl_vip_save"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_vip_diamond"
+        <LinearLayout
+            android:id="@+id/ll_vip_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="6dp"
-            android:src="@drawable/iv_vip_diamond" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_vip_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/iv_vip_diamond"
-            android:text="@string/search_price" />
+            <TextView
+                android:id="@+id/tv_vip_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="5dp"
+                android:text="@string/search_ticket"
+                android:textColor="@color/LiveWhite" />
+
+            <TextView
+                android:id="@+id/tv_vip_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="@string/search_price"
+                android:textColor="@color/LiveWhite" />
+
+            <ImageView
+                android:id="@+id/iv_vip_diamond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:src="@drawable/iv_vip_diamond" />
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/tv_vip_price">
+            android:layout_above="@+id/ll_vip_save"
+            android:layout_marginBottom="4dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/iv_search_vip_save" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:text="%25" />
+                android:layout_marginRight="12dp"
+                android:text="%25"
+                android:textColor="@color/LiveWhite" />
         </RelativeLayout>
 
     </RelativeLayout>

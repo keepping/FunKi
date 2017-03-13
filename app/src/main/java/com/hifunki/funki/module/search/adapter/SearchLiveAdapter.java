@@ -1,7 +1,6 @@
 package com.hifunki.funki.module.search.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -36,7 +35,6 @@ public class SearchLiveAdapter extends BaseMultiItemQuickAdapter<LiveEntity, Bas
         this.mContext = context;
         addItemType(LiveEntity.VIP_LIVE, R.layout.list_live_vip);
         addItemType(LiveEntity.LEVEL_LIVE, R.layout.list_live_normal);
-        Log.e("test", "SearchLiveAdapter: " + data);
     }
 
     @Override
