@@ -27,6 +27,7 @@ import com.hifunki.funki.module.search.adapter.HotSearchAdapter;
 import com.hifunki.funki.module.search.entity.ActivityEntity;
 import com.hifunki.funki.module.search.entity.Join;
 import com.hifunki.funki.module.search.entity.PersonEntity;
+import com.hifunki.funki.module.search.fragment.VideoListFragment;
 import com.hifunki.funki.util.StringUtils;
 
 import java.util.ArrayList;
@@ -45,7 +46,8 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-10 13:23:23
  */
-public class SearchActivity extends BaseTitleActivity implements UserListFragment.OnFragmentInteractionListener, LiveListFragment.OnFragmentInteractionListener {
+public class SearchActivity extends BaseTitleActivity implements UserListFragment.OnFragmentInteractionListener,
+        LiveListFragment.OnFragmentInteractionListener, VideoListFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.iv_Title_left)
     ImageView ivTitleLeft;

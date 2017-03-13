@@ -80,7 +80,7 @@ public class VisitorFillActivity extends BaseTitleActivity implements View.OnCli
     @Override
     protected void initTitleBar() {
         ToolTitleBar.showLeftButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
-        ToolTitleBar.showCenterButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_TEXT, R.string.visitor_title, null);
+        ToolTitleBar.showCenterButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_TEXT, R.string.visitor_fill_title, null);
     }
 
 

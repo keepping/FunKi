@@ -21,9 +21,9 @@ import com.hifunki.funki.module.home.fragment.MeFragment;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
 import com.hifunki.funki.module.home.fragment.StoreFragment;
-import com.hifunki.funki.module.search.fragment.UserListFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
 import com.hifunki.funki.module.home.widget.NavigationButton;
+import com.hifunki.funki.module.search.fragment.UserListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 在此写用途
+ * 主页Activity
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

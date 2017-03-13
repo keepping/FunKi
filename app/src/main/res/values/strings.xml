@@ -3,6 +3,7 @@
     <string name="exit_app">即将退出Funki</string>
     <string name="exit">退出</string>
     <string name="enter">进入</string>
+    <string name="visitor_fill_title">个人信息</string>
     <string name="visitor_title">必填信息</string>
     <string name="visitor_sex">性别</string>
     <string name="boy">男</string>
