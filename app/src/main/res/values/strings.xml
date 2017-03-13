@@ -87,4 +87,12 @@
     <string name="search_signture">听说英国的电视剧拍的很赞，好想去拍摄现场，大家谁有英国</string>
     <string name="search_activity_recommend">活动推荐</string>
 
+    <string name="serach_name">垃圾朋克</string>
+    <string name="serach_count_person">(%s)人</string>
+    <string name="search_location">名古屋</string>
+    <string name="search_language">English</string>
+    <string name="search_welcome">欢迎大家来看我的调酒表演</string>
+    <string name="search_signature">柠檬红茶</string>
+    <string name="search_signature2">电音控</string>
+
 </resources>
