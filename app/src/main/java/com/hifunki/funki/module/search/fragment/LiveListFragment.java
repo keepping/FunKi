@@ -76,12 +76,12 @@ public class LiveListFragment extends BaseFragment {
         liveEntities = new ArrayList<>();
         LiveEntity vipLive = new LiveEntity(LiveEntity.VIP_LIVE, imagePath, "垃圾朋克", "波士顿", "English", 46523, imagePath, "欢迎大家来看我的调酒表演", "柠檬红茶", "电音控", true, 50, 25, 42, 0, false, false);
         LiveEntity levelLive = new LiveEntity(LiveEntity.LEVEL_LIVE, imagePath, "垃圾朋克", "波士顿", "English", 46523, imagePath, "欢迎大家来看我的调酒表演", "柠檬红茶", "电音控", false, 0, 0, 0, 48, false, false);
-        LiveEntity normalLive = new LiveEntity(LiveEntity.NORMAL_LIVE, imagePath, "垃圾朋克", "波士顿", "English", 46523, imagePath, "欢迎大家来看我的调酒表演", "柠檬红茶", "电音控", false, 0, 0, 0, 0, true, false);
-        LiveEntity inviteLive = new LiveEntity(LiveEntity.INVITE_LIVE, imagePath, "垃圾朋克", "波士顿", "English", 46523, imagePath, "欢迎大家来看我的调酒表演", "柠檬红茶", "电音控", false, 0, 0, 0, 0, false, true);
+//        LiveEntity normalLive = new LiveEntity(LiveEntity.NORMAL_LIVE, imagePath, "垃圾朋克", "波士顿", "English", 46523, imagePath, "欢迎大家来看我的调酒表演", "柠檬红茶", "电音控", false, 0, 0, 0, 0, true, false);
+//        LiveEntity inviteLive = new LiveEntity(LiveEntity.INVITE_LIVE, imagePath, "垃圾朋克", "波士顿", "English", 46523, imagePath, "欢迎大家来看我的调酒表演", "柠檬红茶", "电音控", false, 0, 0, 0, 0, false, true);
         liveEntities.add(vipLive);
         liveEntities.add(levelLive);
-        liveEntities.add(normalLive);
-        liveEntities.add(inviteLive);
+//        liveEntities.add(normalLive);
+//        liveEntities.add(inviteLive);
     }
 
     @Override

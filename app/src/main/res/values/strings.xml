@@ -94,5 +94,6 @@
     <string name="search_welcome">欢迎大家来看我的调酒表演</string>
     <string name="search_signature">柠檬红茶</string>
     <string name="search_signature2">电音控</string>
+    <string name="search_price">票价:(%S)</string>
 
 </resources>

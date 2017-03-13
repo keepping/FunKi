@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="420dp"
     android:orientation="vertical">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/ic_nav_home_actived" />
 
     <RelativeLayout
         android:id="@+id/rl_live_head"
@@ -92,15 +100,6 @@
         android:layout_below="@+id/rl_live_head"
         android:scaleType="fitXY" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_photo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="9dp"
-        android:src="@drawable/ic_nav_home_actived" />
-
     <TextView
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
@@ -150,8 +149,8 @@
         android:id="@+id/rl_vip_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/tv_signature">
 
         <ImageView
             android:id="@+id/iv_vip_diamond"
@@ -159,35 +158,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="6dp"
-            android:src="@drawable/iv_vip_diamond" />
+            android:layout_marginRight="10dp"
+            android:src="@drawable/iv_search_lv_bg" />
 
-        <TextView
-            android:id="@+id/tv_vip_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/iv_vip_diamond"
-            android:text="@string/search_price" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/tv_vip_price">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/iv_search_vip_save" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="%25" />
-        </RelativeLayout>
 
     </RelativeLayout>
 

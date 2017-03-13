@@ -1,9 +1,12 @@
 package com.hifunki.funki.module.search.adapter;
 
 import android.content.Context;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.hifunki.funki.R;
 import com.hifunki.funki.module.search.entity.LiveEntity;
 
 import java.util.List;
@@ -27,14 +30,23 @@ public class SearchLiveAdapter extends BaseMultiItemQuickAdapter<LiveEntity, Bas
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
-    public SearchLiveAdapter(Context context, List<LiveEntity> data) {
+    public SearchLiveAdapter(Context context, List data) {
         super(data);
         this.mContext = context;
-//        addItemType(LiveEntity.VIP_LIVE, R.layout.);
+        addItemType(LiveEntity.VIP_LIVE, R.layout.list_live_vip);
+        addItemType(LiveEntity.LEVEL_LIVE, R.layout.list_live_normal);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, LiveEntity item) {
+        switch (helper.getItemViewType()) {
+            case LiveEntity.VIP_LIVE:
 
+                Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_imagePath1));
+                break;
+            case LiveEntity.LEVEL_LIVE:
+
+                break;
+        }
     }
 }
