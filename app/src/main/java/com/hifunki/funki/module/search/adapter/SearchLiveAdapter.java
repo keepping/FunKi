@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.search.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -35,17 +36,27 @@ public class SearchLiveAdapter extends BaseMultiItemQuickAdapter<LiveEntity, Bas
         this.mContext = context;
         addItemType(LiveEntity.VIP_LIVE, R.layout.list_live_vip);
         addItemType(LiveEntity.LEVEL_LIVE, R.layout.list_live_normal);
+        Log.e("test", "SearchLiveAdapter: " + data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, LiveEntity item) {
         switch (helper.getItemViewType()) {
             case LiveEntity.VIP_LIVE:
-
-                Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_imagePath1));
+                Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_imagepath));
+                Glide.with(mContext).load(item.getPhoto()).into((ImageView) helper.getView(R.id.iv_photo));
+                helper.setText(R.id.tv_name, item.getUsername());
+                helper.setText(R.id.tv_location, item.getLocation());
+                helper.setText(R.id.tv_language, item.getLanguage());
+                helper.setText(R.id.tv_count_person, String.valueOf(item.getCount()));
                 break;
             case LiveEntity.LEVEL_LIVE:
-
+                Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_imagepath));
+                Glide.with(mContext).load(item.getPhoto()).into((ImageView) helper.getView(R.id.iv_photo));
+                helper.setText(R.id.tv_name, item.getUsername());
+                helper.setText(R.id.tv_location, item.getLocation());
+                helper.setText(R.id.tv_language, item.getLanguage());
+                helper.setText(R.id.tv_count_person, String.valueOf(item.getCount()));
                 break;
         }
     }
