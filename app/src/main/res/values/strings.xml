@@ -67,7 +67,7 @@
     <string name="me_fragment">我的</string>
     <string name="home_fragment">主页</string>
     <string name="home_fragment_hot">热门</string>
-    <string name="home_fragment_focus">关注</string>
+    <string name="home_fragment_follow">关注</string>
     <string name="home_fragment_latest">最新</string>
     <string name="login_pwd_graph">由于隐私保护，系统在未验证改行动电话号为您本人所有时，不会告知您改行动电话号是否已注册</string>
 

@@ -17,6 +17,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
+import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.MeFragment;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
@@ -43,7 +44,8 @@ import butterknife.OnClick;
 public class HomeActivity extends BaseTitleActivity implements NavFragment.OnNavigationReselectListener,
         HomeFragment.OnFragmentInteractionListener, NavFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
-        MeFragment.OnFragmentInteractionListener,UserListFragment.OnFragmentInteractionListener {
+        MeFragment.OnFragmentInteractionListener, UserListFragment.OnFragmentInteractionListener
+        , HomeHotFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.main_container)
     FrameLayout mainContainer;

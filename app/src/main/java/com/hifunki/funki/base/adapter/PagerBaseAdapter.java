@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.login.adapter;
+package com.hifunki.funki.base.adapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;

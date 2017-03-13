@@ -3,6 +3,7 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -10,15 +11,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
+import com.hifunki.funki.module.home.adapter.HomePagerAdapter;
 import com.hifunki.funki.module.search.activity.SearchActivity;
-import com.hifunki.funki.module.login.LoginActivity;
-import com.hifunki.funki.util.SPUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.hifunki.funki.R.id.vp_home;
 
 /**
  * 在此写用途
@@ -38,13 +42,13 @@ public class HomeFragment extends BaseFragment {
     ImageView ivHomeTicket;
     @BindView(R.id.iv_home_list)
     ImageView ivHomeList;
-    @BindView(R.id.tv_home_focus)
-    TextView tvHomeFocus;
+    @BindView(R.id.tv_home_follow)
+    TextView tvHomeFollow;
     @BindView(R.id.tv_home_latest)
     TextView tvHomeLatest;
     @BindView(R.id.tv_home_hot)
     TextView tvHomeHot;
-    @BindView(R.id.vp_home)
+    @BindView(vp_home)
     ViewPager vpHome;
 
     private String mParam1;
@@ -54,7 +58,6 @@ public class HomeFragment extends BaseFragment {
     private OnFragmentInteractionListener mListener;
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     public static HomeFragment newInstance(String param1, String param2) {
@@ -81,6 +84,35 @@ public class HomeFragment extends BaseFragment {
         return R.layout.fragment_home;
     }
 
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+
+        List<String> list = new ArrayList<>();
+        list.add("ss");
+        list.add("aa");
+        list.add("bb");
+        List<Fragment> list1 = new ArrayList<>();
+
+        list1.add(HomeHotFragment.newInstance("aa", "xx"));
+        list1.add(HomeHotFragment.newInstance("aa", "xx"));
+        list1.add(HomeHotFragment.newInstance("aa", "xx"));
+
+
+        final List<String> datas = new ArrayList();
+        for (int i = 0; i < 2; i++) {
+            datas.add("数据源" + i);
+        }
+        vpHome = (ViewPager) root.findViewById(R.id.vp_home);
+
+        HomePagerAdapter adapter = new HomePagerAdapter(getContext().getApplicationContext(), datas);
+//        vpHome.setAdapter(adapter);
+
+
+        vpHome.setCurrentItem(1);
+
+    }
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -93,8 +125,7 @@ public class HomeFragment extends BaseFragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -106,32 +137,36 @@ public class HomeFragment extends BaseFragment {
 
 
     @SuppressWarnings("RestrictedApi")
-    @OnClick({R.id.iv_home_search, R.id.iv_home_ticket, R.id.iv_home_list, R.id.tv_home_focus, R.id.tv_home_latest, R.id.tv_home_hot, R.id.vp_home})
+    @OnClick({R.id.iv_home_search, R.id.iv_home_ticket, R.id.iv_home_list, R.id.tv_home_follow, R.id.tv_home_latest, R.id.tv_home_hot})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_home_search:
                 HomeActivity homeActivity = (HomeActivity) getActivity();
 
-                SPUtils spUtils = new SPUtils(Spkey.FILE_LOGIN);
-                if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
-                    LoginActivity.show(homeActivity);
-                } else {
-                    SearchActivity.show(homeActivity);
-                }
+//                SPUtils spUtils = new SPUtils(Spkey.FILE_LOGIN);
+//                if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
+//                    LoginActivity.show(homeActivity);
+//                } else {  }
+                SearchActivity.show(homeActivity);
 
                 break;
             case R.id.iv_home_ticket:
                 break;
             case R.id.iv_home_list:
                 break;
-            case R.id.tv_home_focus:
+            case R.id.tv_home_follow://follow
+                vpHome.setCurrentItem(0);
+
                 break;
             case R.id.tv_home_latest:
+                vpHome.setCurrentItem(1);
+
                 break;
             case R.id.tv_home_hot:
+                vpHome.setCurrentItem(2);
+
                 break;
-            case R.id.vp_home:
-                break;
+
         }
     }
 
