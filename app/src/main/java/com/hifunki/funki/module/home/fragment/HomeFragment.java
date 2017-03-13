@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.home.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
-import com.hifunki.funki.module.home.adapter.HomePagerAdapter;
 import com.hifunki.funki.module.search.activity.SearchActivity;
 
 import java.util.ArrayList;
@@ -105,7 +104,7 @@ public class HomeFragment extends BaseFragment {
         }
         vpHome = (ViewPager) root.findViewById(R.id.vp_home);
 
-        HomePagerAdapter adapter = new HomePagerAdapter(getContext().getApplicationContext(), datas);
+//        HomePagerAdapter adapter = new HomePagerAdapter( datas);
 //        vpHome.setAdapter(adapter);
 
 
