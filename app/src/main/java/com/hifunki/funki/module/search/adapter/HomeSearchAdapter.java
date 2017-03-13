@@ -4,7 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hifunki.funki.module.home.fragment.UserListFragment;
+import com.hifunki.funki.module.search.fragment.LiveListFragment;
+import com.hifunki.funki.module.search.fragment.UserListFragment;
 
 import java.util.List;
 
@@ -27,9 +28,11 @@ public class HomeSearchAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(position==0) {
+        if (position == 0) {
             return UserListFragment.newInstance("t", "a");
-        }else{
+        } else if (position == 1) {
+            return LiveListFragment.newInstance("r", "a");
+        } else {
             return UserListFragment.newInstance("t", "a");
         }
     }

@@ -21,7 +21,7 @@ import com.hifunki.funki.module.home.fragment.MeFragment;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
 import com.hifunki.funki.module.home.fragment.StoreFragment;
-import com.hifunki.funki.module.home.fragment.UserListFragment;
+import com.hifunki.funki.module.search.fragment.UserListFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 

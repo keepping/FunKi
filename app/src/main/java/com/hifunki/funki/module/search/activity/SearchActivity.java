@@ -19,7 +19,8 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.module.home.fragment.UserListFragment;
+import com.hifunki.funki.module.search.fragment.LiveListFragment;
+import com.hifunki.funki.module.search.fragment.UserListFragment;
 import com.hifunki.funki.module.search.adapter.ActivitySearchAdapter;
 import com.hifunki.funki.module.search.adapter.HomeSearchAdapter;
 import com.hifunki.funki.module.search.adapter.HotSearchAdapter;
@@ -44,7 +45,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-10 13:23:23
  */
-public class SearchActivity extends BaseTitleActivity implements UserListFragment.OnFragmentInteractionListener {
+public class SearchActivity extends BaseTitleActivity implements UserListFragment.OnFragmentInteractionListener, LiveListFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.iv_Title_left)
     ImageView ivTitleLeft;
