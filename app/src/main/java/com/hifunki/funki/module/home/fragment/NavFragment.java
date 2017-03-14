@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.common.FragmentConst;
-import com.hifunki.funki.module.home.BaseFragment;
+import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 
 import java.util.List;

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.home.BaseFragment;
+import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.search.activity.SearchActivity;
 

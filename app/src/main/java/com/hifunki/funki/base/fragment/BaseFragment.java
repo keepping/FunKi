@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.home;
+package com.hifunki.funki.base.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
