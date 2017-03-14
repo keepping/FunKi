@@ -52,7 +52,9 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/iv_home_indicate" />
 
-        <LinearLayout
+
+        <RadioGroup
+            android:id="@+id/rb_home_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_home_indicate"
@@ -61,54 +63,104 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/rb_home_follow"
+                fontPath="fonts/FZDHTFW.ttf"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:background="@null"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/home_fragment_follow"
+                android:textColor="@color/titleText"
+                android:textSize="17sp" />
 
-                <TextView
-                    android:id="@+id/tv_home_follow"
-                    fontPath="fonts/FZDHTFW.ttf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/home_fragment_follow"
-                    android:textColor="@color/titleText"
-                    android:textSize="17sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/rb_home_hot"
+                fontPath="fonts/FZDHTFW.ttf"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:background="@null"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/home_fragment_hot"
+                android:textColor="@color/titleText"
+                android:textSize="17sp" />
 
-                <TextView
-                    android:id="@+id/tv_home_latest"
-                    fontPath="fonts/FZDHTFW.ttf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/home_fragment_latest"
-                    android:textColor="@color/titleText"
-                    android:textSize="17sp" />
-            </LinearLayout>
+            <RadioButton
+                android:id="@+id/rb_home_new"
+                fontPath="fonts/FZDHTFW.ttf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/home_fragment_latest"
+                android:textColor="@color/titleText"
+                android:textSize="17sp" />
+
+        </RadioGroup>
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/iv_home_indicate"-->
+        <!--android:layout_marginBottom="12dp"-->
+        <!--android:layout_marginTop="9dp"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_home_follow"-->
+        <!--fontPath="fonts/FZDHTFW.ttf"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/home_fragment_follow"-->
+        <!--android:textColor="@color/titleText"-->
+        <!--android:textSize="17sp" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_home_latest"-->
+        <!--fontPath="fonts/FZDHTFW.ttf"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/home_fragment_latest"-->
+        <!--android:textColor="@color/titleText"-->
+        <!--android:textSize="17sp" />-->
+        <!--</LinearLayout>-->
 
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
-        <TextView
-            android:id="@+id/tv_home_hot"
-            fontPath="fonts/FZDHTFW.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_home_indicate"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="9dp"
-            android:text="@string/home_fragment_hot"
-            android:textColor="@color/vistorTvClickbg"
-            android:textSize="17sp" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_home_hot"-->
+        <!--fontPath="fonts/FZDHTFW.ttf"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/iv_home_indicate"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_marginBottom="12dp"-->
+        <!--android:layout_marginTop="9dp"-->
+        <!--android:text="@string/home_fragment_hot"-->
+        <!--android:textColor="@color/vistorTvClickbg"-->
+        <!--android:textSize="17sp" />-->
 
     </RelativeLayout>
 

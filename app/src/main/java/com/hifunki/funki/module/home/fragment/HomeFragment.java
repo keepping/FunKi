@@ -8,7 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
@@ -23,8 +24,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.hifunki.funki.R.id.vp_home;
-
 /**
  * 在此写用途
  *
@@ -37,19 +36,26 @@ import static com.hifunki.funki.R.id.vp_home;
 public class HomeFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     @BindView(R.id.iv_home_search)
     ImageView ivHomeSearch;
+    @BindView(R.id.iv_home_funki)
+    ImageView ivHomeFunki;
     @BindView(R.id.iv_home_ticket)
     ImageView ivHomeTicket;
     @BindView(R.id.iv_home_rank)
     ImageView ivHomeRank;
-    @BindView(R.id.tv_home_follow)
-    TextView tvHomeFollow;
-    @BindView(R.id.tv_home_latest)
-    TextView tvHomeLatest;
-    @BindView(R.id.tv_home_hot)
-    TextView tvHomeHot;
-    @BindView(vp_home)
+    @BindView(R.id.iv_home_indicate)
+    ImageView ivHomeIndicate;
+    @BindView(R.id.rb_home_follow)
+    RadioButton rbHomeFollow;
+    @BindView(R.id.rb_home_hot)
+    RadioButton rbHomeHot;
+    @BindView(R.id.rb_home_new)
+    RadioButton rbHomeNew;
+    @BindView(R.id.rb_home_title)
+    RadioGroup rbHomeTitle;
+    @BindView(R.id.vp_home)
     ViewPager vpHome;
 
     private String mParam1;
@@ -105,7 +111,7 @@ public class HomeFragment extends BaseFragment {
 
         vpHome = (ViewPager) root.findViewById(R.id.vp_home);
 
-        HomeViewPager adapter = new HomeViewPager(getFragmentManager(),listFragment);
+        HomeViewPager adapter = new HomeViewPager(getFragmentManager(), listFragment);
         vpHome.setAdapter(adapter);
 
 //        vpHome.setCurrentItem(1);
@@ -136,7 +142,7 @@ public class HomeFragment extends BaseFragment {
 
 
     @SuppressWarnings("RestrictedApi")
-    @OnClick({R.id.iv_home_search, R.id.iv_home_ticket, R.id.iv_home_rank, R.id.tv_home_follow, R.id.tv_home_latest, R.id.tv_home_hot})
+    @OnClick({R.id.iv_home_search, R.id.iv_home_funki, R.id.iv_home_ticket, R.id.iv_home_rank, R.id.iv_home_indicate, R.id.rb_home_follow, R.id.rb_home_hot, R.id.rb_home_new, R.id.rb_home_title, R.id.vp_home})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_home_search:
@@ -153,21 +159,24 @@ public class HomeFragment extends BaseFragment {
             case R.id.iv_home_rank:
                 WorldRankActivity.show(mActivity);
                 break;
-            case R.id.tv_home_follow://follow
-                vpHome.setCurrentItem(0);
-
+            case R.id.iv_home_funki:
                 break;
-            case R.id.tv_home_latest:
-                vpHome.setCurrentItem(1);
-
+            case R.id.iv_home_indicate:
                 break;
-            case R.id.tv_home_hot:
-                vpHome.setCurrentItem(2);
-
+            case R.id.rb_home_follow:
+                break;
+            case R.id.rb_home_hot:
+                break;
+            case R.id.rb_home_new:
+                break;
+            case R.id.rb_home_title:
+                break;
+            case R.id.vp_home:
                 break;
 
         }
     }
+
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);

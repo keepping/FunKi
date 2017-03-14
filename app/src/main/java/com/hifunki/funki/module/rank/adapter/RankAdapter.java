@@ -30,11 +30,10 @@ public class RankAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            RankAnchorFragment.newInstance("a", "a");
-        } else if (position == 1) {
-            RankRickFragment.newInstance("a", "a");
+            return RankAnchorFragment.newInstance("a", "a");
         }
-        return null;
+        return RankRickFragment.newInstance("a", "a");
+
     }
 
     @Override
