@@ -1,6 +1,5 @@
 package com.hifunki.home;
 
-import android.app.Activity;
 
 import com.hifunki.funki.library.base.activity.BaseTitleActivity;
 
