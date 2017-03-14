@@ -68,4 +68,5 @@ dependencies {
     compile project(':home')
     compile project(':mine')
     compile project(':store')
+    compile project(':message')
 }

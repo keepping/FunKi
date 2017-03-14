@@ -1,23 +1,24 @@
-package com.hifunki.funki.module.home.fragment;
+package com.hifunki.funki.store.fragment;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.hifunki.funki.R;
-import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.library.base.fragment.BaseFragment;
 
+import com.hifunki.funki.store.R;
 
 /**
  * 在此写用途
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.fragment.MsgFragment.java
+ * @value com.hifunki.funki.store.fragment.StoreFragment.java
  * @link
  * @since 2017-03-08 10:06:06
  */
-public class MsgFragment extends BaseFragment {
+public class StoreFragment extends BaseFragment {
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -26,12 +27,13 @@ public class MsgFragment extends BaseFragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public MsgFragment() {
+    public StoreFragment() {
         // Required empty public constructor
     }
 
-    public static MsgFragment newInstance(String param1, String param2) {
-        MsgFragment fragment = new MsgFragment();
+
+    public static StoreFragment newInstance(String param1, String param2) {
+        StoreFragment fragment = new StoreFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -48,14 +50,11 @@ public class MsgFragment extends BaseFragment {
         }
     }
 
-
-
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_msg;
+        return R.layout.fragment_store;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -79,8 +78,8 @@ public class MsgFragment extends BaseFragment {
         mListener = null;
     }
 
+
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

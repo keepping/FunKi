@@ -1,19 +1,18 @@
-package com.hifunki.funki.module.home.fragment;
+package com.hifunki.funki.mine.fragment;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.hifunki.funki.R;
-import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.library.base.fragment.BaseFragment;
 
-
+import com.hifunki.funki.mine.R;
 /**
  * 在此写用途
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.fragment.MeFragment.java
+ * @value com.hifunki.funki.mine.fragment.MeFragment.java
  * @link
  * @since 2017-03-08 10:06:06
  */

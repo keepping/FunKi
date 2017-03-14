@@ -1,23 +1,23 @@
-package com.hifunki.funki.module.home.fragment;
+package com.hifunki.funki.message.fragment;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.hifunki.funki.R;
-import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.message.R;
+import com.hifunki.funki.library.base.fragment.BaseFragment;
+
 
 /**
  * 在此写用途
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.fragment.StoreFragment.java
+ * @value com.hifunki.funki.message.fragment.MsgFragment.java
  * @link
  * @since 2017-03-08 10:06:06
  */
-public class StoreFragment extends BaseFragment {
-
+public class MsgFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -26,13 +26,12 @@ public class StoreFragment extends BaseFragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public StoreFragment() {
+    public MsgFragment() {
         // Required empty public constructor
     }
 
-
-    public static StoreFragment newInstance(String param1, String param2) {
-        StoreFragment fragment = new StoreFragment();
+    public static MsgFragment newInstance(String param1, String param2) {
+        MsgFragment fragment = new MsgFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -49,9 +48,10 @@ public class StoreFragment extends BaseFragment {
         }
     }
 
+
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_store;
+        return R.layout.fragment_msg;
     }
 
     public void onButtonPressed(Uri uri) {
@@ -77,8 +77,8 @@ public class StoreFragment extends BaseFragment {
         mListener = null;
     }
 
-
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
+
 }

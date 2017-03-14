@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.library.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.home.adapter.HomeViewPager;
 import com.hifunki.funki.module.rank.activity.WorldRankActivity;

@@ -5,7 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.library.base.fragment.BaseFragment;
 
 /**
  * 在此写用途
