@@ -1,11 +1,11 @@
-package com.hifunki.funki.module.search.adapter;
+package com.hifunki.funki.module.rank.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hifunki.funki.module.search.fragment.LiveListFragment;
-import com.hifunki.funki.module.search.fragment.UserListFragment;
+import com.hifunki.funki.module.rank.fragment.RankAnchorFragment;
+import com.hifunki.funki.module.rank.fragment.RankRickFragment;
 
 import java.util.List;
 
@@ -14,15 +14,15 @@ import java.util.List;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.search.adapter.HomeSearchAdapter.java
+ * @value com.hifunki.funki.module.rank.adapter.RankAdapter.java
  * @link
- * @since 2017-03-10 10:25:25
+ * @since 2017-03-14 11:02:02
  */
-public class HomeSearchAdapter extends FragmentPagerAdapter {
+public class RankAdapter extends FragmentPagerAdapter {
 
-    private final List<String> mTabTitle;
+    private List<String> mTabTitle;
 
-    public HomeSearchAdapter(FragmentManager fm, List<String> mTabTitle) {
+    public RankAdapter(FragmentManager fm, List<String> mTabTitle) {
         super(fm);
         this.mTabTitle = mTabTitle;
     }
@@ -30,12 +30,11 @@ public class HomeSearchAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return UserListFragment.newInstance("t", "a");
+            RankAnchorFragment.newInstance("a", "a");
         } else if (position == 1) {
-            return LiveListFragment.newInstance("r", "a");
-        } else {
-            return UserListFragment.newInstance("t", "a");
+            RankRickFragment.newInstance("a", "a");
         }
+        return null;
     }
 
     @Override
@@ -46,6 +45,7 @@ public class HomeSearchAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return mTabTitle.get(position);
-
     }
+
 }
+

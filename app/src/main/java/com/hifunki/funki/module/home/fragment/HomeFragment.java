@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
+import com.hifunki.funki.module.rank.activity.WorldRankActivity;
 import com.hifunki.funki.module.search.activity.SearchActivity;
 
 import java.util.ArrayList;
@@ -39,8 +40,8 @@ public class HomeFragment extends BaseFragment {
     ImageView ivHomeSearch;
     @BindView(R.id.iv_home_ticket)
     ImageView ivHomeTicket;
-    @BindView(R.id.iv_home_list)
-    ImageView ivHomeList;
+    @BindView(R.id.iv_home_rank)
+    ImageView ivHomeRank;
     @BindView(R.id.tv_home_follow)
     TextView tvHomeFollow;
     @BindView(R.id.tv_home_latest)
@@ -55,6 +56,7 @@ public class HomeFragment extends BaseFragment {
 
     private FragmentManager mFragmentManager;
     private OnFragmentInteractionListener mListener;
+    private HomeActivity mActivity;
 
     public HomeFragment() {
     }
@@ -81,6 +83,12 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home;
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        mActivity = (HomeActivity) getActivity();
     }
 
     @Override
@@ -136,22 +144,23 @@ public class HomeFragment extends BaseFragment {
 
 
     @SuppressWarnings("RestrictedApi")
-    @OnClick({R.id.iv_home_search, R.id.iv_home_ticket, R.id.iv_home_list, R.id.tv_home_follow, R.id.tv_home_latest, R.id.tv_home_hot})
+    @OnClick({R.id.iv_home_search, R.id.iv_home_ticket, R.id.iv_home_rank, R.id.tv_home_follow, R.id.tv_home_latest, R.id.tv_home_hot})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_home_search:
-                HomeActivity homeActivity = (HomeActivity) getActivity();
+
 
 //                SPUtils spUtils = new SPUtils(Spkey.FILE_LOGIN);
 //                if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
 //                    LoginActivity.show(homeActivity);
 //                } else {  }
-                SearchActivity.show(homeActivity);
+                SearchActivity.show(mActivity);
 
                 break;
             case R.id.iv_home_ticket:
                 break;
-            case R.id.iv_home_list:
+            case R.id.iv_home_rank:
+                WorldRankActivity.show(mActivity);
                 break;
             case R.id.tv_home_follow://follow
                 vpHome.setCurrentItem(0);

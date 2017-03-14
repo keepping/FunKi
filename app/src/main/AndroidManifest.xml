@@ -100,7 +100,7 @@
         <activity android:name=".module.search.activity.SearchActivity">
 
         </activity>
-        <activity android:name=".module.home.activity.WorldRankActivity"></activity>
+        <activity android:name=".module.rank.activity.WorldRankActivity"></activity>
     </application>
 
 </manifest>

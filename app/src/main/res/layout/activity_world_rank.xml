@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hifunki.funki.module.home.activity.WorldRankActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/vistorTvbg"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.rank.activity.WorldRankActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/title_templet" />
+
+    <android.support.design.widget.TabLayout
+        fontPath="fonts/FZDHTFW.ttf"
+        android:id="@+id/tb_rank"
+        app:tabBackground="@color/vistorTvbgNormal"
+        app:tabIndicatorColor="@color/vistorTvTitle"
+        app:tabIndicatorHeight="2px"
+        app:tabMinWidth="39dp"
+        app:tabSelectedTextColor="@color/vistorTvTitle"
+        app:tabTextColor="@color/loginTvUnClick"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_rank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
