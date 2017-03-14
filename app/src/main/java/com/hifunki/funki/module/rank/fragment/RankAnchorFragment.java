@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.library.base.fragment.BaseFragment;
+import com.hifunki.funki.module.rank.adapter.RankAnchorAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +29,8 @@ public class RankAnchorFragment extends BaseFragment {
     private static final String ARG_PARAM2 = "param2";
     @BindView(R.id.list_view)
     ListView mListView;
+
+    private RankAnchorAdapter mAdapter;
 
     private String mParam1;
     private String mParam2;
@@ -95,7 +98,9 @@ public class RankAnchorFragment extends BaseFragment {
     protected void initView(View root) {
         super.initView(root);
 
-
+        mListView = (ListView) root.findViewById(R.id.list_view);
+        mAdapter = new RankAnchorAdapter(getActivity());
+        mListView.setAdapter(mAdapter);
     }
 
     @Override

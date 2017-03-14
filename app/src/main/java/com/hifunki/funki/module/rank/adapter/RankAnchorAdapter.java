@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.hifunki.funki.R;
+
 import java.util.ArrayList;
 
 /**
@@ -21,6 +23,9 @@ import java.util.ArrayList;
 
 public class RankAnchorAdapter extends BaseAdapter {
 
+    private static final int RANK_ANCHOR_TOP = 0;
+    private static final int RANK_ANCHOR_DOWN = 1;
+    private static final int RANK_TYPE_COUNT = 2;
     private LayoutInflater mInflater;
     private Context mContext;
     private ArrayList<String> arrayList;
@@ -50,17 +55,59 @@ public class RankAnchorAdapter extends BaseAdapter {
     }
 
     @Override
+    public int getViewTypeCount() {
+        return RANK_TYPE_COUNT;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(position < 3){
+            return RANK_ANCHOR_TOP;
+        }else {
+            return RANK_ANCHOR_DOWN;
+        }
+    }
+
+    @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
-        if(i < 3){
-            if(view == null){
+        ViewHolderDown viewHolderDown;
+        int type = getItemViewType(i);
+        if(view == null){
+            switch (type){
+                case RANK_ANCHOR_TOP:
+                    viewHolder = new ViewHolder();
+                    view = mInflater.inflate(R.layout.item_rank_anchor , null);
+
+                    view.setTag(viewHolder);
+                    break;
+                case RANK_ANCHOR_DOWN :
+                    viewHolderDown = new ViewHolderDown();
+                    view = mInflater.inflate(R.layout.item_rank_anchor_down , null);
+
+                    view.setTag(viewHolderDown);
+                    break;
+            }
+        }else {
+            switch (type){
+                case RANK_ANCHOR_TOP:
+                    viewHolder = (ViewHolder) view.getTag();
+                    break;
+
+                case RANK_ANCHOR_DOWN:
+                    viewHolderDown = (ViewHolderDown) view.getTag();
+                    break;
             }
         }
-        return null;
+        return view;
     }
 
 
     private class ViewHolder{
+
+    }
+
+    private class ViewHolderDown{
 
     }
 }
