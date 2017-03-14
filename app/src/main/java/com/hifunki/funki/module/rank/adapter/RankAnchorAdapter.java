@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
@@ -23,12 +24,14 @@ import java.util.ArrayList;
 
 public class RankAnchorAdapter extends BaseAdapter {
 
-    private static final int RANK_ANCHOR_TOP = 0;
-    private static final int RANK_ANCHOR_DOWN = 1;
     private static final int RANK_TYPE_COUNT = 2;
+    private static final int RANK_ANCHOR_TOP = 0;
+    private static final int RANK_ANCHOR_DOWN= 1;
     private LayoutInflater mInflater;
     private Context mContext;
     private ArrayList<String> arrayList;
+
+
 
     public RankAnchorAdapter(Context context){
         mInflater = LayoutInflater.from(context);
@@ -66,6 +69,7 @@ public class RankAnchorAdapter extends BaseAdapter {
         }else {
             return RANK_ANCHOR_DOWN;
         }
+
     }
 
     @Override
@@ -73,19 +77,21 @@ public class RankAnchorAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         ViewHolderDown viewHolderDown;
         int type = getItemViewType(i);
+
         if(view == null){
             switch (type){
                 case RANK_ANCHOR_TOP:
-                    viewHolder = new ViewHolder();
                     view = mInflater.inflate(R.layout.item_rank_anchor , null);
-
+                    viewHolder = new ViewHolder();
                     view.setTag(viewHolder);
                     break;
-                case RANK_ANCHOR_DOWN :
-                    viewHolderDown = new ViewHolderDown();
+                case RANK_ANCHOR_DOWN:
                     view = mInflater.inflate(R.layout.item_rank_anchor_down , null);
-
+                    viewHolderDown = new ViewHolderDown();
                     view.setTag(viewHolderDown);
+                    break;
+                default:
+
                     break;
             }
         }else {
@@ -93,21 +99,28 @@ public class RankAnchorAdapter extends BaseAdapter {
                 case RANK_ANCHOR_TOP:
                     viewHolder = (ViewHolder) view.getTag();
                     break;
-
                 case RANK_ANCHOR_DOWN:
                     viewHolderDown = (ViewHolderDown) view.getTag();
                     break;
+
+                default:
+                    break;
             }
+
         }
         return view;
     }
 
 
     private class ViewHolder{
+        private ImageView mRankNo;
+        private ImageView mUserBg;
 
     }
 
     private class ViewHolderDown{
 
+
     }
+
 }

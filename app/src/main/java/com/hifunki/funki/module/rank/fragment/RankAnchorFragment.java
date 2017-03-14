@@ -97,7 +97,6 @@ public class RankAnchorFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-
         mListView = (ListView) root.findViewById(R.id.list_view);
         mAdapter = new RankAnchorAdapter(getActivity());
         mListView.setAdapter(mAdapter);

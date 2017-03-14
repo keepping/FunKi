@@ -2,6 +2,8 @@ package com.hifunki.home;
 
 import android.app.Activity;
 
+import com.hifunki.funki.library.base.activity.BaseTitleActivity;
+
 /**
  * 在此写用途
  *
@@ -12,7 +14,38 @@ import android.app.Activity;
  * @since 2017-03-14 16:47:47
  */
 
-public class ComingUpNextActivity extends Activity {
+public class ComingUpNextActivity extends BaseTitleActivity {
 
 
+
+
+    @Override
+    protected int getViewResId() {
+        return 0;
+    }
+
+    @Override
+    protected void initDatas() {
+
+    }
+
+    @Override
+    protected void initTitleBar() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initAdapter() {
+
+    }
 }
