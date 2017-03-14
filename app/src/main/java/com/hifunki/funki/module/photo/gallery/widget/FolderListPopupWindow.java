@@ -15,7 +15,7 @@ import android.widget.PopupWindow;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
-import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.library.util.DisplayUtil;
 
 
 /**

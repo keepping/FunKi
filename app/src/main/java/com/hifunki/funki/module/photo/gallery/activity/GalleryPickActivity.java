@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.library.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
 import com.hifunki.funki.module.photo.gallery.adapter.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
@@ -34,9 +34,9 @@ import com.hifunki.funki.module.photo.gallery.inter.IHandlerCallBack;
 import com.hifunki.funki.module.photo.gallery.util.UCropUtils;
 import com.hifunki.funki.module.photo.gallery.widget.FolderListPopupWindow;
 import com.hifunki.funki.module.photo.ucrop.UCrop;
-import com.hifunki.funki.util.FileUtils;
-import com.hifunki.funki.util.HashMapUtil;
-import com.hifunki.funki.util.ListUtil;
+import com.hifunki.funki.library.util.FileUtils;
+import com.hifunki.funki.library.util.HashMapUtil;
+import com.hifunki.funki.library.util.ListUtil;
 
 import java.io.File;
 import java.util.ArrayList;

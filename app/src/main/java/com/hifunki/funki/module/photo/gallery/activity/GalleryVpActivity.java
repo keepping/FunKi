@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.common.BundleConst;
+import com.hifunki.funki.library.base.activity.BaseTitleActivity;
+import com.hifunki.funki.library.common.BundleConst;
 import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;

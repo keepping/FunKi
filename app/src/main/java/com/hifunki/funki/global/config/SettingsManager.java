@@ -1,7 +1,7 @@
 package com.hifunki.funki.global.config;
 
-import com.hifunki.funki.common.CommonConst;
-import com.hifunki.funki.util.LogUtils;
+import com.hifunki.funki.library.common.CommonConst;
+import com.hifunki.funki.library.util.LogUtils;
 
 /**
  * Created by WangTest on 2017/2/25.

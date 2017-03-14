@@ -1,5 +1,7 @@
 package com.hifunki.funki.base.activity;
 
+import com.hifunki.funki.library.base.activity.BaseTitleActivity;
+
 /**
  * Created by JuQiu
  * on 16/6/20.

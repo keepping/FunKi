@@ -4,7 +4,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.hifunki.funki.util.ListUtil;
+import com.hifunki.funki.library.util.ListUtil;
 
 import java.util.ArrayList;
 

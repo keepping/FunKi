@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.common.FragmentConst;
+import com.hifunki.funki.library.base.activity.BaseTitleActivity;
+import com.hifunki.funki.library.common.FragmentConst;
 import com.hifunki.funki.message.fragment.MsgFragment;
 import com.hifunki.funki.mine.fragment.MeFragment;
 import com.hifunki.funki.module.home.fragment.HomeFollowFragment;

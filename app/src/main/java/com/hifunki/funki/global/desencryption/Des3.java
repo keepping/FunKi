@@ -1,6 +1,6 @@
 package com.hifunki.funki.global.desencryption;
 
-import com.hifunki.funki.util.ExceptionUtil;
+import com.hifunki.funki.library.util.ExceptionUtil;
 
 import java.security.Key;
 

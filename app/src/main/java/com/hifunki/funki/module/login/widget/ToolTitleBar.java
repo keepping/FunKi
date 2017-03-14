@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.library.util.DisplayUtil;
 
 import static com.hifunki.funki.R.id.rlTitleLeft;
 

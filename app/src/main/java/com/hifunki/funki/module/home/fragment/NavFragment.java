@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.common.FragmentConst;
+import com.hifunki.funki.library.common.FragmentConst;
 import com.hifunki.funki.library.base.fragment.BaseFragment;
 import com.hifunki.funki.message.fragment.MsgFragment;
 import com.hifunki.funki.mine.fragment.MeFragment;

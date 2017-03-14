@@ -9,11 +9,11 @@
 //import android.view.View;
 //import android.view.ViewGroup;
 //
-//import com.hifunki.funki.common.BundleConst;
+//import com.hifunki.funki.library.common.BundleConst;
 //import com.hifunki.funki.global.config.SettingsManager;
 //import com.hifunki.funki.global.config.UserConfigss;
-//import com.hifunki.funki.base.application.ApplicationMain;
-//import com.hifunki.funki.util.ViewUtil;
+//import com.hifunki.funki.library.base.application.ApplicationMain;
+//import com.hifunki.funki.library.util.ViewUtil;
 //
 //
 ///**
