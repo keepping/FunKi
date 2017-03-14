@@ -27,30 +27,17 @@ public class HomeViewPager extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            list.get(0);
+            return list.get(0);
 //            HomeFollowFragment.newInstance("t", "a");
         } else if (position == 1) {
-            list.get(1);
+            return list.get(1);
 //            HomeHotFragment.newInstance("t", "a");
-        } else if (position == 2) {
-            list.get(2);
-//            HomeNewFragment.newInstance("t", "a");
         }
-        return null;
+        return list.get(2);
+//            HomeNewFragment.newInstance("t", "a");
+
     }
 
-
-//    @Override
-//    public Object instantiateItem(ViewGroup container, int position) {
-//        return super.instantiateItem(container, position);
-//
-//    }
-//
-//    @Override
-//    public void destroyItem(ViewGroup container, int position, Object object) {
-//        super.destroyItem(container, position, object);
-//
-//    }
 
     @Override
     public int getCount() {

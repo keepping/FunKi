@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
+import com.hifunki.funki.module.home.adapter.HomeViewPager;
 import com.hifunki.funki.module.rank.activity.WorldRankActivity;
 import com.hifunki.funki.module.search.activity.SearchActivity;
 
@@ -95,28 +96,19 @@ public class HomeFragment extends BaseFragment {
     protected void initView(View root) {
         super.initView(root);
 
-        List<String> list = new ArrayList<>();
-        list.add("ss");
-        list.add("aa");
-        list.add("bb");
-        List<Fragment> list1 = new ArrayList<>();
 
-        list1.add(HomeHotFragment.newInstance("aa", "xx"));
-        list1.add(HomeHotFragment.newInstance("aa", "xx"));
-        list1.add(HomeHotFragment.newInstance("aa", "xx"));
+        List<Fragment> listFragment = new ArrayList<>();
 
+        listFragment.add(HomeHotFragment.newInstance("aa", "xx"));
+        listFragment.add(HomeFollowFragment.newInstance("aa", "xx"));
+        listFragment.add(HomeNewFragment.newInstance("aa", "xx"));
 
-        final List<String> datas = new ArrayList();
-        for (int i = 0; i < 2; i++) {
-            datas.add("数据源" + i);
-        }
         vpHome = (ViewPager) root.findViewById(R.id.vp_home);
 
-//        HomePagerAdapter adapter = new HomePagerAdapter( datas);
-//        vpHome.setAdapter(adapter);
+        HomeViewPager adapter = new HomeViewPager(getFragmentManager(),listFragment);
+        vpHome.setAdapter(adapter);
 
-
-        vpHome.setCurrentItem(1);
+//        vpHome.setCurrentItem(1);
 
     }
 
@@ -149,13 +141,12 @@ public class HomeFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.iv_home_search:
 
-
+                //是否登录
 //                SPUtils spUtils = new SPUtils(Spkey.FILE_LOGIN);
 //                if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
 //                    LoginActivity.show(homeActivity);
 //                } else {  }
                 SearchActivity.show(mActivity);
-
                 break;
             case R.id.iv_home_ticket:
                 break;
