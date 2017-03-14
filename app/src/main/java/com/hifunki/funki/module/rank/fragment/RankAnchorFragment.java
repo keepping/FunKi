@@ -3,9 +3,16 @@ package com.hifunki.funki.module.rank.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 在此写用途
@@ -19,11 +26,14 @@ import com.hifunki.funki.base.fragment.BaseFragment;
 public class RankAnchorFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.list_view)
+    ListView mListView;
 
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
 
     public RankAnchorFragment() {
     }
@@ -74,6 +84,27 @@ public class RankAnchorFragment extends BaseFragment {
         mListener = null;
     }
 
+
+    @Override
+    protected void initData() {
+        super.initData();
+
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
