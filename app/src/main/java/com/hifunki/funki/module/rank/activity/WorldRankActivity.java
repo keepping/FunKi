@@ -99,6 +99,8 @@ public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFr
         vpRank.setAdapter(rankAdapter);
         tbRank.setupWithViewPager(vpRank);
 
+        View view ;
+
     }
 
     @OnClick({R.id.tb_rank, R.id.vp_rank})
