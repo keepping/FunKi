@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hifunki.funki.message.com.hifunki.funki.module.home.fragment.MsgFragment">
+    tools:context="com.hifunki.funki.module.home.fragment.MsgFragment">
 
     <TextView
         android:layout_width="match_parent"

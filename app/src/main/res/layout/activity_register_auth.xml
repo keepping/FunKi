@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="37dp"
-        android:text="您的行动电话号：1500 008063"
+        android:text="@string/login_pwd_number"
         android:textColor="@color/loginTvUnClick"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="10dp"
-        android:text="会收到一条含有6位数字验证码的短信"
+        android:text="@string/login_receiver_6_msg"
         android:textColor="@color/loginTvUnClick"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -51,7 +51,7 @@
             android:layout_marginRight="51dp"
             android:background="@null"
             android:gravity="left|center_vertical"
-            android:hint="请输入验证码"
+            android:hint="@string/login_input_code"
             android:maxLines="1"
             android:paddingLeft="1dp"
             android:singleLine="true"

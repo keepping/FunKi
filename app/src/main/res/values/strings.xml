@@ -101,5 +101,21 @@
     <string name="search_ticket">票价:</string>
     <string name="world_rank_anchor">主播人气</string>
     <string name="world_rank_rich">土豪贡献榜</string>
+    <string name="login_email_address">请输入邮箱地址</string>
+    <string name="login_input_pwd_graph">图形验证码错误，请重新输入</string>
+    <string name="login_email_sercet">由于隐私保护，系统在未验证改行动电话号为您本人所有时，不会告知您该邮箱是否已注册</string>
+    <string name="login_pwd_number">您的行动电话号：1500 008063</string>
+    <string name="login_receiver_msg">会收到一条含有验证码的短信</string>
+    <string name="login_input_code">请输入验证码</string>
+    <string name="login_input_phone_number">请输入行动电话</string>
+    <string name="login_forget_pwd">忘记密码</string>
+    <string name="login_help_center">帮助中心</string>
+    <string name="login_receiver_6_msg">会收到一条含有6位数字验证码的短信</string>
+    <string name="rank_accompany">陪伴是最长情的告白</string>
+    <string name="rank_gold_number">贡献175649金币</string>
+    <string name="live_watching">在看</string>
+    <string name="live_watching_percent">25%</string>
+    <string name="login_find_by_phone">通过行动电话找回</string>
+    <string name="login_find_by_email">通过注册邮箱找回</string>
 
 </resources>

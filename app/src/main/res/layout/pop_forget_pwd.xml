@@ -18,7 +18,7 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/tv_pwd_bg"
             android:gravity="center"
-            android:text="通过行动电话找回"
+            android:text="@string/login_find_by_phone"
             android:textColor="@color/titleText"
             android:textSize="17sp" />
 
@@ -30,7 +30,7 @@
             android:layout_marginTop="19dp"
             android:background="@drawable/tv_pwd_bg"
             android:gravity="center"
-            android:text="通过注册邮箱找回"
+            android:text="@string/login_find_by_email"
             android:textColor="@color/titleText"
             android:textSize="17sp" />
     </LinearLayout>

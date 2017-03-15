@@ -125,7 +125,7 @@
         android:layout_marginTop="19dp"
         android:background="@color/vistorTvbg"
         android:gravity="center"
-        android:text="登录"
+        android:text="@string/login"
         android:textColor="@color/vistorTvbgNormal"
         android:textSize="17sp" />
 
@@ -142,7 +142,7 @@
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginTop="19dp"
-            android:text="忘记密码"
+            android:text="@string/login_forget_pwd"
             android:textColor="@color/loginTvUnClick"
             android:textSize="15dp" />
 
@@ -153,7 +153,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="14dp"
             android:layout_marginTop="19dp"
-            android:text="帮助中心"
+            android:text="@string/login_help_center"
             android:textColor="@color/loginTvUnClick"
             android:textSize="15dp" />
     </RelativeLayout>

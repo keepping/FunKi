@@ -94,7 +94,7 @@
             android:layout_below="@+id/tv_count_person"
             android:layout_marginRight="10dp"
             android:layout_marginTop="7dp"
-            android:text="在看"
+            android:text="@string/live_watching"
             android:textColor="@color/vistorTvbg"
             android:textSize="11sp" />
 
@@ -187,7 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="%25" />
+                android:text="@string/live_watching_percent" />
         </RelativeLayout>
 
     </RelativeLayout>
