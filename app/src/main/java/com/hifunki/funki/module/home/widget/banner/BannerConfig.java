@@ -2,6 +2,7 @@ package com.hifunki.funki.module.home.widget.banner;
 
 
 public class BannerConfig {
+
     /**
      * indicator style
      */
