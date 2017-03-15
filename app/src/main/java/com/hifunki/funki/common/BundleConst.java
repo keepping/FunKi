@@ -1,9 +1,14 @@
 package com.hifunki.funki.common;
 
 /**
- * Created by WangTest on 2017/2/25.
+ * Activity传参数的key管理类
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.common.BundleConst.java
+ * @link
+ * @since 2017-03-15 10:27:27
  */
-
 public interface BundleConst {
     String KEY_SELECT_IMAGE = "key_select_image";
 

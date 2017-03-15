@@ -1,5 +1,14 @@
 package com.hifunki.funki.common;
 
+/**
+ * 全局参数管理类
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.common.CommonConst.java
+ * @link
+ * @since 2017-03-15 10:27:27
+ */
 public interface CommonConst {
     int NETTYPE_NONE = 0;
     int NETTYPE_LINE = 1;

@@ -1,7 +1,13 @@
 package com.hifunki.funki.module.search.entity;
 
 /**
- * Created by WangTest on 2017/3/12.
+ * 在此写用途
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.module.search.entity.PersonEntity.java
+ * @link
+ * @since 2017-03-10 14:28:28
  */
 
 public class SearchUser {

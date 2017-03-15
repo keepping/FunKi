@@ -8,7 +8,7 @@ import com.hifunki.funki.module.login.entity.EighteenEntity;
 import java.util.List;
 
 /**
- * 在此写用途
+ * 18禁Adapter
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

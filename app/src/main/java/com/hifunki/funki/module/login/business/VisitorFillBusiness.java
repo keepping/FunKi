@@ -7,9 +7,14 @@ import com.hifunki.funki.R;
 
 
 /**
- * Created by dell on 2017/2/23.
+ * 游客的业务类
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.module.login.business.VisitorFillBusiness.java
+ * @link
+ * @since 2017-03-06 15:10:10
  */
-
 public class VisitorFillBusiness {
     /**
      * 改变字体style

@@ -4,7 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
-                tools:showIn="@layout/ucrop_activity_photobox"
+                tools:showIn="@layout/photo_ucrop_activity_photobox"
                 tools:visibility="visible">
 
     <TextView

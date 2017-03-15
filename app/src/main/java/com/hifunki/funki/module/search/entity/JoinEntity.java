@@ -4,18 +4,18 @@ package com.hifunki.funki.module.search.entity;
  * Created by WangTest on 2017/3/11.
  */
 
-public class Join {
+public class JoinEntity {
     String joinName;
     String joinPhotot;
 
-    public Join(String joinName, String joinPhotot) {
+    public JoinEntity(String joinName, String joinPhotot) {
         this.joinName = joinName;
         this.joinPhotot = joinPhotot;
     }
 
     @Override
     public String toString() {
-        return "Join{" +
+        return "JoinEntity{" +
                 "joinName='" + joinName + '\'' +
                 ", joinPhotot='" + joinPhotot + '\'' +
                 '}';

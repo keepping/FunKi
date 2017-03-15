@@ -13,8 +13,13 @@ import java.util.List;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
- * 2017-3-11 13:27:55
- * Created by dell on 2017/2/22.
+ * ApplicationMain
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.base.application.ApplicationMain.java
+ * @link
+ * @since 2017-03-15 10:27:27
  */
 
 public class ApplicationMain extends Application {

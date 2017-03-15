@@ -44,7 +44,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(mLayoutInflater.inflate(R.layout.gallery_item_folder, parent, false));
+        return new ViewHolder(mLayoutInflater.inflate(R.layout.photo_gallery_item_folder, parent, false));
     }
 
     @Override

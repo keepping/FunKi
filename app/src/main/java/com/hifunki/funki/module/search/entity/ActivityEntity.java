@@ -10,12 +10,12 @@ public class ActivityEntity {
     String activityName;
     String activityImage;
 
-    List<Join> joinList;
+    List<JoinEntity> joinEntityList;
 
-    public ActivityEntity(String activityName, String activityImage, List<Join> joinList) {
+    public ActivityEntity(String activityName, String activityImage, List<JoinEntity> joinEntityList) {
         this.activityName = activityName;
         this.activityImage = activityImage;
-        this.joinList = joinList;
+        this.joinEntityList = joinEntityList;
     }
 
     public String getActivityName() {
@@ -34,12 +34,12 @@ public class ActivityEntity {
         this.activityImage = activityImage;
     }
 
-    public List<Join> getJoinList() {
-        return joinList;
+    public List<JoinEntity> getJoinEntityList() {
+        return joinEntityList;
     }
 
-    public void setJoinList(List<Join> joinList) {
-        this.joinList = joinList;
+    public void setJoinEntityList(List<JoinEntity> joinEntityList) {
+        this.joinEntityList = joinEntityList;
     }
 
 
@@ -49,7 +49,7 @@ public class ActivityEntity {
         return "ActivityEntity{" +
                 "activityName='" + activityName + '\'' +
                 ", activityImage='" + activityImage + '\'' +
-                ", joinList=" + joinList +
+                ", joinEntityList=" + joinEntityList +
                 '}';
     }
 }

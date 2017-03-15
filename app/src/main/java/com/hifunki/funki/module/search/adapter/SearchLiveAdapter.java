@@ -33,8 +33,8 @@ public class SearchLiveAdapter extends BaseMultiItemQuickAdapter<LiveEntity, Bas
     public SearchLiveAdapter(Context context, List data) {
         super(data);
         this.mContext = context;
-        addItemType(LiveEntity.VIP_LIVE, R.layout.list_live_vip);
-        addItemType(LiveEntity.LEVEL_LIVE, R.layout.list_live_normal);
+        addItemType(LiveEntity.VIP_LIVE, R.layout.item_live_vip);
+        addItemType(LiveEntity.LEVEL_LIVE, R.layout.item_live_normal);
     }
 
     @Override

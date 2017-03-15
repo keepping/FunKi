@@ -19,8 +19,15 @@ import java.io.Serializable;
 
 import butterknife.ButterKnife;
 
+
 /**
- * Fragment基础类
+ * Fragment基类
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.base.fragment.BaseFragment.java
+ * @link
+ * @since 2017-03-15 10:27:27
  */
 @SuppressWarnings("WeakerAccess")
 public abstract class BaseFragment extends Fragment {

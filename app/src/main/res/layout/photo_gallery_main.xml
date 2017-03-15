@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/gallery_title" />
+    <include layout="@layout/photo_gallery_title" />
 
 
     <RelativeLayout

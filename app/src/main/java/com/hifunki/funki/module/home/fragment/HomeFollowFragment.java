@@ -8,7 +8,7 @@ import com.hifunki.funki.base.fragment.BaseFragment;
 
 
 /**
- * 在此写用途
+ * 首页关注Fragment
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

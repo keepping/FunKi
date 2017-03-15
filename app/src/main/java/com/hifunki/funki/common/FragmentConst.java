@@ -1,7 +1,7 @@
 package com.hifunki.funki.common;
 
 /**
- * 在此写用途
+ * Fragment TAG 之类的参数
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

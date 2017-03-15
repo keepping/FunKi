@@ -14,12 +14,16 @@ import com.hifunki.funki.module.search.entity.ActivityEntity;
 import java.util.List;
 
 /**
- * Created by WangTest on 2017/3/11.
+ * 在此写用途
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.module.search.adapter.ActivitySearchAdapter.java
+ * @link
+ * @since 2017-03-10 10:25:25
  */
-
 public class ActivitySearchAdapter extends BaseQuickAdapter<ActivityEntity, BaseViewHolder> {
     private Context mContext;
-    private int contextView;
 
     public ActivitySearchAdapter(Context context, int layoutResId, List<ActivityEntity> data) {
         super(layoutResId, data);
@@ -33,14 +37,11 @@ public class ActivitySearchAdapter extends BaseQuickAdapter<ActivityEntity, Base
 
         RecyclerView recycleView = helper.getView(R.id.rv_activity_join);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-        ActivityPhotoAdapter activityPhotoAdapter = new ActivityPhotoAdapter(mContext, R.layout.list_search_activity_photo, item.getJoinList());
+        ActivityPhotoAdapter activityPhotoAdapter = new ActivityPhotoAdapter(mContext, R.layout.item_search_activity_photo, item.getJoinEntityList());
         recycleView.setLayoutManager(linearLayoutManager);
         recycleView.setAdapter(activityPhotoAdapter);
 
 
     }
 
-    public void setContextView(int contextView) {
-        this.contextView = contextView;
-    }
 }

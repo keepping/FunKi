@@ -17,6 +17,15 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 在此写用途
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.module.search.fragment.LiveFragment.java
+ * @link
+ * @since 2017-03-13 09:46:46
+ */
 public class UserListFragment extends BaseFragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -79,7 +88,7 @@ public class UserListFragment extends BaseFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rvSearchUser.setLayoutManager(linearLayoutManager);
         SearchUserAdapter searchUserAdapter = new SearchUserAdapter(getContext().getApplicationContext(),
-                R.layout.list_search_user,searchUserList);
+                R.layout.item_search_user,searchUserList);
         rvSearchUser.setAdapter(searchUserAdapter);
     }
 

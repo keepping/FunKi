@@ -12,9 +12,14 @@ import com.hifunki.funki.module.search.entity.SearchUser;
 import java.util.List;
 
 /**
- * Created by WangTest on 2017/3/12.
+ * 在此写用途
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.module.search.adapter.SearchUserAdapter.java
+ * @link
+ * @since 2017-03-10 10:25:25
  */
-
 public class SearchUserAdapter extends BaseQuickAdapter<SearchUser, BaseViewHolder> {
 
     private Context mContext;

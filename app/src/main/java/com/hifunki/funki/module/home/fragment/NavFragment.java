@@ -21,7 +21,7 @@ import butterknife.OnClick;
 import static android.content.ContentValues.TAG;
 
 /**
- * 在此写用途
+ * 首页底部tabFragment
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

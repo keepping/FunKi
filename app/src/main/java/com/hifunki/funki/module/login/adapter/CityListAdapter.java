@@ -15,7 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * author dell on 2016/1/26.
+ * 城市列表Adapter
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.base.adapter.CityListAdapter.java
+ * @link
+ * @since 2017-03-15 10:27:27
  */
 public class CityListAdapter extends BaseAdapter {
     private static final int VIEW_TYPE_COUNT = 1;

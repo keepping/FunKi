@@ -45,7 +45,12 @@ import java.util.List;
 
 /**
  * 图片选择页面
- * Created by Yancy on 2016/1/26.
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.module.photo.gallery.activity.GalleryVpActivity.java
+ * @link
+ * @since 2017-03-03 17:36:36
  */
 public class GalleryPickActivity extends BaseTitleActivity implements View.OnClickListener {
 
@@ -105,7 +110,7 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
 
     @Override
     protected int getViewResId() {
-        return R.layout.gallery_main;
+        return R.layout.photo_gallery_main;
     }
 
     @Override

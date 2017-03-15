@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.login.adapter.base;
+package com.hifunki.funki.base.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,13 @@ import java.util.List;
 
 
 /**
- * Adapter基类处理
- * @param <T>
+ * Adapter基类
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.base.adapter.AdapterBase.java
+ * @link
+ * @since 2017-03-07 13:41:41
  */
 public abstract class AdapterBase<T> extends BaseAdapter {
 

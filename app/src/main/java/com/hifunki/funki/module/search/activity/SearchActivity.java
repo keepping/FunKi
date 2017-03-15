@@ -19,13 +19,13 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.module.search.entity.JoinEntity;
 import com.hifunki.funki.module.search.fragment.LiveListFragment;
 import com.hifunki.funki.module.search.fragment.UserListFragment;
 import com.hifunki.funki.module.search.adapter.ActivitySearchAdapter;
 import com.hifunki.funki.module.search.adapter.HomeSearchAdapter;
 import com.hifunki.funki.module.search.adapter.HotSearchAdapter;
 import com.hifunki.funki.module.search.entity.ActivityEntity;
-import com.hifunki.funki.module.search.entity.Join;
 import com.hifunki.funki.module.search.entity.PersonEntity;
 import com.hifunki.funki.module.search.fragment.VideoListFragment;
 import com.hifunki.funki.util.StringUtils;
@@ -122,16 +122,16 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         personEntities.add(personEntity1);
         personEntities.add(personEntity2);
 
-        List<Join> joinList = new ArrayList<>();
+        List<JoinEntity> joinEntityList = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            Join join = new Join("酱油泡芙", imagePathss);
-            joinList.add(join);
+            JoinEntity joinEntity = new JoinEntity("酱油泡芙", imagePathss);
+            joinEntityList.add(joinEntity);
         }
 
         ActivityEntity activityEntity = new ActivityEntity("酱油泡芙 ", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
-                joinList);
+                joinEntityList);
         ActivityEntity activityEntity2 = new ActivityEntity("酱油泡芙", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
-                joinList);
+                joinEntityList);
         activityList = new ArrayList<>();
         activityList.add(activityEntity);
         activityList.add(activityEntity2);
@@ -165,7 +165,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
 
         //RecyclerView
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        ActivitySearchAdapter activitySearchAdapter = new ActivitySearchAdapter(getApplicationContext(), R.layout.list_search_activity_recommend, activityList);
+        ActivitySearchAdapter activitySearchAdapter = new ActivitySearchAdapter(getApplicationContext(), R.layout.item_search_activity_recommend, activityList);
         rvActivityRecommend.setLayoutManager(linearLayoutManager1);
         rvActivityRecommend.setAdapter(activitySearchAdapter);
         activitySearchAdapter.addHeaderView(getHeadView(), 1);
@@ -234,7 +234,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
         //设置rl的adapter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.list_search_hot_recommend, personEntities);
+        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.item_search_hot_recommend, personEntities);
         rvHotRecommend.setLayoutManager(linearLayoutManager);
         rvHotRecommend.setAdapter(eighteenAdapter);
         return headView;

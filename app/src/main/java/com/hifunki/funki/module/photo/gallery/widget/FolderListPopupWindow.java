@@ -44,7 +44,7 @@ public class FolderListPopupWindow extends PopupWindow {
         this.mSize = size;
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        popupWindow = inflater.inflate(R.layout.gallery_popup_folder, null);
+        popupWindow = inflater.inflate(R.layout.photo_gallery_popup_folder, null);
 
         initView();
         init();

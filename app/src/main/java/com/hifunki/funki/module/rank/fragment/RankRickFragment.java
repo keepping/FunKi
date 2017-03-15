@@ -11,7 +11,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 
 /**
- * 在此写用途
+ * 世界总榜-->土豪总榜Fragment
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

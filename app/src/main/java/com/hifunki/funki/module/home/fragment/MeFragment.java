@@ -7,8 +7,9 @@ import android.os.Bundle;
 import com.hifunki.funki.base.fragment.BaseFragment;
 
 import com.hifunki.funki.R;
+
 /**
- * 在此写用途
+ * 个人中心Fragment
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

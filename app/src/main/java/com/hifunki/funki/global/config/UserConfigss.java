@@ -1,8 +1,13 @@
 package com.hifunki.funki.global.config;
 
 /**
- * Created by WangTest on 2017/2/25.
+ * 用户Config参数
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.global.config.UserConfigss.java
+ * @link
+ * @since 2017-03-09 15:09:09
  */
-
 public class UserConfigss {
 }

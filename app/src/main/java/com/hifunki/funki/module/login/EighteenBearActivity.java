@@ -88,7 +88,7 @@ public class EighteenBearActivity extends BaseActivity {
 
     @Override
     protected void initAdapter() {
-        EighteenAdapter eighteenAdapter = new EighteenAdapter(R.layout.list_eighteen, eighteenEntities);
+        EighteenAdapter eighteenAdapter = new EighteenAdapter(R.layout.item_eighteen, eighteenEntities);
         rvEighteenChoose.setLayoutManager(new LinearLayoutManager(this));
         rvEighteenChoose.setAdapter(eighteenAdapter);
     }

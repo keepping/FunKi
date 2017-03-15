@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 在此写用途
+ *  世界总榜-->主播总榜Fragment
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

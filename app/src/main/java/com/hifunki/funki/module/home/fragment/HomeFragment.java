@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 在此写用途
+ * 首页Fragment
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

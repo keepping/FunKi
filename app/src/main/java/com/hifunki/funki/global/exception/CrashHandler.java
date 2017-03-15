@@ -6,10 +6,12 @@ import java.lang.Thread.UncaughtExceptionHandler;
 
 /**
  * 异常处理中心 (只针对运行时，未捕获的异常)
- * 
- * @className: CrashHandler
- * @author: terryzz0601@gmail.com
- * @date: 2014-3-14
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.global.config.UserConfigss.java
+ * @link
+ * @since 2017-03-09 15:09:09
  */
 public class CrashHandler implements UncaughtExceptionHandler {
 	private static CrashHandler instance = new CrashHandler();

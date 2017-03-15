@@ -193,7 +193,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
                 //创建PopWindow
                 if (pwdPopWindow == null) {
                     pwdPopWindow = PopWindowUtil.getInstance(this);
-                    pwdView = LayoutInflater.from(this).inflate(R.layout.pop_forget_pwd, null);
+                    pwdView = LayoutInflater.from(this).inflate(R.layout.pop_login_forget_pwd, null);
                     pwdPopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
                 pwdPopWindow.init((int) DisplayUtil.dip2Px(this, 173), LinearLayout.LayoutParams.MATCH_PARENT);

@@ -58,9 +58,9 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == HEAD) {
-            return new HeadHolder(mLayoutInflater.inflate(R.layout.gallery_item_camera, parent, false));
+            return new HeadHolder(mLayoutInflater.inflate(R.layout.photo_gallery_item_camera, parent, false));
         }
-        return new ViewHolder(mLayoutInflater.inflate(R.layout.gallery_item_photo, parent, false));
+        return new ViewHolder(mLayoutInflater.inflate(R.layout.photo_gallery_item_photo, parent, false));
     }
 
     @Override

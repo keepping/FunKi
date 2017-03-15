@@ -90,7 +90,7 @@ public class UCropActivity extends BaseTitleActivity implements View.OnClickList
 
     @Override
     protected int getViewResId() {
-        return R.layout.ucrop_activity_photobox;
+        return R.layout.photo_ucrop_activity_photobox;
     }
 
     @Override
@@ -255,7 +255,7 @@ public class UCropActivity extends BaseTitleActivity implements View.OnClickList
 
         if (mShowBottomControls) {
 
-            View.inflate(this, R.layout.ucrop_controls, photoBox);
+            View.inflate(this, R.layout.photo_ucrop_controls, photoBox);
 
             mWrapperStateAspectRatio = (ViewGroup) findViewById(R.id.state_aspect_ratio);
             mWrapperStateAspectRatio.setOnClickListener(mStateClickListener);
@@ -349,7 +349,7 @@ public class UCropActivity extends BaseTitleActivity implements View.OnClickList
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
         lp.weight = 1;
         for (AspectRatio aspectRatio : aspectRatioList) {
-            wrapperAspectRatio = (FrameLayout) getLayoutInflater().inflate(R.layout.ucrop_aspect_ratio, null);
+            wrapperAspectRatio = (FrameLayout) getLayoutInflater().inflate(R.layout.photo_ucrop_aspect_ratio, null);
             wrapperAspectRatio.setLayoutParams(lp);
             aspectRatioTextView = ((AspectRatioTextView) wrapperAspectRatio.getChildAt(0));
             aspectRatioTextView.setActiveColor(mActiveWidgetColor);

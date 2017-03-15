@@ -4,7 +4,13 @@ import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.util.LogUtils;
 
 /**
- * Created by WangTest on 2017/2/25.
+ * Fragment TAG 之类的参数
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.global.config.SettingsManager.java
+ * @link
+ * @since 2017-03-09 15:09:09
  */
 
 public class SettingsManager {
