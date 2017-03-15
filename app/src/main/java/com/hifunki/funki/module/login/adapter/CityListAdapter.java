@@ -102,7 +102,7 @@ public class CityListAdapter extends BaseAdapter {
         switch (viewType) {
             case 1:     //所有
                 if (view == null) {
-                    view = inflater.inflate(R.layout.lv_country_item, parent, false);
+                    view = inflater.inflate(R.layout.item_country_list, parent, false);
                     holder = new CityViewHolder();
                     holder.name = (TextView) view.findViewById(R.id.tv_item_country_name);
                     holder.letter = (TextView) view.findViewById(R.id.tv_item_country_name_letter);

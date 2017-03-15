@@ -8,12 +8,12 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
 
 /**
- * GlideImageLoader
+ * GlideBannerImageLoader
  * Created by Yancy on 2016/10/28.
  */
 public class GlideImageLoader implements ImageLoader {
 
-    private final static String TAG = "GlideImageLoader";
+    private final static String TAG = "GlideBannerImageLoader";
 
     @Override
     public void displayImage(Activity activity, Context context, String path, GalleryImageView galleryImageView, int width, int height) {
@@ -28,4 +28,6 @@ public class GlideImageLoader implements ImageLoader {
     public void clearMemoryCache() {
 
     }
+
+
 }

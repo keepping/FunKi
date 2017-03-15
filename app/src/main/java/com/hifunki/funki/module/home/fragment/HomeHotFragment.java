@@ -5,12 +5,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.adapter.HomeHotAdapter;
 import com.hifunki.funki.module.home.entity.HomeHotEntity;
+import com.hifunki.funki.module.home.widget.banner.Banner;
+import com.hifunki.funki.module.home.widget.banner.GlideBannerImageLoader;
+import com.hifunki.funki.module.home.widget.banner.OnBannerListener;
+import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +35,7 @@ import butterknife.BindView;
  * @link
  * @since 2017-03-13 16:43:43
  */
-public class HomeHotFragment extends BaseFragment {
+public class HomeHotFragment extends BaseFragment implements OnBannerListener {
 
     @BindView(R.id.rv_hot)
     RecyclerView rvHot;
@@ -41,6 +49,7 @@ public class HomeHotFragment extends BaseFragment {
 
     private OnFragmentInteractionListener mListener;
     private List<HomeHotEntity> hotEntities;
+    private Banner banner;
 
     public HomeHotFragment() {
     }
@@ -97,6 +106,7 @@ public class HomeHotFragment extends BaseFragment {
         hotEntities.add(homeHotEntity7);
         hotEntities.add(homeHotEntity8);
 
+
     }
 
     @Override
@@ -105,7 +115,43 @@ public class HomeHotFragment extends BaseFragment {
         rvHot.setLayoutManager(new LinearLayoutManager(getContext()));
         HomeHotAdapter homeHotAdapter=new HomeHotAdapter(getContext(),hotEntities);
         rvHot.setAdapter(homeHotAdapter);
+        homeHotAdapter.addHeaderView(getHeadView());//获取头部视图
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //开始轮播
+        banner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //结束轮播
+        banner.stopAutoPlay();
+    }
+    //获取头部ViewPager视图
+    private View getHeadView() {
+        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.vp_home_hot, null);
+        banner = (Banner) headView.findViewById(R.id.banner_home_hot);
+
+        banner.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DisplayUtil.dip2Px(getContext(),135)));
+        //简单使用
+        List<String> strings=new ArrayList<>();
+
+        strings.add("http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg");
+        strings.add("http://pic27.nipic.com/20130320/3822951_105204803000_2.jpg");
+        strings.add("http://pic.58pic.com/58pic/14/27/56/97H58PICjsU_1024.jpg");
+        strings.add("http://img05.tooopen.com/images/20150105/sy_78543795524.jpg");
+
+        banner.setImages(strings)
+                .setImageLoader(new GlideBannerImageLoader())
+                .setOnBannerListener(this)
+                .start();
+//        home_hot_banner
+        return banner;
     }
 
     public void onButtonPressed(Uri uri) {
@@ -129,6 +175,12 @@ public class HomeHotFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    //banner点击
+    @Override
+    public void OnBannerClick(int position) {
+        Toast.makeText(getContext(),"你点击了："+position,Toast.LENGTH_SHORT).show();
     }
 
     public interface OnFragmentInteractionListener {
