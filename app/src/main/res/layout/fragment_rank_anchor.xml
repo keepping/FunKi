@@ -4,14 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.hifunki.funki.module.rank.fragment.RankAnchorFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:text="@string/hello_blank_fragment" />-->
-
-    <ListView
-        android:id="@+id/list_view"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_anchor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>

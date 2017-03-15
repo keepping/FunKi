@@ -1,126 +1,74 @@
 package com.hifunki.funki.module.rank.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.hifunki.funki.R;
+import com.hifunki.funki.module.rank.entity.AnchorEntity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 主播人气adapter
+ * 在此写用途
  *
- * @author lihao
+ * @author monotone
  * @version V1.0 <描述当前版本功能>
  * @value com.hifunki.funki.module.rank.adapter.RankAnchorAdapter.java
  * @link
- * @since 2017-03-14 14:08:08
+ * @since 2017-03-15 15:55:55
  */
+public class RankAnchorAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, BaseViewHolder> {
 
-public class RankAnchorAdapter extends BaseAdapter {
-
-    private static final int RANK_TYPE_COUNT = 2;
-    private static final int RANK_ANCHOR_TOP = 0;
-    private static final int RANK_ANCHOR_DOWN= 1;
-    private LayoutInflater mInflater;
     private Context mContext;
-    private ArrayList<String> arrayList;
 
-
-
-    public RankAnchorAdapter(Context context){
-        mInflater = LayoutInflater.from(context);
-        mContext = context;
-    }
-
-    public void setList(ArrayList<String> arrayList){
-        this.arrayList = arrayList;
-    }
-
-    @Override
-    public int getCount() {
-        return 10;
+    /**
+     * Same as QuickAdapter#QuickAdapter(Context,int) but with
+     * some initialization data.
+     *
+     * @param data A new list is created out of this one to avoid mutable list
+     */
+    public RankAnchorAdapter(Context context, List data) {
+        super(data);
+        this.mContext = context;
+        addItemType(AnchorEntity.TOP, R.layout.item_rank_anchor_top);
+        addItemType(AnchorEntity.NORMAL, R.layout.item_rank_anchor_normal);
     }
 
     @Override
-    public Object getItem(int i) {
-        return i;
-    }
+    protected void convert(BaseViewHolder helper, AnchorEntity item) {
+        switch (helper.getItemViewType()) {
+            case AnchorEntity.TOP:
+                //需要处理排名的问题
+                if (helper.getLayoutPosition() == 1) {
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
+                }
+                helper.setText(R.id.tv_anthor_position, "NO." + String.valueOf(item.getPosition()));//排名
+                Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_anchor_photo));
 
-    @Override
-    public int getViewTypeCount() {
-        return RANK_TYPE_COUNT;
-    }
+                helper.setText(R.id.tv_anchor_name, item.getUsername());//用户名
 
-    @Override
-    public int getItemViewType(int position) {
-        if(position < 3){
-            return RANK_ANCHOR_TOP;
-        }else {
-            return RANK_ANCHOR_DOWN;
+                Glide.with(mContext).load(R.drawable.iv_search_hot_girl).into((ImageView) helper.getView(R.id.iv_anchor_sex));
+                helper.setText(R.id.tv_anchor_lv, String.valueOf(item.getLevel()));//等级
+                helper.setText(R.id.tv_anchor_gold, String.valueOf(item.getGoldNumber()));//金钱
+
+                break;
+            case AnchorEntity.NORMAL:
+
+                helper.setText(R.id.tv_anthor_position, "NO." + String.valueOf(item.getPosition()));//排名
+                Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_anchor_photo));
+
+                helper.setText(R.id.tv_anchor_name, item.getUsername());
+
+                //这里代码很可能有问题
+//                Glide.with(mContext).load(R.drawable.iv_search_hot_girl).into((ImageView) helper.getView(R.id.iv_anchor_sex));
+
+                helper.setText(R.id.tv_anchor_lv, String.valueOf(item.getLevel()));//等级
+                helper.setText(R.id.tv_anchor_gold, String.valueOf(item.getGoldNumber()));//金钱
+
+                break;
         }
-
     }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder viewHolder;
-        ViewHolderDown viewHolderDown;
-        int type = getItemViewType(i);
-
-        if(view == null){
-            switch (type){
-                case RANK_ANCHOR_TOP:
-                    view = mInflater.inflate(R.layout.item_rank_anchor , null);
-                    viewHolder = new ViewHolder();
-                    view.setTag(viewHolder);
-                    break;
-                case RANK_ANCHOR_DOWN:
-                    view = mInflater.inflate(R.layout.item_rank_anchor_down , null);
-                    viewHolderDown = new ViewHolderDown();
-                    view.setTag(viewHolderDown);
-                    break;
-                default:
-
-                    break;
-            }
-        }else {
-            switch (type){
-                case RANK_ANCHOR_TOP:
-                    viewHolder = (ViewHolder) view.getTag();
-                    break;
-                case RANK_ANCHOR_DOWN:
-                    viewHolderDown = (ViewHolderDown) view.getTag();
-                    break;
-
-                default:
-                    break;
-            }
-
-        }
-        return view;
-    }
-
-
-    private class ViewHolder{
-        private ImageView mRankNo;
-        private ImageView mUserBg;
-
-    }
-
-    private class ViewHolderDown{
-
-
-    }
-
 }

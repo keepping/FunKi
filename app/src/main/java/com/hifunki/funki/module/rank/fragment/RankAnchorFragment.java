@@ -3,20 +3,22 @@ package com.hifunki.funki.module.rank.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.rank.adapter.RankAnchorAdapter;
+import com.hifunki.funki.module.rank.entity.AnchorEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
- *  世界总榜-->主播总榜Fragment
+ * 世界总榜-->主播总榜Fragment
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
@@ -27,8 +29,9 @@ import butterknife.ButterKnife;
 public class RankAnchorFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    @BindView(R.id.list_view)
-    ListView mListView;
+
+    @BindView(R.id.rl_anchor)
+    RecyclerView rlAnchor;
 
     private RankAnchorAdapter mAdapter;
 
@@ -36,6 +39,7 @@ public class RankAnchorFragment extends BaseFragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private List<AnchorEntity> anchorEntities;
 
 
     public RankAnchorFragment() {
@@ -91,27 +95,32 @@ public class RankAnchorFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
-
+        String imagePath = "http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg";
+        AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7612121);
+        AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 761212);
+        AnchorEntity anchorEntity3 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7625612);
+        AnchorEntity anchorEntity4 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 76421);
+        AnchorEntity anchorEntity5 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764124);
+        AnchorEntity anchorEntity6 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764121);
+        anchorEntities = new ArrayList<>();
+        anchorEntities.add(anchorEntity1);
+        anchorEntities.add(anchorEntity2);
+        anchorEntities.add(anchorEntity3);
+        anchorEntities.add(anchorEntity4);
+        anchorEntities.add(anchorEntity5);
+        anchorEntities.add(anchorEntity6);
     }
 
     @Override
     protected void initView(View root) {
         super.initView(root);
-        mListView = (ListView) root.findViewById(R.id.list_view);
-        mAdapter = new RankAnchorAdapter(getActivity());
-        mListView.setAdapter(mAdapter);
+        mAdapter = new RankAnchorAdapter(getContext(),anchorEntities );
+        rlAnchor.setLayoutManager(new LinearLayoutManager(getContext()));
+        rlAnchor.setAdapter(mAdapter);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

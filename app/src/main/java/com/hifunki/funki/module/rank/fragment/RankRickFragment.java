@@ -3,12 +3,19 @@ package com.hifunki.funki.module.rank.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.module.rank.adapter.RankAnchorAdapter;
+import com.hifunki.funki.module.rank.entity.AnchorEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * 世界总榜-->土豪总榜Fragment
@@ -20,6 +27,10 @@ import com.hifunki.funki.base.fragment.BaseFragment;
  * @since 2017-03-14 11:18:18
  */
 public class RankRickFragment extends BaseFragment {
+
+    @BindView(R.id.rl_rick)
+    RecyclerView rlRick;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -27,6 +38,8 @@ public class RankRickFragment extends BaseFragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private List<AnchorEntity> anchorEntities;
 
     public RankRickFragment() {
     }
@@ -51,14 +64,35 @@ public class RankRickFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_rank_rick, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_rank_rick;
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_rank_rick;
+    protected void initData() {
+        super.initData();
+        String imagePath = "http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg";
+        AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7612121);
+        AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 761212);
+        AnchorEntity anchorEntity3 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7625612);
+        AnchorEntity anchorEntity4 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 76421);
+        AnchorEntity anchorEntity5 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764124);
+        AnchorEntity anchorEntity6 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764121);
+        anchorEntities = new ArrayList<>();
+        anchorEntities.add(anchorEntity1);
+        anchorEntities.add(anchorEntity2);
+        anchorEntities.add(anchorEntity3);
+        anchorEntities.add(anchorEntity4);
+        anchorEntities.add(anchorEntity5);
+        anchorEntities.add(anchorEntity6);
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+        RankAnchorAdapter adapter = new RankAnchorAdapter(getContext(), anchorEntities);
+        rlRick.setLayoutManager(new LinearLayoutManager(getContext()));
+        rlRick.setAdapter(adapter);
     }
 
     public void onButtonPressed(Uri uri) {
@@ -86,7 +120,6 @@ public class RankRickFragment extends BaseFragment {
 
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.module.rank.adapter.RankAdapter;
+import com.hifunki.funki.module.rank.adapter.RankPageAdapter;
 import com.hifunki.funki.module.rank.fragment.RankAnchorFragment;
 import com.hifunki.funki.module.rank.fragment.RankRickFragment;
 
@@ -95,8 +95,8 @@ public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFr
     @Override
     protected void initAdapter() {
 
-        RankAdapter rankAdapter = new RankAdapter(getSupportFragmentManager(),mTabTitle);
-        vpRank.setAdapter(rankAdapter);
+        RankPageAdapter rankPageAdapter = new RankPageAdapter(getSupportFragmentManager(),mTabTitle);
+        vpRank.setAdapter(rankPageAdapter);
         tbRank.setupWithViewPager(vpRank);
 
 

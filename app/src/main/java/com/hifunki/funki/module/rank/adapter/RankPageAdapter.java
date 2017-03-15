@@ -14,15 +14,15 @@ import java.util.List;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.rank.adapter.RankAdapter.java
+ * @value com.hifunki.funki.module.rank.adapter.RankPageAdapter.java
  * @link
  * @since 2017-03-14 11:02:02
  */
-public class RankAdapter extends FragmentPagerAdapter {
+public class RankPageAdapter extends FragmentPagerAdapter {
 
     private List<String> mTabTitle;
 
-    public RankAdapter(FragmentManager fm, List<String> mTabTitle) {
+    public RankPageAdapter(FragmentManager fm, List<String> mTabTitle) {
         super(fm);
         this.mTabTitle = mTabTitle;
     }

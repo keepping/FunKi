@@ -3,7 +3,7 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -18,11 +18,10 @@ import com.hifunki.funki.module.home.adapter.HomePagerAdapter;
 import com.hifunki.funki.module.rank.activity.WorldRankActivity;
 import com.hifunki.funki.module.search.activity.SearchActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.hifunki.funki.R.id.rb_home_follow;
 
 /**
  * 首页Fragment
@@ -33,7 +32,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-08 10:06:06
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -47,14 +46,14 @@ public class HomeFragment extends BaseFragment {
     ImageView ivHomeRank;
     @BindView(R.id.iv_home_indicate)
     ImageView ivHomeIndicate;
-    @BindView(R.id.rb_home_follow)
+    @BindView(rb_home_follow)
     RadioButton rbHomeFollow;
     @BindView(R.id.rb_home_hot)
     RadioButton rbHomeHot;
     @BindView(R.id.rb_home_new)
     RadioButton rbHomeNew;
-    @BindView(R.id.rb_home_title)
-    RadioGroup rbHomeTitle;
+    @BindView(R.id.rg_home_title)
+    RadioGroup rgHomeTitle;
     @BindView(R.id.vp_home)
     ViewPager vpHome;
 
@@ -115,7 +114,15 @@ public class HomeFragment extends BaseFragment {
         vpHome.setAdapter(adapter);
 
 //        vpHome.setCurrentItem(1);
+        initListener();
+    }
 
+    /**
+     * 设置控件监听
+     */
+    private void initListener() {
+        rgHomeTitle.setOnCheckedChangeListener(this);
+        vpHome.addOnPageChangeListener(this);
     }
 
     public void onButtonPressed(Uri uri) {
@@ -142,7 +149,7 @@ public class HomeFragment extends BaseFragment {
 
 
     @SuppressWarnings("RestrictedApi")
-    @OnClick({R.id.iv_home_search, R.id.iv_home_funki, R.id.iv_home_ticket, R.id.iv_home_rank, R.id.iv_home_indicate, R.id.rb_home_follow, R.id.rb_home_hot, R.id.rb_home_new, R.id.rb_home_title, R.id.vp_home})
+    @OnClick({R.id.iv_home_search, R.id.iv_home_funki, R.id.iv_home_ticket, R.id.iv_home_rank, R.id.iv_home_indicate, rb_home_follow, R.id.rb_home_hot, R.id.rb_home_new, R.id.rg_home_title, R.id.vp_home})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_home_search:
@@ -163,18 +170,64 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.iv_home_indicate:
                 break;
-            case R.id.rb_home_follow:
+            case rb_home_follow:
                 break;
             case R.id.rb_home_hot:
                 break;
             case R.id.rb_home_new:
                 break;
-            case R.id.rb_home_title:
+            case R.id.rg_home_title:
                 break;
             case R.id.vp_home:
                 break;
 
         }
+    }
+
+    /**
+     * RadioGroup的监听
+     *
+     * @param group
+     * @param checkedId
+     */
+    @Override
+    public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+        switch (checkedId) {
+            case rb_home_follow:
+                vpHome.setCurrentItem(0);
+                break;
+            case R.id.rb_home_hot:
+                vpHome.setCurrentItem(1);
+                break;
+            case R.id.rb_home_new:
+                vpHome.setCurrentItem(2);
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        switch (position) {
+            case 0:
+                rbHomeFollow.setChecked(true);
+                break;
+            case 1:
+                rbHomeHot.setChecked(true);
+                break;
+            case 2:
+                rbHomeNew.setChecked(true);
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 
 

@@ -54,7 +54,7 @@
 
 
         <RadioGroup
-            android:id="@+id/rb_home_title"
+            android:id="@+id/rg_home_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_home_indicate"
@@ -103,6 +103,8 @@
                 android:textSize="17sp" />
 
         </RadioGroup>
+
+        <!--首页title三个栏目，textView写法-->
 
         <!--<LinearLayout-->
         <!--android:layout_width="match_parent"-->
