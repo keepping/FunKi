@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.base.fragment.BaseFragment;
+import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.rank.adapter.RankAnchorAdapter;
 
 import butterknife.BindView;

@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.hifunki.funki.module.photo.gallery.activity.GalleryPickActivity;
-import com.hifunki.funki.library.util.FileUtils;
+import com.hifunki.funki.util.FileUtils;
 
 /**
  * GalleryPick 启动类 (单例)

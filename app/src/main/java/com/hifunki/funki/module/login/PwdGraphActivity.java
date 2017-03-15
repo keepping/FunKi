@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.login.widget.PwdGraphView;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 

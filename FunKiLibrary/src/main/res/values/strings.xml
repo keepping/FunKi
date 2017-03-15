@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">FunKiLibrary</string>
-
-
-    <string name="msg_fragment">消息</string>
-    <string name="store_fragment">商城</string>
-    <string name="me_fragment">我的</string>
-</resources>

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.base.fragment.BaseFragment;
+import com.hifunki.funki.base.fragment.BaseFragment;
 
 /**
  * 在此写用途

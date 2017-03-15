@@ -8,12 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/FunKiLibrary" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/home" />
-            <option value="$PROJECT_DIR$/message" />
-            <option value="$PROJECT_DIR$/mine" />
-            <option value="$PROJECT_DIR$/store" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

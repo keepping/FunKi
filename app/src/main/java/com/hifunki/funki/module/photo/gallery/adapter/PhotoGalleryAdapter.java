@@ -15,7 +15,7 @@ import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
 import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;
 import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
-import com.hifunki.funki.library.util.DisplayUtil;
+import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;

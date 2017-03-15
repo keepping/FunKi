@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.util.DisplayUtil;
+import com.hifunki.funki.util.DisplayUtil;
 
 
 public class SideLetterBar extends View {

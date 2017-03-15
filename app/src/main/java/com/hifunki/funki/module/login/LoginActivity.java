@@ -20,19 +20,19 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.base.activity.AccountBaseActivity;
-import com.hifunki.funki.library.common.Spkey;
+import com.hifunki.funki.base.activity.AccountBaseActivity;
+import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.activity.HomeActivity;
-import com.hifunki.funki.library.base.adapter.PagerBaseAdapter;
+import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.business.LoginBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.module.login.widget.scroller.FixedSpeedScroller;
-import com.hifunki.funki.library.util.DisplayUtil;
-import com.hifunki.funki.library.util.PopWindowUtil;
-import com.hifunki.funki.library.util.SPUtils;
-import com.hifunki.funki.library.util.ToastUtils;
+import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.PopWindowUtil;
+import com.hifunki.funki.util.SPUtils;
+import com.hifunki.funki.util.ToastUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

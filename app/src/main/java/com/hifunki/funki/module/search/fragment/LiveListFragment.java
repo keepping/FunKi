@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.base.fragment.BaseFragment;
+import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.search.adapter.SearchLiveAdapter;
 import com.hifunki.funki.module.search.entity.LiveEntity;
 

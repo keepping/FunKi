@@ -15,8 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.base.activity.AccountBaseActivity;
-import com.hifunki.funki.library.base.adapter.PagerBaseAdapter;
+import com.hifunki.funki.base.activity.AccountBaseActivity;
+import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.business.LoginBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;

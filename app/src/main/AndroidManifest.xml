@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".library.base.application.ApplicationMain"
+        android:name=".base.application.ApplicationMain"
         android:allowBackup="true"
         android:icon="@mipmap/iv_launcher"
         android:label="@string/app_name"
@@ -86,7 +86,7 @@
         </provider>
 
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
-        <activity android:name=".library.base.activity.AccountBaseActivity" />
+        <activity android:name=".base.activity.AccountBaseActivity" />
         <activity
             android:name=".module.home.activity.HomeActivity"
             android:launchMode="singleTask"

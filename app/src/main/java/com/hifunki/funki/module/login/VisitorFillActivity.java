@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.base.activity.BaseTitleActivity;
-import com.hifunki.funki.library.base.application.ApplicationMain;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.application.ApplicationMain;
 import com.hifunki.funki.module.login.business.VisitorFillBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 

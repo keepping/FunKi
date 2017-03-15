@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.search.fragment.LiveListFragment;
 import com.hifunki.funki.module.search.fragment.UserListFragment;
 import com.hifunki.funki.module.search.adapter.ActivitySearchAdapter;
@@ -28,7 +28,7 @@ import com.hifunki.funki.module.search.entity.ActivityEntity;
 import com.hifunki.funki.module.search.entity.Join;
 import com.hifunki.funki.module.search.entity.PersonEntity;
 import com.hifunki.funki.module.search.fragment.VideoListFragment;
-import com.hifunki.funki.library.util.StringUtils;
+import com.hifunki.funki.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

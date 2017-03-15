@@ -3,12 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FunKi.iml" filepath="$PROJECT_DIR$/FunKi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FunKiLibrary/FunKiLibrary.iml" filepath="$PROJECT_DIR$/FunKiLibrary/FunKiLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/home/home.iml" filepath="$PROJECT_DIR$/home/home.iml" />
-      <module fileurl="file://$PROJECT_DIR$/message/message.iml" filepath="$PROJECT_DIR$/message/message.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mine/mine.iml" filepath="$PROJECT_DIR$/mine/mine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/store/store.iml" filepath="$PROJECT_DIR$/store/store.iml" />
     </modules>
   </component>
 </project>

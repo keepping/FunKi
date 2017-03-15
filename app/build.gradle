@@ -64,9 +64,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile project(':FunKiLibrary')
-    compile project(':home')
-    compile project(':mine')
-    compile project(':store')
-    compile project(':message')
+
 }

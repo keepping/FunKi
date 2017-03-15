@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.library.util.DisplayUtil;
+import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.Random;
 
