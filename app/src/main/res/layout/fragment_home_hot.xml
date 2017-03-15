@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.hifunki.funki.module.home.fragment.HomeHotFragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_hot"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home_hot_fragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

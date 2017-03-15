@@ -1,9 +1,9 @@
-package com.hifunki.funki.module.search.entity;
+package com.hifunki.funki.module.home.entity;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 /**
- * 在此写用途
+ * 首页热门实体类
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
@@ -11,74 +11,111 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
  * @link
  * @since 2017-03-13 10:09:09
  */
-public class LiveEntity implements MultiItemEntity {
+public class HomeHotEntity implements MultiItemEntity {
 
     private int itemType;
-
-    public static final int VIP_LIVE = 1;
+    //普通直播--big
+    public static final int NORMAL_LIVE = 1;
+    //等级直播--big
     public static final int LEVEL_LIVE = 2;
-    public static final int NORMAL_LIVE = 3;
-    public static final int INVITE_LIVE = 4;
+    //普通视频--big --->only pgc
+    public static final int NORMAL_VIDEO = 3;
+
+
+    //门票直播--small view
+    public static final int TICKET_LIVE = 4;
+    //门票视频--small --->only pgc
+    public static final int TICKET_VIDEO = 5;
+
+    //判断是PGC还是UGC
+    private boolean isPAC;
 
     private String photo;
     private String username;
     private String location;
     private String language;
-    private int count;
+    private int WatchCount;
     private String welcome;
     private String signature;
     private String signature2;
     private String imagePath;
+    //普通直播
+    private boolean isNormalLive;
+    //等级直播
+    private boolean isLevelLive;
+    private int level;
+    //普通视频
+    private boolean isNormalVideo;
+
     //门票直播
-    private boolean isLive;
+    private boolean isTicketLive;
     private int noVipPrice;
     private int perCent;
     private int vipPrice;
-    //等级直播
-    private int level;
-    //普通直播
-    private boolean isNormalLive;
-    //邀请直播
-    private boolean isInviteLive;
+    //门票视频
+    private boolean isTicetVideo;
 
-    public LiveEntity(int itemType, String photo, String username, String location, String language, int count, String welcome, String signature, String signature2, String imagePath, boolean isLive, int noVipPrice, int perCent, int vipPrice, int level, boolean isNormalLive, boolean isInviteLive) {
+    public HomeHotEntity(int itemType, boolean isPAC, String photo, String username, String location, String language, int watchCount, String welcome, String signature, String signature2, String imagePath, boolean isNormalLive, boolean isLevelLive, int level, boolean isNormalVideo, boolean isTicketLive, int noVipPrice, int perCent, int vipPrice, boolean isTicetVideo) {
         this.itemType = itemType;
+        this.isPAC = isPAC;
         this.photo = photo;
         this.username = username;
         this.location = location;
         this.language = language;
-        this.count = count;
+        WatchCount = watchCount;
         this.welcome = welcome;
         this.signature = signature;
         this.signature2 = signature2;
         this.imagePath = imagePath;
-        this.isLive = isLive;
+        this.isNormalLive = isNormalLive;
+        this.isLevelLive = isLevelLive;
+        this.level = level;
+        this.isNormalVideo = isNormalVideo;
+        this.isTicketLive = isTicketLive;
         this.noVipPrice = noVipPrice;
         this.perCent = perCent;
         this.vipPrice = vipPrice;
-        this.level = level;
-        this.isNormalLive = isNormalLive;
-        this.isInviteLive = isInviteLive;
+        this.isTicetVideo = isTicetVideo;
     }
 
     public void setItemType(int itemType) {
         this.itemType = itemType;
     }
 
-    public static int getVipLive() {
-        return VIP_LIVE;
+    public static int getNormalLive() {
+        return NORMAL_LIVE;
     }
 
     public static int getLevelLive() {
         return LEVEL_LIVE;
     }
 
-    public static int getNormalLive() {
-        return NORMAL_LIVE;
+    public static int getNormalVideo() {
+        return NORMAL_VIDEO;
     }
 
-    public static int getInviteLive() {
-        return INVITE_LIVE;
+    public boolean isTicetVideo() {
+        return isTicetVideo;
+    }
+
+    public void setTicetVideo(boolean ticetVideo) {
+        isTicetVideo = ticetVideo;
+    }
+
+    public static int getTicketLive() {
+        return TICKET_LIVE;
+    }
+
+    public static int getTicketVideo() {
+        return TICKET_VIDEO;
+    }
+
+    public boolean isPAC() {
+        return isPAC;
+    }
+
+    public void setPAC(boolean PAC) {
+        isPAC = PAC;
     }
 
     public String getPhoto() {
@@ -113,12 +150,12 @@ public class LiveEntity implements MultiItemEntity {
         this.language = language;
     }
 
-    public int getCount() {
-        return count;
+    public int getWatchCount() {
+        return WatchCount;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setWatchCount(int watchCount) {
+        WatchCount = watchCount;
     }
 
     public String getWelcome() {
@@ -153,12 +190,44 @@ public class LiveEntity implements MultiItemEntity {
         this.imagePath = imagePath;
     }
 
-    public boolean isLive() {
-        return isLive;
+    public boolean isNormalLive() {
+        return isNormalLive;
     }
 
-    public void setLive(boolean live) {
-        isLive = live;
+    public void setNormalLive(boolean normalLive) {
+        isNormalLive = normalLive;
+    }
+
+    public boolean isLevelLive() {
+        return isLevelLive;
+    }
+
+    public void setLevelLive(boolean levelLive) {
+        isLevelLive = levelLive;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public boolean isNormalVideo() {
+        return isNormalVideo;
+    }
+
+    public void setNormalVideo(boolean normalVideo) {
+        isNormalVideo = normalVideo;
+    }
+
+    public boolean isTicketLive() {
+        return isTicketLive;
+    }
+
+    public void setTicketLive(boolean ticketLive) {
+        isTicketLive = ticketLive;
     }
 
     public int getNoVipPrice() {
@@ -185,50 +254,37 @@ public class LiveEntity implements MultiItemEntity {
         this.vipPrice = vipPrice;
     }
 
-    public int getLevel() {
-        return level;
+    public boolean getIsTicetVideo() {
+        return isTicetVideo;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public boolean isNormalLive() {
-        return isNormalLive;
-    }
-
-    public void setNormalLive(boolean normalLive) {
-        isNormalLive = normalLive;
-    }
-
-    public boolean isInviteLive() {
-        return isInviteLive;
-    }
-
-    public void setInviteLive(boolean inviteLive) {
-        isInviteLive = inviteLive;
+    public void setIsTicetVideo(boolean isTicetVideo) {
+        this.isTicetVideo = isTicetVideo;
     }
 
     @Override
     public String toString() {
         return "HomeHotEntity{" +
                 "itemType=" + itemType +
+                ", isPAC=" + isPAC +
                 ", photo='" + photo + '\'' +
                 ", username='" + username + '\'' +
                 ", location='" + location + '\'' +
                 ", language='" + language + '\'' +
-                ", count=" + count +
+                ", WatchCount=" + WatchCount +
                 ", welcome='" + welcome + '\'' +
                 ", signature='" + signature + '\'' +
                 ", signature2='" + signature2 + '\'' +
                 ", imagePath='" + imagePath + '\'' +
-                ", isLive=" + isLive +
+                ", isNormalLive=" + isNormalLive +
+                ", isLevelLive=" + isLevelLive +
+                ", level=" + level +
+                ", isNormalVideo=" + isNormalVideo +
+                ", isTicketLive=" + isTicketLive +
                 ", noVipPrice=" + noVipPrice +
                 ", perCent=" + perCent +
                 ", vipPrice=" + vipPrice +
-                ", level=" + level +
-                ", isNormalLive=" + isNormalLive +
-                ", isInviteLive=" + isInviteLive +
+                ", isTicetVideo=" + isTicetVideo +
                 '}';
     }
 

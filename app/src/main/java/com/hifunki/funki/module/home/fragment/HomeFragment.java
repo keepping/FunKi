@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
-import com.hifunki.funki.module.home.adapter.HomeViewPager;
+import com.hifunki.funki.module.home.adapter.HomePagerAdapter;
 import com.hifunki.funki.module.rank.activity.WorldRankActivity;
 import com.hifunki.funki.module.search.activity.SearchActivity;
 
@@ -103,15 +103,15 @@ public class HomeFragment extends BaseFragment {
         super.initView(root);
 
 
-        List<Fragment> listFragment = new ArrayList<>();
-
-        listFragment.add(HomeHotFragment.newInstance("aa", "xx"));
-        listFragment.add(HomeFollowFragment.newInstance("aa", "xx"));
-        listFragment.add(HomeNewFragment.newInstance("aa", "xx"));
+//        List<Fragment> listFragment = new ArrayList<>();
+//
+//        listFragment.add(HomeHotFragment.newInstance("aa", "xx"));
+//        listFragment.add(HomeFollowFragment.newInstance("aa", "xx"));
+//        listFragment.add(HomeNewFragment.newInstance("aa", "xx"));
 
         vpHome = (ViewPager) root.findViewById(R.id.vp_home);
 
-        HomeViewPager adapter = new HomeViewPager(getFragmentManager(), listFragment);
+        HomePagerAdapter adapter = new HomePagerAdapter(getFragmentManager());
         vpHome.setAdapter(adapter);
 
 //        vpHome.setCurrentItem(1);
