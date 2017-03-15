@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.hifunki.funki.R;
 /**
  * 在此写用途
- *
+ * test
  * @author monotone
  * @version V1.0 <描述当前版本功能>
  * @value com.hifunki.funki.base.activity.AccountBaseActivity.java
