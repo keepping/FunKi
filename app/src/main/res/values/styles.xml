@@ -55,5 +55,11 @@
         <item name="android:windowExitAnimation">@anim/out_fade</item>
     </style>
 
-
+    <!-- gallerypick 加载滚动条样式 -->
+    <style name="loading">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progressloading</item>
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
 </resources>

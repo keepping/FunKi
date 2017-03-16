@@ -33,7 +33,6 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<PhotoInfo> photoInfoList;                      // 本地照片数据
     private List<String> selectPhoto = new ArrayList<>();                   // 选择的图片路径数据
     private OnCallBack onCallBack;
-    private final static String TAG = "PhotoGalleryAdapter";
 
     private GalleryConfig galleryConfig = GalleryPick.getInstance().getGalleryConfig();
 

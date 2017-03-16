@@ -21,7 +21,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     private Context context;
     private LayoutInflater mLayoutInflater;
     private List<String> result;
-    private final static String TAG = "PhotoGalleryAdapter";
 
     public PhotoAdapter(Context context, List<String> result) {
         mLayoutInflater = LayoutInflater.from(context);

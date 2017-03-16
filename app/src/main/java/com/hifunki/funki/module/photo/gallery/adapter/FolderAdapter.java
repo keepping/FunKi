@@ -28,7 +28,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     private Activity mActivity;
     private LayoutInflater mLayoutInflater;
     private List<FolderInfo> result;
-    private final static String TAG = "FolderAdapter";
 
     private GalleryConfig galleryConfig = GalleryPick.getInstance().getGalleryConfig();
     private int mSelector = 0;

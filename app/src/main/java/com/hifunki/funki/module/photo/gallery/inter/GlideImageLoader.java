@@ -13,7 +13,6 @@ import com.hifunki.funki.module.photo.gallery.widget.GalleryImageView;
  */
 public class GlideImageLoader implements ImageLoader {
 
-    private final static String TAG = "GlideBannerImageLoader";
 
     @Override
     public void displayImage(Activity activity, Context context, String path, GalleryImageView galleryImageView, int width, int height) {

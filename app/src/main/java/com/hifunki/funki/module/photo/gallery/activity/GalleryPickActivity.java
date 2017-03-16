@@ -15,6 +15,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -497,6 +498,8 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                     ArrayList<PhotoInfo> arrayList=new ArrayList<>();
                     arrayList.addAll(photoInfoList);
                     GalleryVpActivity.show(this, mSelectedPosition, arrayList);
+                    Log.e("test", "onClick: "+photoInfoList );
+
                 }
                 break;
             case R.id.ll_gallery_sourceimage://点击原图

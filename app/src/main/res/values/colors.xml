@@ -27,5 +27,6 @@
 
     <color name="searchHotTvBg">#C56220</color>
     <color name="showItemBg">#2E115D</color>
+    <color name="showItemTag">#FFE87C</color>
 
 </resources>

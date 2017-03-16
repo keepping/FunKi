@@ -3,17 +3,18 @@ package com.hifunki.funki.module.photo.gallery.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.common.BundleConst;
-import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;
-import com.hifunki.funki.module.photo.gallery.widget.LayoutGalleryPhoto;
+import com.hifunki.funki.module.photo.gallery.viewPager.SamplePagerAdapter;
+import com.hifunki.funki.widget.HackyViewPager;
 
 import java.util.ArrayList;
 
@@ -32,12 +33,13 @@ import butterknife.OnClick;
 public class GalleryVpActivity extends BaseTitleActivity implements View.OnClickListener {
 
     @BindView(R.id.vp_gallery_photo)
-    ViewPager vpGalleryPhoto;
+    HackyViewPager vpGalleryPhoto;
+    @BindView(R.id.tv_gallery_num)
+    TextView tvGalleryNum;
     @BindView(R.id.activity_gallery_vp)
     RelativeLayout activityGalleryVp;
     private int anInt;
     private int mSize;
-    private ArrayList<RelativeLayout> mTabViews;
     private ArrayList<PhotoInfo> photoInfoList;
 
     public static void show(Context context, int position, ArrayList<PhotoInfo> photoInfoList) {
@@ -84,16 +86,9 @@ public class GalleryVpActivity extends BaseTitleActivity implements View.OnClick
     }
 
     private void initViewPager() {
-        mTabViews = new ArrayList<>();
-        if (!photoInfoList.isEmpty()) {
-            for (int i = 0; i < photoInfoList.size(); i++) {
-                LayoutGalleryPhoto layoutGalleryPhoto = new LayoutGalleryPhoto(this, photoInfoList, i);
-                mTabViews.add(layoutGalleryPhoto);
-            }
-        }
-        //获取第一个视图
+        Log.e("test", "initViewPager: "+photoInfoList );
+        vpGalleryPhoto.setAdapter(new SamplePagerAdapter(GalleryVpActivity.this, photoInfoList));
 
-        vpGalleryPhoto.setAdapter(new PagerBaseAdapter<>(mTabViews));
     }
 
     @Override

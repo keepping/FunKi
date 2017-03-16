@@ -9,11 +9,19 @@
 
     <include layout="@layout/title_templet" />
 
-    <android.support.v4.view.ViewPager
+    <com.hifunki.funki.widget.HackyViewPager
         android:id="@+id/vp_gallery_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/flTitleContainer"
-        android:background="@color/vistorTvbg"></android.support.v4.view.ViewPager>
+        android:background="@color/vistorTvbg"/>
+
+    <TextView
+        android:id="@+id/tv_gallery_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"/>
 
 </RelativeLayout>

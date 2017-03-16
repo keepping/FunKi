@@ -154,12 +154,16 @@ public class PhotoActivity extends BaseTitleActivity implements View.OnClickList
                     path.add(s);
                 }
 
+                //TODO需要改成圆形头像
+
                 String filePath = path.get(0);
                 Bitmap bitmapSquare = BitmapFactory.decodeFile(filePath);//方形原图
 
                 RoundedBitmapDrawable drawableA = RoundedBitmapDrawableFactory.create(getResources(), bitmapSquare);
                 drawableA.setCircular(true);
                 Bitmap bitmapCircle = drawableToBitmap(drawableA);
+
+                //Gif会报错
 
                 //设置头像
                 Glide.with(PhotoActivity.this).load(bitmapCircle).into(ivSelectimage);
@@ -185,16 +189,17 @@ public class PhotoActivity extends BaseTitleActivity implements View.OnClickList
     // 授权管理
     private void initPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "需要授权 ");
+//            需要授权
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Log.i(TAG, "拒绝过了");
+//                拒绝过了
                 Toast.makeText(this, "请在 设置-应用管理 中开启此应用的储存授权。", Toast.LENGTH_SHORT).show();
             } else {
-                Log.i(TAG, "进行授权");
+//                进行授权
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_CONTACTS);
             }
         } else {
-            Log.i(TAG, "不需要授权 ");
+//            不需要授权
+            //页面跳转
             GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(PhotoActivity.this);
         }
     }
@@ -203,10 +208,10 @@ public class PhotoActivity extends BaseTitleActivity implements View.OnClickList
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.i(TAG, "同意授权");
+//                同意授权
                 GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(PhotoActivity.this);
             } else {
-                Log.i(TAG, "拒绝授权");
+//                拒绝授权
             }
         }
     }

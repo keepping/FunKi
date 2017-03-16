@@ -7,6 +7,8 @@ import android.view.WindowManager;
 
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 
+import java.lang.reflect.Field;
+
 
 public class DisplayUtil {
 
@@ -79,10 +81,35 @@ public class DisplayUtil {
         return outMetrics.widthPixels;
     }
 
+    /**
+     * 获取屏幕高度
+     * @param context
+     * @return
+     */
     public static int getScreenHeight(Context context){
         WindowManager wm= (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics=new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.heightPixels;
+    }
+
+
+    /**
+     * @return : 获取状态栏的高度
+     */
+    private static int getStatusBarHeight() {
+        Class<?> c;
+        Object obj;
+        Field field;
+        int x = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return x;
     }
 }

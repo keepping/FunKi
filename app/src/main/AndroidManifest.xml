@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hifunki.funki">
 
+    <!--网络请求-->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- 读取文件权限 -->
@@ -65,7 +66,14 @@
         <activity
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".module.photo.gallery.activity.PhotoActivity" />
+        <!--图片列表页-->
+        <activity android:name=".module.photo.gallery.activity.PhotoActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -93,11 +101,7 @@
             android:name=".module.home.activity.HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".module.search.activity.SearchActivity"></activity>
         <!--世界总榜-->

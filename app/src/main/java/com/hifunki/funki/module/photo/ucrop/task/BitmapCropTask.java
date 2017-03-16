@@ -9,15 +9,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.hifunki.funki.module.photo.ucrop.callback.BitmapCropCallback;
 import com.hifunki.funki.module.photo.ucrop.entity.CropParameters;
 import com.hifunki.funki.module.photo.ucrop.entity.ExifInfo;
 import com.hifunki.funki.module.photo.ucrop.entity.ImageState;
 import com.hifunki.funki.module.photo.ucrop.util.BitmapLoadUtils;
-import com.hifunki.funki.module.photo.ucrop.util.FileUtils;
 import com.hifunki.funki.module.photo.ucrop.util.ImageHeaderParser;
+import com.hifunki.funki.util.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,7 +33,6 @@ import java.lang.ref.WeakReference;
  */
 public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
 
-    private static final String TAG = "BitmapCropTask";
 
     private final WeakReference<Context> mContext;
 
@@ -144,7 +142,6 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
         mCroppedImageHeight = Math.round(mCropRect.height() / mCurrentScale);
 
         boolean shouldCrop = shouldCrop(mCroppedImageWidth, mCroppedImageHeight);
-        Log.i(TAG, "Should crop: " + shouldCrop);
 
         if (shouldCrop) {
             ExifInterface originalExif = new ExifInterface(mImageInputPath);
@@ -154,7 +151,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
             }
             return true;
         } else {
-            FileUtils.copyFile(mImageInputPath, mImageOutputPath);
+            FileUtils.copyFiles(mImageInputPath, mImageOutputPath);
             return false;
         }
     }

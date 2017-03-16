@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -27,7 +26,6 @@ import java.io.InputStream;
  */
 public class BitmapLoadUtils {
 
-    private static final String TAG = "BitmapLoadUtils";
 
     public static void decodeBitmapInBackground(@NonNull Context context,
                                                 @NonNull Uri uri, @Nullable Uri outputUri,
@@ -44,7 +42,6 @@ public class BitmapLoadUtils {
                 bitmap = converted;
             }
         } catch (OutOfMemoryError error) {
-            Log.e(TAG, "transformBitmap: ", error);
         }
         return bitmap;
     }
@@ -75,7 +72,6 @@ public class BitmapLoadUtils {
             orientation = new ImageHeaderParser(stream).getOrientation();
             close(stream);
         } catch (IOException e) {
-            Log.e(TAG, "getExifOrientation: " + imageUri.toString(), e);
         }
         return orientation;
     }
@@ -155,7 +151,6 @@ public class BitmapLoadUtils {
             maxBitmapSize = Math.min(maxBitmapSize, maxTextureSize);
         }
 
-        Log.d(TAG, "maxBitmapSize: " + maxBitmapSize);
         return maxBitmapSize;
     }
 
