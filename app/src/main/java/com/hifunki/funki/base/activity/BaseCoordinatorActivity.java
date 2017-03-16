@@ -1,6 +1,11 @@
 package com.hifunki.funki.base.activity;
 
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.Log;
+
+import com.hifunki.funki.util.DisplayUtil;
 
 /**
  * 在此写用途
@@ -12,5 +17,12 @@ package com.hifunki.funki.base.activity;
  * @since 2017-03-16 18:30:30
  */
 public abstract class BaseCoordinatorActivity extends BaseActivity {
-
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        int statusBarHeight = DisplayUtil.getStatusBarHeight(this);
+        int x = getResources().getDimensionPixelSize(statusBarHeight);
+        System.out.print("s"+x);
+        Log.e("test", "onCreate: "+x );
+    }
 }

@@ -1,11 +1,10 @@
 package com.hifunki.funki.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
-
-import com.hifunki.funki.base.activity.BaseTitleActivity;
 
 import java.lang.reflect.Field;
 
@@ -63,10 +62,11 @@ public class DisplayUtil {
      * @param activity
      * @return
      */
-    public static int getStatusBarHeight(BaseTitleActivity activity) {
+    public static int getStatusBarHeight(Activity activity) {
         Rect outRect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
-        return outRect.top;
+//        outRect.top;
+        return getStatusBarHeight();
     }
     /**
      * 获得屏幕高度
