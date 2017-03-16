@@ -1,5 +1,6 @@
 package com.hifunki.funki.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
@@ -63,10 +64,8 @@ public class DisplayUtil {
      * @param activity
      * @return
      */
-    public static int getStatusBarHeight(BaseTitleActivity activity) {
-        Rect outRect = new Rect();
-        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
-        return outRect.top;
+    public static int getStatusBarHeight(Activity activity) {
+        return getStatusBarHeight();
     }
     /**
      * 获得屏幕高度
@@ -106,6 +105,7 @@ public class DisplayUtil {
             c = Class.forName("com.android.internal.R$dimen");
             obj = c.newInstance();
             field = c.getField("status_bar_height");
+            System.out.println(":::    " + field.get(obj).toString());
             x = Integer.parseInt(field.get(obj).toString());
         } catch (Exception e1) {
             e1.printStackTrace();
