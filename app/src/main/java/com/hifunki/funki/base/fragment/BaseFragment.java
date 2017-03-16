@@ -34,7 +34,6 @@ public abstract class BaseFragment extends Fragment {
     protected Context mContext;
     protected View mRoot;
     protected Bundle mBundle;
-    private RequestManager mImgLoader;
     protected LayoutInflater mInflater;
 
     @Override
@@ -53,7 +52,6 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBundle = getArguments();
-        initBundle(mBundle);
     }
 
 
@@ -67,13 +65,10 @@ public abstract class BaseFragment extends Fragment {
         } else {
             mRoot = inflater.inflate(getLayoutId(), container, false);
             mInflater = inflater;
-            // Do something
-            onBindViewBefore(mRoot);
+
             // Bind view
             ButterKnife.bind(this, mRoot);
-            // Get savedInstanceState
-            if (savedInstanceState != null)
-                onRestartInstance(savedInstanceState);
+
             // Init
             initData();
             initView(mRoot);
@@ -86,21 +81,10 @@ public abstract class BaseFragment extends Fragment {
         // ...
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
 
-//        ButterKnife.unbind(this);
-
-        mImgLoader = null;
-        mBundle = null;
-    }
 
     protected abstract int getLayoutId();
 
-    protected void initBundle(Bundle bundle) {
-
-    }
 
     protected void initView(View root) {
 
@@ -110,115 +94,5 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
-    protected <T extends View> T findView(int viewId) {
-        return (T) mRoot.findViewById(viewId);
-    }
 
-    protected <T extends Serializable> T getBundleSerializable(String key) {
-        if (mBundle == null) {
-            return null;
-        }
-        return (T) mBundle.getSerializable(key);
-    }
-
-    /**
-     * 获取一个图片加载管理器
-     *
-     * @return RequestManager
-     */
-    public synchronized RequestManager getImgLoader() {
-        if (mImgLoader == null)
-            mImgLoader = Glide.with(this);
-        return mImgLoader;
-    }
-
-    /***
-     * 从网络中加载数据
-     *
-     * @param viewId   view的id
-     * @param imageUrl 图片地址
-     */
-    protected void setImageFromNet(int viewId, String imageUrl) {
-        setImageFromNet(viewId, imageUrl, 0);
-    }
-
-    /***
-     * 从网络中加载数据
-     *
-     * @param viewId      view的id
-     * @param imageUrl    图片地址
-     * @param placeholder 图片地址为空时的资源
-     */
-    protected void setImageFromNet(int viewId, String imageUrl, int placeholder) {
-        ImageView imageView = findView(viewId);
-        setImageFromNet(imageView, imageUrl, placeholder);
-    }
-
-    /***
-     * 从网络中加载数据
-     *
-     * @param imageView imageView
-     * @param imageUrl  图片地址
-     */
-    protected void setImageFromNet(ImageView imageView, String imageUrl) {
-        setImageFromNet(imageView, imageUrl, 0);
-    }
-
-    /***
-     * 从网络中加载数据
-     *
-     * @param imageView   imageView
-     * @param imageUrl    图片地址
-     * @param placeholder 图片地址为空时的资源
-     */
-    protected void setImageFromNet(ImageView imageView, String imageUrl, int placeholder) {
-//        ImageLoader.loadImage(getImgLoader(), imageView, imageUrl, placeholder);
-    }
-
-
-    protected void setText(int viewId, String text) {
-        TextView textView = findView(viewId);
-        if (TextUtils.isEmpty(text)) {
-            return;
-        }
-        textView.setText(text);
-    }
-
-    protected void setText(int viewId, String text, String emptyTip) {
-        TextView textView = findView(viewId);
-        if (TextUtils.isEmpty(text)) {
-            textView.setText(emptyTip);
-            return;
-        }
-        textView.setText(text);
-    }
-
-    protected void setTextEmptyGone(int viewId, String text) {
-        TextView textView = findView(viewId);
-        if (TextUtils.isEmpty(text)) {
-            textView.setVisibility(View.GONE);
-            return;
-        }
-        textView.setText(text);
-    }
-
-    protected <T extends View> T setGone(int id) {
-        T view = findView(id);
-        view.setVisibility(View.GONE);
-        return view;
-    }
-
-    protected <T extends View> T setVisibility(int id) {
-        T view = findView(id);
-        view.setVisibility(View.VISIBLE);
-        return view;
-    }
-
-    protected void setInVisibility(int id) {
-        findView(id).setVisibility(View.INVISIBLE);
-    }
-
-    protected void onRestartInstance(Bundle bundle) {
-
-    }
 }

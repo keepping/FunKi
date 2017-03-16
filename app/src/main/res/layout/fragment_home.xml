@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/iv_home_bg"
-        android:paddingTop="6dp">
+        android:paddingTop="30dp">
 
         <ImageView
             android:id="@+id/iv_home_search"

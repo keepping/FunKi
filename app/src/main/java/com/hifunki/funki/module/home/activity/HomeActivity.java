@@ -48,7 +48,7 @@ public class HomeActivity extends BaseTitleActivity implements NavFragment.OnNav
         HomeFragment.OnFragmentInteractionListener, NavFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
         MeFragment.OnFragmentInteractionListener, HomeHotFragment.OnFragmentInteractionListener,
-        HomeFollowFragment.OnFragmentInteractionListener, HomeNewFragment.OnFragmentInteractionListener {
+        HomeNewFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.main_container)
     FrameLayout mainContainer;

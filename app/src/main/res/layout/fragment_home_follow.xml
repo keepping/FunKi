@@ -2,11 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.hifunki.funki.module.home.fragment.HomeFollowFragment">
 
-    <TextView
+    <com.powyin.scroll.widget.SwipeRefresh
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="home_follow_fragment" />
+        app:fresh_model="ONLY_REFRESH">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.powyin.scroll.widget.SwipeRefresh>
+
+
 
 </FrameLayout>
