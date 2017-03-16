@@ -4,7 +4,7 @@
     android:id="@+id/flTitleContainer"
     android:layout_width="match_parent"
     android:layout_height="42dp"
-    android:background="@drawable/iv_bg"
+    android:background="@drawable/iv_login_small_bg"
     tools:ignore="MissingPrefix">
 
     <!-- 左边按钮区域 -->

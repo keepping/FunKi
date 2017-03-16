@@ -13,7 +13,7 @@
         android:id="@+id/tbPwdGraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/iv_bg"
+        android:background="@drawable/iv_login_small_bg"
         android:clipToPadding="true"
         android:fitsSystemWindows="true" />
 

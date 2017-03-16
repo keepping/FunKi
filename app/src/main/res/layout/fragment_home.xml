@@ -29,7 +29,7 @@
             android:src="@drawable/iv_funki" />
 
         <ImageView
-            android:id="@+id/iv_home_ticket"
+            android:id="@+id/iv_home_show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="13dp"
-            android:layout_toLeftOf="@+id/iv_home_ticket"
+            android:layout_toLeftOf="@+id/iv_home_show"
             android:src="@drawable/iv_home_list" />
 
         <ImageView

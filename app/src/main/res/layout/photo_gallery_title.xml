@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@drawable/iv_bg"
+    android:background="@drawable/iv_login_small_bg"
     android:fitsSystemWindows="true"
     tools:ignore="MissingPrefix">
 

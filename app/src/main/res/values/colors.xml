@@ -26,5 +26,6 @@
     <color name="homeTitleBg">#FFD71B</color>
 
     <color name="searchHotTvBg">#C56220</color>
+    <color name="showItemBg">#2E115D</color>
 
 </resources>

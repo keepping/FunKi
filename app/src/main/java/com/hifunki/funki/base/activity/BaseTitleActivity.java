@@ -22,7 +22,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
 
-      //  StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_bg_status);
+      //  StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_login_top_status_bg);
 
     }
 

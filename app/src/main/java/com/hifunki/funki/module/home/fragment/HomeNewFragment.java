@@ -3,8 +3,13 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+
+import butterknife.BindView;
 
 /**
  * 首页最新Fragment
@@ -16,6 +21,10 @@ import com.hifunki.funki.base.fragment.BaseFragment;
  * @since 2017-03-13 16:48:48
  */
 public class HomeNewFragment extends BaseFragment {
+
+    @BindView(R.id.rv_new)
+    RecyclerView rvNew;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -50,6 +59,17 @@ public class HomeNewFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_home_new;
     }
+
+    @Override
+    protected void initData() {
+        super.initData();
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+    }
+
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

@@ -17,6 +17,7 @@ import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.home.adapter.HomePagerAdapter;
 import com.hifunki.funki.module.rank.activity.WorldRankActivity;
 import com.hifunki.funki.module.search.activity.SearchActivity;
+import com.hifunki.funki.module.show.activity.ShowActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -40,8 +41,8 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     ImageView ivHomeSearch;
     @BindView(R.id.iv_home_funki)
     ImageView ivHomeFunki;
-    @BindView(R.id.iv_home_ticket)
-    ImageView ivHomeTicket;
+    @BindView(R.id.iv_home_show)
+    ImageView ivHomeShow;
     @BindView(R.id.iv_home_rank)
     ImageView ivHomeRank;
     @BindView(R.id.iv_home_indicate)
@@ -113,6 +114,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         HomePagerAdapter adapter = new HomePagerAdapter(getFragmentManager());
         vpHome.setAdapter(adapter);
 
+
 //        vpHome.setCurrentItem(1);
         initListener();
     }
@@ -123,6 +125,9 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     private void initListener() {
         rgHomeTitle.setOnCheckedChangeListener(this);
         vpHome.addOnPageChangeListener(this);
+
+        //默认点中热门-->需要在viewpager设置了监听之后写
+        vpHome.setCurrentItem(1);
     }
 
     public void onButtonPressed(Uri uri) {
@@ -149,19 +154,19 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
 
 
     @SuppressWarnings("RestrictedApi")
-    @OnClick({R.id.iv_home_search, R.id.iv_home_funki, R.id.iv_home_ticket, R.id.iv_home_rank, R.id.iv_home_indicate, rb_home_follow, R.id.rb_home_hot, R.id.rb_home_new, R.id.rg_home_title, R.id.vp_home})
+    @OnClick({R.id.iv_home_search, R.id.iv_home_funki, R.id.iv_home_show, R.id.iv_home_rank, R.id.iv_home_indicate, rb_home_follow, R.id.rb_home_hot, R.id.rb_home_new, R.id.rg_home_title, R.id.vp_home})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_home_search:
-
-                //是否登录
+                //判断是否登录
 //                SPUtils spUtils = new SPUtils(Spkey.FILE_LOGIN);
 //                if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
 //                    LoginActivity.show(homeActivity);
 //                } else {  }
                 SearchActivity.show(mActivity);
                 break;
-            case R.id.iv_home_ticket:
+            case R.id.iv_home_show:
+                ShowActivity.show(mActivity);
                 break;
             case R.id.iv_home_rank:
                 WorldRankActivity.show(mActivity);
@@ -169,6 +174,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
             case R.id.iv_home_funki:
                 break;
             case R.id.iv_home_indicate:
+
                 break;
             case rb_home_follow:
                 break;
@@ -215,12 +221,21 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         switch (position) {
             case 0:
                 rbHomeFollow.setChecked(true);
+                rbHomeFollow.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
+                rbHomeHot.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeNew.setTextColor(getResources().getColor(R.color.titleText));
                 break;
             case 1:
                 rbHomeHot.setChecked(true);
+                rbHomeHot.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
+                rbHomeFollow.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeNew.setTextColor(getResources().getColor(R.color.titleText));
                 break;
             case 2:
                 rbHomeNew.setChecked(true);
+                rbHomeNew.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
+                rbHomeHot.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeFollow.setTextColor(getResources().getColor(R.color.titleText));
                 break;
         }
     }

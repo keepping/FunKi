@@ -4,7 +4,7 @@
     android:id="@+id/rlEtTitle"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:background="@drawable/iv_bg"
+    android:background="@drawable/iv_login_small_bg"
     tools:ignore="MissingPrefix">
 
     <ImageView

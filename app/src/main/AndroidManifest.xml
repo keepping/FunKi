@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".module.login.EighteenBearActivity"
-            android:theme="@style/AppThemeFullScreen"></activity>
+            android:theme="@style/AppThemeFullScreen" />
         <activity android:name=".module.login.MainActivity" />
 
         <!-- 游客必填信息页 -->
@@ -86,7 +86,9 @@
         </provider>
 
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
+        <!--账号基本类-->
         <activity android:name=".base.activity.AccountBaseActivity" />
+        <!--主布局-->
         <activity
             android:name=".module.home.activity.HomeActivity"
             android:launchMode="singleTask"
@@ -97,10 +99,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.search.activity.SearchActivity">
-
-        </activity>
-        <activity android:name=".module.rank.activity.WorldRankActivity"></activity>
+        <activity android:name=".module.search.activity.SearchActivity"></activity>
+        <!--世界总榜-->
+        <activity android:name=".module.rank.activity.WorldRankActivity" />
+        <!--节目预告-->
+        <activity android:name=".module.show.activity.ShowActivity"></activity>
     </application>
 
 </manifest>

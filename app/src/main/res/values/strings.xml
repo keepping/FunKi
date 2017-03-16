@@ -117,5 +117,17 @@
     <string name="live_watching_percent">25%</string>
     <string name="login_find_by_phone">通过行动电话找回</string>
     <string name="login_find_by_email">通过注册邮箱找回</string>
+    <string name="show_month">十一月</string>
+    <string name="recently">最近</string>
+    <string name="all">全部</string>
+    <string name="day">4</string>
+    <string name="week">周四</string>
+    <string name="show_notice">注意：票会随着开播日期的临近二替身，越早购票价格越低</string>
+    <string name="show_time">00:00~</string>
+    <string name="show_tag">精选</string>
+    <string name="show_comment">韩国摇滚女团的首次表演，欢迎大家来关注</string>
+    <string name="show_price">14</string>
+    <string name="show_percent">VIP -25%</string>
+    <string name="show_ticket_sale">门票预售</string>
 
 </resources>
