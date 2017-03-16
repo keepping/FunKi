@@ -1,16 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:background="#fff700"
+        >
+
+        <ImageView
+            android:id="@+id/post_user_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:src="@drawable/bg_search_hot_lv" />
+
+        <TextView
+            android:id="@+id/post_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/post_user_head"
+            android:text="安妮凯瑟薇"
+            android:textColor="#811dec"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/post_user_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/post_user_name"
+            android:text="1分钟"
+            android:textColor="#6B4E9A"
+            android:textSize="11sp" />
+
+
+        <ImageView
+            android:id="@+id/post_user_l"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_toRightOf="@+id/post_user_head"
+            android:src="@drawable/ic_nav_me_actived"
+            android:text="1分钟"
+            android:textColor="#6B4E9A"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/post_user_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/post_user_l"
+            android:gravity="center"
+            android:text="加利福利亚"
+            android:textColor="#6B4E9A"
+            android:textSize="11sp" />
+
+        <ImageView
+            android:id="@+id/post_user_c"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+
+            android:layout_toRightOf="@+id/post_user_location"
+            android:src="@drawable/ic_nav_me_actived"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="15dp"
+            android:text="1分钟"
+            android:textSize="11sp"
+            android:textColor="#6B4E9A"
+            />
+        <TextView
+            android:id="@+id/post_user_county"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_toRightOf="@+id/post_user_c"
+            android:text="English"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="4dp"
+            android:textSize="11sp"
+            android:textColor="#6B4E9A"
+            />
+
+
+
+
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:text="movie"
-        android:background="#ff00ff00"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="安妮·海瑟薇在出演《公主日记》后被《人物》杂志封为2001年最佳新星。2005年，安妮·海瑟薇出演《断背山》。2006年，安妮·海瑟薇出演了《穿普喜剧类最佳女主角。2012年"
+        android:textColor="#c193ec" />
 
-        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+
+
+
+        >
+
+        <VideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <MediaController
+            android:id="@+id/media_actions"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="click"
+                />
+
+
+        </MediaController>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/play"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="#1d1e1d"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp" android:orientation="horizontal"
+        android:gravity="center_vertical"
+
+        >
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="10"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#99ff99"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2000"
+            android:textColor="#b1a1df"
+            />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="10"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="10"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#99ff99"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2000"
+            android:textColor="#b1a1df"
+            />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="10"/>
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="10"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#99ff99"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2000"
+            android:textColor="#b1a1df"
+            />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="10"/>
+
+
+
+
+
+    </LinearLayout>
+
 
 
 

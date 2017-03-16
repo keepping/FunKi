@@ -117,6 +117,8 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
         rvHot.setAdapter(homeHotAdapter);
         homeHotAdapter.addHeaderView(getHeadView());//获取头部视图
 
+
+
     }
 
     @Override

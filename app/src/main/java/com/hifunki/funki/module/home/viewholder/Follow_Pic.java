@@ -38,7 +38,7 @@ public class Follow_Pic extends PowViewHolder<Post>{
 
     @Override
     protected boolean acceptData(Post data) {
-        return data!=null && data.type==2;
+        return data!=null && data.type==4;
     }
 
     @Override

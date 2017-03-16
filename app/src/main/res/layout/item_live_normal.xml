@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/vistorTvbg"
-    android:layout_height="403dp"
-    android:layout_marginBottom="7dp"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -18,7 +17,7 @@
     <ImageView
         android:id="@+id/iv_imagepath"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="250dp"
         android:layout_below="@+id/iv_photo"
         android:layout_marginTop="4dp"
         android:scaleType="fitXY" />
@@ -30,7 +29,6 @@
         android:background="@drawable/iv_live_normal_title_bg">
 
         <TextView
-            android:textStyle="bold"
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,7 +37,8 @@
             android:layout_marginTop="10dp"
             android:text="@string/serach_name"
             android:textColor="@color/titleText"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/iv_location"
@@ -51,15 +50,15 @@
             android:src="@drawable/iv_location" />
 
         <TextView
-            android:textStyle="bold"
-            android:textColor="@color/loginTvUnClick"
             android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/iv_location"
             android:layout_marginLeft="4dp"
             android:layout_toEndOf="@+id/iv_location"
-            android:text="@string/search_location" />
+            android:text="@string/search_location"
+            android:textColor="@color/loginTvUnClick"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/iv_country_flag"
@@ -72,8 +71,6 @@
             android:src="@drawable/japan" />
 
         <TextView
-            android:textStyle="bold"
-            android:textColor="@color/loginTvUnClick"
             android:id="@+id/tv_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +78,9 @@
             android:layout_marginLeft="2dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/iv_country_flag"
-            android:text="@string/search_language" />
+            android:text="@string/search_language"
+            android:textColor="@color/loginTvUnClick"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_count_person"
@@ -95,7 +94,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -104,23 +102,23 @@
             android:layout_marginTop="7dp"
             android:text="@string/live_watching"
             android:textColor="@color/titleText"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
 
 
     <TextView
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_live_head"
-        android:text="@string/search_welcome" />
+        android:text="@string/search_welcome"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <TextView
-        android:textStyle="bold"
         android:id="@+id/tv_signature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -132,10 +130,10 @@
         android:paddingTop="5dp"
         android:text="@string/search_signature"
         android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:textStyle="bold"
         android:id="@+id/tv_signature2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -147,7 +145,8 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/search_signature2"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/iv_live_status"
@@ -159,23 +158,17 @@
         android:layout_marginTop="5dp"
         android:src="@drawable/iv_search_live" />
 
-    <RelativeLayout
-        android:id="@+id/rl_vip_save"
+
+    <ImageView
+        android:id="@+id/iv_vip_diamond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/tv_signature">
+        android:layout_alignBottom="@+id/iv_imagepath"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="7dp"
+        android:layout_marginRight="10dp"
 
-        <ImageView
-            android:id="@+id/iv_vip_diamond"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/iv_search_lv_bg" />
-
-    </RelativeLayout>
+        android:src="@drawable/iv_search_lv_bg" />
 
 
 </RelativeLayout>

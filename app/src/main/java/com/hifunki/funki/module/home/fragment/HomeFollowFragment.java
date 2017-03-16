@@ -7,9 +7,10 @@ import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.module.home.viewholder.Follow_Live;
+import com.hifunki.funki.module.home.viewholder.Follow_Live_Normal;
 import com.hifunki.funki.module.home.viewholder.Follow_Movie;
 import com.hifunki.funki.module.home.viewholder.Follow_Pic;
+import com.hifunki.funki.module.home.viewholder.Follow_live_Ticket;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
 import com.powyin.scroll.widget.SwipeControl;
@@ -90,15 +91,19 @@ public class HomeFollowFragment extends BaseFragment {
             "http://img2.imgtn.bdimg.com/it/u=3347259689,1828160575&fm=21&gp=0.jpg",
             "http://img1.imgtn.bdimg.com/it/u=3607821315,1190508392&fm=21&gp=0.jpg");
 
+    private String imagePath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489567544808&di=7490422c9d0de0ba7db28352a7c138f3&imgtype=0&src=http%3A%2F%2Fsc.jb51.net%2Fuploads%2Fallimg%2F140628%2F10-14062PAGB04.jpg";
+
+
     @Override
     protected void initView(View root) {
         super.initView(root);
 
-        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), Follow_Live.class, Follow_Movie.class, Follow_Pic.class);
+        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(),
+                Follow_Live_Normal.class, Follow_live_Ticket.class, Follow_Movie.class, Follow_Pic.class);
         recyclerView.setAdapter(multipleRecycleAdapter);
 
         for(int i=0 ;i < 3;i++){
-            multipleRecycleAdapter.addLast(new Post(i%3+1, uri));
+            multipleRecycleAdapter.addLast(new Post(i%3+1, uri,imagePath));
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -110,12 +115,12 @@ public class HomeFollowFragment extends BaseFragment {
             public void onRefresh() {
                 System.out.println("---------------------------onRefresh");
                 multipleRecycleAdapter.deleteAllData();
-                multipleRecycleAdapter.addLast(new Post(2, uri));
-                multipleRecycleAdapter.addLast(new Post(2, uri));
-                multipleRecycleAdapter.addLast(new Post(1, uri));
-                multipleRecycleAdapter.addLast(new Post(3, uri));
-                multipleRecycleAdapter.addLast(new Post(3, uri));
-                multipleRecycleAdapter.addLast(new Post(1, uri));
+                multipleRecycleAdapter.addLast(new Post(2, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(4, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(1, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(3, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(4, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(1, uri,imagePath));
                 if(multipleRecycleAdapter.getDataList().size()>=5){
                     swipeRefresh.setSwipeModel(SwipeControl.SwipeModel.SWIPE_BOTH);
                 }
@@ -124,9 +129,10 @@ public class HomeFollowFragment extends BaseFragment {
 
             @Override
             public void onLoading() {
-                multipleRecycleAdapter.addLast(new Post(2, uri));
-                multipleRecycleAdapter.addLast(new Post(2, uri));
-                multipleRecycleAdapter.addLast(new Post(1, uri));
+                multipleRecycleAdapter.addLast(new Post(3, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(2, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(1, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(4, uri,imagePath));
                 System.out.println("---------------------------onLoading");
 
             }
