@@ -21,8 +21,8 @@ public abstract class BaseTitleActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-      //  StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_login_top_status_bg);
+        //设置顶部状态栏
+        StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_login_top_status_bg);
 
     }
 

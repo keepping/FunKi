@@ -17,6 +17,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--主布局-->
+        <activity
+            android:name=".module.home.activity.HomeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
             android:theme="@style/AppThemeFullScreen" />
@@ -68,11 +80,7 @@
             android:screenOrientation="portrait" />
         <!--图片列表页-->
         <activity android:name=".module.photo.gallery.activity.PhotoActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
@@ -96,18 +104,14 @@
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
         <!--账号基本类-->
         <activity android:name=".base.activity.AccountBaseActivity" />
-        <!--主布局-->
-        <activity
-            android:name=".module.home.activity.HomeActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait">
 
-        </activity>
         <activity android:name=".module.search.activity.SearchActivity"></activity>
         <!--世界总榜-->
         <activity android:name=".module.rank.activity.WorldRankActivity" />
         <!--节目预告-->
-        <activity android:name=".module.show.activity.ShowActivity"></activity>
+        <activity android:name=".module.show.activity.ShowActivity">
+
+        </activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
 import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.show.adapter.ShowAdapter;
 import com.hifunki.funki.module.show.entity.ShowEntity;
@@ -24,7 +24,7 @@ import butterknife.BindView;
  * @link
  * @since 2017-03-16 10:12:12
  */
-public class ShowActivity extends BaseTitleActivity {
+public class ShowActivity extends BaseCoordinatorActivity {
 
 
     @BindView(R.id.rl_show)
