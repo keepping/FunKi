@@ -1,47 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hifunki.funki.widget.Coordinator xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.hifunki.funki.module.home.activity.HomeActivity">
+    android:fitsSystemWindows="true">
 
-    <RelativeLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <LinearLayout
-            android:id="@+id/activity_main_ui"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context="com.hifunki.funki.module.home.activity.HomeActivity">
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary">
 
             <FrameLayout
-                android:id="@+id/main_container"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                app:layout_collapseMode="pin"
+                app:layout_collapseParallaxMultiplier="0.7">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/activity_main_ui"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:id="@+id/main_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
 
 
-            <fragment
-                android:id="@+id/fag_nav"
-                android:name="com.hifunki.funki.module.home.fragment.NavFragment"
-                android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:tag="@string/nav_fragment" />
+                        <fragment
+                            android:id="@+id/fag_nav"
+                            android:name="com.hifunki.funki.module.home.fragment.NavFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="47dp"
+                            android:tag="@string/nav_fragment" />
 
 
-        </LinearLayout>
+                    </LinearLayout>
 
-        <ImageView
-            android:id="@+id/nav_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="4dp"
-            android:src="@drawable/ic_nav" />
+                    <ImageView
+                        android:id="@+id/nav_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/ic_nav" />
 
-    </RelativeLayout>
-</FrameLayout>
+                </RelativeLayout>
+            </FrameLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+</com.hifunki.funki.widget.Coordinator>
+
+
+
+
+

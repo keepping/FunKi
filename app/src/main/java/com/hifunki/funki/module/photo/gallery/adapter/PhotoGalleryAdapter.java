@@ -79,6 +79,8 @@ public class PhotoGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         holder.itemView.setLayoutParams(params);
 
+
+
         if (getItemViewType(position) == HEAD) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
