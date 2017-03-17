@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
@@ -44,7 +45,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-07 11:49:49
  */
-public class HomeActivity extends BaseTitleActivity implements NavFragment.OnNavigationReselectListener,
+public class HomeActivity extends BaseCoordinatorActivity implements NavFragment.OnNavigationReselectListener,
         HomeFragment.OnFragmentInteractionListener, NavFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
         MeFragment.OnFragmentInteractionListener, HomeHotFragment.OnFragmentInteractionListener,
@@ -66,6 +67,11 @@ public class HomeActivity extends BaseTitleActivity implements NavFragment.OnNav
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    protected boolean ennableTitleBar() {
+        return true;
     }
 
     public interface TurnBackListener {
