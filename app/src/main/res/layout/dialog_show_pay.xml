@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_show_main"
+    android:layout_width="232dp"
+    android:layout_height="210dp"
+    android:background="@color/vistorTvbg">
+
+        <LinearLayout
+            android:id="@+id/ll_normal_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_normal_pay"
+                android:textColor="@color/loginTvUnClick"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/show_normal_price"
+                android:textColor="@color/loginTvUnClick"
+                android:textSize="26sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_horizontal"
+                android:src="@drawable/iv_vip_diamond" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_vip_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_normal_pay"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="15dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_vip_pay"
+                android:textColor="@color/loginTvUnClick"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/show_vip_price"
+                android:textColor="@color/loginTvUnClick"
+                android:textSize="26sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/iv_vip_diamond" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/show_pay_percent"
+                android:textColor="@color/newPwd" />
+        </LinearLayout>
+
+        <!--加大点击范围-->
+        <ImageView
+            android:id="@+id/iv_show_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="14dp"
+            android:layout_marginTop="14dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:src="@drawable/iv_pay_close" />
+
+        <com.hifunki.funki.widget.DashedLineView
+            android:id="@+id/dl_show"
+            android:layout_width="210dp"
+            android:layout_height="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="88dp"
+            app:dashWidth="2dp"
+            app:lineColor="@color/loginTvUnClick"
+            app:lineHeight="2dp"
+            app:lineWidth="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_user_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dl_show"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_show_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/show_user_balance"
+                android:textColor="@color/titleText" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tv_show_balance"
+                android:gravity="center_horizontal"
+                android:src="@drawable/iv_vip_diamond" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_show_confirm"
+            android:layout_width="96dp"
+            android:layout_height="34dp"
+            android:layout_below="@+id/rl_user_balance"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/bg_show_pay_confirm"
+            android:gravity="center"
+            android:text="@string/show_confirm_pay"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+</RelativeLayout>

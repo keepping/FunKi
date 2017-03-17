@@ -3,11 +3,17 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.module.home.adapter.HomeNewAdapter;
+import com.hifunki.funki.module.home.entity.HomeNewEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -32,6 +38,7 @@ public class HomeNewFragment extends BaseFragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private List<HomeNewEntity> entities;
 
     public HomeNewFragment() {
     }
@@ -63,6 +70,21 @@ public class HomeNewFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
+        String imagePath="http://pic.58pic.com/58pic/11/84/12/13S58PICuRf.jpg";
+        entities = new ArrayList<>();
+        //添加数据
+        for(int i=0;i<10;i++){
+            HomeNewEntity homeNewEntity=new HomeNewEntity(imagePath,"日本","日本语","爱笑的河豚",true);
+            HomeNewEntity homeNewEntity1=new HomeNewEntity(imagePath,"日本","日本语","爱笑的河豚",false);
+            entities.add(homeNewEntity);
+            entities.add(homeNewEntity1);
+        }
+        HomeNewAdapter adapter=new HomeNewAdapter(R.layout.item_live_new,entities);
+
+        rvNew.setLayoutManager(new GridLayoutManager(getContext(),2));
+
+        rvNew.setAdapter(adapter);
+
     }
 
     @Override

@@ -28,7 +28,6 @@ public class MeFragment extends BaseFragment {
     private OnFragmentInteractionListener mListener;
 
     public MeFragment() {
-        // Required empty public constructor
     }
 
     public static MeFragment newInstance(String param1, String param2) {
@@ -56,7 +55,6 @@ public class MeFragment extends BaseFragment {
         return R.layout.fragment_me;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

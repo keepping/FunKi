@@ -32,6 +32,9 @@ public class ShowAdapter extends BaseQuickAdapter<ShowEntity, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, ShowEntity item) {
+
+        helper.addOnClickListener(R.id.ll_show_price);//设置砖石购买监听
+
         helper.setText(R.id.tv_show_tag, item.getTag());
         helper.setText(R.id.tv_show_time, item.getTime());
         helper.setText(R.id.tv_show_comment, item.getContent());
@@ -40,4 +43,6 @@ public class ShowAdapter extends BaseQuickAdapter<ShowEntity, BaseViewHolder> {
         Glide.with(mContext).load(item.getPhoto()).into((ImageView) helper.getView(R.id.iv_show_photo));
 
     }
+
+
 }

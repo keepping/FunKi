@@ -129,5 +129,15 @@
     <string name="show_price">14</string>
     <string name="show_percent">VIP -25%</string>
     <string name="show_ticket_sale">门票预售</string>
+    <string name="show_normal_pay">普通支付:</string>
+    <string name="show_normal_price">16</string>
+    <string name="show_vip_pay">VIP &#160;&#160;支付:</string>
+    <string name="show_vip_price">12</string>
+    <string name="show_pay_percent">( -25 %)</string>
+    <string name="show_user_balance">用户余额：50000</string>
+    <string name="show_confirm_pay">确认支付</string>
+    <string name="show_pay">支付:</string>
+    <string name="recharge">充值</string>
+    <string name="tv_show_balance_not_enough">余额不足请充值</string>
 
 </resources>
