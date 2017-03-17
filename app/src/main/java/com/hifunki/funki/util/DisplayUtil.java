@@ -6,7 +6,7 @@ import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 
 import java.lang.reflect.Field;
 
@@ -59,14 +59,7 @@ public class DisplayUtil {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
-    /**
-     * 获取标题栏的高度
-     * @param activity
-     * @return
-     */
-    public static int getStatusBarHeight(Activity activity) {
-        return getStatusBarHeight();
-    }
+
     /**
      * 获得屏幕高度
      *
@@ -96,7 +89,7 @@ public class DisplayUtil {
     /**
      * @return : 获取状态栏的高度
      */
-    private static int getStatusBarHeight() {
+    public static int getStatusBarHeight(Activity activity) {
         Class<?> c;
         Object obj;
         Field field;
@@ -105,11 +98,21 @@ public class DisplayUtil {
             c = Class.forName("com.android.internal.R$dimen");
             obj = c.newInstance();
             field = c.getField("status_bar_height");
-            System.out.println(":::    " + field.get(obj).toString());
             x = Integer.parseInt(field.get(obj).toString());
+            x = activity.getResources().getDimensionPixelSize(x);
         } catch (Exception e1) {
             e1.printStackTrace();
         }
         return x;
     }
+
+    public static void setTitleBar(Activity activity , int imageResId){
+        if(activity instanceof BaseActivity){
+            BaseActivity baseActivity = (BaseActivity)activity;
+            baseActivity.setTitleBar(imageResId);
+        }
+    }
+
+
+
 }

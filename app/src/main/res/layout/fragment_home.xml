@@ -9,8 +9,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/iv_home_bg"
-        android:paddingTop="30dp">
+        android:paddingTop="3dp"
+        android:background="@drawable/bg_common_action_bar"
+        >
 
         <ImageView
             android:id="@+id/iv_home_search"

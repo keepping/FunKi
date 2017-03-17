@@ -69,6 +69,11 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
 
     }
 
+    @Override
+    protected boolean ennableTitleBar() {
+        return true;
+    }
+
     public interface TurnBackListener {
         boolean onTurnBack();
     }
