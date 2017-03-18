@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_below="@+id/layout_me_head"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_recharge"
+        android:layout_width="117dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp">
+
+            <TextView
+                android:id="@+id/tv_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:text="@string/account"
+                android:textColor="@color/titleText"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="19dp"
+                android:layout_toRightOf="@+id/tv_account"
+                android:src="@drawable/iv_me_account" />
+
+        </RelativeLayout>
+
+        <com.hifunki.funki.widget.DashedLineView
+            android:id="@+id/dl_me_account"
+            app:dashWidth="2dp"
+            app:lineColor="@color/loginTvUnClick"
+            app:lineHeight="2dp"
+            app:lineWidth="5dp"
+            android:layout_width="211dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="51dp" />
+
+        <TextView
+            android:id="@+id/tv_me_account_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dl_me_account"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:text="@string/me_account_num" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dl_me_account"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@+id/tv_me_account_num"
+            android:src="@drawable/iv_vip_diamond" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_me_account"
+            android:gravity="center"
+            android:text="@string/recharge"
+            android:textColor="@color/titleText"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_exchange"
+        android:layout_width="117dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/rl_me_head"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/rl_recharge">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp">
+
+            <TextView
+                android:id="@+id/tv_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:text="@string/income"
+                android:textColor="@color/titleText"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="19dp"
+                android:layout_toRightOf="@+id/tv_income"
+                android:src="@drawable/iv_me_account" />
+
+        </RelativeLayout>
+
+        <com.hifunki.funki.widget.DashedLineView
+            android:id="@+id/dl_me_income"
+            app:dashWidth="2dp"
+            app:lineColor="@color/loginTvUnClick"
+            app:lineHeight="2dp"
+            app:lineWidth="5dp"
+            android:layout_width="211dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="51dp" />
+
+        <TextView
+            android:id="@+id/tv_me_income_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dl_me_income"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:text="@string/me_account_num" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dl_me_income"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@+id/tv_me_income_num"
+            android:src="@drawable/iv_vip_diamond" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_me_account"
+            android:gravity="center"
+            android:text="@string/excharge"
+            android:textColor="@color/titleText"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="117dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/rl_me_head"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/rl_exchange">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp">
+
+            <TextView
+                android:id="@+id/tv_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:text="@string/balance"
+                android:textColor="@color/titleText"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="19dp"
+                android:layout_toRightOf="@+id/tv_balance"
+                android:src="@drawable/iv_me_account" />
+
+        </RelativeLayout>
+
+        <com.hifunki.funki.widget.DashedLineView
+            android:id="@+id/dl_me_balance"
+            app:dashWidth="2dp"
+            app:lineColor="@color/loginTvUnClick"
+            app:lineHeight="2dp"
+            app:lineWidth="5dp"
+            android:layout_width="211dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="51dp" />
+
+        <TextView
+            android:id="@+id/tv_me_balance_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dl_me_balance"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:text="@string/me_account_num" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dl_me_balance"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@+id/tv_me_balance_num"
+            android:src="@drawable/iv_vip_diamond" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_me_account"
+            android:gravity="center"
+            android:text="@string/withdraw"
+            android:textColor="@color/titleText"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_below="@+id/rl_recharge">
+
+        <TextView
+            android:id="@+id/tv_dynamic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dynamic" />
+
+        <TextView
+            android:id="@+id/tv_dynamic_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_dynamic" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_toRightOf="@+id/tv_dynamic" />
+
+        <View
+            android:id="@+id/view_mid"
+            android:layout_width="3dp"
+            android:layout_height="39dp"
+            android:layout_centerInParent="true"
+            android:background="@color/newPwd"></View>
+
+        <TextView
+            android:id="@+id/tv_live"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/view_mid"
+            android:text="@string/live" />
+
+        <TextView
+            android:id="@+id/tv_live_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_live" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_toRightOf="@+id/tv_live" />
+    </RelativeLayout>
+</RelativeLayout>

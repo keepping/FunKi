@@ -1,13 +1,33 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hifunki.funki.module.home.fragment.MeFragment">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.hifunki.funki.module.home.widget.MeHeadPhotoView
-        android:layout_height="200dp"
-        android:layout_width="300dp"
-        ></com.hifunki.funki.module.home.widget.MeHeadPhotoView>
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/layout_me_head"
+                layout="@layout/fragment_me_head" />
+
+            <include
+                android:id="@+id/layout_mid_head"
+                layout="@layout/fragment_me_mid" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_me"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_mid_head"></android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

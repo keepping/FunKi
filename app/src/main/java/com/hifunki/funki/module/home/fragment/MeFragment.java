@@ -3,10 +3,18 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import com.hifunki.funki.base.fragment.BaseFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * 个人中心Fragment
@@ -24,6 +32,9 @@ public class MeFragment extends BaseFragment {
 
     private String mParam1;
     private String mParam2;
+
+    @BindView(R.id.rv_me)
+    RecyclerView rvMe;
 
     private OnFragmentInteractionListener mListener;
 
@@ -49,10 +60,26 @@ public class MeFragment extends BaseFragment {
     }
 
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_me;
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+        List<String> strings = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            strings.add("个人相册");
+        }
+        MeInfoAdapter meInfoAdapter = new MeInfoAdapter(R.layout.item_me_info, strings);
+        rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvMe.setAdapter(meInfoAdapter);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
     }
 
     public void onButtonPressed(Uri uri) {

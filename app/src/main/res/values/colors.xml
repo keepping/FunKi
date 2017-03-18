@@ -29,4 +29,6 @@
     <color name="showItemBg">#2E115D</color>
     <color name="showItemTag">#FFE87C</color>
 
+    <color name="meBg">#390A68</color>
+
 </resources>
