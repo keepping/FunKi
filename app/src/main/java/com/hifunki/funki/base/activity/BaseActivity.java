@@ -158,13 +158,19 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected abstract void initDatas();
 
 
-    protected abstract void initTitleBar();
+    protected  void initTitleBar(){
+
+    }
 
     protected abstract void initView();
 
-    protected abstract void initListener();
+    protected void initListener(){
 
-    protected abstract void initAdapter();
+    }
+
+    protected void initAdapter(){
+
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {
