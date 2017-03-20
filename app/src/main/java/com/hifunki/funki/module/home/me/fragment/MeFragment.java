@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.home.fragment;
+package com.hifunki.funki.module.home.me.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -22,7 +22,7 @@ import butterknife.BindView;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.fragment.MeFragment.java
+ * @value com.hifunki.funki.module.home.me.fragment.MeFragment.java
  * @link
  * @since 2017-03-08 10:06:06
  */
