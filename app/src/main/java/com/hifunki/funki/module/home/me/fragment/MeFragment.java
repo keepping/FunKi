@@ -6,16 +6,21 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
+import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * 个人中心Fragment
@@ -30,9 +35,24 @@ public class MeFragment extends BaseFragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.civ_third_photo)
+    CircleImageView civThirdPhoto;
+    @BindView(R.id.civ_second_photo)
+    CircleImageView civSecondPhoto;
+    @BindView(R.id.civ_first_photo)
+    CircleImageView civFirstPhoto;
+    @BindView(R.id.civ_me_photo)
+    CircleImageView civMePhoto;
+    @BindView(R.id.iv_me_salary)
+    ImageView ivMeSalary;
+    @BindView(R.id.iv_me_share)
+    ImageView ivMeShare;
+    @BindView(R.id.iv_me_list)
+    ImageView ivMeList;
 
     private String mParam1;
     private String mParam2;
+
 
     @BindView(R.id.rv_me)
     RecyclerView rvMe;
@@ -77,6 +97,11 @@ public class MeFragment extends BaseFragment {
         rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
         rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMe.setAdapter(meInfoAdapter);
+        //圆形头像
+        Glide.with(mContext).load(photo).into(civMePhoto);
+        Glide.with(mContext).load(photo).into(civFirstPhoto);
+        Glide.with(mContext).load(photo).into(civSecondPhoto);
+        Glide.with(mContext).load(photo).into(civThirdPhoto);
     }
 
     @Override
@@ -115,6 +140,21 @@ public class MeFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+
+
+    @OnClick({R.id.iv_me_salary, R.id.iv_me_share, R.id.iv_me_list})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_me_salary:
+                MeRankActivity.show(getContext());
+                break;
+            case R.id.iv_me_share:
+                break;
+            case R.id.iv_me_list:
+                break;
+        }
     }
 
     public interface OnFragmentInteractionListener {

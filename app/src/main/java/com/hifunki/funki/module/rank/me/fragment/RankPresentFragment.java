@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.rank.fragment;
+package com.hifunki.funki.module.rank.me.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,8 +9,8 @@ import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.module.rank.adapter.RankAnchorAdapter;
-import com.hifunki.funki.module.rank.entity.AnchorEntity;
+import com.hifunki.funki.module.rank.world.adapter.RankAnchorAdapter;
+import com.hifunki.funki.module.rank.world.entity.AnchorEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,35 +18,33 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * 世界总榜-->主播总榜Fragment
+ * 在此写用途
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.rank.fragment.RankAnchorFragment.java
+ * @value com.hifunki.funki.module.rank.me.fragment.RankPresentFragment.java
  * @link
- * @since 2017-03-14 11:17:17
+ * @since 2017-03-20 14:36:36
  */
-public class RankAnchorFragment extends BaseFragment {
+public class RankPresentFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private List<AnchorEntity> anchorEntities;
+    private String mParam1;
+    private String mParam2;
+
+    private RankAnchorAdapter mAdapter;
 
     @BindView(R.id.rl_anchor)
     RecyclerView rlAnchor;
 
-    private RankAnchorAdapter mAdapter;
-
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
-    private List<AnchorEntity> anchorEntities;
 
-
-    public RankAnchorFragment() {
+    public RankPresentFragment() {
     }
 
-    public static RankAnchorFragment newInstance(String param1, String param2) {
-        RankAnchorFragment fragment = new RankAnchorFragment();
+    public static RankPresentFragment newInstance(String param1, String param2) {
+        RankPresentFragment fragment = new RankPresentFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,7 +63,35 @@ public class RankAnchorFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_rank_anchor;
+        return R.layout.fragment_rank_present;
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+        mAdapter = new RankAnchorAdapter(getContext(), anchorEntities);
+        rlAnchor.setLayoutManager(new LinearLayoutManager(getContext()));
+        rlAnchor.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        String imagePath = "http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg";
+        AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7612121);
+        AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 761212);
+        AnchorEntity anchorEntity3 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7625612);
+        AnchorEntity anchorEntity4 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 76421);
+        AnchorEntity anchorEntity5 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764124);
+        AnchorEntity anchorEntity6 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764121);
+        anchorEntities = new ArrayList<>();
+        anchorEntities.add(anchorEntity1);
+        anchorEntities.add(anchorEntity2);
+        anchorEntities.add(anchorEntity3);
+        anchorEntities.add(anchorEntity4);
+        anchorEntities.add(anchorEntity5);
+        anchorEntities.add(anchorEntity6);
+
     }
 
     public void onButtonPressed(Uri uri) {
@@ -89,34 +115,6 @@ public class RankAnchorFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-
-    @Override
-    protected void initData() {
-        super.initData();
-        String imagePath = "http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg";
-        AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7612121);
-        AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 761212);
-        AnchorEntity anchorEntity3 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7625612);
-        AnchorEntity anchorEntity4 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 76421);
-        AnchorEntity anchorEntity5 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764124);
-        AnchorEntity anchorEntity6 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764121);
-        anchorEntities = new ArrayList<>();
-        anchorEntities.add(anchorEntity1);
-        anchorEntities.add(anchorEntity2);
-        anchorEntities.add(anchorEntity3);
-        anchorEntities.add(anchorEntity4);
-        anchorEntities.add(anchorEntity5);
-        anchorEntities.add(anchorEntity6);
-    }
-
-    @Override
-    protected void initView(View root) {
-        super.initView(root);
-        mAdapter = new RankAnchorAdapter(getContext(),anchorEntities );
-        rlAnchor.setLayoutManager(new LinearLayoutManager(getContext()));
-        rlAnchor.setAdapter(mAdapter);
     }
 
 

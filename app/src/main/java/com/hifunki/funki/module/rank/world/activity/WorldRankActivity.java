@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.rank.activity;
+package com.hifunki.funki.module.rank.world.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,8 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.module.rank.adapter.RankPageAdapter;
-import com.hifunki.funki.module.rank.fragment.RankAnchorFragment;
-import com.hifunki.funki.module.rank.fragment.RankRickFragment;
+import com.hifunki.funki.module.rank.world.adapter.RankPageAdapter;
+import com.hifunki.funki.module.rank.world.fragment.RankAnchorFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-13 15:45:45
  */
-public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFragment.OnFragmentInteractionListener, RankRickFragment.OnFragmentInteractionListener{
+public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFragment.OnFragmentInteractionListener{
 
     @BindView(R.id.tvTitleLeft)
     TextView tvTitleLeft;

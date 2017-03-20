@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.rank.adapter;
+package com.hifunki.funki.module.rank.world.adapter;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.rank.entity.AnchorEntity;
+import com.hifunki.funki.module.rank.world.entity.AnchorEntity;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.rank.adapter.RankAnchorAdapter.java
+ * @value com.hifunki.funki.module.rank.world.adapter.RankAnchorAdapter.java
  * @link
  * @since 2017-03-15 15:55:55
  */
@@ -24,12 +24,7 @@ public class RankAnchorAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, B
 
     private Context mContext;
 
-    /**
-     * Same as QuickAdapter#QuickAdapter(Context,int) but with
-     * some initialization data.
-     *
-     * @param data A new list is created out of this one to avoid mutable list
-     */
+
     public RankAnchorAdapter(Context context, List data) {
         super(data);
         this.mContext = context;

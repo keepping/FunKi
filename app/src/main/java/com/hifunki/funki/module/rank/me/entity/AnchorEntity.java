@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.rank.entity;
+package com.hifunki.funki.module.rank.me.entity;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.rank.entity.AnchorEntity.java
+ * @value com.hifunki.funki.module.rank.world.entity.AnchorEntity.java
  * @link
  * @since 2017-03-15 15:58:58
  */
