@@ -15,6 +15,7 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <!--用于18禁页面-->
     <style name="AppThemeFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>

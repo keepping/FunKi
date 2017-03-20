@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hifunki.funki.module.home.fragment.MeFragment">
+    tools:context="com.hifunki.funki.module.home.me.fragment.MeFragment">
 
 
     <ScrollView
@@ -26,7 +26,7 @@
                 android:id="@+id/rv_me"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/layout_mid_head"></android.support.v7.widget.RecyclerView>
+                android:layout_below="@+id/layout_mid_head"/>
             <View
                 android:layout_below="@+id/rv_me"
                 android:background="@color/bgColor"

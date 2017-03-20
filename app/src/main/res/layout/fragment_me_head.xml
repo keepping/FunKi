@@ -2,6 +2,7 @@
 <!--个人中心头部布局-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_me_head"
+    android:background="@drawable/iv_me_head_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

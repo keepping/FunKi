@@ -30,5 +30,6 @@
     <color name="showItemTag">#FFE87C</color>
 
     <color name="meBg">#390A68</color>
+    <color name="meMidBg">#140231</color>
 
 </resources>
