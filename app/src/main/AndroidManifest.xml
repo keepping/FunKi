@@ -73,9 +73,7 @@
         <activity
             android:name=".module.login.LoginActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
-
-        </activity>
+            android:screenOrientation="portrait" />
         <!-- 国家列表页 -->
         <activity
             android:name=".module.login.CountyListActivity"
@@ -127,23 +125,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-
+        
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
         <!-- 账号基本类 -->
         <activity android:name=".base.activity.AccountBaseActivity" />
         <activity android:name=".module.search.activity.SearchActivity" />
         <!-- 世界总榜 -->
-        <activity android:name=".module.rank.activity.WorldRankActivity" />
+        <activity android:name=".module.rank.world.activity.WorldRankActivity" />
         <!-- 节目预告 -->
         <activity android:name=".module.show.activity.ShowActivity"></activity>
-        <activity android:name=".module.show.activity.TestDashLineActivity">
 
-
-
-        </activity>
 
         <activity android:name=".module.home.user.UserAvatarActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -151,6 +144,13 @@
             </intent-filter>
 
         </activity>
+        <!--个人中心榜单-->
+        <activity android:name=".module.rank.me.activity.MeRankActivity"></activity>
+
+
+
+
+
 
         <activity android:name=".module.home.user.RecodeMovieActivity">
 

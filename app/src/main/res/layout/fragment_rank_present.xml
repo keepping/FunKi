@@ -1,11 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.rank.world.fragment.RankAnchorFragment">
+    tools:context="com.hifunki.funki.module.rank.me.fragment.RankPresentFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rl_anchor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</RelativeLayout>
+
+</FrameLayout>
