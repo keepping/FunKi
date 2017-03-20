@@ -43,4 +43,14 @@
         <!--<attr name="indicator_animator_reverse" format="reference" />-->
     </declare-styleable>
 
+    <declare-styleable name="TopBarView">
+        <attr name="titleText" format="string" />
+
+        <attr name="menuText" format="string" />
+        <attr name="menuImage" format="reference" />
+
+        <attr name="menuTextMore" format="string" />
+        <attr name="menuImageMore" format="reference" />
+    </declare-styleable>
+
 </resources>
