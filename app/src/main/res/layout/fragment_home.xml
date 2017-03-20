@@ -6,7 +6,10 @@
     tools:context="com.hifunki.funki.module.home.fragment.HomeFragment"
     tools:ignore="MissingPrefix">
 
+
+
     <RelativeLayout
+        android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="3dp"

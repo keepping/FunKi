@@ -89,7 +89,7 @@ public class DisplayUtil {
     /**
      * @return : 获取状态栏的高度
      */
-    public static int getStatusBarHeight(Activity activity) {
+    public static int getStatusBarHeight(Context activity) {
         Class<?> c;
         Object obj;
         Field field;

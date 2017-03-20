@@ -54,53 +54,53 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public abstract class BaseActivity extends AppCompatActivity{
 
 
-    private final ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayout = new ViewTreeObserver.OnGlobalLayoutListener() {
-        int barHei = 0;
-        @Override
-        public void onGlobalLayout() {
-
-            if(ennableTitleBar()){
-                barHei = DisplayUtil.getStatusBarHeight(BaseActivity.this);
-                FrameLayout frameLayout = (FrameLayout)findViewById(R.id.base_content);
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)frameLayout.getLayoutParams();
-                layoutParams.topMargin = barHei;
-                frameLayout.setLayoutParams(layoutParams);
-
-                ImageView titleView = (ImageView)findViewById(R.id.base_tittle);
-                FrameLayout.LayoutParams imageLayout = (FrameLayout.LayoutParams)titleView.getLayoutParams();
-                imageLayout.height = barHei;
-                titleView.setLayoutParams(imageLayout);
-            }else {
-
-                ImageView titleView = (ImageView)findViewById(R.id.base_tittle);
-                titleView.setVisibility(View.GONE);
-            }
-
-
-
-            getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(mOnGlobalLayout);
-
-        }
-    };
-
-
+//    private final ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayout = new ViewTreeObserver.OnGlobalLayoutListener() {
+//        int barHei = 0;
+//        @Override
+//        public void onGlobalLayout() {
+//
+//            if(ennableTitleBar()){
+//                barHei = DisplayUtil.getStatusBarHeight(BaseActivity.this);
+//                FrameLayout frameLayout = (FrameLayout)findViewById(R.id.base_content);
+//                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)frameLayout.getLayoutParams();
+//                layoutParams.topMargin = barHei;
+//                frameLayout.setLayoutParams(layoutParams);
+//
+//                ImageView titleView = (ImageView)findViewById(R.id.base_tittle);
+//                FrameLayout.LayoutParams imageLayout = (FrameLayout.LayoutParams)titleView.getLayoutParams();
+//                imageLayout.height = barHei;
+//                titleView.setLayoutParams(imageLayout);
+//            }else {
+//
+//                ImageView titleView = (ImageView)findViewById(R.id.base_tittle);
+//                titleView.setVisibility(View.GONE);
+//            }
+//
+//
+//
+//            getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(mOnGlobalLayout);
+//
+//        }
+//    };
 
 
 
-    @Override
-    public void setContentView(@LayoutRes int layoutResID) {
-        super.setContentView(R.layout.activity_base_coordinator);
 
-        FrameLayout frameLayout = (FrameLayout)findViewById(R.id.base_content);
-        getLayoutInflater().inflate(layoutResID,frameLayout,true);
 
-        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(mOnGlobalLayout);
+//    @Override
+//    public void setContentView(@LayoutRes int layoutResID) {
+//        super.setContentView(R.layout.activity_base_coordinator);
+//
+//        FrameLayout frameLayout = (FrameLayout)findViewById(R.id.base_content);
+//        getLayoutInflater().inflate(layoutResID,frameLayout,true);
+//
+//        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(mOnGlobalLayout);
+//
+//    }
 
-    }
-
-    protected boolean ennableTitleBar(){
-        return false;
-    }
+//    protected boolean ennableTitleBar(){
+//        return false;
+//    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -128,12 +128,12 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     }
 
-    public void setTitleBar(int resId){
-
-        ImageView titleView = (ImageView)findViewById(R.id.base_tittle);
-        titleView.setImageResource(resId);
-
-    }
+//    public void setTitleBar(int resId){
+//
+//        ImageView titleView = (ImageView)findViewById(R.id.base_tittle);
+//        titleView.setImageResource(resId);
+//
+//    }
 
     /**
      * 防止字体随手机系统的字体变大而变大

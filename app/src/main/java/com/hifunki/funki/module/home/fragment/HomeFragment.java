@@ -18,6 +18,7 @@ import com.hifunki.funki.module.home.adapter.HomePagerAdapter;
 import com.hifunki.funki.module.rank.activity.WorldRankActivity;
 import com.hifunki.funki.module.search.activity.SearchActivity;
 import com.hifunki.funki.module.show.activity.ShowActivity;
+import com.hifunki.funki.util.StatusBarUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -101,6 +102,8 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     @Override
     protected void initView(View root) {
         super.initView(root);
+
+        StatusBarUtil.adjustStatusBarHei(root.findViewById(R.id.toolbar_layout));
 
 
 //        List<Fragment> listFragment = new ArrayList<>();

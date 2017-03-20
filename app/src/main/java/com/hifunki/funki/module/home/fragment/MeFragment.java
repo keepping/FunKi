@@ -10,6 +10,7 @@ import android.view.View;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
+import com.hifunki.funki.util.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,7 @@ public class MeFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-
+        StatusBarUtil.adjustStatusBarHei(root.findViewById(R.id.layout_me_head));
         MeInfoAdapter meInfoAdapter = new MeInfoAdapter(R.layout.item_me_info, mInfoTag);
         rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
         rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
