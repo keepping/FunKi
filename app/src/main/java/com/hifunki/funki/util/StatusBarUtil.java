@@ -4,9 +4,15 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
+import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.lang.reflect.Field;
@@ -14,6 +20,22 @@ import java.lang.reflect.Method;
 
 
 public class StatusBarUtil {
+
+    public static void adjustStatusBarHei(final View view){
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                int barHei = DisplayUtil.getStatusBarHeight(view.getContext());
+                view.setPadding(0,barHei,0,0);
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+
+
+    }
+
+
 
     // 设置状态栏透明与字体颜色
     public static void setStatusBarTrans(Activity acitivty, boolean lightStatusBar) {
