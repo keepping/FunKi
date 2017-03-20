@@ -23,11 +23,13 @@
             android:name=".module.home.activity.HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -79,7 +81,7 @@
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
         <!-- 图片列表页 -->
-        <activity android:name=".module.photo.gallery.activity.PhotoActivity" />
+        <activity android:name=".module.photo.gallery.activity.PhotoActivity"></activity>
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -109,6 +111,23 @@
         <activity android:name=".module.show.activity.ShowActivity" />
         <activity android:name=".module.show.activity.TestDashLineActivity"></activity>
         <activity android:name=".module.rank.me.activity.MeRankActivity"></activity>
+        <activity android:name=".module.show.activity.ShowActivity"></activity>
+        <activity android:name=".module.show.activity.TestDashLineActivity">
+
+
+
+        </activity>
+
+        <activity android:name=".module.home.activity.UserAvatarActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
     </application>
 
 </manifest>
