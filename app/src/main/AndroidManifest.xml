@@ -100,7 +100,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-
+        
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
         <!-- 账号基本类 -->
         <activity android:name=".base.activity.AccountBaseActivity" />
@@ -108,16 +108,9 @@
         <!-- 世界总榜 -->
         <activity android:name=".module.rank.world.activity.WorldRankActivity" />
         <!-- 节目预告 -->
-        <activity android:name=".module.show.activity.ShowActivity" />
-        <activity android:name=".module.show.activity.TestDashLineActivity"></activity>
-        <activity android:name=".module.rank.me.activity.MeRankActivity"></activity>
         <activity android:name=".module.show.activity.ShowActivity"></activity>
-        <activity android:name=".module.show.activity.TestDashLineActivity">
 
-
-
-        </activity>
-
+        <!--用户头像认证-->
         <activity android:name=".module.home.activity.UserAvatarActivity">
 
             <intent-filter>
@@ -127,6 +120,13 @@
             </intent-filter>
 
         </activity>
+        <!--个人中心榜单-->
+        <activity android:name=".module.rank.me.activity.MeRankActivity"></activity>
+
+
+
+
+
 
     </application>
 
