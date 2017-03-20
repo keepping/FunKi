@@ -23,11 +23,13 @@
             android:name=".module.home.activity.HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -107,7 +109,11 @@
         <activity android:name=".module.rank.activity.WorldRankActivity" />
         <!-- 节目预告 -->
         <activity android:name=".module.show.activity.ShowActivity"></activity>
-        <activity android:name=".module.show.activity.TestDashLineActivity"></activity>
+        <activity android:name=".module.show.activity.TestDashLineActivity">
+
+
+
+        </activity>
     </application>
 
 </manifest>

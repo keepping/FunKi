@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.hifunki.funki.module.show.activity.TestDashLineActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#ff00ff00"
+        />
     <com.hifunki.funki.widget.DashedLineView
         android:layout_width="211dp"
         android:layout_height="2dp"
@@ -13,6 +18,5 @@
         app:lineColor="@color/loginTvUnClick"
         app:lineWidth="5dp"
         app:lineHeight="2dp" />
-
 
 </LinearLayout>

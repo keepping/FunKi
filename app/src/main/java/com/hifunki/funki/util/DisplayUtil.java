@@ -109,7 +109,7 @@ public class DisplayUtil {
     public static void setTitleBar(Activity activity , int imageResId){
         if(activity instanceof BaseActivity){
             BaseActivity baseActivity = (BaseActivity)activity;
-            baseActivity.setTitleBar(imageResId);
+          //  baseActivity.setTitleBar(imageResId);
         }
     }
 
