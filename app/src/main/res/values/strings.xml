@@ -166,5 +166,9 @@
     <string name="present">礼物</string>
     <string name="duration">时长</string>
     <string name="share">分享</string>
+    <string name="me_lv_num">LV.76</string>
+    <string name="bill">账单</string>
+    <string name="filter">筛选</string>
+    <string name="this_month">本月</string>
 
 </resources>

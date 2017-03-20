@@ -5,14 +5,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.module.bill.activity.BillActivity;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
+import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -43,8 +49,8 @@ public class MeFragment extends BaseFragment {
     CircleImageView civFirstPhoto;
     @BindView(R.id.civ_me_photo)
     CircleImageView civMePhoto;
-    @BindView(R.id.iv_me_salary)
-    ImageView ivMeSalary;
+    @BindView(R.id.iv_me_bill)
+    ImageView ivMeBill;
     @BindView(R.id.iv_me_share)
     ImageView ivMeShare;
     @BindView(R.id.iv_me_list)
@@ -57,6 +63,8 @@ public class MeFragment extends BaseFragment {
     @BindView(R.id.rv_me)
     RecyclerView rvMe;
 
+    private PopWindowUtil sharePopWindow;//分享popWindow
+    private View shareView;
     private String photo = "http://img0.imgtn.bdimg.com/it/u=2329110913,2614087554&fm=214&gp=0.jpg";
 
     private OnFragmentInteractionListener mListener;
@@ -143,16 +151,26 @@ public class MeFragment extends BaseFragment {
     }
 
 
-
-    @OnClick({R.id.iv_me_salary, R.id.iv_me_share, R.id.iv_me_list})
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_share, R.id.iv_me_list})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_me_salary:
-                MeRankActivity.show(getContext());
+            case R.id.iv_me_bill:
+                BillActivity.show(getContext());
                 break;
-            case R.id.iv_me_share:
+            case R.id.iv_me_share://下拉的分享popupWindow
+                //创建PopWindow
+                if (sharePopWindow == null) {
+                    sharePopWindow = PopWindowUtil.getInstance(getContext());
+                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_me_share, null);
+                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+                }
+                sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
+                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 1, 0);
+
+
                 break;
             case R.id.iv_me_list:
+                MeRankActivity.show(getContext());
                 break;
         }
     }
@@ -160,4 +178,14 @@ public class MeFragment extends BaseFragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
+
+    /**
+     * popupWindow dimiss
+     */
+    PopupWindow.OnDismissListener onDissmissListener = new PopupWindow.OnDismissListener() {
+        @Override
+        public void onDismiss() {
+
+        }
+    };
 }

@@ -59,6 +59,7 @@ public class TopBarView extends RelativeLayout {
         iv_right_1 = (ImageView) findViewById(R.id.iv_right_1);
 
         tv_right_r = (TextView) findViewById(R.id.tv_right);
+        //最右边的ImageView
         iv_right_r = (ImageView) findViewById(R.id.iv_right);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TopBarView);

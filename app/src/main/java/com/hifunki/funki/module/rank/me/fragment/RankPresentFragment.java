@@ -5,7 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
@@ -16,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static com.hifunki.funki.R.id.rl_anchor;
 
 /**
  * 在此写用途
@@ -33,9 +37,7 @@ public class RankPresentFragment extends BaseFragment {
     private String mParam1;
     private String mParam2;
 
-    private RankAnchorAdapter mAdapter;
-
-    @BindView(R.id.rl_anchor)
+    @BindView(rl_anchor)
     RecyclerView rlAnchor;
 
     private OnFragmentInteractionListener mListener;
@@ -69,9 +71,13 @@ public class RankPresentFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-        mAdapter = new RankAnchorAdapter(getContext(), anchorEntities);
+        RankAnchorAdapter mAdapter = new RankAnchorAdapter(getContext(), anchorEntities);
         rlAnchor.setLayoutManager(new LinearLayoutManager(getContext()));
         rlAnchor.setAdapter(mAdapter);
+
+        View headView = LayoutInflater.from(getContext()).inflate(R.layout.item_rank_head_count, (ViewGroup) rlAnchor.getParent(), false);
+        mAdapter.addHeaderView(headView,1);
+
     }
 
     @Override

@@ -43,27 +43,28 @@ public class MeHeadPhotoView extends View {
 
     private void init() {
         mPaint = new Paint();
-        mPaint.setStrokeWidth(5);
-        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(4);//线宽度
+        mPaint.setStyle(Paint.Style.STROKE);//实心线
         mPaint.setAntiAlias(true);//消除锯齿
         mPaint.setColor(getResources().getColor(R.color.vistorTvTitle));
         mPath = new Path();
 
         //第一个点坐标
-        float firstPointX = DisplayUtil.dip2Px(getContext(), 197);
-        float firstPointY = DisplayUtil.dip2Px(getContext(), 112);
+        float firstPointX = DisplayUtil.dip2Px(getContext(), 96);
+        float firstPointY = DisplayUtil.dip2Px(getContext(), 67);
         //第二个点坐标
-        float secondPointX = DisplayUtil.dip2Px(getContext(), 107);
-        float secondPointY = DisplayUtil.dip2Px(getContext(), 105);
+        float secondPointX = DisplayUtil.dip2Px(getContext(), 21);
+        float secondPointY = DisplayUtil.dip2Px(getContext(), 82);
         //第三个点坐标
-        float thirdPointX = DisplayUtil.dip2Px(getContext(), 137);
-        float thirdPointY = DisplayUtil.dip2Px(getContext(), 47);
+        float thirdPointX = DisplayUtil.dip2Px(getContext(), 52);
+        float thirdPointY = DisplayUtil.dip2Px(getContext(), 25);
         //第四个点坐标
-        float fouthPointX = DisplayUtil.dip2Px(getContext(), 205);
-        float fouthPointY = DisplayUtil.dip2Px(getContext(), 30);
+        float fouthPointX = DisplayUtil.dip2Px(getContext(), 122);
+        float fouthPointY = DisplayUtil.dip2Px(getContext(), 11);
         //第五个点坐标
-        float fifthPointX = DisplayUtil.dip2Px(getContext(), 228);
-        float fifthPointY = DisplayUtil.dip2Px(getContext(), 39);
+        float fifthPointX = DisplayUtil.dip2Px(getContext(), 197);
+//        float fifthPointX = DisplayUtil.dip2Px(getContext(), 180);
+        float fifthPointY = DisplayUtil.dip2Px(getContext(), 23);
 
         mPath.moveTo(firstPointX, firstPointY);
         mPath.lineTo(secondPointX, secondPointY);
