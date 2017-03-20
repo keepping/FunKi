@@ -1,19 +1,46 @@
-package com.hifunki.funki.module.home.activity;
+package com.hifunki.funki.module.home.user;
+
+import android.content.Intent;
+import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+
+import butterknife.OnClick;
 
 /**
  * 在此写用途
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.activity.UserAvatarActivity.java
+ * @value com.hifunki.funki.module.home.user.UserAvatarActivity.java
  * @link
  * @since 2017-03-20 13:57:57
  */
 public class UserAvatarActivity extends BaseActivity {
 
+
+
+    @OnClick({
+            R.id.user_head,
+            R.id.user_head_ver,
+    })
+    void onClick(View view){
+        switch (view.getId()){
+            case R.id.user_head:
+
+                Intent intent = new Intent(UserAvatarActivity.this, RecodeMovieActivity.class);
+                startActivity(intent);
+
+
+                break;
+            case R.id.user_head_ver:
+
+
+
+                break;
+        }
+    }
 
     @Override
     protected int getViewResId() {

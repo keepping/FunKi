@@ -54,6 +54,33 @@ public class FileUtils {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
+    public static String getRandomVideoPath(Context context){
+//        String path = Environment.getExternalStorageDirectory().getPath();
+        String path;
+        if(context.getExternalCacheDir()!=null){
+            path = context.getExternalCacheDir().getPath();
+        }else {
+            path = Environment.getExternalStorageDirectory().getPath();
+        }
+        path = path+"/renshine";
+        File file = new File(path);
+        if(!file.exists()){
+            boolean tf =file.mkdirs();
+        }
+
+        path+="/"+System.currentTimeMillis()+".mp4";
+
+        file = new File(path);
+        if(!file.exists()){
+            try {
+                boolean tf = file.createNewFile();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return path;
+    }
+
     /**
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
@@ -65,6 +92,7 @@ public class FileUtils {
      * @return The value of the _data column, which is typically a file path.
      * @author paulburke
      */
+
     public static String getDataColumn(Context context, Uri uri, String selection,
                                        String[] selectionArgs) {
 

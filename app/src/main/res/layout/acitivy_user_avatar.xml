@@ -14,12 +14,91 @@
         app:titleText="头像认证" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/user_head"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/ic_nav_me_actived"
-        android:layout_marginTop="25dp"
+        app:civ_border_color="#a000fd"
+        app:civ_border_width="2dp"
+        app:civ_border_overlay="false"
+        android:layout_marginTop="30dp"
         />
 
+    <TextView
+        android:id="@+id/user_head_ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="真实头像认证"
+        android:textSize="18sp"
+        android:textColor="#9B44ED"
+        android:layout_marginTop="9dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="录几秒的视频来证明头像是你吧!"
+        android:textColor="#6b4e9a"
+        android:textSize="16sp"
+        android:layout_marginTop="9dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="专属特权"
+        android:layout_marginTop="19dp"
+        android:textColor="#6b4e9a"
+        android:textSize="16sp"
+        android:background="@drawable/bg_user_avatar_specail" />
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/dash_line"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="温馨提示"
+        android:textColor="#6b4e9a"
+        android:textSize="16sp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.该视频用于个人认证在， 且其他用户不可查看。
+2.已经认证过的用户，再次更改头像时，请使用清晰正脸照。避免出现因头像与认证视频存在误差，导致个人认证被取消的情况。
+3.视频认证审核将在48小时之内，请耐心等待，谢谢。
+4.因认证标识基于视频认证功能获得，如您认为已认证的用户侵犯到您的合法利益，可联系客服4242@FunKi.com进行投诉。提供真实准确的相同证明且审核无误后，被投诉用户将会按照侵权账户进行注销或者封号处理"
+        android:textColor="#6b4e9a"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="left"
+
+
+        />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        />
 
 
 </LinearLayout>
