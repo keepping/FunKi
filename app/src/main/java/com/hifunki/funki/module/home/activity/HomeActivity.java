@@ -15,18 +15,16 @@ import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.common.FragmentConst;
-import com.hifunki.funki.module.home.fragment.MsgFragment;
-import com.hifunki.funki.module.home.fragment.MeFragment;
-import com.hifunki.funki.module.home.fragment.HomeFollowFragment;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;
+import com.hifunki.funki.module.home.fragment.MeFragment;
+import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
+import com.hifunki.funki.module.home.fragment.StoreFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
 import com.hifunki.funki.module.home.widget.NavigationButton;
-import com.hifunki.funki.module.home.fragment.StoreFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,6 +160,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
             finish();
         }
     }
+
 }
 
 

@@ -22,6 +22,6 @@ public class MeInfoAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-        helper.setText(R.id.tv_info, item);
+        helper.setText(R.id.tv_tag, item);
     }
 }

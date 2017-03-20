@@ -152,5 +152,16 @@
     <string name="withdraw">提现</string>
     <string name="live">直播</string>
     <string name="dynamic">动态</string>
+    <string name="me_balance_unit">$</string>
+    <string name="me_income_recharge_num">可兑换340$</string>
+    <string name="self_gallery">个人相册</string>
+    <string name="vistor_record">访问记录</string>
+    <string name="my_field_control">我的场控</string>
+    <string name="blacklist">黑名单</string>
+    <string name="order_management">订单管理</string>
+    <string name="account_privacy_safety">账户隐私与安全</string>
+    <string name="setting">设置</string>
+    <string name="help_feedback">帮助与反馈</string>
+    <string name="business_cooperate">商务合作</string>
 
 </resources>

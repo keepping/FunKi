@@ -27,6 +27,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/layout_mid_head"></android.support.v7.widget.RecyclerView>
+            <View
+                android:layout_below="@+id/rv_me"
+                android:background="@color/bgColor"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                ></View>
         </RelativeLayout>
     </ScrollView>
 

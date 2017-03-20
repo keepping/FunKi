@@ -9,10 +9,15 @@
     <com.hifunki.funki.widget.DashedLineView
         android:layout_width="211dp"
         android:layout_height="2dp"
+        app:dashOrientation="0"
         app:dashWidth="2dp"
         app:lineColor="@color/loginTvUnClick"
-        app:lineWidth="5dp"
-        app:lineHeight="2dp" />
+        app:lineHeight="2dp"
+        app:lineWidth="5dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account" />
 
 </LinearLayout>

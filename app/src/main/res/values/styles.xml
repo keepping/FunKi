@@ -63,12 +63,13 @@
         <item name="android:indeterminateOnly">true</item>
     </style>
 
-    <!--节目预告页面虚线-->
+    <!--自定义虚线-->
     <declare-styleable name="deshedLine">
         <attr name="lineColor" format="color"/>
         <attr name="dashWidth" format="dimension"/>
         <attr name="lineHeight" format="dimension"/>
         <attr name="lineWidth" format="dimension"/>
+        <attr name="dashOrientation" format="integer"/>
     </declare-styleable>
 
     <!--节目预告dialog-->
