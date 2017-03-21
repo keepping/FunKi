@@ -1,5 +1,6 @@
 package com.hifunki.funki.module.home.user;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
@@ -20,6 +21,10 @@ import butterknife.OnClick;
 public class UserAvatarActivity extends BaseActivity {
 
 
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, UserAvatarActivity.class));
+    }
 
     @OnClick({
             R.id.user_head,

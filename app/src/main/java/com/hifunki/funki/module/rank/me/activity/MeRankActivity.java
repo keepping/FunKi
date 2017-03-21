@@ -16,7 +16,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-
 /**
  * 在此写用途
  *
@@ -36,11 +35,7 @@ public class MeRankActivity extends BaseActivity implements RankPresentFragment.
     ViewPager vpRank;
     private List<String> mTabTitle;
 
-    /**
-     * 跳转当前界面
-     *
-     * @param context
-     */
+
     public static void show(Context context) {
         context.startActivity(new Intent(context, MeRankActivity.class));
     }
@@ -83,6 +78,7 @@ public class MeRankActivity extends BaseActivity implements RankPresentFragment.
         RankAdapter rankAdapter = new RankAdapter(getSupportFragmentManager(), mTabTitle);
         vpRank.setAdapter(rankAdapter);
         tbRank.setupWithViewPager(vpRank);
+
     }
 
     @Override

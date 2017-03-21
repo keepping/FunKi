@@ -11,6 +11,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="titleText">#BBABD4</color>
     <color name="bgColor">#230C47</color>
+
+    <!--游客必填颜色-->
     <color name="vistorTvTitle">#9B44ED</color>
     <color name="vistorTvbgNormal">#4A2F75</color>
     <color name="vistorTvbg">#28114D</color>

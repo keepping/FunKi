@@ -45,7 +45,7 @@ public class RankAnchorAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, B
 
                 helper.setText(R.id.tv_anchor_name, item.getUsername());//用户名
 
-                Glide.with(mContext).load(R.drawable.iv_search_hot_girl).into((ImageView) helper.getView(R.id.iv_anchor_sex));
+                Glide.with(mContext).load(R.drawable.iv_girl).into((ImageView) helper.getView(R.id.iv_anchor_sex));
                 helper.setText(R.id.tv_anchor_lv, String.valueOf(item.getLevel()));//等级
                 helper.setText(R.id.tv_anchor_gold, String.valueOf(item.getGoldNumber()));//金钱
 
@@ -58,7 +58,7 @@ public class RankAnchorAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, B
                 helper.setText(R.id.tv_anchor_name, item.getUsername());
 
                 //这里代码很可能有问题
-//                Glide.with(mContext).load(R.drawable.iv_search_hot_girl).into((ImageView) helper.getView(R.id.iv_anchor_sex));
+//                Glide.with(mContext).load(R.drawable.iv_girl).into((ImageView) helper.getView(R.id.iv_anchor_sex));
 
                 helper.setText(R.id.tv_anchor_lv, String.valueOf(item.getLevel()));//等级
                 helper.setText(R.id.tv_anchor_gold, String.valueOf(item.getGoldNumber()));//金钱

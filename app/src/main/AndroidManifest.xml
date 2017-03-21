@@ -4,24 +4,20 @@
 
     <!-- 网络请求 -->
     <uses-permission android:name="android.permission.INTERNET" />
-
     <!-- 读取文件权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 写入数据权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SET_DEBUG_APP" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -31,7 +27,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
 
     <application
         android:name=".base.application.ApplicationMain"
@@ -112,6 +107,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
+        <!-- 用于头像上传模块 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.hifunki.funki.fileprovider"
@@ -132,7 +128,7 @@
         <activity android:name=".module.show.activity.ShowActivity" />
 
         <!-- 用户头像认证 -->
-        <activity android:name=".module.home.activity.UserAvatarActivity">
+        <activity android:name=".module.home.user.UserAvatarActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -144,7 +140,11 @@
         </activity>
         <!-- 个人中心榜单 -->
         <activity android:name=".module.rank.me.activity.MeRankActivity" />
-        <activity android:name=".module.bill.activity.BillActivity"></activity>
+        <!-- 个人中心账单 -->
+        <activity android:name=".module.bill.activity.BillActivity" />
+        <activity android:name=".module.bill.activity.LiveIncomeActivity" />
+        <activity android:name=".module.show.activity.ShowDetailActivity" />
+        <activity android:name=".module.fans.activity.MyFansActivity"></activity>
     </application>
 
 </manifest>

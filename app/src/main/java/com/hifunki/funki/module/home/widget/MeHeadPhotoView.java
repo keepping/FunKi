@@ -62,7 +62,7 @@ public class MeHeadPhotoView extends View {
         float fouthPointX = DisplayUtil.dip2Px(getContext(), 122);
         float fouthPointY = DisplayUtil.dip2Px(getContext(), 11);
         //第五个点坐标
-        float fifthPointX = DisplayUtil.dip2Px(getContext(), 197);
+        float fifthPointX = DisplayUtil.dip2Px(getContext(), 150);
 //        float fifthPointX = DisplayUtil.dip2Px(getContext(), 180);
         float fifthPointY = DisplayUtil.dip2Px(getContext(), 23);
 

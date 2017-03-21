@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -15,7 +16,9 @@ import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.bill.activity.BillActivity;
+import com.hifunki.funki.module.fans.activity.MyFansActivity;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
+import com.hifunki.funki.module.home.user.UserAvatarActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -25,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -55,6 +59,12 @@ public class MeFragment extends BaseFragment {
     ImageView ivMeShare;
     @BindView(R.id.iv_me_list)
     ImageView ivMeList;
+    @BindView(R.id.iv_me_authentication)
+    ImageView ivMeAuthentication;
+    @BindView(R.id.ll_follow)
+    LinearLayout llFollow;//关注
+    @BindView(R.id.ll_fans)
+    LinearLayout llFans;//粉丝
 
     private String mParam1;
     private String mParam2;
@@ -151,7 +161,7 @@ public class MeFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.iv_me_bill, R.id.iv_me_share, R.id.iv_me_list})
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication,R.id.ll_follow, R.id.ll_fans})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_me_bill:
@@ -167,13 +177,35 @@ public class MeFragment extends BaseFragment {
                 sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
                 sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 1, 0);
 
+                break;
+            case R.id.civ_me_photo:
+                break;
+            case R.id.iv_me_authentication:
+                UserAvatarActivity.show(getContext());
+
 
                 break;
             case R.id.iv_me_list:
                 MeRankActivity.show(getContext());
                 break;
+            case R.id.ll_follow://关注
+
+                break;
+            case R.id.ll_fans://粉丝
+
+                MyFansActivity.show(getContext());
+                break;
         }
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);

@@ -143,6 +143,8 @@
     <string name="me_user_id">ID:2073614</string>
     <string name="me_send_diamond">送出5623</string>
     <string name="me_introduce">听说英国的电视剧拍的很赞，好像去拍摄现场，大家谁有英国的朋友</string>
+    <string name="me_fans_count">42</string>
+    <string name="me_follow_count">42</string>
     <string name="fans">粉丝</string>
     <string name="account">账户</string>
     <string name="me_account_num">5000</string>
@@ -170,5 +172,6 @@
     <string name="bill">账单</string>
     <string name="filter">筛选</string>
     <string name="this_month">本月</string>
+    <string name="fans_mine">我的粉丝</string>
 
 </resources>

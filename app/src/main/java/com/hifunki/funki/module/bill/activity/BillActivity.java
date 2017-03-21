@@ -4,7 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.bill.adapter.BillAdapter;
@@ -14,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static com.hifunki.funki.base.application.ApplicationMain.getContext;
 
 /**
  * 个人中心账单页面
@@ -28,6 +34,7 @@ public class BillActivity extends BaseActivity {
 
     @BindView(R.id.rl_bill)
     RecyclerView rlBill;
+
     /**
      * 跳转界面
      *
@@ -49,9 +56,12 @@ public class BillActivity extends BaseActivity {
             BillEntity entity = new BillEntity("今天", "12:36", 121212, "直播收入");
             entityList.add(entity);
         }
-        BillAdapter adapter=new BillAdapter(R.layout.item_bill,entityList);
+        BillAdapter adapter = new BillAdapter(R.layout.item_bill, entityList);
         rlBill.setLayoutManager(new LinearLayoutManager(this));
         rlBill.setAdapter(adapter);
+
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_biil_head, null);
+        adapter.addHeaderView(view);
     }
 
     @Override
@@ -61,7 +71,22 @@ public class BillActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        rlBill.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
 
+            }
+
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                super.onItemChildClick(adapter, view, position);
+                switch (view.getId()) {
+                    case R.id.tv_more:
+                        LiveIncomeActivity.show(getContext());//跳转到直播收入详情页面
+                        break;
+                }
+            }
+        });
     }
 
     @Override
