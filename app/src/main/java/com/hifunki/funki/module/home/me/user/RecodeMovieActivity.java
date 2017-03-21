@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.home.user;
+package com.hifunki.funki.module.home.me.user;
 
 
 import android.Manifest;

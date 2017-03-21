@@ -1,8 +1,8 @@
-package com.hifunki.funki.module.meexpand.fans.adapter;
+package com.hifunki.funki.module.home.me.fans.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hifunki.funki.module.meexpand.fans.entity.FansEntity;
+import com.hifunki.funki.module.home.me.fans.entity.FansEntity;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.meexpand.fans.adapter.FansAdapter.java
+ * @value com.hifunki.funki.module.home.me.fans.adapter.FansAdapter.java
  * @link
  * @since 2017-03-21 12:05:05
  */

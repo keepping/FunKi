@@ -1,11 +1,11 @@
-package com.hifunki.funki.module.meexpand.bill.entity;
+package com.hifunki.funki.module.home.me.bill.entity;
 
 /**
  * 在此写用途
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.meexpand.bill.entity.BillEntity.java
+ * @value com.hifunki.funki.module.home.me.bill.entity.BillEntity.java
  * @link
  * @since 2017-03-20 18:53:53
  */

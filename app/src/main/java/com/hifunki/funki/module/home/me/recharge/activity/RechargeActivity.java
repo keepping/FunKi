@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.meexpand.recharge.activity;
+package com.hifunki.funki.module.home.me.recharge.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.meexpand.recharge.adapter.RechargeAdapter;
-import com.hifunki.funki.module.meexpand.recharge.entity.RechargeItem;
+import com.hifunki.funki.module.home.me.recharge.adapter.RechargeAdapter;
+import com.hifunki.funki.module.home.me.recharge.entity.RechargeItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import butterknife.BindView;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.meexpand.recharge.activity.RechargeActivity.java
+ * @value com.hifunki.funki.module.home.me.recharge.activity.RechargeActivity.java
  * @link
  * @since 2017-03-21 13:33:33
  */

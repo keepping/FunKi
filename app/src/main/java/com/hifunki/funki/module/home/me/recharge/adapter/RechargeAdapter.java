@@ -1,9 +1,9 @@
-package com.hifunki.funki.module.meexpand.recharge.adapter;
+package com.hifunki.funki.module.home.me.recharge.adapter;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.meexpand.recharge.entity.RechargeItem;
+import com.hifunki.funki.module.home.me.recharge.entity.RechargeItem;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.meexpand.recharge.adapter.RechargeAdapter.java
+ * @value com.hifunki.funki.module.home.me.recharge.adapter.RechargeAdapter.java
  * @link
  * @since 2017-03-21 14:29:29
  */

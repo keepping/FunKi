@@ -19,7 +19,7 @@ import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;
-import com.hifunki.funki.module.home.me.fragment.MeFragment;
+import com.hifunki.funki.module.home.me.MeFragment;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
 import com.hifunki.funki.module.home.fragment.StoreFragment;
