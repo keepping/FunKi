@@ -124,7 +124,7 @@ public class Follow_Movie extends PowViewHolder<Post> {
         playing_notify(0),            //提示播放
 
         pause(0),                     //暂时
-        replay(0);                    //
+        replay(0);                    //重播
 
         PLAY_STATUS(int resId) {
             this.viewId = resId;
