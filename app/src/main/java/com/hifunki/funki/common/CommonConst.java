@@ -26,4 +26,7 @@ public interface CommonConst {
 
     byte ENVIRONMENT_PRODUCTION = 4;
 
+    //全局头像类-->需要修改
+     String photo = "http://img0.imgtn.bdimg.com/it/u=2329110913,2614087554&fm=214&gp=0.jpg";
+
 }

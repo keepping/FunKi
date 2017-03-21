@@ -1,5 +1,6 @@
 package com.hifunki.funki.module.home.user;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -25,6 +26,10 @@ public class UserAvatarActivity extends BaseActivity {
 
     @BindView(R.id.user_avatar_ver)
     LinearLayout userVerficationStatus;
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, UserAvatarActivity.class));
+    }
 
     @OnClick({
             R.id.user_avatar_verify,

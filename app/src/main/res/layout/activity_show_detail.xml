@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hifunki.funki.module.show.activity.ShowDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_bg"
+                android:layout_width="match_parent"
+                android:layout_height="164dp"
+                android:src="@drawable/iv_showdetail_video" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/iv_showdetail_video" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11/23 19:00" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_team"
+                    android:src="@drawable/iv_showdetail_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/ll_team_name"
+                    android:layout_toRightOf="@+id/iv_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="摇滚女团圣殿"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:src="@drawable/iv_girl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_below="@+id/ll_team_name"
+                    android:text="粉丝：56642"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/iv_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="196dp"
+        android:src="@drawable/iv_showdetail_buy" />
+
+    <LinearLayout
+        android:id="@+id/ll_msg"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="196dp"
+        android:layout_toLeftOf="@+id/iv_buy"
+        android:background="@color/vistorTvTitle">
+
+        <ImageView
+            android:id="@+id/iv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:src="@drawable/iv_showdetail_msg" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_collect"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="196dp"
+        android:layout_toLeftOf="@+id/ll_msg"
+        android:background="@color/vistorTvTitle">
+
+        <ImageView
+            android:id="@+id/iv_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_toLeftOf="@+id/iv_msg"
+            android:src="@drawable/iv_showdetail_collect" />
+    </LinearLayout>
+</RelativeLayout>
