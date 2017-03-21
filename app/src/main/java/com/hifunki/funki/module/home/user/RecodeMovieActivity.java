@@ -30,7 +30,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by MT3020 on 2016/3/8.
  */
 public class RecodeMovieActivity extends BaseActivity {
 
@@ -80,6 +79,8 @@ public class RecodeMovieActivity extends BaseActivity {
     TextView count_down;
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
+    @BindView(R.id.progressBar_rect)
+    ImageView progressBar_rect;
 
     //common
 
@@ -265,6 +266,12 @@ public class RecodeMovieActivity extends BaseActivity {
         mSurfaceRecode = mSurfacePreview.getHolder();
         mSurfaceRecode.addCallback(recodeCallBack);
         updateUI();
+        getWindow().getDecorView().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onClick(findViewById(R.id.recode_start));
+            }
+        },700);
     }
 
     public void onResume() {
@@ -312,6 +319,7 @@ public class RecodeMovieActivity extends BaseActivity {
     }
 
     private void updateUI() {
+
         preview_content.setVisibility(View.GONE);                        //浏览图
         preview_play.setVisibility(View.GONE);
         count_down.setVisibility(View.GONE);
@@ -320,6 +328,7 @@ public class RecodeMovieActivity extends BaseActivity {
         recodeCancel.setVisibility(View.GONE);
         recodeUpload.setVisibility(View.GONE);
         recodeRecode.setVisibility(View.GONE);
+        progressBar_rect.setVisibility(View.GONE);
         ((View)uploadCancel.getParent()).setVisibility(View.GONE);
 
         switch (status) {
@@ -329,6 +338,7 @@ public class RecodeMovieActivity extends BaseActivity {
             case recoding:
                 mProgressBar.setVisibility(View.VISIBLE);
                 recodeCancel.setVisibility(View.VISIBLE);
+                progressBar_rect.setVisibility(View.VISIBLE);
                 break;
             case uploadWait:
                 preview_content.setVisibility(View.VISIBLE);

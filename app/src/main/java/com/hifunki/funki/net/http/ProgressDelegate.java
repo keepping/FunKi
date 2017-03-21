@@ -16,7 +16,7 @@ import okio.Sink;
  * Created by powyin on 2016/11/7.   代理加入上传进度监听
  */
 
-public class ProgressDelegate extends RequestBody {
+class ProgressDelegate extends RequestBody {
 
     private RequestBody mDelegate;
     private Callback<?> mListener;

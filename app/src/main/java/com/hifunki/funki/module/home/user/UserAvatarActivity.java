@@ -3,10 +3,13 @@ package com.hifunki.funki.module.home.user;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.client.User;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -21,18 +24,20 @@ import butterknife.OnClick;
 public class UserAvatarActivity extends BaseActivity {
 
 
+    @BindView(R.id.user_avatar_ver)
+    LinearLayout userVerficationStatus;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, UserAvatarActivity.class));
     }
 
     @OnClick({
-            R.id.user_head,
+            R.id.user_avatar_verify,
             R.id.user_head_ver,
     })
     void onClick(View view){
         switch (view.getId()){
-            case R.id.user_head:
+            case R.id.user_avatar_verify:
 
                 Intent intent = new Intent(UserAvatarActivity.this, RecodeMovieActivity.class);
                 startActivity(intent);
@@ -57,23 +62,19 @@ public class UserAvatarActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void initTitleBar() {
-
-    }
 
     @Override
     protected void initView() {
+        switch (User.getAvatarVerficationStatus()){
+            case 0:
+                userVerficationStatus.setVisibility(View.GONE);
+                break;
+            case 1:
+                userVerficationStatus.setVisibility(View.VISIBLE);
+                break;
 
+        }
     }
 
-    @Override
-    protected void initListener() {
 
-    }
-
-    @Override
-    protected void initAdapter() {
-
-    }
 }
