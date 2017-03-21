@@ -1,5 +1,6 @@
 package com.hifunki.funki.module.show.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +13,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
-import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.show.adapter.ShowAdapter;
 import com.hifunki.funki.module.show.entity.ShowEntity;
 import com.hifunki.funki.module.show.widget.ShowPayDialogBuilder;
@@ -43,10 +43,10 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
     /**
      * 跳转界面方法
      *
-     * @param mActivity
+     * @param context
      */
-    public static void show(HomeActivity mActivity) {
-        mActivity.startActivity(new Intent(mActivity, ShowActivity.class));
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, ShowActivity.class));
     }
 
     @Override
@@ -90,15 +90,22 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 super.onItemChildClick(adapter, view, position);
+                Log.e(TAG, "onItemChildClick: " + "test");
                 switch (view.getId()) {
                     case R.id.ll_show_price:
 //                        startActivity(new Intent(ShowActivity.this, TestDashLineActivity.class));
                         //这里需要判断余额问题
                         View rootView = LayoutInflater.from(ShowActivity.this).inflate(R.layout.dialog_show_pay, null);
                         builder = ShowPayDialogBuilder.getInstance(ShowActivity.this, rootView);
-                        builder.setViewHeight(232,210);
+                        builder.setViewHeight(232, 210);
                         builder.show();
-
+                        break;
+                    case R.id.rl_show_detail:
+                        Log.e(TAG, "onItemChildClick: " + "rl_show_detail");
+                        ShowDetailActivity.show(ShowActivity.this);
+                        break;
+                    case R.id.tv_show_comment:
+                        ShowDetailActivity.show(ShowActivity.this);
                         break;
                     default:
                 }
@@ -106,7 +113,14 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
 
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                Log.e(TAG, "onSimpleItemClick: " + "test");
+                ShowDetailActivity.show(ShowActivity.this);
+                switch (view.getId()) {
+                    case R.id.rl_show_detail:
+                        Log.e(TAG, "onSimpleItemClick: " + "rl_show_detail");
+                        break;
+                    default:
+                }
             }
 
         });
@@ -119,8 +133,8 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 View rootView = LayoutInflater.from(ShowActivity.this).inflate(R.layout.activity_login, null);
-                builder.setViewHeight(500,500);
-                builder.refreshContentView(rootView );
+                builder.setViewHeight(500, 500);
+                builder.refreshContentView(rootView);
                 builder.show();
             }
         });

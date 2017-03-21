@@ -13,18 +13,19 @@
         android:scaleType="fitXY" />
 
     <RelativeLayout
+        android:id="@+id/rl_show_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/showItemBg">
 
         <TextView
-            android:gravity="center"
             android:id="@+id/tv_show_tag"
             android:layout_width="30dp"
             android:layout_height="14dp"
             android:layout_marginLeft="7dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_show_item_text"
+            android:gravity="center"
             android:text="@string/show_tag"
             android:textColor="@color/showItemTag"
             android:textSize="11sp" />
@@ -94,5 +95,6 @@
             android:layout_marginTop="4dp"
             android:text="@string/show_percent"
             android:textColor="@color/newPwd" />
+
     </RelativeLayout>
 </LinearLayout>

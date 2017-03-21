@@ -6,14 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.hifunki.funki.module.show.activity.ShowDetailActivity">
 
+    <com.hifunki.funki.widget.TopBarView
+        android:id="@+id/tpv_show_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="头像认证" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tpv_show_detail"
+        android:background="@color/showDetailBg">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_bg"
@@ -22,10 +30,15 @@
                 android:src="@drawable/iv_showdetail_video" />
 
             <RelativeLayout
+                android:id="@+id/rl_show_detail_video"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_bg"
+                android:layout_marginLeft="29dp"
+                android:layout_marginTop="39dp">
 
                 <ImageView
+                    android:id="@+id/iv_show_detail_video"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/iv_showdetail_video" />
@@ -33,53 +46,111 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="11/23 19:00" />
+                    android:layout_marginLeft="29dp"
+                    android:layout_toRightOf="@+id/iv_show_detail_video"
+                    android:text="11/23 19:00"
+                    android:textColor="@color/titleText" />
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_more"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_show_detail_video"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="29dp">
 
                 <ImageView
                     android:id="@+id/iv_team"
-                    android:src="@drawable/iv_showdetail_team"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/iv_showdetail_team" />
 
                 <LinearLayout
                     android:id="@+id/ll_team_name"
-                    android:layout_toRightOf="@+id/iv_team"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="29dp"
+                    android:layout_toRightOf="@+id/iv_team"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:text="摇滚女团圣殿"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="摇滚女团圣殿"
+                        android:textColor="@color/titleText" />
 
                     <ImageView
-                        android:src="@drawable/iv_girl"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="9dp"
+                        android:src="@drawable/iv_girl" />
                 </LinearLayout>
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/ll_team_name"
                     android:layout_below="@+id/ll_team_name"
                     android:text="粉丝：56642"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/titleText" />
 
                 <ImageView
+                    android:id="@+id/iv_show_detail_more"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="29dp"
+                    android:src="@drawable/iv_show_detail_more" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@+id/iv_show_detail_more"
+                    android:text="@string/more"
+                    android:textColor="@color/titleText" />
 
             </RelativeLayout>
-        </LinearLayout>
+
+            <com.hifunki.funki.module.home.widget.ninegrid.NineGridlayout
+                android:id="@+id/nine_show_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_more"
+                android:layout_marginLeft="82dp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_show_detail_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nine_show_detail"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="24dp">
+
+                <ImageView
+                    android:id="@+id/iv_show_detail_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/iv_show_detail_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="29dp"
+                    android:layout_toRightOf="@+id/iv_show_detail_msg"
+                    android:text="@string/show_detail_content"
+                    android:textColor="@color/titleText" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_show_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rl_show_detail_content" />
+        </RelativeLayout>
     </ScrollView>
 
     <ImageView
