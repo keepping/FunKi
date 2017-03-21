@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -41,6 +42,24 @@ import butterknife.OnClick;
  * @since 2017-03-16 10:04:04
  */
 public class Follow_Movie extends PowViewHolder<Post> {
+
+    enum PLAY_STATUS {
+        unInit(0),                    //未初始化
+        loading(0),                   //载入中
+
+        playing_silence(0),           //无提示播放
+        playing_notify(0),            //提示播放
+
+        pause(0),                     //暂时
+        replay(0);                    //重播
+
+        PLAY_STATUS(int resId) {
+            this.viewId = resId;
+        }
+
+        int viewId;
+    }
+
     public Follow_Movie(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
         ButterKnife.bind(this, mItemView);
@@ -48,8 +67,6 @@ public class Follow_Movie extends PowViewHolder<Post> {
         seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
         videoView.setOnCompletionListener(onCompletionListener);
     }
-
-
 
     private Runnable mRunnable = new Runnable() {
         @Override
@@ -74,7 +91,6 @@ public class Follow_Movie extends PowViewHolder<Post> {
                 }
             }
         }
-
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
             System.out.println("  touch");
@@ -95,13 +111,14 @@ public class Follow_Movie extends PowViewHolder<Post> {
         }
     };
 
-    String uri = "http://14.215.154.145/vcloud.tc.qq.com/u0012xltd8y.m301.mp4?sha=97251AF3C063DD4071F751E1D5819A1E62B5ED59&vkey=950FDC6B1E9BE9B5353A5A3E469D768368C49A1A3B9A7E9F2616AD28E8232F6DEB4773E6EB3995EAF22F12EF39B34F02C4D43571E9E3485100D1B4E43C3A97658BD6791507545DB37E6E52431113BBAE10ABC126542CF80AF41C32DEC4DF2E9E87482F6B70D1FAF87D9504019815D0FB&ocid=696312330";
 
+
+    String uri = "http://14.215.153.200/vcloud.tc.qq.com/o0011hremh8.m301.mp4?sha=219F1A1E310C6D42A945F593618A1F2E2CD9EB63&vkey=871E03FC56BA47391979D7E470837257972B3C6FAEFA0325E4324E8708C386768AA75E834F2039E4DFD9E91A53CA62FF9B8A5869890C0682912D5EA8CC56F86ADD0AC4C223586ABD6E7B8996975A2A6342842A7FD68EFFDD3581706C31C9199C2F4118A674EA0B17DD6C689713358C2A&ocid=1678502922";
     @BindView(R.id.video_view)
     VideoView videoView;
 
     @BindView(R.id.play_control)
-    RelativeLayout play_control;
+    LinearLayout play_control;
 
     @BindView(R.id.play_pause_or_start)
     ImageView play_pause_or_start;
@@ -112,26 +129,15 @@ public class Follow_Movie extends PowViewHolder<Post> {
     @BindView(R.id.play_seek)
     SeekBar seekBar;
 
+
+    @BindView(R.id.play_time_current)
+    TextView playTimeCurrent;
+
     @BindView(R.id.play_time)
     TextView playTime;
 
 
-    enum PLAY_STATUS {
-        unInit(0),                    //未初始化
-        loading(0),                   //载入中
 
-        playing_silence(0),           //无提示播放
-        playing_notify(0),            //提示播放
-
-        pause(0),                     //暂时
-        replay(0);                    //重播
-
-        PLAY_STATUS(int resId) {
-            this.viewId = resId;
-        }
-
-        int viewId;
-    }
 
     PLAY_STATUS play_status = PLAY_STATUS.unInit;
 
@@ -147,17 +153,7 @@ public class Follow_Movie extends PowViewHolder<Post> {
                 System.out.println("...................................." + play_status);
                 switch (play_status) {
                     case unInit:
-                        videoView.setVideoURI(Uri.parse(uri));
-                        videoView.requestFocus();
-                        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                            @Override
-                            public void onPrepared(MediaPlayer mp) {
-                                System.out.println("------------------------->>>>>> pr");
-                                startPlay();
 
-                            }
-                        });
-                        play_status = PLAY_STATUS.loading;
                         break;
                     case loading:
 
@@ -233,11 +229,11 @@ public class Follow_Movie extends PowViewHolder<Post> {
 
     private void updateUI() {
         if (mItemView == null) return;
-        mItemView.findViewById(R.id.play_init).setVisibility(View.INVISIBLE);
-        mItemView.findViewById(R.id.play_loading).setVisibility(View.INVISIBLE);
-        mItemView.findViewById(R.id.play_pause).setVisibility(View.INVISIBLE);
-        mItemView.findViewById(R.id.play_restart).setVisibility(View.INVISIBLE);
-        mItemView.findViewById(R.id.play_control).setVisibility(View.INVISIBLE);
+        mItemView.findViewById(R.id.play_init).setVisibility(View.GONE);
+        mItemView.findViewById(R.id.play_loading).setVisibility(View.GONE);
+        mItemView.findViewById(R.id.play_pause).setVisibility(View.GONE);
+        mItemView.findViewById(R.id.play_restart).setVisibility(View.GONE);
+        mItemView.findViewById(R.id.play_control).setVisibility(View.GONE);
         switch (play_status) {
             case unInit:
                 mItemView.findViewById(R.id.play_init).setVisibility(View.VISIBLE);
@@ -269,10 +265,10 @@ public class Follow_Movie extends PowViewHolder<Post> {
         seekBar.setProgress((int) (100 * radio));
 
         int timeLen = TimeUtil.getTimeLenth(duration);
-        String radioString = TimeUtil.getTime(current, timeLen) + "/" +
-                TimeUtil.getTime(duration, timeLen);
 
-        playTime.setText(radioString);
+
+        playTimeCurrent.setText(TimeUtil.getTime(current, timeLen));
+        playTime.setText(TimeUtil.getTime(duration, timeLen));
 
     }
 
@@ -289,6 +285,18 @@ public class Follow_Movie extends PowViewHolder<Post> {
     @Override
     public void loadData(AdapterDelegate<? super Post> multipleAdapter, Post data, int postion) {
         play_status = PLAY_STATUS.unInit;
+
+        videoView.setVideoURI(Uri.parse(uri));
+        videoView.requestFocus();
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                startPlay();
+
+            }
+        });
+        play_status = PLAY_STATUS.loading;
+
         updateUI();
 
     }
