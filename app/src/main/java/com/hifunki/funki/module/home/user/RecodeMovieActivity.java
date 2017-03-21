@@ -2,23 +2,21 @@ package com.hifunki.funki.module.home.user;
 
 
 import android.Manifest;
-import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaRecorder;
-import android.net.Uri;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Process;
 import android.support.annotation.NonNull;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.hifunki.funki.R;
@@ -39,15 +37,10 @@ public class RecodeMovieActivity extends BaseActivity {
     // 最长录制时间
     private final long maxRecodeTime = 12000;
     // 最短录制时间
-    private final long minRecodeTime = 5000;
+//    private final long minRecodeTime = 5000;
     long recodeStartTime;
-    SurfaceView mSurfaceView;
-    ProgressBar mProgressBar;
 
-
-    SurfaceHolder mSurfaceHolder;
     MediaRecorder mMediaRecorder;
-    ValueAnimator valueAnimator;
 
     Camera mCamera;
 
@@ -58,17 +51,37 @@ public class RecodeMovieActivity extends BaseActivity {
     CountDownTimer recodeTimer;
 
 
-    private enum STATUS{
-        uninit,
+    private enum STATUS {
+        unInit,
         recoding,
         uploadWait,
         uploading,
     }
 
-    private STATUS status = STATUS.uninit;
+    private STATUS status = STATUS.unInit;
 
+    SurfaceHolder mSurfaceRecode;
+
+
+    // preView
+    @BindView(R.id.preview_play)
+    ImageView preview_play;
+    @BindView(R.id.surface_play_image)
+    ImageView preview_content;
+    @BindView(R.id.upload_cancel)
+    TextView uploadCancel;
+    @BindView(R.id.upload_progress)
+    TextView uploadProgress;
+
+    // recode
+    @BindView(R.id.surface_preview)
+    SurfaceView mSurfacePreview;
     @BindView(R.id.count_down)
     TextView count_down;
+    @BindView(R.id.progressBar)
+    ProgressBar mProgressBar;
+
+    //common
 
     @BindView(R.id.recode_start)
     TextView recodeStart;
@@ -76,234 +89,18 @@ public class RecodeMovieActivity extends BaseActivity {
     TextView recodeCancel;
 
     @BindView(R.id.recode_upload)
-    TextView recodeUplaod;
+    TextView recodeUpload;
     @BindView(R.id.recode_recode)
     TextView recodeRecode;
 
-    @Override
-    protected int getViewResId() {
-        return R.layout.activity_movie_recorder_view;
-    }
-
-    @Override
-    protected void initDatas() {
-        mRecodeFile = new File(FileUtils.getRandomVideoPath(this));
-    }
-
-    @OnClick({
-            R.id.recode_start,
-            R.id.recode_cancel,
-            R.id.recode_upload,
-            R.id.recode_recode,
-    })
-    void onClick(View view){
-        switch (view.getId()){
-            case R.id.recode_start:
-
-                preTimer = new CountDownTimer(3000,500) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        long len = 3 - millisUntilFinished/1000;
-                        count_down.setText(String.valueOf(len));
-                        updateUI();
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        if(recodeTimer!=null){
-                            recodeTimer.cancel();
-                            recodeTimer = null;
-                        }
-                        try {
-                            startMovieRecord();
-
-                            recodeTimer = new CountDownTimer(maxRecodeTime,200) {
-                                @Override
-                                public void onTick(long millisUntilFinished) {
-                                    float value = millisUntilFinished*1f/maxRecodeTime;
-                                    mProgressBar.setSecondaryProgress(100 - (int)(100*value));
-                                    mProgressBar.setProgress((int)(100*value));
-                                }
-
-                                @Override
-                                public void onFinish() {
-                                    stopAndReleaseMovieRecord();
-                                    mProgressBar.setProgress(100);
-                                    mProgressBar.setSecondaryProgress(0);
-                                }
-                            };
-
-
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-
-
-                break;
-            case R.id.recode_cancel:
-
-
-
-                break;
-            case R.id.recode_upload:
-
-
-
-                break;
-            case R.id.recode_recode:
-
-
-                break;
-        }
-
-
-
-    }
-
-
-    private void updateUI(){
-        switch (status){
-
-            case uninit:
-                recodeStart.setVisibility(View.VISIBLE);
-                recodeCancel.setVisibility(View.GONE);
-                recodeUplaod.setVisibility(View.GONE);
-                recodeRecode.setVisibility(View.GONE);
-
-                break;
-            case recoding:
-                recodeStart.setVisibility(View.GONE);
-                recodeCancel.setVisibility(View.VISIBLE);
-                recodeUplaod.setVisibility(View.GONE);
-                recodeRecode.setVisibility(View.GONE);
-
-                break;
-            case uploadWait:
-
-                recodeStart.setVisibility(View.GONE);
-                recodeCancel.setVisibility(View.GONE);
-
-                recodeUplaod.setVisibility(View.VISIBLE);
-                recodeUplaod.setEnabled(true);
-                recodeRecode.setVisibility(View.VISIBLE);
-                recodeRecode.setEnabled(true);
-
-                break;
-            case uploading:
-                recodeStart.setVisibility(View.GONE);
-                recodeCancel.setVisibility(View.GONE);
-
-                recodeUplaod.setVisibility(View.VISIBLE);
-                recodeUplaod.setEnabled(false);
-                recodeRecode.setVisibility(View.VISIBLE);
-                recodeRecode.setEnabled(false);
-
-                break;
-        }
-
-
-
-
-
-    }
-
-    @Override
-    protected void initView() {
-        findView();
-        initViewAction();
-    }
-
-
-    // Activity
-    public void onResume(){
-        super.onResume();
-        if (checkCameraAccess() && checkAudioAccess() && surfaceCreated && mCamera==null) {
-            openCamera();
-        }else {
-            if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
-                requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
-            }
-            if (Build.VERSION.SDK_INT >= 23 && !checkAudioAccess()) {
-                requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 0);
-            }
-        }
-
-    }
-
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
-        if (checkCameraAccess() &&checkAudioAccess() && surfaceCreated && mCamera==null) {
-            openCamera();
-        }
-    }
-
-    private void openCamera() {
-        try {
-            mCamera = Camera.open();
-            Camera.Parameters params = mCamera.getParameters();
-            params.set("orientation", "portrait");
-            mCamera.setParameters(params);
-            mCamera.setDisplayOrientation(90);
-            mCamera.setPreviewDisplay(mSurfaceView.getHolder());
-            mCamera.startPreview();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        stopAndReleaseMovieRecord();
-        releaseCamera();
-
-    }
-
-    // 检查相机权限
-    private boolean checkCameraAccess() {
-        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.CAMERA, Process.myPid(), Process.myUid());
-    }
-
-    // 检查相机权限
-    private boolean checkAudioAccess() {
-        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.RECORD_AUDIO, Process.myPid(), Process.myUid());
-    }
-
-
-    private void initViewAction() {
-
-        mProgressBar.setProgress(100);
-        mProgressBar.setSecondaryProgress(0);
-
-        mSurfaceHolder = mSurfaceView.getHolder();
-        mSurfaceHolder.addCallback(customCallBack);
-
-
-
-    }
-
-    private void findView() {
-        mSurfaceView = (SurfaceView) findViewById(R.id.surfaceview);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mProgressBar.setMax(100);
-
-
-    }
-
-
-
-    private SurfaceHolder.Callback customCallBack = new SurfaceHolder.Callback() {
+    private SurfaceHolder.Callback recodeCallBack = new SurfaceHolder.Callback() {
 
         @Override
         public void surfaceCreated(SurfaceHolder holder) {              // 视频预浏览
             surfaceCreated = true;
-            if (checkCameraAccess() && checkAudioAccess() && surfaceCreated && mCamera==null) {
+            if (checkCameraAccess() && checkAudioAccess() && surfaceCreated && mCamera == null) {
                 openCamera();
-            }else {
+            } else {
                 if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
                 }
@@ -325,27 +122,247 @@ public class RecodeMovieActivity extends BaseActivity {
 
     };
 
+    @Override
+    protected int getViewResId() {
+        return R.layout.activity_movie_recorder_view;
+    }
 
-    private void tryToFinish() {
+    @Override
+    protected void initDatas() {
+        mRecodeFile = new File(FileUtils.getRandomVideoPath(this));
+    }
+
+    @OnClick({
+            R.id.recode_start,
+            R.id.recode_cancel,
+            R.id.recode_upload,
+            R.id.recode_recode,
+            R.id.upload_cancel,
+    })
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.recode_start:
+
+                if(status!=STATUS.unInit) {
+                    break;
+                }
+
+                if (preTimer != null) {
+                    preTimer.cancel();
+                    preTimer = null;
+                }
+
+                preTimer = new CountDownTimer(3500, 500) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        long len =  millisUntilFinished / 1000;
+                        updateUI();
+
+                        count_down.setVisibility(View.VISIBLE);
+                        count_down.setText(String.valueOf(len));
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                        if (recodeTimer != null) {
+                            recodeTimer.cancel();
+                            recodeTimer = null;
+                        }
+
+                        try {
+
+                            startMovieRecord();
+                            status = STATUS.recoding;
+                            updateUI();
+
+                            recodeTimer = new CountDownTimer(maxRecodeTime, 100) {
+                                @Override
+                                public void onTick(long millisUntilFinished) {
+                                    float value = millisUntilFinished * 1f / maxRecodeTime;
+
+                                    mProgressBar.setSecondaryProgress((100 - (int) (100 * value)) / 2);
+                                    mProgressBar.setProgress((int) (100 * value)/2 + 50);
+                                }
+
+                                @Override
+                                public void onFinish() {
+                                    stopAndReleaseMovieRecord();
+//                                    mProgressBar.setProgress(100);
+//                                    mProgressBar.setSecondaryProgress(0);
+                                    Bitmap bitmap =  getVideoThumbnail(mRecodeFile.getAbsolutePath());
+
+                                    System.out.println("...............:::: "+ (bitmap==null));
+
+                                    preview_content.setImageBitmap(bitmap);
+                                    releaseCamera();
+
+                                    status = STATUS.uploadWait;
+                                    updateUI();
+                                }
+                            };
+                            recodeTimer.start();
 
 
-        long recodeEndTime = System.currentTimeMillis();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
 
-        if (recodeEndTime - recodeStartTime > minRecodeTime) {
-            Intent intent = new Intent();
-            intent.setData(Uri.fromFile(mRecodeFile));
-            this.setResult(RESULT_OK, intent);
-            finish();
-        } else {
-            Toast.makeText(this, "拍摄时间过短哦 不能少于5秒", Toast.LENGTH_SHORT).show();
+                preTimer.start();
+
+
+                break;
+            case R.id.recode_cancel:
+
+                stopAndReleaseMovieRecord();
+
+                if (recodeTimer != null) {
+                    recodeTimer.cancel();
+                    recodeTimer = null;
+                }
+                if (preTimer != null) {
+                    preTimer.cancel();
+                    preTimer = null;
+                }
+
+                status = STATUS.unInit;
+                updateUI();
+
+                break;
+            case R.id.recode_upload:
+                status = STATUS.uploading;
+                updateUI();
+
+                break;
+            case R.id.recode_recode:
+
+                if (checkCameraAccess() && checkAudioAccess() && surfaceCreated && mCamera == null) {
+                    openCamera();
+                }
+                stopAndReleaseMovieRecord();
+                status = STATUS.unInit;
+                updateUI();
+
+                break;
+            case R.id.upload_cancel:
+                status = STATUS.uploadWait;
+                updateUI();
+                break;
+
+
         }
+
+
+    }
+
+    @Override
+    protected void initView() {
+        mProgressBar.setMax(100);
+        mProgressBar.setProgress(100);
+        mProgressBar.setSecondaryProgress(0);
+        mSurfaceRecode = mSurfacePreview.getHolder();
+        mSurfaceRecode.addCallback(recodeCallBack);
+        updateUI();
+    }
+
+    public void onResume() {
+        super.onResume();
+        if (checkCameraAccess() && checkAudioAccess() && surfaceCreated && mCamera == null) {
+            openCamera();
+        } else {
+            if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+            }
+            if (Build.VERSION.SDK_INT >= 23 && !checkAudioAccess()) {
+                requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 0);
+            }
+        }
+
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (checkCameraAccess() && checkAudioAccess() && surfaceCreated && mCamera == null) {
+            openCamera();
+        }
+    }
+
+    private void openCamera() {
+        try {
+            mCamera = Camera.open();
+            Camera.Parameters params = mCamera.getParameters();
+            params.set("orientation", "portrait");
+            mCamera.setParameters(params);
+            mCamera.setDisplayOrientation(90);
+            mCamera.setPreviewDisplay(mSurfacePreview.getHolder());
+            mCamera.startPreview();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopAndReleaseMovieRecord();
+        releaseCamera();
+
+    }
+
+    private void updateUI() {
+        preview_content.setVisibility(View.GONE);                        //浏览图
+        preview_play.setVisibility(View.GONE);
+        count_down.setVisibility(View.GONE);
+        mProgressBar.setVisibility(View.GONE);
+        recodeStart.setVisibility(View.GONE);
+        recodeCancel.setVisibility(View.GONE);
+        recodeUpload.setVisibility(View.GONE);
+        recodeRecode.setVisibility(View.GONE);
+        ((View)uploadCancel.getParent()).setVisibility(View.GONE);
+
+        switch (status) {
+            case unInit:
+                recodeStart.setVisibility(View.VISIBLE);
+                break;
+            case recoding:
+                mProgressBar.setVisibility(View.VISIBLE);
+                recodeCancel.setVisibility(View.VISIBLE);
+                break;
+            case uploadWait:
+                preview_content.setVisibility(View.VISIBLE);
+                preview_play.setVisibility(View.VISIBLE);
+                recodeUpload.setVisibility(View.VISIBLE);
+                recodeUpload.setEnabled(true);
+                recodeRecode.setVisibility(View.VISIBLE);
+                recodeRecode.setEnabled(true);
+
+                break;
+            case uploading:
+                preview_content.setVisibility(View.VISIBLE);
+                recodeUpload.setVisibility(View.VISIBLE);
+                recodeUpload.setEnabled(false);
+                recodeRecode.setVisibility(View.VISIBLE);
+                recodeRecode.setEnabled(false);
+                ((View)uploadCancel.getParent()).setVisibility(View.VISIBLE);
+                break;
+        }
+
+
     }
 
 
 
+    // 检查相机权限
+    private boolean checkCameraAccess() {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.CAMERA, Process.myPid(), Process.myUid());
+    }
 
-
-
+    // 检查相机权限
+    private boolean checkAudioAccess() {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.RECORD_AUDIO, Process.myPid(), Process.myUid());
+    }
 
     // 拍摄 初始化
     private boolean startMovieRecord() throws IOException {
@@ -368,6 +385,7 @@ public class RecodeMovieActivity extends BaseActivity {
 
 //         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER);
         mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
+        mMediaRecorder.setOrientationHint(90);
         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
 
 
@@ -387,7 +405,7 @@ public class RecodeMovieActivity extends BaseActivity {
 //        mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
 
         // Step 5: Set the preview output
-        mMediaRecorder.setPreviewDisplay(mSurfaceHolder.getSurface());
+        mMediaRecorder.setPreviewDisplay(mSurfaceRecode.getSurface());
 
         mMediaRecorder.setOnInfoListener(new MediaRecorder.OnInfoListener() {
             @Override
@@ -431,7 +449,6 @@ public class RecodeMovieActivity extends BaseActivity {
     }
 
 
-
     private void releaseCamera() {
         if (mCamera != null) {
             mCamera.stopPreview();
@@ -440,6 +457,32 @@ public class RecodeMovieActivity extends BaseActivity {
             mCamera = null;
         }
     }
+
+
+    private Bitmap getVideoThumbnail(String filePath) {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        try {
+            retriever.setDataSource(filePath);
+            bitmap = retriever.getFrameAtTime();
+        }
+        catch(IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                retriever.release();
+            }
+            catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+        return bitmap;
+    }
+
 
 
 }
