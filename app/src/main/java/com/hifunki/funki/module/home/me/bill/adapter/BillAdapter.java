@@ -1,8 +1,8 @@
-package com.hifunki.funki.module.meexpand.bill.adapter;
+package com.hifunki.funki.module.home.me.bill.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.hifunki.funki.module.meexpand.bill.entity.BillEntity;
+import com.hifunki.funki.module.home.me.bill.entity.BillEntity;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.meexpand.bill.adapter.BillAdapter.java
+ * @value com.hifunki.funki.module.home.me.bill.adapter.BillAdapter.java
  * @link
  * @since 2017-03-20 17:52:52
  */

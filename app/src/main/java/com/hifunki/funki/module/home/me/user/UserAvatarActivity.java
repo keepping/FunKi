@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.home.user;
+package com.hifunki.funki.module.home.me.user;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import butterknife.OnClick;
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.user.UserAvatarActivity.java
+ * @value com.hifunki.funki.module.home.me.user.UserAvatarActivity.java
  * @link
  * @since 2017-03-20 13:57:57
  */

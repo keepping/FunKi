@@ -12,7 +12,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.util.DisplayUtil;
 
 /**
- * 在此写用途
+ * 个人中心-->星星布局
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

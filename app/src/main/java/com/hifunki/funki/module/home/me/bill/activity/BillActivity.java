@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.meexpand.bill.activity;
+package com.hifunki.funki.module.home.me.bill.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.meexpand.bill.adapter.BillAdapter;
-import com.hifunki.funki.module.meexpand.bill.entity.BillEntity;
+import com.hifunki.funki.module.home.me.bill.adapter.BillAdapter;
+import com.hifunki.funki.module.home.me.bill.entity.BillEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import static com.hifunki.funki.base.application.ApplicationMain.getContext;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.meexpand.bill.activity.BillActivity.java
+ * @value com.hifunki.funki.module.home.me.bill.activity.BillActivity.java
  * @link
  * @since 2017-03-20 17:05:05
  */

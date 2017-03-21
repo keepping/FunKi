@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hifunki.funki.module.meexpand.recharge.activity.RechargeActivity">
+    tools:context=".module.home.me.recharge.activity.RechargeActivity">
 
     <com.hifunki.funki.widget.TopBarView
         android:id="@+id/tbv_recharge"

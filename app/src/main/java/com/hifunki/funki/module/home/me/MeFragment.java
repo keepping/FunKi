@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.home.me.fragment;
+package com.hifunki.funki.module.home.me;
 
 import android.content.Context;
 import android.net.Uri;
@@ -16,10 +16,10 @@ import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
-import com.hifunki.funki.module.home.user.UserAvatarActivity;
-import com.hifunki.funki.module.meexpand.bill.activity.BillActivity;
-import com.hifunki.funki.module.meexpand.fans.activity.MyFansActivity;
-import com.hifunki.funki.module.meexpand.recharge.activity.RechargeActivity;
+import com.hifunki.funki.module.home.me.user.UserAvatarActivity;
+import com.hifunki.funki.module.home.me.bill.activity.BillActivity;
+import com.hifunki.funki.module.home.me.fans.activity.MyFansActivity;
+import com.hifunki.funki.module.home.me.recharge.activity.RechargeActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -37,7 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.me.fragment.MeFragment.java
+ * @value com.hifunki.funki.module.home.me.MeFragment.java
  * @link
  * @since 2017-03-08 10:06:06
  */

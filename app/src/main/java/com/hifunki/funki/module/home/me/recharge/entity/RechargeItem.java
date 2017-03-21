@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.meexpand.recharge.entity;
+package com.hifunki.funki.module.home.me.recharge.entity;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.meexpand.recharge.entity.RechargeItem.java
+ * @value com.hifunki.funki.module.home.me.recharge.entity.RechargeItem.java
  * @link
  * @since 2017-03-21 14:30:30
  */

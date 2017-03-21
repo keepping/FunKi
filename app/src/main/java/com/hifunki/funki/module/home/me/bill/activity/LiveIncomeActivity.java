@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.meexpand.bill.activity;
+package com.hifunki.funki.module.home.me.bill.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import butterknife.BindView;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.meexpand.bill.activity.LiveIncomeActivity.java
+ * @value com.hifunki.funki.module.home.me.bill.activity.LiveIncomeActivity.java
  * @link
  * @since 2017-03-21 09:55:55
  */
