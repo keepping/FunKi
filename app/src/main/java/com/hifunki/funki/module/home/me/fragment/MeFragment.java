@@ -7,18 +7,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.module.bill.activity.BillActivity;
-import com.hifunki.funki.module.fans.activity.MyFansActivity;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
 import com.hifunki.funki.module.home.user.UserAvatarActivity;
+import com.hifunki.funki.module.meexpand.bill.activity.BillActivity;
+import com.hifunki.funki.module.meexpand.fans.activity.MyFansActivity;
+import com.hifunki.funki.module.meexpand.recharge.activity.RechargeActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -28,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -65,6 +65,8 @@ public class MeFragment extends BaseFragment {
     LinearLayout llFollow;//关注
     @BindView(R.id.ll_fans)
     LinearLayout llFans;//粉丝
+    @BindView(R.id.tv_recharge)
+    TextView tvRecharge;
 
     private String mParam1;
     private String mParam2;
@@ -161,7 +163,7 @@ public class MeFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.iv_me_bill, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication,R.id.ll_follow, R.id.ll_fans})
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans,R.id.tv_recharge})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_me_bill:
@@ -195,16 +197,14 @@ public class MeFragment extends BaseFragment {
 
                 MyFansActivity.show(getContext());
                 break;
+            case R.id.tv_recharge://充值
+                RechargeActivity.show(getContext());
+                break;
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
+
+
 
 
     public interface OnFragmentInteractionListener {

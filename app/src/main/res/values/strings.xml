@@ -173,5 +173,6 @@
     <string name="filter">筛选</string>
     <string name="this_month">本月</string>
     <string name="fans_mine">我的粉丝</string>
+    <string name="recharge_current_diamond">当前砖石数</string>
 
 </resources>

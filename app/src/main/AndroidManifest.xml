@@ -141,12 +141,13 @@
         <!-- 个人中心榜单 -->
         <activity android:name=".module.rank.me.activity.MeRankActivity" />
         <!-- 个人中心账单 -->
-        <activity android:name=".module.bill.activity.BillActivity" />
-        <activity android:name=".module.bill.activity.LiveIncomeActivity" />
+        <activity android:name=".module.meexpand.bill.activity.BillActivity" />
+        <activity android:name=".module.meexpand.bill.activity.LiveIncomeActivity" />
         <activity android:name=".module.show.activity.ShowDetailActivity" />
-        <activity android:name=".module.fans.activity.MyFansActivity"></activity>
-        <!--头像认证 录制视频-->
-        <activity android:name=".module.home.user.RecodeMovieActivity"></activity>
+        <activity android:name=".module.meexpand.fans.activity.MyFansActivity" />
+        <!-- 头像认证 录制视频 -->
+        <activity android:name=".module.home.user.RecodeMovieActivity" />
+        <activity android:name=".module.meexpand.recharge.activity.RechargeActivity"></activity>
     </application>
 
 </manifest>
