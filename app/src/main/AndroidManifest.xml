@@ -46,11 +46,11 @@
             android:name=".module.home.activity.HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -132,16 +132,16 @@
         <activity android:name=".module.show.activity.ShowActivity" />
 
         <!-- 用户头像认证 -->
-        <activity android:name=".module.home.activity.UserAvatarActivity">
+        <activity android:name=".module.home.user.UserAvatarActivity">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
+        <activity android:name=".module.home.user.RecodeMovieActivity"/>
+
         <!-- 个人中心榜单 -->
         <activity android:name=".module.rank.me.activity.MeRankActivity" />
         <activity android:name=".module.bill.activity.BillActivity"></activity>

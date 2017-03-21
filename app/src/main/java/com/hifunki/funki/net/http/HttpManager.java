@@ -143,7 +143,7 @@ public class HttpManager {
                 try {
                     String json = response.body().string();
 
-                    Type genericType;                                                                                              // class类(泛型修饰信息)
+                    Type genericType;                                                                                               // class类(泛型修饰信息)
                     Class typeClass = temCallBack.getClass();                                                                       // class类
                     do {
                         genericType = typeClass.getGenericSuperclass();

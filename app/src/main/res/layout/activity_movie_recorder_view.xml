@@ -29,6 +29,13 @@
                 android:textColor="#ffffff"
                 android:textSize="100sp" />
 
+            <ImageView
+                android:id="@+id/progressBar_rect"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bg_user_verf_rect"
+                android:layout_margin="25dp" />
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
