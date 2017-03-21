@@ -145,6 +145,8 @@
         <activity android:name=".module.bill.activity.LiveIncomeActivity" />
         <activity android:name=".module.show.activity.ShowDetailActivity" />
         <activity android:name=".module.fans.activity.MyFansActivity"></activity>
+        <!--头像认证 录制视频-->
+        <activity android:name=".module.home.user.RecodeMovieActivity"></activity>
     </application>
 
 </manifest>
