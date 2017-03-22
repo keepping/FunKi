@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_live_head"
         android:text="@string/search_welcome"
-        android:textColor="@color/white"
+        android:textColor="@color/_FFFFFF"
         android:textStyle="bold" />
 
     <TextView
@@ -129,7 +129,7 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/search_signature"
-        android:textColor="@color/white"
+        android:textColor="@color/_FFFFFF"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -145,7 +145,7 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/search_signature2"
-        android:textColor="@color/white"
+        android:textColor="@color/_FFFFFF"
         android:textStyle="bold" />
 
     <ImageView

@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/forgetPwdBg"
+            android:background="@color/_0C001F"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -31,7 +31,7 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/tv_bg_gallery_preview"
                 android:text="@string/preview"
-                android:textColor="@color/galleryText"
+                android:textColor="@color/_FFFFFF"
                 android:textSize="13dp"
                 android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/source_image"
-                    android:textColor="@color/galleryText"
+                    android:textColor="@color/_FFFFFF"
                     android:textSize="13dp"
                     android:textStyle="bold" />
             </LinearLayout>

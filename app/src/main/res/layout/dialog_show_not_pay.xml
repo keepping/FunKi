@@ -112,7 +112,7 @@
         android:background="@drawable/bg_show_pay_confirm"
         android:gravity="center"
         android:text="@string/recharge"
-        android:textColor="@color/white"
+        android:textColor="@color/_FFFFFF"
         android:textSize="15sp"
         android:textStyle="bold" />
 

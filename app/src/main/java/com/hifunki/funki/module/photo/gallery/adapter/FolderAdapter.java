@@ -69,7 +69,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
                 //设置透明度
                 holder.ivGalleryFolderbg.setAlpha(mAlpha);
             } else {
-                holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.forgetPwdBg));
+                holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color._0C001F));
                 holder.ivGalleryFolderbg.setAlpha(mAlpha);
             }
             return;
@@ -92,7 +92,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
             //设置透明度
             holder.ivGalleryFolderbg.setAlpha(mAlpha);
         } else {
-            holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.forgetPwdBg));
+            holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color._0C001F));
             holder.ivGalleryFolderbg.setAlpha(mAlpha);
         }
     }

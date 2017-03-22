@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="white">#FFFFFF</color>
     <color name="LiveWhite">#FEFEFF</color>
     <color name="black">#000000</color>
 
@@ -10,19 +9,20 @@
     <color name="colorPrimaryDark">#230C47</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="_BBABD4">#BBABD4</color>
+    <!--以下颜色暂时按照16进制大小排序-->
+    <color name="_0C001F">#0C001F</color>
     <color name="_230C47">#230C47</color>
-    <color name="_9B44ED">#9B44ED</color>
-    <color name="_4A2F75">#4A2F75</color>
     <color name="_28114D">#28114D</color>
-    <color name="_FFD71B">#FFD71B</color>
+    <color name="_4A2F75">#4A2F75</color>
+    <color name="_61E46D">#61E46D</color>
     <color name="_6B4E9A">#6B4E9A</color>
+    <color name="_9B44ED">#9B44ED</color>
+    <color name="_AB2D2D">#AB2D2D</color>
+    <color name="_BBABD4">#BBABD4</color>
+    <color name="_FDFFFF">#FDFFFF</color>
+    <color name="_FFD71B">#FFD71B</color>
+    <color name="_FFFFFF">#FFFFFF</color>
 
-    <color name="forgetPwdBg">#0C001F</color>
-    <color name="newPwd">#61E46D</color>
-    <color name="funkiText">#FDFFFF</color>
-    <color name="selectImageWrong">#AB2D2D</color>
-    <color name="galleryText">#FFFFFF</color>
     <color name="eighteenrTvBg">#6B4E9A</color>
     <color name="searchHotBg">#432376</color>
     <color name="homeTitleBg">#FFD71B</color>
@@ -35,9 +35,7 @@
     <color name="meMidBg">#140231</color>
     <color name="meLvText">#756C2F</color>
 
-
     <color name="showDetailBg">#240C48</color>
-
 
 
 </resources>

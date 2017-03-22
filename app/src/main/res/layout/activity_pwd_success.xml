@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="29dp"
             android:text="@string/pwd_success_ok"
-            android:textColor="@color/newPwd"
+            android:textColor="@color/_61E46D"
             android:textSize="17sp" />
 
         <TextView

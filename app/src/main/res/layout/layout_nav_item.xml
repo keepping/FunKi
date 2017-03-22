@@ -36,7 +36,7 @@
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:singleLine="true"
-            android:textColor="@color/forgetPwdBg"
+            android:textColor="@color/_0C001F"
             android:textSize="10sp"
             android:visibility="gone"
             tools:text="1"

@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rank_accompany"
-                android:textColor="@color/white" />
+                android:textColor="@color/_FFFFFF" />
 
             <ImageView
                 android:id="@+id/iv_anchor_sex"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:text="LV.95"
-                android:textColor="@color/white" />
+                android:textColor="@color/_FFFFFF" />
         </LinearLayout>
 
         <TextView

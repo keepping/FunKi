@@ -46,7 +46,7 @@
             android:layout_marginBottom="37dp"
             android:layout_marginTop="8dp"
             android:text="@string/app_name"
-            android:textColor="@color/funkiText"
+            android:textColor="@color/_FDFFFF"
             android:textSize="14sp" />
     </LinearLayout>
 

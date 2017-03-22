@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/galley_popup_window"
-    android:background="@color/forgetPwdBg"
+    android:background="@color/_0C001F"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView

@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/show_price"
-                android:textColor="@color/white">
+                android:textColor="@color/_FFFFFF">
 
             </TextView>
 
@@ -94,7 +94,7 @@
             android:layout_below="@+id/ll_show_price"
             android:layout_marginTop="4dp"
             android:text="@string/show_percent"
-            android:textColor="@color/newPwd" />
+            android:textColor="@color/_61E46D" />
 
     </RelativeLayout>
 </LinearLayout>
