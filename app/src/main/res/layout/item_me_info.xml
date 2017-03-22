@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/vistorTvbg"
+    android:background="@color/_28114D"
     android:layout_height="53dp"
     android:orientation="vertical">
     <TextView
@@ -47,7 +47,7 @@
         android:layout_toLeftOf="@+id/tv_tag_count"
          />
     <View
-        android:background="@color/vistorTvbgNormal"
+        android:background="@color/_4A2F75"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>

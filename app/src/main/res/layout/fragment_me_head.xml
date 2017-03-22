@@ -132,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/me_name"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="17dp"
             android:textStyle="bold" />
 
@@ -225,7 +225,7 @@
                 android:layout_marginLeft="11dp"
                 android:layout_toRightOf="@+id/tv_follow"
                 android:text="@string/me_follow_count"
-                android:textColor="@color/vistorTvTitle"
+                android:textColor="@color/_9B44ED"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -252,7 +252,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_toRightOf="@+id/tv_fans"
                 android:text="@string/me_fans_count"
-                android:textColor="@color/vistorTvTitle"
+                android:textColor="@color/_9B44ED"
                 android:textSize="15sp" />
         </LinearLayout>
 

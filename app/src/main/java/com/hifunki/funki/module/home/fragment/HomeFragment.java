@@ -225,20 +225,20 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
             case 0:
                 rbHomeFollow.setChecked(true);
                 rbHomeFollow.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
-                rbHomeHot.setTextColor(getResources().getColor(R.color.titleText));
-                rbHomeNew.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeHot.setTextColor(getResources().getColor(R.color._BBABD4));
+                rbHomeNew.setTextColor(getResources().getColor(R.color._BBABD4));
                 break;
             case 1:
                 rbHomeHot.setChecked(true);
                 rbHomeHot.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
-                rbHomeFollow.setTextColor(getResources().getColor(R.color.titleText));
-                rbHomeNew.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeFollow.setTextColor(getResources().getColor(R.color._BBABD4));
+                rbHomeNew.setTextColor(getResources().getColor(R.color._BBABD4));
                 break;
             case 2:
                 rbHomeNew.setChecked(true);
                 rbHomeNew.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
-                rbHomeHot.setTextColor(getResources().getColor(R.color.titleText));
-                rbHomeFollow.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeHot.setTextColor(getResources().getColor(R.color._BBABD4));
+                rbHomeFollow.setTextColor(getResources().getColor(R.color._BBABD4));
                 break;
         }
     }

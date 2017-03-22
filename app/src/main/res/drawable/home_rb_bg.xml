@@ -4,6 +4,6 @@
         <color android:color="@color/homeTitleBg" />
     </item>
     <item android:state_checked="false" android:state_pressed="false">
-        <color android:color="@color/titleText" />
+        <color android:color="@color/_BBABD4" />
     </item>
 </selector>

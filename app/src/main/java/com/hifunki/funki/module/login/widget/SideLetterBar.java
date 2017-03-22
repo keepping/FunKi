@@ -84,7 +84,7 @@ public class SideLetterBar extends View {
 
         Log.e("test", "onDraw:singleHeight+ " + singleHeight);
         for (int i = 0; i < b.length; i++) {
-            paint.setColor(getResources().getColor(R.color.bgColor));
+            paint.setColor(getResources().getColor(R.color._230C47));
             //通过sp装换成dp
             int px = DisplayUtil.sp2px(context, 9);
             paint.setTextSize(px);

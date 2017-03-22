@@ -51,7 +51,7 @@
         android:layout_marginTop="1dp"
         android:gravity="center"
         android:visibility="gone"
-        android:textColor="@color/bgColor"
+        android:textColor="@color/_230C47"
         android:textSize="12sp"
         tools:text="@string/app_name" />
 

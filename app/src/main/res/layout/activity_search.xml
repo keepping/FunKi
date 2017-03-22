@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/vistorTvbg"
+    android:background="@color/_28114D"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.hifunki.funki.module.search.activity.SearchActivity"
@@ -24,11 +24,11 @@
             fontPath="fonts/FZDHTFW.ttf"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            app:tabBackground="@color/vistorTvbgNormal"
-            app:tabIndicatorColor="@color/vistorTvTitle"
+            app:tabBackground="@color/_4A2F75"
+            app:tabIndicatorColor="@color/_9B44ED"
             app:tabIndicatorHeight="2px"
             app:tabMinWidth="39dp"
-            app:tabSelectedTextColor="@color/vistorTvTitle"
+            app:tabSelectedTextColor="@color/_9B44ED"
             app:tabTextColor="@color/loginTvUnClick" />
 
         <android.support.v4.view.ViewPager
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/vistorTvbg" />
+            android:background="@color/_28114D" />
     </LinearLayout>
 
     <!--<com.handmark.pulltorefresh.library.PullToRefreshScrollView-->
@@ -52,7 +52,7 @@
         android:id="@+id/ll_activity_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/vistorTvbg"
+        android:background="@color/_28114D"
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView

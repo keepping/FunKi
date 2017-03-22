@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/vistorTvbg"
+    android:background="@color/_28114D"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -36,7 +36,7 @@
             android:layout_marginLeft="47dp"
             android:layout_marginTop="10dp"
             android:text="@string/serach_name"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/serach_count_person"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="14sp" />
 
         <TextView
@@ -101,7 +101,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="7dp"
             android:text="@string/live_watching"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="11sp"
             android:textStyle="bold" />
 

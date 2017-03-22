@@ -2,18 +2,13 @@ package com.hifunki.funki.module.home.me.recharge.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.home.me.recharge.adapter.RechargeAdapter;
 import com.hifunki.funki.module.home.me.recharge.entity.RechargeItem;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 
 /**
@@ -27,8 +22,8 @@ import butterknife.BindView;
  */
 public class RechargeActivity extends BaseActivity {
 
-    @BindView(R.id.rl_recharge)
-    RecyclerView rlRecharge;
+//    @BindView(R.id.rl_recharge)
+//    RecyclerView rlRecharge;
     private List<RechargeItem> rechargeItems;
 
     public static void show(Context context) {
@@ -55,8 +50,8 @@ public class RechargeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        RechargeAdapter adapter = new RechargeAdapter(rechargeItems);
-        rlRecharge.setLayoutManager(new GridLayoutManager(this, 3));
-        rlRecharge.setAdapter(adapter);
+//        RechargeAdapter adapter = new RechargeAdapter(rechargeItems);
+//        rlRecharge.setLayoutManager(new GridLayoutManager(this, 3));
+//        rlRecharge.setAdapter(adapter);
     }
 }

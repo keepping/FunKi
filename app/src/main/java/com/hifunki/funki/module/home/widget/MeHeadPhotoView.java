@@ -46,7 +46,7 @@ public class MeHeadPhotoView extends View {
         mPaint.setStrokeWidth(4);//线宽度
         mPaint.setStyle(Paint.Style.STROKE);//实心线
         mPaint.setAntiAlias(true);//消除锯齿
-        mPaint.setColor(getResources().getColor(R.color.vistorTvTitle));
+        mPaint.setColor(getResources().getColor(R.color._BBABD4));
         mPath = new Path();
 
         //第一个点坐标

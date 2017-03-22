@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/ll_preview"
-            android:background="@color/bgColor" />
+            android:background="@color/_230C47" />
 
     </RelativeLayout>
 

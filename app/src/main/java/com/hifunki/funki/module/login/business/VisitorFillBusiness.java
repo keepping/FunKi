@@ -29,7 +29,7 @@ public class VisitorFillBusiness {
         tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_click_bg));
 
         for (TextView tv : textViews) {
-            tv.setTextColor(context.getResources().getColor(R.color.titleText));
+            tv.setTextColor(context.getResources().getColor(R.color._BBABD4));
             tv.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_bg));
         }
     }
@@ -41,7 +41,7 @@ public class VisitorFillBusiness {
             tvs.setTextColor(context.getResources().getColor(R.color.vistorTvClickbg));
             tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_click_bg));
         } else {
-            tvs.setTextColor(context.getResources().getColor(R.color.titleText));
+            tvs.setTextColor(context.getResources().getColor(R.color._BBABD4));
             tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_bg));
         }
 

@@ -122,7 +122,7 @@ public class PwdGraphView {
     //随机文本样式
     private void randomTextStyle(Paint paint) {
 //        int color = randomColor();//原来是随机的color
-        int color = mContext.getResources().getColor(R.color.titleText);
+        int color = mContext.getResources().getColor(R.color._BBABD4);
         paint.setColor(color);
         paint.setFakeBoldText(mRandom.nextBoolean());  //true为粗体，false为非粗体
         float skewX = mRandom.nextInt(11) / 10;

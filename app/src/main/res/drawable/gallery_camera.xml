@@ -4,7 +4,7 @@
     <corners android:radius="5dp" />
     <stroke
         android:width="2dp"
-        android:color="@color/vistorTvTitle"></stroke>
+        android:color="@color/_9B44ED"></stroke>
     <size
         android:width="111dp"
         android:height="111dp" />

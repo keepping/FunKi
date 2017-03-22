@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="14dp"
         android:text="@string/cancel"
-        android:textColor="@color/titleText"
+        android:textColor="@color/_BBABD4"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -49,8 +49,8 @@
         android:ellipsize="end"
         android:gravity="left|center_vertical"
         android:singleLine="true"
-        android:textColor="@color/titleText"
-        android:textColorHint="@color/titleText"
+        android:textColor="@color/_BBABD4"
+        android:textColorHint="@color/_BBABD4"
         android:textCursorDrawable="@drawable/et_home_search_bg"
         android:textSize="17sp" />
 

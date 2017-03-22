@@ -38,7 +38,7 @@ public class FunKiTextView extends TextView {
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FunkiTextView);
-            mLineColor = typedArray.getColor(R.styleable.FunkiTextView_line_color, context.getResources().getColor(R.color.vistorTvbg));
+            mLineColor = typedArray.getColor(R.styleable.FunkiTextView_line_color, context.getResources().getColor(R.color._28114D));
             mLineHeight = (int) typedArray.getDimension(R.styleable.FunkiTextView_line_height, DEF_LINE_HEIGHT);
             mLineWidth = (int) typedArray.getDimension(R.styleable.FunkiTextView_line_width, DEF_LINE_WIDTH);
             isShowLine = typedArray.getBoolean(R.styleable.FunkiTextView_show_line, false);

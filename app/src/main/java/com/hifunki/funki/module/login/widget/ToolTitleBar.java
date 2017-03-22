@@ -409,7 +409,7 @@ public class ToolTitleBar {
             }
             //以下是根据ui的要求设置style
             tv.setTextSize(17);
-            tv.setTextColor(context.getResources().getColor(R.color.titleText));
+            tv.setTextColor(context.getResources().getColor(R.color._BBABD4));
             Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/FZZDXFW.ttf");
             tv.setTypeface(typeface);
             //Bold
@@ -506,7 +506,7 @@ public class ToolTitleBar {
             tv.setBackgroundResource((Integer) resIdOrTxt);
         } else if (btnType == BTN_TYPE_TEXT) {
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-            tv.setTextColor(ctx.getResources().getColor(R.color.vistorTvTitle));
+            tv.setTextColor(ctx.getResources().getColor(R.color._BBABD4));
             Typeface typeface = Typeface.createFromAsset(ctx.getAssets(), "fonts/FZDHTFW.ttf");
             tv.setTypeface(typeface);
             if (resIdOrTxt instanceof Integer) {

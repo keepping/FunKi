@@ -19,7 +19,7 @@
             android:background="@drawable/tv_pwd_bg"
             android:gravity="center"
             android:text="@string/login_find_by_phone"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="17sp" />
 
 
@@ -31,7 +31,7 @@
             android:background="@drawable/tv_pwd_bg"
             android:gravity="center"
             android:text="@string/login_find_by_email"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="17sp" />
     </LinearLayout>
 

@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="++1547441"
-            android:textColor="@color/vistorTvTitle" />
+            android:textColor="@color/_9B44ED" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,10 +53,12 @@
 
     <TextView
         android:id="@+id/tv_more"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="更多" />
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text="更多"
+        android:textColor="@color/_4A2F75"
+        android:textSize="15sp" />
 </RelativeLayout>

@@ -4,7 +4,7 @@
     android:id="@+id/activity_pwd_graph"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:orientation="vertical"
     tools:context=".module.login.PwdGraphActivity">
 
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="19dp"
-        android:background="@color/vistorTvbg"
+        android:background="@color/_28114D"
         android:gravity="center">
 
         <EditText
@@ -55,7 +55,7 @@
             android:maxLines="1"
             android:paddingLeft="1dp"
             android:singleLine="true"
-            android:textColorHint="@color/vistorTvbgNormal"
+            android:textColorHint="@color/_4A2F75"
             android:textSize="17sp" />
 
 
@@ -65,7 +65,7 @@
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
             android:layout_marginLeft="16dp"
-            android:background="@color/vistorTvbgNormal" />
+            android:background="@color/_4A2F75" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/next_step"
-            android:textColor="@color/vistorTvbgNormal"
+            android:textColor="@color/_4A2F75"
             android:textSize="17sp" />
 
     </RelativeLayout>

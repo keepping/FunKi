@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="58dp"
-    android:background="@color/vistorTvbg"
+    android:background="@color/_28114D"
     tools:ignore="MissingPrefix">
 
     <TextView
@@ -71,7 +71,7 @@
             android:layout_below="@+id/user_info"
             android:layout_marginTop="8dp"
             android:text="@string/rank_gold_number"
-            android:textColor="@color/vistorTvTitle"
+            android:textColor="@color/_9B44ED"
             android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>

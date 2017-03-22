@@ -4,7 +4,7 @@
     android:id="@+id/activity_pwd_graph"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:orientation="vertical"
     tools:context=".module.login.PwdGraphActivity">
 
@@ -19,7 +19,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/vistorTvbg"
+        android:background="@color/_28114D"
         android:orientation="horizontal">
 
         <EditText
@@ -34,7 +34,7 @@
             android:maxLines="1"
             android:paddingLeft="1dp"
             android:singleLine="true"
-            android:textColorHint="@color/vistorTvbgNormal"
+            android:textColorHint="@color/_4A2F75"
             android:textSize="17sp" />
 
 
@@ -63,7 +63,7 @@
             android:maxLines="1"
             android:paddingLeft="1dp"
             android:singleLine="true"
-            android:textColorHint="@color/vistorTvbgNormal"
+            android:textColorHint="@color/_4A2F75"
             android:textSize="17sp" />
     </LinearLayout>
     <!--点击图片刷新-->
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="17dp"
             android:text="@string/refresh_word"
-            android:textColor="@color/vistorTvbgNormal"
+            android:textColor="@color/_4A2F75"
             android:textSize="13sp" />
     </RelativeLayout>
 
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/confirm"
-            android:textColor="@color/vistorTvbgNormal"
+            android:textColor="@color/_4A2F75"
             android:textSize="17sp" />
 
     </RelativeLayout>
@@ -103,7 +103,7 @@
         android:layout_marginTop="52dp"
         android:gravity="center"
         android:text="@string/login_email_sercet"
-        android:textColor="@color/vistorTvbgNormal"
+        android:textColor="@color/_4A2F75"
         android:textSize="13sp"
         android:textStyle="bold" />
 </LinearLayout>

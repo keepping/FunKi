@@ -65,7 +65,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
             });
 
             if (mSelector == 0) {
-                holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.vistorTvbgNormal));
+                holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color._9B44ED));
                 //设置透明度
                 holder.ivGalleryFolderbg.setAlpha(mAlpha);
             } else {
@@ -88,7 +88,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
         });
 
         if (mSelector == holder.getAdapterPosition() + 1) {
-            holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color.vistorTvbgNormal));
+            holder.ivGalleryFolderbg.setBackgroundColor(mContext.getResources().getColor(R.color._9B44ED));
             //设置透明度
             holder.ivGalleryFolderbg.setAlpha(mAlpha);
         } else {

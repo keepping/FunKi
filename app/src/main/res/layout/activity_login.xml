@@ -4,7 +4,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".module.login.LoginActivity"
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_phone"
-                android:textColor="@color/vistorTvTitle"
+                android:textColor="@color/_9B44ED"
                 android:textSize="17sp" />
 
             <ImageView
@@ -123,10 +123,10 @@
         android:layout_height="49dp"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="19dp"
-        android:background="@color/vistorTvbg"
+        android:background="@color/_28114D"
         android:gravity="center"
         android:text="@string/login"
-        android:textColor="@color/vistorTvbgNormal"
+        android:textColor="@color/_4A2F75"
         android:textSize="17sp" />
 
     <RelativeLayout

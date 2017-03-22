@@ -4,7 +4,7 @@
     android:id="@+id/rl_show_main"
     android:layout_width="232dp"
     android:layout_height="223dp"
-    android:background="@color/vistorTvbg">
+    android:background="@color/_28114D">
 
     <LinearLayout
         android:id="@+id/ll_normal_pay"
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/show_user_balance"
-            android:textColor="@color/titleText" />
+            android:textColor="@color/_BBABD4" />
 
         <ImageView
             android:layout_width="wrap_content"

@@ -77,7 +77,7 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/follow"
-                android:textColor="@color/titleText"
+                android:textColor="@color/_BBABD4"
                 android:textSize="17sp" />
 
             <RadioButton
@@ -90,7 +90,7 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/home_fragment_hot"
-                android:textColor="@color/titleText"
+                android:textColor="@color/_BBABD4"
                 android:textSize="17sp" />
 
             <RadioButton
@@ -103,7 +103,7 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/home_fragment_latest"
-                android:textColor="@color/titleText"
+                android:textColor="@color/_BBABD4"
                 android:textSize="17sp" />
 
         </RadioGroup>

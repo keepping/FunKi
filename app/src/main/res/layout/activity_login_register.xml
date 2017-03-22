@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:paddingRight="14dp"
         android:text="@string/register"
-        android:textColor="@color/vistorTvTitle"
+        android:textColor="@color/_9B44ED"
         android:textSize="15sp" />
 
 </LinearLayout>

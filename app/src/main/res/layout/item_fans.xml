@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@color/vistorTvbg"
+    android:background="@color/_28114D"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/choose_country"
-                android:textColor="@color/titleText"
+                android:textColor="@color/_BBABD4"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -99,5 +99,5 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_alignParentBottom="true"
-        android:background="@color/vistorTvbgNormal" />
+        android:background="@color/_4A2F75" />
 </RelativeLayout>

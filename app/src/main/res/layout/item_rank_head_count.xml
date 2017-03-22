@@ -4,8 +4,8 @@
     android:gravity="center"
     android:textSize="11sp"
     android:textStyle="bold"
-    android:textColor="@color/vistorTvTitle"
-    android:background="@color/vistorTvbg"
+    android:textColor="@color/_9B44ED"
+    android:background="@color/_28114D"
     android:text="@string/account"
     android:layout_height="29dp">
 

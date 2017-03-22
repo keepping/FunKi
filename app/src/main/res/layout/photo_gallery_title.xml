@@ -30,7 +30,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:text="@string/gallery_all_folder"
-        android:textColor="@color/titleText"
+        android:textColor="@color/_BBABD4"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
         android:layout_marginRight="5dp"
         android:gravity="center"
         android:text="@string/confirm"
-        android:textColor="@color/vistorTvTitle"
+        android:textColor="@color/_9B44ED"
         android:textSize="18sp"
         android:textStyle="bold" />
 

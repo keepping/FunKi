@@ -4,7 +4,7 @@
     android:id="@+id/ivGalleryFolderbg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/vistorTvbgNormal"
+    android:background="@color/_4A2F75"
     tools:ignore="MissingPrefix">
 
     <com.hifunki.funki.module.photo.gallery.widget.GalleryImageView
@@ -23,8 +23,8 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/ivGalleryFolderImage"
         android:hint="@string/gallery_folder_name"
-        android:textColor="@color/titleText"
-        android:textColorHint="@color/titleText"
+        android:textColor="@color/_BBABD4"
+        android:textColorHint="@color/_BBABD4"
         android:textSize="15sp" />
 
 </RelativeLayout>
