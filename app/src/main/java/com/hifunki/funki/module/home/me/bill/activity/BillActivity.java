@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.home.me.bill.adapter.BillAdapter;
 import com.hifunki.funki.module.home.me.bill.entity.BillEntity;
 
@@ -62,7 +64,9 @@ public class BillActivity extends BaseActivity {
         rlBill.setAdapter(adapter);
 
         View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_biil_head, null);
+        //加载头部图片
         ImageView iv = (ImageView) view.findViewById(R.id.iv_bill_bg);
+        Glide.with(this).load(CommonConst.IMAGE_VIEW).into(iv);
 
         adapter.addHeaderView(view);
     }
