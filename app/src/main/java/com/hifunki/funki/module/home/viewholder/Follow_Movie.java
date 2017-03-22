@@ -1,32 +1,27 @@
 package com.hifunki.funki.module.home.viewholder;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.net.back.Post;
-import com.hifunki.funki.util.ConstUtils;
 import com.hifunki.funki.util.TimeUtil;
 import com.powyin.scroll.adapter.AdapterDelegate;
-import com.powyin.scroll.adapter.MultipleRecycleAdapter;
 import com.powyin.scroll.adapter.PowViewHolder;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,60 +55,9 @@ public class Follow_Movie extends PowViewHolder<Post> {
         int viewId;
     }
 
-    public Follow_Movie(Activity activity, ViewGroup viewGroup) {
-        super(activity, viewGroup);
-        ButterKnife.bind(this, mItemView);
-        seekBar.setMax(100);
-        seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
-        videoView.setOnCompletionListener(onCompletionListener);
-    }
 
-    private Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (play_status == PLAY_STATUS.playing_notify) {
-                play_status = PLAY_STATUS.playing_silence;
-                updateUI();
-            }
-        }
-    };
-
-    private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
-        boolean isInTouch = false;
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (isInTouch) {
-                if (play_status != PLAY_STATUS.unInit && play_status!= PLAY_STATUS.loading) {
-                    int dur = videoView.getDuration();
-                    float raido = 1f * progress / 100;
-                    int current = (int) (raido * dur);
-                    videoView.seekTo(current);
-                }
-            }
-        }
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-            System.out.println("  touch");
-            isInTouch = true;
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-            System.out.println("  touch down");
-            isInTouch = false;
-        }
-    };
-    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-            play_status = PLAY_STATUS.replay;
-            updateUI();
-        }
-    };
-
-
-
-    String uri = "http://14.215.153.200/vcloud.tc.qq.com/o0011hremh8.m301.mp4?sha=219F1A1E310C6D42A945F593618A1F2E2CD9EB63&vkey=871E03FC56BA47391979D7E470837257972B3C6FAEFA0325E4324E8708C386768AA75E834F2039E4DFD9E91A53CA62FF9B8A5869890C0682912D5EA8CC56F86ADD0AC4C223586ABD6E7B8996975A2A6342842A7FD68EFFDD3581706C31C9199C2F4118A674EA0B17DD6C689713358C2A&ocid=1678502922";
+    String uri = "http://flv.bn.netease.com/tvmrepo/2012/7/C/7/E868IGRC7-mobile.mp4";
+    //    String uri = "http://14.215.153.200/vcloud.tc.qq.com/o0011hremh8.m301.mp4?sha=219F1A1E310C6D42A945F593618A1F2E2CD9EB63&vkey=871E03FC56BA47391979D7E470837257972B3C6FAEFA0325E4324E8708C386768AA75E834F2039E4DFD9E91A53CA62FF9B8A5869890C0682912D5EA8CC56F86ADD0AC4C223586ABD6E7B8996975A2A6342842A7FD68EFFDD3581706C31C9199C2F4118A674EA0B17DD6C689713358C2A&ocid=1678502922";
     @BindView(R.id.video_view)
     VideoView videoView;
 
@@ -136,17 +80,30 @@ public class Follow_Movie extends PowViewHolder<Post> {
     @BindView(R.id.play_time)
     TextView playTime;
 
-
-
+    CountDownTimer timer;
 
     PLAY_STATUS play_status = PLAY_STATUS.unInit;
 
+    public Follow_Movie(Activity activity, ViewGroup viewGroup) {
+        super(activity, viewGroup);
+        ButterKnife.bind(this, mItemView);
+        seekBar.setMax(100);
+        seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        videoView.setOnCompletionListener(onCompletionListener);
+    }
 
-    @OnClick({
-            R.id.play,
-            R.id.play_pause_or_start,
-            R.id.play_full_screen,
-    })
+    /**
+     * 获取布局
+     * @return
+     */
+    @Override
+    protected int getItemViewRes() {
+        return R.layout.viewholder_post_movie;
+    }
+
+
+
+    @OnClick({R.id.play, R.id.play_pause_or_start, R.id.play_full_screen,})
     void onClick(final View view) {
         switch (view.getId()) {
             case R.id.play:
@@ -188,13 +145,38 @@ public class Follow_Movie extends PowViewHolder<Post> {
                 updateUI();
 
                 break;
-            case R.id.play_full_screen:
-
+            case R.id.play_full_screen://切换全屏
+                /***
+                 * 就算只用户主动切换大小，也是去是activity转向来实现的
+                 */
+                if (getScreenOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {// 转小屏
+                    mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                } else {// 转全屏
+                    mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                }
+                updateFullScreenButton();
                 break;
         }
     }
 
-    CountDownTimer timer;
+    /**
+     * 更新全屏按钮
+     */
+    private void updateFullScreenButton() {
+        if (getScreenOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {// 全屏幕
+//            $.id(R.id.view_jky_player_fullscreen).image(
+//                    R.drawable.shrink_fullscreen);
+//            $.id(R.id.view_jky_player_iv_share).gone();
+//            $.id(R.id.view_jky_play_iv_setting).visible();
+        } else {
+//            $.id(R.id.view_jky_player_fullscreen).image(R.drawable.enlarge_fullscreen);
+//            $.id(R.id.view_jky_player_iv_share).visible();
+//            $.id(R.id.view_jky_play_iv_setting).gone();
+        }
+    }
+
+
+
 
     private void startPlay() {
         videoView.start();
@@ -223,7 +205,7 @@ public class Follow_Movie extends PowViewHolder<Post> {
         updateUI();
     }
 
-    private void destroy(){
+    private void destroy() {
 
     }
 
@@ -272,10 +254,7 @@ public class Follow_Movie extends PowViewHolder<Post> {
 
     }
 
-    @Override
-    protected int getItemViewRes() {
-        return R.layout.viewholder_post_movie;
-    }
+
 
     @Override
     protected boolean acceptData(Post data) {
@@ -301,15 +280,12 @@ public class Follow_Movie extends PowViewHolder<Post> {
 
     }
 
-
-
-
     @Override
     protected void onViewDetachedFromWindow() {
         super.onViewDetachedFromWindow();
         System.out.println("onViewDetachedFromWindow");
         play_status = PLAY_STATUS.unInit;
-        if(timer!=null){
+        if (timer != null) {
             timer.cancel();
             timer = null;
         }
@@ -318,9 +294,59 @@ public class Follow_Movie extends PowViewHolder<Post> {
 
     }
 
+    //子线程
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (play_status == PLAY_STATUS.playing_notify) {
+                play_status = PLAY_STATUS.playing_silence;
+                updateUI();
+            }
+        }
+    };
+
+    //media player 监听
+    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            play_status = PLAY_STATUS.replay;
+            updateUI();
+        }
+    };
+
+    //seekbar 监听
+    private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+        boolean isInTouch = false;
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            if (isInTouch) {
+                if (play_status != PLAY_STATUS.unInit && play_status != PLAY_STATUS.loading) {
+                    int dur = videoView.getDuration();
+                    float raido = 1f * progress / 100;
+                    int current = (int) (raido * dur);
+                    videoView.seekTo(current);
+                }
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            System.out.println("  touch");
+            isInTouch = true;
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            System.out.println("  touch down");
+            isInTouch = false;
+        }
+    };
+
+
     private FrameLayout getRomotePlayView() {
 
-      //  MultipleRecycleAdapter<Post> multipleRecycleAdapter = (MultipleRecycleAdapter<Post>) multipleAdapter;
+        //  MultipleRecycleAdapter<Post> multipleRecycleAdapter = (MultipleRecycleAdapter<Post>) multipleAdapter;
 
         RecyclerView recyclerView = null; // multipleRecycleAdapter.getRecyclerView();
         if (recyclerView == null) return null;
@@ -337,6 +363,59 @@ public class Follow_Movie extends PowViewHolder<Post> {
         }
     }
 
+    private int getScreenOrientation() {
+        int rotation = mActivity.getWindowManager().getDefaultDisplay()
+                .getRotation();
+        DisplayMetrics dm = new DisplayMetrics();
+        mActivity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        int orientation;
+        // if the device's natural orientation is portrait:
+        if ((rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180)
+                && height > width
+                || (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270)
+                && width > height) {
+            switch (rotation) {
+                case Surface.ROTATION_0:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                    break;
+                case Surface.ROTATION_90:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                    break;
+                case Surface.ROTATION_180:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT;
+                    break;
+                case Surface.ROTATION_270:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE;
+                    break;
+                default:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                    break;
+            }
+        }
+        else {
+            switch (rotation) {
+                case Surface.ROTATION_0:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                    break;
+                case Surface.ROTATION_90:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                    break;
+                case Surface.ROTATION_180:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE;
+                    break;
+                case Surface.ROTATION_270:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT;
+                    break;
+                default:
+                    orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                    break;
+            }
+        }
+
+        return orientation;
+    }
 
 }
 

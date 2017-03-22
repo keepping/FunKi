@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 在此写用途
+ * 九宫格图片
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>

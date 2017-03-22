@@ -51,6 +51,22 @@ public class HomeFollowFragment extends BaseFragment {
     private String mParam1;
     private String mParam2;
 
+    @BindView(R.id.swipe_refresh)
+    SwipeRefresh swipeRefresh;
+    @BindView(R.id.recycle)
+    RecyclerView recyclerView;
+
+    MultipleRecycleAdapter<Post> multipleRecycleAdapter;
+
+    List<String> uri = Arrays.asList("http://t2.27270.com/uploads/tu/201606/112/17.jpg",
+            "http://t2.27270.com/uploads/tu/201510/249/3.jpg",
+            "http://t2.27270.com/uploads/tu/201606/62/28.jpg",
+            "http://t2.27270.com/uploads/tu/201606/76/34.jpg",
+            "http://t2.27270.com/uploads/tu/201606/73/slt.jpg",
+            "http://img2.imgtn.bdimg.com/it/u=3347259689,1828160575&fm=21&gp=0.jpg",
+            "http://img1.imgtn.bdimg.com/it/u=3607821315,1190508392&fm=21&gp=0.jpg");
+
+    private String imagePath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489567544808&di=7490422c9d0de0ba7db28352a7c138f3&imgtype=0&src=http%3A%2F%2Fsc.jb51.net%2Fuploads%2Fallimg%2F140628%2F10-14062PAGB04.jpg";
 
     public static HomeFollowFragment newInstance(String param1, String param2) {
         HomeFollowFragment fragment = new HomeFollowFragment();
@@ -75,53 +91,32 @@ public class HomeFollowFragment extends BaseFragment {
         return R.layout.fragment_home_follow;
     }
 
-    @BindView(R.id.swipe_refresh)
-    SwipeRefresh swipeRefresh;
-    @BindView(R.id.recycle)
-    RecyclerView recyclerView;
-
-    MultipleRecycleAdapter<Post> multipleRecycleAdapter;
-
-    List<String> uri = Arrays.asList("http://t2.27270.com/uploads/tu/201606/112/17.jpg",
-
-            "http://t2.27270.com/uploads/tu/201510/249/3.jpg",
-            "http://t2.27270.com/uploads/tu/201606/62/28.jpg",
-            "http://t2.27270.com/uploads/tu/201606/76/34.jpg",
-            "http://t2.27270.com/uploads/tu/201606/73/slt.jpg",
-            "http://img2.imgtn.bdimg.com/it/u=3347259689,1828160575&fm=21&gp=0.jpg",
-            "http://img1.imgtn.bdimg.com/it/u=3607821315,1190508392&fm=21&gp=0.jpg");
-
-    private String imagePath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489567544808&di=7490422c9d0de0ba7db28352a7c138f3&imgtype=0&src=http%3A%2F%2Fsc.jb51.net%2Fuploads%2Fallimg%2F140628%2F10-14062PAGB04.jpg";
-
 
     @Override
     protected void initView(View root) {
         super.initView(root);
 
-        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(),
-                Follow_Live_Normal.class, Follow_live_Ticket.class, Follow_Movie.class, Follow_Pic.class);
+        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), Follow_Live_Normal.class, Follow_live_Ticket.class, Follow_Movie.class, Follow_Pic.class);
         recyclerView.setAdapter(multipleRecycleAdapter);
 
-        for(int i=0 ;i < 3;i++){
-            multipleRecycleAdapter.addLast(new Post(i%3+1, uri,imagePath));
+        for (int i = 0; i < 3; i++) {
+            multipleRecycleAdapter.addLast(new Post(i % 3 + 1, uri, imagePath));
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
 
         swipeRefresh.setOnRefreshListener(new SwipeRefresh.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 System.out.println("---------------------------onRefresh");
                 multipleRecycleAdapter.deleteAllData();
-                multipleRecycleAdapter.addLast(new Post(2, uri,imagePath));
-                multipleRecycleAdapter.addLast(new Post(4, uri,imagePath));
-                multipleRecycleAdapter.addLast(new Post(1, uri,imagePath));
-                multipleRecycleAdapter.addLast(new Post(3, uri,imagePath));
-                multipleRecycleAdapter.addLast(new Post(4, uri,imagePath));
-                multipleRecycleAdapter.addLast(new Post(1, uri,imagePath));
-                if(multipleRecycleAdapter.getDataList().size()>=5){
+                multipleRecycleAdapter.addLast(new Post(2, uri, imagePath));
+                multipleRecycleAdapter.addLast(new Post(4, uri, imagePath));
+                multipleRecycleAdapter.addLast(new Post(1, uri, imagePath));
+                multipleRecycleAdapter.addLast(new Post(3, uri, imagePath));
+                multipleRecycleAdapter.addLast(new Post(4, uri, imagePath));
+                multipleRecycleAdapter.addLast(new Post(1, uri, imagePath));
+                if (multipleRecycleAdapter.getDataList().size() >= 5) {
                     swipeRefresh.setSwipeModel(SwipeControl.SwipeModel.SWIPE_BOTH);
                 }
                 swipeRefresh.finishRefresh();
@@ -129,10 +124,10 @@ public class HomeFollowFragment extends BaseFragment {
 
             @Override
             public void onLoading() {
-                multipleRecycleAdapter.addLast(new Post(3, uri,imagePath));
-                multipleRecycleAdapter.addLast(new Post(2, uri,imagePath));
-                multipleRecycleAdapter.addLast(new Post(1, uri,imagePath));
-                multipleRecycleAdapter.addLast(new Post(4, uri,imagePath));
+                multipleRecycleAdapter.addLast(new Post(3, uri, imagePath));
+                multipleRecycleAdapter.addLast(new Post(2, uri, imagePath));
+                multipleRecycleAdapter.addLast(new Post(1, uri, imagePath));
+                multipleRecycleAdapter.addLast(new Post(4, uri, imagePath));
                 System.out.println("---------------------------onLoading");
 
             }
