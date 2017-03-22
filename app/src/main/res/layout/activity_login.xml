@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_mail"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="17sp" />
 
             <ImageView
@@ -143,7 +143,7 @@
             android:layout_marginRight="14dp"
             android:layout_marginTop="19dp"
             android:text="@string/login_forget_pwd"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="15dp" />
 
         <TextView
@@ -154,7 +154,7 @@
             android:layout_marginRight="14dp"
             android:layout_marginTop="19dp"
             android:text="@string/login_help_center"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="15dp" />
     </RelativeLayout>
 </LinearLayout>

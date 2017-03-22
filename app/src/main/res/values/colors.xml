@@ -13,11 +13,11 @@
     <color name="_BBABD4">#BBABD4</color>
     <color name="_230C47">#230C47</color>
     <color name="_9B44ED">#9B44ED</color>
-
     <color name="_4A2F75">#4A2F75</color>
     <color name="_28114D">#28114D</color>
-    <color name="vistorTvClickbg">#FFD71B</color>
-    <color name="loginTvUnClick">#6B4E9A</color>
+    <color name="_FFD71B">#FFD71B</color>
+    <color name="_6B4E9A">#6B4E9A</color>
+
     <color name="forgetPwdBg">#0C001F</color>
     <color name="newPwd">#61E46D</color>
     <color name="funkiText">#FDFFFF</color>

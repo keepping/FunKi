@@ -182,7 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="45"
-                android:textColor="@color/vistorTvClickbg"
+                android:textColor="@color/_FFD71B"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
@@ -228,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="现金"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="13sp" />
 
             <TextView
@@ -237,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="余额"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="13sp" />
         </LinearLayout>
 

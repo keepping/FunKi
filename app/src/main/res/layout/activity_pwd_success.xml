@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="80dp"
-            android:background="@color/vistorTvClickbg"
+            android:background="@color/_FFD71B"
             android:gravity="center"
             android:text="@string/pwd_success_return"
             android:textColor="@color/_4A2F75"

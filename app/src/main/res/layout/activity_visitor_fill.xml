@@ -159,7 +159,7 @@
                 android:gravity="center_vertical|right"
                 android:hint="@string/input_age"
                 android:inputType="number"
-                android:textColor="@color/vistorTvClickbg"
+                android:textColor="@color/_FFD71B"
                 android:textColorHint="@color/_4A2F75"
                 android:textSize="17sp"
                 android:textStyle="bold" />

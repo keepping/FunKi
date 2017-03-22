@@ -50,7 +50,7 @@
             android:layout_marginTop="51dp"
             app:dashOrientation="0"
             app:dashWidth="2dp"
-            app:lineColor="@color/loginTvUnClick"
+            app:lineColor="@color/_6B4E9A"
             app:lineHeight="2dp"
             app:lineWidth="5dp" />
 
@@ -133,7 +133,7 @@
             android:layout_marginTop="51dp"
             app:dashOrientation="0"
             app:dashWidth="2dp"
-            app:lineColor="@color/loginTvUnClick"
+            app:lineColor="@color/_6B4E9A"
             app:lineHeight="2dp"
             app:lineWidth="5dp" />
 
@@ -224,7 +224,7 @@
             android:layout_marginTop="51dp"
             app:dashOrientation="0"
             app:dashWidth="2dp"
-            app:lineColor="@color/loginTvUnClick"
+            app:lineColor="@color/_6B4E9A"
             app:lineHeight="2dp"
             app:lineWidth="5dp" />
 
@@ -298,7 +298,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dynamic"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="15sp" />
 
             <TextView
@@ -330,7 +330,7 @@
             android:layout_centerInParent="true"
             app:dashOrientation="1"
             app:dashWidth="2dp"
-            app:lineColor="@color/loginTvUnClick"
+            app:lineColor="@color/_6B4E9A"
             app:lineHeight="5dp"
             app:lineWidth="1dp" />
 
@@ -349,7 +349,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/live"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="15sp" />
 
             <TextView

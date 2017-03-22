@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.hifunki.funki.R;
@@ -38,7 +37,7 @@ public class DashedLineView extends View {
     public DashedLineView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.deshedLine);
-        lineColor = typedArray.getColor(R.styleable.deshedLine_lineColor, context.getResources().getColor(R.color.loginTvUnClick));
+        lineColor = typedArray.getColor(R.styleable.deshedLine_lineColor, context.getResources().getColor(R.color._6B4E9A));
         //px
         dashWidth = typedArray.getDimension(R.styleable.deshedLine_dashWidth, DisplayUtil.dip2Px(context,2));//间距
         //px
@@ -71,8 +70,6 @@ public class DashedLineView extends View {
         if(dashOrientation==0){
             setMeasuredDimension(widthSize, (int) lingHeight);
         }else{
-            Log.e(TAG, "onMeasure: "+"lingHeight="+lingHeight+"heightSize="+heightSize );
-//            setMeasuredDimension((int) lingHeight, heightSize);
             setMeasuredDimension((int) lineWidth, heightSize);
         }
     }

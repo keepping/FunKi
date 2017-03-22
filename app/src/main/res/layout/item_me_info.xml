@@ -5,7 +5,7 @@
     android:layout_height="53dp"
     android:orientation="vertical">
     <TextView
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_marginLeft="16dp"
@@ -28,7 +28,7 @@
     <TextView
         android:layout_marginRight="19dp"
         android:layout_toLeftOf="@+id/iv_next"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_centerVertical="true"

@@ -160,7 +160,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
                 ivEmailLine.setVisibility(View.INVISIBLE);
                 isPhoneColor = !isPhoneColor;
                 //设置行动电话的字体颜色
-                tvEmail.setTextColor(getResources().getColor(R.color.loginTvUnClick));
+                tvEmail.setTextColor(getResources().getColor(R.color._6B4E9A));
                 tvPhone.setTextColor(getResources().getColor(R.color._BBABD4));
                 vpPhoneEmail.setCurrentItem(0);
                 break;
@@ -169,7 +169,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
                 ivEmailLine.setVisibility(View.VISIBLE);
                 isPhoneColor = !isPhoneColor;
                 tvEmail.setTextColor(getResources().getColor(R.color._BBABD4));
-                tvPhone.setTextColor(getResources().getColor(R.color.loginTvUnClick));
+                tvPhone.setTextColor(getResources().getColor(R.color._6B4E9A));
                 vpPhoneEmail.setCurrentItem(1);
                 break;
             case R.id.ivPhoneLine:

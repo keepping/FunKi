@@ -18,7 +18,7 @@
         app:tabIndicatorHeight="2px"
         app:tabMinWidth="39dp"
         app:tabSelectedTextColor="@color/_9B44ED"
-        app:tabTextColor="@color/loginTvUnClick"
+        app:tabTextColor="@color/_6B4E9A"
         android:layout_width="match_parent"
         android:layout_height="40dp">
 

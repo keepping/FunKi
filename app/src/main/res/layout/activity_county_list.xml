@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_search"
                 android:text="@string/search"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 android:visibility="visible" />

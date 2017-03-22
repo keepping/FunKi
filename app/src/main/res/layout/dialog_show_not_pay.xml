@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:text="@string/show_pay"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="15sp" />
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="43dp"
             android:text="@string/show_normal_price"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="26sp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="88dp"
         app:dashWidth="2dp"
-        app:lineColor="@color/loginTvUnClick"
+        app:lineColor="@color/_6B4E9A"
         app:lineHeight="2dp"
         app:lineWidth="5dp" />
 
@@ -100,7 +100,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="@string/tv_show_balance_not_enough"
-        android:textColor="@color/loginTvUnClick" />
+        android:textColor="@color/_6B4E9A" />
 
     <TextView
         android:id="@+id/tv_show_confirm"

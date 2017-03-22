@@ -14,7 +14,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="@string/search_hot_recommend"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -31,6 +31,6 @@
         android:layout_marginTop="17dp"
         android:paddingLeft="10dp"
         android:text="@string/search_activity_recommend"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="17sp" />
 </LinearLayout>

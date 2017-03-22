@@ -22,7 +22,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="37dp"
         android:text="@string/login_pwd_number"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="10dp"
         android:text="@string/login_receiver_msg"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="14sp"
         android:textStyle="bold" />
 

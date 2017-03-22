@@ -5,6 +5,6 @@
     <size android:width="2dp"
         android:height="17dp"
         />
-    <solid android:color="@color/loginTvUnClick"/>
+    <solid android:color="@color/_6B4E9A"/>
 
 </shape>

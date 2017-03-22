@@ -74,7 +74,7 @@
             android:layout_below="@+id/rl_nick"
             android:layout_marginTop="6dp"
             android:text="@string/search_activity_recommend"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="11sp"
             android:textStyle="bold" />
 

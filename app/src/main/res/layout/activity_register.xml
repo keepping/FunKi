@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_mail"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="17sp" />
 
             <ImageView

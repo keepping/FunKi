@@ -88,7 +88,7 @@ public class SideLetterBar extends View {
             //通过sp装换成dp
             int px = DisplayUtil.sp2px(context, 9);
             paint.setTextSize(px);
-            paint.setColor(getResources().getColor(R.color.loginTvUnClick));
+            paint.setColor(getResources().getColor(R.color._6B4E9A));
             paint.setAntiAlias(true);
 //            if (i == choose) {
 //                paint.setColor(getResources().getColor(R.color.loginTvUnClick));

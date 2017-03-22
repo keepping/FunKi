@@ -40,7 +40,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/iv_month_bill"
             android:text="查看月账单"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="13sp" />
 
     </RelativeLayout>

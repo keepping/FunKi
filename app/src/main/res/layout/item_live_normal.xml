@@ -57,7 +57,7 @@
             android:layout_marginLeft="4dp"
             android:layout_toEndOf="@+id/iv_location"
             android:text="@string/search_location"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textStyle="bold" />
 
         <ImageView
@@ -79,7 +79,7 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/iv_country_flag"
             android:text="@string/search_language"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textStyle="bold" />
 
         <TextView

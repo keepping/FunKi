@@ -16,5 +16,5 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="14dp"
         android:text="@string/search"
-        android:textColor="@color/loginTvUnClick" />
+        android:textColor="@color/_6B4E9A" />
 </LinearLayout>

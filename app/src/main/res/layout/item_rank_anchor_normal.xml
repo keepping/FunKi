@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_margin="12dp"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="11sp"
         android:textStyle="bold" />
 
