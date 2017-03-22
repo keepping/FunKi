@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
@@ -61,6 +62,8 @@ public class BillActivity extends BaseActivity {
         rlBill.setAdapter(adapter);
 
         View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_biil_head, null);
+        ImageView iv = (ImageView) view.findViewById(R.id.iv_bill_bg);
+
         adapter.addHeaderView(view);
     }
 

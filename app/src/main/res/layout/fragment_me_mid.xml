@@ -98,13 +98,12 @@
         android:layout_below="@+id/rl_me_head"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/rl_recharge"
->
+        android:layout_toRightOf="@+id/rl_recharge">
 
         <RelativeLayout
-            android:background="@color/meMidBg"
             android:layout_width="match_parent"
-            android:layout_height="51dp">
+            android:layout_height="51dp"
+            android:background="@color/meMidBg">
 
             <TextView
                 android:id="@+id/tv_income"
@@ -139,10 +138,10 @@
             app:lineWidth="5dp" />
 
         <RelativeLayout
-            android:background="@color/meMidBg"
-            android:layout_below="@+id/dl_me_income"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dl_me_income"
+            android:background="@color/meMidBg">
 
             <TextView
                 android:id="@+id/tv_me_income_num"
@@ -190,12 +189,12 @@
         android:layout_below="@+id/rl_me_head"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/rl_exchange"
-        android:background="@color/meMidBg">
+        android:layout_toRightOf="@+id/rl_exchange">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="51dp">
+            android:layout_height="51dp"
+            android:background="@color/meMidBg">
 
             <TextView
                 android:id="@+id/tv_balance"
@@ -229,35 +228,41 @@
             app:lineHeight="2dp"
             app:lineWidth="5dp" />
 
-        <TextView
-            android:id="@+id/tv_me_balance_num"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dl_me_balance"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="9dp"
-            android:text="@string/me_account_num" />
+            android:background="@color/meMidBg">
 
-        <TextView
-            fontPath="fonts/arial_0.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dl_me_balance"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="9dp"
-            android:layout_toRightOf="@+id/tv_me_balance_num"
-            android:text="@string/me_balance_unit" />
 
-        <TextView
-            android:id="@+id/tv_me_balance_recharge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_me_balance_num"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:text="@string/me_income_recharge_num"
-            android:textSize="11sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_me_balance_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="9dp"
+                android:text="@string/me_account_num" />
+
+            <TextView
+                fontPath="fonts/arial_0.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/tv_me_balance_num"
+                android:text="@string/me_balance_unit" />
+
+            <TextView
+                android:id="@+id/tv_me_balance_recharge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_me_balance_num"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/me_income_recharge_num"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
