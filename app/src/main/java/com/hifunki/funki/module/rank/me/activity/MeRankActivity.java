@@ -25,16 +25,13 @@ import butterknife.BindView;
  * @link
  * @since 2017-03-20 14:18:18
  */
-public class MeRankActivity extends BaseActivity implements RankPresentFragment.OnFragmentInteractionListener
-        {
-
+public class MeRankActivity extends BaseActivity implements RankPresentFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.tb_rank)
     TabLayout tbRank;
     @BindView(R.id.vp_rank)
     ViewPager vpRank;
     private List<String> mTabTitle;
-
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, MeRankActivity.class));

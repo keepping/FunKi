@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -54,13 +55,18 @@
                 android:src="@drawable/iv_girl" />
 
             <TextView
-                android:textSize="11sp"
                 android:id="@+id/tv_anchor_lv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
+                android:background="@drawable/bg_lv"
+                android:paddingBottom="2dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="2dp"
                 android:text="LV.95"
-                android:textColor="@color/_FFFFFF" />
+                android:textColor="@color/_FFFFFF"
+                android:textSize="11sp" />
         </LinearLayout>
 
         <TextView

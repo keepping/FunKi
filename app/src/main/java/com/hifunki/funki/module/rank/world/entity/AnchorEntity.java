@@ -15,8 +15,10 @@ public class AnchorEntity implements MultiItemEntity {
 
     private int itemType;
 
-    public static final int TOP = 0;
-    public static final int NORMAL = 1;
+    public static final int FIRST = 1;
+    public static final int SECOND = 2;
+    public static final int THIRD = 3;
+    public static final int NORMAL = 4;
 
     private int position;
     private String imagePath;
@@ -39,8 +41,16 @@ public class AnchorEntity implements MultiItemEntity {
         this.itemType = itemType;
     }
 
-    public static int getTOP() {
-        return TOP;
+    public static int getFIRST() {
+        return FIRST;
+    }
+
+    public static int getSECOND() {
+        return SECOND;
+    }
+
+    public static int getTHIRD() {
+        return THIRD;
     }
 
     public static int getNORMAL() {

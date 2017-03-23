@@ -2,6 +2,7 @@ package com.hifunki.funki.module.rank.me.adapter;
 
 import android.content.Context;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -12,7 +13,7 @@ import com.hifunki.funki.module.rank.world.entity.AnchorEntity;
 import java.util.List;
 
 /**
- * 在此写用途
+ * 个人中心-榜单适配器
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
@@ -28,30 +29,43 @@ public class RankAnchorAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, B
     public RankAnchorAdapter(Context context, List data) {
         super(data);
         this.mContext = context;
-        addItemType(AnchorEntity.TOP, R.layout.item_rank_anchor_top);
+        addItemType(AnchorEntity.FIRST, R.layout.item_rank_anchor_first);
+        addItemType(AnchorEntity.SECOND, R.layout.item_rank_anchor_second);
+        addItemType(AnchorEntity.THIRD, R.layout.item_rank_anchor_third);
         addItemType(AnchorEntity.NORMAL, R.layout.item_rank_anchor_normal);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, AnchorEntity item) {
         switch (helper.getItemViewType()) {
-            case AnchorEntity.TOP:
-                //需要处理排名的问题
-                if (helper.getLayoutPosition() == 1) {
 
-                }
-                helper.setText(R.id.tv_anthor_position, "NO." + String.valueOf(item.getPosition()));//排名
-                Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_anchor_photo));
+
+            case AnchorEntity.FIRST:
+                //根布局
+                RelativeLayout rlRanking = helper.getView(R.id.rl_ranking);
+                //排行
+                ImageView ivRanking = helper.getView(R.id.iv_anchor_ranking);
+                //排名
+                helper.setText(R.id.tv_anthor_position, "NO." + String.valueOf(item.getPosition()));
+
+                //头像
+                ImageView ivPhoto = helper.getView(R.id.iv_anchor_photo);
+
+                //加载头像
+                Glide.with(mContext).load(item.getImagePath()).into(ivPhoto);
 
                 helper.setText(R.id.tv_anchor_name, item.getUsername());//用户名
 
-                Glide.with(mContext).load(R.drawable.iv_girl).into((ImageView) helper.getView(R.id.iv_anchor_sex));
+//                Glide.with(mContext).load(R.drawable.iv_girl).into((ImageView) helper.getView(R.id.iv_anchor_sex));
                 helper.setText(R.id.tv_anchor_lv, String.valueOf(item.getLevel()));//等级
                 helper.setText(R.id.tv_anchor_gold, String.valueOf(item.getGoldNumber()));//金钱
 
                 break;
-            case AnchorEntity.NORMAL:
+            case AnchorEntity.SECOND:
 
+            case AnchorEntity.THIRD:
+
+            case AnchorEntity.NORMAL:
                 helper.setText(R.id.tv_anthor_position, "NO." + String.valueOf(item.getPosition()));//排名
                 Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_anchor_photo));
 

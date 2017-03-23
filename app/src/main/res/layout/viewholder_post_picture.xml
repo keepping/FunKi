@@ -19,7 +19,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:src="@drawable/bg_search_hot_lv" />
+            android:src="@drawable/bg_lv" />
 
         <TextView
             android:id="@+id/post_user_name"
