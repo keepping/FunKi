@@ -1,5 +1,7 @@
 package com.hifunki.funki.util;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -8,6 +10,58 @@ import android.widget.TextView;
 
 
 public class ViewUtil {
+
+    public static void adjustRecylerViewHei(final RecyclerView scrollView) {
+
+        scrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                boolean needReSize = scrollView.canScrollVertically(-1) || scrollView.canScrollVertically(1);
+
+                if (!needReSize) {
+                    RecyclerView.LayoutManager layoutManager = scrollView.getLayoutManager();
+                    if (layoutManager instanceof LinearLayoutManager) {
+                        needReSize = layoutManager.getChildCount() != scrollView.getChildCount();
+                    }
+                }
+
+
+                if (!needReSize) {
+                    if (scrollView.getChildCount() == 0) {
+                        needReSize = scrollView.getLayoutParams().height != (scrollView.getPaddingTop() + scrollView.getPaddingBottom());
+                    } else {
+                        View firstVisible = scrollView.getChildAt(0);
+                        needReSize = firstVisible.getTop() != scrollView.getPaddingTop();
+                        if(!needReSize){
+                            View lastVisible = scrollView.getChildAt(scrollView.getChildCount() - 1);
+                            needReSize = lastVisible.getBottom() != scrollView.getHeight()-scrollView.getPaddingBottom();
+                        }
+
+                    }
+                }
+
+
+                if (needReSize) {
+
+                    System.out.println("               time  ------------------  >>> resize");
+
+                    int with = scrollView.getWidth();
+                    int measureWith = View.MeasureSpec.makeMeasureSpec(with, View.MeasureSpec.EXACTLY);
+                    //取大值 重新衡量 高度
+                    int measureHei = View.MeasureSpec.makeMeasureSpec(50000, View.MeasureSpec.AT_MOST);
+                    scrollView.measure(measureWith, measureHei);
+
+                    ViewGroup.LayoutParams myParam = scrollView.getLayoutParams();
+                    myParam.height = scrollView.getMeasuredHeight();
+                    scrollView.setLayoutParams(myParam);
+                }
+            }
+        });
+
+
+    }
+
 
     /**
      * 一次设置多个控件CLick监听事件

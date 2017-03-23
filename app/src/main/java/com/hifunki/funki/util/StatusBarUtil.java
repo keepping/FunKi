@@ -3,6 +3,7 @@ package com.hifunki.funki.util;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -29,6 +30,9 @@ public class StatusBarUtil {
                 int barHei = DisplayUtil.getStatusBarHeight(view.getContext());
                 view.setPadding(0,barHei,0,0);
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+
+                NestedScrollView scrollView = null;
             }
         });
 

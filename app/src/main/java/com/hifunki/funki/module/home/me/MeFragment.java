@@ -3,6 +3,7 @@ package com.hifunki.funki.module.home.me;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
+import com.hifunki.funki.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +76,8 @@ public class MeFragment extends BaseFragment {
 
     @BindView(R.id.rv_me)
     RecyclerView rvMe;
+    @BindView(R.id.nest)
+    NestedScrollView nest;
 
     private PopWindowUtil sharePopWindow;//分享popWindow
     private View shareView;
@@ -114,14 +118,19 @@ public class MeFragment extends BaseFragment {
         super.initView(root);
         StatusBarUtil.adjustStatusBarHei(root.findViewById(R.id.layout_me_head));
         MeInfoAdapter meInfoAdapter = new MeInfoAdapter(R.layout.item_me_info, mInfoTag);
-        rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
+    //    rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
         rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMe.setAdapter(meInfoAdapter);
+        ViewUtil.adjustRecylerViewHei(rvMe);
+
+
         //圆形头像
         Glide.with(mContext).load(photo).into(civMePhoto);
         Glide.with(mContext).load(photo).into(civFirstPhoto);
         Glide.with(mContext).load(photo).into(civSecondPhoto);
         Glide.with(mContext).load(photo).into(civThirdPhoto);
+
+
     }
 
     @Override
@@ -131,6 +140,21 @@ public class MeFragment extends BaseFragment {
         mInfoTag.add(getString(R.string.self_gallery));
         mInfoTag.add(getString(R.string.vistor_record));
         mInfoTag.add(getString(R.string.my_field_control));
+        mInfoTag.add(getString(R.string.blacklist));
+        mInfoTag.add(getString(R.string.order_management));
+        mInfoTag.add(getString(R.string.account_privacy_safety));
+        mInfoTag.add(getString(R.string.setting));
+        mInfoTag.add(getString(R.string.help_feedback));
+        mInfoTag.add(getString(R.string.business_cooperate));
+
+
+        mInfoTag.add(getString(R.string.blacklist));
+        mInfoTag.add(getString(R.string.order_management));
+        mInfoTag.add(getString(R.string.account_privacy_safety));
+        mInfoTag.add(getString(R.string.setting));
+        mInfoTag.add(getString(R.string.help_feedback));
+        mInfoTag.add(getString(R.string.business_cooperate));
+
         mInfoTag.add(getString(R.string.blacklist));
         mInfoTag.add(getString(R.string.order_management));
         mInfoTag.add(getString(R.string.account_privacy_safety));
@@ -163,7 +187,8 @@ public class MeFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.iv_me_bill, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans,R.id.tv_recharge})
+
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans,R.id.tv_recharge, R.id.civ_me_photo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_me_bill:
@@ -181,6 +206,9 @@ public class MeFragment extends BaseFragment {
 
                 break;
             case R.id.civ_me_photo:
+
+                System.out.println(rvMe.getHeight());
+
                 break;
             case R.id.iv_me_authentication:
                 UserAvatarActivity.show(getContext());

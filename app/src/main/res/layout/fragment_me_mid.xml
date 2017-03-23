@@ -293,6 +293,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_titile"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_below="@+id/rl_recharge"
