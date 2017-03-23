@@ -4,7 +4,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".module.login.LoginActivity"
@@ -36,7 +36,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:text="@string/app_name"
-            android:textColor="@color/funkiText"
+            android:textColor="@color/_FDFFFF"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_phone"
-                android:textColor="@color/vistorTvTitle"
+                android:textColor="@color/_9B44ED"
                 android:textSize="17sp" />
 
             <ImageView
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_mail"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="17sp" />
 
             <ImageView
@@ -112,7 +112,7 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:layout_marginTop="19dp"
-        android:background="@color/vistorTvbg"
+        android:background="@color/_28114D"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="下一步"
-            android:textColor="@color/vistorTvbgNormal"
+            android:textColor="@color/_4A2F75"
             android:textSize="17sp" />
     </LinearLayout>
 
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:text="@string/login_register_agree"
-            android:textColor="@color/vistorTvbgNormal"
+            android:textColor="@color/_4A2F75"
             android:textSize="15dp"
             android:textStyle="bold" />
 
@@ -155,7 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_register_deal"
-            android:textColor="@color/vistorTvTitle"
+            android:textColor="@color/_9B44ED"
             android:textSize="15dp"
             android:textStyle="bold" />
     </LinearLayout>

@@ -6,7 +6,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/vistorTvTitle</item>
+        <item name="colorAccent">@color/_9B44ED</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:clipToPadding">false</item>
@@ -23,7 +23,7 @@
 
     <!--游客必填页面key-->
     <style name="ActivityVisitorTvTitle">
-        <item name="android:textColor">@color/vistorTvTitle</item>
+        <item name="android:textColor">@color/_9B44ED</item>
         <item name="android:textSize">17sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_height">30dp</item>
@@ -35,7 +35,7 @@
 
     <!--游客必填页面value-->
     <style name="ActivityVisitorTvValue">
-        <item name="android:textColor">@color/titleText</item>
+        <item name="android:textColor">@color/_BBABD4</item>
         <item name="android:layout_width">52dp</item>
         <item name="android:textSize">17sp</item>
         <item name="android:layout_height">30dp</item>

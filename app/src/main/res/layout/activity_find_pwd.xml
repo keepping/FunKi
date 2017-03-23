@@ -4,7 +4,7 @@
     android:id="@+id/activity_pwd_graph"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:orientation="vertical"
     tools:context=".module.login.PwdGraphActivity">
 
@@ -22,7 +22,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="37dp"
         android:text="@string/login_pwd_number"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginTop="10dp"
         android:text="@string/login_receiver_msg"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="19dp"
-        android:background="@color/vistorTvbg"
+        android:background="@color/_28114D"
         android:orientation="horizontal">
 
         <EditText
@@ -55,7 +55,7 @@
             android:maxLines="1"
             android:paddingLeft="1dp"
             android:singleLine="true"
-            android:textColorHint="@color/vistorTvbgNormal"
+            android:textColorHint="@color/_4A2F75"
             android:textSize="17sp" />
 
     </RelativeLayout>
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/confirm"
-            android:textColor="@color/vistorTvbgNormal"
+            android:textColor="@color/_4A2F75"
             android:textSize="17sp" />
 
     </RelativeLayout>
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="52s"
-            android:textColor="@color/vistorTvbgNormal"
+            android:textColor="@color/_4A2F75"
             android:textSize="17sp" />
 
     </RelativeLayout>

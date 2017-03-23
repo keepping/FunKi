@@ -3,25 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="255dp"
     android:layout_marginBottom="7dp"
-    android:background="@color/vistorTvbg"
+    android:background="@color/_28114D"
     android:orientation="vertical">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_photo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="9dp"
-        android:src="@drawable/ic_nav_home_actived" />
 
     <ImageView
         android:id="@+id/iv_imagepath"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/iv_photo"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="42dp"
         android:scaleType="fitXY" />
+
+    头部的背景
 
     <RelativeLayout
         android:id="@+id/rl_live_head"
@@ -29,54 +21,71 @@
         android:layout_height="wrap_content"
         android:background="@drawable/iv_live_title_bg">
 
+        <!--个人头像-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="9dp" />
+
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="47dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@+id/iv_photo"
             android:text="@string/serach_name"
-            android:textColor="@color/vistorTvbg"
+            android:textColor="@color/_28114D"
             android:textSize="14sp" />
 
-        <ImageView
-            android:id="@+id/iv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tv_name"
-            android:layout_below="@+id/tv_name"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/iv_location" />
-
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_location"
-            android:layout_marginLeft="4dp"
-            android:layout_toEndOf="@+id/iv_location"
-            android:text="@string/search_location" />
-
-        <ImageView
-            android:id="@+id/iv_country_flag"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"
-            android:layout_marginLeft="7dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/tv_location"
-            android:src="@drawable/japan" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/iv_photo"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/iv_country_flag"
-            android:text="@string/search_language" />
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv_name"
+                android:src="@drawable/iv_location" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_location"
+                android:layout_marginLeft="4dp"
+                android:layout_toEndOf="@+id/iv_location"
+                android:text="@string/search_location" />
+
+            <ImageView
+                android:id="@+id/iv_country_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginLeft="7dp"
+                android:layout_toRightOf="@+id/tv_location"
+                android:src="@drawable/japan" />
+
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@+id/iv_country_flag"
+                android:text="@string/search_language" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/tv_count_person"
@@ -86,7 +95,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/serach_count_person"
-            android:textColor="@color/vistorTvbg"
+            android:textColor="@color/_28114D"
             android:textSize="14sp" />
 
         <TextView
@@ -97,9 +106,8 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="7dp"
             android:text="@string/live_watching"
-            android:textColor="@color/vistorTvbg"
+            android:textColor="@color/_28114D"
             android:textSize="11sp" />
-
 
     </RelativeLayout>
 
@@ -109,8 +117,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_live_head"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/iv_hot_welcome"
         android:text="@string/search_welcome"
-        android:textColor="@color/white" />
+        android:textColor="@color/_FFFFFF" />
 
     <TextView
         android:id="@+id/tv_signature"
@@ -118,12 +128,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_welcome"
         android:layout_marginLeft="5dp"
+        android:background="@drawable/home_hot_signature_bg"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/search_signature"
-        android:textColor="@color/white"
+        android:textColor="@color/_FFFFFF"
         android:textSize="14sp" />
 
     <TextView
@@ -133,12 +144,13 @@
         android:layout_below="@+id/tv_signature"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="7dp"
+        android:background="@drawable/home_hot_signature_bg"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/search_signature2"
-        android:textColor="@color/white" />
+        android:textColor="@color/_FFFFFF" />
 
     <ImageView
         android:id="@+id/iv_live_status"
@@ -171,7 +183,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="5dp"
                 android:text="@string/search_ticket"
-                android:textColor="@color/LiveWhite" />
+                android:textColor="@color/_FEFEFF" />
 
             <TextView
                 android:id="@+id/tv_vip_price"
@@ -179,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="@string/search_price"
-                android:textColor="@color/LiveWhite" />
+                android:textColor="@color/_FEFEFF" />
 
             <ImageView
                 android:id="@+id/iv_vip_diamond"
@@ -210,7 +222,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="12dp"
                 android:text="@string/live_watching_percent"
-                android:textColor="@color/LiveWhite" />
+                android:textColor="@color/_FEFEFF" />
         </RelativeLayout>
 
     </RelativeLayout>

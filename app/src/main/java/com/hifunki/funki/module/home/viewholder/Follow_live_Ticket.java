@@ -11,7 +11,7 @@ import com.powyin.scroll.adapter.AdapterDelegate;
 import com.powyin.scroll.adapter.PowViewHolder;
 
 /**
- * 在此写用途
+ * 小布局
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>

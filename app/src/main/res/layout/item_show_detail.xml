@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/civ_show_detail_photo"
             android:text="玛丽莲曼森"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="15sp" />
     </RelativeLayout>
 

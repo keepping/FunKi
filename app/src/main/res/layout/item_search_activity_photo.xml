@@ -20,7 +20,7 @@
         fontPath="fonts/FZZDXFW.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="11sp"
         android:textStyle="bold" />
 </LinearLayout>

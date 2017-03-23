@@ -95,9 +95,9 @@ public class RankAnchorFragment extends BaseFragment {
     protected void initData() {
         super.initData();
         String imagePath = "http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg";
-        AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7612121);
-        AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 761212);
-        AnchorEntity anchorEntity3 = new AnchorEntity(AnchorEntity.TOP, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7625612);
+        AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.FIRST, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7612121);
+        AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.SECOND, 0, imagePath, "陪伴是最长情的告白", 1, 45, 761212);
+        AnchorEntity anchorEntity3 = new AnchorEntity(AnchorEntity.THIRD, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7625612);
         AnchorEntity anchorEntity4 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 76421);
         AnchorEntity anchorEntity5 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764124);
         AnchorEntity anchorEntity6 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764121);
@@ -113,7 +113,7 @@ public class RankAnchorFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-        mAdapter = new RankAnchorAdapter(getContext(),anchorEntities );
+        mAdapter = new RankAnchorAdapter(getContext(), anchorEntities);
         rlAnchor.setLayoutManager(new LinearLayoutManager(getContext()));
         rlAnchor.setAdapter(mAdapter);
     }

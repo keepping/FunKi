@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="173dp"
-    android:background="@color/forgetPwdBg"
+    android:background="@color/_0C001F"
     android:gravity="center_horizontal">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:background="@drawable/tv_pwd_bg"
             android:gravity="center"
             android:text="@string/login_find_by_phone"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="17sp" />
 
 
@@ -31,7 +31,7 @@
             android:background="@drawable/tv_pwd_bg"
             android:gravity="center"
             android:text="@string/login_find_by_email"
-            android:textColor="@color/titleText"
+            android:textColor="@color/_BBABD4"
             android:textSize="17sp" />
     </LinearLayout>
 

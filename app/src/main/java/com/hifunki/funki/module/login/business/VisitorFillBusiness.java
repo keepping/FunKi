@@ -25,11 +25,11 @@ public class VisitorFillBusiness {
     @SuppressWarnings("deprecation")
     public static void changeTvStyle(Context context, TextView tvs, TextView... textViews) {
 //        if (Build.VERSION.SDK_INT <= 23) {
-        tvs.setTextColor(context.getResources().getColor(R.color.vistorTvClickbg));
+        tvs.setTextColor(context.getResources().getColor(R.color._FFD71B));
         tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_click_bg));
 
         for (TextView tv : textViews) {
-            tv.setTextColor(context.getResources().getColor(R.color.titleText));
+            tv.setTextColor(context.getResources().getColor(R.color._BBABD4));
             tv.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_bg));
         }
     }
@@ -38,10 +38,10 @@ public class VisitorFillBusiness {
     public static void changeTvStyle(Context context, boolean isclick, TextView tvs) {
 //        if (Build.VERSION.SDK_INT <= 23) {
         if (isclick) {
-            tvs.setTextColor(context.getResources().getColor(R.color.vistorTvClickbg));
+            tvs.setTextColor(context.getResources().getColor(R.color._FFD71B));
             tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_click_bg));
         } else {
-            tvs.setTextColor(context.getResources().getColor(R.color.titleText));
+            tvs.setTextColor(context.getResources().getColor(R.color._BBABD4));
             tvs.setBackground(context.getResources().getDrawable(R.drawable.visitor_tv_bg));
         }
 

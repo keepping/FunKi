@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@color/vistorTvbg"
+    android:background="@color/_28114D"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/choose_country"
-                android:textColor="@color/titleText"
+                android:textColor="@color/_BBABD4"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -57,13 +57,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/iv_sex"
-                android:background="@drawable/bg_search_hot_lv"
+                android:background="@drawable/bg_lv"
                 android:paddingBottom="2dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="2dp"
                 android:text="@string/search_lv"
-                android:textColor="@color/white"
+                android:textColor="@color/_FFFFFF"
                 android:textSize="11sp" />
         </RelativeLayout>
 
@@ -74,7 +74,7 @@
             android:layout_below="@+id/rl_nick"
             android:layout_marginTop="6dp"
             android:text="@string/search_activity_recommend"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="11sp"
             android:textStyle="bold" />
 
@@ -99,5 +99,5 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_alignParentBottom="true"
-        android:background="@color/vistorTvbgNormal" />
+        android:background="@color/_4A2F75" />
 </RelativeLayout>

@@ -10,7 +10,7 @@ import com.hifunki.funki.base.activity.BaseActivity;
 import butterknife.BindView;
 
 /**
- * 在此写用途
+ * 直播收入详情
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

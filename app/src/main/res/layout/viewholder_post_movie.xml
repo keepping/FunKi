@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -18,7 +17,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:src="@drawable/bg_search_hot_lv" />
+            android:src="@drawable/bg_lv" />
 
         <TextView
             android:id="@+id/post_user_name"
@@ -114,10 +113,7 @@
         android:id="@+id/fun_player"
         android:layout_width="match_parent"
         android:layout_height="192dp"
-
         android:background="#000000" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"

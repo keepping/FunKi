@@ -8,5 +8,5 @@
 
     <stroke
         android:width="1px"
-        android:color="@color/searchHotTvBg" />
+        android:color="@color/_C56220" />
 </shape>

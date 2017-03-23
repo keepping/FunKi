@@ -6,13 +6,12 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.home.entity.HomeHotEntity;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.AdapterDelegate;
 import com.powyin.scroll.adapter.PowViewHolder;
 
 /**
- * 在此写用途
+ * 普通
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>

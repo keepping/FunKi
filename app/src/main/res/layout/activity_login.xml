@@ -4,7 +4,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".module.login.LoginActivity"
@@ -46,7 +46,7 @@
             android:layout_marginBottom="37dp"
             android:layout_marginTop="8dp"
             android:text="@string/app_name"
-            android:textColor="@color/funkiText"
+            android:textColor="@color/_FDFFFF"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_phone"
-                android:textColor="@color/vistorTvTitle"
+                android:textColor="@color/_9B44ED"
                 android:textSize="17sp" />
 
             <ImageView
@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_mail"
-                android:textColor="@color/loginTvUnClick"
+                android:textColor="@color/_6B4E9A"
                 android:textSize="17sp" />
 
             <ImageView
@@ -123,10 +123,10 @@
         android:layout_height="49dp"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="19dp"
-        android:background="@color/vistorTvbg"
+        android:background="@color/_28114D"
         android:gravity="center"
         android:text="@string/login"
-        android:textColor="@color/vistorTvbgNormal"
+        android:textColor="@color/_4A2F75"
         android:textSize="17sp" />
 
     <RelativeLayout
@@ -143,7 +143,7 @@
             android:layout_marginRight="14dp"
             android:layout_marginTop="19dp"
             android:text="@string/login_forget_pwd"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="15dp" />
 
         <TextView
@@ -154,7 +154,7 @@
             android:layout_marginRight="14dp"
             android:layout_marginTop="19dp"
             android:text="@string/login_help_center"
-            android:textColor="@color/loginTvUnClick"
+            android:textColor="@color/_6B4E9A"
             android:textSize="15dp" />
     </RelativeLayout>
 </LinearLayout>

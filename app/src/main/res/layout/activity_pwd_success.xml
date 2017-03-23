@@ -4,7 +4,7 @@
     android:id="@+id/activity_pwd_graph"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".module.login.PwdGraphActivity">
@@ -36,17 +36,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="29dp"
             android:text="@string/pwd_success_ok"
-            android:textColor="@color/newPwd"
+            android:textColor="@color/_61E46D"
             android:textSize="17sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="80dp"
-            android:background="@color/vistorTvClickbg"
+            android:background="@color/_FFD71B"
             android:gravity="center"
             android:text="@string/pwd_success_return"
-            android:textColor="@color/vistorTvbgNormal"
+            android:textColor="@color/_4A2F75"
             android:textSize="17sp" />
 
     </LinearLayout>

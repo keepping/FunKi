@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/vistorTvbg"
+    android:background="@color/_28114D"
     android:layout_height="53dp"
     android:orientation="vertical">
     <TextView
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_marginLeft="16dp"
@@ -28,7 +28,7 @@
     <TextView
         android:layout_marginRight="19dp"
         android:layout_toLeftOf="@+id/iv_next"
-        android:textColor="@color/loginTvUnClick"
+        android:textColor="@color/_6B4E9A"
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_centerVertical="true"
@@ -47,7 +47,7 @@
         android:layout_toLeftOf="@+id/tv_tag_count"
          />
     <View
-        android:background="@color/vistorTvbgNormal"
+        android:background="@color/_4A2F75"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>

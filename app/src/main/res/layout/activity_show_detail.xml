@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tpv_show_detail"
-        android:background="@color/showDetailBg">
+        android:background="@color/_240C48">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                     android:layout_marginLeft="29dp"
                     android:layout_toRightOf="@+id/iv_show_detail_video"
                     android:text="11/23 19:00"
-                    android:textColor="@color/titleText" />
+                    android:textColor="@color/_BBABD4" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -78,7 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="摇滚女团圣殿"
-                        android:textColor="@color/titleText" />
+                        android:textColor="@color/_BBABD4" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                     android:layout_alignLeft="@+id/ll_team_name"
                     android:layout_below="@+id/ll_team_name"
                     android:text="粉丝：56642"
-                    android:textColor="@color/titleText" />
+                    android:textColor="@color/_BBABD4" />
 
                 <ImageView
                     android:id="@+id/iv_show_detail_more"
@@ -111,7 +111,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@+id/iv_show_detail_more"
                     android:text="@string/more"
-                    android:textColor="@color/titleText" />
+                    android:textColor="@color/_BBABD4" />
 
             </RelativeLayout>
 
@@ -142,7 +142,7 @@
                     android:layout_marginLeft="29dp"
                     android:layout_toRightOf="@+id/iv_show_detail_msg"
                     android:text="@string/show_detail_content"
-                    android:textColor="@color/titleText" />
+                    android:textColor="@color/_BBABD4" />
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
@@ -169,7 +169,7 @@
         android:layout_marginRight="14dp"
         android:layout_marginTop="196dp"
         android:layout_toLeftOf="@+id/iv_buy"
-        android:background="@color/vistorTvTitle">
+        android:background="@color/_9B44ED">
 
         <ImageView
             android:id="@+id/iv_msg"
@@ -187,7 +187,7 @@
         android:layout_marginRight="14dp"
         android:layout_marginTop="196dp"
         android:layout_toLeftOf="@+id/ll_msg"
-        android:background="@color/vistorTvTitle">
+        android:background="@color/_9B44ED">
 
         <ImageView
             android:id="@+id/iv_collect"

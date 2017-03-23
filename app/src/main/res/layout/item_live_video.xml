@@ -35,7 +35,7 @@
             android:layout_marginLeft="47dp"
             android:layout_marginTop="10dp"
             android:text="@string/serach_name"
-            android:textColor="@color/vistorTvbg"
+            android:textColor="@color/_28114D"
             android:textSize="14sp" />
 
         <ImageView
@@ -84,7 +84,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/serach_count_person"
-            android:textColor="@color/vistorTvbg"
+            android:textColor="@color/_28114D"
             android:textSize="14sp" />
 
         <TextView
@@ -95,7 +95,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="7dp"
             android:text="@string/live_watching"
-            android:textColor="@color/vistorTvbg"
+            android:textColor="@color/_28114D"
             android:textSize="11sp" />
 
 
@@ -120,7 +120,7 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/search_signature"
-        android:textColor="@color/white"
+        android:textColor="@color/_FFFFFF"
         android:textSize="14sp" />
 
     <TextView
@@ -135,7 +135,7 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="@string/search_signature2"
-        android:textColor="@color/white" />
+        android:textColor="@color/_FFFFFF" />
 
     <ImageView
         android:id="@+id/iv_live_status"

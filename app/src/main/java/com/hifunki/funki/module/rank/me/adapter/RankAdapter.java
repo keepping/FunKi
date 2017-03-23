@@ -28,14 +28,13 @@ public class RankAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return RankPresentFragment.newInstance("t", "a");
-            case 1:
-                return RankPresentFragment.newInstance("t", "a");
-            default:
-                return RankPresentFragment.newInstance("t", "a");
+        if (position == 0) {
+            return RankPresentFragment.newInstance("t", "a");
+        } else if (position == 1) {
+            return RankPresentFragment.newInstance("t", "a");
         }
+        return RankPresentFragment.newInstance("t", "a");
+
     }
 
     @Override

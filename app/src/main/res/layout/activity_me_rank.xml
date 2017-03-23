@@ -17,12 +17,12 @@
     <android.support.design.widget.TabLayout
         fontPath="fonts/FZDHTFW.ttf"
         android:id="@+id/tb_rank"
-        app:tabBackground="@color/vistorTvbgNormal"
-        app:tabIndicatorColor="@color/vistorTvTitle"
+        app:tabBackground="@color/_4A2F75"
+        app:tabIndicatorColor="@color/_9B44ED"
         app:tabIndicatorHeight="2px"
         app:tabMinWidth="39dp"
-        app:tabSelectedTextColor="@color/vistorTvTitle"
-        app:tabTextColor="@color/loginTvUnClick"
+        app:tabSelectedTextColor="@color/_9B44ED"
+        app:tabTextColor="@color/_6B4E9A"
         android:layout_width="match_parent"
         android:layout_height="40dp">
 

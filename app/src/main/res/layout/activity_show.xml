@@ -35,7 +35,7 @@
                         layout="@layout/title_show" />
 
                     <RelativeLayout
-                        android:background="@color/bgColor"
+                        android:background="@color/_230C47"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@+id/title_show">
@@ -54,11 +54,11 @@
                                 android:layout_marginLeft="19dp"
                                 android:layout_marginTop="19dp"
                                 android:text="@string/day"
-                                android:textColor="@color/titleText"
+                                android:textColor="@color/_BBABD4"
                                 android:textSize="44dp" />
 
                             <TextView
-                                android:textColor="@color/titleText"
+                                android:textColor="@color/_BBABD4"
                                 android:textStyle="bold"
                                 fontPath="fonts/FZZDXFW.ttf"
                                 android:textSize="15sp"
@@ -71,7 +71,7 @@
                                 android:text="@string/week" />
 
                             <TextView
-                                android:textColor="@color/vistorTvbgNormal"
+                                android:textColor="@color/_4A2F75"
                                 android:textStyle="bold"
                                 fontPath="fonts/FZZDXFW.ttf"
                                 android:textSize="11sp"

@@ -204,12 +204,15 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         switch (checkedId) {
             case rb_home_follow:
                 vpHome.setCurrentItem(0);
+                ivHomeIndicate.setVisibility(View.INVISIBLE);
                 break;
             case R.id.rb_home_hot:
                 vpHome.setCurrentItem(1);
+                ivHomeIndicate.setVisibility(View.VISIBLE);
                 break;
             case R.id.rb_home_new:
                 vpHome.setCurrentItem(2);
+                ivHomeIndicate.setVisibility(View.INVISIBLE);
                 break;
         }
     }
@@ -224,21 +227,24 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         switch (position) {
             case 0:
                 rbHomeFollow.setChecked(true);
-                rbHomeFollow.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
-                rbHomeHot.setTextColor(getResources().getColor(R.color.titleText));
-                rbHomeNew.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeFollow.setTextColor(getResources().getColor(R.color._FFD71B));
+                rbHomeHot.setTextColor(getResources().getColor(R.color._BBABD4));
+                rbHomeNew.setTextColor(getResources().getColor(R.color._BBABD4));
+                ivHomeIndicate.setVisibility(View.INVISIBLE);
                 break;
             case 1:
                 rbHomeHot.setChecked(true);
-                rbHomeHot.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
-                rbHomeFollow.setTextColor(getResources().getColor(R.color.titleText));
-                rbHomeNew.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeHot.setTextColor(getResources().getColor(R.color._FFD71B));
+                rbHomeFollow.setTextColor(getResources().getColor(R.color._BBABD4));
+                rbHomeNew.setTextColor(getResources().getColor(R.color._BBABD4));
+                ivHomeIndicate.setVisibility(View.VISIBLE);
                 break;
             case 2:
                 rbHomeNew.setChecked(true);
-                rbHomeNew.setTextColor(getResources().getColor(R.color.vistorTvClickbg));
-                rbHomeHot.setTextColor(getResources().getColor(R.color.titleText));
-                rbHomeFollow.setTextColor(getResources().getColor(R.color.titleText));
+                rbHomeNew.setTextColor(getResources().getColor(R.color._FFD71B));
+                rbHomeHot.setTextColor(getResources().getColor(R.color._BBABD4));
+                rbHomeFollow.setTextColor(getResources().getColor(R.color._BBABD4));
+                ivHomeIndicate.setVisibility(View.INVISIBLE);
                 break;
         }
     }

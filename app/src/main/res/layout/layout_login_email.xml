@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="111dp"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/vistorTvbg">
+        android:background="@color/_28114D">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_marginLeft="43dp"
-                android:background="@color/vistorTvbgNormal" />
+                android:background="@color/_4A2F75" />
 
             <EditText
                 android:id="@+id/etInputEmail"
@@ -50,8 +50,8 @@
                 android:maxLines="1"
                 android:paddingLeft="1dp"
                 android:singleLine="true"
-                android:textColor="@color/titleText"
-                android:textColorHint="@color/vistorTvbgNormal"
+                android:textColor="@color/_BBABD4"
+                android:textColorHint="@color/_4A2F75"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="4dp"
-        android:background="@color/vistorTvbg">
+        android:background="@color/_28114D">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_marginLeft="43dp"
-                android:background="@color/vistorTvbgNormal" />
+                android:background="@color/_4A2F75" />
 
             <EditText
                 android:id="@+id/etEmailPwd"
@@ -99,8 +99,8 @@
                 android:maxLines="1"
                 android:paddingLeft="1dp"
                 android:singleLine="true"
-                android:textColor="@color/titleText"
-                android:textColorHint="@color/vistorTvbgNormal"
+                android:textColor="@color/_BBABD4"
+                android:textColorHint="@color/_4A2F75"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </RelativeLayout>

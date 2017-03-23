@@ -4,13 +4,13 @@
     tools:ignore="MissingPrefix"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="111dp"
-    android:background="@color/bgColor"
+    android:background="@color/_230C47"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/vistorTvbg"
+        android:background="@color/_28114D"
         android:orientation="horizontal">
 
         <ImageView
@@ -31,7 +31,7 @@
                 android:layout_width="1px"
                 android:layout_height="29dp"
                 android:layout_gravity="center"
-                android:background="@color/vistorTvbgNormal" />
+                android:background="@color/_4A2F75" />
 
             <LinearLayout
                 android:id="@+id/llCounty"
@@ -52,7 +52,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="14dp"
                     android:text="+81"
-                    android:textColor="@color/titleText"
+                    android:textColor="@color/_BBABD4"
                     android:textSize="17sp" />
             </LinearLayout>
 
@@ -61,11 +61,11 @@
                 android:layout_height="29dp"
                 android:layout_gravity="center"
 
-                android:background="@color/vistorTvbgNormal" />
+                android:background="@color/_4A2F75" />
 
             <EditText
                 fontPath="fonts/FZZDXFW.ttf"
-                android:textCursorDrawable="@color/vistorTvTitle"
+                android:textCursorDrawable="@color/_9B44ED"
                 android:id="@+id/etIuputTel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -77,7 +77,7 @@
                 android:maxLines="1"
                 android:paddingLeft="1dp"
                 android:singleLine="true"
-                android:textColorHint="@color/vistorTvbgNormal"
+                android:textColorHint="@color/_4A2F75"
                 android:textSize="17sp" />
         </LinearLayout>
 
@@ -89,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="4dp"
-        android:background="@color/vistorTvbg">
+        android:background="@color/_28114D">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -111,7 +111,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_marginLeft="43dp"
-                android:background="@color/vistorTvbgNormal" />
+                android:background="@color/_4A2F75" />
 
             <EditText
                 fontPath="fonts/FZZDXFW.ttf"
@@ -126,8 +126,8 @@
                 android:hint="@string/login_input_password"
                 android:maxLines="1"
                 android:paddingLeft="1dp"
-                android:textCursorDrawable="@color/vistorTvTitle"
-                android:textColorHint="@color/vistorTvbgNormal"
+                android:textCursorDrawable="@color/_9B44ED"
+                android:textColorHint="@color/_4A2F75"
                 android:textSize="17sp" />
 
         </RelativeLayout>
