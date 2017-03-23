@@ -16,7 +16,7 @@
         android:id="@+id/rl_show_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/showItemBg">
+        android:background="@color/_2E115D">
 
         <TextView
             android:id="@+id/tv_show_tag"
@@ -27,7 +27,7 @@
             android:background="@drawable/bg_show_item_text"
             android:gravity="center"
             android:text="@string/show_tag"
-            android:textColor="@color/showItemTag"
+            android:textColor="@color/_FFE87C"
             android:textSize="11sp" />
 
         <TextView
@@ -84,7 +84,7 @@
             android:layout_marginTop="5dp"
             android:layout_toLeftOf="@+id/ll_show_price"
             android:text="@string/show_ticket_sale"
-            android:textColor="@color/homeTitleBg" />
+            android:textColor="@color/_FFD71B" />
 
         <TextView
             android:id="@+id/tv_vip_percent"

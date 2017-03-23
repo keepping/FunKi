@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="今天"
-            android:textColor="@color/eighteenrTvBg"
+            android:textColor="@color/_6B4E9A"
             android:textSize="15sp" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12:29"
-            android:textColor="@color/eighteenrTvBg"
+            android:textColor="@color/_6B4E9A"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="直播收入"
-            android:textColor="@color/eighteenrTvBg" />
+            android:textColor="@color/_6B4E9A" />
     </LinearLayout>
 
     <TextView

@@ -11,31 +11,24 @@
 
     <!--以下颜色暂时按照16进制大小排序-->
     <color name="_0C001F">#0C001F</color>
+    <color name="_140231">#140231</color>
     <color name="_230C47">#230C47</color>
+    <color name="_240C48">#240C48</color>
     <color name="_28114D">#28114D</color>
+    <color name="_2E115D">#2E115D</color>
+    <color name="_390A68">#390A68</color>
+    <color name="_432376">#432376</color>
     <color name="_4A2F75">#4A2F75</color>
     <color name="_61E46D">#61E46D</color>
     <color name="_6B4E9A">#6B4E9A</color>
+    <color name="_756C2F">#756C2F</color>
     <color name="_9B44ED">#9B44ED</color>
     <color name="_AB2D2D">#AB2D2D</color>
     <color name="_BBABD4">#BBABD4</color>
+    <color name="_C56220">#C56220</color>
     <color name="_FDFFFF">#FDFFFF</color>
     <color name="_FFD71B">#FFD71B</color>
+    <color name="_FFE87C">#FFE87C</color>
     <color name="_FFFFFF">#FFFFFF</color>
-
-    <color name="eighteenrTvBg">#6B4E9A</color>
-    <color name="searchHotBg">#432376</color>
-    <color name="homeTitleBg">#FFD71B</color>
-
-    <color name="searchHotTvBg">#C56220</color>
-    <color name="showItemBg">#2E115D</color>
-    <color name="showItemTag">#FFE87C</color>
-
-    <color name="meBg">#390A68</color>
-    <color name="meMidBg">#140231</color>
-    <color name="meLvText">#756C2F</color>
-
-    <color name="showDetailBg">#240C48</color>
-
 
 </resources>

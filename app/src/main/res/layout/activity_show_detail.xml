@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tpv_show_detail"
-        android:background="@color/showDetailBg">
+        android:background="@color/_240C48">
 
         <RelativeLayout
             android:layout_width="match_parent"

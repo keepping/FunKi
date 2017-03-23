@@ -97,7 +97,7 @@
             android:paddingBottom="2dp"
             android:paddingRight="5dp"
             android:text="@string/me_lv_num"
-            android:textColor="@color/meLvText"
+            android:textColor="@color/_756C2F"
             android:textSize="13sp" />
     </RelativeLayout>
 

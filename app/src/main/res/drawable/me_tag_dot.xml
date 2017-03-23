@@ -4,5 +4,5 @@
     >
     <size android:width="7dp"
         android:height="7dp"/>
-    <solid android:color="@color/searchHotTvBg"/>
+    <solid android:color="@color/_C56220"/>
 </shape>
