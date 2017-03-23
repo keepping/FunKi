@@ -23,6 +23,9 @@ import java.util.List;
  * @since 2017-03-10 10:25:25
  */
 public class ActivitySearchAdapter extends BaseQuickAdapter<ActivityEntity, BaseViewHolder> {
+    public static final int FIRST_STICKY_VIEW = 1;
+    public static final int HAS_STICKY_VIEW = 2;
+    public static final int NONE_STICKY_VIEW = 3;
     private Context mContext;
 
     public ActivitySearchAdapter(Context context, int layoutResId, List<ActivityEntity> data) {
@@ -33,6 +36,14 @@ public class ActivitySearchAdapter extends BaseQuickAdapter<ActivityEntity, Base
 
     @Override
     protected void convert(BaseViewHolder helper, ActivityEntity item) {
+//        TextView tvSticky=helper.getView(R.id.tv_sticky_header_view);
+//        if(helper.getAdapterPosition()==0){
+//            tvSticky.setVisibility(View.VISIBLE);
+//            tvSticky.setTag(FIRST_STICKY_VIEW);
+//        }else{
+//
+//        }
+
         Glide.with(mContext).load(item.getActivityImage()).into((ImageView) helper.getView(R.id.iv_activity_image));
 
         RecyclerView recycleView = helper.getView(R.id.rv_activity_join);
