@@ -8,9 +8,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:orientation="horizontal"
         android:background="#fff700"
-        >
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/post_user_head"
@@ -77,30 +76,27 @@
             android:layout_width="10dp"
             android:layout_height="10dp"
 
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/post_user_location"
             android:src="@drawable/ic_nav_me_actived"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="15dp"
             android:text="1分钟"
-            android:textSize="11sp"
             android:textColor="#6B4E9A"
-            />
+            android:textSize="11sp" />
+
         <TextView
             android:id="@+id/post_user_county"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_toRightOf="@+id/post_user_c"
-            android:text="English"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="4dp"
-            android:textSize="11sp"
+            android:layout_toRightOf="@+id/post_user_c"
+            android:text="English"
             android:textColor="#6B4E9A"
-            />
-
-
+            android:textSize="11sp" />
 
 
     </RelativeLayout>
@@ -109,222 +105,93 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
         android:text="安妮·海瑟薇在出演《公主日记》后被《人物》杂志封为2001年最佳新星。2005年，安妮·海瑟薇出演《断背山》。2006年，安妮·海瑟薇出演了《穿普喜剧类最佳女主角。2012年"
-        android:textColor="#c193ec" />
+        android:textColor="#c193ec"
+        android:textSize="15sp" />
 
-    <FrameLayout
+
+    <com.hifunki.funki.widget.FunKiPlayer
+        android:id="@+id/fun_player"
         android:layout_width="match_parent"
         android:layout_height="192dp"
-        android:background="#000000"
-        >
 
-        <com.hifunki.funki.module.home.widget.FKVideoView
-            android:id="@+id/video_view"
-            android:layout_width="wrap_content"
-            android:layout_height="192dp"
-            android:layout_gravity="center" />
-
-
-
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"/>
-
-        <FrameLayout
-            android:id="@+id/play"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/play_init"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-
-                android:layout_gravity="center"
-                android:src="@drawable/play_start_1"
-                />
-
-            <ProgressBar
-                android:id="@+id/play_loading"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-
-                />
-
-            <ImageView
-                android:id="@+id/play_pause"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:src="@drawable/play_pause"
-                />
-
-
-            <ImageView
-                android:id="@+id/play_restart"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:src="@drawable/play_restart"
-                />
-
-        </FrameLayout>
-
-        <LinearLayout
-            android:id="@+id/play_control"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:orientation="horizontal"
-            android:background="#66000000"
-            android:gravity="center_vertical"
-
-            android:layout_gravity="bottom"
-            >
-
-            <ImageView
-                android:id="@+id/play_pause_or_start"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/play_pause" />
-
-            <TextView
-                android:id="@+id/play_time_current"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:textColor="#efefef"
-                android:text="0:22"
-                android:textSize="18sp" />
-
-            <SeekBar
-                android:id="@+id/play_seek"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_weight="10"
-
-               />
-
-            <TextView
-                android:id="@+id/play_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:textColor="#efefef"
-                android:text="1:34"
-                android:textSize="18sp" />
-
-            <ImageView
-                android:id="@+id/play_full_screen"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="5dp"
-                android:layout_alignParentBottom="true"
-
-                android:layout_marginRight="10dp"
-
-                android:src="@drawable/play_full_screen" />
-
-
-        </LinearLayout>
-
-
-
-
-
-
-    </FrameLayout>
-
-
-
+        android:background="#000000" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp" android:orientation="horizontal"
+        android:layout_height="56dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
 
         >
 
         <Space
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="10"/>
+            android:layout_weight="10" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="#99ff99"/>
+            android:background="#99ff99" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2000"
-            android:textColor="#b1a1df"
-            />
+            android:textColor="#b1a1df" />
 
         <Space
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="10"/>
+            android:layout_weight="10" />
+
         <Space
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="10"/>
+            android:layout_weight="10" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="#99ff99"/>
+            android:background="#99ff99" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2000"
-            android:textColor="#b1a1df"
-            />
+            android:textColor="#b1a1df" />
 
         <Space
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="10"/>
+            android:layout_weight="10" />
 
 
         <Space
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="10"/>
+            android:layout_weight="10" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="#99ff99"/>
+            android:background="#99ff99" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2000"
-            android:textColor="#b1a1df"
-            />
+            android:textColor="#b1a1df" />
 
         <Space
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="10"/>
-
-
-
+            android:layout_weight="10" />
 
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>
