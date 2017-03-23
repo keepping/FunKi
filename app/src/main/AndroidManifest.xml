@@ -147,7 +147,8 @@
         <!-- 头像认证 录制视频 -->
         <activity android:name=".module.home.me.user.RecodeMovieActivity" />
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
-        <activity android:name=".module.home.me.profile.activity.EditProfileActivity"></activity>
+        <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
+        <activity android:name=".module.room.activity.OtherRoomActivity"></activity>
     </application>
 
 </manifest>

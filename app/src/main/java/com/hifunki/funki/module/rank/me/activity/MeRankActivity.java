@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.rank.me.adapter.RankAdapter;
 import com.hifunki.funki.module.rank.me.fragment.RankPresentFragment;
+import com.hifunki.funki.widget.TopBarView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +29,10 @@ import butterknife.BindView;
  * @link
  * @since 2017-03-20 14:18:18
  */
-public class MeRankActivity extends BaseActivity implements RankPresentFragment.OnFragmentInteractionListener {
+public class MeRankActivity extends BaseActivity implements RankPresentFragment.OnFragmentInteractionListener, View.OnClickListener {
 
+    @BindView(R.id.topView)
+    TopBarView topBarView;
     @BindView(R.id.tb_rank)
     TabLayout tbRank;
     @BindView(R.id.vp_rank)
@@ -62,6 +68,15 @@ public class MeRankActivity extends BaseActivity implements RankPresentFragment.
 
     @Override
     protected void initView() {
+        ImageView rightImageMore = topBarView.getRightImageMore();
+
+        //点击弹出周榜
+        rightImageMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MeRankActivity.this,"tsest",Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -81,5 +96,15 @@ public class MeRankActivity extends BaseActivity implements RankPresentFragment.
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.topView://开启下拉菜单
+                Toast.makeText(this,"test",Toast.LENGTH_LONG).show();
+
+                break;
+        }
     }
 }
