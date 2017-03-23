@@ -3,6 +3,8 @@ package com.hifunki.funki.module.home.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
@@ -54,7 +56,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
     @BindView(R.id.activity_main_ui)
     LinearLayout activityMainUi;
     private NavFragment mNavBar;
-    private List<TurnBackListener> mTurnBackListeners = new ArrayList<>();
+
     private long mBackPressedTime;
 
     public static void show(Context context, Activity activity) {
@@ -141,9 +143,14 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
 
     @Override
     public void onBackPressed() {
-        for (TurnBackListener l : mTurnBackListeners) {
-            if (l.onTurnBack()) return;
+
+        Configuration mConfiguration = this.getResources().getConfiguration();
+        if(mConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            return;
         }
+
+
         boolean isDoubleClick = true;
         if (isDoubleClick) {
             long curTime = SystemClock.uptimeMillis();
