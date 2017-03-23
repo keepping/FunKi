@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="LiveWhite">#FEFEFF</color>
-    <color name="black">#000000</color>
-
-
     <color name="colorPrimary">#230C47</color>
     <color name="colorPrimaryDark">#230C47</color>
     <color name="colorAccent">#FF4081</color>
 
     <!--以下颜色暂时按照16进制大小排序-->
+    <color name="_000000">#000000</color>
     <color name="_0C001F">#0C001F</color>
     <color name="_140231">#140231</color>
     <color name="_230C47">#230C47</color>
@@ -29,6 +26,7 @@
     <color name="_FDFFFF">#FDFFFF</color>
     <color name="_FFD71B">#FFD71B</color>
     <color name="_FFE87C">#FFE87C</color>
+    <color name="_FEFEFF">#FEFEFF</color>
     <color name="_FFFFFF">#FFFFFF</color>
 
 </resources>
