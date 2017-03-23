@@ -5,9 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hifunki.funki.module.room.activity.OtherRoomActivity">
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/layout_info" />
+
+        </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>
