@@ -5,82 +5,89 @@
     android:background="@color/_28114D"
     android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_photo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="9dp"
-        android:src="@drawable/ic_nav_home_actived" />
-
     <ImageView
         android:id="@+id/iv_imagepath"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_below="@+id/iv_photo"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="42dp"
         android:scaleType="fitXY" />
 
+    <!--顶部title背景-->
     <RelativeLayout
         android:id="@+id/rl_live_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/iv_live_normal_title_bg">
 
+        <!--个人头像-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="9dp" />
+
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="47dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@+id/iv_photo"
             android:text="@string/serach_name"
             android:textColor="@color/_BBABD4"
             android:textSize="14sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/iv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tv_name"
-            android:layout_below="@+id/tv_name"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/iv_location" />
-
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_location"
-            android:layout_marginLeft="4dp"
-            android:layout_toEndOf="@+id/iv_location"
-            android:text="@string/search_location"
-            android:textColor="@color/_6B4E9A"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/iv_country_flag"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"
-            android:layout_marginLeft="7dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/tv_location"
-            android:src="@drawable/japan" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/iv_photo"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/iv_country_flag"
-            android:text="@string/search_language"
-            android:textColor="@color/_6B4E9A"
-            android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv_name"
+                android:src="@drawable/iv_location" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_location"
+                android:layout_marginLeft="4dp"
+                android:layout_toEndOf="@+id/iv_location"
+                android:text="@string/search_location"
+                android:textColor="@color/_6B4E9A"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_country_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginLeft="7dp"
+                android:layout_toRightOf="@+id/tv_location"
+                android:src="@drawable/japan" />
+
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@+id/iv_country_flag"
+                android:text="@string/search_language"
+                android:textColor="@color/_6B4E9A"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_count_person"
@@ -104,26 +111,36 @@
             android:textColor="@color/_BBABD4"
             android:textSize="11sp"
             android:textStyle="bold" />
-
-
     </RelativeLayout>
 
-
-    <TextView
-        android:id="@+id/tv_welcome"
+    <LinearLayout
+        android:id="@+id/ll_live_head"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_live_head"
-        android:text="@string/search_welcome"
-        android:textColor="@color/_FFFFFF"
-        android:textStyle="bold" />
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/iv_hot_welcome">
+
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="2.5dp"
+            android:text="@string/search_welcome"
+            android:textColor="@color/_FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_signature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_welcome"
+        android:layout_below="@+id/ll_live_head"
         android:layout_marginLeft="5dp"
+        android:background="@drawable/home_hot_signature_bg"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -134,6 +151,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:background="@drawable/home_hot_signature_bg"
         android:id="@+id/tv_signature2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -158,7 +176,6 @@
         android:layout_marginTop="5dp"
         android:src="@drawable/iv_search_live" />
 
-
     <ImageView
         android:id="@+id/iv_vip_diamond"
         android:layout_width="wrap_content"
@@ -167,8 +184,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="7dp"
         android:layout_marginRight="10dp"
-
         android:src="@drawable/iv_search_lv_bg" />
-
 
 </RelativeLayout>

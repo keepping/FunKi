@@ -6,8 +6,6 @@
     tools:context="com.hifunki.funki.module.home.fragment.HomeFragment"
     tools:ignore="MissingPrefix">
 
-
-
     <RelativeLayout
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
@@ -55,7 +53,6 @@
             android:layout_below="@+id/iv_home_funki"
             android:layout_centerHorizontal="true"
             android:src="@drawable/iv_home_indicate" />
-
 
         <RadioGroup
             android:id="@+id/rg_home_title"

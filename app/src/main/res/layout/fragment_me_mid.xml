@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,271 +10,287 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
-    <RelativeLayout
-        android:id="@+id/rl_recharge"
-        android:layout_width="117dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="2dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:background="@color/_140231">
+            android:id="@+id/rl_recharge"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50.5dp"
+                android:background="@color/_140231">
+
+                <TextView
+                    android:id="@+id/tv_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/account"
+                    android:textColor="@color/_BBABD4"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="19dp"
+                    android:layout_toRightOf="@+id/tv_account"
+                    android:src="@drawable/iv_me_account" />
+
+            </RelativeLayout>
+
+            <com.hifunki.funki.widget.DashedLineView
+                android:id="@+id/dl_me_account"
+                android:layout_width="211dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="51dp"
+                app:dashOrientation="0"
+                app:dashWidth="2dp"
+                app:lineColor="@color/_6B4E9A"
+                app:lineHeight="2dp"
+                app:lineWidth="5dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/dl_me_account"
+                android:background="@color/_140231"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_me_account_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/me_account_num"
+                    android:textColor="@color/_9B44ED" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_toRightOf="@+id/tv_me_account_num"
+                    android:src="@drawable/iv_vip_diamond" />
+
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:text="@string/account"
+                android:id="@+id/tv_recharge"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_me_account"
+                android:gravity="center"
+                android:text="@string/recharge"
                 android:textColor="@color/_BBABD4"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="19dp"
-                android:layout_toRightOf="@+id/tv_account"
-                android:src="@drawable/iv_me_account" />
-
-        </RelativeLayout>
-
-        <com.hifunki.funki.widget.DashedLineView
-            android:id="@+id/dl_me_account"
-            android:layout_width="211dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="51dp"
-            app:dashOrientation="0"
-            app:dashWidth="2dp"
-            app:lineColor="@color/_6B4E9A"
-            app:lineHeight="2dp"
-            app:lineWidth="5dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/dl_me_account"
-            android:background="@color/_140231">
-
-            <TextView
-                android:id="@+id/tv_me_account_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="9dp"
-                android:text="@string/me_account_num"
-                android:textColor="@color/_9B44ED" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="9dp"
-                android:layout_toRightOf="@+id/tv_me_account_num"
-                android:src="@drawable/iv_vip_diamond" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_recharge"
-            android:layout_width="match_parent"
-            android:layout_height="29dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bg_me_account"
-            android:gravity="center"
-            android:text="@string/recharge"
-            android:textColor="@color/_BBABD4"
-            android:textSize="15sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_exchange"
-        android:layout_width="117dp"
-        android:layout_height="120dp"
-        android:layout_below="@+id/rl_me_head"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/rl_recharge">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:background="@color/_140231">
-
-            <TextView
-                android:id="@+id/tv_income"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:text="@string/income"
-                android:textColor="@color/_BBABD4"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="19dp"
-                android:layout_toRightOf="@+id/tv_income"
-                android:src="@drawable/iv_me_income" />
-
-        </RelativeLayout>
-
-        <com.hifunki.funki.widget.DashedLineView
-            android:id="@+id/dl_me_income"
-            android:layout_width="211dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="51dp"
-            app:dashOrientation="0"
-            app:dashWidth="2dp"
-            app:lineColor="@color/_6B4E9A"
-            app:lineHeight="2dp"
-            app:lineWidth="5dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dl_me_income"
-            android:background="@color/_140231">
-
-            <TextView
-                android:id="@+id/tv_me_income_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:text="@string/me_account_num"
                 android:textSize="15sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="8dp"
-                android:layout_toRightOf="@+id/tv_me_income_num"
-                android:src="@drawable/iv_me_income_unit" />
-
-            <TextView
-                android:id="@+id/tv_me_income_recharge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_me_income_num"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="@string/me_income_recharge_num"
-                android:textSize="11sp"
-                android:textStyle="bold" />
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="29dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bg_me_account"
-            android:gravity="center"
-            android:text="@string/excharge"
-            android:textColor="@color/_BBABD4"
-            android:textSize="15sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="117dp"
-        android:layout_height="120dp"
-        android:layout_below="@+id/rl_me_head"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/rl_exchange">
-
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:background="@color/_140231">
+            android:id="@+id/rl_exchange"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_below="@+id/rl_me_head"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/rl_recharge"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50.5dp"
+                android:background="@color/_140231">
+
+                <TextView
+                    android:id="@+id/tv_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/income"
+                    android:textColor="@color/_BBABD4"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="19dp"
+                    android:layout_toRightOf="@+id/tv_income"
+                    android:src="@drawable/iv_me_income" />
+
+            </RelativeLayout>
+
+            <com.hifunki.funki.widget.DashedLineView
+                android:id="@+id/dl_me_income"
+                android:layout_width="211dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="51dp"
+                app:dashOrientation="0"
+                app:dashWidth="2dp"
+                app:lineColor="@color/_6B4E9A"
+                app:lineHeight="2dp"
+                app:lineWidth="5dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/dl_me_income"
+                android:background="@color/_140231"
+                android:gravity="center_horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/rl_me_income"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_me_income_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/me_account_num"
+                        android:textColor="@color/_BBABD4"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@+id/tv_me_income_num"
+                        android:src="@drawable/iv_me_income_unit" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_me_income_recharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_me_income"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/me_income_recharge_num"
+                    android:textColor="@color/_9B44ED"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_balance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:text="@string/balance"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_me_account"
+                android:gravity="center"
+                android:text="@string/excharge"
                 android:textColor="@color/_BBABD4"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="19dp"
-                android:layout_toRightOf="@+id/tv_balance"
-                android:src="@drawable/iv_me_balance" />
-
+                android:textSize="15sp" />
         </RelativeLayout>
-
-        <com.hifunki.funki.widget.DashedLineView
-            android:id="@+id/dl_me_balance"
-            android:layout_width="211dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="51dp"
-            app:dashOrientation="0"
-            app:dashWidth="2dp"
-            app:lineColor="@color/_6B4E9A"
-            app:lineHeight="2dp"
-            app:lineWidth="5dp" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dl_me_balance"
-            android:background="@color/_140231">
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_below="@+id/rl_me_head"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/rl_exchange"
+            android:layout_weight="1">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50.5dp"
+                android:background="@color/_140231">
+
+                <TextView
+                    android:id="@+id/tv_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/balance"
+                    android:textColor="@color/_BBABD4"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="19dp"
+                    android:layout_toRightOf="@+id/tv_balance"
+                    android:src="@drawable/iv_me_balance" />
+
+            </RelativeLayout>
+
+            <com.hifunki.funki.widget.DashedLineView
+                android:id="@+id/dl_me_balance"
+                android:layout_width="211dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="51dp"
+                app:dashOrientation="0"
+                app:dashWidth="2dp"
+                app:lineColor="@color/_6B4E9A"
+                app:lineHeight="2dp"
+                app:lineWidth="5dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dl_me_balance"
+                android:background="@color/_140231">
+
+                <TextView
+                    android:id="@+id/tv_me_balance_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/me_account_num"
+                    android:textColor="@color/_BBABD4" />
+
+                <TextView
+                    fontPath="fonts/arial_0.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toRightOf="@+id/tv_me_balance_num"
+                    android:text="@string/me_balance_unit"
+                    android:textColor="@color/_FFD71B" />
+
+                <TextView
+                    android:id="@+id/tv_me_balance_recharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_me_balance_num"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/me_income_balance_num"
+                    android:textColor="@color/_9B44ED"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_me_balance_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="9dp"
-                android:text="@string/me_account_num" />
-
-            <TextView
-                fontPath="fonts/arial_0.ttf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="9dp"
-                android:layout_toRightOf="@+id/tv_me_balance_num"
-                android:text="@string/me_balance_unit" />
-
-            <TextView
-                android:id="@+id/tv_me_balance_recharge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_me_balance_num"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="@string/me_income_recharge_num"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_me_account"
+                android:gravity="center"
+                android:text="@string/withdraw"
+                android:textColor="@color/_BBABD4"
+                android:textSize="15sp" />
         </RelativeLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="29dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bg_me_account"
-            android:gravity="center"
-            android:text="@string/withdraw"
-            android:textColor="@color/_BBABD4"
-            android:textSize="15sp" />
-    </RelativeLayout>
-
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -312,7 +328,6 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
 
         <ImageView
             android:layout_width="wrap_content"
@@ -372,4 +387,4 @@
             android:layout_toRightOf="@+id/ll_live"
             android:src="@drawable/iv_me_live" />
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

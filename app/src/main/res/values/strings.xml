@@ -91,13 +91,13 @@
     <string name="search_activity_recommend">活动推荐</string>
 
     <string name="serach_name">垃圾朋克</string>
-    <string name="serach_count_person">(%s)人</string>
+    <string name="serach_count_person">2555人</string>
     <string name="search_location">名古屋</string>
     <string name="search_language">English</string>
     <string name="search_welcome">欢迎大家来看我的调酒表演</string>
     <string name="search_signature">柠檬红茶</string>
     <string name="search_signature2">电音控</string>
-    <string name="search_price">%S</string>
+    <string name="search_price">25</string>
     <string name="search_ticket">票价:</string>
     <string name="world_rank_anchor">主播人气</string>
     <string name="world_rank_rich">土豪贡献榜</string>
@@ -155,7 +155,8 @@
     <string name="live">直播</string>
     <string name="dynamic">动态</string>
     <string name="me_balance_unit">$</string>
-    <string name="me_income_recharge_num">可兑换340$</string>
+    <string name="me_income_recharge_num">(可兑换340$)</string>
+    <string name="me_income_balance_num">今日可体现200$</string>
     <string name="self_gallery">个人相册</string>
     <string name="vistor_record">访问记录</string>
     <string name="my_field_control">我的场控</string>
