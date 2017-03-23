@@ -79,6 +79,8 @@ public class HomeNewFragment extends BaseFragment {
             entities.add(homeNewEntity);
             entities.add(homeNewEntity1);
         }
+
+
         HomeNewAdapter adapter=new HomeNewAdapter(R.layout.item_live_new,entities);
 
         rvNew.setLayoutManager(new GridLayoutManager(getContext(),2));
