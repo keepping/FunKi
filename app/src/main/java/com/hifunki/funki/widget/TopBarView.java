@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hifunki.funki.R;
 import com.hifunki.funki.util.StatusBarUtil;
 
@@ -116,6 +115,7 @@ public class TopBarView extends RelativeLayout {
     }
 
 
+
     private void doBack(final Context context) {
         Class c = context.getClass();
         try {
@@ -126,19 +126,20 @@ public class TopBarView extends RelativeLayout {
         }
     }
 
-    public TextView getRightText(){
+    public TextView getRightText() {
         return tv_right_1;
     }
 
-    public TextView getRightTextMore(){
+    public TextView getRightTextMore() {
         return tv_right_r;
     }
 
-    public ImageView getRightImage(){
+    public ImageView getRightImage() {
         return iv_right_1;
     }
 
-    public ImageView getRightImageMore(){
+    //最后边的ImageView
+    public ImageView getRightImageMore() {
         return iv_right_r;
     }
 

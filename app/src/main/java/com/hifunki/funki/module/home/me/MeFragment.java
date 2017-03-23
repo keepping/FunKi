@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
+import com.hifunki.funki.module.home.me.profile.activity.EditProfileActivity;
 import com.hifunki.funki.module.home.me.user.UserAvatarActivity;
 import com.hifunki.funki.module.home.me.bill.activity.BillActivity;
 import com.hifunki.funki.module.home.me.fans.activity.MyFansActivity;
@@ -57,6 +58,8 @@ public class MeFragment extends BaseFragment {
     CircleImageView civMePhoto;
     @BindView(R.id.iv_me_bill)
     ImageView ivMeBill;
+    @BindView(R.id.iv_me_profile)
+    ImageView ivMeProfile;
     @BindView(R.id.iv_me_share)
     ImageView ivMeShare;
     @BindView(R.id.iv_me_list)
@@ -193,6 +196,9 @@ public class MeFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.iv_me_bill:
                 BillActivity.show(getContext());
+                break;
+            case R.id.iv_me_profile:
+                EditProfileActivity.show(getContext());
                 break;
             case R.id.iv_me_share://下拉的分享popupWindow
                 //创建PopWindow
