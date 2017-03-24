@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.adapter.HomeHotAdapter;
@@ -18,6 +20,7 @@ import com.hifunki.funki.module.home.entity.HomeHotEntity;
 import com.hifunki.funki.module.home.widget.banner.Banner;
 import com.hifunki.funki.module.home.widget.banner.GlideBannerImageLoader;
 import com.hifunki.funki.module.home.widget.banner.OnBannerListener;
+import com.hifunki.funki.module.room.activity.OtherRoomActivity;
 import com.hifunki.funki.util.DisplayUtil;
 
 import java.util.ArrayList;
@@ -116,7 +119,22 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
         HomeHotAdapter homeHotAdapter=new HomeHotAdapter(getContext(),hotEntities);
         rvHot.setAdapter(homeHotAdapter);
         homeHotAdapter.addHeaderView(getHeadView());//获取头部视图
+        rvHot.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
 
+            }
+
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                super.onItemChildClick(adapter, view, position);
+                switch (view.getId()){
+                    case R.id.iv_photo:
+                        OtherRoomActivity.show(getContext());
+                        break;
+                }
+            }
+        });
 
 
     }

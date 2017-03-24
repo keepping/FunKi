@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_room_info"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/iv_me_head_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -18,43 +20,43 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_third_photo"
-            app:civ_border_color="@color/_9B44ED"
-            app:civ_border_width="2dp"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginLeft="109dp"
-            android:src="@drawable/iv_logo" />
+            android:src="@drawable/iv_logo"
+            app:civ_border_color="@color/_9B44ED"
+            app:civ_border_width="2dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_second_photo"
-            app:civ_border_color="@color/_9B44ED"
-            app:civ_border_width="2dp"
             android:layout_width="32dp"
             android:layout_height="42dp"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="6dp"
-            android:src="@drawable/iv_logo" />
+            android:src="@drawable/iv_logo"
+            app:civ_border_color="@color/_9B44ED"
+            app:civ_border_width="2dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_first_photo"
-            app:civ_border_color="@color/_9B44ED"
-            app:civ_border_width="2dp"
             android:layout_width="41dp"
             android:layout_height="41dp"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="61dp"
-            android:src="@drawable/iv_logo" />
+            android:src="@drawable/iv_logo"
+            app:civ_border_color="@color/_9B44ED"
+            app:civ_border_width="2dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_me_photo"
-            app:civ_border_color="@color/_9B44ED"
-            app:civ_border_width="2dp"
             android:layout_width="73dp"
             android:layout_height="73dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="59dp"
             android:layout_marginTop="31dp"
-            android:src="@drawable/iv_logo" />
+            android:src="@drawable/iv_logo"
+            app:civ_border_color="@color/_9B44ED"
+            app:civ_border_width="2dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -177,9 +179,9 @@
         android:layout_below="@+id/tv_introduce"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:paddingTop="10dp"
+        android:orientation="horizontal"
         android:paddingBottom="10dp"
-        android:orientation="horizontal">
+        android:paddingTop="10dp">
 
 
         <LinearLayout

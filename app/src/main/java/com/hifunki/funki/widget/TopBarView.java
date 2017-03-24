@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,12 +52,15 @@ public class TopBarView extends RelativeLayout {
 
     private void initView(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.top_bar, this);
+        //根布局
+        LinearLayout llBaseMain = (LinearLayout) findViewById(R.id.base_main);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_left = (ImageView) findViewById(R.id.tv_left);
 
         tv_right_1 = (TextView) findViewById(R.id.tv_right_1);
         iv_right_1 = (ImageView) findViewById(R.id.iv_right_1);
 
+        //最右边的TextView
         tv_right_r = (TextView) findViewById(R.id.tv_right);
         //最右边的ImageView
         iv_right_r = (ImageView) findViewById(R.id.iv_right);
@@ -70,6 +74,8 @@ public class TopBarView extends RelativeLayout {
 
         String rightValue_r = typedArray.getString(R.styleable.TopBarView_menuTextMore);
         Drawable rightImage_r = typedArray.getDrawable(R.styleable.TopBarView_menuImageMore);
+
+        boolean hasBg = typedArray.getBoolean(R.styleable.TopBarView_hasBackGround, true);//是否展示background
 
 
         if (rightValue_l != null && rightValue_l.length() > 0) {
@@ -101,6 +107,10 @@ public class TopBarView extends RelativeLayout {
         }
 
 
+        if (!hasBg) {
+            llBaseMain.setBackground(null);
+        }
+
         typedArray.recycle();
 
         //Back
@@ -115,7 +125,6 @@ public class TopBarView extends RelativeLayout {
     }
 
 
-
     private void doBack(final Context context) {
         Class c = context.getClass();
         try {
@@ -124,6 +133,11 @@ public class TopBarView extends RelativeLayout {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //获取中间的textView
+    public TextView getTitileText() {
+        return tv_title;
     }
 
     public TextView getRightText() {
@@ -142,7 +156,6 @@ public class TopBarView extends RelativeLayout {
     public ImageView getRightImageMore() {
         return iv_right_r;
     }
-
 
 
 }

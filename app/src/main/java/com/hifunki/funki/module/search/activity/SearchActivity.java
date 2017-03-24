@@ -5,13 +5,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,14 +21,14 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.module.search.entity.JoinEntity;
-import com.hifunki.funki.module.search.fragment.LiveListFragment;
-import com.hifunki.funki.module.search.fragment.UserListFragment;
 import com.hifunki.funki.module.search.adapter.ActivitySearchAdapter;
 import com.hifunki.funki.module.search.adapter.HomeSearchAdapter;
 import com.hifunki.funki.module.search.adapter.HotSearchAdapter;
 import com.hifunki.funki.module.search.entity.ActivityEntity;
+import com.hifunki.funki.module.search.entity.JoinEntity;
 import com.hifunki.funki.module.search.entity.PersonEntity;
+import com.hifunki.funki.module.search.fragment.LiveListFragment;
+import com.hifunki.funki.module.search.fragment.UserListFragment;
 import com.hifunki.funki.module.search.fragment.VideoListFragment;
 import com.hifunki.funki.util.StringUtils;
 
@@ -70,15 +72,18 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     //    @BindView(R.id.pull_recommend)
 //    PullToRefreshScrollView pullRecommend;
     @BindView(R.id.ll_activity_search)
-    LinearLayout llActivitySearch;
+    FrameLayout llActivitySearch;
     @BindView(R.id.rv_activity_recommend)
     RecyclerView rvActivityRecommend;
+    @BindView(R.id.sv_search)
+    NestedScrollView svSearch;
 
     public String imagePathss = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg";
     private List<String> mTabTitle;
     private boolean isSearch;
     private List<PersonEntity> personEntities;
     private List<ActivityEntity> activityList;
+    private TextView tvSticky;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, SearchActivity.class));
@@ -132,9 +137,15 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
                 joinEntityList);
         ActivityEntity activityEntity2 = new ActivityEntity("酱油泡芙", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
                 joinEntityList);
+        ActivityEntity activityEntity3 = new ActivityEntity("酱油泡芙", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
+                joinEntityList);
+        ActivityEntity activityEntity4 = new ActivityEntity("酱油泡芙", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489236953984&di=3ba08e016f9b18d0be82354d4c18ff00&imgtype=0&src=http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg",
+                joinEntityList);
         activityList = new ArrayList<>();
         activityList.add(activityEntity);
         activityList.add(activityEntity2);
+        activityList.add(activityEntity3);
+        activityList.add(activityEntity4);
     }
 
     @Override
@@ -148,11 +159,15 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(1)));
         tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(2)));
         tbHomeSearch.addTab(tbHomeSearch.newTab().setText(mTabTitle.get(3)));
+
+        tvSticky = (TextView) findViewById(R.id.tv_sticky_header_view);
+
     }
 
     @Override
     protected void initListener() {
         etTitleCenter.addTextChangedListener(textWatcher);
+        svSearch.setOnScrollChangeListener(onScrollChangeListener);
     }
 
 
@@ -163,13 +178,50 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         vpSearch.setAdapter(homeSearchAdapter);
         tbHomeSearch.setupWithViewPager(vpSearch);
 
-        //RecyclerView
+        //first recycleView
+        RecyclerView rvHotRecommend = (RecyclerView) findViewById(R.id.rv_hot_recommend);
+        //设置rl的adapter
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.item_search_hot_recommend, personEntities);
+        rvHotRecommend.setLayoutManager(linearLayoutManager);
+        rvHotRecommend.setAdapter(eighteenAdapter);
+
+        //second RecyclerView
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         ActivitySearchAdapter activitySearchAdapter = new ActivitySearchAdapter(getApplicationContext(), R.layout.item_search_activity_recommend, activityList);
         rvActivityRecommend.setLayoutManager(linearLayoutManager1);
         rvActivityRecommend.setAdapter(activitySearchAdapter);
-        activitySearchAdapter.addHeaderView(getHeadView(), 1);
 
+
+    }
+
+    private void initSrollerListener() {
+        rvActivityRecommend.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                View stickyInfoView = recyclerView.findChildViewUnder(tvSticky.getMeasuredWidth() / 2, 5);
+                if (stickyInfoView != null && stickyInfoView.getContentDescription() != null) {
+                    tvSticky.setText(String.valueOf(stickyInfoView.getContentDescription()));
+                }
+                View transInfoView = recyclerView.findChildViewUnder(tvSticky.getMeasuredWidth() / 2, tvSticky.getMeasuredHeight() + 1);
+                if (transInfoView != null && transInfoView.getTag() != null) {
+
+                    int transViewStatus = (int) transInfoView.getTag();
+                    int dealtY = transInfoView.getTop() - tvSticky.getMeasuredHeight();
+
+                    if (transViewStatus == ActivitySearchAdapter.HAS_STICKY_VIEW) {
+                        if (transInfoView.getTop() > 0) {
+                            tvSticky.setTranslationY(dealtY);
+                        } else {
+                            tvSticky.setTranslationY(0);
+                        }
+                    } else if (transViewStatus == ActivitySearchAdapter.NONE_STICKY_VIEW) {
+                        tvSticky.setTranslationY(0);
+                    }
+                }
+            }
+        });
     }
 
     @OnClick({R.id.iv_Title_left, R.id.tv_et_cancel, R.id.iv_et_close, R.id.etTitleCenter, R.id.rlEtTitle})
@@ -194,6 +246,16 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    /**
+     * 滑动监听
+     */
+    NestedScrollView.OnScrollChangeListener onScrollChangeListener=new NestedScrollView.OnScrollChangeListener() {
+        @Override
+        public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+            Log.e("test", "onScrollChange: "+"scrollX="+scrollX+"scrollY"+scrollY+"oldScrollX"+oldScrollX+"oldScrollY"+oldScrollY );
+        }
+    };
 
     /**
      * 中间输入框的监听
@@ -223,21 +285,6 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         }
     };
 
-    /**
-     * 获取头部的热门
-     *
-     * @return
-     */
-    private View getHeadView() {
 
-        View headView = getLayoutInflater().inflate(R.layout.activity_search_head, (ViewGroup) rvActivityRecommend.getParent(), false);
-        RecyclerView rvHotRecommend = (RecyclerView) headView.findViewById(R.id.rv_hot_recommend);
-        //设置rl的adapter
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        HotSearchAdapter eighteenAdapter = new HotSearchAdapter(getApplicationContext(), R.layout.item_search_hot_recommend, personEntities);
-        rvHotRecommend.setLayoutManager(linearLayoutManager);
-        rvHotRecommend.setAdapter(eighteenAdapter);
-        return headView;
-    }
 
 }

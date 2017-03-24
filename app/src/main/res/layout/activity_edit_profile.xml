@@ -1,9 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/_230C47"
+    android:orientation="vertical"
     tools:context="com.hifunki.funki.module.home.me.profile.activity.EditProfileActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="73dp">
+
+                <TextView
+                    style="@style/TvEditProfileLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/photo" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_nav_home_actived" />
+
+            </RelativeLayout>
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/nickname"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="鸡心洛凡" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/ID"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="2073614" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/sex"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="女" />
+
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/age"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="22" />
+
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/singnature"
+                app:rightImage="@drawable/iv_next" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/language"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="中文" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/loveStatus"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="心有所属" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/sex_orientation"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="我爱异性" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/livePlace"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="横须贺" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/liveStatus"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="合租" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/stature"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="178CM" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="@string/weight"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="60Kg" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="体型"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="苗条" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="穿着"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="休闲偏多" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="头发颜色"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="蓝色" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="我的类型"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="阳光宅男" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="喜欢类型"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="哥特Rocker" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="抽烟状况"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="经常抽烟" />
+
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="饮酒状况"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="偶尔交际" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="职业"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="设计师" />
+
+            <com.hifunki.funki.widget.EditProfileView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:leftText="宗教信仰"
+                app:rightImage="@drawable/iv_next"
+                app:rightText="天主教" />
+
+        </LinearLayout>
+    </ScrollView>
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/rl_profile"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--</android.support.v7.widget.RecyclerView>-->
+</LinearLayout>

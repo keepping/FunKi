@@ -39,28 +39,58 @@
             android:background="@color/_28114D" />
     </LinearLayout>
 
-    <!--<com.handmark.pulltorefresh.library.PullToRefreshScrollView-->
-    <!--xmlns:ptr="http://schemas.android.com/apk/res-auto"-->
-    <!--android:id="@+id/pull_recommend"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="fill_parent"-->
-    <!--android:visibility="visible"-->
-    <!--ptr:ptrAnimationStyle="flip"-->
-    <!--ptr:ptrMode="both" >-->
-
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/ll_activity_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/_28114D"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_activity_recommend"
+
+        <com.hifunki.funki.widget.MeScrollView
+            android:id="@+id/sv_search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-    </LinearLayout>
-    <!--</com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/_28114D"
+                android:orientation="vertical">
 
+                <TextView
+                    fontPath="fonts/FZZDXFW.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/search_hot_recommend"
+                    android:textColor="@color/_6B4E9A"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_hot_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="252dp" />
+
+                <TextView
+                    fontPath="fonts/FZZDXFW.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="17dp"
+                    android:paddingLeft="10dp"
+                    android:text="@string/search_activity_recommend"
+                    android:textColor="@color/_6B4E9A"
+                    android:textSize="17sp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_activity_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </com.hifunki.funki.widget.MeScrollView>
+
+        <include layout="@layout/layout_sticky_header_view" />
+    </FrameLayout>
 </LinearLayout>

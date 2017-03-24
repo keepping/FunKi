@@ -5,15 +5,10 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
-import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseActivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.lang.reflect.Field;
@@ -31,8 +26,8 @@ public class StatusBarUtil {
                 view.setPadding(0,barHei,0,0);
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
-
                 NestedScrollView scrollView = null;
+
             }
         });
 

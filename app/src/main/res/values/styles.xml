@@ -46,6 +46,35 @@
         <item name="android:background">@drawable/visitor_tv_bg</item>
     </style>
 
+    <!--编辑个人资料左-->
+    <style name="TvEditProfileLeft">
+        <item name="android:textColor">@color/_BBABD4</item>
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <!--编辑个人资料右边图片-->
+    <style name="IvEditProfileImage">
+        <item name="android:src">@drawable/iv_next</item>
+        <item name="android:textColor">@color/_BBABD4</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginRight">14sp</item>
+    </style>
+
+    <!--编辑个人资料右-->
+    <style name="TvEditProfileRight">
+        <item name="android:textColor">@color/_BBABD4</item>
+        <item name="android:layout_marginRight">14dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
     <style name="BaseEditText">
 
     </style>
@@ -66,11 +95,11 @@
 
     <!--自定义虚线-->
     <declare-styleable name="deshedLine">
-        <attr name="lineColor" format="color"/>
-        <attr name="dashWidth" format="dimension"/>
-        <attr name="lineHeight" format="dimension"/>
-        <attr name="lineWidth" format="dimension"/>
-        <attr name="dashOrientation" format="integer"/>
+        <attr name="lineColor" format="color" />
+        <attr name="dashWidth" format="dimension" />
+        <attr name="lineHeight" format="dimension" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="dashOrientation" format="integer" />
     </declare-styleable>
 
     <!--节目预告dialog-->
@@ -86,4 +115,6 @@
         <item name="android:windowEnterAnimation">@anim/dialog_show_enter</item>
         <item name="android:windowExitAnimation">@anim/dialog_show_exit</item>
     </style>
+
+
 </resources>

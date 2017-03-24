@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hifunki.funki.module.room.activity.OtherRoomActivity">
+    tools:context="com.hifunki.funki.module.room.activity.OtherRoomActivity"
+    tools:ignore="MissingPrefix">
 
     <com.hifunki.funki.widget.MeScrollView
         android:id="@+id/main_content"
@@ -16,15 +17,85 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/layout_info" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_content"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"/>
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/lt_room_info"
+                    layout="@layout/layout_info" />
+
+                <LinearLayout
+                    android:id="@+id/ll_room_live"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="bottom">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/iv_room_living" />
+
+                    <TextView
+                        android:id="@+id/tv_living"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/living_now"
+                        android:textColor="@color/_9B44ED"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_room_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/ll_room_live"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/iv_room_info" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/iv_room_info"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/iv_room_share" />
+            </RelativeLayout>
 
 
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_room"
+                fontPath="fonts/FZDHTFW.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                app:tabBackground="@drawable/bg_room_tab"
+                app:tabIndicatorColor="@color/_9B44ED"
+                app:tabIndicatorHeight="2px"
+                app:tabSelectedTextColor="@color/_9B44ED"
+                app:tabTextColor="@color/_6B4E9A">
+
+            </android.support.design.widget.TabLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_room"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
+
     </com.hifunki.funki.widget.MeScrollView>
+
+    <com.hifunki.funki.widget.TopBarView
+        android:id="@+id/topbarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hasBackGround="false"
+        app:titleText="头像认证" />
+
 </RelativeLayout>

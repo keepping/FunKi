@@ -191,7 +191,7 @@ public class MeFragment extends BaseFragment {
 
 
 
-    @OnClick({R.id.iv_me_bill, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans,R.id.tv_recharge, R.id.civ_me_photo})
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile,R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans,R.id.tv_recharge, R.id.civ_me_photo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_me_bill:

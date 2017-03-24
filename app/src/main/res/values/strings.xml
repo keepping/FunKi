@@ -1,10 +1,10 @@
 <resources>
+
+    <string name="finish">完成</string>
     <string name="app_name">FunKi</string>
     <string name="exit_app">即将退出Funki</string>
     <string name="exit">退出</string>
     <string name="enter">进入</string>
-    <string name="visitor_fill_title">个人信息</string>
-    <string name="visitor_title">必填信息</string>
     <string name="visitor_sex">性别</string>
     <string name="boy">男</string>
     <string name="girl">女</string>
@@ -33,8 +33,6 @@
     <string name="search">搜索</string>
     <string name="cancel">取消</string>
     <string name="choose_country">选择分区号</string>
-    <string name="select_image_head">头像</string>
-    <string name="select_image_nickname">昵称</string>
     <string name="complete">完成</string>
     <string name="login_input_password">请输入6-16位字元的密码</string>
     <string name="login_input_email">请输入邮箱地址</string>
@@ -57,9 +55,9 @@
     <string name="gallery_photo">(%1$d/%2$d)</string>
 
     <string name="ucrop_tailor_photo">头像裁剪</string>
-    <string name="finish">完成</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="visitor_fill_title">个人信息</string>
+    <string name="visitor_title">必填信息</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tip_double_click_exit">再次点击退出Funki</string>
 
@@ -177,5 +175,31 @@
     <string name="recharge_current_diamond">当前砖石数</string>
     <string name="more">更多</string>
     <string name="show_detail_content">三位美艳的Rocker致敬八十年代，每一个有传奇Star的巨星到场，除了视觉上的无限享受还有硬朗实力的摇滚演绎！</string>
+    <string name="living_now">正在直播</string>
+    <string name="photo">头像</string>
+    <string name="nickname">昵称</string>
+    <string name="ID">ID</string>
+    <string name="sex">性别</string>
+    <string name="language">语音</string>
+    <string name="singnature">个性签名</string>
+    <string name="loveStatus">恋爱状态</string>
+    <string name="genderOrientation">性取向</string>
+    <string name="livePlace">现居地</string>
+    <string name="liveStatus">居住情况</string>
+    <string name="stature">身高</string>
+    <string name="weight">体重</string>
+    <string name="shapes">体型</string>
+    <string name="dress">穿着</string>
+    <string name="profileHairColor">头发颜色</string>
+    <string name="profileEyeColor">眼镜颜色</string>
+    <string name="profileMyType">我的类型</string>
+    <string name="profileLoveType">喜欢类型</string>
+    <string name="profileReligionBelief">宗教信仰</string>
+    <string name="profession">职业</string>
+    <string name="personality">个性</string>
+    <string name="profileDrinkStatus">饮酒状况</string>
+    <string name="profileSmokeStatus">抽烟状况</string>
+    <string name="profileLoveStatus">恋爱状态</string>
+
 
 </resources>
