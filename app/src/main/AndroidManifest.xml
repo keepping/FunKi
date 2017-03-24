@@ -42,11 +42,11 @@
             android:launchMode="singleTask"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -131,8 +131,6 @@
         <!-- 用户头像认证 -->
         <activity android:name=".module.home.me.user.UserAvatarActivity">
 
-
-
         </activity>
 
         <!-- 个人中心榜单 -->
@@ -147,11 +145,6 @@
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
         <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
         <activity android:name=".module.room.activity.OtherRoomActivity">
-
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
 
         </activity>
     </application>

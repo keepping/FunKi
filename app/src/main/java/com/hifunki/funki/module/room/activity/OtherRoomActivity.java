@@ -1,5 +1,7 @@
 package com.hifunki.funki.module.room.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
@@ -152,6 +154,10 @@ public class OtherRoomActivity extends BaseActivity implements RoomDymicFragment
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context,OtherRoomActivity.class));
     }
 
 //    int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");

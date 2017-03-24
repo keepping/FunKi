@@ -7,48 +7,6 @@
     android:background="@drawable/iv_me_head_bg"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_room_live"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:gravity="bottom">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/iv_room_living" />
-
-        <TextView
-            android:id="@+id/tv_living"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/living_now"
-            android:textColor="@color/_9B44ED"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_room_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/ll_room_live"
-        android:layout_marginRight="14dp"
-        android:layout_marginTop="18dp"
-        android:src="@drawable/iv_room_info" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/iv_room_info"
-        android:layout_marginRight="14dp"
-        android:layout_marginTop="18dp"
-        android:src="@drawable/iv_room_share" />
-
     <RelativeLayout
         android:id="@+id/iv_me_photo"
         android:layout_width="187dp"

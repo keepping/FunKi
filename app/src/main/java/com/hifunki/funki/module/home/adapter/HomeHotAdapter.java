@@ -40,16 +40,20 @@ public class HomeHotAdapter extends BaseMultiItemQuickAdapter<HomeHotEntity, Bas
     @Override
     protected void convert(BaseViewHolder helper, HomeHotEntity item) {
         switch (helper.getItemViewType()) {
+
             case HomeHotEntity.NORMAL_LIVE://big
                 //普通直播--big
                 //等级直播--big
                 //普通视频--big
+                ImageView ivPhoto=helper.getView(R.id.iv_photo);
                 Glide.with(mContext).load(item.getImagePath()).into((ImageView) helper.getView(R.id.iv_imagepath));
-                Glide.with(mContext).load(item.getPhoto()).into((ImageView) helper.getView(R.id.iv_photo));
+                Glide.with(mContext).load(item.getPhoto()).into(ivPhoto);
                 helper.setText(R.id.tv_name, item.getUsername());
                 helper.setText(R.id.tv_location, item.getLocation());
                 helper.setText(R.id.tv_language, item.getLanguage());
                 helper.setText(R.id.tv_count_person, String.valueOf(item.getWatchCount()));
+
+                helper.addOnClickListener(R.id.iv_photo);
                 break;
             case HomeHotEntity.TICKET_LIVE://small
                 //门票直播--small view
