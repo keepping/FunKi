@@ -1,9 +1,11 @@
 package com.hifunki.funki.module.room.activity;
 
+import android.graphics.Color;
+import android.net.Uri;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -11,12 +13,17 @@ import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
+import com.hifunki.funki.module.room.adpater.RoomAdapter;
+import com.hifunki.funki.module.room.fragment.RoomDymicFragment;
+import com.hifunki.funki.module.room.fragment.RoomLiveFragment;
+import com.hifunki.funki.widget.TopBarView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static com.hifunki.funki.R.id.tab_room;
 
 /**
  * 他人空间
@@ -27,7 +34,27 @@ import butterknife.BindView;
  * @link
  * @since 2017-03-23 17:47:47
  */
-public class OtherRoomActivity extends BaseActivity {
+public class OtherRoomActivity extends BaseActivity implements RoomDymicFragment.OnFragmentInteractionListener, RoomLiveFragment.OnFragmentInteractionListener {
+
+    @BindView(R.id.lt_room_info)
+    RelativeLayout rlRoomInfo;
+
+    @BindView(R.id.me_title)
+    RelativeLayout meTitle;
+
+    @BindView(R.id.main_content)
+    NestedScrollView mainContent;
+
+    @BindView(R.id.topbarView)
+    TopBarView topBarView;
+
+    @BindView(tab_room)
+    TabLayout tabRoom;
+
+    @BindView(R.id.vp_room)
+    ViewPager vpRoom;
+
+    private List<String> mTabTitles;
 
     @Override
     protected int getViewResId() {
@@ -37,83 +64,96 @@ public class OtherRoomActivity extends BaseActivity {
     private List<String> mInfoTag;//个人中心信息标签
 
 
+    @Override
+    protected void initListener() {
+        super.initListener();
+        mainContent.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+
+                if (scrollY < 300) {
+                    topBarView.getTitileText().setVisibility(View.INVISIBLE);
+                } else {
+                    topBarView.getTitileText().setVisibility(View.VISIBLE);
+                    topBarView.getTitileText().setText(getResources().getString(R.string.me_name));
+                }
+                //更新初始状态
+                float percent = scrollY * 1f / (576);
+                int alpha = (int) (255 * percent);
+                int height = rlRoomInfo.getHeight();
+                if (scrollY == 0) {
+                    topBarView.setBackgroundColor(Color.TRANSPARENT);
+                }
+                if (scrollY >= 576) {
+                    topBarView.setBackgroundColor(getResources().getColor(R.color._07001F));
+                } else {
+                    int color = Color.alpha(alpha);
+                    topBarView.setBackgroundColor(getResources().getColor(R.color._07001F));
+                    topBarView.getBackground().setAlpha(color);
+
+                }
+                Log.e("test", "onScrollChange: " + "percent=" + percent + "scrollY=" + scrollY + "oldScrollY=" + oldScrollY + "height=" + height);
+
+            }
+        });
+    }
 
     @Override
     protected void initDatas() {
-        mInfoTag = new ArrayList<>();
-        mInfoTag.add(getString(R.string.self_gallery));
-        mInfoTag.add(getString(R.string.vistor_record));
-        mInfoTag.add(getString(R.string.my_field_control));
-        mInfoTag.add(getString(R.string.blacklist));
-        mInfoTag.add(getString(R.string.order_management));
-        mInfoTag.add(getString(R.string.account_privacy_safety));
-        mInfoTag.add(getString(R.string.setting));
-        mInfoTag.add(getString(R.string.help_feedback));
-        mInfoTag.add(getString(R.string.business_cooperate));
-
-
-        mInfoTag.add(getString(R.string.blacklist));
-        mInfoTag.add(getString(R.string.order_management));
-        mInfoTag.add(getString(R.string.account_privacy_safety));
-        mInfoTag.add(getString(R.string.setting));
-        mInfoTag.add(getString(R.string.help_feedback));
-        mInfoTag.add(getString(R.string.business_cooperate));
-
-        mInfoTag.add(getString(R.string.blacklist));
-        mInfoTag.add(getString(R.string.order_management));
-        mInfoTag.add(getString(R.string.account_privacy_safety));
-        mInfoTag.add(getString(R.string.setting));
-        mInfoTag.add(getString(R.string.help_feedback));
-        mInfoTag.add(getString(R.string.business_cooperate));
+        mTabTitles = new ArrayList<>();
+        mTabTitles.add("动态");
+        mTabTitles.add("直播(14)");
     }
 
+//07001f
 
-    @BindView(R.id.me_title)
-    RelativeLayout meTitle;
+    @Override
+    protected void initView() {
 
-    @BindView(R.id.rv_content)
-    RecyclerView rvContent;
+        tabRoom.addTab(tabRoom.newTab().setText(mTabTitles.get(0)));
+        tabRoom.addTab(tabRoom.newTab().setText(mTabTitles.get(1)));
+        RoomAdapter roomAdapter = new RoomAdapter(getSupportFragmentManager(), mTabTitles);
+        vpRoom.setAdapter(roomAdapter);
+        tabRoom.setupWithViewPager(vpRoom);
 
-    @BindView(R.id.main_content)
-    NestedScrollView mainContent;
+        vpRoom.getViewTreeObserver().addOnGlobalLayoutListener(onGlobalLayoutListener);
 
+    }
 
+    //监听树
     ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
         int reCount = 4;
+
         @Override
         public void onGlobalLayout() {
-            int total = mainContent.getHeight();
-            int dif = meTitle.getHeight();
-            ViewGroup.LayoutParams layoutParams = rvContent.getLayoutParams();
+            int totalHeight = mainContent.getHeight();
+            int topbarHeight = topBarView.getHeight();//titlebar高度
+            int dif = tabRoom.getHeight();
+            ViewGroup.LayoutParams layoutParams = vpRoom.getLayoutParams();
 
-            int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-            int statusBarHeight = getResources().getDimensionPixelSize(resourceId);
-
-            if(layoutParams.height!=total-dif-statusBarHeight){
-                layoutParams.height = total-dif-statusBarHeight;
-                rvContent.setLayoutParams(layoutParams);
-
-                System.out.println("-----------------------");
+            if (layoutParams.height != totalHeight - dif - topbarHeight) {
+                layoutParams.height = totalHeight - dif - topbarHeight;
+                vpRoom.setLayoutParams(layoutParams);
             }
 
-            reCount --;
-            if(reCount>=0){
-                mainContent.scrollTo(0,0);
+            reCount--;
+            //滑动初始状态
+            if (reCount >= 0) {
+                mainContent.scrollTo(0, 0);
             }
-            if(reCount==0){
-                rvContent.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+            if (reCount == 0) {
+                vpRoom.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         }
     };
 
+
     @Override
-    protected void initView() {
-        rvContent.setLayoutManager(new LinearLayoutManager(this));
-
-        MeInfoAdapter meInfoAdapter = new MeInfoAdapter(R.layout.item_me_info, mInfoTag);
-        rvContent.setAdapter(meInfoAdapter);
-
-        rvContent.getViewTreeObserver().addOnGlobalLayoutListener(onGlobalLayoutListener);
+    public void onFragmentInteraction(Uri uri) {
 
     }
+
+//    int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+//    int statusBarHeight = getResources().getDimensionPixelSize(resourceId);
 }

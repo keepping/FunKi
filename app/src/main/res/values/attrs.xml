@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="fontPath" format="string" />
-
+    <!--Funki独有字体-->
     <declare-styleable name="FunkiTextView">
         <attr name="line_color" format="color"></attr>
         <attr name="line_location">
@@ -51,6 +51,9 @@
 
         <attr name="menuTextMore" format="string" />
         <attr name="menuImageMore" format="reference" />
+
+        <!--设置是否显示背景-->
+        <attr name="hasBackGround" format="boolean" />
     </declare-styleable>
 
 </resources>
