@@ -200,6 +200,8 @@
     <string name="profileDrinkStatus">饮酒状况</string>
     <string name="profileSmokeStatus">抽烟状况</string>
     <string name="profileLoveStatus">恋爱状态</string>
+    <string name="profile_edit_photo">从相册中选择</string>
+    <string name="profile_edit_take_photo">拍照</string>
 
 
 </resources>

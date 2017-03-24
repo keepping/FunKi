@@ -2,9 +2,13 @@ package com.hifunki.funki.module.home.me.profile.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.ImageView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 编辑个人资料
@@ -17,6 +21,8 @@ import com.hifunki.funki.base.activity.BaseActivity;
  */
 public class EditProfileActivity extends BaseActivity {
 
+    @BindView(R.id.civ_profile_photo)
+    private ImageView civProfilePhoto;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, EditProfileActivity.class));
@@ -57,9 +63,10 @@ public class EditProfileActivity extends BaseActivity {
 
     }
 
+
     @Override
     protected void initView() {
-
+//        pop_profile_edit_photo
     }
 
     @Override
@@ -67,5 +74,24 @@ public class EditProfileActivity extends BaseActivity {
         super.initAdapter();
 //        ProfileAdapter profileAdapter = new ProfileAdapter();
 
+    }
+
+
+    @OnClick(R.id.civ_profile_photo)
+    public void onClick() {
+        //创建PopWindow
+//        if (pwdPopWindow == null) {
+//            pwdPopWindow = PopWindowUtil.getInstance(this);
+//            pwdView = LayoutInflater.from(this).inflate(R.layout.pop_login_forget_pwd, null);
+//            pwdPopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+//        }
+//        pwdPopWindow.init((int) DisplayUtil.dip2Px(this, 173), LinearLayout.LayoutParams.MATCH_PARENT);
+//        pwdPopWindow.showPopWindow(pwdView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
+//        TextView tvPhonePwd = (TextView) pwdView.findViewById(R.id.tv_phone_pwd);
+//        TextView tvEmailPwd = (TextView) pwdView.findViewById(R.id.tv_email_pwd);
+//        ImageView iv_close = (ImageView) pwdView.findViewById(R.id.iv_close);
+//        tvPhonePwd.setOnClickListener(this);
+//        tvEmailPwd.setOnClickListener(this);
+//        iv_close.setOnClickListener(this);
     }
 }
