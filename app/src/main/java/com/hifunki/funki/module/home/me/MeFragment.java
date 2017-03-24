@@ -124,7 +124,7 @@ public class MeFragment extends BaseFragment {
     //    rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
         rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMe.setAdapter(meInfoAdapter);
-        ViewUtil.adjustRecylerViewHei(rvMe);
+        ViewUtil.adjustScrollViewHei(rvMe);
 
 
         //圆形头像

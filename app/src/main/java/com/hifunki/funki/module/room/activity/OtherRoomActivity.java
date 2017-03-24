@@ -103,6 +103,9 @@ public class OtherRoomActivity extends BaseActivity {
             if(reCount==0){
                 rvContent.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
+
+
+
         }
     };
 

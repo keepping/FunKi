@@ -115,7 +115,7 @@ public class OverlayView extends View {
     }
 
     /**
-     * Setter for crop grid rows count.
+     * Setter for crop gridAdapter rows count.
      * Resets {@link #mGridPoints} variable because it is not valid anymore.
      */
     public void setCropGridRowCount(@IntRange(from = 0) int cropGridRowCount) {
@@ -124,7 +124,7 @@ public class OverlayView extends View {
     }
 
     /**
-     * Setter for crop grid columns count.
+     * Setter for crop gridAdapter columns count.
      * Resets {@link #mGridPoints} variable because it is not valid anymore.
      */
     public void setCropGridColumnCount(@IntRange(from = 0) int cropGridColumnCount) {
@@ -144,7 +144,7 @@ public class OverlayView extends View {
     /**
      * Setter for {@link #mShowCropGrid} variable.
      *
-     * @param showCropGrid - set to true if you want to see a crop grid on top of an image
+     * @param showCropGrid - set to true if you want to see a crop gridAdapter on top of an image
      */
     public void setShowCropGrid(boolean showCropGrid) {
         mShowCropGrid = showCropGrid;
@@ -167,7 +167,7 @@ public class OverlayView extends View {
     }
 
     /**
-     * Setter for crop grid stroke width
+     * Setter for crop gridAdapter stroke width
      */
     public void setCropGridStrokeWidth(@IntRange(from = 0) int width) {
         mCropGridPaint.setStrokeWidth(width);
@@ -181,7 +181,7 @@ public class OverlayView extends View {
     }
 
     /**
-     * Setter for crop grid color
+     * Setter for crop gridAdapter color
      */
     public void setCropGridColor(@ColorInt int color) {
         mCropGridPaint.setColor(color);
