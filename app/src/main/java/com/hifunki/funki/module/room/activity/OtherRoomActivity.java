@@ -147,6 +147,9 @@ public class OtherRoomActivity extends BaseActivity implements RoomDymicFragment
             if (reCount == 0) {
                 vpRoom.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
+
+
+
         }
     };
 

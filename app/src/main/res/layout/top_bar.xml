@@ -60,8 +60,9 @@
                 android:paddingRight="10dp"
                 android:paddingTop="15dp"
                 android:text="haha"
+
                 android:textSize="15sp"
-                android:textColor="#BBABD4"/>
+                android:textColor="@color/_9B44ED"/>
 
 
             <ImageView
@@ -90,7 +91,7 @@
                 android:paddingTop="15dp"
                 android:text="haha"
                 android:textSize="15sp"
-                android:textColor="#BBABD4"/>
+                android:textColor="@color/_9B44ED"/>
 
 
             <ImageView

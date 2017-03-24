@@ -145,8 +145,19 @@
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
         <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
         <activity android:name=".module.room.activity.OtherRoomActivity">
+            
+        </activity>
+
+
+        <activity android:name=".module.post.activity.PostActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
+
     </application>
 
 </manifest>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_230C47"
+    >
+
+    <com.hifunki.funki.widget.TopBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="发动态"
+        app:menuText="发送" />
+
+    <EditText
+        android:id="@+id/post_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="70dp"
+        android:background="@null"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginTop="40dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <com.hifunki.funki.module.home.widget.FKVideoView
+            android:visibility="gone"
+            android:id="@+id/post_movie"
+            android:layout_width="match_parent"
+            android:layout_height="192dp" />
+
+
+        <GridView
+            android:id="@+id/post_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:horizontalSpacing="3dp"
+            android:maxWidth="280dp"
+            android:numColumns="3"
+            android:verticalSpacing="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <ImageView
+            android:id="@+id/post_add"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:src="@drawable/post_select"
+            />
+
+
+
+
+    </FrameLayout>
+
+    
+
+
+
+
+
+</LinearLayout>

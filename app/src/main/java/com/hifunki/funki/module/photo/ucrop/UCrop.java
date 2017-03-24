@@ -349,35 +349,35 @@ public class UCrop {
         }
 
         /**
-         * @param show - set to true if you want to see a crop grid/guidelines on top of an image
+         * @param show - set to true if you want to see a crop gridAdapter/guidelines on top of an image
          */
         public void setShowCropGrid(boolean show) {
             mOptionBundle.putBoolean(EXTRA_SHOW_CROP_GRID, show);
         }
 
         /**
-         * @param count - crop grid rows count.
+         * @param count - crop gridAdapter rows count.
          */
         public void setCropGridRowCount(@IntRange(from = 0) int count) {
             mOptionBundle.putInt(EXTRA_CROP_GRID_ROW_COUNT, count);
         }
 
         /**
-         * @param count - crop grid columns count.
+         * @param count - crop gridAdapter columns count.
          */
         public void setCropGridColumnCount(@IntRange(from = 0) int count) {
             mOptionBundle.putInt(EXTRA_CROP_GRID_COLUMN_COUNT, count);
         }
 
         /**
-         * @param color - desired color of crop grid/guidelines
+         * @param color - desired color of crop gridAdapter/guidelines
          */
         public void setCropGridColor(@ColorInt int color) {
             mOptionBundle.putInt(EXTRA_CROP_GRID_COLOR, color);
         }
 
         /**
-         * @param width - desired width of crop grid lines in pixels
+         * @param width - desired width of crop gridAdapter lines in pixels
          */
         public void setCropGridStrokeWidth(@IntRange(from = 0) int width) {
             mOptionBundle.putInt(EXTRA_CROP_GRID_STROKE_WIDTH, width);
