@@ -56,4 +56,11 @@
         <attr name="hasBackGround" format="boolean" />
     </declare-styleable>
 
+    <!--个人资料编辑-->
+    <declare-styleable name="EditProfileView">
+        <attr name="leftText" format="string" />
+        <attr name="rightText" format="string" />
+        <attr name="rightImage" format="reference" />
+    </declare-styleable>
+
 </resources>

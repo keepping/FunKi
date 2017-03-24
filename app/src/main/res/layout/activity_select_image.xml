@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="@string/select_image_head"
+            android:text="@string/photo"
             android:textColor="@color/_6B4E9A" />
 
         <LinearLayout
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="@string/select_image_nickname"
+                android:text="@string/nickname"
                 android:textColor="@color/_6B4E9A"
                 android:textSize="17sp" />
 
@@ -67,7 +67,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="75dp"
             android:layout_marginTop="9dp"
-            android:text="@string/select_image_nickname_use"
+            android:text="@string/nickname"
             android:textColor="@color/_AB2D2D"
             android:textSize="11sp" />
         <!--android:visibility="gone"-->

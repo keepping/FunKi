@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="53dp"
+    android:background="@color/_28114D">
+
+    <TextView
+        android:id="@+id/tv_profile_left"
+        style="@style/TvEditProfileLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="@string/liveStatus" />
+
+    <ImageView
+        android:id="@+id/iv_profile_right"
+        style="@style/IvEditProfileImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/tv_profile_right"
+        style="@style/TvEditProfileRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/iv_profile_right"
+        android:text="合租" />
+
+    <View
+        android:background="@color/_4A2F75"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+</RelativeLayout>
