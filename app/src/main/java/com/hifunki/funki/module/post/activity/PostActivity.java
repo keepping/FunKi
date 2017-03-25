@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 在此写用途
+ * 发表动态界面
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>

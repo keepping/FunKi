@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.core.assist.deque.LIFOLinkedBlockingDeque;
-
 import java.util.List;
 
 /**
@@ -25,16 +23,13 @@ public class NineGridlayout extends ViewGroup {
     private int rows;//
     private List<String> listData;
 
-
     public NineGridlayout(Context context) {
         super(context);
     }
 
     public NineGridlayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-
     }
-
     /**
      * 根据图片个数确定行列数量
      * 对应关系如下
@@ -91,7 +86,6 @@ public class NineGridlayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
         if(rows==0 || columns==0) return;
 
         int singleWidth = (getWidth() - getPaddingLeft() - getPaddingRight() - gap * (rows+1)) / rows;
@@ -113,14 +107,10 @@ public class NineGridlayout extends ViewGroup {
 
     }
 
-
-
-
-
     public void setImagesData(List<String> lists) {
         listData = lists;
 
-        System.out.println(" si ze " +lists.size());
+        System.out.println(" size " +lists.size());
 
         int oldRows = rows;
         int oldColumns = columns;
@@ -154,9 +144,6 @@ public class NineGridlayout extends ViewGroup {
         }
 
     }
-
-
-
 
     private CustomImageView generateImageView() {
         CustomImageView iv = new CustomImageView(getContext());

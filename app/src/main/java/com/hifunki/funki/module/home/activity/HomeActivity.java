@@ -30,6 +30,7 @@ import com.hifunki.funki.module.home.fragment.StoreFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
 import com.hifunki.funki.module.home.me.MeFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
+import com.hifunki.funki.module.live.activity.LiveActivity;
 import com.hifunki.funki.module.post.activity.PostActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -142,7 +143,9 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
                 }
                 pwdPopWindow.init((int) DisplayUtil.dip2Px(this, 192), LinearLayout.LayoutParams.MATCH_PARENT);
                 pwdPopWindow.showPopWindow(pwdView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
+                //动态
                 LinearLayout llHomeDymic= (LinearLayout) pwdView.findViewById(R.id.ll_home_dymic);
+                //直播
                 LinearLayout llHomeLive= (LinearLayout) pwdView.findViewById(R.id.ll_home_live);
                 llHomeDymic.setOnClickListener(this);
                 llHomeLive.setOnClickListener(this);
@@ -151,6 +154,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
                 PostActivity.show(this);
                 break;
             case R.id.ll_home_live://跳转到开启直播界面
+                LiveActivity.show(this);
                 break;
         }
     }

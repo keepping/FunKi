@@ -83,6 +83,7 @@
                     android:text="@string/search_activity_recommend"
                     android:textColor="@color/_6B4E9A"
                     android:textSize="17sp" />
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_activity_recommend"
                     android:layout_width="match_parent"

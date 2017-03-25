@@ -1,6 +1,8 @@
 package com.hifunki.funki.module.search.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,11 +44,16 @@ public class HotSearchAdapter extends BaseQuickAdapter<PersonEntity, BaseViewHol
 //        Log.e("test", "convert: "+item.getImagePath() );
         Glide.with(mContext).load(item.getPhoto()).into((ImageView) helper.getView(R.id.iv_photo));
 
+        RecyclerView rlSearchImage=helper.getView(R.id.rl_search_image);
+        rlSearchImage.setLayoutManager(new GridLayoutManager(mContext,2));
+        ActivityImageAdapter imageAdapter=new ActivityImageAdapter(R.layout.item_activity_search_image,item.getImagePath());
+        rlSearchImage.setAdapter(imageAdapter);
 
-        Glide.with(mContext).load(item.getImagePath().get(0)).into((ImageView) helper.getView(R.id.iv_imagePath1));
-        Glide.with(mContext).load(item.getImagePath().get(1)).into((ImageView) helper.getView(R.id.iv_imagePath2));
-        Glide.with(mContext).load(item.getImagePath().get(2)).into((ImageView) helper.getView(R.id.iv_imagePath3));
-        Glide.with(mContext).load(item.getImagePath().get(3)).into((ImageView) helper.getView(R.id.iv_imagePath4));
+
+//        Glide.with(mContext).load(item.getImagePath().get(0)).into((ImageView) helper.getView(R.id.iv_imagePath1));
+//        Glide.with(mContext).load(item.getImagePath().get(1)).into((ImageView) helper.getView(R.id.iv_imagePath2));
+//        Glide.with(mContext).load(item.getImagePath().get(2)).into((ImageView) helper.getView(R.id.iv_imagePath3));
+//        Glide.with(mContext).load(item.getImagePath().get(3)).into((ImageView) helper.getView(R.id.iv_imagePath4));
 
 
     }

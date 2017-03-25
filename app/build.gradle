@@ -65,7 +65,6 @@ dependencies {
     compile 'com.github.powyin:scroll:1.5.3'
     compile 'com.github.powyin:switch:0.3.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'

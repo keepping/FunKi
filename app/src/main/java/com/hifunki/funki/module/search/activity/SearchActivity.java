@@ -69,8 +69,6 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     @BindView(R.id.vp_search)
     ViewPager vpSearch;
 
-    //    @BindView(R.id.pull_recommend)
-//    PullToRefreshScrollView pullRecommend;
     @BindView(R.id.ll_activity_search)
     FrameLayout llActivitySearch;
     @BindView(R.id.rv_activity_recommend)
@@ -258,7 +256,7 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
     };
 
     /**
-     * 中间输入框的监听
+     * 顶部输入框的监听
      */
     TextWatcher textWatcher = new TextWatcher() {
         @Override

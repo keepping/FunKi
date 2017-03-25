@@ -10,8 +10,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 /**
  * creator  Lukey on 2016/6/14
@@ -61,8 +60,8 @@ public class CustomImageView extends AppCompatImageView {
 
     @Override
     public void onDetachedFromWindow() {
-        Picasso.with(getContext()).cancelRequest(this);
         isAttachedToWindow = false;
+        //停止图片加载
         setImageBitmap(null);
         super.onDetachedFromWindow();
     }
@@ -71,7 +70,7 @@ public class CustomImageView extends AppCompatImageView {
         if (!TextUtils.isEmpty(url)) {
             this.url = url;
             if (isAttachedToWindow) {
-                Picasso.with(getContext()).load(url).placeholder(new ColorDrawable(Color.parseColor("#f5f5f5"))).into(this);
+                Glide.with(getContext()).load(url).placeholder(new ColorDrawable(Color.parseColor("#f5f5f5"))).into(this);
             }
         }
     }
