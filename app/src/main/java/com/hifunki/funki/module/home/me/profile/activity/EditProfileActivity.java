@@ -22,7 +22,7 @@ import butterknife.OnClick;
 public class EditProfileActivity extends BaseActivity {
 
     @BindView(R.id.civ_profile_photo)
-    private ImageView civProfilePhoto;
+    ImageView civProfilePhoto;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, EditProfileActivity.class));
