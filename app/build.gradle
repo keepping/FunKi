@@ -68,4 +68,9 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     testCompile 'junit:junit:4.12'
+    //ijkPlayer
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.1'
 }
