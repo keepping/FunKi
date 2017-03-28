@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--直播间-->
+    <style name="fill_wrap">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="inke_img_40_40">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <style name="room_users_container" parent="@style/fill_wrap">
+        <item name="android:paddingLeft">6.0dip</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingRight">6.0dip</item>
+    </style>
+
+    <style name="room_public_chat_listview">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:listSelector">@drawable/ic_nav_home_actived</item>
+        <item name="android:divider">@color/colorAccent</item>
+    </style>
+
+    <style name="watermark_style" parent="@style/fill_wrap">
+        <item name="android:textSize">12.0sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginTop">4.0dip</item>
+        <item name="android:layout_marginRight">6.0dip</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="room_public_chat_container">
+        <item name="android:gravity">bottom</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">110dp</item>
+        <item name="android:layout_alignWithParentIfMissing">true</item>
+    </style>
+
+    <style name="room_oper_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <!--自定义字体-->
     <attr name="fontPath" format="string" />
     <!--Funki独有字体-->
     <declare-styleable name="FunkiTextView">
