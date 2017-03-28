@@ -145,7 +145,7 @@
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
         <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
         <activity android:name=".module.room.activity.OtherRoomActivity">
-            
+
         </activity>
 
 
