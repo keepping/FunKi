@@ -2,11 +2,11 @@ package com.hifunki.funki.module.live.start.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
-import android.os.Build;
+import android.hardware.Camera.Parameters;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.hardware.Camera.Parameters;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
@@ -74,7 +74,6 @@ public class StartLiveActivity extends BaseActivity {
     private SurfaceHolder mHolder;
     private SurfaceTexture mSurfaceTexture;
     private GlVideoRender mVideoRender = null;
-    private Bitmap mBmp;
     private Camera mCamera;
     private int mWidth;
     private int mHeight;
@@ -82,9 +81,8 @@ public class StartLiveActivity extends BaseActivity {
     private int mFramerate = 30;
 
     boolean surfaceCreated = false;
-
-    private String TAG="test";
-    private SurfaceHolder holder;
+    private boolean isCamerafront = false;
+    private String TAG = "test";
 
     @Override
     protected int getViewResId() {
@@ -99,46 +97,38 @@ public class StartLiveActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mWidth=DisplayUtil.getScreenWidth(this);
-        mHeight= DisplayUtil.getScreenHeight(this);
+        mWidth = DisplayUtil.getScreenWidth(this);
+        mHeight = DisplayUtil.getScreenHeight(this);
+        //修复高度
         StatusBarUtil.adjustStatusBarHei(findViewById(R.id.ll_start_live_main));
-//        CameraManager manager= (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-//        mBmp = Bitmap.createBitmap(mMovie.width(), mMovie.height(), Config.ARGB_8888);
-
-
-        mVideoRender = new GlVideoRender(mWidth,mHeight);
+        mVideoRender = new GlVideoRender(mWidth, mHeight);
         mVideoRender.prepare();
         mSurfaceTexture = mVideoRender.getInputSurfaceTexture();
         mSurfaceTexture.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
             @Override
             public void onFrameAvailable(SurfaceTexture surfaceTexture) {
-                // Log.d(mTag, "onFrameAvailable");
-//                mBmp.eraseColor(0);
-
                 if (mVideoRender != null) {
-//                    mVideoRender.setOsdBmp(mBmp);
                     mVideoRender.drawFrame();
 
                 }
             }
         });
 
-        if (checkCameraAccess()  && surfaceCreated && mCamera == null) {
-            openCamera(false,mWidth,mHeight,mFramerate,mSurfaceTexture);
 
+        //Permission
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(StartLiveActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
         } else {
-            if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
-                requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
-            }
+            openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
+            mVideoRender.setMirror(false);
         }
-        mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
 
-        mVideoRender.setMirror(false);
-        holder = mSurfaceView.getHolder();
-        holder.addCallback(new SurfaceHolder.Callback() {
+        mHolder = mSurfaceView.getHolder();
+        mHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 Log.d(TAG, "surfaceDestroyed ...");
+                closeCamera(mCamera);
                 surfaceCreated = false;
                 mVideoRender.setViewSurface(null);
             }
@@ -155,11 +145,28 @@ public class StartLiveActivity extends BaseActivity {
 
             }
         });
-        holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+        mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        closeCamera(mCamera);
+    }
+
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if ( grantResults[0] ==PackageManager.PERMISSION_GRANTED) {
+            openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
+            mVideoRender.setMirror(false);
+        }else{
+            Toast.makeText(this,"没有相机权限",Toast.LENGTH_LONG).show();
+        }
+    }
 
     @OnClick({R.id.iv_location, R.id.iv_camera, R.id.iv_mirror, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.et_topic, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main})
     public void onClick(View view) {
@@ -167,6 +174,15 @@ public class StartLiveActivity extends BaseActivity {
             case R.id.iv_location:
                 break;
             case R.id.iv_camera:
+                Log.e(TAG, "onClick: " + "iv_camera");
+                isCamerafront = !isCamerafront;
+                Log.e(TAG, "onClick: " + "isCamerafront="+isCamerafront);
+                if (mCamera != null && mVideoRender != null) {
+                    closeCamera(mCamera);
+                    mCamera = null;
+                    mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
+                    mVideoRender.setMirror(isCamerafront);
+                }
                 break;
             case R.id.iv_mirror:
                 break;
@@ -193,16 +209,15 @@ public class StartLiveActivity extends BaseActivity {
         }
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (checkCameraAccess() && surfaceCreated && mCamera == null) {
-            openCamera(false,mWidth,mHeight,mFramerate,mSurfaceTexture);
-        }
-    }
+
 
     private void closeCamera(Camera camera) {
-        camera.stopPreview();
-        camera.release();
+        if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.setPreviewCallbackWithBuffer(null);
+            mCamera.release();
+            mCamera = null;
+        }
     }
 
     private Camera openCamera(boolean front_camera, int width, int height, int framerate, SurfaceTexture st) {
@@ -232,7 +247,7 @@ public class StartLiveActivity extends BaseActivity {
         Camera.Parameters parameters = camera.getParameters();
         // parameters.setPreviewFormat(ImageFormat.YV12);
         CameraUtils.choosePreviewSize(parameters, width, height);
-        CameraUtils.chooseFixedPreviewFps(parameters, framerate*1000);
+        CameraUtils.chooseFixedPreviewFps(parameters, framerate * 1000);
         if (parameters.getSupportedAntibanding().contains(Parameters.ANTIBANDING_50HZ)) {
             parameters.setAntibanding(Parameters.ANTIBANDING_50HZ);
         }
@@ -255,9 +270,19 @@ public class StartLiveActivity extends BaseActivity {
         return camera;
     }
 
-    // 检查相机权限
-    private boolean checkCameraAccess() {
-        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.CAMERA, android.os.Process.myPid(), android.os.Process.myUid());
+    @Override
+    protected void onDestroy() {
+
+        closeCamera(mCamera);
+        mCamera = null;
+
+        mSurfaceTexture.setOnFrameAvailableListener(null);
+        mSurfaceTexture = null;
+
+        mVideoRender.release();
+        mVideoRender = null;
+
+        super.onDestroy();
     }
 
 }
