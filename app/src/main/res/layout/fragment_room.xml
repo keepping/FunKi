@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/room_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:background="#22005500"
     android:clickable="true">
+
+
+    <com.powyin.slide.widget.BannerSwitch
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:pow_switch_auto_ennable="true"
+        app:pow_switch_animation_period="300"
+        app:pow_switch_period="1000000000"
+
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#2f0000ff">
+
+
+
+
+            </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#2fff0000">
+
+
+
+
+        </FrameLayout>
+    </com.powyin.slide.widget.BannerSwitch>
 
     <RelativeLayout
         android:id="@+id/scroll_watermark"
@@ -79,11 +110,6 @@
             android:background="@color/_BBABD4"
             android:visibility="visible" />
 
-        <!--<com.meelive.ingkee.v1.ui.view.room.view.RoomGoldCountView-->
-        <!--android:id="@+id/gold_count_container"-->
-        <!--style="@style/room_gold_count_container"-->
-        <!--android:layout_below="@+id/users_container"-->
-        <!--android:visibility="gone" />-->
 
         <LinearLayout
             android:id="@+id/public_chat_container"
@@ -105,49 +131,12 @@
             android:minHeight="50.0dip"
             android:orientation="vertical" />
 
-        <!--<com.meelive.ingkee.ui.room.view.EnterRoomEffectsView-->
-        <!--android:id="@+id/enter_room_effects_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_above="@+id/public_chat_container"-->
-        <!--android:layout_marginBottom="5.0dip" />-->
-
-        <!--<com.meelive.ingkee.v1.ui.view.room.view.RoomContinueGiftContainerView-->
-        <!--android:id="@+id/continue_gift_container"-->
-        <!--style="@style/room_continue_gift_cotnainer"-->
-        <!--android:layout_above="@+id/oper_container" />-->
 
         <LinearLayout
             android:id="@+id/oper_container"
             style="@style/room_oper_container"
             android:orientation="vertical" />
 
-        <!--<com.meelive.ingkee.v1.ui.view.room.RoomHeartView-->
-        <!--android:id="@+id/heart_view"-->
-        <!--style="@style/room_heart" />-->
-
-        <!--<com.meelive.ingkee.v1.ui.view.room.view.RoomChatView-->
-        <!--android:id="@+id/chat_container"-->
-        <!--style="@style/room_chat_container"-->
-        <!--android:background="@color/inke_color_60" />-->
-
-
-        <!--<com.meelive.ingkee.v1.ui.widget.GifAnimationView-->
-        <!--android:id="@+id/gif_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
-
-        <!--<include-->
-        <!--layout="@layout/room_full_screen_gift"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
-
-        <!--<include-->
-        <!--android:id="@+id/secret_room_share"-->
-        <!--layout="@layout/secret_share_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true" />-->
 
         <ImageView
             android:id="@+id/oriention_iv"

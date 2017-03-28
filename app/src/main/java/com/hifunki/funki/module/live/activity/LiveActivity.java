@@ -3,7 +3,9 @@ package com.hifunki.funki.module.live.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,16 +14,24 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.module.live.adapter.LiveVerticalAdapter;
+import com.hifunki.funki.module.live.event.EventPlayContent;
 import com.hifunki.funki.module.live.fragment.RoomFragment;
 import com.hifunki.funki.module.live.widget.VerticalViewPager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
@@ -36,8 +46,9 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 public class LiveActivity extends BaseActivity {
 
 
-    private SurfaceHolder holder;
-//
+
+
+    //
     private IjkMediaPlayer ijkMediaPlayer;
 
     private ArrayList<String> mVideoUrls = new ArrayList<>();
@@ -47,9 +58,11 @@ public class LiveActivity extends BaseActivity {
     private RelativeLayout mRoomContainer;
     private boolean mInit = false;
     private FragmentManager mFragmentManager;
-    private FrameLayout mFragmentContainer;
+
     private RoomFragment mRoomFragment = RoomFragment.newInstance();
-    private SurfaceView svLive;
+
+    @BindView(R.id.live)
+    SurfaceView live;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, LiveActivity.class));
@@ -62,179 +75,90 @@ public class LiveActivity extends BaseActivity {
 
     @Override
     protected void initDatas() {
-        mVideoUrls.add("rtmp://live.hkstv.hk.lxdns.com/live/hks");
-        mVideoUrls.add("rtmp://live.hkstv.hk.lxdns.com/live/hks");
-        mVideoUrls.add("rtmp://live.hkstv.hk.lxdns.com/live/hks");
-        mVideoUrls.add("rtmp://live.hkstv.hk.lxdns.com/live/hks");
+
     }
 
     @Override
     protected void initView() {
 
         VerticalViewPager mViewPager = (VerticalViewPager) findViewById(R.id.vertical_viewpager);
-        PagerAdapter mPagerAdapter = new PagerAdapter();
+        PagerAdapter mPagerAdapter = new LiveVerticalAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mPagerAdapter);
-
-
-        mRoomContainer = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.view_room_container, null);
-        mFragmentContainer = (FrameLayout) mRoomContainer.findViewById(R.id.fragment_container);
-        svLive = (SurfaceView) mRoomContainer.findViewById(R.id.sv_room);
-        mFragmentManager = getSupportFragmentManager();
-
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mCurrentItem = position;
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public void transformPage(View page, float position) {
-                ViewGroup viewGroup = (ViewGroup) page;
-                Log.e("test", "page.id == " + page.getId() + ", position == " + position);
-
-                if ((position < 0 && viewGroup.getId() != mCurrentItem)) {
-                    View roomContainer = viewGroup.findViewById(R.id.room_container);
-                    if (roomContainer != null && roomContainer.getParent() != null && roomContainer.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) (roomContainer.getParent())).removeView(roomContainer);
-                    }
-                }
-                // 满足此种条件，表明需要加载直播视频，以及聊天室了
-                if (viewGroup.getId() == mCurrentItem && position == 0 && mCurrentItem != mRoomId) {
-                    if (mRoomContainer.getParent() != null && mRoomContainer.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) (mRoomContainer.getParent())).removeView(mRoomContainer);
-                    }
-                    loadVideoAndChatRoom(viewGroup, mCurrentItem);
-                }
-
-            }
-        });
-
-
-
-
-
-
-
-
+        initPlay();
     }
 
-    private void loadVideoAndChatRoom(ViewGroup viewGroup, int currentItem) {
-//        mSubscription = AppObservable.bindActivity(this, ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
-        //聊天室的fragment只加载一次，以后复用
-        if (!mInit) {
-            mFragmentManager.beginTransaction().add(mFragmentContainer.getId(), mRoomFragment).commitAllowingStateLoss();
-            mInit = true;
-        }
-        loadVideo(currentItem);
-        viewGroup.addView(mRoomContainer);
-        mRoomId = currentItem;
-    }
 
-    private void loadVideo(int position) {
-                holder = svLive.getHolder();
-        ijkMediaPlayer = new IjkMediaPlayer();
+    // 控制视频播放源
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventPlayContent event) {
+
+        System.out.println(".......................................event"+event.uri);
+
         try {
-            String uri = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
-            ijkMediaPlayer.setDataSource(this, Uri.parse(uri));
-            ijkMediaPlayer.setDisplay(holder);
-            holder.addCallback(new SurfaceHolder.Callback() {
+            ijkMediaPlayer.reset();
+            ijkMediaPlayer.setDisplay(live.getHolder());
 
-                @Override
-                public void surfaceCreated(SurfaceHolder holder) {
-
-                }
-
-
-                @Override
-                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-                    ijkMediaPlayer.setDisplay(holder);
-                }
-
-
-                @Override
-                public void surfaceDestroyed(SurfaceHolder holder) {
-
-                }
-            });
+            ijkMediaPlayer.setDataSource(this, Uri.parse(event.uri));
             ijkMediaPlayer.prepareAsync();
             ijkMediaPlayer.start();
-        } catch (IOException e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
+    };
 
-        ijkMediaPlayer.setKeepInBackground(false);
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
     }
 
-    class PagerAdapter extends android.support.v4.view.PagerAdapter {
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 
-        @Override
-        public int getCount() {
-            return mVideoUrls.size();
-        }
 
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            View view = LayoutInflater.from(container.getContext()).inflate(R.layout.view_room_item, null);
-
-            ViewPager viewPager = (ViewPager) view.findViewById(R.id.vp_room);
-            viewPager.setAdapter(new PagerAdapter1());
-
-            view.setId(position);
-            container.addView(view);
-            return view;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView(container.findViewById(position));
+    private void initPlay() {
+        ijkMediaPlayer = new IjkMediaPlayer();
+        try {
+            live.getHolder().addCallback(new SurfaceHolder.Callback() {
+                @Override
+                public void surfaceCreated(SurfaceHolder holder) {
+                    ijkMediaPlayer.setDisplay(live.getHolder());
+                }
+                @Override
+                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+                }
+                @Override
+                public void surfaceDestroyed(SurfaceHolder holder) {
+                    ijkMediaPlayer.setDisplay(null);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    class PagerAdapter1 extends android.support.v4.view.PagerAdapter {
+    private void startPlay(){
 
-        @Override
-        public int getCount() {
-            return mVideoUrls.size();
-        }
 
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            View view = LayoutInflater.from(container.getContext()).inflate(R.layout.view_room_item1, null);
-
-            view.setId(position);
-            container.addView(view);
-
-            return view;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView(container.findViewById(position));
-        }
     }
+
+//    private void stopPlay(){
+//        if(isPlaying){
+//            System.out.println("=============================================================== playing................. false");
+//            ijkMediaPlayer.setDisplay(null);
+//            isPlaying = false;
+//            ijkMediaPlayer.stop();
+//        }
+//
+//    }
+
+
+
+
 
 
 }
+

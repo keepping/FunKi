@@ -67,6 +67,15 @@ dependencies {
     compile 'com.github.powyin:scroll:1.5.3'
     compile 'com.github.powyin:switch:0.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+<<<<<<< HEAD
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    testCompile 'junit:junit:4.12'
+
+    compile 'org.greenrobot:eventbus:3.0.0'
+
+    //ijkPlayer
+=======
+>>>>>>> 041cc3a41c02e6ff525ee8b717696318a408f289
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.1'
