@@ -10,9 +10,12 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
@@ -21,19 +24,19 @@ import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;
-import com.hifunki.funki.module.home.me.MeFragment;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
 import com.hifunki.funki.module.home.fragment.StoreFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
+import com.hifunki.funki.module.home.me.MeFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.hifunki.funki.module.live.activity.LiveActivity;
+import com.hifunki.funki.module.post.activity.PostActivity;
+import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.PopWindowUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
 
 
 /**
@@ -49,13 +52,18 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
         HomeFragment.OnFragmentInteractionListener, NavFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
         MeFragment.OnFragmentInteractionListener, HomeHotFragment.OnFragmentInteractionListener,
-        HomeNewFragment.OnFragmentInteractionListener {
+        HomeNewFragment.OnFragmentInteractionListener, View.OnClickListener {
 
     @BindView(R.id.main_container)
     FrameLayout mainContainer;
     @BindView(R.id.activity_main_ui)
     LinearLayout activityMainUi;
+    @BindView(R.id.nav_item)
+    ImageView ivNavItem;
+
     private NavFragment mNavBar;
+    private PopWindowUtil pwdPopWindow;
+    private View pwdView;
 
     private long mBackPressedTime;
 
@@ -68,7 +76,6 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
     public void onFragmentInteraction(Uri uri) {
 
     }
-
 
 
     public interface TurnBackListener {
@@ -119,7 +126,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
     }
 
 
-    @OnClick({R.id.main_container, R.id.fag_nav, R.id.activity_main_ui})
+    @OnClick({R.id.main_container, R.id.fag_nav, R.id.activity_main_ui, R.id.nav_item})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_container:
@@ -127,6 +134,27 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
             case R.id.fag_nav:
                 break;
             case R.id.activity_main_ui:
+                break;
+            case R.id.nav_item://点击跳出动态、视频
+                if (pwdPopWindow == null) {
+                    pwdPopWindow = PopWindowUtil.getInstance(this);
+                    pwdView = LayoutInflater.from(this).inflate(R.layout.pop_home_dymic_live, null);
+                    pwdPopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+                }
+                pwdPopWindow.init((int) DisplayUtil.dip2Px(this, 192), LinearLayout.LayoutParams.MATCH_PARENT);
+                pwdPopWindow.showPopWindow(pwdView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
+                //动态
+                LinearLayout llHomeDymic= (LinearLayout) pwdView.findViewById(R.id.ll_home_dymic);
+                //直播
+                LinearLayout llHomeLive= (LinearLayout) pwdView.findViewById(R.id.ll_home_live);
+                llHomeDymic.setOnClickListener(this);
+                llHomeLive.setOnClickListener(this);
+                break;
+            case R.id.ll_home_dymic://跳转到发动态
+                PostActivity.show(this);
+                break;
+            case R.id.ll_home_live://跳转到开启直播界面
+                LiveActivity.show(this);
                 break;
         }
     }
@@ -145,7 +173,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
     public void onBackPressed() {
 
         Configuration mConfiguration = this.getResources().getConfiguration();
-        if(mConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+        if (mConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             return;
         }
@@ -164,6 +192,16 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
             finish();
         }
     }
+
+    /**
+     * popupWindow dimiss
+     */
+    PopupWindow.OnDismissListener onDissmissListener = new PopupWindow.OnDismissListener() {
+        @Override
+        public void onDismiss() {
+
+        }
+    };
 
 }
 

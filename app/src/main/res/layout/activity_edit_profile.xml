@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context="com.hifunki.funki.module.home.me.profile.activity.EditProfileActivity">
 
+    <com.hifunki.funki.widget.TopBarView
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="编辑资料" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,10 +24,10 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="73dp">
+                android:layout_height="73dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     style="@style/TvEditProfileLeft"
@@ -32,6 +37,7 @@
                     android:text="@string/photo" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_profile_photo"
                     android:layout_width="58dp"
                     android:layout_height="58dp"
                     android:layout_alignParentRight="true"
@@ -83,9 +89,9 @@
                 app:rightText="中文" />
 
             <com.hifunki.funki.widget.EditProfileView
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
+                android:layout_marginTop="10dp"
                 app:leftText="@string/loveStatus"
                 app:rightImage="@drawable/iv_next"
                 app:rightText="心有所属" />
@@ -112,9 +118,9 @@
                 app:rightText="合租" />
 
             <com.hifunki.funki.widget.EditProfileView
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
+                android:layout_marginTop="10dp"
                 app:leftText="@string/stature"
                 app:rightImage="@drawable/iv_next"
                 app:rightText="178CM" />
@@ -177,9 +183,9 @@
                 app:rightText="偶尔交际" />
 
             <com.hifunki.funki.widget.EditProfileView
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
+                android:layout_marginTop="10dp"
                 app:leftText="职业"
                 app:rightImage="@drawable/iv_next"
                 app:rightText="设计师" />

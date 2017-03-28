@@ -1,5 +1,7 @@
 package com.hifunki.funki.module.post.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.LongSparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,6 @@ import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.adapter.EmptyAdapter;
 import com.hifunki.funki.module.home.widget.FKVideoView;
 import com.hifunki.funki.util.ViewUtil;
-import com.hifunki.funki.widget.FunKiPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 在此写用途
+ * 发表动态界面
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
@@ -31,6 +32,10 @@ import butterknife.OnClick;
  * @since 2017-03-24 13:27:27
  */
 public class PostActivity extends BaseActivity {
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context,PostActivity.class));
+    }
 
     private enum STATUS{
         unInit,

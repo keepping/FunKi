@@ -39,14 +39,15 @@
         <!-- 主布局 -->
         <activity
             android:name=".module.home.activity.HomeActivity"
-            android:launchMode="singleTask"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -129,9 +130,7 @@
         <activity android:name=".module.show.activity.ShowActivity" />
 
         <!-- 用户头像认证 -->
-        <activity android:name=".module.home.me.user.UserAvatarActivity">
-
-        </activity>
+        <activity android:name=".module.home.me.user.UserAvatarActivity"></activity>
 
         <!-- 个人中心榜单 -->
         <activity android:name=".module.rank.me.activity.MeRankActivity" />
@@ -144,12 +143,28 @@
         <activity android:name=".module.home.me.user.RecodeMovieActivity" />
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
         <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
+
         <activity android:name=".module.room.activity.OtherRoomActivity">
 
         </activity>
 
-
+        <!-- 发动态界面 -->
         <activity android:name=".module.post.activity.PostActivity">
+
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+
+        </activity>
+
+
+
+
+
+
+        <activity android:name=".module.live.activity.LiveActivity">
+
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -157,7 +172,6 @@
             </intent-filter>
 
         </activity>
-
     </application>
 
 </manifest>
