@@ -237,7 +237,7 @@ public class RecodeMovieActivity extends BaseActivity {
                 updateUI();
 
                 break;
-            case R.id.recode_recode:
+            case R.id.recode_recode://重新拍摄
 
                 if (checkCameraAccess() && checkAudioAccess() && surfaceCreated && mCamera == null) {
                     openCamera();
