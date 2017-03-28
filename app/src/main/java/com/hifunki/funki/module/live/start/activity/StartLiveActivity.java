@@ -194,6 +194,7 @@ public class StartLiveActivity extends BaseActivity {
             case R.id.iv_mirror:
                 break;
             case R.id.iv_close:
+                finish();
                 break;
             case R.id.rl_start_live_head:
                 break;
