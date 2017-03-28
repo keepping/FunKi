@@ -28,8 +28,8 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-feature android:name = "android.hardware.camera" />
-    <uses-feature android:name = "android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:name=".base.application.ApplicationMain"
@@ -46,14 +46,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
 
-<<<<<<< HEAD
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
-=======
->>>>>>> 041cc3a41c02e6ff525ee8b717696318a408f289
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -153,7 +150,6 @@
         <!--个人中心==充值界面-->
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
         <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
-<<<<<<< HEAD
 
         <activity android:name=".module.room.activity.OtherRoomActivity">
 
@@ -162,41 +158,14 @@
         <!-- 发动态界面 -->
         <activity android:name=".module.post.activity.PostActivity">
 
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-
         </activity>
 
-
-
-
-
-
-        <activity android:name=".module.live.activity.LiveActivity">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-=======
-        <activity android:name=".module.room.activity.OtherRoomActivity" />
-
-        <!-- 发动态界面 -->
-        <activity android:name=".module.post.activity.PostActivity" />
         <!--观众端界面-->
-        <activity android:name=".module.live.activity.LiveActivity" />
+        <activity android:name=".module.live.activity.LiveActivity"/>
+
         <!--开启直播界面-->
         <activity android:name=".module.live.start.activity.StartLiveActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
->>>>>>> 041cc3a41c02e6ff525ee8b717696318a408f289
         </activity>
     </application>
 

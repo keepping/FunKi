@@ -1,6 +1,8 @@
 package com.hifunki.funki.module.live.start.activity;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -21,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.common.CommonConst;
+import com.hifunki.funki.module.live.activity.LiveActivity;
 import com.hifunki.funki.module.live.start.CameraUtils;
 import com.hifunki.funki.module.live.start.GlVideoRender;
 import com.hifunki.funki.module.live.start.widget.RoundImageView;
@@ -83,6 +86,10 @@ public class StartLiveActivity extends BaseActivity {
     boolean surfaceCreated = false;
     private boolean isCamerafront = false;
     private String TAG = "test";
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context,StartLiveActivity.class));
+    }
 
     @Override
     protected int getViewResId() {
@@ -197,6 +204,7 @@ public class StartLiveActivity extends BaseActivity {
             case R.id.tv_topic:
                 break;
             case R.id.rl_normal_live:
+                LiveActivity.show(this);
                 break;
             case R.id.rl_invite_live:
                 break;
@@ -284,5 +292,6 @@ public class StartLiveActivity extends BaseActivity {
 
         super.onDestroy();
     }
+
 
 }

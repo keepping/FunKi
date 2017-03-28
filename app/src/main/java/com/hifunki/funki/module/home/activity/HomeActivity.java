@@ -30,7 +30,7 @@ import com.hifunki.funki.module.home.fragment.StoreFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
 import com.hifunki.funki.module.home.me.MeFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
-import com.hifunki.funki.module.live.activity.LiveActivity;
+import com.hifunki.funki.module.live.start.activity.StartLiveActivity;
 import com.hifunki.funki.module.post.activity.PostActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -154,7 +154,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
                 PostActivity.show(this);
                 break;
             case R.id.ll_home_live://跳转到开启直播界面
-                LiveActivity.show(this);
+                StartLiveActivity.show(this);
                 break;
         }
     }
