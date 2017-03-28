@@ -202,6 +202,10 @@
     <string name="profileLoveStatus">恋爱状态</string>
     <string name="profile_edit_photo">从相册中选择</string>
     <string name="profile_edit_take_photo">拍照</string>
+    <string name="startLiveNormalLive">普通直播</string>
+    <string name="startLiveInviteLive">邀请直播</string>
+    <string name="startLiveTicketLive">门票直播</string>
+    <string name="startLiveLevelLive">等级直播</string>
 
 
 </resources>

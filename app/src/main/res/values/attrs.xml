@@ -118,4 +118,18 @@
         <attr name="rightImage" format="reference" />
     </declare-styleable>
 
+    <!--开启直播自定义圆形头像-->
+    <declare-styleable name="AbsRoundImageView">
+        <attr name="riv_borderWidth" format="dimension|reference"/>
+        <attr name="riv_borderColor" format="color|reference"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="RoundImageView">
+        <attr name="riv_leftTopRadius" format="dimension|reference"/>
+        <attr name="riv_rightTopRadius" format="dimension|reference"/>
+        <attr name="riv_rightBottomRadius" format="dimension|reference"/>
+        <attr name="riv_leftBottomRadius" format="dimension|reference"/>
+    </declare-styleable>
+
 </resources>

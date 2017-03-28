@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_start_live_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_230C47"
+    android:paddingTop="20dp"
+    tools:context="com.hifunki.funki.module.live.start.activity.StartLiveActivity">
+
+    <SurfaceView
+        android:id="@+id/sv_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_start_live_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp">
+
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/iv_start_live_location" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+                android:layout_toRightOf="@+id/iv_location"
+                android:text="纽约"
+                android:textColor="@color/_FFFFFF"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="19dp"
+                android:layout_toLeftOf="@+id/iv_camera"
+                android:src="@drawable/iv_start_live_beauty" />
+
+            <ImageView
+                android:id="@+id/iv_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="19dp"
+                android:layout_toLeftOf="@+id/iv_mirror"
+                android:src="@drawable/iv_start_live_camera" />
+
+            <ImageView
+                android:id="@+id/iv_mirror"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="19dp"
+                android:layout_toLeftOf="@+id/iv_close"
+                android:src="@drawable/iv_start_live_mirror" />
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="19dp"
+                android:src="@drawable/iv_start_live_close" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:layout_marginTop="350dp">
+
+            <com.hifunki.funki.module.live.start.widget.RoundImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="67dp"
+                android:layout_height="67dp"
+                android:layout_marginLeft="19dp"
+                android:src="@drawable/iv_next"
+                app:riv_leftBottomRadius="5dp"
+                app:riv_leftTopRadius="5dp"
+                app:riv_rightBottomRadius="5dp"
+                app:riv_rightTopRadius="5dp" />
+
+            <EditText
+                android:id="@+id/et_topic"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/iv_photo"
+                android:cursorVisible="true"
+                android:hint="写个主题才能凸显本宫的气质"
+                android:textColorHint="@color/_FFFFFF"
+                android:textCursorDrawable="@color/_FFD71B"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_topic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_topic"
+                android:layout_marginLeft="57dp"
+                android:layout_toRightOf="@+id/iv_photo"
+                android:text="#添加话题"
+                android:textColor="@color/_FFFFFF"
+                android:textSize="17sp" />
+        </RelativeLayout>
+        <!--社会化分享-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/iv_start_live_facebook" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/iv_start_live_whatsapp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/iv_start_live_wechat" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/iv_start_live_qq" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/iv_start_live_instagram" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/iv_start_live_line" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/iv_start_live_weibo" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iv_start_live_twitter" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="22dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_normal_live"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="106dp"-->
+                <!--android:layout_height="39dp"-->
+                <!--android:background="@drawable/iv_start_live_type">-->
+
+                <!--</LinearLayout>-->
+                <!--这里需要ui切图再给定颜色-->
+                <com.hifunki.funki.module.live.start.widget.RoundImageView
+                    android:layout_width="106dp"
+                    android:layout_height="36dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/iv_start_live_normal_bg"
+                    app:riv_borderColor="@color/_FFFFFF"
+                    app:riv_borderWidth="2dp"
+                    app:riv_leftBottomRadius="30dp"
+                    app:riv_leftTopRadius="30dp"
+                    app:riv_rightBottomRadius="30dp"
+                    app:riv_rightTopRadius="30dp" />
+
+                <TextView
+                    android:layout_width="106dp"
+                    android:layout_height="39dp"
+                    android:gravity="center"
+                    android:text="@string/startLiveNormalLive"
+                    android:textColor="@color/_FFFFFF"
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_invite_live"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="43dp"
+                android:orientation="horizontal">
+
+                <com.hifunki.funki.module.live.start.widget.RoundImageView
+                    android:layout_width="106dp"
+                    android:layout_height="36dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/iv_start_live_normal_bg"
+                    app:riv_borderColor="@color/_FFFFFF"
+                    app:riv_borderWidth="2dp"
+                    app:riv_leftBottomRadius="30dp"
+                    app:riv_leftTopRadius="30dp"
+                    app:riv_rightBottomRadius="30dp"
+                    app:riv_rightTopRadius="30dp" />
+
+                <TextView
+                    android:layout_width="106dp"
+                    android:layout_height="39dp"
+                    android:gravity="center"
+                    android:text="@string/startLiveInviteLive"
+                    android:textColor="@color/_FFFFFF"
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_ticket_live"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="106dp"-->
+                <!--android:layout_height="39dp"-->
+                <!--android:background="@drawable/iv_start_live_type">-->
+
+                <!--</LinearLayout>-->
+                <!--这里需要ui切图再给定颜色-->
+                <com.hifunki.funki.module.live.start.widget.RoundImageView
+                    android:layout_width="106dp"
+                    android:layout_height="36dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/iv_start_live_normal_bg"
+                    app:riv_borderColor="@color/_FFFFFF"
+                    app:riv_borderWidth="2dp"
+                    app:riv_leftBottomRadius="30dp"
+                    app:riv_leftTopRadius="30dp"
+                    app:riv_rightBottomRadius="30dp"
+                    app:riv_rightTopRadius="30dp" />
+
+                <TextView
+                    android:layout_width="106dp"
+                    android:layout_height="39dp"
+                    android:gravity="center"
+                    android:text="@string/startLiveTicketLive"
+                    android:textColor="@color/_FFFFFF"
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_level_live"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="43dp"
+                android:orientation="horizontal">
+
+                <com.hifunki.funki.module.live.start.widget.RoundImageView
+                    android:layout_width="106dp"
+                    android:layout_height="36dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/iv_start_live_normal_bg"
+                    app:riv_borderColor="@color/_FFFFFF"
+                    app:riv_borderWidth="2dp"
+                    app:riv_leftBottomRadius="30dp"
+                    app:riv_leftTopRadius="30dp"
+                    app:riv_rightBottomRadius="30dp"
+                    app:riv_rightTopRadius="30dp" />
+
+                <TextView
+                    android:layout_width="106dp"
+                    android:layout_height="39dp"
+                    android:gravity="center"
+                    android:text="@string/startLiveLevelLive"
+                    android:textColor="@color/_FFFFFF"
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
