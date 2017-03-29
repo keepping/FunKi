@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -13,8 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.gson.Gson;
 import com.hifunki.funki.R;
 import com.hifunki.funki.module.live.event.EventPlayContent;
+import com.hifunki.funki.net.back.LiveModel;
+import com.hifunki.funki.util.TextUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -29,14 +33,34 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 public class RoomFragment extends Fragment {
 
-    View mainView;
 
-    public static RoomFragment newInstance() {
+    private View mainView;
+
+    private LiveModel model;
+
+
+    public static RoomFragment newInstance(LiveModel model) {
         Bundle args = new Bundle();
         RoomFragment fragment = new RoomFragment();
+
+        if(model!=null){
+            args.putString(LiveModel.class.getName(),new Gson().toJson(model));
+        }
+
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        String json =  getArguments().getString(LiveModel.class.getName(),"");                   //接受数据
+        if(!TextUtils.isEmpty(json)){
+            model = new Gson().fromJson(json,LiveModel.class);
+        }
+    }
+
+
 
     @Nullable
     @Override
