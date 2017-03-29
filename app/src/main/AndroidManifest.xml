@@ -45,12 +45,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -139,34 +138,28 @@
         <activity android:name=".module.rank.me.activity.MeRankActivity" />
         <!-- 个人中心账单 -->
         <activity android:name=".module.home.me.bill.activity.BillActivity" />
-        <!--直播收入详情-->
+        <!-- 直播收入详情 -->
         <activity android:name=".module.home.me.bill.activity.LiveIncomeActivity" />
-        <!--节目预告详情页-->
+        <!-- 节目预告详情页 -->
         <activity android:name=".module.show.activity.ShowDetailActivity" />
-        <!--我的粉丝列表页-->
+        <!-- 我的粉丝列表页 -->
         <activity android:name=".module.home.me.fans.activity.MyFansActivity" />
         <!-- 头像认证 录制视频 -->
         <activity android:name=".module.home.me.user.RecodeMovieActivity" />
-        <!--个人中心==充值界面-->
+        <!-- 个人中心==充值界面 -->
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
         <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
-
-        <activity android:name=".module.room.activity.OtherRoomActivity">
-
-        </activity>
+        <activity android:name=".module.room.activity.OtherRoomActivity"></activity>
 
         <!-- 发动态界面 -->
-        <activity android:name=".module.post.activity.PostActivity">
+        <activity android:name=".module.post.activity.PostActivity"></activity>
 
-        </activity>
+        <!-- 观众端界面 -->
+        <activity android:name=".module.live.activity.LiveActivity" />
 
-        <!--观众端界面-->
-        <activity android:name=".module.live.activity.LiveActivity"/>
-
-        <!--开启直播界面-->
-        <activity android:name=".module.live.start.activity.StartLiveActivity">
-
-        </activity>
+        <!-- 开启直播界面 -->
+        <activity android:name=".module.live.start.activity.StartLiveActivity"></activity>
+        <activity android:name=".module.splash.activity.SplashActivity"></activity>
     </application>
 
 </manifest>

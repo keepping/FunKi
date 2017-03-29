@@ -28,8 +28,12 @@ import com.hifunki.funki.module.live.start.CameraUtils;
 import com.hifunki.funki.module.live.start.GlVideoRender;
 import com.hifunki.funki.module.live.start.widget.RoundImageView;
 import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.StatusBarUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import butterknife.BindView;
@@ -128,9 +132,13 @@ public class StartLiveActivity extends BaseActivity {
         //Permission
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(StartLiveActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+
         } else {
             mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
             mVideoRender.setMirror(false);
+        }
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(StartLiveActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
         }
 
         mHolder = mSurfaceView.getHolder();
@@ -138,7 +146,7 @@ public class StartLiveActivity extends BaseActivity {
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 Log.d(TAG, "surfaceDestroyed ...");
-                closeCamera(mCamera);
+                closeCamera();
                 surfaceCreated = false;
                 mVideoRender.setViewSurface(null);
             }
@@ -164,17 +172,26 @@ public class StartLiveActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        closeCamera(mCamera);
+        closeCamera();
     }
 
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
-            mVideoRender.setMirror(false);
-        } else {
-            Toast.makeText(this, "没有相机权限", Toast.LENGTH_LONG).show();
+        switch (requestCode) {
+            case 1:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
+                    mVideoRender.setMirror(false);
+                } else {
+                    Toast.makeText(this, "没有相机权限", Toast.LENGTH_LONG).show();
+                }
+            case 2:
+                if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "写入文件夹权限", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "没有写入文件夹权限", Toast.LENGTH_LONG).show();
+                }
         }
     }
 
@@ -184,11 +201,9 @@ public class StartLiveActivity extends BaseActivity {
             case R.id.iv_location:
                 break;
             case R.id.iv_camera:
-                Log.e(TAG, "onClick: " + "iv_camera");
                 isCamerafront = !isCamerafront;
-                Log.e(TAG, "onClick: " + "isCamerafront=" + isCamerafront);
                 if (mCamera != null && mVideoRender != null) {
-                    closeCamera(mCamera);
+                    closeCamera();
                     mCamera = null;
                     mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
                     mVideoRender.setMirror(isCamerafront);
@@ -199,7 +214,7 @@ public class StartLiveActivity extends BaseActivity {
                 if (mVideoRender != null) {
                     mVideoRender.setFilterEnable(isBeautyOpen);
                 }
-                if(isBeautyOpen){
+                if (isBeautyOpen) {
                     mVideoRender.setBeautifyLevel(5);//这里取值0-5，其余值自行测试
                 }
                 break;
@@ -224,14 +239,41 @@ public class StartLiveActivity extends BaseActivity {
             case R.id.rl_ticket_live:
                 break;
             case R.id.rl_level_live:
+                if (mCamera != null) {
+                    mCamera.takePicture(null, null, mPicture);
+                }
                 break;
             case R.id.ll_start_live_main:
                 break;
         }
     }
 
+    private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
-    private void closeCamera(Camera camera) {
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+
+            String randomLivePath = FileUtils.getRandomLivePath(StartLiveActivity.this);
+            Log.e("test", "onPictureTaken: " + randomLivePath);
+            File pictureFile = new File(randomLivePath);
+            if (pictureFile == null) {
+
+                return;
+            }
+
+            try {
+                FileOutputStream fos = new FileOutputStream(pictureFile);
+                fos.write(data);
+                fos.close();
+            } catch (FileNotFoundException e) {
+                Log.d(TAG, "File not found: " + e.getMessage());
+            } catch (IOException e) {
+                Log.d(TAG, "Error accessing file: " + e.getMessage());
+            }
+        }
+    };
+
+    private void closeCamera() {
         if (mCamera != null) {
             mCamera.stopPreview();
             mCamera.setPreviewCallbackWithBuffer(null);
@@ -275,7 +317,6 @@ public class StartLiveActivity extends BaseActivity {
             parameters.setFocusMode(Parameters.FOCUS_MODE_AUTO);
         }
 
-
         camera.setParameters(parameters);
 
         try {
@@ -293,7 +334,7 @@ public class StartLiveActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
 
-        closeCamera(mCamera);
+        closeCamera();
         mCamera = null;
 
         mSurfaceTexture.setOnFrameAvailableListener(null);
