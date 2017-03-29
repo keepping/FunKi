@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -52,6 +53,34 @@ public class FileUtils {
      */
     public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    public static String getRandomLivePath(Context context){
+//        String path = Environment.getExternalStorageDirectory().getPath();
+        String path;
+//        if(context.getExternalCacheDir()!=null){
+//            path = context.getExternalCacheDir().getPath();
+//        }else {
+            path = Environment.getExternalStorageDirectory().getPath();
+//        }
+        path = path+"/renshine";
+        Log.e("test", "getRandomLivePath: "+path );
+        File file = new File(path);
+        if(!file.exists()){
+            boolean tf =file.mkdirs();
+        }
+
+        path+="/"+System.currentTimeMillis()+".jpg";
+
+        file = new File(path);
+        if(!file.exists()){
+            try {
+                boolean tf = file.createNewFile();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return path;
     }
 
     public static String getRandomVideoPath(Context context){

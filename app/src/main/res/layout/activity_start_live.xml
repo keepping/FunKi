@@ -45,6 +45,7 @@
                 android:textSize="15sp" />
 
             <ImageView
+                android:id="@+id/iv_beauty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -62,13 +63,14 @@
                 android:src="@drawable/iv_start_live_camera" />
 
             <ImageView
+                android:clickable="true"
                 android:id="@+id/iv_mirror"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="19dp"
                 android:layout_toLeftOf="@+id/iv_close"
-                android:src="@drawable/iv_start_live_mirror" />
+                android:background="@drawable/iv_start_live_mirror" />
 
             <ImageView
                 android:id="@+id/iv_close"

@@ -1,10 +1,12 @@
 package com.hifunki.funki.module.live.start.activity;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
+import android.hardware.Camera.Parameters;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -15,18 +17,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.hardware.Camera.Parameters;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.common.CommonConst;
+import com.hifunki.funki.module.live.activity.LiveActivity;
 import com.hifunki.funki.module.live.start.CameraUtils;
 import com.hifunki.funki.module.live.start.GlVideoRender;
 import com.hifunki.funki.module.live.start.widget.RoundImageView;
 import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.StatusBarUtil;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import butterknife.BindView;
@@ -49,6 +55,8 @@ public class StartLiveActivity extends BaseActivity {
     RelativeLayout rlHead;
     @BindView(R.id.iv_location)
     ImageView ivLocation;
+    @BindView(R.id.iv_beauty)
+    ImageView ivBeauty;
     @BindView(R.id.iv_camera)
     ImageView ivCamera;
     @BindView(R.id.iv_mirror)
@@ -74,7 +82,6 @@ public class StartLiveActivity extends BaseActivity {
     private SurfaceHolder mHolder;
     private SurfaceTexture mSurfaceTexture;
     private GlVideoRender mVideoRender = null;
-    private Bitmap mBmp;
     private Camera mCamera;
     private int mWidth;
     private int mHeight;
@@ -82,9 +89,13 @@ public class StartLiveActivity extends BaseActivity {
     private int mFramerate = 30;
 
     boolean surfaceCreated = false;
+    private boolean isBeautyOpen = false;
+    private boolean isCamerafront = false;
+    private String TAG = "test";
 
-    private String TAG="test";
-    private SurfaceHolder holder;
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, StartLiveActivity.class));
+    }
 
     @Override
     protected int getViewResId() {
@@ -99,78 +110,122 @@ public class StartLiveActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mWidth=DisplayUtil.getScreenWidth(this);
-        mHeight= DisplayUtil.getScreenHeight(this);
+        mWidth = DisplayUtil.getScreenWidth(this);
+        mHeight = DisplayUtil.getScreenHeight(this);
+        //修复高度
         StatusBarUtil.adjustStatusBarHei(findViewById(R.id.ll_start_live_main));
-//        CameraManager manager= (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-//        mBmp = Bitmap.createBitmap(mMovie.width(), mMovie.height(), Config.ARGB_8888);
-
-
-        mVideoRender = new GlVideoRender(mWidth,mHeight);
+        mVideoRender = new GlVideoRender(mWidth, mHeight);
         mVideoRender.prepare();
         mSurfaceTexture = mVideoRender.getInputSurfaceTexture();
+
         mSurfaceTexture.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
             @Override
             public void onFrameAvailable(SurfaceTexture surfaceTexture) {
-                // Log.d(mTag, "onFrameAvailable");
-//                mBmp.eraseColor(0);
-
                 if (mVideoRender != null) {
-//                    mVideoRender.setOsdBmp(mBmp);
                     mVideoRender.drawFrame();
 
                 }
             }
         });
 
-        if (checkCameraAccess()  && surfaceCreated && mCamera == null) {
-            openCamera(false,mWidth,mHeight,mFramerate,mSurfaceTexture);
+        mHolder = mSurfaceView.getHolder();
+        mHolder.addCallback(recodeCallBack);
 
+        mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+    }
+
+    private SurfaceHolder.Callback recodeCallBack = new SurfaceHolder.Callback() {
+
+        @Override
+        public void surfaceCreated(SurfaceHolder holder) {
+
+            surfaceCreated = true;
+            if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {//检查权限
+                mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
+            } else {
+                if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
+                }
+                if (Build.VERSION.SDK_INT >= 23 && !checkWriteStorageAccess()) {
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                }
+            }
+            mVideoRender.setViewSurface(holder.getSurface());
+        }
+
+        @Override
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+        }
+
+        @Override
+        public void surfaceDestroyed(SurfaceHolder holder) {
+            closeCamera();
+            surfaceCreated = false;
+            mVideoRender.setViewSurface(null);
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {
+            mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
         } else {
             if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
-                requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
+            }
+            if (Build.VERSION.SDK_INT >= 23 && !checkWriteStorageAccess()) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         }
-        mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
 
-        mVideoRender.setMirror(false);
-        holder = mSurfaceView.getHolder();
-        holder.addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                Log.d(TAG, "surfaceDestroyed ...");
-                surfaceCreated = false;
-                mVideoRender.setViewSurface(null);
-            }
+    }
 
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                Log.d(TAG, "surfaceCreated ...");
-                surfaceCreated = true;
-                mVideoRender.setViewSurface(holder.getSurface());
-            }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        closeCamera();
+    }
 
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int mWidth, int mHeight) {
 
-            }
-        });
-        holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {
+            mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
+        }
 
 
     }
 
-
-    @OnClick({R.id.iv_location, R.id.iv_camera, R.id.iv_mirror, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.et_topic, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main})
+    @OnClick({R.id.iv_location, R.id.iv_beauty, R.id.iv_camera, R.id.iv_mirror, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.et_topic, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_location:
                 break;
             case R.id.iv_camera:
+                isCamerafront = !isCamerafront;
+                if (mCamera != null && mVideoRender != null) {
+                    closeCamera();
+                    mCamera = null;
+                    mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
+                    mVideoRender.setMirror(isCamerafront);
+                }
+                break;
+            case R.id.iv_beauty://设置美颜等级
+                isBeautyOpen = !isBeautyOpen;
+                if (mVideoRender != null) {
+                    mVideoRender.setFilterEnable(isBeautyOpen);
+                }
+                if (isBeautyOpen) {
+                    mVideoRender.setBeautifyLevel(5);//这里取值0-5，其余值自行测试
+                }
                 break;
             case R.id.iv_mirror:
                 break;
             case R.id.iv_close:
+                finish();
                 break;
             case R.id.rl_start_live_head:
                 break;
@@ -181,28 +236,60 @@ public class StartLiveActivity extends BaseActivity {
             case R.id.tv_topic:
                 break;
             case R.id.rl_normal_live:
+                LiveActivity.show(this);
                 break;
             case R.id.rl_invite_live:
                 break;
             case R.id.rl_ticket_live:
                 break;
             case R.id.rl_level_live:
+                if (mCamera != null) {
+                    mCamera.takePicture(null, null, mPicture);
+                }
                 break;
             case R.id.ll_start_live_main:
                 break;
         }
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (checkCameraAccess() && surfaceCreated && mCamera == null) {
-            openCamera(false,mWidth,mHeight,mFramerate,mSurfaceTexture);
-        }
-    }
+    /**
+     * 保存相机图片
+     */
+    private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
-    private void closeCamera(Camera camera) {
-        camera.stopPreview();
-        camera.release();
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+
+            String randomLivePath = FileUtils.getRandomLivePath(StartLiveActivity.this);
+            Log.e("test", "onPictureTaken: " + randomLivePath);
+            File pictureFile = new File(randomLivePath);
+            if (pictureFile == null) {
+
+                return;
+            }
+
+            try {
+                FileOutputStream fos = new FileOutputStream(pictureFile);
+                fos.write(data);
+                fos.close();
+            } catch (FileNotFoundException e) {
+                Log.d(TAG, "File not found: " + e.getMessage());
+            } catch (IOException e) {
+                Log.d(TAG, "Error accessing file: " + e.getMessage());
+            }
+        }
+    };
+
+    /**
+     * 关闭照相机
+     */
+    private void closeCamera() {
+        if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.setPreviewCallbackWithBuffer(null);
+            mCamera.release();
+            mCamera = null;
+        }
     }
 
     private Camera openCamera(boolean front_camera, int width, int height, int framerate, SurfaceTexture st) {
@@ -232,14 +319,13 @@ public class StartLiveActivity extends BaseActivity {
         Camera.Parameters parameters = camera.getParameters();
         // parameters.setPreviewFormat(ImageFormat.YV12);
         CameraUtils.choosePreviewSize(parameters, width, height);
-        CameraUtils.chooseFixedPreviewFps(parameters, framerate*1000);
+        CameraUtils.chooseFixedPreviewFps(parameters, framerate * 1000);
         if (parameters.getSupportedAntibanding().contains(Parameters.ANTIBANDING_50HZ)) {
             parameters.setAntibanding(Parameters.ANTIBANDING_50HZ);
         }
         if (parameters.getSupportedFocusModes().contains(Parameters.FOCUS_MODE_AUTO)) {
             parameters.setFocusMode(Parameters.FOCUS_MODE_AUTO);
         }
-
 
         camera.setParameters(parameters);
 
@@ -255,9 +341,30 @@ public class StartLiveActivity extends BaseActivity {
         return camera;
     }
 
+    @Override
+    protected void onDestroy() {
+
+        closeCamera();
+        mCamera = null;
+
+        mSurfaceTexture.setOnFrameAvailableListener(null);
+        mSurfaceTexture = null;
+
+        mVideoRender.release();
+        mVideoRender = null;
+
+        super.onDestroy();
+    }
+
+
     // 检查相机权限
     private boolean checkCameraAccess() {
         return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.CAMERA, android.os.Process.myPid(), android.os.Process.myUid());
+    }
+
+    // 检查写入sdk权限
+    private boolean checkWriteStorageAccess() {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, android.os.Process.myPid(), android.os.Process.myUid());
     }
 
 }
