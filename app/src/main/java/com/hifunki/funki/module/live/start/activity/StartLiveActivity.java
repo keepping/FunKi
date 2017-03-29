@@ -52,6 +52,8 @@ public class StartLiveActivity extends BaseActivity {
     RelativeLayout rlHead;
     @BindView(R.id.iv_location)
     ImageView ivLocation;
+    @BindView(R.id.iv_beauty)
+    ImageView ivBeauty;
     @BindView(R.id.iv_camera)
     ImageView ivCamera;
     @BindView(R.id.iv_mirror)
@@ -84,11 +86,12 @@ public class StartLiveActivity extends BaseActivity {
     private int mFramerate = 30;
 
     boolean surfaceCreated = false;
+    private boolean isBeautyOpen = false;
     private boolean isCamerafront = false;
     private String TAG = "test";
 
     public static void show(Context context) {
-        context.startActivity(new Intent(context,StartLiveActivity.class));
+        context.startActivity(new Intent(context, StartLiveActivity.class));
     }
 
     @Override
@@ -126,7 +129,7 @@ public class StartLiveActivity extends BaseActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(StartLiveActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
         } else {
-            openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
+            mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
             mVideoRender.setMirror(false);
         }
 
@@ -167,15 +170,15 @@ public class StartLiveActivity extends BaseActivity {
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if ( grantResults[0] ==PackageManager.PERMISSION_GRANTED) {
-            openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
             mVideoRender.setMirror(false);
-        }else{
-            Toast.makeText(this,"没有相机权限",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "没有相机权限", Toast.LENGTH_LONG).show();
         }
     }
 
-    @OnClick({R.id.iv_location, R.id.iv_camera, R.id.iv_mirror, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.et_topic, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main})
+    @OnClick({R.id.iv_location, R.id.iv_beauty, R.id.iv_camera, R.id.iv_mirror, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.et_topic, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_location:
@@ -183,12 +186,21 @@ public class StartLiveActivity extends BaseActivity {
             case R.id.iv_camera:
                 Log.e(TAG, "onClick: " + "iv_camera");
                 isCamerafront = !isCamerafront;
-                Log.e(TAG, "onClick: " + "isCamerafront="+isCamerafront);
+                Log.e(TAG, "onClick: " + "isCamerafront=" + isCamerafront);
                 if (mCamera != null && mVideoRender != null) {
                     closeCamera(mCamera);
                     mCamera = null;
                     mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
                     mVideoRender.setMirror(isCamerafront);
+                }
+                break;
+            case R.id.iv_beauty://设置美颜等级
+                isBeautyOpen = !isBeautyOpen;
+                if (mVideoRender != null) {
+                    mVideoRender.setFilterEnable(isBeautyOpen);
+                }
+                if(isBeautyOpen){
+                    mVideoRender.setBeautifyLevel(5);//这里取值0-5，其余值自行测试
                 }
                 break;
             case R.id.iv_mirror:
@@ -217,7 +229,6 @@ public class StartLiveActivity extends BaseActivity {
                 break;
         }
     }
-
 
 
     private void closeCamera(Camera camera) {
