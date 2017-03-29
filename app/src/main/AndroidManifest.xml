@@ -47,10 +47,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -155,7 +153,7 @@
 
 
         <!-- 发动态界面 -->
-        <activity android:name=".module.post.activity.PostActivity"></activity>
+        <activity android:name=".module.post.activity.PostActivity" />
 
 
 
@@ -171,18 +169,14 @@
             </intent-filter>
         </activity>
 
+        <!-- 开启直播界面 -->
+        <activity android:name=".module.live.start.activity.StartLiveActivity" />
+        <activity android:name=".module.splash.activity.SplashActivity" />
+        <activity android:name=".module.live.start.activity.LiveTagActivity"></activity>
         <!--开启直播界面-->
-        <activity android:name=".module.live.start.activity.StartLiveActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-
-        </activity>
 
 
-        <activity android:name=".module.splash.activity.SplashActivity"></activity>
+
 
     </application>
 

@@ -206,6 +206,7 @@
     <string name="startLiveInviteLive">邀请直播</string>
     <string name="startLiveTicketLive">门票直播</string>
     <string name="startLiveLevelLive">等级直播</string>
+    <string name="save">保存</string>
 
 
 </resources>

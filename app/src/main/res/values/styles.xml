@@ -116,5 +116,18 @@
         <item name="android:windowExitAnimation">@anim/dialog_show_exit</item>
     </style>
 
+    <!--开启直播自定义标签-->
+    <style name="TvLiveTag">
+        <item name="android:textColor">@color/_FFFFFF</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:background">@drawable/bg_live_tag_tv</item>
+    </style>
 
 </resources>

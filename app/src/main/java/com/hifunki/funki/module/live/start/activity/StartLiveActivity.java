@@ -233,7 +233,8 @@ public class StartLiveActivity extends BaseActivity {
                 break;
             case R.id.et_topic:
                 break;
-            case R.id.tv_topic:
+            case R.id.tv_topic://跳转到选择标签页
+                LiveTagActivity.show(this);
                 break;
             case R.id.rl_normal_live:
                 LiveActivity.show(this);

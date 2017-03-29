@@ -50,10 +50,8 @@ dependencies {
     //    需要去除的依赖
     //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //ijkPlayer
-    
 
 
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support:support-v4:25.1.1'
     compile 'com.android.support:design:25.1.1'
@@ -65,7 +63,7 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'pub.devrel:easypermissions:0.3.0'
+    compile 'pub.devrel:easypermissions:0.3.0'//未被使用
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.8.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.powyin:scroll:1.5.3'
@@ -85,4 +83,5 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.google.android:flexbox:0.2.6'
 }

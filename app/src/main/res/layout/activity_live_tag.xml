@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.live.start.activity.LiveTagActivity">
+
+    <com.hifunki.funki.widget.TopBarView
+        android:id="@+id/tbv_live_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menuText="选择直播标签"
+        app:titleText="@string/save" />
+
+    <!--app:showDivider="beginning|middle"-->
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tbv_live_tag"
+        android:background="@color/_28114D"
+        android:paddingTop="19dp"
+        app:alignContent="flex_start"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_around"
+       >
+        <!--app:alignItems="baseline"-->
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="自定义" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="萝莉" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="御姐" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="肌肉男" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北欧" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="摇滚" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="萝莉" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="御姐" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="肌肉男" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北欧" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="摇滚" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="萝莉" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="御姐" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="肌肉男" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北欧" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="摇滚" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="萝莉" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="御姐" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="肌肉男" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北欧" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="摇滚" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="萝莉" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="御姐" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="肌肉男" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北欧" />
+
+        <TextView
+            style="@style/TvLiveTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="摇滚" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+</RelativeLayout>
