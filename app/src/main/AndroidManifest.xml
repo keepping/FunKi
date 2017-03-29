@@ -148,17 +148,18 @@
         <!-- 个人中心==充值界面 -->
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
         <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
-        <activity android:name=".module.room.activity.OtherRoomActivity"></activity>
+        <activity android:name=".module.room.activity.OtherRoomActivity" />
 
         <!-- 发动态界面 -->
-        <activity android:name=".module.post.activity.PostActivity"></activity>
+        <activity android:name=".module.post.activity.PostActivity" />
 
         <!-- 观众端界面 -->
         <activity android:name=".module.live.activity.LiveActivity" />
 
         <!-- 开启直播界面 -->
-        <activity android:name=".module.live.start.activity.StartLiveActivity"></activity>
-        <activity android:name=".module.splash.activity.SplashActivity"></activity>
+        <activity android:name=".module.live.start.activity.StartLiveActivity" />
+        <activity android:name=".module.splash.activity.SplashActivity" />
+        <activity android:name=".module.live.start.activity.LiveTagActivity"></activity>
     </application>
 
 </manifest>
