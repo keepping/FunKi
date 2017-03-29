@@ -7,8 +7,8 @@ import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
+import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
@@ -118,6 +117,7 @@ public class StartLiveActivity extends BaseActivity {
         mVideoRender = new GlVideoRender(mWidth, mHeight);
         mVideoRender.prepare();
         mSurfaceTexture = mVideoRender.getInputSurfaceTexture();
+
         mSurfaceTexture.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
             @Override
             public void onFrameAvailable(SurfaceTexture surfaceTexture) {
@@ -128,44 +128,58 @@ public class StartLiveActivity extends BaseActivity {
             }
         });
 
-
-        //Permission
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(StartLiveActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
-
-        } else {
-            mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
-            mVideoRender.setMirror(false);
-        }
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(StartLiveActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-        }
-
         mHolder = mSurfaceView.getHolder();
-        mHolder.addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                Log.d(TAG, "surfaceDestroyed ...");
-                closeCamera();
-                surfaceCreated = false;
-                mVideoRender.setViewSurface(null);
-            }
-
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                Log.d(TAG, "surfaceCreated ...");
-                surfaceCreated = true;
-                mVideoRender.setViewSurface(holder.getSurface());
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int mWidth, int mHeight) {
-
-            }
-        });
+        mHolder.addCallback(recodeCallBack);
 
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
+    }
+
+    private SurfaceHolder.Callback recodeCallBack = new SurfaceHolder.Callback() {
+
+        @Override
+        public void surfaceCreated(SurfaceHolder holder) {
+
+            surfaceCreated = true;
+            if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {//检查权限
+                mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
+            } else {
+                if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
+                }
+                if (Build.VERSION.SDK_INT >= 23 && !checkWriteStorageAccess()) {
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                }
+            }
+            mVideoRender.setViewSurface(holder.getSurface());
+        }
+
+        @Override
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+        }
+
+        @Override
+        public void surfaceDestroyed(SurfaceHolder holder) {
+            closeCamera();
+            surfaceCreated = false;
+            mVideoRender.setViewSurface(null);
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {
+            mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
+        } else {
+            if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
+            }
+            if (Build.VERSION.SDK_INT >= 23 && !checkWriteStorageAccess()) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
 
     }
 
@@ -178,21 +192,11 @@ public class StartLiveActivity extends BaseActivity {
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 1:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    mCamera = openCamera(false, mWidth, mHeight, mFramerate, mSurfaceTexture);
-                    mVideoRender.setMirror(false);
-                } else {
-                    Toast.makeText(this, "没有相机权限", Toast.LENGTH_LONG).show();
-                }
-            case 2:
-                if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "写入文件夹权限", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(this, "没有写入文件夹权限", Toast.LENGTH_LONG).show();
-                }
+        if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {
+            mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
         }
+
+
     }
 
     @OnClick({R.id.iv_location, R.id.iv_beauty, R.id.iv_camera, R.id.iv_mirror, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.et_topic, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main})
@@ -248,6 +252,9 @@ public class StartLiveActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 保存相机图片
+     */
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
         @Override
@@ -273,6 +280,9 @@ public class StartLiveActivity extends BaseActivity {
         }
     };
 
+    /**
+     * 关闭照相机
+     */
     private void closeCamera() {
         if (mCamera != null) {
             mCamera.stopPreview();
@@ -346,5 +356,15 @@ public class StartLiveActivity extends BaseActivity {
         super.onDestroy();
     }
 
+
+    // 检查相机权限
+    private boolean checkCameraAccess() {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.CAMERA, android.os.Process.myPid(), android.os.Process.myUid());
+    }
+
+    // 检查写入sdk权限
+    private boolean checkWriteStorageAccess() {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, android.os.Process.myPid(), android.os.Process.myUid());
+    }
 
 }

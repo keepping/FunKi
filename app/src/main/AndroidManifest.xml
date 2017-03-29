@@ -43,7 +43,6 @@
         <activity
             android:name=".module.home.activity.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
