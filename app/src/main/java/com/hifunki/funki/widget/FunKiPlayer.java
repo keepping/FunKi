@@ -10,7 +10,9 @@ import android.os.CountDownTimer;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +24,11 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.util.TextUtil;
 import com.hifunki.funki.util.TimeUtil;
+
+import tv.danmaku.ijk.media.player.IMediaPlayer;
+import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * 在此写用途
@@ -36,11 +42,11 @@ import com.hifunki.funki.util.TimeUtil;
 public class FunKiPlayer extends FrameLayout {
 
     public FunKiPlayer(@NonNull Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public FunKiPlayer(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context,attrs,0);
+        this(context, attrs, 0);
     }
 
     public FunKiPlayer(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
@@ -62,6 +68,7 @@ public class FunKiPlayer extends FrameLayout {
         PLAY_STATUS(int resId) {
             this.viewId = resId;
         }
+
         int viewId;
     }
 
@@ -70,7 +77,8 @@ public class FunKiPlayer extends FrameLayout {
     Activity context;
 
 
-    VideoView videoView;
+    IjkMediaPlayer ijkMediaPlayer;
+    SurfaceView surfaceView;
     LinearLayout play_control;
     ImageView play_pause_or_start;
     ImageView play_full_screen;
@@ -81,6 +89,7 @@ public class FunKiPlayer extends FrameLayout {
     String uri;
     CountDownTimer timer;
 
+    PLAY_STATUS play_status = PLAY_STATUS.unInit;
 
 
     private Runnable mRunnable = new Runnable() {
@@ -95,17 +104,20 @@ public class FunKiPlayer extends FrameLayout {
 
     private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         boolean isInTouch = false;
+
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            ensurePlayer();
             if (isInTouch) {
-                if (play_status != PLAY_STATUS.unInit && play_status!= PLAY_STATUS.loading) {
-                    int dur = videoView.getDuration();
+                if (play_status != PLAY_STATUS.unInit && play_status != PLAY_STATUS.loading) {
+                    long dur = ijkMediaPlayer.getDuration();
                     float raido = 1f * progress / 100;
                     int current = (int) (raido * dur);
-                    videoView.seekTo(current);
+                    ijkMediaPlayer.seekTo(current);
                 }
             }
         }
+
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
             isInTouch = true;
@@ -116,59 +128,133 @@ public class FunKiPlayer extends FrameLayout {
             isInTouch = false;
         }
     };
-    private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-            play_status = PLAY_STATUS.replay;
-            updateUI();
-        }
-    };
 
 
-    public void play(String uri){
+
+    public void play(String uri) {
+
+        System.out.println("......................................................................");
+        ensurePlayer();
+
         this.uri = uri;
         play_status = PLAY_STATUS.unInit;
-        videoView.setVideoURI(Uri.parse(uri));
-        videoView.requestFocus();
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                startPlay();
-            }
-        });
-        play_status = PLAY_STATUS.loading;
 
+        try {
+            ijkMediaPlayer.reset();
+            ijkMediaPlayer.setDataSource(getContext(),Uri.parse(uri));
+//            ijkMediaPlayer.prepareAsync();
+//            ijkMediaPlayer.setDisplay(live.getHolder());
+//            ijkMediaPlayer.setDataSource(this, Uri.parse(event.uri));
+            ijkMediaPlayer.prepareAsync();
+            ijkMediaPlayer.start();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        play_status = PLAY_STATUS.loading;
 
         updateUI();
     }
 
 
-
-
-    PLAY_STATUS play_status = PLAY_STATUS.unInit;
-
-
-
-    private void initView(Context context){
-        this.context = (Activity)context;
-        View.inflate(context, R.layout.player_content,this);
-        videoView = (VideoView)findViewById(R.id.video_view);
-        play_control = (LinearLayout)findViewById(R.id.play_control);
-        play_pause_or_start = (ImageView)findViewById(R.id.play_pause_or_start);
-        play_full_screen = (ImageView)findViewById(R.id.play_full_screen);
-        seekBar = (SeekBar)findViewById(R.id.play_seek);
-        playTimeCurrent = (TextView)findViewById(R.id.play_time_current);
-        playTime = (TextView)findViewById(R.id.play_time);
-
+    private void initView(Context context) {
+        this.context = (Activity) context;
+        View.inflate(context, R.layout.player_content, this);
+        surfaceView = (SurfaceView) findViewById(R.id.video_view);
+        play_control = (LinearLayout) findViewById(R.id.play_control);
+        play_pause_or_start = (ImageView) findViewById(R.id.play_pause_or_start);
+        play_full_screen = (ImageView) findViewById(R.id.play_full_screen);
+        seekBar = (SeekBar) findViewById(R.id.play_seek);
+        playTimeCurrent = (TextView) findViewById(R.id.play_time_current);
+        playTime = (TextView) findViewById(R.id.play_time);
 
         seekBar.setMax(100);
         seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
-        videoView.setOnCompletionListener(onCompletionListener);
-
 
         findViewById(R.id.play).setOnClickListener(clickListener);
         findViewById(R.id.play_pause_or_start).setOnClickListener(clickListener);
         findViewById(R.id.play_full_screen).setOnClickListener(clickListener);
+
+        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                ensurePlayer();
+                if(play_status == PLAY_STATUS.unInit && !TextUtils.isEmpty(uri)){
+                    play(uri);
+                }
+                ijkMediaPlayer.setDisplay(holder);
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                if(ijkMediaPlayer!=null){
+                    ijkMediaPlayer.stop();
+                }
+                play_status = PLAY_STATUS.unInit;
+                updateUI();
+
+            }
+        });
+
+    }
+
+    void ensurePlayer(){
+        if(ijkMediaPlayer==null){
+            ijkMediaPlayer = new IjkMediaPlayer();
+            ijkMediaPlayer.setOnPreparedListener(new IjkMediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(IMediaPlayer iMediaPlayer) {
+                    startPlay();
+                }
+            });
+
+            ijkMediaPlayer.setOnCompletionListener(new IjkMediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(IMediaPlayer iMediaPlayer) {
+                    play_status = PLAY_STATUS.replay;
+                    updateUI();
+                }
+            });
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ensurePlayer();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if(ijkMediaPlayer!=null){
+            ijkMediaPlayer.release();
+            ijkMediaPlayer = null;
+        }
+        play_status = PLAY_STATUS.unInit;
+    }
+
+    @Override
+    public void onStartTemporaryDetach() {
+        super.onStartTemporaryDetach();
+        if(ijkMediaPlayer!=null){
+            ijkMediaPlayer.release();
+            ijkMediaPlayer = null;
+        }
+        play_status = PLAY_STATUS.unInit;
+
+    }
+
+    @Override
+    public void onFinishTemporaryDetach() {
+        super.onFinishTemporaryDetach();
+        ensurePlayer();
     }
 
     private OnClickListener clickListener = new OnClickListener() {
@@ -189,7 +275,7 @@ public class FunKiPlayer extends FrameLayout {
                             postDelayed(mRunnable, 3000);
                             break;
                         case playing_notify:
-                            videoView.pause();
+                            ijkMediaPlayer.pause();
                             play_status = PLAY_STATUS.pause;
                             break;
                         case pause:
@@ -197,7 +283,7 @@ public class FunKiPlayer extends FrameLayout {
                             play_status = PLAY_STATUS.playing_silence;
                             break;
                         case replay:
-                            videoView.seekTo(0);
+                            ijkMediaPlayer.seekTo(0);
                             startPlay();
                             play_status = PLAY_STATUS.playing_silence;
                             break;
@@ -215,15 +301,15 @@ public class FunKiPlayer extends FrameLayout {
                     break;
                 case R.id.play_full_screen:
                     Configuration mConfiguration = getResources().getConfiguration();
-                    if(mConfiguration.orientation == Configuration.ORIENTATION_PORTRAIT){     // 竖屏状态
-                        FrameLayout frameLayout =  getRemotePlayView();
+                    if (mConfiguration.orientation == Configuration.ORIENTATION_PORTRAIT) {     // 竖屏状态
+                        FrameLayout frameLayout = getRemotePlayView();
                         frameLayout.removeAllViews();
                         FunKiPlayer player = new FunKiPlayer(context);
-                        frameLayout.addView(player,new FrameLayout.LayoutParams(-1,-1));
+                        frameLayout.addView(player, new FrameLayout.LayoutParams(-1, -1));
                         player.play(uri);
                         context.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-                    }else {
+                    } else {
                         getRemotePlayView().removeAllViews();
                         context.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                     }
@@ -234,24 +320,24 @@ public class FunKiPlayer extends FrameLayout {
     };
 
 
-    boolean portrait;
     /**
      * 监听全屏跟非全屏
+     *
      * @param newConfig
      */
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Configuration mConfiguration = this.getResources().getConfiguration();
-        if(mConfiguration.orientation == Configuration.ORIENTATION_PORTRAIT){                                // 竖屏状态
+        if (mConfiguration.orientation == Configuration.ORIENTATION_PORTRAIT) {                                // 竖屏状态
             getRemotePlayView().removeAllViews();
-            videoView.setVisibility(VISIBLE);
-        }else {
-            View remote = getRemotePlayView().getChildCount()>0 ? getRemotePlayView().getChildAt(0) : null;
-            if(remote==this){
-                videoView.setVisibility(VISIBLE);
-            }else {
-                videoView.setVisibility(GONE);
+            surfaceView.setVisibility(VISIBLE);
+        } else {
+            View remote = getRemotePlayView().getChildCount() > 0 ? getRemotePlayView().getChildAt(0) : null;
+            if (remote == this) {
+                surfaceView.setVisibility(VISIBLE);
+            } else {
+                surfaceView.setVisibility(GONE);
             }
         }
 
@@ -259,13 +345,13 @@ public class FunKiPlayer extends FrameLayout {
 
 
     private void startPlay() {
-        videoView.start();
+        ijkMediaPlayer.start();
         play_status = PLAY_STATUS.playing_silence;
         if (timer != null) {
             timer.cancel();
             timer = null;
         }
-        int duration = videoView.getDuration();
+        long duration = ijkMediaPlayer.getDuration();
 
         if (duration > 0) {
             timer = new CountDownTimer(duration, 1000) {
@@ -283,7 +369,6 @@ public class FunKiPlayer extends FrameLayout {
         }
         updateUI();
     }
-
 
 
     private void updateUI() {
@@ -316,9 +401,9 @@ public class FunKiPlayer extends FrameLayout {
                 break;
         }
 
-        int duration = videoView.getDuration();
-        int current = videoView.getCurrentPosition();
-
+        ensurePlayer();
+        long duration = ijkMediaPlayer.getDuration();
+        long current = ijkMediaPlayer.getCurrentPosition();
 
         float radio = duration == 0 ? 0 : 1f * current / duration;
         seekBar.setProgress((int) (100 * radio));
@@ -332,48 +417,27 @@ public class FunKiPlayer extends FrameLayout {
     }
 
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
 
-        System.out.println("onViewDetachedFromWindow");
-
-//        if(timer!=null){
-//            timer.cancel();
-//            timer = null;
-//        }
-
-//        videoView.stopPlayback();
-//        videoView.setVideoURI(null);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-    }
 
 
     // 从 DecorView 取出一个代理展示 视频 的 FrameLayout  如果没有则加入；
     private FrameLayout getRemotePlayView() {
-        ViewGroup viewGroup =    (ViewGroup)context.getWindow().getDecorView();
+        ViewGroup viewGroup = (ViewGroup) context.getWindow().getDecorView();
         FrameLayout ret = null;
-        for(int i=0;i<viewGroup.getChildCount(); i++){
-            if(tag.equals(viewGroup.getChildAt(i).getTag())){
-                ret = (FrameLayout)viewGroup.getChildAt(i);
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            if (tag.equals(viewGroup.getChildAt(i).getTag())) {
+                ret = (FrameLayout) viewGroup.getChildAt(i);
                 break;
             }
         }
-        if(ret == null){
+        if (ret == null) {
             ret = new FrameLayout(context);
             ret.setTag(tag);
-            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1,-1);
-            viewGroup.addView(ret,layoutParams);
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -1);
+            viewGroup.addView(ret, layoutParams);
         }
         return ret;
     }
-
-
-
 
 
 }
