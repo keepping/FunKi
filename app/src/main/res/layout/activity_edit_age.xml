@@ -4,6 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/_28114D"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.hifunki.funki.module.home.me.profile.activity.EditAgeActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="114dp"
+        android:text="26岁"
+        android:textColor="@color/_BBABD4"
+        android:textSize="17sp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp">
+
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="342dp"
+            android:layout_height="202dp"
+            android:src="@drawable/iv_edit_age_bg" />
+
+        <LinearLayout
+            android:layout_marginTop="23dp"
+            android:layout_width="342dp"
+            android:layout_height="155dp"
+            android:orientation="horizontal">
+
+            <com.hifunki.funki.module.pick.TextPicker
+                android:id="@+id/tp_year"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5" />
+
+            <com.hifunki.funki.module.pick.TextPicker
+                android:id="@+id/tp_mounth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5" />
+
+            <com.hifunki.funki.module.pick.TextPicker
+                android:id="@+id/tp_day"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5" />
+
+        </LinearLayout>
+
+    </FrameLayout>
 </LinearLayout>
