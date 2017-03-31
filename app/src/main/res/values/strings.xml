@@ -209,6 +209,8 @@
     <string name="startLiveTicketLive">门票直播</string>
     <string name="startLiveLevelLive">等级直播</string>
     <string name="save">保存</string>
+    <string name="withdraw_mine">我的余额</string>
+    <string name="excharge_record">提现记录</string>
 
 
 </resources>

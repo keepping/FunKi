@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_28114D"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.home.me.withdraw.activity.WithdrawActivity">
+
+    <com.hifunki.funki.widget.TopBarView
+        android:id="@+id/topView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:menuText="@string/excharge_record"
+        app:titleText="@string/withdraw_mine" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/layout_gold_before" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="46dp"
+            android:text="注：兑换所得的现金将会自动转入您的现金余额"
+            android:textColor="@color/_4A2F75"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</LinearLayout>

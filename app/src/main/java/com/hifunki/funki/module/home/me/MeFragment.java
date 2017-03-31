@@ -17,11 +17,13 @@ import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
-import com.hifunki.funki.module.home.me.profile.activity.EditProfileActivity;
-import com.hifunki.funki.module.home.me.user.UserAvatarActivity;
 import com.hifunki.funki.module.home.me.bill.activity.BillActivity;
+import com.hifunki.funki.module.home.me.exchange.activity.ExchangeActivity;
 import com.hifunki.funki.module.home.me.fans.activity.MyFansActivity;
+import com.hifunki.funki.module.home.me.profile.activity.EditProfileActivity;
 import com.hifunki.funki.module.home.me.recharge.activity.RechargeActivity;
+import com.hifunki.funki.module.home.me.user.UserAvatarActivity;
+import com.hifunki.funki.module.home.me.withdraw.activity.WithdrawActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -72,6 +74,10 @@ public class MeFragment extends BaseFragment {
     LinearLayout llFans;//粉丝
     @BindView(R.id.tv_recharge)
     TextView tvRecharge;
+    @BindView(R.id.tv_exchange)
+    TextView tvExchange;
+    @BindView(R.id.tv_withdraw)
+    TextView tvWithDraw;
 
     private String mParam1;
     private String mParam2;
@@ -177,7 +183,7 @@ public class MeFragment extends BaseFragment {
 
 
 
-    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile,R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans,R.id.tv_recharge, R.id.civ_me_photo})
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile,R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans,R.id.tv_recharge, R.id.civ_me_photo,R.id.tv_exchange,R.id.tv_withdraw})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_me_bill:
@@ -215,6 +221,12 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.tv_recharge://充值
                 RechargeActivity.show(getContext());
+                break;
+            case R.id.tv_exchange://兑换
+                ExchangeActivity.show(getContext());
+                break;
+            case R.id.tv_withdraw://提现
+                WithdrawActivity.show(getContext());
                 break;
         }
     }
