@@ -39,6 +39,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- 用于头像上传模块 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.hifunki.funki.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
         <!-- 主布局 -->
         <activity
             android:name=".module.home.activity.HomeActivity"
@@ -109,18 +120,6 @@
             android:name=".module.photo.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <!-- 用于头像上传模块 -->
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.hifunki.funki.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
-
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
         <!-- 账号基本类 -->
         <activity android:name=".base.activity.AccountBaseActivity" />
@@ -148,12 +147,11 @@
         <!-- 个人中心==充值界面 -->
         <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
         <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
-
-        <activity android:name=".module.room.activity.OtherRoomActivity"/>
-
+        <activity android:name=".module.room.activity.OtherRoomActivity" />
 
         <!-- 发动态界面 -->
         <activity android:name=".module.post.activity.PostActivity" />
+
 
 
 
@@ -166,6 +164,8 @@
             </intent-filter>
         </activity>
 
+
+
         <!-- 开启直播界面 -->
         <activity android:name=".module.live.start.activity.StartLiveActivity" >
 
@@ -173,12 +173,8 @@
 
         </activity>
         <activity android:name=".module.splash.activity.SplashActivity" />
-        <activity android:name=".module.live.start.activity.LiveTagActivity"></activity>
-        <!--开启直播界面-->
-
-
-
-
+        <activity android:name=".module.live.start.activity.LiveTagActivity" />
+        <activity android:name=".module.home.me.profile.activity.EditNicknameActivity" />
     </application>
 
 </manifest>

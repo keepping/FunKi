@@ -150,20 +150,6 @@ public class MeFragment extends BaseFragment {
         mInfoTag.add(getString(R.string.help_feedback));
         mInfoTag.add(getString(R.string.business_cooperate));
 
-
-        mInfoTag.add(getString(R.string.blacklist));
-        mInfoTag.add(getString(R.string.order_management));
-        mInfoTag.add(getString(R.string.account_privacy_safety));
-        mInfoTag.add(getString(R.string.setting));
-        mInfoTag.add(getString(R.string.help_feedback));
-        mInfoTag.add(getString(R.string.business_cooperate));
-
-        mInfoTag.add(getString(R.string.blacklist));
-        mInfoTag.add(getString(R.string.order_management));
-        mInfoTag.add(getString(R.string.account_privacy_safety));
-        mInfoTag.add(getString(R.string.setting));
-        mInfoTag.add(getString(R.string.help_feedback));
-        mInfoTag.add(getString(R.string.business_cooperate));
     }
 
     public void onButtonPressed(Uri uri) {
@@ -197,7 +183,7 @@ public class MeFragment extends BaseFragment {
             case R.id.iv_me_bill:
                 BillActivity.show(getContext());
                 break;
-            case R.id.iv_me_profile:
+            case R.id.iv_me_profile://编辑个人资料
                 EditProfileActivity.show(getContext());
                 break;
             case R.id.iv_me_share://下拉的分享popupWindow
@@ -212,14 +198,11 @@ public class MeFragment extends BaseFragment {
 
                 break;
             case R.id.civ_me_photo:
-
                 System.out.println(rvMe.getHeight());
 
                 break;
             case R.id.iv_me_authentication:
                 UserAvatarActivity.show(getContext());
-
-
                 break;
             case R.id.iv_me_list:
                 MeRankActivity.show(getContext());
@@ -228,7 +211,6 @@ public class MeFragment extends BaseFragment {
 
                 break;
             case R.id.ll_fans://粉丝
-
                 MyFansActivity.show(getContext());
                 break;
             case R.id.tv_recharge://充值

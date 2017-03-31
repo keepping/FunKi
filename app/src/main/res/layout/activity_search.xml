@@ -92,6 +92,7 @@
             </LinearLayout>
         </com.hifunki.funki.widget.MeScrollView>
 
-        <include layout="@layout/layout_sticky_header_view" />
+        <!--sticky head view-->
+        <!--<include layout="@layout/layout_sticky_header_view" />-->
     </FrameLayout>
 </LinearLayout>
