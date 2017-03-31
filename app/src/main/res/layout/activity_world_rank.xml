@@ -8,7 +8,11 @@
     android:orientation="vertical"
     tools:context=".module.rank.world.activity.WorldRankActivity">
 
-    <include layout="@layout/title_templet" />
+    <com.hifunki.funki.widget.TopBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menuText="@string/day_rank"
+        app:titleText="@string/world_rank" />
 
     <android.support.design.widget.TabLayout
         fontPath="fonts/FZDHTFW.ttf"

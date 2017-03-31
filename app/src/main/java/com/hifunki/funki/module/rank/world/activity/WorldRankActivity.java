@@ -6,10 +6,6 @@ import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
@@ -33,18 +29,6 @@ import butterknife.OnClick;
  */
 public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFragment.OnFragmentInteractionListener{
 
-    @BindView(R.id.tvTitleLeft)
-    TextView tvTitleLeft;
-    @BindView(R.id.rlTitleLeft)
-    RelativeLayout rlTitleLeft;
-    @BindView(R.id.tvTitleCenter)
-    TextView tvTitleCenter;
-    @BindView(R.id.rlTitleCenter)
-    RelativeLayout rlTitleCenter;
-    @BindView(R.id.ll_title_right)
-    LinearLayout llTitleRight;
-    @BindView(R.id.flTitleContainer)
-    FrameLayout flTitleContainer;
     @BindView(R.id.tb_rank)
     TabLayout tbRank;
     @BindView(R.id.vp_rank)

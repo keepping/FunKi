@@ -174,6 +174,7 @@
                 app:rightImage="@drawable/iv_next"
                 app:rightText="经常抽烟" />
 
+            <!--个人-->
 
             <com.hifunki.funki.widget.EditProfileView
                 android:layout_width="match_parent"
@@ -199,10 +200,5 @@
 
         </LinearLayout>
     </ScrollView>
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/rl_profile"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
 
-    <!--</android.support.v7.widget.RecyclerView>-->
 </LinearLayout>

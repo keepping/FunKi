@@ -97,6 +97,8 @@
     <string name="search_signature2">电音控</string>
     <string name="search_price">25</string>
     <string name="search_ticket">票价:</string>
+    <string name="world_rank">世界总榜</string>
+    <string name="day_rank">日榜</string>
     <string name="world_rank_anchor">主播人气</string>
     <string name="world_rank_rich">土豪贡献榜</string>
     <string name="login_email_address">请输入邮箱地址</string>

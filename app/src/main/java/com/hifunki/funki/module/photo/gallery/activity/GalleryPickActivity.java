@@ -1,5 +1,6 @@
 package com.hifunki.funki.module.photo.gallery.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -7,8 +8,10 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.FileProvider;
@@ -38,6 +41,7 @@ import com.hifunki.funki.module.photo.ucrop.UCrop;
 import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.HashMapUtil;
 import com.hifunki.funki.util.ListUtil;
+import com.hifunki.funki.util.PermissionUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -109,6 +113,8 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
 
     }
 
+
+
     @Override
     protected int getViewResId() {
         return R.layout.photo_gallery_main;
@@ -173,7 +179,15 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
             public void OnClickCamera(List<String> selectPhotoList) {
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
-                showCameraAction();
+                //检查相机权限
+                if(PermissionUtil.checkCameraAccess(getApplicationContext())){
+                    showCameraAction();
+                }else{
+                    if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkCameraAccess(getApplicationContext())) {
+                        requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+                    }
+                }
+
             }
 
             @Override
@@ -257,6 +271,12 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
 
     }
 
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (PermissionUtil.checkCameraAccess(getApplicationContext())) {
+            showCameraAction();
+        }
+    }
 
     /**
      * 初始化配置
@@ -539,5 +559,6 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
             isSelected.put(i, false);
         }
     }
+
 
 }
