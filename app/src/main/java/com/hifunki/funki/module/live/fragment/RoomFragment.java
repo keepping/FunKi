@@ -1,52 +1,38 @@
 package com.hifunki.funki.module.live.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.Space;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.live.adapter.LiveFanItem;
-import com.hifunki.funki.module.live.adapter.RewardAdpater;
+import com.hifunki.funki.client.User;
 import com.hifunki.funki.module.live.event.EventPlayContent;
 import com.hifunki.funki.module.live.mode.ChatMessage;
 import com.hifunki.funki.module.live.viewholder.ChatComing;
+import com.hifunki.funki.module.live.viewholder.ChatFan;
 import com.hifunki.funki.module.live.viewholder.ChatText;
 import com.hifunki.funki.module.pick.DatePick;
 import com.hifunki.funki.net.back.LiveModel;
-import com.hifunki.funki.util.TextUtil;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
-import com.powyin.slide.widget.BannerSwitch;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * Created by xiongxingxing on 16/12/3.
@@ -65,47 +51,50 @@ public class RoomFragment extends Fragment {
         return fragment;
     }
 
+
+
+
+//    // 控制滑动状态改变
+//    private BannerSwitch.OnButtonLineScrollListener lineScrollListener = new BannerSwitch.OnButtonLineScrollListener() {
+//        @Override
+//        public void onButtonLineScroll(int viewCount, int leftIndex, int rightIndex, View leftView, View rightView, float leftNearWei, float rightNearWei) {
+//            for(int i=0;i<viewCount;i++){
+//                bannerSwitch.getChildAt(i).findViewById(R.id.line).setAlpha(0);
+//            }
+//            leftIndex = leftIndex - 3;                                            //left 返回中间主显示对象； 需要向左偏移3单位 才是第一项选择；
+//            leftIndex = leftIndex<0 ? viewCount+leftIndex : leftIndex;
+//
+//            View line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
+//            line.setAlpha(1);
+//
+//            leftIndex ++ ;
+//            if(leftIndex>=viewCount){
+//                leftIndex=rightIndex;
+//            }
+//            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
+//            line.setAlpha(0.7f);
+//
+//            leftIndex ++ ;
+//            if(leftIndex>=viewCount){
+//                leftIndex=rightIndex;
+//            }
+//            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
+//            line.setAlpha(0.3f);
+//
+//            leftIndex ++ ;
+//            if(leftIndex>=viewCount){
+//                leftIndex=rightIndex;
+//            }
+//            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
+//            line.setAlpha(0);
+//        }
+//    };
+
+
+
+
     private View mainView;
     private LiveModel model;
-
-
-
-
-    // 控制滑动状态改变
-    private BannerSwitch.OnButtonLineScrollListener lineScrollListener = new BannerSwitch.OnButtonLineScrollListener() {
-        @Override
-        public void onButtonLineScroll(int viewCount, int leftIndex, int rightIndex, View leftView, View rightView, float leftNearWei, float rightNearWei) {
-            for(int i=0;i<viewCount;i++){
-                bannerSwitch.getChildAt(i).findViewById(R.id.line).setAlpha(0);
-            }
-            leftIndex = leftIndex - 3;                                            //left 返回中间主显示对象； 需要向左偏移3单位 才是第一项选择；
-            leftIndex = leftIndex<0 ? viewCount+leftIndex : leftIndex;
-
-            View line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
-            line.setAlpha(1);
-
-            leftIndex ++ ;
-            if(leftIndex>=viewCount){
-                leftIndex=rightIndex;
-            }
-            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
-            line.setAlpha(0.7f);
-
-            leftIndex ++ ;
-            if(leftIndex>=viewCount){
-                leftIndex=rightIndex;
-            }
-            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
-            line.setAlpha(0.3f);
-
-            leftIndex ++ ;
-            if(leftIndex>=viewCount){
-                leftIndex=rightIndex;
-            }
-            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
-            line.setAlpha(0);
-        }
-    };
 
 
     @Override
@@ -117,17 +106,19 @@ public class RoomFragment extends Fragment {
         }
     }
 
-
-    @BindView(R.id.banner_fan)
-    BannerSwitch bannerSwitch;
     @BindView(R.id.host_avatar)
     ImageView hostAvatar;
 
+    @BindView(R.id.banner_fan)
+    RecyclerView recyclerViewAvatar;
+
+
     @BindView(R.id.host_chat)
-    RecyclerView recyclerView;
+    RecyclerView recyclerViewMessage;
 
 
     MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
+    MultipleRecycleAdapter<User> avatarMutipleRecycleAdapter;
 
     @OnClick({
             R.id.host_avatar
@@ -155,18 +146,24 @@ public class RoomFragment extends Fragment {
 
         Glide.with(this).load("http://v1.qzone.cc/avatar/201408/03/23/44/53de58e5da74c247.jpg%21200x200.jpg").into(hostAvatar);
 
-        bannerSwitch.setAdapter(new LiveFanItem());
 
-        bannerSwitch.setOnButtonLineScrollListener(lineScrollListener);
-
-//        pager.setAdapter(new RewardAdpater());
-
-//        pager.requestDisallowInterceptTouchEvent();
 
         messageMultipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(),ChatComing.class, ChatText.class);
+        avatarMutipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(),ChatFan.class);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(messageMultipleRecycleAdapter);
+        recyclerViewAvatar.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewAvatar.setAdapter(avatarMutipleRecycleAdapter);
+        recyclerViewMessage.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewMessage.setAdapter(messageMultipleRecycleAdapter);
+
+
+        // 测试数据--------------
+        List<User> users = new ArrayList<>();
+        for(int i=0 ;i <10 ;i ++){
+            users.add(new User());
+        }
+        avatarMutipleRecycleAdapter.addLast(users);
+
 
         List<ChatMessage> chatMessages = new ArrayList<>();
         chatMessages.add(new ChatMessage("生气的路透", "可以表扬什么呢？？？", ChatMessage.TYPE.person_in));
@@ -179,9 +176,7 @@ public class RoomFragment extends Fragment {
         chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
         chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
         messageMultipleRecycleAdapter.addLast(chatMessages);
-
-
-
+        // 测试数据--------------
 
         return mainView;
     }
