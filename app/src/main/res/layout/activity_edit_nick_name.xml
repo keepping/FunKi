@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_230C47"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.home.me.profile.activity.EditNicknameActivity">
+
+    <com.hifunki.funki.widget.TopBarView
+        android:id="@+id/topView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:menuText="保存"
+        app:titleText="修改昵称" />
+
+    <EditText
+        android:id="@+id/et_nickname"
+        android:textColorHint="@color/_BBABD4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="29dp"
+        android:hint="鸡心螺饭"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="38dp"
+        android:text="昵称为63个字符"
+        android:textColor="@color/_6B4E9A"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

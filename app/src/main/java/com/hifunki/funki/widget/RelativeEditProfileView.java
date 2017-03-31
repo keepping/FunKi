@@ -20,20 +20,20 @@ import com.hifunki.funki.R;
  * @link
  * @since 2017-03-24 17:46:46
  */
-public class EditProfileView extends RelativeLayout {
+public class RelativeEditProfileView extends RelativeLayout {
 
     private Context mContext;
     private TextView tvProfileLeft;
     private ImageView ivProfileRight;
     private TextView tvProfileRight;
 
-    public EditProfileView(Context context, AttributeSet attrs) {
+    public RelativeEditProfileView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
         initView(context, attrs);
     }
 
-    public EditProfileView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RelativeEditProfileView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         initView(context, attrs);
@@ -46,10 +46,10 @@ public class EditProfileView extends RelativeLayout {
         tvProfileRight = (TextView) findViewById(R.id.tv_profile_right);
 
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.EditProfileView);
-        String leftText = typedArray.getString(R.styleable.EditProfileView_leftText);
-        String rightText = typedArray.getString(R.styleable.EditProfileView_rightText);
-        Drawable rightImage = typedArray.getDrawable(R.styleable.EditProfileView_rightImage);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RelativeEditProfileView);
+        String leftText = typedArray.getString(R.styleable.RelativeEditProfileView_leftText);
+        String rightText = typedArray.getString(R.styleable.RelativeEditProfileView_rightText);
+        Drawable rightImage = typedArray.getDrawable(R.styleable.RelativeEditProfileView_rightImage);
 
         tvProfileLeft.setText(leftText);
         tvProfileRight.setText(rightText);

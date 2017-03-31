@@ -25,11 +25,11 @@ public class TopBarView extends RelativeLayout {
 
     private ImageView tv_left;
 
-    private TextView tv_right_1;
-    private ImageView iv_right_1;
+    private TextView tvMenu;
+    private ImageView ivMenu;
 
-    private TextView tv_right_r;
-    private ImageView iv_right_r;
+    private TextView tvMenuMore;
+    private ImageView ivMenuMore;
 
     private Context mContext;
 
@@ -57,19 +57,19 @@ public class TopBarView extends RelativeLayout {
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_left = (ImageView) findViewById(R.id.tv_left);
 
-        tv_right_1 = (TextView) findViewById(R.id.tv_right_1);
-        iv_right_1 = (ImageView) findViewById(R.id.iv_right_1);
+        tvMenu = (TextView) findViewById(R.id.tv_menu);
+        ivMenu = (ImageView) findViewById(R.id.iv_menu);
 
         //最右边的TextView
-        tv_right_r = (TextView) findViewById(R.id.tv_right);
+        tvMenuMore = (TextView) findViewById(R.id.tv_menu_more);
         //最右边的ImageView
-        iv_right_r = (ImageView) findViewById(R.id.iv_right);
+        ivMenuMore = (ImageView) findViewById(R.id.iv_menu_more);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TopBarView);
         String titleValue = typedArray.getString(R.styleable.TopBarView_titleText);
         tv_title.setText(titleValue);
 
-        String rightValue_l = typedArray.getString(R.styleable.TopBarView_menuText);
+        String menuText = typedArray.getString(R.styleable.TopBarView_menuText);
         Drawable rightImage_l = typedArray.getDrawable(R.styleable.TopBarView_menuImage);
 
         String rightValue_r = typedArray.getString(R.styleable.TopBarView_menuTextMore);
@@ -78,32 +78,32 @@ public class TopBarView extends RelativeLayout {
         boolean hasBg = typedArray.getBoolean(R.styleable.TopBarView_hasBackGround, true);//是否展示background
 
 
-        if (rightValue_l != null && rightValue_l.length() > 0) {
-            tv_right_1.setText(rightValue_l);
-            tv_right_1.setVisibility(View.VISIBLE);
+        if (menuText != null && menuText.length() > 0) {
+            tvMenu.setText(menuText);
+            tvMenu.setVisibility(View.VISIBLE);
         } else {
-            tv_right_1.setVisibility(View.GONE);
+            tvMenu.setVisibility(View.GONE);
         }
 
         if (rightImage_l != null) {
-            iv_right_1.setImageDrawable(rightImage_l);
-            iv_right_1.setVisibility(View.VISIBLE);
+            ivMenu.setImageDrawable(rightImage_l);
+            ivMenu.setVisibility(View.VISIBLE);
         } else {
-            iv_right_1.setVisibility(View.GONE);
+            ivMenu.setVisibility(View.GONE);
         }
 
         if (rightValue_r != null && rightValue_r.length() > 0) {
-            tv_right_r.setText(rightValue_r);
-            tv_right_r.setVisibility(View.VISIBLE);
+            tvMenuMore.setText(rightValue_r);
+            tvMenuMore.setVisibility(View.VISIBLE);
         } else {
-            tv_right_r.setVisibility(View.GONE);
+            tvMenuMore.setVisibility(View.GONE);
         }
 
         if (rightImage_r != null) {
-            iv_right_r.setImageDrawable(rightImage_r);
-            iv_right_r.setVisibility(View.VISIBLE);
+            ivMenuMore.setImageDrawable(rightImage_r);
+            ivMenuMore.setVisibility(View.VISIBLE);
         } else {
-            iv_right_r.setVisibility(View.GONE);
+            ivMenuMore.setVisibility(View.GONE);
         }
 
 
@@ -140,21 +140,21 @@ public class TopBarView extends RelativeLayout {
         return tv_title;
     }
 
-    public TextView getRightText() {
-        return tv_right_1;
+    public TextView getMenuText() {
+        return tvMenu;
     }
 
-    public TextView getRightTextMore() {
-        return tv_right_r;
+    public TextView getMenuTextMore() {
+        return tvMenuMore;
     }
 
-    public ImageView getRightImage() {
-        return iv_right_1;
+    public ImageView getIvMenu() {
+        return ivMenu;
     }
 
     //最后边的ImageView
-    public ImageView getRightImageMore() {
-        return iv_right_r;
+    public ImageView getMenuImageMore() {
+        return ivMenuMore;
     }
 
 

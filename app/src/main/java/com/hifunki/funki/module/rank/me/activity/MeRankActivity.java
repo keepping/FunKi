@@ -68,7 +68,7 @@ public class MeRankActivity extends BaseActivity implements RankPresentFragment.
 
     @Override
     protected void initView() {
-        ImageView rightImageMore = topBarView.getRightImageMore();
+        ImageView rightImageMore = topBarView.getMenuImageMore();
 
         //点击弹出周榜
         rightImageMore.setOnClickListener(new View.OnClickListener() {

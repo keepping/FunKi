@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +63,10 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     @BindView(R.id.civ_profile_photo)
     ImageView civProfilePhoto;
 
+    @BindView(R.id.rl_nickname)
+    RelativeLayout rlNickname;
+    @BindView(R.id.rl_age)
+    RelativeLayout rlAge;
 
     private Context mContext = null;
     private EditProfileActivity mActivity = null;
@@ -74,7 +80,6 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     private File cameraTempFile;           //原始图片
     private File cropTempFile;           //待裁剪图片
     private IHandlerCallBack mHandlerCallBack;   // GalleryPick 生命周期接口
-
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, EditProfileActivity.class));
@@ -129,7 +134,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    @OnClick({R.id.civ_profile_photo})
+    @OnClick({R.id.civ_profile_photo, R.id.rl_nickname})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.civ_profile_photo:
@@ -144,6 +149,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                 TextView tvProfileGallery = (TextView) pwdView.findViewById(R.id.tv_profile_gallery);
                 TextView tvProfilePhoto = (TextView) pwdView.findViewById(R.id.tv_profile_photo);
                 ImageView ivClose = (ImageView) pwdView.findViewById(R.id.iv_close);
+                //点击相册回调
                 tvProfileGallery.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -157,6 +163,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         }
                     }
                 });
+                //点击拍照回调
                 tvProfilePhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -172,7 +179,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                         }
                     }
                 });
-
+                //点击图片关闭按钮
                 ivClose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -180,7 +187,13 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                     }
                 });
                 break;
+            case R.id.rl_nickname:
 
+                EditNicknameActivity.show(EditProfileActivity.this);
+                break;
+            case R.id.rl_age:
+
+                break;
             default:
         }
 
@@ -241,8 +254,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == REQUEST_CAMERA) {
+        if (requestCode == REQUEST_CAMERA) {//调用相机回调数据
             if (resultCode == RESULT_OK) {
                 if (cameraTempFile != null) {
                     if (!galleryConfig.isMultiSelect()) {
@@ -269,7 +281,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                     exit();
                 }
             }
-        }else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+        } else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {//裁剪回调数据
 //            final Uri resultUri = UCrop.getOutput(data);
 //            if (cameraTempFile != null && cameraTempFile.exists()) {
 //                cameraTempFile.delete();
@@ -281,6 +293,10 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
         } else if (resultCode == UCrop.RESULT_ERROR) {
             galleryConfig.getIHandlerCallBack().onError();
 //            final Throwable cropError = UCrop.getError(data);
+        } else if (requestCode == EditNicknameActivity.requestCode) {
+            Bundle bundle = data.getBundleExtra("intent");
+            String bundle1 = bundle.getString("bundle");
+            Log.e("test", "onActivityResult: " + bundle1);
         }
     }
 
@@ -305,6 +321,9 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     }
 
 
+    /**
+     * 初始化相册数据回调
+     */
     private void initGallery() {
         iHandlerCallBack = new IHandlerCallBack() {
             @Override
@@ -313,7 +332,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
 
             @Override
             public void onSuccess(List<String> photoList) {
-                Log.e("test", "onSuccess: "+photoList );
+                Log.e("test", "onSuccess: " + photoList);
                 path.clear();
                 for (String s : photoList) {
                     path.add(s);
