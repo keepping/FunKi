@@ -192,7 +192,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
                 EditNicknameActivity.show(EditProfileActivity.this);
                 break;
             case R.id.rl_age:
-
+                EditAgeActivity.show(EditProfileActivity.this);
                 break;
             default:
         }

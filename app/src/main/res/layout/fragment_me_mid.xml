@@ -187,6 +187,7 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_exchange"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:layout_alignParentBottom="true"
@@ -281,6 +282,7 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_withdraw"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:layout_alignParentBottom="true"

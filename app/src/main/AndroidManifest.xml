@@ -160,6 +160,9 @@
         <activity android:name=".module.splash.activity.SplashActivity" />
         <activity android:name=".module.live.start.activity.LiveTagActivity" />
         <activity android:name=".module.home.me.profile.activity.EditNicknameActivity" />
+        <activity android:name=".module.home.me.profile.activity.EditAgeActivity" />
+        <activity android:name=".module.home.me.exchange.activity.ExchangeActivity" />
+        <activity android:name=".module.home.me.withdraw.activity.WithdrawActivity"></activity>
     </application>
 
 </manifest>
