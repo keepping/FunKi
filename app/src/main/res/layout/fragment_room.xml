@@ -4,6 +4,7 @@
     android:id="@+id/room_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.powyin.slide.widget.BannerSwitch
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,19 +15,185 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <com.hifunki.funki.module.live.widget.BlockView
+                    android:id="@+id/block_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10" />
+
+                <com.hifunki.funki.module.live.widget.BlockView
+                    android:id="@+id/block_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/bg_gry_cicle">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/host_avatar"
+                            android:layout_width="37dp"
+                            android:layout_height="37dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="6dp"
+                            android:src="@drawable/ic_nav" />
+
+                        <LinearLayout
+                            android:id="@+id/fan_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/host_avatar"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/fan_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="翻睇晒而"
+                                android:textColor="#ffffff"
+                                android:textSize="14sp" />
+
+
+                            <TextView
+                                android:id="@+id/fan_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1989"
+                                android:textColor="#ffffff"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="6dp"
+
+                            android:layout_toRightOf="@+id/fan_location"
+                            android:background="@drawable/bg_yellow_cicle"
+
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="3dp"
+                            android:text="关注"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                    <com.powyin.slide.widget.BannerSwitch
+                        android:id="@+id/banner_fan"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="-30dp"
+                        android:layout_weight="1"
+                        app:pow_switch_fixed_item="6"
+                        app:pow_switch_period="100000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_gry_cicle_small"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/iv_me_income_unit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="453535"
+                        android:textColor="#ffffff" />
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/iv_skip" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="7dp"
+                    android:src="@drawable/iv_home_list" />
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"/>
+
+
+                <com.powyin.slide.widget.BannerSwitch
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="150dp">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+
+
+
+                        />
+                </com.powyin.slide.widget.BannerSwitch>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/host_chat"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7" />
 
 
 
 
+            </LinearLayout>
+        </FrameLayout>
 
-
-
-            </FrameLayout>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
 
 
         </FrameLayout>
