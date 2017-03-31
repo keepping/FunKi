@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#ffbf00"
+        android:paddingRight="15dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:gravity="center_vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_purple"
+            android:gravity="center_vertical"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:layout_marginLeft="15dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/iv_home_list" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:text="87"
+
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp" />
+
+        <TextView
+            android:id="@+id/host_chat_conming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="李安的摄像机浸入了" />
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

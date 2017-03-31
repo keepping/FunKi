@@ -5,26 +5,47 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.Space;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hifunki.funki.R;
+import com.hifunki.funki.module.live.adapter.LiveFanItem;
+import com.hifunki.funki.module.live.adapter.RewardAdpater;
 import com.hifunki.funki.module.live.event.EventPlayContent;
+import com.hifunki.funki.module.live.mode.ChatMessage;
+import com.hifunki.funki.module.live.viewholder.ChatComing;
+import com.hifunki.funki.module.live.viewholder.ChatText;
+import com.hifunki.funki.module.pick.DatePick;
 import com.hifunki.funki.net.back.LiveModel;
 import com.hifunki.funki.util.TextUtil;
+import com.powyin.scroll.adapter.MultipleRecycleAdapter;
+import com.powyin.slide.widget.BannerSwitch;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
@@ -32,13 +53,6 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  */
 
 public class RoomFragment extends Fragment {
-
-
-    private View mainView;
-
-    private LiveModel model;
-
-
     public static RoomFragment newInstance(LiveModel model) {
         Bundle args = new Bundle();
         RoomFragment fragment = new RoomFragment();
@@ -51,6 +65,49 @@ public class RoomFragment extends Fragment {
         return fragment;
     }
 
+    private View mainView;
+    private LiveModel model;
+
+
+
+
+    // 控制滑动状态改变
+    private BannerSwitch.OnButtonLineScrollListener lineScrollListener = new BannerSwitch.OnButtonLineScrollListener() {
+        @Override
+        public void onButtonLineScroll(int viewCount, int leftIndex, int rightIndex, View leftView, View rightView, float leftNearWei, float rightNearWei) {
+            for(int i=0;i<viewCount;i++){
+                bannerSwitch.getChildAt(i).findViewById(R.id.line).setAlpha(0);
+            }
+            leftIndex = leftIndex - 3;                                            //left 返回中间主显示对象； 需要向左偏移3单位 才是第一项选择；
+            leftIndex = leftIndex<0 ? viewCount+leftIndex : leftIndex;
+
+            View line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
+            line.setAlpha(1);
+
+            leftIndex ++ ;
+            if(leftIndex>=viewCount){
+                leftIndex=rightIndex;
+            }
+            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
+            line.setAlpha(0.7f);
+
+            leftIndex ++ ;
+            if(leftIndex>=viewCount){
+                leftIndex=rightIndex;
+            }
+            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
+            line.setAlpha(0.3f);
+
+            leftIndex ++ ;
+            if(leftIndex>=viewCount){
+                leftIndex=rightIndex;
+            }
+            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
+            line.setAlpha(0);
+        }
+    };
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,15 +118,81 @@ public class RoomFragment extends Fragment {
     }
 
 
+    @BindView(R.id.banner_fan)
+    BannerSwitch bannerSwitch;
+    @BindView(R.id.host_avatar)
+    ImageView hostAvatar;
+
+    @BindView(R.id.host_chat)
+    RecyclerView recyclerView;
+
+
+    MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
+
+    @OnClick({
+            R.id.host_avatar
+    })
+    void onClick(View view){
+
+        DatePick datePick = new DatePick(getActivity());
+
+        datePick.setOnDatePickListener(new DatePick.OnPickListener() {
+            @Override
+            public void onLocationSelect(Date date) {
+
+            }
+        });
+
+        datePick.showFullScreen();
+
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         mainView = inflater.inflate(R.layout.fragment_room, container, false);
+        ButterKnife.bind(this,mainView);
+
+        Glide.with(this).load("http://v1.qzone.cc/avatar/201408/03/23/44/53de58e5da74c247.jpg%21200x200.jpg").into(hostAvatar);
+
+        bannerSwitch.setAdapter(new LiveFanItem());
+
+        bannerSwitch.setOnButtonLineScrollListener(lineScrollListener);
+
+//        pager.setAdapter(new RewardAdpater());
+
+//        pager.requestDisallowInterceptTouchEvent();
+
+        messageMultipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(),ChatComing.class, ChatText.class);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(messageMultipleRecycleAdapter);
+
+        List<ChatMessage> chatMessages = new ArrayList<>();
+        chatMessages.add(new ChatMessage("生气的路透", "可以表扬什么呢？？？", ChatMessage.TYPE.person_in));
+        chatMessages.add(new ChatMessage("风筝的画廓", "剋来插手个吧？？？", ChatMessage.TYPE.person_in));
+        chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
+        chatMessages.add(new ChatMessage("嵌入式企鹅圈", "如果你连日常工作的一些问题都解决不好，你也别期望自己能在很短的时间内提升很高的水平。还是那句话，就算你有十年的工作经验，如果你只是一年", ChatMessage.TYPE.text));
+        chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
+        chatMessages.add(new ChatMessage("过程语言 ", "HAWQ我所使用过的SQL-on-Hadoop解决方案中唯一支持过程化", ChatMessage.TYPE.text));
+        chatMessages.add(new ChatMessage("生气的路透", "可以表扬什么呢？？？", ChatMessage.TYPE.person_in));
+        chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
+        chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
+        messageMultipleRecycleAdapter.addLast(chatMessages);
+
+
+
 
         return mainView;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+
+    }
+
 
 
     private boolean reResume = false;      //用于控制当前显示视频
@@ -84,10 +207,7 @@ public class RoomFragment extends Fragment {
 
 
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
+
 
 
 
@@ -110,10 +230,12 @@ public class RoomFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         isVisual = isVisibleToUser;
-        if(isVisibleToUser){
-            startPlay();
-        }
+        startPlay();
     }
+
+
+
+
 
 }
 

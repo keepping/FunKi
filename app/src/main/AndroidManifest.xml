@@ -44,11 +44,7 @@
             android:name=".module.home.activity.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
@@ -100,7 +96,11 @@
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
         <!-- 图片列表页 -->
-        <activity android:name=".module.photo.gallery.activity.PhotoActivity" />
+        <activity android:name=".module.photo.gallery.activity.PhotoActivity">
+
+
+
+        </activity>
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -157,9 +157,6 @@
 
 
 
-
-
-
         <!--观众端界面-->
         <activity android:name=".module.live.activity.LiveActivity" >
             <intent-filter>
@@ -170,7 +167,11 @@
         </activity>
 
         <!-- 开启直播界面 -->
-        <activity android:name=".module.live.start.activity.StartLiveActivity" />
+        <activity android:name=".module.live.start.activity.StartLiveActivity" >
+
+
+
+        </activity>
         <activity android:name=".module.splash.activity.SplashActivity" />
         <activity android:name=".module.live.start.activity.LiveTagActivity"></activity>
         <!--开启直播界面-->

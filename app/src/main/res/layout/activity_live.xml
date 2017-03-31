@@ -15,8 +15,12 @@
     <com.hifunki.funki.module.live.widget.VerticalViewPager
         android:id="@+id/vertical_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
 
-        />
+
+
+
+
+    </com.hifunki.funki.module.live.widget.VerticalViewPager>
 
 </FrameLayout>

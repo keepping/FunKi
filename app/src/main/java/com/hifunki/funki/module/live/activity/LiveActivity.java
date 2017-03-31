@@ -3,9 +3,17 @@ package com.hifunki.funki.module.live.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
@@ -40,6 +48,7 @@ public class LiveActivity extends BaseActivity {
     public static void show(Context context) {
         context.startActivity(new Intent(context, LiveActivity.class));
     }
+
 
     private IjkMediaPlayer ijkMediaPlayer;
 
@@ -80,6 +89,12 @@ public class LiveActivity extends BaseActivity {
     };
 
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION  | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
 
     @Override
     protected int getViewResId() {
@@ -88,6 +103,20 @@ public class LiveActivity extends BaseActivity {
 
     @Override
     protected void initDatas() {
+
+
+        ScrollView scrollView ;
+
+        HorizontalScrollView horizontalScrollView;
+
+
+        RecyclerView recyclerView = null;
+
+        LinearLayoutManager linearLayoutManager = null;
+
+
+
+
 
     }
 
@@ -113,6 +142,10 @@ public class LiveActivity extends BaseActivity {
 
         mViewPager.setAdapter(mPagerAdapter);
 
+//        mViewPager.requestDisallowInterceptTouchEvent();
+//
+//        View view;
+
         mViewPager.setCurrentItem(4);
 
 
@@ -123,7 +156,6 @@ public class LiveActivity extends BaseActivity {
     // 控制视频播放源
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventPlayContent event) {
-        System.out.println(".......................................event"+event.uri);
         try {
             ijkMediaPlayer.reset();
             ijkMediaPlayer.setDisplay(live.getHolder());
