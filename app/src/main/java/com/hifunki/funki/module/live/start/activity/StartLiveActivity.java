@@ -22,7 +22,6 @@ import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.common.CommonConst;
-import com.hifunki.funki.module.live.activity.LiveActivity;
 import com.hifunki.funki.module.live.start.CameraUtils;
 import com.hifunki.funki.module.live.start.GlVideoRender;
 import com.hifunki.funki.module.live.start.widget.RoundImageView;
@@ -237,7 +236,7 @@ public class StartLiveActivity extends BaseActivity {
                 LiveTagActivity.show(this);
                 break;
             case R.id.rl_normal_live:
-                LiveActivity.show(this);
+//                LiveActivity.show(this);
 //                TestTitleActivity.show(this);
                 break;
             case R.id.rl_invite_live:

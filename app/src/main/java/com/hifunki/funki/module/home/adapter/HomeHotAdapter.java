@@ -54,6 +54,7 @@ public class HomeHotAdapter extends BaseMultiItemQuickAdapter<HomeHotEntity, Bas
                 helper.setText(R.id.tv_count_person, String.valueOf(item.getWatchCount()));
 
                 helper.addOnClickListener(R.id.iv_photo);
+                helper.addOnClickListener(R.id.iv_imagepath);
                 break;
             case HomeHotEntity.TICKET_LIVE://small
                 //门票直播--small view

@@ -8,8 +8,12 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -22,6 +26,8 @@ import com.hifunki.funki.module.live.viewholder.ChatComing;
 import com.hifunki.funki.module.live.viewholder.ChatFan;
 import com.hifunki.funki.module.live.viewholder.ChatText;
 import com.hifunki.funki.net.back.LiveModel;
+import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.widget.bessel.DivergeView2;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
 
@@ -52,14 +58,18 @@ public class RoomFragment extends BaseFragment {
     RecyclerView recyclerViewMessage;
     @BindView(R.id.dv)
     DivergeView2 divergeView3;
+    @BindView(R.id.tv_follow)
+    TextView tvFollow;
 
     MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
     MultipleRecycleAdapter<User> avatarMutipleRecycleAdapter;
     private boolean reResume = false;      //用于控制当前显示视频
     private boolean isVisual = false;      //用于控制当前显示视频
     private LiveModel model;
-    private ArrayList<Bitmap> mList;
+    private ArrayList<Bitmap> mList;//弹幕bitmap
     private int mIndex = 0;
+    private PopWindowUtil sharePopWindow;//分享popWindow
+    private View shareView;
 
     public static RoomFragment newInstance(LiveModel model) {
         Bundle args = new Bundle();
@@ -130,7 +140,7 @@ public class RoomFragment extends BaseFragment {
         });
     }
 
-    @OnClick(R.id.host_avatar)
+    @OnClick({R.id.host_avatar,R.id.tv_follow})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.host_avatar:
@@ -140,15 +150,16 @@ public class RoomFragment extends BaseFragment {
                 divergeView3.startDiverges(mIndex);
                 mIndex++;
                 break;
+            case R.id.tv_follow:
+                //创建PopWindow
+                if (sharePopWindow == null) {
+                    sharePopWindow = PopWindowUtil.getInstance(getContext());
+                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_me_share, null);
+                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+                }
+                sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
+                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
 
-        }
-    }
-
-    class Provider implements DivergeView2.DivergeViewProvider {
-
-        @Override
-        public Bitmap getBitmap(Object obj) {
-            return mList == null ? null : mList.get((int) obj);
         }
     }
 
@@ -184,6 +195,23 @@ public class RoomFragment extends BaseFragment {
         startPlay();
     }
 
+    class Provider implements DivergeView2.DivergeViewProvider {
+
+        @Override
+        public Bitmap getBitmap(Object obj) {
+            return mList == null ? null : mList.get((int) obj);
+        }
+    }
+
+    /**
+     * popupWindow dimiss
+     */
+    PopupWindow.OnDismissListener onDissmissListener = new PopupWindow.OnDismissListener() {
+        @Override
+        public void onDismiss() {
+
+        }
+    };
 
 //    // 控制滑动状态改变
 //    private BannerSwitch.OnButtonLineScrollListener lineScrollListener = new BannerSwitch.OnButtonLineScrollListener() {

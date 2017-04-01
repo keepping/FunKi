@@ -12,9 +12,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="42dp"
         android:scaleType="fitXY" />
-
-    头部的背景
-
+    <!--头部的背景-->
     <RelativeLayout
         android:id="@+id/rl_live_head"
         android:layout_width="match_parent"
