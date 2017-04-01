@@ -200,6 +200,7 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
         mListener = null;
     }
 
+
     //banner点击
     @Override
     public void OnBannerClick(int position) {

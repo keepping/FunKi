@@ -1,49 +1,33 @@
 package com.hifunki.funki.module.home.viewholder;
 
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
-import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.CountDownTimer;
-import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.view.Surface;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.net.back.Post;
-import com.hifunki.funki.util.TimeUtil;
 import com.hifunki.funki.widget.FunKiPlayer;
 import com.powyin.scroll.adapter.AdapterDelegate;
 import com.powyin.scroll.adapter.PowViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * 在此写用途
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.viewholder.Follow_Movie.java
+ * @value com.hifunki.funki.module.home.viewholder.FollowMovie.java
  * @link
  * @since 2017-03-16 10:04:04
  */
-public class Follow_Movie extends PowViewHolder<Post> {
+public class FollowMovie extends PowViewHolder<Post> {
 
 
     @BindView(R.id.fun_player)
     FunKiPlayer fun_player;
 
-    public Follow_Movie(Activity activity, ViewGroup viewGroup) {
+    public FollowMovie(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
 
         ButterKnife.bind(this,mItemView);

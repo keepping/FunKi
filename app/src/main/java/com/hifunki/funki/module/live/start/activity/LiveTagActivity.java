@@ -82,11 +82,14 @@ public class LiveTagActivity extends BaseActivity {
                 tv.setText(s);
                 //设置不同的颜色
                 GradientDrawable drawable= (GradientDrawable) tv.getBackground();
-                if(position%2==0) {
+                if(position%3==0) {
                     int color = getResources().getColor(R.color._9B44ED);
                     drawable.setColor(color);
-                }else{
+                }else if(position%3==1){
                     int color1 = getResources().getColor(R.color._61E46D);
+                    drawable.setColor(color1);
+                }else{
+                    int color1 = getResources().getColor(R.color._AB2D2D);
                     drawable.setColor(color1);
                 }
                 return tv;

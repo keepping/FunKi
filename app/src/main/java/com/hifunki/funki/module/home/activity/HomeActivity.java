@@ -203,6 +203,11 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
         }
     };
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pwdPopWindow.hidePopWindow();
+    }
 }
 
 

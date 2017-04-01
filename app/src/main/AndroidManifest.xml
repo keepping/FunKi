@@ -159,7 +159,9 @@
             android:theme="@style/AppThemeFullScreen"/>
 
         <!-- 开启直播界面 -->
-        <activity android:name=".module.live.start.activity.StartLiveActivity"></activity>
+        <activity android:name=".module.live.start.activity.StartLiveActivity">
+
+        </activity>
         <activity android:name=".module.splash.activity.SplashActivity" />
         <activity android:name=".module.live.start.activity.LiveTagActivity" />
         <activity android:name=".module.home.me.profile.activity.EditNicknameActivity" />
