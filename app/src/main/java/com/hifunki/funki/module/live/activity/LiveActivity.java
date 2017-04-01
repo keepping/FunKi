@@ -53,7 +53,6 @@ public class LiveActivity extends BaseActivity {
         context.startActivity(new Intent(context, LiveActivity.class));
     }
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

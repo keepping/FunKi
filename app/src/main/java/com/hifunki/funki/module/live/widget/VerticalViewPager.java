@@ -48,6 +48,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
+ * 纵向的ViewPager
  * Created by castorflex on 12/29/13.
  * Just a copy of the original ViewPager modified to support vertical Scrolling
  */
