@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
-import com.hifunki.funki.client.User;
+import com.hifunki.funki.common.CommonConst;
 import com.powyin.scroll.adapter.AdapterDelegate;
 import com.powyin.scroll.adapter.PowViewHolder;
 
@@ -14,20 +14,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 在此写用途
+ * 观众端礼物列表
  *
- * @author yinhaoxiang
+ * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.viewholder.ChatFan.java
+ * @value com.hifunki.funki.module.live.viewholder.Gift.java
  * @link
- * @since 2017-03-31 18:17:17
+ * @since 2017-04-01 14:50:50
  */
-public class ChatFan extends PowViewHolder<User>  {
+public class Gift extends PowViewHolder<String> {
 
     @BindView(R.id.fan_avatar)
     ImageView fanAvatar;
 
-    public ChatFan(Activity activity, ViewGroup viewGroup) {
+    public Gift(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
         ButterKnife.bind(this,mItemView);
     }
@@ -38,7 +38,8 @@ public class ChatFan extends PowViewHolder<User>  {
     }
 
     @Override
-    public void loadData(AdapterDelegate<? super User> multipleAdapter, User data, int postion) {
-        Glide.with(mActivity).load("http://img2.100bt.com/upload/ttq/20131103/1383470553132_middle.jpg").into(fanAvatar);
+    public void loadData(AdapterDelegate<? super String> multipleAdapter, String data, int postion) {
+        Glide.with(mActivity).load(CommonConst.photo).into(fanAvatar);
     }
+
 }

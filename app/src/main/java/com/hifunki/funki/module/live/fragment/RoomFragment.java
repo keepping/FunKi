@@ -25,6 +25,7 @@ import com.hifunki.funki.module.live.mode.ChatMessage;
 import com.hifunki.funki.module.live.viewholder.ChatComing;
 import com.hifunki.funki.module.live.viewholder.ChatFan;
 import com.hifunki.funki.module.live.viewholder.ChatText;
+import com.hifunki.funki.module.live.viewholder.Gift;
 import com.hifunki.funki.net.back.LiveModel;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -54,6 +55,8 @@ public class RoomFragment extends BaseFragment {
     ImageView hostAvatar;
     @BindView(R.id.banner_fan)
     RecyclerView recyclerViewAvatar;
+    @BindView(R.id.rl_gift)
+    RecyclerView rlGift;
     @BindView(R.id.host_chat)
     RecyclerView recyclerViewMessage;
     @BindView(R.id.dv)
@@ -63,6 +66,7 @@ public class RoomFragment extends BaseFragment {
 
     MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
     MultipleRecycleAdapter<User> avatarMutipleRecycleAdapter;
+    MultipleRecycleAdapter<String> giftAdapter;
     private boolean reResume = false;      //用于控制当前显示视频
     private boolean isVisual = false;      //用于控制当前显示视频
     private LiveModel model;
@@ -93,16 +97,13 @@ public class RoomFragment extends BaseFragment {
         if (!TextUtils.isEmpty(json)) {
             model = new Gson().fromJson(json, LiveModel.class);
         }
-
+        //加载主播头像
         Glide.with(this).load("http://v1.qzone.cc/avatar/201408/03/23/44/53de58e5da74c247.jpg%21200x200.jpg").into(hostAvatar);
 
-        messageMultipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), ChatComing.class, ChatText.class);
+        //游客头像
         avatarMutipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), ChatFan.class);
-
         recyclerViewAvatar.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewAvatar.setAdapter(avatarMutipleRecycleAdapter);
-        recyclerViewMessage.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerViewMessage.setAdapter(messageMultipleRecycleAdapter);
         // 测试数据--------------
         List<User> users = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -110,14 +111,29 @@ public class RoomFragment extends BaseFragment {
         }
         avatarMutipleRecycleAdapter.addLast(users);
 
+        //礼物
+        giftAdapter=MultipleRecycleAdapter.getByViewHolder(getActivity(),Gift.class);
+        rlGift.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        rlGift.setAdapter(avatarMutipleRecycleAdapter);
+        // 测试数据--------------
+        List<String> strings = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            strings.add(new String());
+        }
+        giftAdapter.addLast(strings);
+
+        //聊天信息
+        messageMultipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), ChatComing.class, ChatText.class);
+        recyclerViewMessage.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewMessage.setAdapter(messageMultipleRecycleAdapter);
         List<ChatMessage> chatMessages = new ArrayList<>();
-        chatMessages.add(new ChatMessage("生气的路透", "可以表扬什么呢？？？", ChatMessage.TYPE.person_in));
-        chatMessages.add(new ChatMessage("风筝的画廓", "剋来插手个吧？？？", ChatMessage.TYPE.person_in));
+//        chatMessages.add(new ChatMessage("生气的路透", "可以表扬什么呢？？？", ChatMessage.TYPE.person_in));
+//        chatMessages.add(new ChatMessage("风筝的画廓", "剋来插手个吧？？？", ChatMessage.TYPE.person_in));
         chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
         chatMessages.add(new ChatMessage("嵌入式企鹅圈", "如果你连日常工作的一些问题都解决不好，你也别期望自己能在很短的时间内提升很高的水平。还是那句话，就算你有十年的工作经验，如果你只是一年", ChatMessage.TYPE.text));
         chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
         chatMessages.add(new ChatMessage("过程语言 ", "HAWQ我所使用过的SQL-on-Hadoop解决方案中唯一支持过程化", ChatMessage.TYPE.text));
-        chatMessages.add(new ChatMessage("生气的路透", "可以表扬什么呢？？？", ChatMessage.TYPE.person_in));
+//        chatMessages.add(new ChatMessage("生气的路透", "可以表扬什么呢？？？", ChatMessage.TYPE.person_in));
         chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
         chatMessages.add(new ChatMessage("颜色变化", "本文为博主原创文章，未经博主允许不得转载。", ChatMessage.TYPE.text));
         messageMultipleRecycleAdapter.addLast(chatMessages);
@@ -140,7 +156,7 @@ public class RoomFragment extends BaseFragment {
         });
     }
 
-    @OnClick({R.id.host_avatar,R.id.tv_follow})
+    @OnClick({R.id.host_avatar, R.id.tv_follow})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.host_avatar:
@@ -159,7 +175,6 @@ public class RoomFragment extends BaseFragment {
                 }
                 sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
                 sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
-
         }
     }
 
@@ -248,5 +263,6 @@ public class RoomFragment extends BaseFragment {
 //            line.setAlpha(0);
 //        }
 //    };
+
 }
 

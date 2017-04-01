@@ -173,6 +173,13 @@
                 </com.powyin.slide.widget.BannerSwitch>
 
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rl_gift"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="85dp"
+                    android:overScrollMode="never" />
+
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/host_chat"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
