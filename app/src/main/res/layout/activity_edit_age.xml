@@ -19,38 +19,38 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="202dp"
         android:layout_marginTop="17dp">
 
         <ImageView
-            android:layout_gravity="center_horizontal"
             android:layout_width="342dp"
             android:layout_height="202dp"
+            android:layout_gravity="center_horizontal"
             android:src="@drawable/iv_edit_age_bg" />
 
         <LinearLayout
-            android:layout_marginTop="23dp"
             android:layout_width="342dp"
             android:layout_height="155dp"
+            android:layout_marginTop="23dp"
             android:orientation="horizontal">
 
             <com.hifunki.funki.module.pick.TextPicker
                 android:id="@+id/tp_year"
-                android:layout_width="0dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5" />
+                android:layout_marginLeft="24dp" />
 
             <com.hifunki.funki.module.pick.TextPicker
                 android:id="@+id/tp_mounth"
-                android:layout_width="0dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5" />
+                android:layout_marginLeft="24dp" />
 
             <com.hifunki.funki.module.pick.TextPicker
                 android:id="@+id/tp_day"
-                android:layout_width="0dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5" />
+                android:layout_marginLeft="24dp" />
 
         </LinearLayout>
 

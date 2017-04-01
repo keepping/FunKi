@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -42,7 +43,7 @@ public class TextPicker<T> extends View {              //加入点击
     private int mCanvasWid = 0;
     private int mItemHei;
 
-    private int mShowItemNumber = 5;
+    private int mShowItemNumber = 6;
     private int mTextSize;
 
     private Scroller mScroller;
@@ -97,6 +98,7 @@ public class TextPicker<T> extends View {              //加入点击
 
         mCanvasHei = h;
         mCanvasWid = w;
+        Log.e("test", "onSizeChanged: "+mCanvasHei+"mCanvasHei"+mCanvasWid );
         // 阴影
 //        Shader mShader = new LinearGradient(0,0,0,h,new int[]{0xccffffff,0x22ffffff,0x22ffffff,0xccffffff},new float[]{ 0,0.44f,0.56f,1 }, Shader.TileMode.CLAMP);
 //

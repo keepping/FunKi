@@ -238,6 +238,7 @@ public class StartLiveActivity extends BaseActivity {
                 break;
             case R.id.rl_normal_live:
                 LiveActivity.show(this);
+//                TestTitleActivity.show(this);
                 break;
             case R.id.rl_invite_live:
                 break;
