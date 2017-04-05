@@ -62,6 +62,7 @@
             android:orientation="vertical">
 
             <TextView
+                fontPath="fonts/FZDHTFW.ttf"
                 android:id="@+id/tvPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,6 +71,7 @@
                 android:textSize="17sp" />
 
             <ImageView
+                fontPath="fonts/FZDHTFW.ttf"
                 android:id="@+id/ivPhoneLine"
                 android:layout_width="10dp"
                 android:layout_height="4dp"
@@ -118,6 +120,7 @@
     </LinearLayout>
 
     <TextView
+        fontPath="fonts/FZDHTFW.ttf"
         android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="49dp"
@@ -130,7 +133,7 @@
         android:textSize="17sp" />
 
     <RelativeLayout
-
+        android:layout_marginTop="19dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -141,7 +144,6 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
-            android:layout_marginTop="19dp"
             android:text="@string/login_forget_pwd"
             android:textColor="@color/_6B4E9A"
             android:textSize="15dp" />
@@ -152,7 +154,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="14dp"
-            android:layout_marginTop="19dp"
             android:text="@string/login_help_center"
             android:textColor="@color/_6B4E9A"
             android:textSize="15dp" />
