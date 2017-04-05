@@ -18,6 +18,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
 import com.hifunki.funki.module.home.me.bill.activity.BillActivity;
+import com.hifunki.funki.module.home.me.dynamic.activity.MyDynamicActivity;
 import com.hifunki.funki.module.home.me.exchange.activity.ExchangeActivity;
 import com.hifunki.funki.module.home.me.fans.activity.MyFansActivity;
 import com.hifunki.funki.module.home.me.profile.activity.EditProfileActivity;
@@ -127,7 +128,7 @@ public class MeFragment extends BaseFragment {
         super.initView(root);
         StatusBarUtil.adjustStatusBarHei(root.findViewById(R.id.layout_me_head));
         MeInfoAdapter meInfoAdapter = new MeInfoAdapter(R.layout.item_me_info, mInfoTag);
-    //    rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
+        //    rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
         rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMe.setAdapter(meInfoAdapter);
         ViewUtil.adjustScrollViewHei(rvMe);
@@ -182,8 +183,7 @@ public class MeFragment extends BaseFragment {
     }
 
 
-
-    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile,R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans,R.id.tv_recharge, R.id.civ_me_photo,R.id.tv_exchange,R.id.tv_withdraw})
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans, R.id.tv_recharge, R.id.rl_dymic, R.id.rl_live, R.id.civ_me_photo, R.id.tv_exchange, R.id.tv_withdraw})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_me_bill:
@@ -216,6 +216,11 @@ public class MeFragment extends BaseFragment {
             case R.id.ll_follow://关注
 
                 break;
+            case R.id.rl_dymic://我的动态
+                MyDynamicActivity.show(getContext());
+                break;
+            case R.id.rl_live://我的直播
+                break;
             case R.id.ll_fans://粉丝
                 MyFansActivity.show(getContext());
                 break;
@@ -230,9 +235,6 @@ public class MeFragment extends BaseFragment {
                 break;
         }
     }
-
-
-
 
 
     public interface OnFragmentInteractionListener {

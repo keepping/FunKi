@@ -41,7 +41,7 @@
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/tvGalleryFolder"
         android:gravity="center"
-        android:src="@drawable/gallery_pick_dropdown_white" />
+        android:src="@drawable/iv_gallery_pick_dropdown_white" />
 
     <TextView
         android:visibility="gone"

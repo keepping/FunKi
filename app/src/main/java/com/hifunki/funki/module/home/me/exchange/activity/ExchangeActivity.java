@@ -7,7 +7,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 
 /**
- * 在此写用途
+ * 兑换
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

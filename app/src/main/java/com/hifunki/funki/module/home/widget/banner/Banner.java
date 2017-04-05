@@ -31,7 +31,7 @@ import static android.support.v4.view.ViewPager.OnPageChangeListener;
 import static android.support.v4.view.ViewPager.PageTransformer;
 
 public class Banner extends FrameLayout implements OnPageChangeListener {
-    public String tag = "banner";
+    public String tag = "layout_banner";
     private int mIndicatorMargin = BannerConfig.PADDING_SIZE;
     private int mIndicatorWidth;
     private int mIndicatorHeight;
@@ -43,7 +43,7 @@ public class Banner extends FrameLayout implements OnPageChangeListener {
     private boolean isScroll = BannerConfig.IS_SCROLL;
     private int mIndicatorSelectedResId = R.drawable.home_hot_selected_bg;
     private int mIndicatorUnselectedResId = R.drawable.home_hot_noselected_bg;
-    private int mLayoutResId = R.layout.banner;
+    private int mLayoutResId = R.layout.layout_banner;
     private int titleHeight;
     private int titleBackground;
     private int titleTextColor;

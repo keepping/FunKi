@@ -45,9 +45,6 @@ public class FollowPic extends PowViewHolder<Post>{
     public void loadData(AdapterDelegate<? super Post> multipleAdapter, Post data, int postion) {
 
         nineGridlayout.setImagesData(data.imgageUri);
-
     }
-
-
 
 }

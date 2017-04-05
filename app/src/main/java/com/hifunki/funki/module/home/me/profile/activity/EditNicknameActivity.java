@@ -15,7 +15,7 @@ import com.hifunki.funki.widget.TopBarView;
 import butterknife.BindView;
 
 /**
- * 在此写用途
+ * 个人资料-修改昵称
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

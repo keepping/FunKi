@@ -104,19 +104,16 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         mActivity = LoginActivity.this;
     }
 
-
     @Override
     protected void initTitleBar() {
         ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
         ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
         ToolTitleBar.showRightButtonMsg(this, activityLogin, R.string.register, this);
-
     }
 
     @Override
     protected void initView() {
-
         vpPhoneEmail = (ViewPager) findViewById(R.id.vpPhoneEmail);
         Field mScroller = null;
         try {

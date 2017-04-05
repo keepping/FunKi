@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="10dp"
-                android:src="@drawable/play_start_1" />
+                android:src="@drawable/iv_play_start_1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
