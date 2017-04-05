@@ -13,23 +13,36 @@
         android:id="@+id/topView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:menuText="兑换"
+        app:menuText="兑换记录"
         app:titleText="我的收益" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/layout_gold_before" />
+        <RelativeLayout
+            android:id="@+id/rl_exchange_before"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="46dp"
-            android:text="注：兑换所得的现金将会自动转入您的现金余额"
-            android:textColor="@color/_4A2F75"
-            android:textSize="14sp" />
+            <include layout="@layout/layout_gold_before" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="46dp"
+                android:text="注：兑换所得的现金将会自动转入您的现金余额"
+                android:textColor="@color/_4A2F75"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/layout_wait"
+            layout="@layout/layout_gold_wait" />
     </RelativeLayout>
+
+
 </LinearLayout>
