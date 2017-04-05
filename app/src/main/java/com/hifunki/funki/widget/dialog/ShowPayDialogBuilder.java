@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.show.widget;
+package com.hifunki.funki.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

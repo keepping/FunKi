@@ -15,7 +15,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
 import com.hifunki.funki.module.show.adapter.ShowAdapter;
 import com.hifunki.funki.module.show.entity.ShowEntity;
-import com.hifunki.funki.module.show.widget.ShowPayDialogBuilder;
+import com.hifunki.funki.widget.dialog.ShowPayDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
