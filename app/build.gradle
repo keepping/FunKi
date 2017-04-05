@@ -73,7 +73,7 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.8.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.powyin:scroll:1.5.3'
-    compile 'com.github.powyin:switch:0.3.6'
+    compile 'com.github.powyin:switch:0.3.9'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
@@ -82,5 +82,5 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.1'
     compile 'com.google.android:flexbox:0.2.6'
     testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
 }
