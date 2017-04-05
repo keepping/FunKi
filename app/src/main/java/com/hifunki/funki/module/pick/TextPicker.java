@@ -2,18 +2,14 @@ package com.hifunki.funki.module.pick;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.Scroller;
-
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -47,7 +43,7 @@ public class TextPicker<T> extends View {              //加入点击
     private int mCanvasWid = 0;
     private int mItemHei;
 
-    private int mShowItemNumber = 5;
+    private int mShowItemNumber = 6;
     private int mTextSize;
 
     private Scroller mScroller;
@@ -66,19 +62,19 @@ public class TextPicker<T> extends View {              //加入点击
         mVelocityTracker = VelocityTracker.obtain();
         mScroller = new Scroller(getContext());
         mTextPaint = new TextPaint();
-        mBluePaint = new Paint();
-        mLinePaint = new Paint();
-        mShaderPaint = new Paint();
+//        mBluePaint = new Paint();
+//        mLinePaint = new Paint();
+//        mShaderPaint = new Paint();
         mTextSize = sp2px(getContext(),20);
     }
 
-    RectF mShaderRectF;
-    RectF mBlueRectF;
+//    RectF mShaderRectF;
+//    RectF mBlueRectF;
 
 
-    Paint mShaderPaint;
-    Paint mBluePaint;
-    Paint mLinePaint;
+//    Paint mShaderPaint;
+//    Paint mBluePaint;
+//    Paint mLinePaint;
 
     private int mLineTop;
     private int mLineBottom;
@@ -102,16 +98,17 @@ public class TextPicker<T> extends View {              //加入点击
 
         mCanvasHei = h;
         mCanvasWid = w;
+        Log.e("test", "onSizeChanged: "+mCanvasHei+"mCanvasHei"+mCanvasWid );
         // 阴影
-        Shader mShader = new LinearGradient(0,0,0,h,new int[]{0xccffffff,0x22ffffff,0x22ffffff,0xccffffff},new float[]{ 0,0.44f,0.56f,1 }, Shader.TileMode.CLAMP);
+//        Shader mShader = new LinearGradient(0,0,0,h,new int[]{0xccffffff,0x22ffffff,0x22ffffff,0xccffffff},new float[]{ 0,0.44f,0.56f,1 }, Shader.TileMode.CLAMP);
+//
+//        mShaderPaint.setShader(mShader);
+//        mShaderRectF = new RectF(0,0,w,h);
 
-        mShaderPaint.setShader(mShader);
-        mShaderRectF = new RectF(0,0,w,h);
+//        mBluePaint.setColor(0x094f8b8a);
 
-        mBluePaint.setColor(0x094f8b8a);
-
-        mLinePaint . setColor(0x66000000);
-        mLinePaint . setStrokeWidth(2);
+//        mLinePaint . setColor(0x66000000);
+//        mLinePaint . setStrokeWidth(2);
 
         resetState();
 
@@ -130,7 +127,7 @@ public class TextPicker<T> extends View {              //加入点击
         //双线
         mLineTop = mItemHei*(mShowItemNumber/2);
         mLineBottom = mLineTop +mItemHei;
-        mBlueRectF = new RectF(0,mLineTop,mCanvasWid,mLineBottom);
+//        mBlueRectF = new RectF(0,mLineTop,mCanvasWid,mLineBottom);
 
         int firstLocation = -mShowItemNumber /2* mItemHei;
 
@@ -188,14 +185,14 @@ public class TextPicker<T> extends View {              //加入点击
         canvas.translate(0, getScrollY());
 
         //大影印
-        canvas.drawRect(mShaderRectF, mShaderPaint);
+//        canvas.drawRect(mShaderRectF, mShaderPaint);
 
         //蓝色部分
-        canvas.drawRect(mBlueRectF,mBluePaint);
+//        canvas.drawRect(mBlueRectF,mBluePaint);
 
         // 双线
-        canvas.drawLine(0, mLineTop,mCanvasWid, mLineTop,mLinePaint);
-        canvas.drawLine(0, mLineBottom,mCanvasWid, mLineBottom,mLinePaint);
+//        canvas.drawLine(0, mLineTop,mCanvasWid, mLineTop,mLinePaint);
+//        canvas.drawLine(0, mLineBottom,mCanvasWid, mLineBottom,mLinePaint);
 
         canvas.restore();
     }

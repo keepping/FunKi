@@ -116,13 +116,13 @@ public class ToolTitleBar {
 //     */
 //    public static TextView showRightButton(View fragmentView, byte btnType, Object resIdOrTxt,
 //                                           OnClickListener onClickListener) {
-//        TextView tv = showTextViewButton(R.id.tvTitleRight, fragmentView, btnType, resIdOrTxt, onClickListener);
+//        TextView layout_live_tag = showTextViewButton(R.id.tvTitleRight, fragmentView, btnType, resIdOrTxt, onClickListener);
 //
-//        if (tv != null && btnType == BTN_TYPE_TEXT) {// 文本特殊处理
-//            tv.setHeight((int) ToolDisplay.dip2Px(fragmentView.getContext(), 35));
+//        if (layout_live_tag != null && btnType == BTN_TYPE_TEXT) {// 文本特殊处理
+//            layout_live_tag.setHeight((int) ToolDisplay.dip2Px(fragmentView.getContext(), 35));
 //        }
 //
-//        return tv;
+//        return layout_live_tag;
 //    }
 //
 //    /**
@@ -480,7 +480,7 @@ public class ToolTitleBar {
         TextView tv = createRightButtonTextView(ctx, btnType, resIdOrTxt);
 
 //        if (onClickListener != null) {
-//            tv.setOnClickListener(onClickListener);
+//            layout_live_tag.setOnClickListener(onClickListener);
 //        }
 
         linearLayout.addView(tv);

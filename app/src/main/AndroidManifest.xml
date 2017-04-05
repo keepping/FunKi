@@ -55,11 +55,17 @@
             android:name=".module.home.activity.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".module.login.EighteenBearActivity"
-            android:theme="@style/AppThemeFullScreen" />
+            android:theme="@style/AppThemeFullScreen">
+
+        </activity>
         <activity android:name=".module.login.MainActivity" />
 
         <!-- 游客必填信息页 -->
@@ -107,11 +113,7 @@
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
         <!-- 图片列表页 -->
-        <activity android:name=".module.photo.gallery.activity.PhotoActivity">
-
-
-
-        </activity>
+        <activity android:name=".module.photo.gallery.activity.PhotoActivity"></activity>
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -152,24 +154,12 @@
         <!-- 发动态界面 -->
         <activity android:name=".module.post.activity.PostActivity" />
 
-
-
-
-        <!--观众端界面-->
-        <activity android:name=".module.live.activity.LiveActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
+        <!-- 观众端界面 -->
+        <activity android:name=".module.live.activity.LiveActivity"
+            android:theme="@style/AppThemeFullScreen"/>
 
         <!-- 开启直播界面 -->
-        <activity android:name=".module.live.start.activity.StartLiveActivity" >
-
-
+        <activity android:name=".module.live.start.activity.StartLiveActivity">
 
         </activity>
         <activity android:name=".module.splash.activity.SplashActivity" />
@@ -177,7 +167,7 @@
         <activity android:name=".module.home.me.profile.activity.EditNicknameActivity" />
         <activity android:name=".module.home.me.profile.activity.EditAgeActivity" />
         <activity android:name=".module.home.me.exchange.activity.ExchangeActivity" />
-        <activity android:name=".module.home.me.withdraw.activity.WithdrawActivity"></activity>
+        <activity android:name=".module.home.me.withdraw.activity.WithdrawActivity" />
     </application>
 
 </manifest>

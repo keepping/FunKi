@@ -20,6 +20,7 @@ import com.hifunki.funki.module.home.entity.HomeHotEntity;
 import com.hifunki.funki.module.home.widget.banner.Banner;
 import com.hifunki.funki.module.home.widget.banner.GlideBannerImageLoader;
 import com.hifunki.funki.module.home.widget.banner.OnBannerListener;
+import com.hifunki.funki.module.live.activity.LiveActivity;
 import com.hifunki.funki.module.room.activity.OtherRoomActivity;
 import com.hifunki.funki.util.DisplayUtil;
 
@@ -56,7 +57,6 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
 
     public HomeHotFragment() {
     }
-
 
     public static HomeHotFragment newInstance(String param1, String param2) {
         HomeHotFragment fragment = new HomeHotFragment();
@@ -129,8 +129,11 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 super.onItemChildClick(adapter, view, position);
                 switch (view.getId()){
-                    case R.id.iv_photo:
+                    case R.id.iv_photo://跳转到他人空间页面
                         OtherRoomActivity.show(getContext());
+                        break;
+                    case R.id.iv_imagepath://跳转到直播间界面
+                        LiveActivity.show(getContext());
                         break;
                 }
             }
@@ -197,6 +200,7 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
         mListener = null;
     }
 
+
     //banner点击
     @Override
     public void OnBannerClick(int position) {
@@ -206,4 +210,5 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
+
 }

@@ -134,7 +134,7 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    @OnClick({R.id.civ_profile_photo, R.id.rl_nickname})
+    @OnClick({R.id.civ_profile_photo, R.id.rl_nickname,R.id.rl_age})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.civ_profile_photo:

@@ -10,11 +10,13 @@ import android.hardware.Camera.Parameters;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,12 +24,12 @@ import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.common.CommonConst;
-import com.hifunki.funki.module.live.activity.LiveActivity;
 import com.hifunki.funki.module.live.start.CameraUtils;
 import com.hifunki.funki.module.live.start.GlVideoRender;
 import com.hifunki.funki.module.live.start.widget.RoundImageView;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.FileUtils;
+import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 
 import java.io.File;
@@ -37,6 +39,8 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.hifunki.funki.base.application.ApplicationMain.getContext;
 
 /**
  * 开启直播界面
@@ -92,6 +96,9 @@ public class StartLiveActivity extends BaseActivity {
     private boolean isBeautyOpen = false;
     private boolean isCamerafront = false;
     private String TAG = "test";
+    private PopWindowUtil sharePopWindow;//分享popWindow
+    private View shareView;
+    private boolean isFocus;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, StartLiveActivity.class));
@@ -168,6 +175,12 @@ public class StartLiveActivity extends BaseActivity {
     };
 
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        isFocus = hasFocus;
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {
@@ -237,9 +250,20 @@ public class StartLiveActivity extends BaseActivity {
                 LiveTagActivity.show(this);
                 break;
             case R.id.rl_normal_live:
-                LiveActivity.show(this);
+//                LiveActivity.show(this);
+//                TestTitleActivity.show(this);
                 break;
-            case R.id.rl_invite_live:
+            case R.id.rl_invite_live://邀请直播
+                //创建PopWindow
+                if (sharePopWindow == null) {
+                    sharePopWindow = PopWindowUtil.getInstance(getApplicationContext());
+                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_me_share, null);
+//                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+                }
+                sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
+                if (isFocus==true) {//代码有bug
+                    sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 1, 0);
+                }
                 break;
             case R.id.rl_ticket_live:
                 break;

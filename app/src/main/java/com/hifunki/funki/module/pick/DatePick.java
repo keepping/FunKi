@@ -79,7 +79,6 @@ public class DatePick extends PopWicket {
         yearPick.setDataList(yearList,null, yearList.size()/2);
         monthPick.setDataList(monthList,null, monthList.size()/2);
         dayPick.setDataList(dayList,null,dayList.size()/2);
-
         yearPick.setSelectChangeListener(selectListenerImp);
         monthPick.setSelectChangeListener(selectListenerImp);
     }
@@ -101,11 +100,7 @@ public class DatePick extends PopWicket {
     }
 
 
-    @OnClick({
-            R.id.tv_confirm,
-            R.id.iv_back,
-    })
-
+    @OnClick({R.id.tv_confirm, R.id.iv_back,})
     void onClick(View view){
         switch (view.getId()){
             case R.id.iv_back:
@@ -123,7 +118,6 @@ public class DatePick extends PopWicket {
                     calendar.set(Integer.valueOf(year),Integer.valueOf(month)-1,Integer.valueOf(day));
 
                     mOnPickListener.onLocationSelect(calendar.getTime());
-
                 }
                 hidden();
                 break;
@@ -141,8 +135,6 @@ public class DatePick extends PopWicket {
             dayPick.setItemSelect(String.valueOf(calendar.get(Calendar.DATE)));
         }
     }
-
-
 
     public void setOnDatePickListener(OnPickListener listener){
         this.mOnPickListener = listener;

@@ -10,9 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.hifunki.funki.R;
@@ -35,7 +33,7 @@ import butterknife.BindView;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
- * 直播主界面
+ * 观众端主界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
@@ -45,55 +43,20 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  */
 public class LiveActivity extends BaseActivity {
 
+    @BindView(R.id.live)
+    SurfaceView live;
+    private IjkMediaPlayer ijkMediaPlayer;
+    private Random random = new Random();
+    AutoSizeAdapter<LiveModel> mPagerAdapter;
+
     public static void show(Context context) {
         context.startActivity(new Intent(context, LiveActivity.class));
     }
 
-
-    private IjkMediaPlayer ijkMediaPlayer;
-
-    private Random random = new Random();
-
-    @BindView(R.id.live)
-    SurfaceView live;
-    AutoSizeAdapter<LiveModel> mPagerAdapter;
-
-    AutoSizeAdapter.OnSwipeListener onSwipeListener = new AutoSizeAdapter.OnSwipeListener() {
-        @Override
-        public void loadMoreStart() {                                                  //头部加载更多
-            getWindow().getDecorView().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    List<LiveModel> models = new ArrayList<>();
-                    for(int i=0 ;i < 10;i++){
-                        models.add(new LiveModel(String.valueOf(random.nextLong())));
-                    }
-                    mPagerAdapter.addStart(models);
-                }
-            },5000);
-        }
-
-        @Override
-        public void loadMoreEnd() {                                                    //尾部加载更多
-            getWindow().getDecorView().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    List<LiveModel> models = new ArrayList<>();
-                    for(int i=0 ;i < 10;i++){
-                        models.add(new LiveModel(String.valueOf(random.nextLong())));
-                    }
-                    mPagerAdapter.addEnd(models);
-                }
-            },5000);
-        }
-    };
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION  | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION  | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
     @Override
@@ -104,7 +67,6 @@ public class LiveActivity extends BaseActivity {
     @Override
     protected void initDatas() {
 
-
         ScrollView scrollView ;
 
         HorizontalScrollView horizontalScrollView;
@@ -114,12 +76,7 @@ public class LiveActivity extends BaseActivity {
 
         LinearLayoutManager linearLayoutManager = null;
 
-
-
-
-
     }
-
 
     @Override
     protected void initView() {
@@ -131,7 +88,6 @@ public class LiveActivity extends BaseActivity {
                 return RoomFragment.newInstance(data);
             }
         };
-
         List<LiveModel> models = new ArrayList<>();
         for(int i=0 ;i < 10;i++){
             models.add(new LiveModel(String.valueOf(random.nextLong())));
@@ -147,8 +103,6 @@ public class LiveActivity extends BaseActivity {
 //        View view;
 
         mViewPager.setCurrentItem(4);
-
-
         initPlay();
     }
 
@@ -200,6 +154,36 @@ public class LiveActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
+
+    AutoSizeAdapter.OnSwipeListener onSwipeListener = new AutoSizeAdapter.OnSwipeListener() {
+        @Override
+        public void loadMoreStart() {                                                  //头部加载更多
+            getWindow().getDecorView().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    List<LiveModel> models = new ArrayList<>();
+                    for(int i=0 ;i < 10;i++){
+                        models.add(new LiveModel(String.valueOf(random.nextLong())));
+                    }
+                    mPagerAdapter.addStart(models);
+                }
+            },5000);
+        }
+
+        @Override
+        public void loadMoreEnd() {                                                    //尾部加载更多
+            getWindow().getDecorView().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    List<LiveModel> models = new ArrayList<>();
+                    for(int i=0 ;i < 10;i++){
+                        models.add(new LiveModel(String.valueOf(random.nextLong())));
+                    }
+                    mPagerAdapter.addEnd(models);
+                }
+            },5000);
+        }
+    };
 
 
 }

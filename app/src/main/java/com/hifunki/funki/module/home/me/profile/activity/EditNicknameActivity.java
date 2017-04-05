@@ -25,7 +25,6 @@ import butterknife.BindView;
  */
 public class EditNicknameActivity extends BaseActivity {
 
-
     @BindView(R.id.topView)
     TopBarView topBarView;
     @BindView(R.id.et_nickname)

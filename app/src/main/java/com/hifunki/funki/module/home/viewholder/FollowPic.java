@@ -17,16 +17,16 @@ import butterknife.ButterKnife;
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.viewholder.Follow_Pic.java
+ * @value com.hifunki.funki.module.home.viewholder.FollowPic.java
  * @link
  * @since 2017-03-16 10:12:12
  */
-public class Follow_Pic extends PowViewHolder<Post>{
+public class FollowPic extends PowViewHolder<Post>{
 
     @BindView(R.id.iv_ngrid_layout)
     NineGridlayout nineGridlayout;
 
-    public Follow_Pic(Activity activity, ViewGroup viewGroup) {
+    public FollowPic(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
         ButterKnife.bind(this,mItemView);
     }

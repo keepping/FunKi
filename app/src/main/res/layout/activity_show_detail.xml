@@ -23,17 +23,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_bg"
+            <com.hifunki.funki.widget.FunKiPlayer
+                android:id="@+id/fp_show_detail"
                 android:layout_width="match_parent"
-                android:layout_height="164dp"
-                android:src="@drawable/iv_showdetail_video" />
+                android:layout_height="192dp"
+                android:background="#000000" />
 
             <RelativeLayout
                 android:id="@+id/rl_show_detail_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_bg"
+                android:layout_below="@+id/fp_show_detail"
                 android:layout_marginLeft="29dp"
                 android:layout_marginTop="39dp">
 
