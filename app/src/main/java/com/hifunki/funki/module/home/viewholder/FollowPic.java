@@ -2,8 +2,11 @@ package com.hifunki.funki.module.home.viewholder;
 
 import android.app.Activity;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
+import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.home.widget.ninegrid.NineGridlayout;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.AdapterDelegate;
@@ -25,6 +28,8 @@ public class FollowPic extends PowViewHolder<Post>{
 
     @BindView(R.id.iv_ngrid_layout)
     NineGridlayout nineGridlayout;
+    @BindView(R.id.iv_post_photo)
+    ImageView ivPhoto;
 
     public FollowPic(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
@@ -44,6 +49,7 @@ public class FollowPic extends PowViewHolder<Post>{
     @Override
     public void loadData(AdapterDelegate<? super Post> multipleAdapter, Post data, int postion) {
 
+        Glide.with(mActivity).load(CommonConst.photo).into(ivPhoto);//头像
         nineGridlayout.setImagesData(data.imgageUri);
     }
 

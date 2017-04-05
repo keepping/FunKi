@@ -38,7 +38,6 @@
     <string name="login_input_email">请输入邮箱地址</string>
     <item name="adapter_view_holder" type="integer"></item>
 
-
     <string name="gallery_all_folder">所有图片</string>
     <string name="gallery_shoot">拍摄照片</string>
     <string name="gallery_finish">( %1$d / %2$d )完成</string>
@@ -212,6 +211,7 @@
     <string name="withdraw_mine">我的余额</string>
     <string name="excharge_record">提现记录</string>
     <string name="home_post_text">今天采访到了期盼已久的安妮海瑟薇，拍了几张照片。后来问道拍《黑暗骑士》的时候与希斯赖杰的关系怎么样，海瑟薇悲伤的说：他是我合作过最好的演员，愿他安息。</string>
+    <string name="home_post_movie">安妮·海瑟薇在出演《公主日记》后被《人物》杂志封为2001年最佳新星。2005年，安妮·海瑟薇出演《断背山》。2006年，安妮·海瑟薇出演了《穿普喜剧类最佳女主角。2012年</string>
 
 
 </resources>

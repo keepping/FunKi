@@ -15,7 +15,7 @@ import com.hifunki.funki.util.DisplayUtil;
 import java.util.List;
 
 /**
- * 在此写用途
+ * 首页最新adapter
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

@@ -24,8 +24,6 @@ import android.net.Uri;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
-import android.widget.ImageView;
-
 
 
 public class PhotoView extends AppCompatImageView implements IPhotoView { //

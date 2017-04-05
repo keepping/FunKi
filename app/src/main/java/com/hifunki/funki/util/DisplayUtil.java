@@ -2,7 +2,6 @@ package com.hifunki.funki.util;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
