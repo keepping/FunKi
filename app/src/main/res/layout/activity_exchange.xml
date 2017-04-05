@@ -7,7 +7,7 @@
     android:background="@color/_28114D"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.module.home.me.exchange.activity.ExchangeActivity">
+    tools:context=".module.me.exchange.activity.ExchangeActivity">
 
     <com.hifunki.funki.widget.TopBarView
         android:id="@+id/topView"

@@ -7,7 +7,7 @@
     android:background="@color/_28114D"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.module.home.me.withdraw.activity.WithdrawActivity">
+    tools:context=".module.me.withdraw.activity.WithdrawActivity">
 
     <com.hifunki.funki.widget.TopBarView
         android:id="@+id/topView"

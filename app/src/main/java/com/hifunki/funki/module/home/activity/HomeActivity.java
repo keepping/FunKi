@@ -28,7 +28,7 @@ import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
 import com.hifunki.funki.module.home.fragment.StoreFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
-import com.hifunki.funki.module.home.me.MeFragment;
+import com.hifunki.funki.module.me.MeFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 import com.hifunki.funki.module.live.start.activity.StartLiveActivity;
 import com.hifunki.funki.module.post.activity.PostActivity;

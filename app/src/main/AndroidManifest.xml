@@ -131,23 +131,23 @@
         <activity android:name=".module.show.activity.ShowActivity" />
 
         <!-- 用户头像认证 -->
-        <activity android:name=".module.home.me.user.UserAvatarActivity" />
+        <activity android:name=".module.me.user.UserAvatarActivity" />
 
         <!-- 个人中心榜单 -->
         <activity android:name=".module.rank.me.activity.MeRankActivity" />
         <!-- 个人中心账单 -->
-        <activity android:name=".module.home.me.bill.activity.BillActivity" />
+        <activity android:name=".module.me.bill.activity.BillActivity" />
         <!-- 直播收入详情 -->
-        <activity android:name=".module.home.me.bill.activity.LiveIncomeActivity" />
+        <activity android:name=".module.me.bill.activity.LiveIncomeActivity" />
         <!-- 节目预告详情页 -->
         <activity android:name=".module.show.activity.ShowDetailActivity" />
         <!-- 我的粉丝列表页 -->
-        <activity android:name=".module.home.me.fans.activity.MyFansActivity" />
+        <activity android:name=".module.me.fans.activity.MyFansActivity" />
         <!-- 头像认证 录制视频 -->
-        <activity android:name=".module.home.me.user.RecodeMovieActivity" />
+        <activity android:name=".module.me.user.RecodeMovieActivity" />
         <!-- 个人中心==充值界面 -->
-        <activity android:name=".module.home.me.recharge.activity.RechargeActivity" />
-        <activity android:name=".module.home.me.profile.activity.EditProfileActivity" />
+        <activity android:name=".module.me.recharge.activity.RechargeActivity" />
+        <activity android:name=".module.me.profile.activity.EditProfileActivity" />
         <activity android:name=".module.room.activity.OtherRoomActivity" />
 
         <!-- 发动态界面 -->
@@ -164,14 +164,14 @@
         <!-- 直播标签 -->
         <activity android:name=".module.live.start.activity.LiveTagActivity" />
         <!-- 修改昵称界面 -->
-        <activity android:name=".module.home.me.profile.activity.EditNicknameActivity" />
-        <activity android:name=".module.home.me.profile.activity.EditAgeActivity" />
+        <activity android:name=".module.me.profile.activity.EditNicknameActivity" />
+        <activity android:name=".module.me.profile.activity.EditAgeActivity" />
         <!-- 兑换界面 -->
-        <activity android:name=".module.home.me.exchange.activity.ExchangeActivity" />
+        <activity android:name=".module.me.exchange.activity.ExchangeActivity" />
         <!-- 提现界面 -->
-        <activity android:name=".module.home.me.withdraw.activity.WithdrawActivity" />
+        <activity android:name=".module.me.withdraw.activity.WithdrawActivity" />
         <!--我的动态界面-->
-        <activity android:name=".module.home.me.dynamic.activity.MyDynamicActivity"></activity>
+        <activity android:name=".module.me.dynamic.activity.MyDynamicActivity"></activity>
     </application>
 
 </manifest>

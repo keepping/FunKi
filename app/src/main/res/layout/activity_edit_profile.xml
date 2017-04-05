@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/_230C47"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.module.home.me.profile.activity.EditProfileActivity">
+    tools:context=".module.me.profile.activity.EditProfileActivity">
 
     <com.hifunki.funki.widget.TopBarView
         android:id="@+id/topView"
