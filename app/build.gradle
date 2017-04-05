@@ -73,7 +73,10 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.1'
     compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.1'
-    
+
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
+    compile 'com.github.ctiao:ndkbitmap-armv7a:0.7.3'
+
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 

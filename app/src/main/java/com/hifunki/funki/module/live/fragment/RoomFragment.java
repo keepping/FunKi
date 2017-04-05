@@ -112,7 +112,7 @@ public class RoomFragment extends BaseFragment {
         avatarMutipleRecycleAdapter.addLast(users);
 
         //礼物
-        giftAdapter=MultipleRecycleAdapter.getByViewHolder(getActivity(),Gift.class);
+        giftAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), Gift.class);
         rlGift.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         rlGift.setAdapter(avatarMutipleRecycleAdapter);
         // 测试数据--------------
@@ -147,13 +147,12 @@ public class RoomFragment extends BaseFragment {
         mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.iv_rank_first, null)).getBitmap());
         mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.iv_start_live_facebook, null)).getBitmap());
 
-        divergeView3.post(new Runnable() {
-            @Override
-            public void run() {
-                divergeView3.setEndPoint(new PointF(divergeView3.getMeasuredWidth() / 2, 0));
-                divergeView3.setDivergeViewProvider(new Provider());
-            }
-        });
+
+
+
+        divergeView3.setEndPoint(new PointF(divergeView3.getMeasuredWidth() / 2, 0));
+        divergeView3.setDivergeViewProvider(new Provider());
+
     }
 
     @OnClick({R.id.host_avatar, R.id.tv_follow})
