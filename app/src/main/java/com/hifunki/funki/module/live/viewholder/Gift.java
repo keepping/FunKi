@@ -24,8 +24,8 @@ import butterknife.ButterKnife;
  */
 public class Gift extends PowViewHolder<String> {
 
-    @BindView(R.id.fan_avatar)
-    ImageView fanAvatar;
+    @BindView(R.id.iv_audience)
+    ImageView ivAudience;
 
     public Gift(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
@@ -39,7 +39,7 @@ public class Gift extends PowViewHolder<String> {
 
     @Override
     public void loadData(AdapterDelegate<? super String> multipleAdapter, String data, int postion) {
-        Glide.with(mActivity).load(CommonConst.photo).into(fanAvatar);
+        Glide.with(mActivity).load(CommonConst.photo).into(ivAudience);
     }
 
 }
