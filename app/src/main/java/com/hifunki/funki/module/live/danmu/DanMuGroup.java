@@ -109,8 +109,8 @@ public class DanMuGroup extends FrameLayout {
                         tem.top = tem.bottom - info.target.getMeasuredHeight();
                         info.layoutRect = tem;
 
-                        System.out.println(tem);
-                        break;
+
+
                     }
                 }
             }
@@ -132,17 +132,18 @@ public class DanMuGroup extends FrameLayout {
 
             if (layoutRect == null) {
                 child.layout(right, bottom, right+right, bottom+bottom);
-            }else child.layout(layoutRect.left, layoutRect.top, layoutRect.right, layoutRect.bottom);
-        }
+            }else{
+                child.layout(layoutRect.left, layoutRect.top, layoutRect.right, layoutRect.bottom);
 
-        for (int i = 0; i < getChildCount(); i++) {
-            View view = getChildAt(i);
-            ViewInfo info = (ViewInfo) view.getTag();
-            if (!info.attach) {
-                info.delegate.dropIn();
-                info.attach = true;
+                if (!info.attach) {
+                    info.delegate.dropIn();
+                    info.attach = true;
+                }
+
             }
         }
+
+
     }
 
 //    @Override
@@ -168,11 +169,12 @@ public class DanMuGroup extends FrameLayout {
         int waitCount = 0;
         for(int i=0 ;i <getChildCount() ;i ++){
             ViewInfo viewInfo = (ViewInfo)getChildAt(i).getTag();
-            if(viewInfo.layoutRect==null) waitCount++;
+            if(viewInfo.layoutRect == null) waitCount++;
         }
 
         for (int i = 0; (i < (maxWaitCount - waitCount)) && preList.size() > 0; i++) {
             ViewInfo remove = preList.remove(0);
+
             DanMuGroup.super.addView(remove.target, layoutParams);
         }
 
@@ -182,11 +184,13 @@ public class DanMuGroup extends FrameLayout {
         post(new Runnable() {
             @Override
             public void run() {
+                System.out.println("2222222222222222222222222222222222222  7 "+gift);
                 for(int i=0;i<getChildCount() ;i ++){
                     View view = getChildAt(i);
                     ViewInfo info  = (ViewInfo) view.getTag();
-                    if(info.layoutRect!=null && info.gift==gift){
+                    if(info.gift==gift){
                         removeView(view);
+                        System.out.println("2222222222222222222222222222222222222  8 "+gift);
                         break;
                     }
                 }

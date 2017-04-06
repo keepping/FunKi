@@ -179,7 +179,7 @@ public class RoomFragment extends BaseFragment {
                     sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
                 sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
-                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
+                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
         }
     }
 

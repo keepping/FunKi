@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="3dp"
-        android:gravity="bottom">
+        android:gravity="bottom"
+
+        >
 
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -68,6 +70,7 @@
             android:id="@+id/gif_repeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
             android:text="98"
             android:typeface="monospace"
             android:textSize="19sp"

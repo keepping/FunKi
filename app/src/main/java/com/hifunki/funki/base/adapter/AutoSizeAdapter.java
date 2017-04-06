@@ -1,10 +1,12 @@
 package com.hifunki.funki.base.adapter;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -28,12 +30,16 @@ public abstract class AutoSizeAdapter<T> extends PagerAdapter {
     private final FragmentManager mFragmentManager;
     private FragmentTransaction mCurTransaction = null;
     private Fragment mCurrentPrimaryItem = null;
-
-
-    private List<T> mDataList = new ArrayList<>();
+    private final List<T> mDataList = new ArrayList<>();
     private OnSwipeListener mOnSwipeListener;
     private boolean isLoadingStart = false;
     private boolean isLoadingEnd = false;
+
+    private class HolderInfo {
+        Object mData;
+        Fragment fragment;
+        String fragmentKey;
+    }
 
     public interface OnSwipeListener {
         void loadMoreStart();
@@ -85,6 +91,10 @@ public abstract class AutoSizeAdapter<T> extends PagerAdapter {
         if (container.getId() == View.NO_ID) {
             throw new IllegalStateException("ViewPager with adapter " + this + " requires a view id");
         }
+        if (mCurTransaction == null) {
+            mCurTransaction = mFragmentManager.beginTransaction();
+        }
+
     }
 
     @Override
@@ -103,41 +113,38 @@ public abstract class AutoSizeAdapter<T> extends PagerAdapter {
             isLoadingEnd = true;
         }
 
-        if (mCurTransaction == null) {
-            mCurTransaction = mFragmentManager.beginTransaction();
-        }
-
         String  itemId = getItemId(position);
+        HolderInfo info = new HolderInfo();
+        info.mData = mDataList.get(position);
+        info.fragmentKey = itemId;
 
         Fragment fragment = mFragmentManager.findFragmentByTag(itemId);
-        if (fragment != null) {
-            if (DEBUG) Log.v(TAG, "Attaching item #" + itemId + ": f=" + fragment);
+        if(fragment!=null){
+            info.fragment = fragment;
             mCurTransaction.attach(fragment);
-        } else {
-            fragment = getItem(mDataList.get(position));
-            if (DEBUG) Log.v(TAG, "Adding item #" + itemId + ": f=" + fragment);
+        }else {
+            info.fragment =fragment = getItem(mDataList.get(position));
             mCurTransaction.add(container.getId(), fragment, itemId);
         }
+
+
         if (fragment != mCurrentPrimaryItem) {
             fragment.setMenuVisibility(false);
             fragment.setUserVisibleHint(false);
         }
 
-        return fragment;
+        return info;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        if (mCurTransaction == null) {
-            mCurTransaction = mFragmentManager.beginTransaction();
-        }
-
-        mCurTransaction.detach((Fragment)object);
+        HolderInfo info = (HolderInfo)object;
+        mCurTransaction.detach(info.fragment);
     }
 
     @Override
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        Fragment fragment = (Fragment)object;
+        Fragment fragment = ((HolderInfo)object).fragment;
         if (fragment != mCurrentPrimaryItem) {
             if (mCurrentPrimaryItem != null) {
                 mCurrentPrimaryItem.setMenuVisibility(false);
@@ -161,7 +168,9 @@ public abstract class AutoSizeAdapter<T> extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return ((Fragment)object).getView() == view;
+        HolderInfo info = (HolderInfo)object;
+        Fragment fragment = info.fragment;
+        return fragment.getView() == view;
     }
 
 
@@ -171,15 +180,15 @@ public abstract class AutoSizeAdapter<T> extends PagerAdapter {
 
     @Override
     public int getItemPosition(Object object) {
-        Fragment fragment = (Fragment)object;
-        String tag = fragment.getTag();
+        HolderInfo info = (HolderInfo)object;
+        String tag = info.fragmentKey;
         String id[] = tag.split(":");
         for(int i = 0; i < mDataList.size(); i++){
             if(mDataList.get(i).hashCode() == Integer.valueOf(id[id.length-1])){
                 return i;
             }
         }
-        return super.getItemPosition(object);
+        return POSITION_NONE;
     }
 
     @Override

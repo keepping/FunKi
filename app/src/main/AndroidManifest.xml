@@ -55,7 +55,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".module.login.MainActivity" />
@@ -156,16 +160,12 @@
         <activity android:name=".module.live.activity.LiveActivity"
             android:theme="@style/AppThemeFullScreen">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
 
-        
+
         <!-- 开启直播界面 -->
         <activity android:name=".module.live.start.activity.StartLiveActivity" />
         <activity android:name=".module.splash.activity.SplashActivity" />

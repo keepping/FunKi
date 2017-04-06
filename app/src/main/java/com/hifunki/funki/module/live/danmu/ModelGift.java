@@ -1,5 +1,7 @@
 package com.hifunki.funki.module.live.danmu;
 
+import java.util.Random;
+
 /**
  * 在此写用途
  *
@@ -11,11 +13,13 @@ package com.hifunki.funki.module.live.danmu;
  */
 public class ModelGift {
 
+    private static Random random = new Random(11);
+
     public ModelGift(){
 
     }
 
-    public int count = 5;
+    public int count = random.nextInt(15);
 
     public String avatar;
 

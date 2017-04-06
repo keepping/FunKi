@@ -142,7 +142,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
                     pwdPopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
                 pwdPopWindow.init((int) DisplayUtil.dip2Px(this, 192), LinearLayout.LayoutParams.MATCH_PARENT);
-                pwdPopWindow.showPopWindow(pwdView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 0, 0);
+                pwdPopWindow.showPopWindow(pwdView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 //动态
                 LinearLayout llHomeDymic= (LinearLayout) pwdView.findViewById(R.id.ll_home_dymic);
                 //直播

@@ -88,23 +88,20 @@ public class DanMuItemGift implements IDanMuDelegate {
     public void dropIn(){
 
         gifType.setVisibility(View.INVISIBLE);
-        mainView.startAnimation(inAnim);
+
         inAnim.setAnimationListener(new Animation.AnimationListener() {
             boolean exit;
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
-
             @Override
             public void onAnimationEnd(Animation animation) {
                 if(exit) return;
                 exit = true;
-
+                System.out.println("2222222222222222222222222222222222222  1 "+mData);
                 gifType.setVisibility(View.VISIBLE);
                 gifType.startAnimation(inAnimSecond);
             }
-
             @Override
             public void onAnimationRepeat(Animation animation) {
 
@@ -115,25 +112,22 @@ public class DanMuItemGift implements IDanMuDelegate {
             boolean exit;
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
-
             @Override
             public void onAnimationEnd(Animation animation) {
                 if(exit) return;
                 exit = true;
+                System.out.println("2222222222222222222222222222222222222  2 "+mData);
                 startAnimationRepeat();
 
             }
-
             @Override
             public void onAnimationRepeat(Animation animation) {
-
             }
         });
 
+        mainView.startAnimation(inAnim);
     }
-
 
 
     private int repeatCount =0 ;
@@ -149,8 +143,8 @@ public class DanMuItemGift implements IDanMuDelegate {
                 1.5f, 1.0f);
         ObjectAnimator anim4 = ObjectAnimator.ofFloat(gifUserRepeat, "scaleY",
                 1.5f, 1.0f);
-        final AnimatorSet animSet = new AnimatorSet();
 
+        final AnimatorSet animSet = new AnimatorSet();
         repeatAnimator = animSet;
         animSet.setDuration(700);
         animSet.setInterpolator(new OvershootInterpolator());
@@ -166,14 +160,13 @@ public class DanMuItemGift implements IDanMuDelegate {
             @Override
             public void onAnimationEnd(Animator animator) {                       // 次方法可能多次执行 repeatAnimator==animSet 能避免这种情况
 
-                System.out.println("------------------xx----------");
                 if(repeatAnimator==animSet){
                     if(mData.count> repeatCount){
                         startAnimationRepeat();
                         gifUserRepeat.setText(String.valueOf(repeatCount));
-                        System.out.println("----------------------------");
                     }else {
                         startAnimationDropOut();
+                        System.out.println("2222222222222222222222222222222222222  3 "+mData);
                         repeatAnimator = null;
                     }
                 }
@@ -194,7 +187,9 @@ public class DanMuItemGift implements IDanMuDelegate {
 
 
     private void startAnimationDropOut(){
+        System.out.println("2222222222222222222222222222222222222  4-1 "+mData);
         dropAnim.setAnimationListener(new Animation.AnimationListener() {
+            boolean exit = false;
             @Override
             public void onAnimationStart(Animation animation) {
 
@@ -202,7 +197,11 @@ public class DanMuItemGift implements IDanMuDelegate {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                System.out.println("2222222222222222222222222222222222222  3 "+mData);
+                if(exit){
+                    return;
+                }
+                exit = true;
+                System.out.println("2222222222222222222222222222222222222  4 "+mData);
                 mGroup.removeRunning(mData);
             }
 
