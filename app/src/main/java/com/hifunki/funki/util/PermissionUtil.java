@@ -21,6 +21,13 @@ public class PermissionUtil {
         return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == context.checkPermission(Manifest.permission.CAMERA, android.os.Process.myPid(), android.os.Process.myUid());
     }
 
+    // 检查写入sdk权限
+    public static boolean checkWriteStorageAccess(Context context) {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == context.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, android.os.Process.myPid(), android.os.Process.myUid());
+    }
 
+    public static boolean checkAudioAccess(Context context) {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == context.checkPermission(Manifest.permission.RECORD_AUDIO, android.os.Process.myPid(), android.os.Process.myUid());
+    }
 
 }

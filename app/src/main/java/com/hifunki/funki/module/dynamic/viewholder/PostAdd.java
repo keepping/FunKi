@@ -1,6 +1,4 @@
-package com.hifunki.funki.module.post.viewholder;
-
-import com.powyin.scroll.adapter.PowViewHolder;
+package com.hifunki.funki.module.dynamic.viewholder;
 
 /**
  * 在此写用途

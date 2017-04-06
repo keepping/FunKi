@@ -8,7 +8,6 @@
     </item>
 
 
-
     <item android:id="@android:id/progress">
         <clip>
             <shape>

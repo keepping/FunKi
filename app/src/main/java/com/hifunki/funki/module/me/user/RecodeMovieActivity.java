@@ -362,18 +362,6 @@ public class RecodeMovieActivity extends BaseActivity {
 
     }
 
-
-
-    // 检查相机权限
-    private boolean checkCameraAccess() {
-        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.CAMERA, Process.myPid(), Process.myUid());
-    }
-
-    // 检查相机权限
-    private boolean checkAudioAccess() {
-        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.RECORD_AUDIO, Process.myPid(), Process.myUid());
-    }
-
     // 拍摄 初始化
     private boolean startMovieRecord() throws IOException {
 
@@ -493,6 +481,15 @@ public class RecodeMovieActivity extends BaseActivity {
         return bitmap;
     }
 
+    // 检查相机权限
+    private boolean checkCameraAccess() {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.CAMERA, Process.myPid(), Process.myUid());
+    }
+
+    // 检查允许程序录制音频权限
+    private boolean checkAudioAccess() {
+        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.RECORD_AUDIO, Process.myPid(), Process.myUid());
+    }
 
 
 }
