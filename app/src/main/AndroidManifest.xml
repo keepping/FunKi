@@ -38,6 +38,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- 用于头像上传模块 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -60,7 +61,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.login.MainActivity" />
-        <!--18禁-->
+        <!-- 18禁 -->
         <activity
             android:name=".module.login.EighteenBearActivity"
             android:theme="@style/AppThemeFullScreen" />
@@ -98,11 +99,11 @@
         <activity
             android:name=".module.login.RegisterAuthActivity"
             android:screenOrientation="portrait" />
-        <!--设置密码界面-->
+        <!-- 设置密码界面 -->
         <activity
             android:name=".module.login.SetPwdActivity"
             android:screenOrientation="portrait" />
-        <!--找回密码成功界面-->
+        <!-- 找回密码成功界面 -->
         <activity
             android:name=".module.login.PwdSuccessActivity"
             android:screenOrientation="portrait" />
@@ -112,12 +113,12 @@
             android:screenOrientation="portrait" />
         <!-- 图片列表页 -->
         <activity android:name=".module.photo.gallery.activity.PhotoActivity" />
-        <!--图片选择-->
+        <!-- 图片选择 -->
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <!--图片裁剪-->
+        <!-- 图片裁剪 -->
         <activity
             android:name=".module.photo.ucrop.UCropActivity"
             android:screenOrientation="portrait"
@@ -146,12 +147,12 @@
         <activity android:name=".module.me.user.RecodeMovieActivity" />
         <!-- 个人中心==充值界面 -->
         <activity android:name=".module.me.recharge.activity.RechargeActivity" />
-        <!--编辑个人资料-->
+        <!-- 编辑个人资料 -->
         <activity android:name=".module.me.profile.activity.EditProfileActivity" />
-        <!--他人空间-->
+        <!-- 他人空间 -->
         <activity android:name=".module.room.activity.OtherRoomActivity" />
         <!-- 发动态界面 -->
-        <activity android:name=".module.post.activity.PostActivity" />
+        <activity android:name=".module.dynamic.activity.PostDynamicActivity" />
         <!-- 观众端界面 -->
         <activity
             android:name=".module.live.activity.LiveActivity"
@@ -170,8 +171,9 @@
         <activity android:name=".module.me.withdraw.activity.WithdrawActivity" />
         <!-- 我的动态界面 -->
         <activity android:name=".module.me.dynamic.activity.MyDynamicActivity" />
-        <!--兑换记录-->
-        <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity"></activity>
+        <!-- 兑换记录 -->
+        <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
+        <activity android:name=".module.dynamic.activity.ShotActivity"></activity>
     </application>
 
 </manifest>

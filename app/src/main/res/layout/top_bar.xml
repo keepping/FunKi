@@ -60,7 +60,6 @@
                 android:paddingRight="10dp"
                 android:paddingTop="15dp"
                 android:text="haha"
-
                 android:textSize="15sp"
                 android:textColor="@color/_9B44ED"/>
 

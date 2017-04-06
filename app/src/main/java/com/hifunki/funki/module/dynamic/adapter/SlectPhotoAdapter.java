@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.post.adapter;
+package com.hifunki.funki.module.dynamic.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;

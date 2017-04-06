@@ -31,7 +31,7 @@ import com.hifunki.funki.module.home.inter.OnTabReselectListener;
 import com.hifunki.funki.module.me.MeFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 import com.hifunki.funki.module.live.start.activity.StartLiveActivity;
-import com.hifunki.funki.module.post.activity.PostActivity;
+import com.hifunki.funki.module.dynamic.activity.PostDynamicActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
 
@@ -151,7 +151,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
                 llHomeLive.setOnClickListener(this);
                 break;
             case R.id.ll_home_dymic://跳转到发动态
-                PostActivity.show(this);
+                PostDynamicActivity.show(this);
                 break;
             case R.id.ll_home_live://跳转到开启直播界面
                 StartLiveActivity.show(this);

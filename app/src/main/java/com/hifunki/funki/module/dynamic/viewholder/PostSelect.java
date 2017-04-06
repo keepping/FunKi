@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.post.viewholder;
+package com.hifunki.funki.module.dynamic.viewholder;
 
 import android.app.Activity;
 import android.view.ViewGroup;

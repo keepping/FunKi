@@ -13,26 +13,29 @@
         app:titleText="发动态" />
 
     <EditText
-        android:id="@+id/post_text"
+        android:id="@+id/et_dynamic_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="26dp"
         android:layout_marginRight="26dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="29dp"
         android:background="@null"
-        android:minHeight="70dp" />
+        android:hint="@string/dynamic_share"
+        android:minHeight="70dp"
+        android:textColorHint="@color/_4A2F75"
+        android:textSize="17sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.hifunki.funki.module.home.widget.FKVideoView
-            android:id="@+id/post_movie"
-            android:layout_width="match_parent"
-            android:layout_height="192dp"
-            android:visibility="gone" />
-
+        <!--<com.hifunki.funki.module.home.widget.FKVideoView-->
+        <!--android:id="@+id/post_movie"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="192dp"-->
+        <!--android:visibility="gone" />-->
 
         <GridView
             android:id="@+id/post_grid"
@@ -47,7 +50,8 @@
             android:verticalSpacing="3dp" />
 
         <ImageView
-            android:id="@+id/post_add"
+            android:layout_marginLeft="26dp"
+            android:id="@+id/iv_dynamic_add"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:src="@drawable/iv_post_select" />

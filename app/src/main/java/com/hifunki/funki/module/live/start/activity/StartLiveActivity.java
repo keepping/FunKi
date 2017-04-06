@@ -3,7 +3,6 @@ package com.hifunki.funki.module.live.start.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
@@ -29,6 +28,7 @@ import com.hifunki.funki.module.live.start.GlVideoRender;
 import com.hifunki.funki.module.live.start.widget.RoundImageView;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.FileUtils;
+import com.hifunki.funki.util.PermissionUtil;
 import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 
@@ -148,13 +148,13 @@ public class StartLiveActivity extends BaseActivity {
         public void surfaceCreated(SurfaceHolder holder) {
 
             surfaceCreated = true;
-            if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {//检查权限
+            if (PermissionUtil.checkCameraAccess(getContext()) && PermissionUtil.checkWriteStorageAccess(getContext()) && surfaceCreated && mCamera == null) {//检查权限
                 mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
             } else {
-                if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
+                if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkCameraAccess(getContext())) {
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
                 }
-                if (Build.VERSION.SDK_INT >= 23 && !checkWriteStorageAccess()) {
+                if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkWriteStorageAccess(getContext())) {
                     requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 }
             }
@@ -183,13 +183,13 @@ public class StartLiveActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {
+        if (PermissionUtil.checkCameraAccess(getContext()) && PermissionUtil.checkWriteStorageAccess(getContext()) && surfaceCreated && mCamera == null) {
             mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
         } else {
-            if (Build.VERSION.SDK_INT >= 23 && !checkCameraAccess()) {
+            if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkCameraAccess(getContext())) {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
             }
-            if (Build.VERSION.SDK_INT >= 23 && !checkWriteStorageAccess()) {
+            if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkWriteStorageAccess(getContext())) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         }
@@ -205,7 +205,7 @@ public class StartLiveActivity extends BaseActivity {
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (checkCameraAccess() && checkWriteStorageAccess() && surfaceCreated && mCamera == null) {
+        if (PermissionUtil.checkCameraAccess(getContext()) && PermissionUtil.checkWriteStorageAccess(getContext()) && surfaceCreated && mCamera == null) {
             mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
         }
 
@@ -382,14 +382,5 @@ public class StartLiveActivity extends BaseActivity {
     }
 
 
-    // 检查相机权限
-    private boolean checkCameraAccess() {
-        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.CAMERA, android.os.Process.myPid(), android.os.Process.myUid());
-    }
-
-    // 检查写入sdk权限
-    private boolean checkWriteStorageAccess() {
-        return Build.VERSION.SDK_INT < 23 || PackageManager.PERMISSION_GRANTED == checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, android.os.Process.myPid(), android.os.Process.myUid());
-    }
 
 }
