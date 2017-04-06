@@ -2,15 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000" >
-
+    android:background="#000000">
 
     <SurfaceView
         android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
-
 
     <ImageView
         android:layout_width="match_parent"
@@ -26,32 +24,28 @@
             android:id="@+id/play_init"
             android:layout_width="40dp"
             android:layout_height="40dp"
-
             android:layout_gravity="center"
-            android:src="@drawable/play_start_1" />
+            android:src="@drawable/iv_play_start_1" />
 
         <ProgressBar
             android:id="@+id/play_loading"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="center"
-
-            />
+            android:layout_gravity="center" />
 
         <ImageView
             android:id="@+id/play_pause"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/play_pause" />
-
+            android:src="@drawable/iv_play_pause" />
 
         <ImageView
             android:id="@+id/play_restart"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/play_restart" />
+            android:src="@drawable/iv_home_restart" />
 
     </FrameLayout>
 
@@ -62,7 +56,6 @@
         android:layout_gravity="bottom"
         android:background="#66000000"
         android:gravity="center_vertical"
-
         android:orientation="horizontal">
 
         <ImageView
@@ -73,7 +66,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:src="@drawable/play_pause" />
+            android:src="@drawable/iv_play_pause" />
 
         <TextView
             android:id="@+id/play_time_current"
@@ -111,13 +104,8 @@
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="10dp"
-
             android:padding="5dp"
-
-            android:src="@drawable/play_full_screen" />
-
+            android:src="@drawable/iv_play_full_screen" />
 
     </LinearLayout>
-
-
 </FrameLayout>

@@ -50,7 +50,7 @@
             android:id="@+id/post_add"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:src="@drawable/post_select" />
+            android:src="@drawable/iv_post_select" />
 
     </FrameLayout>
 

@@ -1,81 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal|bottom"
-    android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:gravity="center_horizontal|bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="81dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="340000"
-                android:textColor="@color/_BBABD4"
-                android:textSize="30sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="14dp"
-                android:src="@drawable/iv_girl" />
-        </LinearLayout>
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+    <!--兑换前-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="81dp"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:text="当前金币数"
-            android:textColor="@color/_9B44ED"
-            android:textSize="15sp" />
+            android:text="340000"
+            android:textColor="@color/_BBABD4"
+            android:textSize="30sp" />
 
-        <LinearLayout
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="46dp">
+            android:layout_marginLeft="14dp"
+            android:src="@drawable/iv_me_income_unit" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="340"
-                android:textColor="@color/_FFD71B"
-                android:textSize="30sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:text="当前金币数"
+        android:textColor="@color/_9B44ED"
+        android:textSize="15sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="11sp"
-                android:text="$"
-                android:textColor="@color/_FFD71B"
-                android:textSize="30sp" />
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:text="可兑换"
-            android:textColor="@color/_9B44ED"
-            android:textSize="15sp" />
+            android:text="340"
+            android:textColor="@color/_FFD71B"
+            android:textSize="30sp" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginLeft="11sp"
+            android:text="$"
+            android:textColor="@color/_FFD71B"
+            android:textSize="30sp" />
+    </LinearLayout>
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:text="可兑换"
+        android:textColor="@color/_9B44ED"
+        android:textSize="15sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/excharge"
-                android:textColor="@color/_4A2F75"
-                android:textSize="20sp" />
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="47dp"
+        android:background="@color/_4A2F75"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginLeft="47dp">
+
+        <EditText
+            fontPath="fonts/FZZDXFW.ttf"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/login_input_phone_number"
+            android:maxLines="1"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:textColorHint="@color/_6B4E9A"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_exchange_confirm"
+            android:layout_width="68dp"
+            android:layout_height="match_parent"
+            android:background="@color/_150333"
+            android:gravity="center"
+            android:text="@string/excharge"
+            android:textColor="@color/_4A2F75"
+            android:textSize="20sp" />
+    </LinearLayout>
 </LinearLayout>

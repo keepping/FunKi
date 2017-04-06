@@ -19,18 +19,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <com.hifunki.funki.module.live.widget.BlockView
                     android:id="@+id/block_1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="4" />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="10" />
-
                 <com.hifunki.funki.module.live.widget.BlockView
                     android:id="@+id/block_2"
                     android:layout_width="match_parent"
@@ -42,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+                <!--顶部主播和榜单内容-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -115,7 +112,7 @@
                         android:layout_height="37dp"
                         android:layout_weight="1" />
                 </LinearLayout>
-
+                <!--金币数量-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -148,7 +145,7 @@
                         android:src="@drawable/iv_skip" />
 
                 </LinearLayout>
-
+                <!--榜单按钮-->
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -156,54 +153,112 @@
                     android:layout_marginTop="7dp"
                     android:src="@drawable/iv_home_list" />
 
+
+                <com.hifunki.funki.module.live.danmu.DanMuGroup
+                    android:id="@+id/dan_mu_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10" />
+
                 <Space
                     android:layout_width="1dp"
                     android:layout_height="0dp"
                     android:layout_weight="10" />
 
 
-                <com.powyin.slide.widget.BannerSwitch
+
+
+            </LinearLayout>
+
+            <!--点赞动画-内容页面 底部操作按钮-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--底部操作按钮-->
+                <RelativeLayout
+                    android:id="@+id/rl_info"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="150dp">
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp" />
-                </com.powyin.slide.widget.BannerSwitch>
+                        android:id="@+id/iv_room_msg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/iv_room_msg" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/iv_room_msg"
+                        android:src="@drawable/iv_room_private" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/iv_room_gift" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@+id/iv_room_exit"
+                        android:src="@drawable/iv_liveroom_share" />
+
+                    <ImageView
+                        android:id="@+id/iv_room_exit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/iv_room_exit" />
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/host_chat"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_above="@+id/rl_info"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="81dp"
+                    android:overScrollMode="never" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rl_gift"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
+                    android:layout_above="@+id/host_chat"
                     android:layout_marginRight="85dp"
                     android:overScrollMode="never" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/host_chat"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginRight="85dp"
-                    android:layout_weight="7"
-                    android:overScrollMode="never" />
-            </LinearLayout>
-
-            <!--点赞动画-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
                 <com.hifunki.funki.widget.bessel.DivergeView2
                     android:id="@+id/dv"
-                    android:layout_width="200dp"
-                    android:layout_height="300dp"
-                    android:layout_alignParentBottom="true"
+                    android:layout_width="81dp"
+                    android:layout_height="304dp"
+                    android:layout_above="@+id/rl_info"
                     android:layout_alignParentRight="true" />
+
             </RelativeLayout>
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iv_room_exit" />
+        </FrameLayout>
     </com.powyin.slide.widget.BannerSwitch>
+
+
 </FrameLayout>

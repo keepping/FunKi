@@ -56,18 +56,6 @@
 
     <!--自定义字体-->
     <attr name="fontPath" format="string" />
-    <!--Funki独有字体-->
-    <declare-styleable name="FunkiTextView">
-        <attr name="line_color" format="color"></attr>
-        <attr name="line_location">
-            <enum name="top" value="0"></enum>
-            <enum name="bottom" value="1"></enum>
-            <enum name="both" value="2"></enum>
-        </attr>
-        <attr name="line_height" format="dimension"></attr>
-        <attr name="show_line" format="boolean"></attr>
-        <attr name="line_width" format="dimension"></attr>
-    </declare-styleable>
 
     <!--首页ViewPager样式-->
     <declare-styleable name="Banner">

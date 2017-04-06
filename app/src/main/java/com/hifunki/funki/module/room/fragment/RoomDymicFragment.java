@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.module.home.me.adapter.MeInfoAdapter;
+import com.hifunki.funki.module.me.adapter.MeInfoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

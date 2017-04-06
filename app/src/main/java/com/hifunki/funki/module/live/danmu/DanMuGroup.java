@@ -2,17 +2,15 @@ package com.hifunki.funki.module.live.danmu;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,10 +29,54 @@ public class DanMuGroup extends FrameLayout {
 
     private class ViewInfo {
         private View target;
-        private boolean anmationIn;
-        private boolean anmationOut;
+        private boolean attach;
+        private ModelGift gift;
         private IDanMuDelegate delegate;
         private Rect layoutRect;
+    }
+
+    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, -2);
+
+    private List<Rect> spaceCase = new LinkedList<>();
+    private List<ViewInfo> noLayouts = new LinkedList<>();
+
+    private int maxWaitCount = 5;
+
+    private void getFreeSpace() {                                                                      //得到剩余可以展示的空间
+        spaceCase.clear();
+        noLayouts.clear();
+
+        //未layout时 位置信息错误；
+
+        spaceCase.add(new Rect(0, 0, getWidth(), getHeight()));
+
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            ViewInfo info = (ViewInfo) child.getTag();
+            Rect rect = info.layoutRect;
+            if (rect == null) {
+                noLayouts.add(info);
+                continue;
+            }
+            Iterator<Rect> tem = spaceCase.iterator();
+            Rect div1 = null;
+            Rect div2 = null;
+            while (tem.hasNext()) {
+                Rect current = tem.next();
+                if (current.contains(rect)) {
+                    tem.remove();
+                    div1 = new Rect(current.left, rect.bottom, current.right, current.bottom);
+                    div2 = new Rect(current.left, current.top, current.right, rect.top);
+                    break;
+                }
+            }
+            if (div1 != null) {
+                spaceCase.add(div1);
+            }
+            if (div2 != null) {
+                spaceCase.add(div2);
+            }
+        }
     }
 
 
@@ -50,53 +92,9 @@ public class DanMuGroup extends FrameLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    List<Rect> rects = new LinkedList<>();
-    List<ViewInfo> noLayouts = new LinkedList<>();
-
-    private Rect getFreeSpace(ViewInfo taget) {                            //得到剩余可以展示的空间
-
-        rects.clear();
-        rects.add(new Rect(0, 0, getWidth(), getHeight()));
-
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            ViewInfo info = (ViewInfo) child.getTag();
-            Rect rect = info.layoutRect;
-            if (rect == null) {
-                noLayouts.add(info);
-                continue;
-            }
-            Iterator<Rect> tem = rects.iterator();
-            Rect div1 = null;
-            Rect div2 = null;
-            while (tem.hasNext()) {
-                Rect current = tem.next();
-                if (current.contains(rect)) {
-                    tem.remove();
-                    div1 = new Rect(current.left, rect.bottom, current.right, current.bottom);
-                    div2 = new Rect(current.left, current.top, current.right, rect.top);
-                    break;
-                }
-            }
-            if (div1 != null) {
-                rects.add(div1);
-            }
-            if (div2 != null) {
-                rects.add(div2);
-            }
-        }
-
-        for(Rect rect : rects){
-            if (rect.bottom - rect.top >= taget.target.getMeasuredHeight()) {
-                Rect tem = new Rect(rect);
-                tem.top = tem.bottom - taget.target.getMeasuredHeight();
-                return tem;
-            }
-        }
-
-        return null;
+    private Rect copy(Rect rect){
+        return new Rect(rect);
     }
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -104,9 +102,22 @@ public class DanMuGroup extends FrameLayout {
             View child = getChildAt(i);
             ViewInfo info = (ViewInfo) child.getTag();
             if (info.layoutRect == null) {
-                info.layoutRect = getFreeSpace(info);
+                getFreeSpace();
+                for (Rect rect : spaceCase) {
+                    if (rect.bottom - rect.top >= info.target.getMeasuredHeight()) {
+                        Rect tem = copy(rect);
+                        tem.top = tem.bottom - info.target.getMeasuredHeight();
+                        info.layoutRect = tem;
+
+                        System.out.println(tem);
+                        break;
+                    }
+                }
             }
         }
+
+
+
     }
 
     @Override
@@ -119,53 +130,81 @@ public class DanMuGroup extends FrameLayout {
             ViewInfo info = (ViewInfo) child.getTag();
             Rect layoutRect = info.layoutRect;
 
-            if(layoutRect==null) continue;
-
-            child.layout(layoutRect.left, layoutRect.top, layoutRect.right, layoutRect.bottom);
+            if (layoutRect == null) {
+                child.layout(right, bottom, right+right, bottom+bottom);
+            }else child.layout(layoutRect.left, layoutRect.top, layoutRect.right, layoutRect.bottom);
         }
 
         for (int i = 0; i < getChildCount(); i++) {
             View view = getChildAt(i);
             ViewInfo info = (ViewInfo) view.getTag();
-            if (!info.anmationIn) {
+            if (!info.attach) {
                 info.delegate.dropIn();
-                info.anmationIn = true;
+                info.attach = true;
             }
         }
     }
 
-    @Override
-    public void addView(View child, int index, ViewGroup.LayoutParams params) {
-        throw new RuntimeException("noSupport");
-    }
+//    @Override
+//    public void addView(View child, int index, ViewGroup.LayoutParams params) {
+//        throw new RuntimeException("noSupport");
+//    }
 
 
-    public void addData(ModelGift gift){
+    public void addData(ModelGift gift) {
 
         IDanMuDelegate itemGift = new DanMuItemGift();
-
         ViewInfo info = new ViewInfo();
-        info.target = itemGift.getItemView(getContext(),this);
+        info.target = itemGift.getItemView(getContext(), this);
         info.delegate = itemGift;
-        itemGift.onBindData(gift);
+
+        info.gift = gift;
+        itemGift.onBindData(gift,this);
         info.target.setTag(info);
 
-        super.addView(info.target,-1,new FrameLayout.LayoutParams(-2,-2));
+        preList.add(info);
+
+        // 获取未展示 等待的数量
+        int waitCount = 0;
+        for(int i=0 ;i <getChildCount() ;i ++){
+            ViewInfo viewInfo = (ViewInfo)getChildAt(i).getTag();
+            if(viewInfo.layoutRect==null) waitCount++;
+        }
+
+        for (int i = 0; (i < (maxWaitCount - waitCount)) && preList.size() > 0; i++) {
+            ViewInfo remove = preList.remove(0);
+            DanMuGroup.super.addView(remove.target, layoutParams);
+        }
+
     }
 
-
-
-    @Override
-    public void removeView(View view) {
-
-
-        super.removeView(view);
+    public void removeRunning(final ModelGift gift){
+        post(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=0;i<getChildCount() ;i ++){
+                    View view = getChildAt(i);
+                    ViewInfo info  = (ViewInfo) view.getTag();
+                    if(info.layoutRect!=null && info.gift==gift){
+                        removeView(view);
+                        break;
+                    }
+                }
+            }
+        });
     }
 
-    @Override
-    public void removeAllViews() {
-        super.removeAllViews();
-    }
+    private List<ViewInfo> preList = new LinkedList<>();
+
+
+
+
+
+
+
+
+
+
 }
 
 

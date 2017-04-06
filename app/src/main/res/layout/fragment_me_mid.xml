@@ -199,11 +199,11 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginRight="2dp"
             android:layout_width="wrap_content"
             android:layout_height="120dp"
             android:layout_below="@+id/rl_me_head"
             android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_toRightOf="@+id/rl_exchange"
             android:layout_weight="1">
 
@@ -304,43 +304,50 @@
         android:layout_marginTop="9dp"
         android:background="@color/_28114D">
 
-        <LinearLayout
-            android:id="@+id/ll_dynamic"
+        <RelativeLayout
+            android:id="@+id/rl_dymic"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="39dp"
-            android:layout_marginTop="6dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_dynamic"
+            <LinearLayout
+                android:id="@+id/ll_dynamic"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="39dp"
+                android:layout_marginTop="6dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_dynamic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dynamic"
+                    android:textColor="@color/_6B4E9A"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_dynamic_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_dynamic"
+                    android:layout_marginTop="9dp"
+                    android:text="34"
+                    android:textColor="@color/_9B44ED"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dynamic"
-                android:textColor="@color/_6B4E9A"
-                android:textSize="15sp" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="32dp"
+                android:layout_toRightOf="@+id/ll_dynamic"
+                android:gravity="center_vertical"
+                android:src="@drawable/iv_me_dynamic" />
 
-            <TextView
-                android:id="@+id/tv_dynamic_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_dynamic"
-                android:layout_marginTop="9dp"
-                android:text="34"
-                android:textColor="@color/_9B44ED"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="32dp"
-            android:layout_toRightOf="@+id/ll_dynamic"
-            android:gravity="center_vertical"
-            android:src="@drawable/iv_me_dynamic" />
+        </RelativeLayout>
 
         <com.hifunki.funki.widget.DashedLineView
             android:id="@+id/dl_mid"
@@ -353,42 +360,48 @@
             app:lineHeight="5dp"
             app:lineWidth="1dp" />
 
-        <LinearLayout
-            android:id="@+id/ll_live"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="39dp"
-            android:layout_marginTop="6dp"
-            android:layout_toRightOf="@+id/dl_mid"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_live"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/live"
-                android:textColor="@color/_6B4E9A"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/tv_live_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_live"
-                android:layout_marginTop="9dp"
-                android:text="14"
-                android:textColor="@color/_9B44ED"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <ImageView
+        <RelativeLayout
+            android:id="@+id/rl_live"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="32dp"
-            android:layout_toRightOf="@+id/ll_live"
-            android:src="@drawable/iv_me_live" />
+            android:layout_toRightOf="@+id/dl_mid">
+
+            <LinearLayout
+                android:id="@+id/ll_live"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="39dp"
+                android:layout_marginTop="6dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_live"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/live"
+                    android:textColor="@color/_6B4E9A"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_live_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_live"
+                    android:layout_marginTop="9dp"
+                    android:text="14"
+                    android:textColor="@color/_9B44ED"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="32dp"
+                android:layout_toRightOf="@+id/ll_live"
+                android:src="@drawable/iv_me_live" />
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

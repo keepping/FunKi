@@ -3,7 +3,6 @@ package com.hifunki.funki.base.application;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.util.AppUtil;

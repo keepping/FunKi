@@ -11,7 +11,11 @@ package com.hifunki.funki.module.live.danmu;
  */
 public class ModelGift {
 
-    public int count;
+    public ModelGift(){
+
+    }
+
+    public int count = 5;
 
     public String avatar;
 

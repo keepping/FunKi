@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.annotation.AttrRes;
@@ -21,10 +20,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.util.TextUtil;
 import com.hifunki.funki.util.TimeUtil;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
@@ -40,37 +37,6 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  * @since 2017-03-23 09:41:41
  */
 public class FunKiPlayer extends FrameLayout {
-
-    public FunKiPlayer(@NonNull Context context) {
-        this(context, null);
-    }
-
-    public FunKiPlayer(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public FunKiPlayer(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView(context);
-
-    }
-
-    enum PLAY_STATUS {
-        unInit(0),                    //未初始化
-        loading(0),                   //载入中
-
-        playing_silence(0),           //无提示播放
-        playing_notify(0),            //提示播放
-
-        pause(0),                     //暂时
-        replay(0);                    //重播
-
-        PLAY_STATUS(int resId) {
-            this.viewId = resId;
-        }
-
-        int viewId;
-    }
 
     private final String tag = "FunKiPlayer";
 
@@ -91,45 +57,37 @@ public class FunKiPlayer extends FrameLayout {
 
     PLAY_STATUS play_status = PLAY_STATUS.unInit;
 
+    enum PLAY_STATUS {
+        unInit(0),                    //未初始化
+        loading(0),                   //载入中
 
-    private Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (play_status == PLAY_STATUS.playing_notify) {
-                play_status = PLAY_STATUS.playing_silence;
-                updateUI();
-            }
-        }
-    };
+        playing_silence(0),           //无提示播放
+        playing_notify(0),            //提示播放
 
-    private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
-        boolean isInTouch = false;
+        pause(0),                     //暂时
+        replay(0);                    //重播
 
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            ensurePlayer();
-            if (isInTouch) {
-                if (play_status != PLAY_STATUS.unInit && play_status != PLAY_STATUS.loading) {
-                    long dur = ijkMediaPlayer.getDuration();
-                    float raido = 1f * progress / 100;
-                    int current = (int) (raido * dur);
-                    ijkMediaPlayer.seekTo(current);
-                }
-            }
+        PLAY_STATUS(int resId) {
+            this.viewId = resId;
         }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-            isInTouch = true;
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-            isInTouch = false;
-        }
-    };
+        int viewId;
+    }
 
 
+    public FunKiPlayer(@NonNull Context context) {
+        this(context, null);
+    }
+
+    public FunKiPlayer(@NonNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public FunKiPlayer(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView(context);
+
+    }
 
     public void play(String uri) {
 
@@ -319,6 +277,42 @@ public class FunKiPlayer extends FrameLayout {
         }
     };
 
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (play_status == PLAY_STATUS.playing_notify) {
+                play_status = PLAY_STATUS.playing_silence;
+                updateUI();
+            }
+        }
+    };
+
+    private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+        boolean isInTouch = false;
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            ensurePlayer();
+            if (isInTouch) {
+                if (play_status != PLAY_STATUS.unInit && play_status != PLAY_STATUS.loading) {
+                    long dur = ijkMediaPlayer.getDuration();
+                    float raido = 1f * progress / 100;
+                    int current = (int) (raido * dur);
+                    ijkMediaPlayer.seekTo(current);
+                }
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            isInTouch = true;
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            isInTouch = false;
+        }
+    };
 
     /**
      * 监听全屏跟非全屏
@@ -342,7 +336,6 @@ public class FunKiPlayer extends FrameLayout {
         }
 
     }
-
 
     private void startPlay() {
         ijkMediaPlayer.start();
@@ -369,7 +362,6 @@ public class FunKiPlayer extends FrameLayout {
         }
         updateUI();
     }
-
 
     private void updateUI() {
 
@@ -410,14 +402,9 @@ public class FunKiPlayer extends FrameLayout {
 
         int timeLen = TimeUtil.getTimeLenth(duration);
 
-
         playTimeCurrent.setText(TimeUtil.getTime(current, timeLen));
         playTime.setText(TimeUtil.getTime(duration, timeLen));
-
     }
-
-
-
 
 
     // 从 DecorView 取出一个代理展示 视频 的 FrameLayout  如果没有则加入；
@@ -438,6 +425,5 @@ public class FunKiPlayer extends FrameLayout {
         }
         return ret;
     }
-
 
 }

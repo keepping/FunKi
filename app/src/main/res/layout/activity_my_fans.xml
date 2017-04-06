@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".module.home.me.fans.activity.MyFansActivity">
+    tools:context=".module.me.fans.activity.MyFansActivity">
 
     <com.hifunki.funki.widget.TopBarView
         android:layout_width="match_parent"

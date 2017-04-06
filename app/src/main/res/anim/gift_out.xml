@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="500">
 
-<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    <alpha android:fromAlpha="1" android:toAlpha="0"
+        android:duration="500"
+        >
 
-    android:duration="1000"
+    </alpha>
 
-    android:fromYDelta="0%p"
+    <translate
+        android:duration="500"
+        android:fromYDelta="0%p"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:toYDelta="-30%p">
 
-    android:interpolator="@android:anim/accelerate_interpolator"
+    </translate>
+</set>
 
-    android:toYDelta="-100%p">
-
-</translate>

@@ -10,14 +10,14 @@
         android:layout_height="60dp"
         android:layout_gravity="right|top"
         android:padding="10dp"
-        android:src="@drawable/post_delete" />
+        android:src="@drawable/iv_post_delete" />
 
     <com.hifunki.funki.widget.SquareImageView
         android:id="@+id/post_add"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/post_add" />
+        android:src="@drawable/iv_post_add" />
 
     <com.hifunki.funki.widget.SquareImageView
         android:id="@+id/post_image"

@@ -1,7 +1,6 @@
 package com.hifunki.funki.module.live.viewholder;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;

@@ -2,17 +2,15 @@ package com.hifunki.funki.module.live.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ScrollingView;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
- * 在此写用途
+ * 解决 保留滑动
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.widget.BlockView.java   解决 保留滑动
+ * @value com.hifunki.funki.module.live.widget.BlockView.java
  * @link
  * @since 2017-03-31 16:12:12
  */

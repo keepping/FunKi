@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,8 @@ import com.google.gson.Gson;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.client.User;
+import com.hifunki.funki.module.live.danmu.DanMuGroup;
+import com.hifunki.funki.module.live.danmu.ModelGift;
 import com.hifunki.funki.module.live.event.EventPlayContent;
 import com.hifunki.funki.module.live.mode.ChatMessage;
 import com.hifunki.funki.module.live.viewholder.ChatComing;
@@ -63,6 +66,8 @@ public class RoomFragment extends BaseFragment {
     DivergeView2 divergeView3;
     @BindView(R.id.tv_follow)
     TextView tvFollow;
+    @BindView(R.id.dan_mu_group)
+    DanMuGroup danMuGroup;
 
     MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
     MultipleRecycleAdapter<User> avatarMutipleRecycleAdapter;
@@ -148,10 +153,11 @@ public class RoomFragment extends BaseFragment {
         mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.iv_start_live_facebook, null)).getBitmap());
 
 
-
-
         divergeView3.setEndPoint(new PointF(divergeView3.getMeasuredWidth() / 2, 0));
         divergeView3.setDivergeViewProvider(new Provider());
+
+        // 弹幕冲击；
+
 
     }
 
@@ -193,6 +199,25 @@ public class RoomFragment extends BaseFragment {
     private void startPlay() {
         if (reResume && isVisual) {
             EventBus.getDefault().post(new EventPlayContent());
+
+            CountDownTimer timer = new CountDownTimer(30000, 500) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                    //    System.out.println("----------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    ModelGift gift = new ModelGift();
+                    danMuGroup.addData(gift);
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                }
+            };
+            timer.start();
+
+
         }
     }
 

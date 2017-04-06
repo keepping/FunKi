@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/tv_name"
-                android:src="@drawable/iv_location" />
+                android:src="@drawable/iv_hot_vip_location" />
 
             <TextView
                 android:id="@+id/tv_location"

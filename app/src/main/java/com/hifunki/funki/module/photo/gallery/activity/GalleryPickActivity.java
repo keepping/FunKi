@@ -534,8 +534,8 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
      */
     private void changeImageState() {
         isOpenImage = !isOpenImage;
-        Drawable drawableDown = getResources().getDrawable(R.drawable.gallery_pick_dropdown_white);
-        Drawable drawableUp = getResources().getDrawable(R.drawable.gallery_pick_up_white);
+        Drawable drawableDown = getResources().getDrawable(R.drawable.iv_gallery_pick_dropdown_white);
+        Drawable drawableUp = getResources().getDrawable(R.drawable.iv_gallery_pick_up_white);
         if (isOpenImage) {
             ivGalleryFolder.setImageDrawable(drawableUp);
         } else {

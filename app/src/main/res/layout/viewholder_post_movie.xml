@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -47,7 +49,6 @@
             android:id="@+id/post_user_l"
             android:layout_width="10dp"
             android:layout_height="10dp"
-
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="15dp"
             android:layout_toRightOf="@+id/post_user_head"
@@ -60,7 +61,6 @@
             android:id="@+id/post_user_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="4dp"
@@ -74,7 +74,6 @@
             android:id="@+id/post_user_c"
             android:layout_width="10dp"
             android:layout_height="10dp"
-
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"
@@ -88,7 +87,6 @@
             android:id="@+id/post_user_county"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="4dp"
@@ -97,97 +95,22 @@
             android:textColor="#6B4E9A"
             android:textSize="11sp" />
 
-
     </RelativeLayout>
 
-
     <TextView
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="安妮·海瑟薇在出演《公主日记》后被《人物》杂志封为2001年最佳新星。2005年，安妮·海瑟薇出演《断背山》。2006年，安妮·海瑟薇出演了《穿普喜剧类最佳女主角。2012年"
+        android:text="@string/home_post_movie"
         android:textColor="#c193ec"
         android:textSize="15sp" />
-
 
     <com.hifunki.funki.widget.FunKiPlayer
         android:id="@+id/fun_player"
         android:layout_width="match_parent"
         android:layout_height="192dp"
         android:background="#000000" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
 
-        >
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="10" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="#99ff99" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2000"
-            android:textColor="#b1a1df" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="10" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="10" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="#99ff99" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2000"
-            android:textColor="#b1a1df" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="10" />
-
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="10" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="#99ff99" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2000"
-            android:textColor="#b1a1df" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="10" />
-
-
-    </LinearLayout>
-
+    <include layout="@layout/layout_follow_star"/>
 
 </LinearLayout>

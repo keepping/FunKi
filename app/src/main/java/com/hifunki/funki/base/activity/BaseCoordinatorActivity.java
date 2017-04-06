@@ -1,18 +1,6 @@
 package com.hifunki.funki.base.activity;
 
 
-import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-
-import com.hifunki.funki.R;
-import com.hifunki.funki.util.DisplayUtil;
-
 /**
  * 在此写用途
  *

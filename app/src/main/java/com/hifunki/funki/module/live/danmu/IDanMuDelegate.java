@@ -15,9 +15,8 @@ import android.view.animation.Animation;
  * @since 2017-04-05 16:46:46
  */
 public interface IDanMuDelegate {
-    void dropIn();
-    void dropOut();
-    void onBindData(ModelGift data);
-    View getItemView(Context context, ViewGroup group);
+    void dropIn();                                        //载入开始
+    void onBindData(ModelGift data, DanMuGroup group);    //绑定数据
+    View getItemView(Context context, ViewGroup group);   //获取View
 
 }
