@@ -20,5 +20,4 @@ public interface HomeService {
     @GET(Urls.HOME_NEW)
     Call<ResponseBody> getHomeNewJson();
 
-
 }
