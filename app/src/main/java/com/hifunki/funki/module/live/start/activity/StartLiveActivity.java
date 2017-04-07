@@ -251,7 +251,7 @@ public class StartLiveActivity extends BaseActivity {
                 //创建PopWindow
                 if (sharePopWindow == null) {
                     sharePopWindow = PopWindowUtil.getInstance(getApplicationContext());
-                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_invite_friend, null);
+                    shareView = LayoutInflater.from(getContext()).inflate(R.layout. pop_live_invite_friend, null);
 //                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
                 sharePopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);

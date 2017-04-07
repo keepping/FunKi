@@ -216,6 +216,11 @@ public class ShotActivity extends BaseActivity {
         ivShotBack.setVisibility(View.INVISIBLE);
         ivShotOk.setVisibility(View.INVISIBLE);
         switch (uninit) {
+            case UNINIT:
+                ivDynamicMirror.setVisibility(View.VISIBLE);
+                ivDynamicBeauty.setVisibility(View.VISIBLE);
+                ivShotPhotoDot.setVisibility(View.VISIBLE);
+                tvShotPhoto.setVisibility(View.VISIBLE);
             case IMAGE:
                 ivDynamicMirror.setVisibility(View.VISIBLE);
                 ivDynamicBeauty.setVisibility(View.VISIBLE);
