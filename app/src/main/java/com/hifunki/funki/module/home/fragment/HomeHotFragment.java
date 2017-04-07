@@ -113,6 +113,16 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     }
 
     @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
+    @Override
     protected void initView(View root) {
         super.initView(root);
         rvHot.setLayoutManager(new LinearLayoutManager(getContext()));

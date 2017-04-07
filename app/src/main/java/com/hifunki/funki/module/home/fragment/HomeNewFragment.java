@@ -5,17 +5,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.adapter.HomeNewAdapter;
 import com.hifunki.funki.module.home.entity.HomeNewEntity;
+import com.hifunki.funki.module.home.net.service.HomeService;
+import com.hifunki.funki.net.RetrofitUtil;
+import com.hifunki.funki.net.http.Callback;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 
 /**
  * 首页最新Fragment
@@ -39,10 +47,10 @@ public class HomeNewFragment extends BaseFragment {
 
     private OnFragmentInteractionListener mListener;
     private List<HomeNewEntity> entities;
+    private String TAG = "HomeNewFragment";
 
     public HomeNewFragment() {
     }
-
 
     public static HomeNewFragment newInstance(String param1, String param2) {
         HomeNewFragment fragment = new HomeNewFragment();
@@ -51,6 +59,17 @@ public class HomeNewFragment extends BaseFragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -70,20 +89,20 @@ public class HomeNewFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
-        String imagePath="http://pic.58pic.com/58pic/11/84/12/13S58PICuRf.jpg";
+        String imagePath = "http://pic.58pic.com/58pic/11/84/12/13S58PICuRf.jpg";
         entities = new ArrayList<>();
         //添加数据
-        for(int i=0;i<10;i++){
-            HomeNewEntity homeNewEntity=new HomeNewEntity(imagePath,"日本","日本语","爱笑的河豚",true);
-            HomeNewEntity homeNewEntity1=new HomeNewEntity(imagePath,"日本","日本语","爱笑的河豚",false);
+        for (int i = 0; i < 10; i++) {
+            HomeNewEntity homeNewEntity = new HomeNewEntity(imagePath, "日本", "日本语", "爱笑的河豚", true);
+            HomeNewEntity homeNewEntity1 = new HomeNewEntity(imagePath, "日本", "日本语", "爱笑的河豚", false);
             entities.add(homeNewEntity);
             entities.add(homeNewEntity1);
         }
 
 
-        HomeNewAdapter adapter=new HomeNewAdapter(R.layout.item_live_new,entities);
+        HomeNewAdapter adapter = new HomeNewAdapter(R.layout.item_live_new, entities);
 
-        rvNew.setLayoutManager(new GridLayoutManager(getContext(),2));
+        rvNew.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         rvNew.setAdapter(adapter);
 
@@ -94,22 +113,32 @@ public class HomeNewFragment extends BaseFragment {
         super.initView(root);
     }
 
+    @Override
+    protected void bindData() {
+        Retrofit instance = RetrofitUtil.getInstance();
+        HomeService homeService = instance.create(HomeService.class);
+        Call<ResponseBody> homeNewJson = homeService.getHomeNewJson();
+        homeNewJson.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void success(ResponseBody data) {
+                try {
+                    Log.e(TAG, "success: " + data.string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+            @Override
+            public void failure(ErrorType type, int httpCode) {
+                Log.e(TAG, "failure: " + httpCode);
+            }
+        });
+
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-        }
+    protected void bindData4NoNet() {
+
     }
 
     @Override
@@ -118,7 +147,14 @@ public class HomeNewFragment extends BaseFragment {
         mListener = null;
     }
 
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
+
 }

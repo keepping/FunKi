@@ -54,6 +54,16 @@ public class MsgFragment extends BaseFragment {
         return R.layout.fragment_msg;
     }
 
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

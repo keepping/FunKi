@@ -83,6 +83,16 @@ public class NavFragment extends BaseFragment {
                 FragmentConst.MeFragment);
     }
 
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

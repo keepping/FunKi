@@ -135,4 +135,14 @@ public class HomeFollowFragment extends BaseFragment {
 
 
     }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
 }

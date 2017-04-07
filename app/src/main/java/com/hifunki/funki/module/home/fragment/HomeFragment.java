@@ -133,6 +133,16 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         vpHome.setCurrentItem(1);
     }
 
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

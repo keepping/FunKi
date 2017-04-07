@@ -83,6 +83,16 @@ public class UserListFragment extends BaseFragment {
     }
 
     @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
+    @Override
     protected void initView(View root) {
         super.initView(root);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
