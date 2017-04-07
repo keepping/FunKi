@@ -252,41 +252,7 @@ public class RoomFragment extends BaseFragment {
         }
     };
 
-//    // 控制滑动状态改变
-//    private BannerSwitch.OnButtonLineScrollListener lineScrollListener = new BannerSwitch.OnButtonLineScrollListener() {
-//        @Override
-//        public void onButtonLineScroll(int viewCount, int leftIndex, int rightIndex, View leftView, View rightView, float leftNearWei, float rightNearWei) {
-//            for(int i=0;i<viewCount;i++){
-//                bannerSwitch.getChildAt(i).findViewById(R.id.line).setAlpha(0);
-//            }
-//            leftIndex = leftIndex - 3;                                            //left 返回中间主显示对象； 需要向左偏移3单位 才是第一项选择；
-//            leftIndex = leftIndex<0 ? viewCount+leftIndex : leftIndex;
-//
-//            View line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
-//            line.setAlpha(1);
-//
-//            leftIndex ++ ;
-//            if(leftIndex>=viewCount){
-//                leftIndex=rightIndex;
-//            }
-//            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
-//            line.setAlpha(0.7f);
-//
-//            leftIndex ++ ;
-//            if(leftIndex>=viewCount){
-//                leftIndex=rightIndex;
-//            }
-//            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
-//            line.setAlpha(0.3f);
-//
-//            leftIndex ++ ;
-//            if(leftIndex>=viewCount){
-//                leftIndex=rightIndex;
-//            }
-//            line =  bannerSwitch.getChildAt(leftIndex).findViewById(R.id.line);
-//            line.setAlpha(0);
-//        }
-//    };
+
 
 }
 

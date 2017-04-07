@@ -9,5 +9,18 @@ package com.hifunki.funki.module.live.danmu;
  * @link
  * @since 2017-04-05 16:39:39
  */
-public class ModelText {
+public class ModelText implements IDanMuData {
+
+
+
+
+    @Override
+    public boolean canRepeatWith(IDanMuData data) {
+        return false;
+    }
+
+    @Override
+    public IDanMuItemBehave getBehave() {
+        return null;
+    }
 }

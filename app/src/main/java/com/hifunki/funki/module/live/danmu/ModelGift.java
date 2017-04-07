@@ -11,7 +11,7 @@ import java.util.Random;
  * @link
  * @since 2017-04-05 15:32:32
  */
-public class ModelGift {
+public class ModelGift implements IDanMuData{
 
     private static Random random = new Random(11);
 
@@ -27,6 +27,19 @@ public class ModelGift {
     public String avatarUrl;
 
     public String contentUri;
+
+
+
+
+    @Override
+    public boolean canRepeatWith(IDanMuData data) {
+        return false;
+    }
+
+    @Override
+    public IDanMuItemBehave getBehave() {
+        return new DanMuItemGift();
+    }
 
 
 
