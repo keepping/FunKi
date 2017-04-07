@@ -1,6 +1,7 @@
 package com.hifunki.funki.net;
 
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -19,6 +20,7 @@ public class RetrofitUtil {
         return retrofit = new Retrofit.Builder().
                 baseUrl(Host.WANG_HOST).
                 addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
