@@ -3,9 +3,12 @@ package com.hifunki.funki.module.dynamic.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -17,9 +20,12 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.util.PermissionUtil;
+import com.hifunki.funki.util.ToastUtils;
 import com.hifunki.funki.widget.TopBarView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -72,6 +78,7 @@ public class ShotActivity extends BaseActivity {
     private SurfaceHolder mSurfaceHolder;
     boolean mSurfaceCreated = false;
     Camera mCamera;
+    private boolean mPermissions = false;
 
     private enum STATUS {
         UNINIT, IMAGE, IMAGE_BEAUTY, MOVIE, MOVIE_TIME_LACK, MOVIE_OK
@@ -216,7 +223,7 @@ public class ShotActivity extends BaseActivity {
         ivShotBack.setVisibility(View.INVISIBLE);
         ivShotOk.setVisibility(View.INVISIBLE);
         switch (uninit) {
-            case UNINIT:
+            case UNINIT://初始化状态
                 ivDynamicMirror.setVisibility(View.VISIBLE);
                 ivDynamicBeauty.setVisibility(View.VISIBLE);
                 ivShotPhotoDot.setVisibility(View.VISIBLE);
@@ -236,30 +243,32 @@ public class ShotActivity extends BaseActivity {
                 ivShotBack.setVisibility(View.VISIBLE);
                 ivShotOk.setVisibility(View.VISIBLE);
                 break;
-
         }
-
     }
-
 
     private SurfaceHolder.Callback recodeCallBack = new SurfaceHolder.Callback() {
 
+        @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void surfaceCreated(SurfaceHolder holder) {              // 视频预浏览
             mSurfaceCreated = true;
-            if (PermissionUtil.checkCameraAccess(ShotActivity.this) && PermissionUtil.checkAudioAccess(ShotActivity.this) && PermissionUtil.checkWriteStorageAccess(ShotActivity.this) && mSurfaceCreated && mCamera == null) {
-                openCamera();
-            } else {
-                if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkCameraAccess(ShotActivity.this)) {
-                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
-                }
-                if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkAudioAccess(ShotActivity.this)) {
-                    requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 1);
-                }
-                if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkWriteStorageAccess(ShotActivity.this)) {
-                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-                }
+            List<String> permissions = new ArrayList<>();
+            if (!PermissionUtil.checkCameraAccess(ShotActivity.this)) {
+                permissions.add(Manifest.permission.CAMERA);
             }
+            if (!PermissionUtil.checkAudioAccess(ShotActivity.this)) {
+                permissions.add(Manifest.permission.RECORD_AUDIO);
+            }
+            if (!PermissionUtil.checkWriteStorageAccess(ShotActivity.this)) {
+                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+            if (permissions.size() != 0) {
+                ActivityCompat.requestPermissions(ShotActivity.this, permissions.toArray(new String[permissions.size()]), 0);
+            } else {
+                mPermissions = true;
+                openCamera();
+            }
+
         }
 
         @Override
@@ -276,8 +285,19 @@ public class ShotActivity extends BaseActivity {
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (PermissionUtil.checkCameraAccess(ShotActivity.this) && PermissionUtil.checkAudioAccess(ShotActivity.this) && mSurfaceCreated && mCamera == null) {
-            openCamera();
+        switch (requestCode) {
+            case 0:
+                for (int ret : grantResults) {
+                    if (ret != PackageManager.PERMISSION_GRANTED) {
+
+                        ToastUtils.showShortToastSafe("没有授权");
+                    }else{
+                        ToastUtils.showShortToastSafe("授权成功");
+                    }
+                }
+                mPermissions = true;
+                openCamera();
+                break;
         }
     }
 

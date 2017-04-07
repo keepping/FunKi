@@ -52,6 +52,16 @@ public class VideoListFragment extends BaseFragment {
         return R.layout.fragment_video_list;
     }
 
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

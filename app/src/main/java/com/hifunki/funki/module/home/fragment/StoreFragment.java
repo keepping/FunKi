@@ -55,6 +55,16 @@ public class StoreFragment extends BaseFragment {
         return R.layout.fragment_store;
     }
 
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

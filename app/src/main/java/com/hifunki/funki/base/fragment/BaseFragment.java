@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hifunki.funki.util.NetWorkUtil;
+
 import butterknife.ButterKnife;
 
 
@@ -53,9 +55,6 @@ public abstract class BaseFragment extends Fragment {
             // Bind view
             ButterKnife.bind(this, mRoot);
 
-            // Init
-            initData();
-            initView(mRoot);
 
         }
         return mRoot;
@@ -76,7 +75,37 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initBundle();//获取bundle数据
+        initData();
+        initView(mRoot);
+        initListener();
+        initAdapter();
+        requestData();//请求数据
     }
+
+    private void initBundle() {
+
+    }
+
+    private void initListener() {
+
+    }
+
+    private void initAdapter() {
+
+    }
+
+    private void requestData() {
+        if (!NetWorkUtil.isNetConnected()) {//没有网络
+            bindData4NoNet();//无网络处理
+        } else {
+            bindData();//有网络处理
+        }
+    }
+
+    protected abstract void bindData();
+
+    protected abstract void bindData4NoNet();
 
     @Override
     public void onStart() {

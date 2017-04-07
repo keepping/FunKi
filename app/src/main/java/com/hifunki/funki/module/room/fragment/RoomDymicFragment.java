@@ -98,6 +98,16 @@ public class RoomDymicFragment extends BaseFragment {
     }
 
     @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
+    @Override
     protected void initView(View root) {
         super.initView(root);
         rlDymic.setLayoutManager(new LinearLayoutManager(getContext()));

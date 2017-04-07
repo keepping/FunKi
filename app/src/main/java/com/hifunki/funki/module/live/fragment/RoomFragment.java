@@ -161,6 +161,16 @@ public class RoomFragment extends BaseFragment {
 
     }
 
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
     @OnClick({R.id.host_avatar, R.id.tv_follow})
     public void onClick(View view) {
         switch (view.getId()) {

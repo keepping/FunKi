@@ -30,6 +30,16 @@ import java.util.concurrent.Future;
 public class NetWorkUtil {
 
     /**
+     * 是否有网络
+     *
+     * @return
+     */
+    public static boolean isNetConnected() {
+        NetworkInfo info = getActiveNetworkInfo();
+        return info != null && info.isConnected();
+    }
+
+    /**
      * 网络是否正常
      *
      * @param context Context
@@ -99,16 +109,6 @@ public class NetWorkUtil {
      */
     private static NetworkInfo getActiveNetworkInfo() {
         return ((ConnectivityManager) ApplicationMain.getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-    }
-
-    /**
-     * 是否有网络
-     *
-     * @return
-     */
-    public static boolean isNetWorkOk() {
-        NetworkInfo info = getActiveNetworkInfo();
-        return info != null && info.isConnected();
     }
 
     /**

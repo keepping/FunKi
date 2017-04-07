@@ -111,6 +111,16 @@ public class RankAnchorFragment extends BaseFragment {
     }
 
     @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
+    @Override
     protected void initView(View root) {
         super.initView(root);
         mAdapter = new RankAnchorAdapter(getContext(), anchorEntities);
