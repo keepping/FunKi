@@ -1,16 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC0C001F"
+    android:orientation="vertical">
 
-    <!--开启直播邀请好友-->
+    <LinearLayout
+        android:id="@+id/ll_invite_friend"
+        android:layout_width="match_parent"
+        android:layout_height="384dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/_28114D"
+        android:orientation="vertical">
+        <!--开启直播邀请好友-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp">
 
-    <TextView
-        android:text="@string/account_privacy_safety"
-        android:layout_width="match_parent"
-        android:layout_height="58dp" />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_invite_friend"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/iv_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/account_privacy_safety"
+                android:textColor="@color/_BBABD4"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="14dp"
+                android:text="开启直播"
+                android:textColor="@color/_9B44ED"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rv_invite_friend"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="330dp" />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:text="fadfa" />
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_above="@+id/ll_invite_friend"-->
+        <!--android:alpha="0.8"-->
+        <!--android:background="@color/_0C001F"></LinearLayout>-->
+
+</RelativeLayout>

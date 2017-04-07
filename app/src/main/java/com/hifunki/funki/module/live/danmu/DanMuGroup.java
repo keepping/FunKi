@@ -134,16 +134,12 @@ public class DanMuGroup extends FrameLayout {
                 child.layout(right, bottom, right+right, bottom+bottom);
             }else{
                 child.layout(layoutRect.left, layoutRect.top, layoutRect.right, layoutRect.bottom);
-
                 if (!info.attach) {
                     info.delegate.dropIn();
                     info.attach = true;
                 }
-
             }
         }
-
-
     }
 
 //    @Override

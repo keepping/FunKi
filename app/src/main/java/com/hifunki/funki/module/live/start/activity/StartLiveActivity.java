@@ -98,7 +98,6 @@ public class StartLiveActivity extends BaseActivity {
     private String TAG = "test";
     private PopWindowUtil sharePopWindow;//分享popWindow
     private View shareView;
-    private boolean isFocus;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, StartLiveActivity.class));
@@ -174,11 +173,6 @@ public class StartLiveActivity extends BaseActivity {
         }
     };
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        isFocus = hasFocus;
-    }
 
     @Override
     protected void onResume() {
@@ -257,13 +251,11 @@ public class StartLiveActivity extends BaseActivity {
                 //创建PopWindow
                 if (sharePopWindow == null) {
                     sharePopWindow = PopWindowUtil.getInstance(getApplicationContext());
-                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_me_share, null);
+                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_invite_friend, null);
 //                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
-                sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
-                if (isFocus==true) {//代码有bug
-                    sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 1, 0);
-                }
+                sharePopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 break;
             case R.id.rl_ticket_live:
                 break;
@@ -380,7 +372,6 @@ public class StartLiveActivity extends BaseActivity {
 
         super.onDestroy();
     }
-
 
 
 }

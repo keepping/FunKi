@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/fan_avatar"
+        android:id="@+id/iv_audience"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginLeft="3dp"

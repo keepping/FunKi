@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
 import com.hifunki.funki.common.FragmentConst;
+import com.hifunki.funki.module.dynamic.activity.PostDynamicActivity;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;
@@ -28,10 +29,9 @@ import com.hifunki.funki.module.home.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.NavFragment;
 import com.hifunki.funki.module.home.fragment.StoreFragment;
 import com.hifunki.funki.module.home.inter.OnTabReselectListener;
-import com.hifunki.funki.module.me.MeFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 import com.hifunki.funki.module.live.start.activity.StartLiveActivity;
-import com.hifunki.funki.module.dynamic.activity.PostDynamicActivity;
+import com.hifunki.funki.module.me.MeFragment;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
 
@@ -144,16 +144,20 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
                 pwdPopWindow.init((int) DisplayUtil.dip2Px(this, 192), LinearLayout.LayoutParams.MATCH_PARENT);
                 pwdPopWindow.showPopWindow(pwdView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 //动态
-                LinearLayout llHomeDymic= (LinearLayout) pwdView.findViewById(R.id.ll_home_dymic);
+                LinearLayout llHomeDymic = (LinearLayout) pwdView.findViewById(R.id.ll_home_dymic);
                 //直播
-                LinearLayout llHomeLive= (LinearLayout) pwdView.findViewById(R.id.ll_home_live);
+                LinearLayout llHomeLive = (LinearLayout) pwdView.findViewById(R.id.ll_home_live);
                 llHomeDymic.setOnClickListener(this);
                 llHomeLive.setOnClickListener(this);
                 break;
             case R.id.ll_home_dymic://跳转到发动态
+                pwdPopWindow.hidePopWindow();
+                SystemClock.sleep(500);
                 PostDynamicActivity.show(this);
                 break;
             case R.id.ll_home_live://跳转到开启直播界面
+                pwdPopWindow.hidePopWindow();
+                SystemClock.sleep(500);
                 StartLiveActivity.show(this);
                 break;
         }
