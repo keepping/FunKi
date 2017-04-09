@@ -9,8 +9,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.hifunki.funki.R;
+
 /**
- * 在此写用途
+ * account base
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
