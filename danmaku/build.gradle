@@ -3,12 +3,12 @@ apply plugin: 'com.android.library'
 def SourcePath = 'src/main/'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 19
+        minSdkVersion 19
+        targetSdkVersion 25
 
         versionCode= 7003
         versionName="0.7.3"
