@@ -65,7 +65,7 @@ public class CountyListActivity extends BaseTitleActivity implements View.OnClic
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         cities = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             cities.add(new City("北京", "+011", "ss"));
@@ -87,6 +87,16 @@ public class CountyListActivity extends BaseTitleActivity implements View.OnClic
     protected void initAdapter() {
         mCityAdapter = new CityListAdapter(this, cities);
         lvAllCountry.setAdapter(mCityAdapter);
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
     @Override

@@ -59,8 +59,9 @@ public class GalleryVpActivity extends BaseTitleActivity implements View.OnClick
         return R.layout.activity_gallery_vp;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         anInt = extras.getInt(BundleConst.KEY_GALLERY_PHOTO_NUMBER);
@@ -98,6 +99,16 @@ public class GalleryVpActivity extends BaseTitleActivity implements View.OnClick
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

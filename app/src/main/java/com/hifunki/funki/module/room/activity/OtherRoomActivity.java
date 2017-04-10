@@ -101,7 +101,17 @@ public class OtherRoomActivity extends BaseActivity implements RoomDymicFragment
     }
 
     @Override
-    protected void initDatas() {
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
+    @Override
+    protected void initVariable() {
         mTabTitles = new ArrayList<>();
         mTabTitles.add("动态");
         mTabTitles.add("直播(14)");

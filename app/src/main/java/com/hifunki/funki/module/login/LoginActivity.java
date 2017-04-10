@@ -98,14 +98,10 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         return R.layout.activity_login;
     }
 
-    @Override
-    protected void initDatas() {
-        super.initDatas();//必须要调用,用来注册本地广播
-        mActivity = LoginActivity.this;
-    }
 
     @Override
     protected void initTitleBar() {
+        mActivity = LoginActivity.this;//必须要调用,用来注册本地广播
         ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
         ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
@@ -178,8 +174,8 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
             case R.id.tv_login:
                 if (mEtIuputTel.getText().toString().equals("0") && mEtIuputPwd.getText().toString().equals("0")) {
                     //保存到sp中
-                    SPUtils spUtils=new SPUtils(Spkey.FILE_LOGIN);
-                    spUtils.put(Spkey.KEY_LOGIN_SUCCESS,1);
+                    SPUtils spUtils = new SPUtils(Spkey.FILE_LOGIN);
+                    spUtils.put(Spkey.KEY_LOGIN_SUCCESS, 1);
 
                     ToastUtils.showShortToastSafe("login success");
                     HomeActivity.show(this, mActivity);

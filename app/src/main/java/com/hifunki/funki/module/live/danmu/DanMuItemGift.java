@@ -1,9 +1,9 @@
 package com.hifunki.funki.module.live.danmu;
-
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +14,9 @@ import android.view.animation.OvershootInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
 import com.hifunki.funki.R;
 import com.hifunki.funki.global.config.GiftType;
-
 import java.util.Random;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,28 +29,25 @@ import butterknife.ButterKnife;
  * @link
  * @since 2017-04-05 15:52:52
  */
-public class DanMuItemGift implements IDanMuDelegate {
+public class DanMuItemGift implements IDanMuItemBehave<ModelGift> {
 
     static Random random = new Random(1000);
 
+    @BindView(R.id.gif_type)
+    ImageView gifType;
+    @BindView(R.id.gif_user_avatar)
+    ImageView giftUserAvatar;
+    @BindView(R.id.gif_repeat)
+    TextView gifUserRepeat;
+
+    private ModelGift mData;
+    private IDanMuControl mGroup;
+    private int repeatCount =0 ;
     private TranslateAnimation inAnim;
     private TranslateAnimation inAnimSecond;
     private AnimatorSet repeatAnimator;
     private AnimationSet dropAnim;
-
-    View mainView;
-
-    @BindView(R.id.gif_type)
-    ImageView gifType;
-
-    @BindView(R.id.gif_user_avatar)
-    ImageView giftUserAvatar;
-
-    @BindView(R.id.gif_repeat)
-    TextView gifUserRepeat;
-
-    ModelGift mData;
-    DanMuGroup mGroup;
+    private View mainView;
 
     @Override
     public View getItemView(Context context, ViewGroup group){
@@ -74,7 +67,7 @@ public class DanMuItemGift implements IDanMuDelegate {
 
 
     @Override
-    public void onBindData(ModelGift data , DanMuGroup group){
+    public void onBindData(ModelGift data , IDanMuControl group){
 
         mData = data;
         mGroup = group;
@@ -98,7 +91,6 @@ public class DanMuItemGift implements IDanMuDelegate {
             public void onAnimationEnd(Animation animation) {
                 if(exit) return;
                 exit = true;
-                System.out.println("2222222222222222222222222222222222222  1 "+mData);
                 gifType.setVisibility(View.VISIBLE);
                 gifType.startAnimation(inAnimSecond);
             }
@@ -117,7 +109,6 @@ public class DanMuItemGift implements IDanMuDelegate {
             public void onAnimationEnd(Animation animation) {
                 if(exit) return;
                 exit = true;
-                System.out.println("2222222222222222222222222222222222222  2 "+mData);
                 startAnimationRepeat();
 
             }
@@ -129,8 +120,15 @@ public class DanMuItemGift implements IDanMuDelegate {
         mainView.startAnimation(inAnim);
     }
 
+    @Override
+    public int gravity() {
+        return Gravity.LEFT;
+    }
 
-    private int repeatCount =0 ;
+    @Override
+    public void repeatMore(int count) {
+
+    }
 
     private void startAnimationRepeat(){
         repeatCount++;
@@ -166,7 +164,6 @@ public class DanMuItemGift implements IDanMuDelegate {
                         gifUserRepeat.setText(String.valueOf(repeatCount));
                     }else {
                         startAnimationDropOut();
-                        System.out.println("2222222222222222222222222222222222222  3 "+mData);
                         repeatAnimator = null;
                     }
                 }
@@ -187,7 +184,6 @@ public class DanMuItemGift implements IDanMuDelegate {
 
 
     private void startAnimationDropOut(){
-        System.out.println("2222222222222222222222222222222222222  4-1 "+mData);
         dropAnim.setAnimationListener(new Animation.AnimationListener() {
             boolean exit = false;
             @Override
@@ -201,10 +197,8 @@ public class DanMuItemGift implements IDanMuDelegate {
                     return;
                 }
                 exit = true;
-                System.out.println("2222222222222222222222222222222222222  4 "+mData);
-                mGroup.removeRunning(mData);
+                mGroup.removeIDanMuData(mData);
             }
-
             @Override
             public void onAnimationRepeat(Animation animation) {
 

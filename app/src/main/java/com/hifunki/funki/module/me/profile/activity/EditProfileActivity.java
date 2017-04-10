@@ -91,9 +91,9 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
-    protected void initDatas() {
-    }
+    protected void initVariable() {
 
+    }
 
     @Override
     protected void initView() {
@@ -130,6 +130,16 @@ public class EditProfileActivity extends BaseActivity implements View.OnClickLis
     protected void initAdapter() {
         super.initAdapter();
 //        ProfileAdapter profileAdapter = new ProfileAdapter();
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

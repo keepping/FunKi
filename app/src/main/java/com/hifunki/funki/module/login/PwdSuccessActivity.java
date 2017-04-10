@@ -20,9 +20,11 @@ public class PwdSuccessActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
+
+
 
     @Override
     protected void initView() {
@@ -36,6 +38,16 @@ public class PwdSuccessActivity extends BaseTitleActivity {
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

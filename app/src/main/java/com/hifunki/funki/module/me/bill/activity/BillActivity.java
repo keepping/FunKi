@@ -52,8 +52,9 @@ public class BillActivity extends BaseActivity {
         return R.layout.activity_bill;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         List<BillEntity> entityList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             BillEntity entity = new BillEntity("今天", "12:36", 121212, "直播收入");
@@ -103,6 +104,16 @@ public class BillActivity extends BaseActivity {
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 }

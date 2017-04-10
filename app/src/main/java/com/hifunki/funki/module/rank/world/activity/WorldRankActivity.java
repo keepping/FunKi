@@ -49,8 +49,9 @@ public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFr
         return R.layout.activity_world_rank;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         //封装tab数据,数据和tab保持一致
         mTabTitle = new ArrayList<>();
         mTabTitle.add(getString(R.string.world_rank_anchor));
@@ -82,6 +83,16 @@ public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFr
         vpRank.setAdapter(rankPageAdapter);
         tbRank.setupWithViewPager(vpRank);
 
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

@@ -60,8 +60,10 @@ public class LiveActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
+
     }
+
 
     @Override
     protected void initView() {
@@ -86,6 +88,16 @@ public class LiveActivity extends BaseActivity {
 
 
         initPlay();
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
 

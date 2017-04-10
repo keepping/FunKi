@@ -44,8 +44,9 @@ public class CountryResultActivity extends BaseTitleActivity implements View.OnC
         return R.layout.activity_country_result;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         cities = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             cities.add(new City("北京", "+011", "ss"));
@@ -71,6 +72,16 @@ public class CountryResultActivity extends BaseTitleActivity implements View.OnC
     protected void initAdapter() {
         mCityAdapter = new CityListAdapter(this, cities);
         lvResCountry.setAdapter(mCityAdapter);
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
     @OnClick({R.id.activity_country_result})

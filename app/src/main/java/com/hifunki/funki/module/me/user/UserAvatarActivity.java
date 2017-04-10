@@ -58,10 +58,9 @@ public class UserAvatarActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
-
 
     @Override
     protected void initView() {
@@ -74,6 +73,16 @@ public class UserAvatarActivity extends BaseActivity {
                 break;
 
         }
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
 

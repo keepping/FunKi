@@ -54,8 +54,9 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
         return R.layout.activity_show;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         entityList = new ArrayList<>();
         ShowEntity showEntity1 = new ShowEntity(ImagePath, "热门", "00:00", "韩国最著名的cosplay震撼登场", false, false, true, 25, 14, 25);
         ShowEntity showEntity2 = new ShowEntity(ImagePath, "热门", "00:00", "韩国最著名的cosplay震撼登场", true, false, true, 25, 14, 25);//已经购买的
@@ -147,6 +148,16 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

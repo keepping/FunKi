@@ -26,12 +26,21 @@ public class RechargeAdapter extends BaseMultiItemQuickAdapter<RechargeItem,Base
      */
     public RechargeAdapter(List<RechargeItem> data) {
         super(data);
+
         addItemType(RechargeItem.INPUT, R.layout.item_recharge_input);
         addItemType(RechargeItem.NORMAL, R.layout.item_recharge_normal);//大图
     }
 
     @Override
     protected void convert(BaseViewHolder helper, RechargeItem item) {
-
+        switch (item.getItemType()){
+            case RechargeItem.INPUT:
+//                LinearLayout llInput=helper.getView(R.id.ll_recharge_input);
+                helper.addOnClickListener(R.id.ll_recharge_input);
+                break;
+            case RechargeItem.NORMAL:
+                helper.addOnClickListener(R.id.ll_recharge_normal);
+                break;
+        }
     }
 }

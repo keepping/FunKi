@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,19 +46,13 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (mRoot != null) {
-            ViewGroup parent = (ViewGroup) mRoot.getParent();
-            if (parent != null)
-                parent.removeView(mRoot);
-        } else {
-            mRoot = inflater.inflate(getLayoutId(), container, false);
-            mInflater = inflater;
 
-            // Bind view
-            ButterKnife.bind(this, mRoot);
+        mRoot = inflater.inflate(getLayoutId(), container, false);
+        mInflater = inflater;
 
+        // Bind view
+        ButterKnife.bind(this, mRoot);
 
-        }
         return mRoot;
     }
 
@@ -75,25 +71,11 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initBundle();//获取bundle数据
         initData();
         initView(mRoot);
-        initListener();
-        initAdapter();
         requestData();//请求数据
     }
 
-    private void initBundle() {
-
-    }
-
-    private void initListener() {
-
-    }
-
-    private void initAdapter() {
-
-    }
 
     private void requestData() {
         if (!NetWorkUtil.isNetConnected()) {//没有网络
@@ -103,39 +85,14 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    protected abstract void bindData();
+    protected void bindData() {
 
-    protected abstract void bindData4NoNet();
-
-    @Override
-    public void onStart() {
-        super.onStart();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    protected void bindData4NoNet() {
+
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 
     @Override
     public void onDetach() {

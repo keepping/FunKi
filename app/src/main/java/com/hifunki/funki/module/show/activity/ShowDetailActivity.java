@@ -45,8 +45,9 @@ public class ShowDetailActivity extends BaseActivity {
         return R.layout.activity_show_detail;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         funKiPlayer.play("http://vliveachy.tc.qq.com/vcloud.tc.qq.com/n0011yeemua.m301.mp4?vkey=85E512C3DDCF24AF50663F9F9C64B698218C0F1025233FBED75CD1825E03B74AD0197596D5DC67EB04C5F5EF109F54E7E2D815CF0E28D2D7DC4BDC929B8BB811E6EA52C744C30EF5C5B874F363659BD18D58613C4D8447D50CE703CDC34C8CC19DF6EE057F4014CAE3C75F6A019E4D66&guid=714F50E7615D5EBAF3296F3A66B43579");
     }
 
@@ -85,6 +86,16 @@ public class ShowDetailActivity extends BaseActivity {
         rlShowDetail.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
         rlShowDetail.setLayoutManager(new LinearLayoutManager(this));
         rlShowDetail.setAdapter(adapter);
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
 

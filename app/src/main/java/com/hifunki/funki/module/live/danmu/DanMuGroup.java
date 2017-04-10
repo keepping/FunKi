@@ -2,14 +2,11 @@ package com.hifunki.funki.module.live.danmu;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -24,21 +21,18 @@ import java.util.List;
  * @link
  * @since 2017-04-05 15:27:27
  */
-public class DanMuGroup extends FrameLayout {
-
-
+public class DanMuGroup extends FrameLayout implements IDanMuControl{
     private class ViewInfo {
         private View target;
         private boolean attach;
-        private ModelGift gift;
-        private IDanMuDelegate delegate;
+        private IDanMuData gift;
+        private IDanMuItemBehave delegate;
         private Rect layoutRect;
     }
-
     FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, -2);
-
     private List<Rect> spaceCase = new LinkedList<>();
     private List<ViewInfo> noLayouts = new LinkedList<>();
+    private List<ViewInfo> preList = new LinkedList<>();
 
     private int maxWaitCount = 5;
 
@@ -142,21 +136,40 @@ public class DanMuGroup extends FrameLayout {
         }
     }
 
-//    @Override
-//    public void addView(View child, int index, ViewGroup.LayoutParams params) {
-//        throw new RuntimeException("noSupport");
-//    }
 
 
-    public void addData(ModelGift gift) {
+    @Override
+    public void removeIDanMuData(final IDanMuData danMuData) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("2222222222222222222222222222222222222  7 "+danMuData);
+                for(int i=0;i<getChildCount() ;i ++){
+                    View view = getChildAt(i);
+                    ViewInfo info  = (ViewInfo) view.getTag();
+                    if(info.gift==danMuData){
+                        removeView(view);
+                        System.out.println("2222222222222222222222222222222222222  8 "+danMuData);
+                        break;
+                    }
+                }
+            }
+        });
+    }
 
-        IDanMuDelegate itemGift = new DanMuItemGift();
+    @Override
+    public void addData(IDanMuData data) {
+
+        IDanMuItemBehave<IDanMuData> itemGift = data.getBehave();
+
         ViewInfo info = new ViewInfo();
         info.target = itemGift.getItemView(getContext(), this);
         info.delegate = itemGift;
 
-        info.gift = gift;
-        itemGift.onBindData(gift,this);
+        info.gift = data;
+        itemGift.onBindData(data,this);
+
+
         info.target.setTag(info);
 
         preList.add(info);
@@ -175,36 +188,6 @@ public class DanMuGroup extends FrameLayout {
         }
 
     }
-
-    public void removeRunning(final ModelGift gift){
-        post(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("2222222222222222222222222222222222222  7 "+gift);
-                for(int i=0;i<getChildCount() ;i ++){
-                    View view = getChildAt(i);
-                    ViewInfo info  = (ViewInfo) view.getTag();
-                    if(info.gift==gift){
-                        removeView(view);
-                        System.out.println("2222222222222222222222222222222222222  8 "+gift);
-                        break;
-                    }
-                }
-            }
-        });
-    }
-
-    private List<ViewInfo> preList = new LinkedList<>();
-
-
-
-
-
-
-
-
-
-
 }
 
 
