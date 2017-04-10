@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -134,6 +136,8 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
                 Animation animationDown = AnimationUtils.loadAnimation(this, R.anim.anchor_live_head_down);
                 animationDown.setFillAfter(true);
                 llStartLiveBoot.startAnimation(animationDown);
+//                requestWindowFeature(Window.FEATURE_NO_TITLE);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 break;
             case R.id.rl_invite_live:
                 break;
