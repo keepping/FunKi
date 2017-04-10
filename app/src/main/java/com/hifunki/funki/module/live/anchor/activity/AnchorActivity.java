@@ -401,20 +401,26 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         super.onResume();
         final Button btn = (Button) findViewById(R.id.publish);
         btn.setEnabled(true);
-        mPublisher.resumeRecord();
+        if(mPublisher!=null) {
+            mPublisher.resumeRecord();
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mPublisher.pauseRecord();
+        if(mPublisher!=null) {
+            mPublisher.pauseRecord();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPublisher.stopPublish();
-        mPublisher.stopRecord();
+        if(mPublisher!=null) {
+            mPublisher.stopPublish();
+            mPublisher.stopRecord();
+        }
     }
 
 
