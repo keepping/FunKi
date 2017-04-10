@@ -13,13 +13,15 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
  */
 public class RechargeItem implements MultiItemEntity {
 
+    private int itemType;
     public static final int INPUT = 0;
     public static final int NORMAL = 1;
 
     private int num;
     private float price;
 
-    public RechargeItem(int num, float price) {
+    public RechargeItem(int itemType, int num, float price) {
+        this.itemType = itemType;
         this.num = num;
         this.price = price;
     }
@@ -58,6 +60,6 @@ public class RechargeItem implements MultiItemEntity {
 
     @Override
     public int getItemType() {
-        return 0;
+        return itemType;
     }
 }
