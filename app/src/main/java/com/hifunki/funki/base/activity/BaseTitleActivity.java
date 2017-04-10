@@ -7,7 +7,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.util.StatusBarUtil;
 
 /**
- * BaseTitleActivity
+ * 通过设置statusbar上面的背景，达到沉浸式
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
