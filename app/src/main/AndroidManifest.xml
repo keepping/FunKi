@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hifunki.funki">
 
+    <!--<uses-sdk-->
+        <!--android:minSdkVersion="9"-->
+        <!--android:targetSdkVersion="21" />-->
+
     <!-- 网络请求 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 读取文件权限 -->
@@ -59,6 +63,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".module.MainActivity" />
         <activity android:name=".module.login.MainActivity" />
         <!-- 18禁 -->
         <activity
@@ -154,10 +159,9 @@
         <activity android:name=".module.dynamic.activity.PostDynamicActivity" />
         <!-- 观众端界面 -->
 
-        <activity android:name=".module.live.activity.LiveActivity"
-            android:theme="@style/AppThemeFullScreen">
-        </activity>
-
+        <activity
+            android:name=".module.live.activity.LiveActivity"
+            android:theme="@style/AppThemeFullScreen"></activity>
 
 
         <!-- 开启直播界面 -->
