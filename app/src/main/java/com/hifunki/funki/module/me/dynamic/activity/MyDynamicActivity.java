@@ -33,12 +33,24 @@ public class MyDynamicActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
+
+    }
+
+
+
+    @Override
+    protected void initView() {
 
     }
 
     @Override
-    protected void initView() {
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

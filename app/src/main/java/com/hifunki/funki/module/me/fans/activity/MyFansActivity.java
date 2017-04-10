@@ -40,8 +40,9 @@ public class MyFansActivity extends BaseActivity {
         return R.layout.activity_my_fans;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         entities = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             FansEntity entity = new FansEntity("蜡笔小新", CommonConst.photo, 1, 56, "我是来自火星的", false);
@@ -54,6 +55,16 @@ public class MyFansActivity extends BaseActivity {
         FansAdapter adapter = new FansAdapter(R.layout.item_fans,entities);
         rlFans.setLayoutManager(new LinearLayoutManager(this));
         rlFans.setAdapter(adapter);
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
 }

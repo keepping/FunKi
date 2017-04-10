@@ -49,7 +49,7 @@ public class MeRankActivity extends BaseActivity implements RankPresentFragment.
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         //封装tab数据,数据和tab保持一致
         mTabTitle = new ArrayList<>();
         mTabTitle.add(getString(R.string.present));
@@ -90,6 +90,16 @@ public class MeRankActivity extends BaseActivity implements RankPresentFragment.
         RankAdapter rankAdapter = new RankAdapter(getSupportFragmentManager(), mTabTitle);
         vpRank.setAdapter(rankAdapter);
         tbRank.setupWithViewPager(vpRank);
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.start;
+package com.hifunki.funki.module.live.anchor;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;

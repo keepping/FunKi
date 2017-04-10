@@ -45,7 +45,7 @@ public class EditAgeActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         calendar = Calendar.getInstance();
         simpleDate = new SimpleDateFormat("yyyy/MM", Locale.CHINA);
         yearList = new ArrayList<>();
@@ -98,6 +98,16 @@ public class EditAgeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

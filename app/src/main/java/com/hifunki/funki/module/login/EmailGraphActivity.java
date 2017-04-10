@@ -21,7 +21,7 @@ public class EmailGraphActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
 
@@ -37,6 +37,16 @@ public class EmailGraphActivity extends BaseTitleActivity {
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

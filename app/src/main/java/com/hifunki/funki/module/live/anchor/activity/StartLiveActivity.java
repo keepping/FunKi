@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.start.activity;
+package com.hifunki.funki.module.live.anchor.activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -23,9 +23,9 @@ import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.common.CommonConst;
-import com.hifunki.funki.module.live.start.CameraUtils;
-import com.hifunki.funki.module.live.start.GlVideoRender;
-import com.hifunki.funki.module.live.start.widget.RoundImageView;
+import com.hifunki.funki.module.live.anchor.CameraUtils;
+import com.hifunki.funki.module.live.anchor.GlVideoRender;
+import com.hifunki.funki.module.live.anchor.widget.RoundImageView;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.PermissionUtil;
@@ -105,11 +105,12 @@ public class StartLiveActivity extends BaseActivity {
 
     @Override
     protected int getViewResId() {
-        return R.layout.activity_start_live;
+        return R.layout.layout_start_live;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         //加载头像
         Glide.with(this).load(CommonConst.photo).into(ivPhoto);
     }
@@ -138,6 +139,16 @@ public class StartLiveActivity extends BaseActivity {
         mHolder.addCallback(recodeCallBack);
 
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

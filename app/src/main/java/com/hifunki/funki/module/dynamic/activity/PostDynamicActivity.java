@@ -82,8 +82,9 @@ public class PostDynamicActivity extends BaseActivity {
         return R.layout.activity_post_dynamic;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         LongSparseArray<Integer> mCheckedIdStates = new LongSparseArray<>();
 
         mCheckedIdStates.put(0, 12);
@@ -106,6 +107,16 @@ public class PostDynamicActivity extends BaseActivity {
         postPic.setAdapter(gridAdapter);
         gridAdapter.notifyDataSetChanged();
         updateUI();
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
     void updateUI() {

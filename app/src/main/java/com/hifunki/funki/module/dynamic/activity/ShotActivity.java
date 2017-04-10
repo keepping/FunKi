@@ -96,7 +96,7 @@ public class ShotActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
 
@@ -166,6 +166,16 @@ public class ShotActivity extends BaseActivity {
 //                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 //            }
 //        }
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
 

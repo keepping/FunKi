@@ -1,25 +1,23 @@
-package com.hifunki.funki.module;
+package com.hifunki.funki.module.live.anchor.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.faucamp.simplertmp.RtmpHandler;
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseWindowActivity;
 import com.seu.magicfilter.utils.MagicFilterType;
 
 import net.ossrs.yasea.SrsCameraView;
@@ -29,9 +27,17 @@ import net.ossrs.yasea.SrsRecordHandler;
 
 import java.io.IOException;
 import java.net.SocketException;
-import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements RtmpHandler.RtmpListener,
+/**
+ * 主播直播间界面
+ *
+ * @author monotone
+ * @version V1.0 <描述当前版本功能>
+ * @value com.hifunki.funki.module.live.start.activity.LiveTagActivity.java
+ * @link
+ * @since 2017-03-29 16:53:53
+ */
+public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.RtmpListener,
                         SrsRecordHandler.SrsRecordListener, SrsEncodeHandler.SrsEncodeListener {
 
     private static final String TAG = "Yasea";
@@ -41,25 +47,45 @@ public class MainActivity extends AppCompatActivity implements RtmpHandler.RtmpL
     Button btnRecord = null;
     Button btnSwitchEncoder = null;
 
-    private SharedPreferences sp;
-    private String rtmpUrl = "rtmp://ossrs.net/" + getRandomAlphaString(3) + '/' + getRandomAlphaDigitString(5);
+    private String rtmpUrl = "rtmp://192.168.100.211/live/livestream";
     private String recPath = Environment.getExternalStorageDirectory().getPath() + "/test.mp4";
 
     private SrsPublisher mPublisher;
 
     @Override
+    protected int getViewResId() {
+        return R.layout.activity_anchor;
+    }
+
+    @Override
+    protected void initVariable() {
+
+    }
+
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.activity_main);
+        // //根据重力变换朝向
+//        SCREEN_ORIENTATION_FULL_SENSOR
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // response screen rotation event
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
-
-        // restore data.
-        sp = getSharedPreferences("Yasea", MODE_PRIVATE);
-        rtmpUrl = sp.getString("rtmpUrl", rtmpUrl);
 
         // initialize url.
         final EditText efu = (EditText) findViewById(R.id.url);
@@ -84,9 +110,6 @@ public class MainActivity extends AppCompatActivity implements RtmpHandler.RtmpL
             public void onClick(View v) {
                 if (btnPublish.getText().toString().contentEquals("publish")) {
                     rtmpUrl = efu.getText().toString();
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("rtmpUrl", rtmpUrl);
-                    editor.apply();
 
                     mPublisher.startPublish(rtmpUrl);
                     mPublisher.startCamera();
@@ -239,6 +262,8 @@ public class MainActivity extends AppCompatActivity implements RtmpHandler.RtmpL
         mPublisher.stopRecord();
     }
 
+
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -252,27 +277,7 @@ public class MainActivity extends AppCompatActivity implements RtmpHandler.RtmpL
         mPublisher.startCamera();
     }
 
-    private static String getRandomAlphaString(int length) {
-        String base = "abcdefghijklmnopqrstuvwxyz";
-        Random random = new Random();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            int number = random.nextInt(base.length());
-            sb.append(base.charAt(number));
-        }
-        return sb.toString();
-    }
 
-    private static String getRandomAlphaDigitString(int length) {
-        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
-        Random random = new Random();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            int number = random.nextInt(base.length());
-            sb.append(base.charAt(number));
-        }
-        return sb.toString();
-    }
 
     private void handleException(Exception e) {
         try {
@@ -412,6 +417,6 @@ public class MainActivity extends AppCompatActivity implements RtmpHandler.RtmpL
     }
 
     public static void show(Context context) {
-        context.startActivity(new Intent(context,MainActivity.class));
+        context.startActivity(new Intent(context,AnchorActivity.class));
     }
 }

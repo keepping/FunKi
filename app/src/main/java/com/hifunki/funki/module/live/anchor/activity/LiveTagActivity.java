@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.start.activity;
+package com.hifunki.funki.module.live.anchor.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -43,7 +43,7 @@ public class LiveTagActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         stringList = new ArrayList<>();
         stringList.add("萝莉");
         stringList.add("御姐");
@@ -112,6 +112,16 @@ public class LiveTagActivity extends BaseActivity {
                 setTitle("choose:" + selectPosSet.toString());
             }
         });
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
 

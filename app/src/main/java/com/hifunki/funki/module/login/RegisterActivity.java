@@ -79,10 +79,7 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
         return R.layout.activity_register;
     }
 
-    @Override
-    protected void initDatas() {
 
-    }
 
     @Override
     protected void initTitleBar() {

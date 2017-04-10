@@ -52,7 +52,7 @@ public class EighteenBearActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 //        Utils.init(getApplicationContext());
         eighteenEntities = new ArrayList<>();
 
@@ -91,6 +91,16 @@ public class EighteenBearActivity extends BaseActivity {
         EighteenAdapter eighteenAdapter = new EighteenAdapter(R.layout.item_eighteen, eighteenEntities);
         rvEighteenChoose.setLayoutManager(new LinearLayoutManager(this));
         rvEighteenChoose.setAdapter(eighteenAdapter);
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
 

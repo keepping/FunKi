@@ -121,9 +121,10 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
+
 
     @Override
     protected void initTitleBar() {
@@ -156,6 +157,16 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

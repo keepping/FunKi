@@ -46,13 +46,24 @@ public class ExchangeActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
+
 
     @Override
     protected void initView() {
         layoutWait.setVisibility(View.INVISIBLE);//默认不显示提现过程中
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
     @OnClick({R.id.tv_exchange_confirm, R.id.rl_exchange_before,  R.id.iv_exchange_point, R.id.tv_exchange_before})

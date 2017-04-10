@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
 import com.hifunki.funki.common.FragmentConst;
-import com.hifunki.funki.module.MainActivity;
+import com.hifunki.funki.module.live.anchor.activity.AnchorActivity;
 import com.hifunki.funki.module.dynamic.activity.PostDynamicActivity;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
@@ -88,9 +88,10 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
+
 
     @Override
     protected void initTitleBar() {
@@ -116,6 +117,16 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 
@@ -158,7 +169,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
             case R.id.ll_home_live://跳转到开启直播界面
                 pwdPopWindow.hidePopWindow();
                 SystemClock.sleep(500);
-                MainActivity.show(this);
+                AnchorActivity.show(this);
 //                StartLiveActivity.show(this);
                 break;
         }

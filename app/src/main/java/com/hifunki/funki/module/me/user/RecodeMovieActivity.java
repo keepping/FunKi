@@ -128,8 +128,9 @@ public class RecodeMovieActivity extends BaseActivity {
         return R.layout.activity_movie_recorder_view;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         mRecodeFile = new File(FileUtils.getRandomVideoPath(this));
     }
 
@@ -272,6 +273,16 @@ public class RecodeMovieActivity extends BaseActivity {
                 onClick(findViewById(R.id.recode_start));
             }
         },700);
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
     public void onResume() {

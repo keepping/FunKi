@@ -91,7 +91,7 @@ public class UCropActivity extends BaseTitleActivity implements View.OnClickList
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
 
@@ -126,6 +126,16 @@ public class UCropActivity extends BaseTitleActivity implements View.OnClickList
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

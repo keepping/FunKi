@@ -38,7 +38,7 @@ public class EditNicknameActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
 
@@ -64,6 +64,16 @@ public class EditNicknameActivity extends BaseActivity {
     @Override
     protected void initListener() {
         super.initListener();
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
     public static void show(Activity activity) {

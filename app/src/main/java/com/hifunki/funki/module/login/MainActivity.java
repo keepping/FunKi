@@ -20,9 +20,11 @@ public class MainActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
+
+
 
 
     @Override
@@ -37,6 +39,16 @@ public class MainActivity extends BaseTitleActivity {
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

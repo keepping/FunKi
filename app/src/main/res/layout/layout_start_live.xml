@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/_230C47"
     android:paddingTop="20dp"
-    tools:context="com.hifunki.funki.module.live.start.activity.StartLiveActivity">
+    tools:context="com.hifunki.funki.module.live.anchor.activity.StartLiveActivity">
 
     <SurfaceView
         android:id="@+id/sv_preview"
@@ -87,7 +87,7 @@
             android:layout_height="67dp"
             android:layout_marginTop="350dp">
 
-            <com.hifunki.funki.module.live.start.widget.RoundImageView
+            <com.hifunki.funki.module.live.anchor.widget.RoundImageView
                 android:id="@+id/iv_photo"
                 android:layout_width="67dp"
                 android:layout_height="67dp"
@@ -199,7 +199,7 @@
 
                 <!--</LinearLayout>-->
                 <!--这里需要ui切图再给定颜色-->
-                <com.hifunki.funki.module.live.start.widget.RoundImageView
+                <com.hifunki.funki.module.live.anchor.widget.RoundImageView
                     android:layout_width="106dp"
                     android:layout_height="36dp"
                     android:scaleType="centerCrop"
@@ -229,7 +229,7 @@
                 android:layout_marginLeft="43dp"
                 android:orientation="horizontal">
 
-                <com.hifunki.funki.module.live.start.widget.RoundImageView
+                <com.hifunki.funki.module.live.anchor.widget.RoundImageView
                     android:layout_width="106dp"
                     android:layout_height="36dp"
                     android:scaleType="centerCrop"
@@ -273,7 +273,7 @@
 
                 <!--</LinearLayout>-->
                 <!--这里需要ui切图再给定颜色-->
-                <com.hifunki.funki.module.live.start.widget.RoundImageView
+                <com.hifunki.funki.module.live.anchor.widget.RoundImageView
                     android:layout_width="106dp"
                     android:layout_height="36dp"
                     android:scaleType="centerCrop"
@@ -303,7 +303,7 @@
                 android:layout_marginLeft="43dp"
                 android:orientation="horizontal">
 
-                <com.hifunki.funki.module.live.start.widget.RoundImageView
+                <com.hifunki.funki.module.live.anchor.widget.RoundImageView
                     android:layout_width="106dp"
                     android:layout_height="36dp"
                     android:scaleType="centerCrop"

@@ -20,7 +20,7 @@ public class SetPwdActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
 
     }
 
@@ -36,6 +36,16 @@ public class SetPwdActivity extends BaseTitleActivity {
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

@@ -33,8 +33,9 @@ public class AccountBaseActivity extends BaseTitleActivity {
         return R.layout.activity_account_base;
     }
 
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         registerLocalReceiver();
         mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     }
@@ -56,6 +57,16 @@ public class AccountBaseActivity extends BaseTitleActivity {
 
     @Override
     protected void initAdapter() {
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hifunki.funki.module.live.start;
+package com.hifunki.funki.module.live.anchor;
 
 import android.graphics.SurfaceTexture;
 import android.view.Surface;

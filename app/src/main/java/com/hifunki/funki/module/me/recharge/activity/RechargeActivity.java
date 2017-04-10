@@ -52,7 +52,7 @@ public class RechargeActivity extends BaseActivity {
     }
 
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         rechargeItems = new ArrayList<>();
         rechargeItems.add(new RechargeItem(RechargeItem.INPUT, 10, (float) 0.99));
         rechargeItems.add(new RechargeItem(RechargeItem.NORMAL, 10, (float) 0.99));
@@ -100,5 +100,15 @@ public class RechargeActivity extends BaseActivity {
         RechargeAdapter adapter = new RechargeAdapter(rechargeItems);
         rlRecharge.setLayoutManager(new GridLayoutManager(this, 3));
         rlRecharge.setAdapter(adapter);
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 }

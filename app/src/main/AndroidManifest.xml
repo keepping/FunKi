@@ -31,6 +31,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--改变屏幕权限-->
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -63,7 +65,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.MainActivity" />
+        <activity android:name=".module.live.anchor.activity.AnchorActivity" />
         <activity android:name=".module.login.MainActivity" />
         <!-- 18禁 -->
         <activity
@@ -165,10 +167,10 @@
 
 
         <!-- 开启直播界面 -->
-        <activity android:name=".module.live.start.activity.StartLiveActivity" />
+        <activity android:name=".module.live.anchor.activity.StartLiveActivity" />
         <activity android:name=".module.splash.activity.SplashActivity" />
         <!-- 直播标签 -->
-        <activity android:name=".module.live.start.activity.LiveTagActivity" />
+        <activity android:name=".module.live.anchor.activity.LiveTagActivity" />
         <!-- 修改昵称界面 -->
         <activity android:name=".module.me.profile.activity.EditNicknameActivity" />
         <activity android:name=".module.me.profile.activity.EditAgeActivity" />

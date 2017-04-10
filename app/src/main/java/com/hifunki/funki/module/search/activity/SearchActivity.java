@@ -92,8 +92,10 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         return R.layout.activity_search;
     }
 
+
+
     @Override
-    protected void initDatas() {
+    protected void initVariable() {
         mTabTitle = new ArrayList<>();
         mTabTitle.add("用户");
         mTabTitle.add("直播");
@@ -190,6 +192,16 @@ public class SearchActivity extends BaseTitleActivity implements UserListFragmen
         rvActivityRecommend.setLayoutManager(linearLayoutManager1);
         rvActivityRecommend.setAdapter(activitySearchAdapter);
 
+
+    }
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
 
     }
 
