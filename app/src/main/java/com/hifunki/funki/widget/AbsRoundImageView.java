@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.anchor.widget;
+package com.hifunki.funki.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

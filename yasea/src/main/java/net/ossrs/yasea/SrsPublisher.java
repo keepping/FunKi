@@ -234,7 +234,7 @@ public class SrsPublisher {
     }
 
     public void setScreenOrientation(int orientation) {
-//        mCameraView.setPreviewOrientation(orientation);
+        mCameraView.setPreviewOrientation(orientation);
         mEncoder.setScreenOrientation(orientation);
     }
 

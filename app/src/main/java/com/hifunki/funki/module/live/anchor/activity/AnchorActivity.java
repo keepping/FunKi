@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,9 +32,10 @@ import com.github.faucamp.simplertmp.RtmpHandler;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseWindowActivity;
 import com.hifunki.funki.common.CommonConst;
-import com.hifunki.funki.module.live.anchor.widget.RoundImageView;
 import com.hifunki.funki.util.PermissionUtil;
+import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.ToastUtils;
+import com.hifunki.funki.widget.RoundImageView;
 import com.seu.magicfilter.utils.MagicFilterType;
 
 import net.ossrs.yasea.SrsCameraView;
@@ -48,6 +50,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.hifunki.funki.base.application.ApplicationMain.getContext;
 
 /**
  * 主播直播间界面
@@ -99,7 +103,8 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     TextView tvCountTime;
     @BindView(R.id.fl_anchor)
     FrameLayout flAnchor;
-
+    private PopWindowUtil sharePopWindow;//分享popWindow
+    private View shareView;
     private SrsPublisher mPublisher;
     private String rtmpUrl = "rtmp://192.168.100.111/live/livestream";
     private String recPath = Environment.getExternalStorageDirectory().getPath() + "/test.mp4";
@@ -158,6 +163,14 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
 
                 break;
             case R.id.rl_invite_live:
+                //创建PopWindow
+                if (sharePopWindow == null) {
+                    sharePopWindow = PopWindowUtil.getInstance(getApplicationContext());
+                    shareView = LayoutInflater.from(getContext()).inflate(R.layout. pop_live_invite_friend, null);
+//                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+                }
+                sharePopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 break;
             case R.id.rl_ticket_live:
                 break;
@@ -211,6 +224,21 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         }
     }
 
+    /**
+     * 开启摄像机
+     */
+    private void startCamera() {
+        mPublisher = new SrsPublisher((SrsCameraView) findViewById(R.id.glsurfaceview_camera));
+        mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
+        mPublisher.setRtmpHandler(new RtmpHandler(this));
+        mPublisher.setRecordHandler(new SrsRecordHandler(this));
+        mPublisher.setPreviewResolution(640, 360);
+        mPublisher.setOutputResolution(720, 1280);
+        mPublisher.setVideoHDMode();
+        mPublisher.startCamera();
+    }
+
+
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
@@ -230,19 +258,6 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         }
     }
 
-    /**
-     * 开启摄像机
-     */
-    private void startCamera() {
-        mPublisher = new SrsPublisher((SrsCameraView) findViewById(R.id.glsurfaceview_camera));
-        mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
-        mPublisher.setRtmpHandler(new RtmpHandler(this));
-        mPublisher.setRecordHandler(new SrsRecordHandler(this));
-        mPublisher.setPreviewResolution(640, 360);
-        mPublisher.setOutputResolution(720, 1280);
-        mPublisher.setVideoHDMode();
-        mPublisher.startCamera();
-    }
 
     private void startPublisher() {
         mPublisher.startPublish(rtmpUrl);

@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="67dp">
 
-            <com.hifunki.funki.module.live.anchor.widget.RoundImageView
+            <com.hifunki.funki.widget.RoundImageView
                 android:id="@+id/iv_photo"
                 android:layout_width="67dp"
                 android:layout_height="67dp"
@@ -194,7 +194,7 @@
 
                 <!--</LinearLayout>-->
                 <!--这里需要ui切图再给定颜色-->
-                <com.hifunki.funki.module.live.anchor.widget.RoundImageView
+                <com.hifunki.funki.widget.RoundImageView
                     android:layout_width="106dp"
                     android:layout_height="36dp"
                     android:scaleType="centerCrop"
@@ -224,7 +224,7 @@
                 android:layout_marginLeft="43dp"
                 android:orientation="horizontal">
 
-                <com.hifunki.funki.module.live.anchor.widget.RoundImageView
+                <com.hifunki.funki.widget.RoundImageView
                     android:layout_width="106dp"
                     android:layout_height="36dp"
                     android:scaleType="centerCrop"
@@ -268,7 +268,7 @@
 
                 <!--</LinearLayout>-->
                 <!--这里需要ui切图再给定颜色-->
-                <com.hifunki.funki.module.live.anchor.widget.RoundImageView
+                <com.hifunki.funki.widget.RoundImageView
                     android:layout_width="106dp"
                     android:layout_height="36dp"
                     android:scaleType="centerCrop"
@@ -298,7 +298,7 @@
                 android:layout_marginLeft="43dp"
                 android:orientation="horizontal">
 
-                <com.hifunki.funki.module.live.anchor.widget.RoundImageView
+                <com.hifunki.funki.widget.RoundImageView
                     android:layout_width="106dp"
                     android:layout_height="36dp"
                     android:scaleType="centerCrop"
