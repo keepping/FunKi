@@ -91,7 +91,7 @@ public class FunKiPlayer extends FrameLayout {
 
     public void play(String uri) {
 
-        System.out.println("......................................................................");
+     //   System.out.println("......................................................................");
         ensurePlayer();
 
         this.uri = uri;

@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "C:\\Users\\WHOHA\\github\\FunKi\\yasea\\src\\main\\libenc\\jni\\Android.mk",
+    "C:\\Users\\WHOHA\\github\\FunKi\\yasea\\src\\main\\libenc\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\WHOHA\\App\\sdk\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\WHOHA\\github\\FunKi\\yasea\\src\\main\\libenc\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\WHOHA\\github\\FunKi\\yasea\\src\\main\\libenc\\jni\\Application.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dC:/Users/WHOHA/github/FunKi/yasea/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\WHOHA\\github\\FunKi\\yasea\\build\\intermediates\\ndkBuild\\debug\\lib clean"
+  ],
+  "libraries": {
+    "enc-debug-armeabi-v7a": {
+      "buildCommand": "C:\\Users\\WHOHA\\App\\sdk\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\WHOHA\\github\\FunKi\\yasea\\src\\main\\libenc\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\WHOHA\\github\\FunKi\\yasea\\src\\main\\libenc\\jni\\Application.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dC:/Users/WHOHA/github/FunKi/yasea/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\WHOHA\\github\\FunKi\\yasea\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/WHOHA/github/FunKi/yasea/build/intermediates/ndkBuild/debug/obj/local/armeabi-v7a/libenc.so",
+      "toolchain": "toolchain-armeabi-v7a",
+      "abi": "armeabi-v7a",
+      "artifactName": "enc",
+      "files": [
+        {
+          "src": "C:\\Users\\WHOHA\\github\\FunKi\\yasea\\src\\main\\libenc\\jni\\libenc.cc",
+          "flags": "\"-gcc-toolchain\" \"C:/Users/WHOHA/App/sdk/ndk-bundle/build//../toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64\" \"-fpic\" \"-ffunction-sections\" \"-funwind-tables\" \"-fstack-protector-strong\" \"-Wno-invalid-command-line-argument\" \"-Wno-unused-command-line-argument\" \"-no-canonical-prefixes\" \"-fno-integrated-as\" \"-g\" \"-target\" \"armv7-none-linux-androideabi\" \"-march\u003darmv7-a\" \"-mfloat-abi\u003dsoftfp\" \"-mfpu\u003dvfpv3-d16\" \"-fno-exceptions\" \"-fno-rtti\" \"-mthumb\" \"-O0\" \"-UNDEBUG\" \"-fno-limit-debug-info\" \"-IC:/Users/WHOHA/github/FunKi/yasea/src/main/libenc/jni/libyuv/jni/include\" \"-IC:/Users/WHOHA/github/FunKi/yasea/src/main/libenc/jni/libx264\" \"-IC:/Users/WHOHA/App/sdk/ndk-bundle/build//../sources/cxx-stl/system/include\" \"-IC:/Users/WHOHA/github/FunKi/yasea/src/main/libenc/jni\" \"-DANDROID\" \"-Wa,--noexecstack\" \"-Wno-error\u003dformat-security\" \"--sysroot\" \"C:/Users/WHOHA/App/sdk/ndk-bundle/build//../platforms/android-19/arch-arm\""
+        }
+      ],
+      "output": "C:\\Users\\WHOHA\\github\\FunKi\\yasea\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi-v7a\\libenc.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-armeabi-v7a": {
+      "cppCompilerExecutable": "C:\\Users\\WHOHA\\App\\sdk\\ndk-bundle\\build\\..\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cc"
+  ]
+}

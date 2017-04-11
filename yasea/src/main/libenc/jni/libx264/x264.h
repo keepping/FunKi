@@ -43,7 +43,7 @@ extern "C" {
 
 #include <stdarg.h>
 
-#include "x264_config.h"
+//#include "x264_config.h"
 
 #define X264_BUILD 148
 

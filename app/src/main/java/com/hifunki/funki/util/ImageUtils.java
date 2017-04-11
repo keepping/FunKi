@@ -53,6 +53,48 @@ public class ImageUtils {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
+
+
+
+    // todo 圆形图片转换
+    public static Bitmap toCircle(Bitmap bitmap , int maxRound)
+    {
+        if(bitmap==null) return null;
+
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        int minWid = width > height ? height/2 : width/2;
+
+        float trX = width > height ? (width-height)/2 : 0;
+        float trY = width > height ? 0 : (height-width)/2;
+
+        float radio = maxRound>0 ? maxRound*1f/minWid : 1f;
+        radio = Math.min(1,radio);
+
+        Matrix matrix = new Matrix();
+        matrix.postTranslate(-trX,-trY);
+        matrix.postScale(radio,radio);
+
+        Bitmap output = Bitmap.createBitmap((int)(minWid*radio*2), (int)(minWid*radio*2), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        int color = 0xff424242;
+        Paint paint = new Paint();
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+
+        canvas.drawCircle(minWid*radio,minWid*radio,minWid*radio,paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, matrix, paint);
+        return output;
+    }
+
+
+
+
+
     /**
      * bitmap转byteArr
      *

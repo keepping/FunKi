@@ -1,1 +1,1 @@
-include ':app', ':danmaku',':yasea'
+include ':app',':yasea'
