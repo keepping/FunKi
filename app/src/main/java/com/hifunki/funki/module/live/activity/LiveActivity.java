@@ -3,15 +3,9 @@ package com.hifunki.funki.module.live.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.HorizontalScrollView;
-import android.widget.ScrollView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
@@ -76,7 +70,7 @@ public class LiveActivity extends BaseActivity {
             }
         };
         List<LiveModel> models = new ArrayList<>();
-        for(int i=0 ;i < 10;i++){
+        for (int i = 0; i < 10; i++) {
             models.add(new LiveModel(String.valueOf(random.nextLong())));
         }
 
@@ -84,7 +78,6 @@ public class LiveActivity extends BaseActivity {
         mPagerAdapter.setOnSwipeListener(onSwipeListener);
 
         mViewPager.setAdapter(mPagerAdapter);
-
 
 
         initPlay();
@@ -110,10 +103,12 @@ public class LiveActivity extends BaseActivity {
             ijkMediaPlayer.setDataSource(this, Uri.parse(event.uri));
             ijkMediaPlayer.prepareAsync();
             ijkMediaPlayer.start();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    };
+    }
+
+    ;
 
     @Override
     public void onStart() {
@@ -136,9 +131,11 @@ public class LiveActivity extends BaseActivity {
                 public void surfaceCreated(SurfaceHolder holder) {
                     ijkMediaPlayer.setDisplay(live.getHolder());
                 }
+
                 @Override
                 public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                 }
+
                 @Override
                 public void surfaceDestroyed(SurfaceHolder holder) {
                     ijkMediaPlayer.setDisplay(null);
@@ -156,12 +153,12 @@ public class LiveActivity extends BaseActivity {
                 @Override
                 public void run() {
                     List<LiveModel> models = new ArrayList<>();
-                    for(int i=0 ;i < 10;i++){
+                    for (int i = 0; i < 10; i++) {
                         models.add(new LiveModel(String.valueOf(random.nextLong())));
                     }
                     mPagerAdapter.addStart(models);
                 }
-            },5000);
+            }, 5000);
         }
 
         @Override
@@ -170,12 +167,12 @@ public class LiveActivity extends BaseActivity {
                 @Override
                 public void run() {
                     List<LiveModel> models = new ArrayList<>();
-                    for(int i=0 ;i < 10;i++){
+                    for (int i = 0; i < 10; i++) {
                         models.add(new LiveModel(String.valueOf(random.nextLong())));
                     }
                     mPagerAdapter.addEnd(models);
                 }
-            },5000);
+            }, 5000);
         }
     };
 

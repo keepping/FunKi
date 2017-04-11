@@ -75,6 +75,7 @@ public class RoomFragment extends BaseFragment {
     @BindView(R.id.dan_mu_text)
     DanmakuView mDanmakuView;
 
+
     MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
     MultipleRecycleAdapter<User> avatarMultipleRecycleAdapter;
     MultipleRecycleAdapter<String> giftAdapter;
@@ -86,7 +87,7 @@ public class RoomFragment extends BaseFragment {
     private PopWindowUtil sharePopWindow;//分享popWindow
     private View shareView;
 
-
+    DanMuKuHelper danMuKuHelper;
 
     public static RoomFragment newInstance(LiveModel model) {
         Bundle args = new Bundle();
@@ -163,9 +164,6 @@ public class RoomFragment extends BaseFragment {
 
         divergeView3.setEndPoint(new PointF(divergeView3.getMeasuredWidth() / 2, 0));
         divergeView3.setDivergeViewProvider(new Provider());
-
-
-
     }
 
     @OnClick({R.id.host_avatar, R.id.tv_follow})
@@ -191,7 +189,8 @@ public class RoomFragment extends BaseFragment {
     }
 
 
-    DanMuKuHelper danMuKuHelper;
+
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+
+def SourcePath = 'src/main/'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 25
+
+        versionCode= 7003
+        versionName="0.7.3"
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile "${SourcePath}AndroidManifest.xml"
+            java.srcDirs = ["${SourcePath}java"]
+            jniLibs.srcDirs = ["${SourcePath}libs"]
+        }
+        androidTest.setRoot("${SourcePath}../androidTest")
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
