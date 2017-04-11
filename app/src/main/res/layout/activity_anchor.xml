@@ -16,7 +16,7 @@
 
     <include
 
-        layout="@layout/layout_start_live"/>
+        layout="@layout/layout_start_live" />
 
     <Button
         android:id="@+id/publish"
@@ -60,4 +60,12 @@
         android:textColor="@color/accent_material_light"
         android:textSize="14dp" />
 
+    <include
+        android:id="@+id/rl_count"
+        layout="@layout/layout_start_live_count"
+        android:visibility="invisible" />
+    <include
+        android:id="@+id/fl_anchor"
+        layout="@layout/layout_anchor"
+        android:visibility="invisible" />
 </RelativeLayout>

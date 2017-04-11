@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -15,23 +16,26 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.github.faucamp.simplertmp.RtmpHandler;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseWindowActivity;
+import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.live.anchor.widget.RoundImageView;
 import com.hifunki.funki.util.PermissionUtil;
+import com.hifunki.funki.util.StatusBarUtil;
 import com.hifunki.funki.util.ToastUtils;
 import com.seu.magicfilter.utils.MagicFilterType;
 
@@ -105,12 +109,25 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     Button swEnc;
     @BindView(R.id.url)
     EditText url;
+    @BindView(R.id.rl_count)
+    RelativeLayout rlCount;
+    @BindView(R.id.tv_count_time)
+    TextView tvCountTime;
+    @BindView(R.id.fl_anchor)
+    FrameLayout flAnchor;
 
     private SrsPublisher mPublisher;
-    private String rtmpUrl = "rtmp://192.168.100.211/live/livestream";
+    private String rtmpUrl = "rtmp://192.168.100.111/live/livestream";
     private String recPath = Environment.getExternalStorageDirectory().getPath() + "/test.mp4";
     private boolean mPermissions = false;
     private List<String> permissions;
+    boolean isCountFinish = false;
+
+    private enum STATUS {
+        UNINIT,
+        PUSHING,
+        LIVEING,
+    }
 
     @OnClick({R.id.iv_location, R.id.iv_beauty, R.id.iv_camera, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main, R.id.publish, R.id.swCam, R.id.record, R.id.swEnc, R.id.url})
     public void onClick(View view) {
@@ -137,7 +154,24 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
                 animationDown.setFillAfter(true);
                 llStartLiveBoot.startAnimation(animationDown);
 //                requestWindowFeature(Window.FEATURE_NO_TITLE);
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                rlCount.setVisibility(View.VISIBLE);
+                CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        int l = (int) (millisUntilFinished / 1000);
+                        String s = String.valueOf(l);
+                        tvCountTime.setText(s);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        rlCount.setVisibility(View.GONE);
+                        flAnchor.setVisibility(View.VISIBLE);
+                    }
+                };
+                countDownTimer.start();
+
                 break;
             case R.id.rl_invite_live:
                 break;
@@ -160,10 +194,6 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         }
     }
 
-    private enum STATUS {
-        UNINIT,
-        PUSHING,
-    }
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, AnchorActivity.class));
@@ -185,6 +215,8 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
 //        SCREEN_ORIENTATION_FULL_SENSOR
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         checkPermission();
+        StatusBarUtil.adjustStatusBarHei(rlStartLiveHead);
+        Glide.with(this).load(CommonConst.photo).into(ivPhoto);//加载头像
     }
 
     public void checkPermission() {
@@ -405,7 +437,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         super.onResume();
         final Button btn = (Button) findViewById(R.id.publish);
         btn.setEnabled(true);
-        if(mPublisher!=null) {
+        if (mPublisher != null) {
             mPublisher.resumeRecord();
         }
     }
@@ -413,7 +445,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     @Override
     protected void onPause() {
         super.onPause();
-        if(mPublisher!=null) {
+        if (mPublisher != null) {
             mPublisher.pauseRecord();
         }
     }
@@ -421,7 +453,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(mPublisher!=null) {
+        if (mPublisher != null) {
             mPublisher.stopPublish();
             mPublisher.stopRecord();
         }
