@@ -71,5 +71,6 @@ public class HomeNewAdapter extends BaseQuickAdapter<HomeNewEntity, BaseViewHold
         helper.setText(R.id.tv_location, item.getLocation());
         helper.setText(R.id.tv_country, item.getLocation());
         helper.setText(R.id.tv_name, item.getName());
+        helper.addOnClickListener(R.id.iv_new_image);
     }
 }

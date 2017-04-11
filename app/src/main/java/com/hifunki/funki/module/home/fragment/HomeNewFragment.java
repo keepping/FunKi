@@ -8,11 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.adapter.HomeNewAdapter;
 import com.hifunki.funki.module.home.entity.HomeNewEntity;
 import com.hifunki.funki.module.home.net.service.HomeService;
+import com.hifunki.funki.module.live.activity.LiveActivity;
 import com.hifunki.funki.net.RetrofitUtil;
 import com.hifunki.funki.net.http.Callback;
 
@@ -105,6 +108,18 @@ public class HomeNewFragment extends BaseFragment {
         rvNew.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         rvNew.setAdapter(adapter);
+        rvNew.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+            }
+
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                super.onItemChildClick(adapter, view, position);
+                LiveActivity.show(getContext());
+            }
+        });
 
     }
 

@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -206,13 +205,7 @@ public class RoomFragment extends BaseFragment {
         divergeView3.setEndPoint(new PointF(divergeView3.getMeasuredWidth() / 2, 0));
         divergeView3.setDivergeViewProvider(new Provider());
 
-
-
-
     }
-
-
-
 
     @OnClick({R.id.host_avatar, R.id.tv_follow})
     public void onClick(View view) {
@@ -235,7 +228,6 @@ public class RoomFragment extends BaseFragment {
                 sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
         }
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

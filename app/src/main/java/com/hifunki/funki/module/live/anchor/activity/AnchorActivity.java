@@ -232,7 +232,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         mPublisher.setRecordHandler(new SrsRecordHandler(this));
-        mPublisher.setPreviewResolution(640, 360);
+        mPublisher.setPreviewResolution(720, 1280);
         mPublisher.setOutputResolution(720, 1280);
         mPublisher.setVideoHDMode();
         mPublisher.startCamera();
