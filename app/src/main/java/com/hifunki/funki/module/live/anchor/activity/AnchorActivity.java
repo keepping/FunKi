@@ -7,7 +7,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.hardware.Camera;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -16,7 +15,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -35,7 +33,6 @@ import com.hifunki.funki.base.activity.BaseWindowActivity;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.live.anchor.widget.RoundImageView;
 import com.hifunki.funki.util.PermissionUtil;
-import com.hifunki.funki.util.StatusBarUtil;
 import com.hifunki.funki.util.ToastUtils;
 import com.seu.magicfilter.utils.MagicFilterType;
 
@@ -61,12 +58,9 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-29 16:53:53
  */
-public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.RtmpListener,
-        SrsRecordHandler.SrsRecordListener, SrsEncodeHandler.SrsEncodeListener {
+public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.RtmpListener, SrsRecordHandler.SrsRecordListener, SrsEncodeHandler.SrsEncodeListener {
 
     private static final String TAG = "AnchorActivity";
-    Button btnPublish = null;
-    Button btnSwitchCamera = null;
     Button btnRecord = null;
     Button btnSwitchEncoder = null;
     @BindView(R.id.iv_location)
@@ -99,16 +93,6 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     RelativeLayout rlLevelLive;
     @BindView(R.id.ll_start_live_main)
     RelativeLayout llStartLiveMain;
-    @BindView(R.id.publish)
-    Button publish;
-    @BindView(R.id.swCam)
-    Button swCam;
-    @BindView(R.id.record)
-    Button record;
-    @BindView(R.id.swEnc)
-    Button swEnc;
-    @BindView(R.id.url)
-    EditText url;
     @BindView(R.id.rl_count)
     RelativeLayout rlCount;
     @BindView(R.id.tv_count_time)
@@ -129,7 +113,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         LIVEING,
     }
 
-    @OnClick({R.id.iv_location, R.id.iv_beauty, R.id.iv_camera, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main, R.id.publish, R.id.swCam, R.id.record, R.id.swEnc, R.id.url})
+    @OnClick({R.id.iv_location, R.id.iv_beauty, R.id.iv_camera, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_location:
@@ -137,6 +121,9 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
             case R.id.iv_beauty:
                 break;
             case R.id.iv_camera:
+                if (mPublisher != null) {
+                    mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
+                }
                 break;
             case R.id.iv_close:
                 break;
@@ -153,21 +140,18 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
                 Animation animationDown = AnimationUtils.loadAnimation(this, R.anim.anchor_live_head_down);
                 animationDown.setFillAfter(true);
                 llStartLiveBoot.startAnimation(animationDown);
-//                requestWindowFeature(Window.FEATURE_NO_TITLE);
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 rlCount.setVisibility(View.VISIBLE);
                 CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        int l = (int) (millisUntilFinished / 1000);
-                        String s = String.valueOf(l);
-                        tvCountTime.setText(s);
+                        tvCountTime.setText(String.valueOf((int) (millisUntilFinished / 1000)));
                     }
 
                     @Override
                     public void onFinish() {
                         rlCount.setVisibility(View.GONE);
                         flAnchor.setVisibility(View.VISIBLE);
+                        startPublisher();
                     }
                 };
                 countDownTimer.start();
@@ -181,19 +165,8 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
                 break;
             case R.id.ll_start_live_main:
                 break;
-            case R.id.publish:
-                break;
-            case R.id.swCam:
-                break;
-            case R.id.record:
-                break;
-            case R.id.swEnc:
-                break;
-            case R.id.url:
-                break;
         }
     }
-
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, AnchorActivity.class));
@@ -215,7 +188,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
 //        SCREEN_ORIENTATION_FULL_SENSOR
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         checkPermission();
-        StatusBarUtil.adjustStatusBarHei(rlStartLiveHead);
+//        StatusBarUtil.adjustStatusBarHei(rlStartLiveHead);
         Glide.with(this).load(CommonConst.photo).into(ivPhoto);//加载头像
     }
 
@@ -271,83 +244,18 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         mPublisher.startCamera();
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // initialize url.
-        final EditText efu = (EditText) findViewById(R.id.url);
-        efu.setText(rtmpUrl);
-
-        btnPublish = (Button) findViewById(R.id.publish);
-        btnSwitchCamera = (Button) findViewById(R.id.swCam);
-        btnRecord = (Button) findViewById(R.id.record);
-        btnSwitchEncoder = (Button) findViewById(R.id.swEnc);
-
-        btnPublish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnPublish.getText().toString().contentEquals("publish")) {
-                    rtmpUrl = efu.getText().toString();
-
-                    mPublisher.startPublish(rtmpUrl);
-                    mPublisher.startCamera();
-
-                    if (btnSwitchEncoder.getText().toString().contentEquals("soft encoder")) {
-                        Toast.makeText(getApplicationContext(), "Use hard encoder", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Use soft encoder", Toast.LENGTH_SHORT).show();
-                    }
-                    btnPublish.setText("stop");
-                    btnSwitchEncoder.setEnabled(false);
-                } else if (btnPublish.getText().toString().contentEquals("stop")) {
-                    mPublisher.stopPublish();
-                    mPublisher.stopRecord();
-                    btnPublish.setText("publish");
-                    btnRecord.setText("record");
-                    btnSwitchEncoder.setEnabled(true);
-                }
-            }
-        });
-
-        btnSwitchCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
-            }
-        });
-
-        btnRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnRecord.getText().toString().contentEquals("record")) {
-                    if (mPublisher.startRecord(recPath)) {
-                        btnRecord.setText("pause");
-                    }
-                } else if (btnRecord.getText().toString().contentEquals("pause")) {
-                    mPublisher.pauseRecord();
-                    btnRecord.setText("resume");
-                } else if (btnRecord.getText().toString().contentEquals("resume")) {
-                    mPublisher.resumeRecord();
-                    btnRecord.setText("pause");
-                }
-            }
-        });
-
-        btnSwitchEncoder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnSwitchEncoder.getText().toString().contentEquals("soft encoder")) {
-                    mPublisher.switchToSoftEncoder();
-                    btnSwitchEncoder.setText("hard encoder");
-                } else if (btnSwitchEncoder.getText().toString().contentEquals("hard encoder")) {
-                    mPublisher.switchToHardEncoder();
-                    btnSwitchEncoder.setText("soft encoder");
-                }
-            }
-        });
+    private void startPublisher() {
+        mPublisher.startPublish(rtmpUrl);
+        mPublisher.startCamera();
     }
+
+    private void stopPublisher() {
+        mPublisher.stopPublish();
+        mPublisher.stopRecord();
+        btnRecord.setText("record");
+        btnSwitchEncoder.setEnabled(true);
+    }
+
 
     @Override
     protected void bindData() {
@@ -435,8 +343,8 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     @Override
     protected void onResume() {
         super.onResume();
-        final Button btn = (Button) findViewById(R.id.publish);
-        btn.setEnabled(true);
+//        final Button btn = (Button) findViewById(R.id.publish);
+//        btn.setEnabled(true);
         if (mPublisher != null) {
             mPublisher.resumeRecord();
         }
@@ -467,9 +375,9 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         mPublisher.stopRecord();
         btnRecord.setText("record");
         mPublisher.setScreenOrientation(newConfig.orientation);
-        if (btnPublish.getText().toString().contentEquals("stop")) {
-            mPublisher.startEncode();
-        }
+//        if ("stop") {
+//            mPublisher.startEncode();
+//        }
         mPublisher.startCamera();
     }
 
@@ -479,7 +387,6 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             mPublisher.stopPublish();
             mPublisher.stopRecord();
-            btnPublish.setText("publish");
             btnRecord.setText("record");
             btnSwitchEncoder.setEnabled(true);
         } catch (Exception e1) {
@@ -611,4 +518,45 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         handleException(e);
     }
 
+    //        if (btnSwitchEncoder.getText().toString().contentEquals("soft encoder")) {
+//            Toast.makeText(getApplicationContext(), "Use hard encoder", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(getApplicationContext(), "Use soft encoder", Toast.LENGTH_SHORT).show();
+//        }
+//        btnSwitchEncoder.setEnabled(false);
+
+
+//    btnRecord = (Button) findViewById(R.id.record);
+//    btnSwitchEncoder = (Button) findViewById(R.id.swEnc);
+//
+//
+//        btnRecord.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            if (btnRecord.getText().toString().contentEquals("record")) {
+//                if (mPublisher.startRecord(recPath)) {
+//                    btnRecord.setText("pause");
+//                }
+//            } else if (btnRecord.getText().toString().contentEquals("pause")) {
+//                mPublisher.pauseRecord();
+//                btnRecord.setText("resume");
+//            } else if (btnRecord.getText().toString().contentEquals("resume")) {
+//                mPublisher.resumeRecord();
+//                btnRecord.setText("pause");
+//            }
+//        }
+//    });
+//
+//        btnSwitchEncoder.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            if (btnSwitchEncoder.getText().toString().contentEquals("soft encoder")) {
+//                mPublisher.switchToSoftEncoder();
+//                btnSwitchEncoder.setText("hard encoder");
+//            } else if (btnSwitchEncoder.getText().toString().contentEquals("hard encoder")) {
+//                mPublisher.switchToHardEncoder();
+//                btnSwitchEncoder.setText("soft encoder");
+//            }
+//        }
+//    });
 }

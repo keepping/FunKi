@@ -10,8 +10,8 @@
         android:id="@+id/rl_start_live_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:paddingTop="1dp">
+        android:layout_marginTop="15dp"
+        >
 
         <ImageView
             android:id="@+id/iv_location"
