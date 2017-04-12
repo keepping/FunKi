@@ -1,12 +1,14 @@
 package com.hifunki.funki.module.home.adapter;
 
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.hifunki.funki.module.home.fragment.HomeFollowFragment;
-import com.hifunki.funki.module.home.fragment.HomeHotFragment;
-import com.hifunki.funki.module.home.fragment.HomeNewFragment;
+import java.util.List;
 
 /**
  * 首页ViewPager
@@ -17,26 +19,85 @@ import com.hifunki.funki.module.home.fragment.HomeNewFragment;
  * @link
  * @since 2017-03-13 16:39:39
  */
-public class HomePagerAdapter extends FragmentPagerAdapter {
+public class HomePagerAdapter extends FragmentStatePagerAdapter {
 
-    public HomePagerAdapter(FragmentManager fm) {
+    private String TAG = "HomePagerAdapter";
+    private List<Fragment> listFragment;
+
+    public HomePagerAdapter(FragmentManager fm, List<Fragment> listFragment) {
         super(fm);
+        Log.e(TAG, "HomePagerAdapter: ");
+        this.listFragment = listFragment;
     }
 
     @Override
     public Fragment getItem(int position) {
+        Log.e(TAG, "getItem: ");
         if (position == 0) {
-            return HomeFollowFragment.newInstance("t", "a");
+            Log.e(TAG, "getItem0: ");
+            return listFragment.get(0);
         } else if (position == 1) {
-            return HomeHotFragment.newInstance("t", "a");
+            Log.e(TAG, "getItem1: ");
+            return listFragment.get(1);
+        } else if (position == 2) {
+            Log.e(TAG, "getItem2: ");
+            return listFragment.get(2);
         }
-        return HomeNewFragment.newInstance("t", "a");
+        return null;
+    }
 
+    @Override
+    public int getCount() {
+        Log.e(TAG, "getCount: ");
+        return listFragment.size();
     }
 
 
     @Override
-    public int getCount() {
-        return 3;
+    public void startUpdate(ViewGroup container) {
+        Log.e(TAG, "startUpdate: ");
+        super.startUpdate(container);
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Log.e(TAG, "instantiateItem: ");
+        return super.instantiateItem(container, position);
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        Log.e(TAG, "destroyItem: ");
+        super.destroyItem(container, position, object);
+    }
+
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        Log.e(TAG, "setPrimaryItem: ");
+        super.setPrimaryItem(container, position, object);
+    }
+
+    @Override
+    public void finishUpdate(ViewGroup container) {
+        Log.e(TAG, "finishUpdate: ");
+        super.finishUpdate(container);
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        Log.e(TAG, "isViewFromObject: ");
+        return super.isViewFromObject(view, object);
+    }
+
+    @Override
+    public Parcelable saveState() {
+        Log.e(TAG, "saveState: ");
+        return super.saveState();
+    }
+
+    @Override
+    public void restoreState(Parcelable state, ClassLoader loader) {
+        Log.e(TAG, "restoreState: ");
+        super.restoreState(state, loader);
     }
 }

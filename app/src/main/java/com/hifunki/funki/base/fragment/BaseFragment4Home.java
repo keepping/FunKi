@@ -4,33 +4,28 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.util.NetWorkUtil;
 
 import butterknife.ButterKnife;
 
-
 /**
- * Fragment基类
+ * 在此写用途
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.base.fragment.BaseFragment.java
+ * @value com.hifunki.funki.base.fragment.BaseFragment4Home.java
  * @link
- * @since 2017-03-15 10:27:27
+ * @since 2017-04-12 11:22:22
  */
-@SuppressWarnings("WeakerAccess")
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment4Home extends Fragment {
     protected Context mContext;
     protected View mRoot;
     protected Bundle mBundle;
     protected LayoutInflater mInflater;
-    private String TAG= HomeFragment.TAG;
 
     @Override
     public void onAttach(Context context) {
@@ -62,7 +57,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.e("BaseFragment", "BaseFragment=onActivityCreated: ");
         initVariable();
         initView(mRoot);
         requestData();//请求数据
