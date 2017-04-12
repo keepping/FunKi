@@ -66,6 +66,8 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
     private View pwdView;
 
     private long mBackPressedTime;
+    public static String TAG="HomeActivity";
+
 
     public static void show(Context context, Activity activity) {
         context.startActivity(new Intent(context, HomeActivity.class));

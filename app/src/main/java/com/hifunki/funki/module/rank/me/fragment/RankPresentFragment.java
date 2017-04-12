@@ -81,8 +81,8 @@ public class RankPresentFragment extends BaseFragment {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         String imagePath = "http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg";
         AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.FIRST, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7612121);
         AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.SECOND, 0, imagePath, "陪伴是最长情的告白", 1, 45, 761212);

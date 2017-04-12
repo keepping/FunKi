@@ -9,10 +9,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.fragment.BaseFragment4Home;
 import com.hifunki.funki.common.FragmentConst;
-import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.module.me.MeFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
+import com.hifunki.funki.module.me.MeFragment;
 
 import java.util.List;
 
@@ -30,8 +30,7 @@ import static android.content.ContentValues.TAG;
  * @link
  * @since 2017-03-07 13:41:41
  */
-public class NavFragment extends BaseFragment {
-
+public class NavFragment extends BaseFragment4Home {
 
     @BindView(R.id.nav_item_home)
     NavigationButton navItemHome;
@@ -52,10 +51,16 @@ public class NavFragment extends BaseFragment {
     private OnFragmentInteractionListener mListener;
     private String mNavTag;
 
-    public NavFragment() {
-        // Required empty public constructor
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
-
 
     @Override
     protected int getLayoutId() {
@@ -83,33 +88,13 @@ public class NavFragment extends BaseFragment {
                 FragmentConst.MeFragment);
     }
 
-    @Override
-    protected void bindData() {
 
-    }
-
-    @Override
-    protected void bindData4NoNet() {
-
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
     @Override
     public void onDetach() {
@@ -212,9 +197,15 @@ public class NavFragment extends BaseFragment {
             NavigationButton nav = (NavigationButton) view;
             doSelect(nav);
         }
-//        else if (view.getId() == R.id.nav_item) {//TODO show popupWindow
-//            Toast.makeText(mContext, "开启popWindow", Toast.LENGTH_LONG).show();
-//        }
+    }
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
     }
 
 

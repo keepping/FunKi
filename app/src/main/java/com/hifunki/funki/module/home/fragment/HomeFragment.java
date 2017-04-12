@@ -4,9 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,6 +23,9 @@ import com.hifunki.funki.module.rank.world.activity.WorldRankActivity;
 import com.hifunki.funki.module.search.activity.SearchActivity;
 import com.hifunki.funki.module.show.activity.ShowActivity;
 import com.hifunki.funki.util.StatusBarUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -65,6 +72,9 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     private FragmentManager mFragmentManager;
     private OnFragmentInteractionListener mListener;
     private HomeActivity mActivity;
+    public static String TAG = HomeActivity.TAG;
+    private HomePagerAdapter adapter;
+    private List<Fragment> listFragment;
 
     public HomeFragment() {
     }
@@ -79,8 +89,19 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "HomeFragment=onCreate: ");
         mFragmentManager = getFragmentManager();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -89,14 +110,43 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.e(TAG, "HomeFragment=onCreateView: ");
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e(TAG, "HomeFragment=onStart: ");
+    }
+
+    @Override
+    public void onResume() {
+        Log.e(TAG, "HomeFragment=onResume: ");
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        Log.e(TAG, "HomeFragment=onStop: ");
+        super.onStop();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_home;
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         mActivity = (HomeActivity) getActivity();
+        listFragment = new ArrayList<>();
+        listFragment.add(HomeFollowFragment.newInstance("aa", "xx"));
+        listFragment.add(HomeHotFragment.newInstance("aa", "xx"));
+        listFragment.add(HomeNewFragment.newInstance("aa", "xx"));
+
     }
 
     @Override
@@ -105,20 +155,11 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
 
         StatusBarUtil.adjustStatusBarHei(root.findViewById(R.id.toolbar_layout));
 
-
-//        List<Fragment> listFragment = new ArrayList<>();
-//
-//        listFragment.add(HomeHotFragment.newInstance("aa", "xx"));
-//        listFragment.add(HomeFollowFragment.newInstance("aa", "xx"));
-//        listFragment.add(HomeNewFragment.newInstance("aa", "xx"));
-
         vpHome = (ViewPager) root.findViewById(R.id.vp_home);
 
-        HomePagerAdapter adapter = new HomePagerAdapter(getFragmentManager());
-        vpHome.setAdapter(adapter);
+        adapter = new HomePagerAdapter(getChildFragmentManager(), listFragment);//the fragment manager belong to dynamic fragmentmanger
+        Log.e(TAG, "homefragment--initView: ");
 
-
-//        vpHome.setCurrentItem(1);
         initListener();
     }
 
@@ -130,6 +171,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         vpHome.addOnPageChangeListener(this);
 
         //默认点中热门-->需要在viewpager设置了监听之后写
+        vpHome.setAdapter(adapter);
         vpHome.setCurrentItem(1);
     }
 
@@ -149,24 +191,27 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         }
     }
 
+
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
-        }
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.e(TAG, "HomeFragment=onDestroyView: ");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "HomeFragment=onDestroy: ");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        Log.e(TAG, "HomeFragment=onDetach: ");
         mListener = null;
     }
 
 
-    @SuppressWarnings("RestrictedApi")
     @OnClick({R.id.iv_home_search, R.id.iv_home_funki, R.id.iv_home_show, R.id.iv_home_rank, R.id.iv_home_indicate, rb_home_follow, R.id.rb_home_hot, R.id.rb_home_new, R.id.rg_home_title, R.id.vp_home})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -212,7 +257,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         switch (checkedId) {
-            case rb_home_follow:
+            case R.id.rb_home_follow:
                 vpHome.setCurrentItem(0);
                 ivHomeIndicate.setVisibility(View.INVISIBLE);
                 break;

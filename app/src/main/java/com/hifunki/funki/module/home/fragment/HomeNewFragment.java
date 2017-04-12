@@ -90,8 +90,8 @@ public class HomeNewFragment extends BaseFragment {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         String imagePath = "http://pic.58pic.com/58pic/11/84/12/13S58PICuRf.jpg";
         entities = new ArrayList<>();
         //添加数据
@@ -145,7 +145,7 @@ public class HomeNewFragment extends BaseFragment {
 
             @Override
             public void failure(ErrorType type, int httpCode) {
-                Log.e(TAG, "failure: " + httpCode);
+                Log.e(TAG, "failure:-not response from server " + httpCode);
             }
         });
 
