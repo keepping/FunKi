@@ -166,7 +166,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
                 //创建PopWindow
                 if (sharePopWindow == null) {
                     sharePopWindow = PopWindowUtil.getInstance(getApplicationContext());
-                    shareView = LayoutInflater.from(getContext()).inflate(R.layout. pop_live_invite_friend, null);
+                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_invite_friend, null);
 //                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
                 sharePopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -224,20 +224,6 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         }
     }
 
-    /**
-     * 开启摄像机
-     */
-    private void startCamera() {
-        mPublisher = new SrsPublisher((SrsCameraView) findViewById(R.id.glsurfaceview_camera));
-        mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
-        mPublisher.setRtmpHandler(new RtmpHandler(this));
-        mPublisher.setRecordHandler(new SrsRecordHandler(this));
-        mPublisher.setPreviewResolution(720, 1280);
-        mPublisher.setOutputResolution(720, 1280);
-        mPublisher.setVideoHDMode();
-        mPublisher.startCamera();
-    }
-
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -258,6 +244,20 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         }
     }
 
+
+    /**
+     * 开启摄像机
+     */
+    private void startCamera() {
+        mPublisher = new SrsPublisher((SrsCameraView) findViewById(R.id.glsurfaceview_camera));
+        mPublisher.setEncodeHandler(new SrsEncodeHandler(this));
+        mPublisher.setRtmpHandler(new RtmpHandler(this));
+        mPublisher.setRecordHandler(new SrsRecordHandler(this));
+        mPublisher.setPreviewResolution(640, 360);
+        mPublisher.setOutputResolution(720, 1280);
+        mPublisher.setVideoHDMode();
+        mPublisher.startCamera();
+    }
 
     private void startPublisher() {
         mPublisher.startPublish(rtmpUrl);

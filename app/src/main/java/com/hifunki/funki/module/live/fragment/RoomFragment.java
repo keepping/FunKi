@@ -12,9 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,8 +26,8 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.client.User;
 import com.hifunki.funki.module.live.danmu.bDanMu.DanMuData;
-import com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup;
 import com.hifunki.funki.module.live.danmu.bDanMu.DanMuKuHelper;
+import com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup;
 import com.hifunki.funki.module.live.danmu.vDanMu.ModelGift;
 import com.hifunki.funki.module.live.event.EventPlayContent;
 import com.hifunki.funki.module.live.mode.ChatMessage;
@@ -32,6 +35,7 @@ import com.hifunki.funki.module.live.viewholder.ChatComing;
 import com.hifunki.funki.module.live.viewholder.ChatFan;
 import com.hifunki.funki.module.live.viewholder.ChatText;
 import com.hifunki.funki.module.live.viewholder.Gift;
+import com.hifunki.funki.module.live.widget.BlockView;
 import com.hifunki.funki.net.back.LiveModel;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -44,6 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import master.flame.danmaku.ui.widget.DanmakuView;
 
@@ -74,11 +79,28 @@ public class RoomFragment extends BaseFragment {
     DanMuGroup danMuGroup;
     @BindView(R.id.dan_mu_text)
     DanmakuView mDanmakuView;
-
+    @BindView(R.id.iv_room_msg)
+    ImageView ivRoomMsg;
 
     MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
     MultipleRecycleAdapter<User> avatarMultipleRecycleAdapter;
     MultipleRecycleAdapter<String> giftAdapter;
+    @BindView(R.id.block_1)
+    BlockView block1;
+    @BindView(R.id.block_2)
+    BlockView block2;
+    @BindView(R.id.fan_name)
+    TextView fanName;
+    @BindView(R.id.fan_num)
+    TextView fanNum;
+    @BindView(R.id.fan_location)
+    LinearLayout fanLocation;
+    @BindView(R.id.iv_room_exit)
+    ImageView ivRoomExit;
+    @BindView(R.id.rl_info)
+    RelativeLayout rlInfo;
+    @BindView(R.id.room_view)
+    FrameLayout roomView;
     private boolean reResume = false;      //用于控制当前显示视频
     private boolean isVisual = false;      //用于控制当前显示视频
     private LiveModel model;
@@ -185,19 +207,18 @@ public class RoomFragment extends BaseFragment {
                 }
                 sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
                 sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
+            case R.id.iv_room_msg:
+
         }
     }
-
-
 
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        danMuKuHelper = new DanMuKuHelper(getContext(),mDanmakuView);
-        danMuKuHelper.onViewCreated(view,savedInstanceState);
+        danMuKuHelper = new DanMuKuHelper(getContext(), mDanmakuView);
+        danMuKuHelper.onViewCreated(view, savedInstanceState);
     }
-
 
 
     @Override
@@ -216,13 +237,11 @@ public class RoomFragment extends BaseFragment {
     }
 
 
-
     private void startPlay() {
         if (reResume && isVisual) {
             EventBus.getDefault().post(new EventPlayContent());
 
             CountDownTimer timer = new CountDownTimer(300000, 15000) {
-
 
 
                 @Override
@@ -256,6 +275,7 @@ public class RoomFragment extends BaseFragment {
                     danMuKuHelper.addDanMu(new DanMuData());
                     danMuKuHelper.addDanMu(new DanMuData());
                 }
+
                 @Override
                 public void onFinish() {
 
@@ -282,6 +302,15 @@ public class RoomFragment extends BaseFragment {
         startPlay();
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+
     private class Provider implements DivergeView2.DivergeViewProvider {
 
         @Override
@@ -299,7 +328,6 @@ public class RoomFragment extends BaseFragment {
 
         }
     };
-
 
 
 }

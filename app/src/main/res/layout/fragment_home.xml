@@ -10,9 +10,8 @@
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="3dp"
         android:background="@drawable/bg_common_action_bar"
-        >
+        android:paddingTop="20dp">
 
         <ImageView
             android:id="@+id/iv_home_search"
