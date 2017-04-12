@@ -245,18 +245,23 @@
                     android:layout_above="@+id/rl_info"
                     android:layout_alignParentRight="true" />
 
+                <master.flame.danmaku.ui.widget.DanmakuView
+                    android:id="@+id/dan_mu_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/rl_gift"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginBottom="20dp" />
+
                 <com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup
                     android:id="@+id/dan_mu_group"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_above="@+id/rl_gift"
-                    android:layout_marginTop="100dp" />
+                    android:layout_marginTop="120dp"
+                    android:layout_marginBottom="10dp" />
 
-                <master.flame.danmaku.ui.widget.DanmakuView
-                    android:id="@+id/dan_mu_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@+id/rl_gift" />
+
 
             </RelativeLayout>
         </FrameLayout>

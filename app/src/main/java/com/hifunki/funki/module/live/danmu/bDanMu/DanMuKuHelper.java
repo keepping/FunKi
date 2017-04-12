@@ -189,6 +189,8 @@ public class DanMuKuHelper {
     static Random random = new Random(100);
 
     public void addDanMu(DanMuData danMuData) {
+        if(mDanmakuView==null) return;
+
         BaseDanmaku danmaku = mContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
 
         // for(int i=0;i<100;i++){
