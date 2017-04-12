@@ -54,26 +54,23 @@ public abstract class BaseFragment extends Fragment {
         return mRoot;
     }
 
-
     protected abstract int getLayoutId();
-
-
-    protected void initView(View root) {
-
-    }
-
-    protected void initData() {
-
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initData();
+        initVariable();
         initView(mRoot);
         requestData();//请求数据
     }
 
+    protected void initVariable() {
+
+    }
+
+    protected void initView(View root) {
+
+    }
 
     private void requestData() {
         if (!NetWorkUtil.isNetConnected()) {//没有网络
@@ -90,7 +87,6 @@ public abstract class BaseFragment extends Fragment {
     protected void bindData4NoNet() {
 
     }
-
 
     @Override
     public void onDetach() {

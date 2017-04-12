@@ -71,8 +71,8 @@ public class LiveListFragment extends BaseFragment {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         liveEntities = new ArrayList<>();
         LiveEntity vipLive = new LiveEntity(LiveEntity.VIP_LIVE, imagePath, "垃圾朋克", "波士顿", "English", 46523, "欢迎大家来看我的调酒表演", "柠檬红茶", "电音控", imagePath, true, 50, 25, 42, 0, false, false);
         LiveEntity levelLive = new LiveEntity(LiveEntity.LEVEL_LIVE, imagePath, "垃圾朋克", "波士顿", "English", 46523,  "欢迎大家来看我的调酒表演", "柠檬红茶", "电音控",imagePath, false, 0, 0, 0, 48, false, false);

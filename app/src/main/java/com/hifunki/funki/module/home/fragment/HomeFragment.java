@@ -94,8 +94,8 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         mActivity = (HomeActivity) getActivity();
     }
 

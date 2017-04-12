@@ -68,8 +68,8 @@ public class UserListFragment extends BaseFragment {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         searchUserList = new ArrayList<>();
         SearchUser searchUser = new SearchUser(imagePathss, "酱油泡饭", "我真的喜欢希斯莱杰演绎的",
                 1, 75, true, false);

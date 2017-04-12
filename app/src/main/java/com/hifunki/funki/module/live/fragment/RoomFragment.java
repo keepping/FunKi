@@ -105,8 +105,8 @@ public class RoomFragment extends BaseFragment {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         String json = mBundle.getString(LiveModel.class.getName(), "");                   //接受数据
         if (!TextUtils.isEmpty(json)) {
             model = new Gson().fromJson(json, LiveModel.class);

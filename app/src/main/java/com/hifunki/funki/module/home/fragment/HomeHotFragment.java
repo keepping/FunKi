@@ -3,8 +3,10 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,7 @@ import butterknife.BindView;
  */
 public class HomeHotFragment extends BaseFragment implements OnBannerListener {
 
+    private static String TAG = "HomeHotFragment";
     @BindView(R.id.rv_hot)
     RecyclerView rvHot;
     private static final String ARG_PARAM1 = "param1";
@@ -68,8 +71,21 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.e(TAG, "onAttach: ");
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "onCreate: ");
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -82,8 +98,8 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         hotEntities = new ArrayList<>();
         //普通直播--big
         HomeHotEntity homeHotEntity1 = new HomeHotEntity(HomeHotEntity.NORMAL_LIVE, true, imagePath, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变", imagePath, false, false, 0, false, false, 0, 0, 0, false);//pgc
@@ -109,24 +125,14 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
         hotEntities.add(homeHotEntity7);
         hotEntities.add(homeHotEntity8);
 
-
     }
 
-    @Override
-    protected void bindData() {
-
-    }
-
-    @Override
-    protected void bindData4NoNet() {
-
-    }
 
     @Override
     protected void initView(View root) {
         super.initView(root);
         rvHot.setLayoutManager(new LinearLayoutManager(getContext()));
-        HomeHotAdapter homeHotAdapter=new HomeHotAdapter(getContext(),hotEntities);
+        HomeHotAdapter homeHotAdapter = new HomeHotAdapter(getContext(), hotEntities);
         rvHot.setAdapter(homeHotAdapter);
         homeHotAdapter.addHeaderView(getHeadView());//获取头部视图
         rvHot.addOnItemTouchListener(new OnItemClickListener() {
@@ -138,7 +144,7 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 super.onItemChildClick(adapter, view, position);
-                switch (view.getId()){
+                switch (view.getId()) {
                     case R.id.iv_photo://跳转到他人空间页面
                         OtherRoomActivity.show(getContext());
                         break;
@@ -153,26 +159,64 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     }
 
     @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.e(TAG, "onCreateView: ");
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.e(TAG, "onActivityCreated: ");
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
+        Log.e(TAG, "onStart: ");
         //开始轮播
         banner.startAutoPlay();
     }
 
     @Override
+    public void onResume() {
+        Log.e(TAG, "onResume: ");
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.e(TAG, "onPause: ");
+        super.onPause();
+
+    }
+
+    @Override
     public void onStop() {
+        Log.e(TAG, "onStop: ");
         super.onStop();
         //结束轮播
         banner.stopAutoPlay();
     }
+
     //获取头部ViewPager视图
     private View getHeadView() {
         View headView = LayoutInflater.from(getActivity()).inflate(R.layout.vp_home_hot, null);
         banner = (Banner) headView.findViewById(R.id.banner_home_hot);
 
-        banner.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DisplayUtil.dip2Px(getContext(),135)));
+        banner.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DisplayUtil.dip2Px(getContext(), 135)));
         //简单使用
-        List<String> strings=new ArrayList<>();
+        List<String> strings = new ArrayList<>();
 
         strings.add("http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg");
         strings.add("http://pic27.nipic.com/20130320/3822951_105204803000_2.jpg");
@@ -194,19 +238,21 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-        }
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.e(TAG, "onDestroyView: ");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: ");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        Log.e(TAG, "onDetach: ");
         mListener = null;
     }
 
@@ -214,7 +260,7 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     //banner点击
     @Override
     public void OnBannerClick(int position) {
-        Toast.makeText(getContext(),"你点击了："+position,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "你点击了：" + position, Toast.LENGTH_SHORT).show();
     }
 
     public interface OnFragmentInteractionListener {

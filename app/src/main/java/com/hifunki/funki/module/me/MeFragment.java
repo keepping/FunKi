@@ -144,8 +144,8 @@ public class MeFragment extends BaseFragment {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initVariable() {
+        super.initVariable();
         mInfoTag = new ArrayList<>();
         mInfoTag.add(getString(R.string.self_gallery));
         mInfoTag.add(getString(R.string.vistor_record));
