@@ -40,7 +40,6 @@ public class HomeHotAdapter extends BaseMultiItemQuickAdapter<HomeHotEntity, Bas
     @Override
     protected void convert(BaseViewHolder helper, HomeHotEntity item) {
         switch (helper.getItemViewType()) {
-
             case HomeHotEntity.NORMAL_LIVE://big
                 //普通直播--big
                 //等级直播--big

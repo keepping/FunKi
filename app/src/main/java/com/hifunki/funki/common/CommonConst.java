@@ -32,4 +32,5 @@ public interface CommonConst {
 
     String IMAGE_VIEW = "http://pic.58pic.com/58pic/13/86/80/95h58PIC5jK_1024.jpg";
 
+
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity">
+
+    <com.hifunki.funki.widget.TopBarView
+        android:id="@+id/topView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:menuText="编辑"
+        app:titleText="个人相册" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tb_personal"
+        fontPath="fonts/FZDHTFW.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:tabBackground="@color/_4A2F75"
+        app:tabIndicatorColor="@color/_9B44ED"
+        app:tabIndicatorHeight="2px"
+        app:tabSelectedTextColor="@color/_9B44ED"
+        app:tabTextColor="@color/_6B4E9A" />
+
+    <!--app:tabMinWidth="match_parent"-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_personal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

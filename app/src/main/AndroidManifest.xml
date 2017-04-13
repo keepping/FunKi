@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hifunki.funki">
 
-    <!--<uses-sdk-->
-    <!--android:minSdkVersion="9"-->
-    <!--android:targetSdkVersion="21" />-->
+    <!-- <uses-sdk -->
+    <!-- android:minSdkVersion="9" -->
+    <!-- android:targetSdkVersion="21" /> -->
+
 
     <!-- 网络请求 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -31,7 +32,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--改变屏幕权限-->
+    <!-- 改变屏幕权限 -->
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -62,6 +63,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -120,12 +122,12 @@
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
         <!-- 图片列表页 -->
-        <activity android:name=".module.photo.gallery.activity.PhotoActivity" />
+        <activity android:name=".module.photo.gallery.activity.PhotoActivity"></activity>
         <!-- 图片选择 -->
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <!-- 图片裁剪 -->
         <activity
             android:name=".module.photo.ucrop.UCropActivity"
@@ -165,8 +167,7 @@
 
         <activity
             android:name=".module.live.activity.LiveActivity"
-            android:theme="@style/AppThemeFullScreen"></activity>
-
+            android:theme="@style/AppThemeFullScreen" />
         <activity android:name=".module.splash.activity.SplashActivity" />
         <!-- 直播标签 -->
         <activity android:name=".module.live.anchor.activity.LiveTagActivity" />
@@ -181,7 +182,8 @@
         <activity android:name=".module.me.dynamic.activity.MyDynamicActivity" />
         <!-- 兑换记录 -->
         <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
-        <activity android:name=".module.dynamic.activity.ShotActivity"></activity>
+        <activity android:name=".module.dynamic.activity.ShotActivity" />
+        <activity android:name=".module.photo.personal.activity.PersonalGalleryActivity"></activity>
     </application>
 
 </manifest>

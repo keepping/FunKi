@@ -215,6 +215,8 @@
     <string name="dynamic_share">分享自己的新鲜事</string>
     <string name="photograph">照片</string>
     <string name="video">视频</string>
+    <string name="personal_photo">相册(14/25)</string>
+    <string name="personal_sercet_photo">私密相册(14/25)</string>
 
 
 </resources>

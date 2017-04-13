@@ -48,7 +48,6 @@ import butterknife.OnClick;
  */
 public class PhotoActivity extends BaseTitleActivity implements View.OnClickListener {
 
-
     @BindView(R.id.iv_selectimage)
     ImageView ivSelectimage;
     @BindView(R.id.et_nickname)

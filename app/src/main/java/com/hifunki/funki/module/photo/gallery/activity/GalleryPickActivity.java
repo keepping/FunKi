@@ -18,7 +18,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -103,17 +102,9 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mContext = this;
         mActivity = this;
-
-        galleryConfig = GalleryPick.getInstance().getGalleryConfig();
-        init();
-        initPhoto();  //加载图片
-
     }
-
-
 
     @Override
     protected int getViewResId() {
@@ -148,6 +139,9 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         tvGalleryFolder.setOnClickListener(this);
         tvGalleryPreview.setOnClickListener(this);
         llGallerySourceImage.setOnClickListener(this);
+        galleryConfig = GalleryPick.getInstance().getGalleryConfig();
+        init();
+        initPhoto();  //加载图片
     }
 
     @Override
@@ -157,16 +151,6 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
 
     @Override
     protected void initAdapter() {
-
-    }
-
-    @Override
-    protected void bindData() {
-
-    }
-
-    @Override
-    protected void bindData4NoNet() {
 
     }
 
@@ -249,8 +233,6 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
             }
         });
 
-
-//        Log.e("test", "init: "+resultPhoto);
         photoAdapter.setSelectPhoto(resultPhoto);
         rvGalleryImage.setAdapter(photoAdapter);
 
@@ -289,11 +271,7 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         }
     }
 
-    /**
-     * 初始化配置
-     */
     private void initPhoto() {
-
         mLoaderCallback = new LoaderManager.LoaderCallbacks<Cursor>() {
 
             private final String[] IMAGE_PROJECTION = {
@@ -311,10 +289,8 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                 } else if (id == LOADER_CATEGORY) {
                     return new CursorLoader(mActivity, MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_PROJECTION, IMAGE_PROJECTION[0] + " like '%" + args.getString("path") + "%'", null, IMAGE_PROJECTION[2] + " DESC");
                 }
-
                 return null;
             }
-
             @Override
             public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
                 if (data != null) {
@@ -367,12 +343,8 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                             if (!tempPhotoPathList.contains(mPhotoPath)) {
                                 PhotoInfo photoInfo = new PhotoInfo(mPhotoPath, null, 0L, 0);
                                 photoInfoList.add(0, photoInfo);
-
                             }
                         }
-
-                        fillIsSelected();
-
                         photoAdapter.notifyDataSetChanged();
                         hasFolderScan = true;
                     }
@@ -386,11 +358,6 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         };
         getSupportLoaderManager().restartLoader(LOADER_ALL, null, mLoaderCallback);   // 扫描手机中的图片
     }
-
-
-    /**
-     * 选择相机
-     */
     private void showCameraAction() {
         // 跳转到系统照相机
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -418,14 +385,12 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CAMERA) {
-//            Log.i(TAG, "onActivityResult: " + resultCode);
             if (resultCode == RESULT_OK) {
                 if (cameraTempFile != null) {
                     if (!galleryConfig.isMultiSelect()) {
                         resultPhoto.clear();
                         if (galleryConfig.isCrop()) {
                             cropTempFile = FileUtils.getCorpFile(galleryConfig.getFilePath());
-                            //启动裁剪
                             startCropImage();
                             return;
                         }
@@ -443,46 +408,28 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                 }
             }
         } else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
-//            final Uri resultUri = UCrop.getOutput(data);
-//            if (cameraTempFile != null && cameraTempFile.exists()) {
-//                cameraTempFile.delete();
-//            }
+
             resultPhoto.clear();
             resultPhoto.add(cropTempFile.getAbsolutePath());
             mHandlerCallBack.onSuccess(resultPhoto);
             exit();
         } else if (resultCode == UCrop.RESULT_ERROR) {
             galleryConfig.getIHandlerCallBack().onError();
-//            final Throwable cropError = UCrop.getError(data);
         }
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    /**
-     * 退出
-     */
     private void exit() {
         mHandlerCallBack.onFinish();
         finish();
-
-//        移除栈顶的activity
-//        ApplicationMain.removeCurrentActivity();
-
     }
-
-//        http://stackoverflow.com/questions/6092862/will-calling-finish-from-an-activity-free-up-my-memory-space
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //释放资源
         Runtime.getRuntime().gc();
     }
 
-    /**
-     * 回退键监听
-     */
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
@@ -495,15 +442,10 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         return true;
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvFinish://确定按钮
-//                if (resultPhoto != null && resultPhoto.size() > 0) {
-//                    mHandlerCallBack.onSuccess(resultPhoto);
-//                    exit();
-//                }
                 startCropImage();
                 break;
             case R.id.btnGalleryPickBack://返回键
@@ -524,25 +466,17 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                 }
                 break;
             case R.id.tv_gallery_preview://预览按钮
-
                 if (!ListUtil.isEmpty(photoInfoList) && mSelectedPosition != -1 && mSelectedPosition != 0) {
                     ArrayList<PhotoInfo> arrayList=new ArrayList<>();
                     arrayList.addAll(photoInfoList);
                     GalleryVpActivity.show(this, mSelectedPosition, arrayList);
-                    Log.e("test", "onClick: "+photoInfoList );
-
                 }
                 break;
             case R.id.ll_gallery_sourceimage://点击原图
-
                 break;
         }
     }
 
-
-    /**
-     * 改变图片的选中状态
-     */
     private void changeImageState() {
         isOpenImage = !isOpenImage;
         Drawable drawableDown = getResources().getDrawable(R.drawable.iv_gallery_pick_dropdown_white);
@@ -554,9 +488,6 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         }
     }
 
-    /**
-     * 启动裁剪
-     */
     private void startCropImage() {
         UCropUtils.start(mActivity, cameraTempFile, cropTempFile, galleryConfig.getAspectRatioX(), galleryConfig.getAspectRatioY(), galleryConfig.getMaxWidth(), galleryConfig.getMaxHeight());
     }
@@ -571,5 +502,15 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         }
     }
 
+
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
 
 }

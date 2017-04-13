@@ -14,6 +14,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.me.adapter.MeInfoAdapter;
@@ -25,6 +27,8 @@ import com.hifunki.funki.module.me.profile.activity.EditProfileActivity;
 import com.hifunki.funki.module.me.recharge.activity.RechargeActivity;
 import com.hifunki.funki.module.me.user.UserAvatarActivity;
 import com.hifunki.funki.module.me.withdraw.activity.WithdrawActivity;
+import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
+import com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -117,30 +121,9 @@ public class MeFragment extends BaseFragment {
         }
     }
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_me;
-    }
-
-    @Override
-    protected void initView(View root) {
-        super.initView(root);
-        StatusBarUtil.adjustStatusBarHei(root.findViewById(R.id.layout_me_head));
-        MeInfoAdapter meInfoAdapter = new MeInfoAdapter(R.layout.item_me_info, mInfoTag);
-        //    rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
-        rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvMe.setAdapter(meInfoAdapter);
-        ViewUtil.adjustScrollViewHei(rvMe);
-
-
-        //圆形头像
-        Glide.with(mContext).load(photo).into(civMePhoto);
-        Glide.with(mContext).load(photo).into(civFirstPhoto);
-        Glide.with(mContext).load(photo).into(civSecondPhoto);
-        Glide.with(mContext).load(photo).into(civThirdPhoto);
-
-
     }
 
     @Override
@@ -157,6 +140,48 @@ public class MeFragment extends BaseFragment {
         mInfoTag.add(getString(R.string.help_feedback));
         mInfoTag.add(getString(R.string.business_cooperate));
 
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+        StatusBarUtil.adjustStatusBarHei(root.findViewById(R.id.layout_me_head));
+        MeInfoAdapter meInfoAdapter = new MeInfoAdapter(R.layout.item_me_info, mInfoTag);
+        //    rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
+        rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvMe.setAdapter(meInfoAdapter);
+        ViewUtil.adjustScrollViewHei(rvMe);
+
+        //圆形头像
+        Glide.with(mContext).load(photo).into(civMePhoto);
+        Glide.with(mContext).load(photo).into(civFirstPhoto);
+        Glide.with(mContext).load(photo).into(civSecondPhoto);
+        Glide.with(mContext).load(photo).into(civThirdPhoto);
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        rvMe.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+            }
+
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                super.onItemChildClick(adapter, view, position);
+                switch (view.getId()){
+                    case R.id.rl_item_info:
+                            if(position==0){
+                                PersonalGalleryActivity.show(getContext());
+                            }else if(position==1){
+                                PhotoActivity.show(getContext());
+                            }
+                        break;
+                }
+            }
+        });
     }
 
     @Override
