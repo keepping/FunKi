@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
  */
 public class FollowMovie extends PowViewHolder<Post> {
 
-
     @BindView(R.id.fun_player)
     FunKiPlayer fun_player;
 

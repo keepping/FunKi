@@ -1,11 +1,11 @@
-package com.hifunki.funki.module.live.mode;
+package com.hifunki.funki.module.live.audience.mode;
 
 /**
  * 在此写用途
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.mode.ChatMessage.java
+ * @value com.hifunki.funki.module.live.audience.mode.ChatMessage.java
  * @link
  * @since 2017-03-31 14:33:33
  */

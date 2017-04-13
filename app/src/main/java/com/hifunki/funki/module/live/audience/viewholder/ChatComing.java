@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.viewholder;
+package com.hifunki.funki.module.live.audience.viewholder;
 
 import android.app.Activity;
 import android.text.Spannable;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.module.live.mode.ChatMessage;
+import com.hifunki.funki.module.live.audience.mode.ChatMessage;
 import com.powyin.scroll.adapter.AdapterDelegate;
 import com.powyin.scroll.adapter.PowViewHolder;
 
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.viewholder.ChatComing.java
+ * @value com.hifunki.funki.module.live.audience.viewholder.ChatComing.java
  * @link
  * @since 2017-03-31 15:02:02
  */

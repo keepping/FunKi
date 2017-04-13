@@ -166,7 +166,7 @@
         <!-- 观众端界面 -->
 
         <activity
-            android:name=".module.live.activity.LiveActivity"
+            android:name=".module.live.audience.activity.LiveActivity"
             android:theme="@style/AppThemeFullScreen" />
         <activity android:name=".module.splash.activity.SplashActivity" />
         <!-- 直播标签 -->

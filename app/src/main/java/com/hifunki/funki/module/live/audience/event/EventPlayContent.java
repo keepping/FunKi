@@ -1,11 +1,11 @@
-package com.hifunki.funki.module.live.event;
+package com.hifunki.funki.module.live.audience.event;
 
 /**
  * 在此写用途
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.event.EventPlayContent.java
+ * @value com.hifunki.funki.module.live.audience.event.EventPlayContent.java
  * @link
  * @since 2017-03-28 17:04:04
  */

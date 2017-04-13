@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.fragment;
+package com.hifunki.funki.module.live.audience.fragment;
 
 import android.graphics.Bitmap;
 import android.graphics.PointF;
@@ -6,13 +6,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,17 +25,18 @@ import com.google.gson.Gson;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.client.User;
+import com.hifunki.funki.module.live.audience.adapter.PrivateMsgAdapter;
+import com.hifunki.funki.module.live.audience.event.EventPlayContent;
+import com.hifunki.funki.module.live.audience.mode.ChatMessage;
+import com.hifunki.funki.module.live.audience.viewholder.ChatComing;
+import com.hifunki.funki.module.live.audience.viewholder.ChatFan;
+import com.hifunki.funki.module.live.audience.viewholder.ChatText;
+import com.hifunki.funki.module.live.audience.viewholder.Gift;
+import com.hifunki.funki.module.live.audience.widget.BlockView;
 import com.hifunki.funki.module.live.danmu.bDanMu.DanMuData;
 import com.hifunki.funki.module.live.danmu.bDanMu.DanMuKuHelper;
 import com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup;
 import com.hifunki.funki.module.live.danmu.vDanMu.ModelGift;
-import com.hifunki.funki.module.live.event.EventPlayContent;
-import com.hifunki.funki.module.live.mode.ChatMessage;
-import com.hifunki.funki.module.live.viewholder.ChatComing;
-import com.hifunki.funki.module.live.viewholder.ChatFan;
-import com.hifunki.funki.module.live.viewholder.ChatText;
-import com.hifunki.funki.module.live.viewholder.Gift;
-import com.hifunki.funki.module.live.widget.BlockView;
 import com.hifunki.funki.net.back.LiveModel;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -48,7 +49,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import master.flame.danmaku.ui.widget.DanmakuView;
 
@@ -57,7 +57,7 @@ import master.flame.danmaku.ui.widget.DanmakuView;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.fragment.RoomFragment.java
+ * @value com.hifunki.funki.module.live.audience.fragment.RoomFragment.java
  * @link
  * @since 2017-03-25 13:37:37
  */
@@ -101,6 +101,8 @@ public class RoomFragment extends BaseFragment {
     RelativeLayout rlInfo;
     @BindView(R.id.room_view)
     FrameLayout roomView;
+    @BindView(R.id.iv_room_private_msg)
+    ImageView ivRoomPrivateMsg;
     private boolean reResume = false;      //用于控制当前显示视频
     private boolean isVisual = false;      //用于控制当前显示视频
     private LiveModel model;
@@ -108,7 +110,8 @@ public class RoomFragment extends BaseFragment {
     private int mIndex = 0;
     private PopWindowUtil sharePopWindow;//分享popWindow
     private View shareView;
-
+    private PopWindowUtil privateMsgPopWindow;//分享popWindow
+    private View privateMsgView;
     DanMuKuHelper danMuKuHelper;
 
     public static RoomFragment newInstance(LiveModel model) {
@@ -188,7 +191,7 @@ public class RoomFragment extends BaseFragment {
         divergeView3.setDivergeViewProvider(new Provider());
     }
 
-    @OnClick({R.id.host_avatar, R.id.tv_follow})
+    @OnClick({R.id.host_avatar, R.id.tv_follow,R.id.iv_room_private_msg})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.host_avatar:
@@ -199,7 +202,6 @@ public class RoomFragment extends BaseFragment {
                 mIndex++;
                 break;
             case R.id.tv_follow:
-                //创建PopWindow
                 if (sharePopWindow == null) {
                     sharePopWindow = PopWindowUtil.getInstance(getContext());
                     shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_me_share, null);
@@ -208,6 +210,36 @@ public class RoomFragment extends BaseFragment {
                 sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
                 sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
             case R.id.iv_room_msg:
+                break;
+            case R.id.iv_room_private_msg:
+                if (sharePopWindow != null) {
+                    sharePopWindow.hidePopWindow();
+                }
+                if (privateMsgPopWindow == null) {
+                    privateMsgPopWindow = PopWindowUtil.getInstance(getContext());
+                    privateMsgView = LayoutInflater.from(getContext()).inflate(R.layout.pop_audience_private_msg, null);
+                    privateMsgPopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+                }
+                privateMsgPopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
+                privateMsgPopWindow.showPopWindow(privateMsgView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
+                RecyclerView rvPrivatemsg = (RecyclerView) privateMsgView.findViewById(R.id.rv_private_msg);
+                TabLayout tbPrivateMsg = (TabLayout) privateMsgView.findViewById(R.id.tb_private_msg);
+                tbPrivateMsg.addTab(tbPrivateMsg.newTab().setText("好友"));
+                tbPrivateMsg.addTab(tbPrivateMsg.newTab().setText("未关注"));
+
+                RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());
+                rvPrivatemsg.setLayoutManager(layoutManager);
+                List<String> list=new ArrayList<>();
+                list.add("a");
+                list.add("a");
+                list.add("a");
+                list.add("a");
+                list.add("a");
+                list.add("a");
+                list.add("a");
+                PrivateMsgAdapter privateMsgAdapter=new PrivateMsgAdapter(R.layout.item_audience_private_msg,list);
+                rvPrivatemsg.setAdapter(privateMsgAdapter);
+                break;
 
         }
     }
@@ -300,14 +332,6 @@ public class RoomFragment extends BaseFragment {
         super.setUserVisibleHint(isVisibleToUser);
         isVisual = isVisibleToUser;
         startPlay();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
     }
 
 

@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.widget;
+package com.hifunki.funki.module.live.audience.widget;
 
 import android.content.Context;
 import android.content.res.Resources;

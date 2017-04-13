@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.viewholder;
+package com.hifunki.funki.module.live.audience.viewholder;
 
 import android.app.Activity;
 import android.view.ViewGroup;
@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.viewholder.Gift.java
+ * @value com.hifunki.funki.module.live.audience.viewholder.Gift.java
  * @link
  * @since 2017-04-01 14:50:50
  */

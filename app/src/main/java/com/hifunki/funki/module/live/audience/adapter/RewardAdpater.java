@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.adapter;
+package com.hifunki.funki.module.live.audience.adapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,7 +16,7 @@ import java.util.Random;
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.adapter.RewardAdpater.java
+ * @value com.hifunki.funki.module.live.audience.adapter.RewardAdpater.java
  * @link
  * @since 2017-03-30 13:44:44
  */

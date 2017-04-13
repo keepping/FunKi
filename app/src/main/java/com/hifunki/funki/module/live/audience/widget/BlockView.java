@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.widget;
+package com.hifunki.funki.module.live.audience.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -10,7 +10,7 @@ import android.view.View;
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.widget.BlockView.java
+ * @value com.hifunki.funki.module.live.audience.widget.BlockView.java
  * @link
  * @since 2017-03-31 16:12:12
  */

@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.activity;
+package com.hifunki.funki.module.live.audience.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,9 @@ import android.view.SurfaceView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.adapter.AutoSizeAdapter;
-import com.hifunki.funki.module.live.event.EventPlayContent;
-import com.hifunki.funki.module.live.fragment.RoomFragment;
-import com.hifunki.funki.module.live.widget.VerticalViewPager;
+import com.hifunki.funki.module.live.audience.event.EventPlayContent;
+import com.hifunki.funki.module.live.audience.fragment.RoomFragment;
+import com.hifunki.funki.module.live.audience.widget.VerticalViewPager;
 import com.hifunki.funki.net.back.LiveModel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,7 +31,7 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.activity.LiveActivity.java
+ * @value com.hifunki.funki.module.live.audience.activity.LiveActivity.java
  * @link
  * @since 2017-03-25 13:37:37
  */

@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.live.viewholder;
+package com.hifunki.funki.module.live.audience.viewholder;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -27,7 +27,7 @@ import static com.hifunki.funki.base.application.ApplicationMain.getContext;
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.viewholder.ChatFan.java
+ * @value com.hifunki.funki.module.live.audience.viewholder.ChatFan.java
  * @link
  * @since 2017-03-31 18:17:17
  */
