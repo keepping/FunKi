@@ -21,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class PersonalGalleryActivity extends BaseActivity implements PersonalPhotoFragment.OnFragmentInteractionListener,PersonalSercetFragment.OnFragmentInteractionListener{
+public class PersonalGalleryActivity extends BaseActivity implements PersonalPhotoFragment.OnFragmentInteractionListener, PersonalSercetFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.topView)
     TopBarView topView;
@@ -46,14 +46,14 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(0)));
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(1)));
         mListFragment = new ArrayList<>();
-        mListFragment.add(PersonalPhotoFragment.newInstance("a","a"));
-        mListFragment.add(PersonalSercetFragment.newInstance("a","a"));
+        mListFragment.add(PersonalPhotoFragment.newInstance("a", "a"));
+        mListFragment.add(PersonalPhotoFragment.newInstance("a", "a"));
 
     }
 
     @Override
     protected void initView() {
-        PersonalGalleryAdapter personalGalleryAdapter=new PersonalGalleryAdapter(getSupportFragmentManager(),mListFragment,mTabTitle);
+        PersonalGalleryAdapter personalGalleryAdapter = new PersonalGalleryAdapter(getSupportFragmentManager(), mListFragment, mTabTitle);
         vpPersonal.setAdapter(personalGalleryAdapter);
         tbPersonal.setupWithViewPager(vpPersonal);
     }

@@ -31,13 +31,12 @@ public class FollowMovie extends PowViewHolder<Post> {
         super(activity, viewGroup);
 
         ButterKnife.bind(this,mItemView);
-
     }
 
 
     @Override
     protected int getItemViewRes() {
-        return R.layout.viewholder_post_movie;
+        return R.layout.viewholder_follow_movie;
     }
 
     @Override

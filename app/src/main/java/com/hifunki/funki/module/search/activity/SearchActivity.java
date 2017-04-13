@@ -38,9 +38,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-
 /**
- * 搜索的界面
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

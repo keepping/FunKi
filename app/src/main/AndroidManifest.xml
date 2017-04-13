@@ -122,12 +122,12 @@
             android:name=".module.login.CountryResultActivity"
             android:screenOrientation="portrait" />
         <!-- 图片列表页 -->
-        <activity android:name=".module.photo.gallery.activity.PhotoActivity"></activity>
+        <activity android:name=".module.photo.gallery.activity.PhotoActivity" />
         <!-- 图片选择 -->
         <activity
             android:name=".module.photo.gallery.activity.GalleryPickActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!-- 图片裁剪 -->
         <activity
             android:name=".module.photo.ucrop.UCropActivity"
@@ -162,7 +162,7 @@
         <!-- 他人空间 -->
         <activity android:name=".module.room.activity.OtherRoomActivity" />
         <!-- 发动态界面 -->
-        <activity android:name=".module.dynamic.activity.PostDynamicActivity" />
+        <activity android:name=".module.dynamic.post.activity.PostDynamicActivity" />
         <!-- 观众端界面 -->
 
         <activity
@@ -182,8 +182,9 @@
         <activity android:name=".module.me.dynamic.activity.MyDynamicActivity" />
         <!-- 兑换记录 -->
         <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
-        <activity android:name=".module.dynamic.activity.ShotActivity" />
-        <activity android:name=".module.photo.personal.activity.PersonalGalleryActivity"></activity>
+        <activity android:name=".module.dynamic.post.activity.ShotActivity" />
+        <activity android:name=".module.photo.personal.activity.PersonalGalleryActivity" />
+        <activity android:name=".module.dynamic.me.activity.MyDynamicActivity"></activity>
     </application>
 
 </manifest>

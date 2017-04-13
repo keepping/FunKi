@@ -26,7 +26,7 @@ import static com.hifunki.funki.base.application.ApplicationMain.getContext;
 
 
 /**
- * 个人中心-->充值
+ * 充值
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

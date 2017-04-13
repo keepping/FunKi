@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.pick;
+package com.hifunki.funki.widget.pick;
 
 import android.content.Context;
 import android.graphics.Canvas;

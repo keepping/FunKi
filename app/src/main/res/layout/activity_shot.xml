@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.module.dynamic.activity.ShotActivity">
+    tools:context=".module.dynamic.post.activity.ShotActivity">
 
     <com.hifunki.funki.widget.TopBarView
         android:id="@+id/tbv_live_tag"

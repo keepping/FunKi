@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.dynamic.viewholder;
+package com.hifunki.funki.module.dynamic.post.viewholder;
 
 /**
  * 在此写用途

@@ -1,4 +1,4 @@
-package com.hifunki.funki.module.dynamic.activity;
+package com.hifunki.funki.module.dynamic.post.activity;
 
 import android.Manifest;
 import android.content.Context;

@@ -33,19 +33,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.hifunki.funki.module.pick.TextPicker
+        <com.hifunki.funki.widget.pick.TextPicker
             android:id="@+id/tp_year"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5" />
 
-        <com.hifunki.funki.module.pick.TextPicker
+        <com.hifunki.funki.widget.pick.TextPicker
             android:id="@+id/tp_mounth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5" />
 
-        <com.hifunki.funki.module.pick.TextPicker
+        <com.hifunki.funki.widget.pick.TextPicker
             android:id="@+id/tp_day"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
