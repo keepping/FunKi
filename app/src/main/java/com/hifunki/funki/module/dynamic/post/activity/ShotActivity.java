@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -21,7 +22,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.util.PermissionUtil;
 import com.hifunki.funki.util.ToastUtils;
-import com.hifunki.funki.widget.TopBarView;
+import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,12 +80,11 @@ public class ShotActivity extends BaseActivity {
     boolean mSurfaceCreated = false;
     Camera mCamera;
     private boolean mPermissions = false;
+    int cameraPosition = 1;//0代表前置摄像头，1代表后置摄像头
 
     private enum STATUS {
-        UNINIT, IMAGE, IMAGE_BEAUTY, MOVIE, MOVIE_TIME_LACK, MOVIE_OK
+        UNINIT, IMAGE, IMAGE_BEAUTY, MOVIE_INIT, MOVIE_LESS_NOTIFY,MOVIE_LESS_DEL, MOVIE_OK
     }
-
-//    private STATUS status = STATUS.UNINIT;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, ShotActivity.class));
@@ -100,11 +100,9 @@ public class ShotActivity extends BaseActivity {
 
     }
 
-    int cameraPosition = 1;//0代表前置摄像头，1代表后置摄像头
-
     @Override
     protected void initView() {
-        updateUI(STATUS.UNINIT);
+        tbvLiveTag.setBackgroundColor(Color.parseColor("#790C001F"));
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(recodeCallBack);
         mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);//surfaceview不维护自己的缓冲区，等待屏幕渲染引擎将内容推送到用户面前
@@ -156,16 +154,6 @@ public class ShotActivity extends BaseActivity {
             }
         });
 
-//        if (PermissionUtil.checkCameraAccess(getContext()) && PermissionUtil.checkWriteStorageAccess(getContext()) && surfaceCreated && mCamera == null) {//检查权限
-//            mCamera = openCamera(isCamerafront, mWidth, mHeight, mFramerate, mSurfaceTexture);
-//        } else {
-//            if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkCameraAccess(getContext())) {
-//                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
-//            }
-//            if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkWriteStorageAccess(getContext())) {
-//                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-//            }
-//        }
     }
 
     @Override
@@ -198,7 +186,7 @@ public class ShotActivity extends BaseActivity {
                 updateUI(STATUS.IMAGE);
                 break;
             case R.id.ll_shot_video:
-                updateUI(STATUS.MOVIE);
+                updateUI(STATUS.MOVIE_INIT);
                 break;
             case R.id.iv_shot_video_dot:
                 break;
@@ -220,18 +208,7 @@ public class ShotActivity extends BaseActivity {
     }
 
     private void updateUI(STATUS uninit) {
-        ivDynamicMirror.setVisibility(View.INVISIBLE);
-        ivDynamicBeauty.setVisibility(View.INVISIBLE);
-        //image
-        ivShotPhotoDot.setVisibility(View.INVISIBLE);
-        tvShotPhoto.setVisibility(View.INVISIBLE);
-        //video
-        ivShotVideoDot.setVisibility(View.INVISIBLE);
-        tvShotVideo.setVisibility(View.INVISIBLE);
-        pbShot.setVisibility(View.INVISIBLE);
-        tvShotTime.setVisibility(View.INVISIBLE);
-        ivShotBack.setVisibility(View.INVISIBLE);
-        ivShotOk.setVisibility(View.INVISIBLE);
+//        ViewUtil.showOrHideView(View.INVISIBLE,);
         switch (uninit) {
             case UNINIT://初始化状态
                 ivDynamicMirror.setVisibility(View.VISIBLE);
@@ -244,7 +221,7 @@ public class ShotActivity extends BaseActivity {
                 ivShotPhotoDot.setVisibility(View.VISIBLE);
                 tvShotPhoto.setVisibility(View.VISIBLE);
                 break;
-            case MOVIE:
+            case MOVIE_INIT:
                 ivShotVideoDot.setVisibility(View.VISIBLE);
                 tvShotVideo.setVisibility(View.VISIBLE);
                 tvShotVideo.setVisibility(View.VISIBLE);

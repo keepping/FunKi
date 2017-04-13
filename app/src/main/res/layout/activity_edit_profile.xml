@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".module.me.profile.activity.EditProfileActivity">
 
-    <com.hifunki.funki.widget.TopBarView
+    <com.hifunki.funki.widget.bar.TopBarView
         android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

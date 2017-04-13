@@ -6,7 +6,7 @@
     android:background="@color/_230C47"
     android:orientation="vertical">
 
-    <com.hifunki.funki.widget.TopBarView
+    <com.hifunki.funki.widget.bar.TopBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menuText="发送"

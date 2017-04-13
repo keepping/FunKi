@@ -191,7 +191,7 @@ public class RoomFragment extends BaseFragment {
         divergeView3.setDivergeViewProvider(new Provider());
     }
 
-    @OnClick({R.id.host_avatar, R.id.tv_follow,R.id.iv_room_private_msg})
+    @OnClick({R.id.host_avatar, R.id.tv_follow, R.id.iv_room_private_msg})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.host_avatar:
@@ -224,12 +224,13 @@ public class RoomFragment extends BaseFragment {
                 privateMsgPopWindow.showPopWindow(privateMsgView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 RecyclerView rvPrivatemsg = (RecyclerView) privateMsgView.findViewById(R.id.rv_private_msg);
                 TabLayout tbPrivateMsg = (TabLayout) privateMsgView.findViewById(R.id.tb_private_msg);
+                tbPrivateMsg.removeAllTabs();
                 tbPrivateMsg.addTab(tbPrivateMsg.newTab().setText("好友"));
                 tbPrivateMsg.addTab(tbPrivateMsg.newTab().setText("未关注"));
 
-                RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
                 rvPrivatemsg.setLayoutManager(layoutManager);
-                List<String> list=new ArrayList<>();
+                List<String> list = new ArrayList<>();
                 list.add("a");
                 list.add("a");
                 list.add("a");
@@ -237,7 +238,7 @@ public class RoomFragment extends BaseFragment {
                 list.add("a");
                 list.add("a");
                 list.add("a");
-                PrivateMsgAdapter privateMsgAdapter=new PrivateMsgAdapter(R.layout.item_audience_private_msg,list);
+                PrivateMsgAdapter privateMsgAdapter = new PrivateMsgAdapter(R.layout.item_audience_private_msg, list);
                 rvPrivatemsg.setAdapter(privateMsgAdapter);
                 break;
 

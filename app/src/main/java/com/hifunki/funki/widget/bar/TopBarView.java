@@ -1,4 +1,4 @@
-package com.hifunki.funki.widget;
+package com.hifunki.funki.widget.bar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -32,6 +32,7 @@ public class TopBarView extends RelativeLayout {
     private ImageView ivMenuMore;
 
     private Context mContext;
+    protected View rootView;
 
     public TopBarView(Context context) {
         super(context);
@@ -51,7 +52,7 @@ public class TopBarView extends RelativeLayout {
 
 
     private void initView(Context context, AttributeSet attrs) {
-        LayoutInflater.from(context).inflate(R.layout.top_bar, this);
+        rootView = LayoutInflater.from(context).inflate(R.layout.top_bar, this);
         //根布局
         LinearLayout llBaseMain = (LinearLayout) findViewById(R.id.base_main);
         tv_title = (TextView) findViewById(R.id.tv_title);
