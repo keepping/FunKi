@@ -8,10 +8,6 @@
         android:layout_height="200dp"
         android:text="Pic"
         android:background="#ff00d9"
-        android:gravity="center"
-
-        />
-
-
+        android:gravity="center" />
 
 </LinearLayout>
