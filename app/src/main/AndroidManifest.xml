@@ -185,7 +185,11 @@
         <activity android:name=".module.dynamic.post.activity.ShotActivity" />
         <activity android:name=".module.photo.personal.activity.PersonalGalleryActivity" />
         <activity android:name=".module.dynamic.me.activity.MyDynamicActivity" />
-        <activity android:name=".module.dynamic.normal.activity.NormalDynamicActivity"></activity>
+        <activity android:name=".module.dynamic.normal.activity.NormalDynamicActivity" />
+        <activity
+            android:name=".module.me.MyLiveActicity"
+            android:label="@string/title_activity_my_live_acticity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

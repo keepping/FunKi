@@ -217,6 +217,7 @@
     <string name="video">视频</string>
     <string name="personal_photo">相册(14/25)</string>
     <string name="personal_sercet_photo">私密相册(14/25)</string>
+    <string name="title_activity_my_live_acticity">MyLiveActicity</string>
 
 
 </resources>

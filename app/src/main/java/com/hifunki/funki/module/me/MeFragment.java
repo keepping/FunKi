@@ -255,6 +255,7 @@ public class MeFragment extends BaseFragment {
                 MyDynamicActivity.show(getContext());
                 break;
             case R.id.rl_live://我的直播
+                MyLiveActicity.show(getContext());
                 break;
             case R.id.ll_fans://粉丝
                 MyFansActivity.show(getContext());

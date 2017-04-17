@@ -22,6 +22,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.util.PermissionUtil;
 import com.hifunki.funki.util.ToastUtils;
+import com.hifunki.funki.util.ViewUtil;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.io.IOException;
@@ -83,7 +84,7 @@ public class ShotActivity extends BaseActivity {
     int cameraPosition = 1;//0代表前置摄像头，1代表后置摄像头
 
     private enum STATUS {
-        UNINIT, IMAGE, IMAGE_BEAUTY, MOVIE_INIT, MOVIE_LESS_NOTIFY,MOVIE_LESS_DEL, MOVIE_OK
+        UNINIT, IMAGE, IMAGE_BEAUTY, MOVIE_INIT, MOVIE_LESS_NOTIFY, MOVIE_LESS_DEL, MOVIE_OK
     }
 
     public static void show(Context context) {
@@ -208,27 +209,28 @@ public class ShotActivity extends BaseActivity {
     }
 
     private void updateUI(STATUS uninit) {
-//        ViewUtil.showOrHideView(View.INVISIBLE,);
+
         switch (uninit) {
             case UNINIT://初始化状态
-                ivDynamicMirror.setVisibility(View.VISIBLE);
-                ivDynamicBeauty.setVisibility(View.VISIBLE);
-                ivShotPhotoDot.setVisibility(View.VISIBLE);
-                tvShotPhoto.setVisibility(View.VISIBLE);
+                ViewUtil.showOrHideView(View.INVISIBLE, pbShot, tvShotTime);
+
             case IMAGE:
-                ivDynamicMirror.setVisibility(View.VISIBLE);
-                ivDynamicBeauty.setVisibility(View.VISIBLE);
-                ivShotPhotoDot.setVisibility(View.VISIBLE);
-                tvShotPhoto.setVisibility(View.VISIBLE);
+//                ViewUtil.showOrHideView(View.INVISIBLE, pbShot, tvShotTime);
+                break;
+            case IMAGE_BEAUTY:
+
                 break;
             case MOVIE_INIT:
-                ivShotVideoDot.setVisibility(View.VISIBLE);
-                tvShotVideo.setVisibility(View.VISIBLE);
-                tvShotVideo.setVisibility(View.VISIBLE);
-                pbShot.setVisibility(View.VISIBLE);
-                tvShotTime.setVisibility(View.VISIBLE);
-                ivShotBack.setVisibility(View.VISIBLE);
-                ivShotOk.setVisibility(View.VISIBLE);
+
+                break;
+            case MOVIE_LESS_NOTIFY:
+
+                break;
+            case MOVIE_LESS_DEL:
+
+                break;
+            case MOVIE_OK:
+
                 break;
         }
     }
@@ -278,7 +280,7 @@ public class ShotActivity extends BaseActivity {
                     if (ret != PackageManager.PERMISSION_GRANTED) {
 
                         ToastUtils.showShortToastSafe("没有授权");
-                    }else{
+                    } else {
                         ToastUtils.showShortToastSafe("授权成功");
                     }
                 }
