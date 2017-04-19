@@ -56,6 +56,9 @@ public class ApplicationMain extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build());
 
+
+
+
     }
 
     public static Context getContext() {

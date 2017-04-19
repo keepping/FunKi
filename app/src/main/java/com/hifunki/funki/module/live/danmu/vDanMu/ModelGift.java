@@ -3,6 +3,7 @@ package com.hifunki.funki.module.live.danmu.vDanMu;
 import com.hifunki.funki.module.live.danmu.vDanMu.DanMuItemGift;
 import com.hifunki.funki.module.live.danmu.vDanMu.IDanMuData;
 import com.hifunki.funki.module.live.danmu.vDanMu.IDanMuItemBehave;
+import com.powyin.scroll.adapter.MultipleRecycleAdapter;
 
 import java.util.Random;
 
@@ -40,6 +41,7 @@ public class ModelGift implements IDanMuData{
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public IDanMuItemBehave getBehave() {
         return new DanMuItemGift();

@@ -151,16 +151,6 @@ public class DanMuKuHelper {
         //     mDanmakuView.showFPS(true);
         mDanmakuView.enableDanmakuDrawingCache(true);
 
-        //Todo 获取哔哩哔哩 弹幕绘制控制器  重写其绘制与测量方法 适应自定义UI
-        try {
-            AndroidDisplayer displayer = (AndroidDisplayer) mContext.getDisplayer();
-            Field field = AndroidDisplayer.class.getDeclaredField("sStuffer");
-            System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggg");
-            field.setAccessible(true);
-            //      field.set(displayer,new FunKiStuffer());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -186,10 +176,11 @@ public class DanMuKuHelper {
         }
     }
 
-    static Random random = new Random(100);
+    private static Random random = new Random(100);
 
     public void addDanMu(DanMuData danMuData) {
         if(mDanmakuView==null) return;
+
 
         BaseDanmaku danmaku = mContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
 

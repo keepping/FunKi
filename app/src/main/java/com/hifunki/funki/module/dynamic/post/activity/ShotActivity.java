@@ -214,6 +214,7 @@ public class ShotActivity extends BaseActivity {
             case UNINIT://初始化状态
                 ViewUtil.showOrHideView(View.INVISIBLE, pbShot, tvShotTime);
 
+
             case IMAGE:
 //                ViewUtil.showOrHideView(View.INVISIBLE, pbShot, tvShotTime);
                 break;

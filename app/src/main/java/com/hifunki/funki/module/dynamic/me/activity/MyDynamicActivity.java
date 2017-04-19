@@ -14,6 +14,7 @@ import com.hifunki.funki.module.home.viewholder.FollowPic;
 import com.hifunki.funki.module.home.viewholder.FollowRecommend;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
+import com.powyin.scroll.widget.ISwipe;
 import com.powyin.scroll.widget.SwipeControl;
 import com.powyin.scroll.widget.SwipeRefresh;
 
@@ -92,17 +93,17 @@ public class MyDynamicActivity extends BaseActivity {
                 if (multipleRecycleAdapter.getDataList().size() >= 5) {
                     swipeRefresh.setSwipeModel(SwipeControl.SwipeModel.SWIPE_BOTH);
                 }
-                swipeRefresh.finishRefresh();
+                swipeRefresh.setFreshStatue(ISwipe.FreshStatus.SUCCESS);
             }
 
             @Override
-            public void onLoading() {
+            public void onLoading(boolean isLoadedViewShow) {
                 multipleRecycleAdapter.addLast(new Post(3, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(2, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(1, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(4, uri, imagePath));
                 System.out.println("---------------------------onLoading");
-
+                swipeRefresh.setLoadMoreStatus(ISwipe.LoadedStatus.CONTINUE);
             }
         });
     }

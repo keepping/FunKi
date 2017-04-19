@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
@@ -14,6 +16,7 @@ import com.hifunki.funki.module.live.audience.event.EventPlayContent;
 import com.hifunki.funki.module.live.audience.fragment.RoomFragment;
 import com.hifunki.funki.module.live.audience.widget.VerticalViewPager;
 import com.hifunki.funki.net.back.LiveModel;
+import com.hifunki.funki.util.keyBoard.KeyboardUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,7 +58,6 @@ public class LiveActivity extends BaseActivity {
 
     @Override
     protected void initVariable() {
-
     }
 
 
@@ -121,6 +123,7 @@ public class LiveActivity extends BaseActivity {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
+
 
 
     private void initPlay() {

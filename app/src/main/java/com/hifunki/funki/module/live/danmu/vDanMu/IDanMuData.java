@@ -14,6 +14,7 @@ public interface IDanMuData {
 
     boolean canRepeatWith(IDanMuData data);
 
+
     IDanMuItemBehave<IDanMuData> getBehave();
 
 }

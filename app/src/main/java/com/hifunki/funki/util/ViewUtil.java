@@ -97,21 +97,6 @@ public class ViewUtil {
             }
         });
 
-
-    }
-
-
-    /**
-     * 一次设置多个控件CLick监听事件
-     *
-     * @param views 参数
-     */
-    public static void setViewsOnClickListener(View.OnClickListener onClickListener, View... views) {
-        for (int i = 0; i < views.length; i++) {
-            if (views[i] != null) {
-                views[i].setOnClickListener(onClickListener);
-            }
-        }
     }
 
     /**
@@ -293,5 +278,6 @@ public class ViewUtil {
             }
         }
     }
+
 
 }

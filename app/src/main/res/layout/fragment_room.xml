@@ -172,14 +172,78 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
+                <com.hifunki.funki.widget.bessel.DivergeView2
+                    android:id="@+id/dv"
+                    android:layout_width="81dp"
+                    android:layout_height="304dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true" />
+
+                <master.flame.danmaku.ui.widget.DanmakuView
+                    android:id="@+id/dan_mu_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+
+                    android:layout_marginTop="60dp"
+                    android:layout_marginBottom="20dp" />
+
+                <com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup
+                    android:id="@+id/dan_mu_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+
+                    android:layout_marginTop="120dp"
+                    android:layout_marginBottom="10dp" />
+
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_weight="10"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rl_gift"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_above="@+id/host_chat"
+                    android:layout_marginRight="85dp"
+                    android:overScrollMode="never" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/host_chat"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="81dp"
+                    android:overScrollMode="never" />
+
+
+
+
                 <!--底部操作按钮-->
                 <RelativeLayout
                     android:id="@+id/rl_info"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
+                    android:layout_height="40dp"
+
+                    android:gravity="center_vertical"
+
+                    >
 
                     <ImageView
                         android:id="@+id/iv_room_msg"
@@ -219,51 +283,44 @@
 
                 </RelativeLayout>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/host_chat"
+                <LinearLayout
+                    android:id="@+id/live_edit"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:layout_above="@+id/rl_info"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="81dp"
-                    android:overScrollMode="never" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#f7f7f7"
+                    android:visibility="gone"
+                    >
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rl_gift"
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:layout_above="@+id/host_chat"
-                    android:layout_marginRight="85dp"
-                    android:overScrollMode="never" />
+                    <EditText
+                        android:id="@+id/live_edit_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:gravity="left|center"
+                        android:background="@null"
+                        />
 
-                <com.hifunki.funki.widget.bessel.DivergeView2
-                    android:id="@+id/dv"
-                    android:layout_width="81dp"
-                    android:layout_height="304dp"
-                    android:layout_above="@+id/rl_info"
-                    android:layout_alignParentRight="true" />
-
-                <master.flame.danmaku.ui.widget.DanmakuView
-                    android:id="@+id/dan_mu_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@+id/rl_gift"
-                    android:layout_marginTop="55dp"
-                    android:layout_marginBottom="20dp" />
-
-                <com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup
-                    android:id="@+id/dan_mu_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@+id/rl_gift"
-                    android:layout_marginTop="120dp"
-                    android:layout_marginBottom="10dp" />
+                    <View
+                        android:id="@+id/empty"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"/>
 
 
+                </LinearLayout>
 
-            </RelativeLayout>
+
+            </LinearLayout>
+
+
         </FrameLayout>
+
+
+
+
+
+
 
         <FrameLayout
             android:layout_width="match_parent"
