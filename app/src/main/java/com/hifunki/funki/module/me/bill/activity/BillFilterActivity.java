@@ -1,13 +1,17 @@
 package com.hifunki.funki.module.me.bill.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.widget.flowlayout.FlowLayout;
 import com.hifunki.funki.widget.flowlayout.TagAdapter;
 import com.hifunki.funki.widget.flowlayout.TagFlowLayout;
@@ -38,8 +42,8 @@ public class BillFilterActivity extends BaseActivity {
         return R.layout.activity_biil_filter;
     }
 
-    public static void show(Context context) {
-        context.startActivity(new Intent(context, BillFilterActivity.class));
+    public static void show(Activity mActivity, Context context) {
+        mActivity.startActivityForResult(new Intent(context, BillFilterActivity.class), BundleConst.REQUEST_BILL_TO_BILL_FILTER);
     }
 
     @Override
@@ -70,6 +74,25 @@ public class BillFilterActivity extends BaseActivity {
     }
 
     @Override
+    protected void initListener() {
+        super.initListener();
+        mFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                Log.e("BillFilterActivity", "onTagClick: " + position);
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putInt("bundle", position);
+                intent.putExtra("intent", bundle);
+                intent.setClass(BillFilterActivity.this, BillActivity.class);
+                setResult(BundleConst.REQUEST_BILL_TO_BILL_FILTER, intent);
+                finish();
+                return true;
+            }
+        });
+    }
+
+    @Override
     protected void bindData() {
 
     }
@@ -79,5 +102,16 @@ public class BillFilterActivity extends BaseActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent backIntent = new Intent(BillFilterActivity.this, BillActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("bundle", 0);
+        backIntent.putExtra("intent", bundle);
+        BillFilterActivity.this.setResult(1, backIntent);
+        BillFilterActivity.this.finish();
+        finish();
+    }
 
 }

@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/_4A2F75"
     android:orientation="vertical"
-    tools:context=".module.me.bill.activity.BillActivity">
+    tools:context="com.hifunki.funki.module.me.bill.activity.BillDetailActivity">
 
     <com.hifunki.funki.widget.bar.TopBarView
-        android:id="@+id/tbv_bill"
+        android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menuText="@string/filter"
-        app:titleText="@string/bill" />
+        app:titleText="编辑资料" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rl_bill"
+        android:id="@+id/rl_bill_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
 </LinearLayout>

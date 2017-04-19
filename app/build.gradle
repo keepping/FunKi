@@ -70,7 +70,7 @@ dependencies {
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'pub.devrel:easypermissions:0.3.0'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.8.4'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.12'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.powyin:scroll:1.7.0'
     compile 'com.github.powyin:switch:0.3.9'

@@ -1,7 +1,9 @@
 package com.hifunki.funki.module.me.bill.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,9 +13,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.me.bill.adapter.BillAdapter;
 import com.hifunki.funki.module.me.bill.entity.BillEntity;
@@ -27,8 +29,6 @@ import butterknife.BindView;
 import static com.hifunki.funki.base.application.ApplicationMain.getContext;
 
 /**
- * 个人中心账单页面
- *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
  * @value com.hifunki.funki.module.me.bill.activity.BillActivity.java
@@ -43,6 +43,9 @@ public class BillActivity extends BaseActivity {
     TopBarView topBarView;
     private BillAdapter adapter;
     private List<BillEntity> entityList;
+    private Activity mActivity;
+
+    private String TAG = "BillActivity";
 
     /**
      * 跳转界面
@@ -61,12 +64,25 @@ public class BillActivity extends BaseActivity {
 
     @Override
     protected void initVariable() {
-        Log.e("BillActivity", "initVariable: ");
+        mActivity = this;
         entityList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            BillEntity entity = new BillEntity("今天", "12:36", 121212, "直播收入");
-            entityList.add(entity);
+
         }
+        BillEntity entity = new BillEntity(BillEntity.RECHARGE, "今天", "12:36", 121212, "直播收入");
+        BillEntity entity0 = new BillEntity(BillEntity.RED_PACKET_OUT, "今天", "12:36", 121212, "直播收入");
+        BillEntity entity1 = new BillEntity(BillEntity.RED_PACKET_IN, "今天", "12:36", 121212, "直播收入");
+        BillEntity entity2 = new BillEntity(BillEntity.LIVE_COST, "今天", "12:36", 121212, "直播消费");
+        BillEntity entity3 = new BillEntity(BillEntity.ACTIVE, "今天", "12:36", 121212, "直播收入");
+        BillEntity entity4 = new BillEntity(BillEntity.LIVE_INCOME, "今天", "12:36", 121212, "直播收入");
+        BillEntity entity5 = new BillEntity(BillEntity.PAYPAL, "今天", "12:36", 121212, "直播收入");
+        entityList.add(entity);
+        entityList.add(entity0);
+        entityList.add(entity1);
+        entityList.add(entity2);
+        entityList.add(entity3);
+        entityList.add(entity4);
+        entityList.add(entity5);
     }
 
     @Override
@@ -76,36 +92,41 @@ public class BillActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        adapter = new BillAdapter(R.layout.item_bill, entityList);
+        adapter = new BillAdapter(entityList);
         rlBill.setLayoutManager(new LinearLayoutManager(this));
 
-        Log.e("BillActivity", "initView: ");
 
     }
 
     @Override
     protected void initListener() {
-        Log.e("BillActivity", "initListener: ");
         topBarView.getMenuText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BillFilterActivity.show(getContext());
+                BillFilterActivity.show(mActivity, getContext());
+
             }
         });
-        rlBill.addOnItemTouchListener(new OnItemClickListener() {
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Log.e(TAG, "onItemClick: " + position);
+                if (position == 2) {
+                    BillDetailActivity.show(getContext(), position);
+                } else if (position == 3) {
+                    BillDetailActivity.show(getContext(), position);
+                }
             }
+        });
 
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                super.onItemChildClick(adapter, view, position);
-                switch (view.getId()) {
-                    case R.id.tv_more:
-                        Log.e("BillActivity", "onItemChildClick: ");
-                        BillRankActivity.show(getContext());//跳转到直播收入详情页面
-                        break;
+                Log.e(TAG, "onItemChildClick: " + position);
+                if (position == 5) {
+                    BillRankActivity.show(getContext());//跳转到直播收入详情页面
+                } else if (position == 2) {
+//                    BillDetailActivity.show(getContext());
                 }
             }
         });
@@ -113,7 +134,6 @@ public class BillActivity extends BaseActivity {
 
     @Override
     protected void initAdapter() {
-        Log.e("BillActivity", "initAdapter: ");
         rlBill.setAdapter(adapter);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_biil_head, null);
         //加载头部图片
@@ -121,6 +141,17 @@ public class BillActivity extends BaseActivity {
         Glide.with(this).load(CommonConst.IMAGE_VIEW).into(iv);
 
         adapter.addHeaderView(view);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case BundleConst.REQUEST_BILL_TO_BILL_FILTER:
+                Bundle extras = data.getBundleExtra("intent");
+                int bundle = extras.getInt("bundle");
+                break;
+        }
     }
 
     @Override

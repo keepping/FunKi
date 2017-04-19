@@ -37,6 +37,7 @@ public class AnchorEntity implements MultiItemEntity {
         this.goldNumber = goldNumber;
     }
 
+
     public void setItemType(int itemType) {
         this.itemType = itemType;
     }
