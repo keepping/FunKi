@@ -2,6 +2,7 @@ package com.hifunki.funki.module.me.bill.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.hifunki.funki.R;
 import com.hifunki.funki.module.me.bill.entity.BillEntity;
 
 import java.util.List;
@@ -23,6 +24,6 @@ public class BillAdapter extends BaseQuickAdapter<BillEntity,BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, BillEntity item) {
-
+        helper.addOnClickListener(R.id.tv_more);
     }
 }

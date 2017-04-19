@@ -276,7 +276,6 @@ public class RoomFragment extends BaseFragment {
 
             CountDownTimer timer = new CountDownTimer(300000, 15000) {
 
-
                 @Override
                 public void onTick(long millisUntilFinished) {
                     //    System.out.println("----------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxx");

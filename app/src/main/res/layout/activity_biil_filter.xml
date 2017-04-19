@@ -4,18 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/_240C48"
     android:orientation="vertical"
-    tools:context=".module.me.bill.activity.BillActivity">
+    tools:context="com.hifunki.funki.module.me.bill.activity.BillFilterActivity">
 
     <com.hifunki.funki.widget.bar.TopBarView
-        android:id="@+id/tbv_bill"
+        android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menuText="@string/filter"
-        app:titleText="@string/bill" />
+        app:titleText="账单筛选" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rl_bill"
+    <com.hifunki.funki.widget.flowlayout.TagFlowLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/bill_tfl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:gravity="left"
+        app:max_select="-1" />
+
 </LinearLayout>

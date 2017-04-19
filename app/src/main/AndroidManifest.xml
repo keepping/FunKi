@@ -189,7 +189,9 @@
         <activity
             android:name=".module.me.MyLiveActicity"
             android:label="@string/title_activity_my_live_acticity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".module.me.bill.activity.BillFilterActivity" />
+        <activity android:name=".module.me.bill.activity.BillRankActivity"></activity>
     </application>
 
 </manifest>
