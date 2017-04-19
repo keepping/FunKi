@@ -48,56 +48,56 @@ public class HomePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        Log.e(TAG, "getCount: ");
+
         return listFragment.size();
     }
 
 
     @Override
     public void startUpdate(ViewGroup container) {
-        Log.e(TAG, "startUpdate: ");
+
         super.startUpdate(container);
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        Log.e(TAG, "instantiateItem: ");
+
         return super.instantiateItem(container, position);
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        Log.e(TAG, "destroyItem: ");
+
         super.destroyItem(container, position, object);
     }
 
     @Override
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        Log.e(TAG, "setPrimaryItem: ");
+
         super.setPrimaryItem(container, position, object);
     }
 
     @Override
     public void finishUpdate(ViewGroup container) {
-        Log.e(TAG, "finishUpdate: ");
+
         super.finishUpdate(container);
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        Log.e(TAG, "isViewFromObject: ");
+
         return super.isViewFromObject(view, object);
     }
 
     @Override
     public Parcelable saveState() {
-        Log.e(TAG, "saveState: ");
+
         return super.saveState();
     }
 
     @Override
     public void restoreState(Parcelable state, ClassLoader loader) {
-        Log.e(TAG, "restoreState: ");
+
         super.restoreState(state, loader);
     }
 }

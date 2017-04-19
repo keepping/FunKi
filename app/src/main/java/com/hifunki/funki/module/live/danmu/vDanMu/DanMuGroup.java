@@ -144,13 +144,13 @@ public class DanMuGroup extends FrameLayout implements IDanMuControl {
         post(new Runnable() {
             @Override
             public void run() {
-                System.out.println("2222222222222222222222222222222222222  7 "+danMuData);
+
                 for(int i=0;i<getChildCount() ;i ++){
                     View view = getChildAt(i);
                     ViewInfo info  = (ViewInfo) view.getTag();
                     if(info.gift==danMuData){
                         removeView(view);
-                        System.out.println("2222222222222222222222222222222222222  8 "+danMuData);
+
                         break;
                     }
                 }

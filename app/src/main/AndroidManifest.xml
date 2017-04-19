@@ -165,7 +165,8 @@
 
         <activity
             android:name=".module.live.activity.LiveActivity"
-            android:theme="@style/AppThemeFullScreen"></activity>
+            android:theme="@style/AppThemeFullScreen"
+            android:windowSoftInputMode="adjustUnspecified"/>
 
         <activity android:name=".module.splash.activity.SplashActivity" />
         <!-- 直播标签 -->

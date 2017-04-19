@@ -13,6 +13,7 @@ import com.hifunki.funki.module.home.viewholder.FollowMovie;
 import com.hifunki.funki.module.home.viewholder.FollowPic;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
+import com.powyin.scroll.widget.ISwipe;
 import com.powyin.scroll.widget.SwipeControl;
 import com.powyin.scroll.widget.SwipeRefresh;
 
@@ -116,10 +117,8 @@ public class HomeFollowFragment extends BaseFragment {
                 multipleRecycleAdapter.addLast(new Post(3, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(4, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(1, uri, imagePath));
-                if (multipleRecycleAdapter.getDataList().size() >= 5) {
-                    swipeRefresh.setSwipeModel(SwipeControl.SwipeModel.SWIPE_BOTH);
-                }
-                swipeRefresh.finishRefresh();
+
+                swipeRefresh.setFreshStatue(ISwipe.RefreshStatus.SUCCESS);
             }
 
             @Override

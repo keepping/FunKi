@@ -2,6 +2,7 @@ package com.hifunki.funki.module.live.fragment;
 
 import android.graphics.Bitmap;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,6 +13,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -35,6 +39,7 @@ import com.hifunki.funki.module.live.viewholder.Gift;
 import com.hifunki.funki.net.back.LiveModel;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
+import com.hifunki.funki.util.keyBoard.KeyboardUtil;
 import com.hifunki.funki.widget.bessel.DivergeView2;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
 
@@ -166,15 +171,25 @@ public class RoomFragment extends BaseFragment {
         divergeView3.setDivergeViewProvider(new Provider());
     }
 
-    @OnClick({R.id.host_avatar, R.id.tv_follow})
+
+
+    @OnClick({R.id.host_avatar, R.id.tv_follow,R.id.iv_room_msg})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.host_avatar:
-                if (mIndex == 5) {
-                    mIndex = 0;
-                }
-                divergeView3.startDiverges(mIndex);
-                mIndex++;
+//                if (mIndex == 5) {
+//                    mIndex = 0;
+//                }
+//                divergeView3.startDiverges(mIndex);
+//                mIndex++;
+
+                View view1 =  getActivity().getWindow().getDecorView().findViewById(android.R.id.content);
+
+                Rect rect = new Rect();
+
+
+                System.out.println("---------------------size "+mRoot.getHeight() + "   ");
+
                 break;
             case R.id.tv_follow:
                 //创建PopWindow
@@ -185,6 +200,13 @@ public class RoomFragment extends BaseFragment {
                 }
                 sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
                 sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
+                break;
+            case R.id.iv_room_msg:
+                KeyboardUtil.showKeyboard(editContent);
+
+
+
+                break;
         }
     }
 
@@ -196,6 +218,7 @@ public class RoomFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         danMuKuHelper = new DanMuKuHelper(getContext(),mDanmakuView);
         danMuKuHelper.onViewCreated(view,savedInstanceState);
+
     }
 
 
@@ -206,12 +229,66 @@ public class RoomFragment extends BaseFragment {
         danMuKuHelper.onDestroyView();
     }
 
+    @BindView(R.id.live_edit_content)
+    EditText editContent;
+
+    @BindView(R.id.live_edit)
+    View editGroup;
+
+    @BindView(R.id.rl_info)
+    View editSwitch;
+    @BindView(R.id.empty)
+    View empty;
+
+    ViewTreeObserver.OnGlobalLayoutListener layoutListener;
     @Override
     public void onResume() {
         super.onResume();
         danMuKuHelper.onResume();
         reResume = true;
         startPlay();
+        layoutListener =  KeyboardUtil.attach(getActivity(), new KeyboardUtil.IPanelHeightTarget() {
+
+            @Override
+            public void refreshHeight(int panelHeight) {
+
+                System.out.println("-------------------------------------------------------------------------------------::"+panelHeight);
+
+                ViewGroup.LayoutParams layoutParams = empty.getLayoutParams();
+                if(layoutParams.height!=panelHeight){
+                    layoutParams.height = panelHeight;
+                    empty.setLayoutParams(layoutParams);
+                }
+
+            }
+
+            @Override
+            public int getHeight() {
+                ViewGroup.LayoutParams layoutParams = empty.getLayoutParams();
+                return layoutParams.height;
+            }
+
+            @Override
+            public void onKeyboardShowing(boolean showing) {
+                if (!reResume || !isVisual) return;
+
+
+                if(showing){
+                    editSwitch.setVisibility(View.GONE);
+                    editGroup.setVisibility(View.VISIBLE);
+                    danMuGroup.setVisibility(View.GONE);
+                    mDanmakuView.setVisibility(View.GONE);
+                    rlGift.setVisibility(View.GONE);
+                }else {
+                    editSwitch.setVisibility(View.VISIBLE);
+                    editGroup.setVisibility(View.GONE);
+                    danMuGroup.setVisibility(View.VISIBLE);
+                    mDanmakuView.setVisibility(View.VISIBLE);
+                    rlGift.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
 
     }
 
@@ -220,11 +297,7 @@ public class RoomFragment extends BaseFragment {
     private void startPlay() {
         if (reResume && isVisual) {
             EventBus.getDefault().post(new EventPlayContent());
-
-            CountDownTimer timer = new CountDownTimer(300000, 15000) {
-
-
-
+            CountDownTimer timer = new CountDownTimer(20000, 4000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     //    System.out.println("----------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -236,17 +309,17 @@ public class RoomFragment extends BaseFragment {
                     danMuKuHelper.addDanMu(new DanMuData());
                     danMuKuHelper.addDanMu(new DanMuData());
                     danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
                     danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
-                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
+//                    danMuKuHelper.addDanMu(new DanMuData());
                     danMuKuHelper.addDanMu(new DanMuData());
                     danMuKuHelper.addDanMu(new DanMuData());
                     danMuKuHelper.addDanMu(new DanMuData());
@@ -273,6 +346,9 @@ public class RoomFragment extends BaseFragment {
         danMuKuHelper.onPause();
         reResume = false;
 
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
+
+        KeyboardUtil.detach(getActivity(),layoutListener);
     }
 
     @Override
