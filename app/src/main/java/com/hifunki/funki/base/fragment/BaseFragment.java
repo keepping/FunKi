@@ -65,6 +65,8 @@ public abstract class BaseFragment extends Fragment {
         Log.e("BaseFragment", "BaseFragment=onActivityCreated: ");
         initVariable();
         initView(mRoot);
+        initListener();
+        initAdapter();
         requestData();//请求数据
     }
 
@@ -73,6 +75,14 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void initView(View root) {
+
+    }
+
+    protected  void initListener() {
+
+    }
+
+    protected  void initAdapter() {
 
     }
 

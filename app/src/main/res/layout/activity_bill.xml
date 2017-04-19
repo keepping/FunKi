@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".module.me.bill.activity.BillActivity">
 
-    <com.hifunki.funki.widget.TopBarView
+    <com.hifunki.funki.widget.bar.TopBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menuText="@string/filter"

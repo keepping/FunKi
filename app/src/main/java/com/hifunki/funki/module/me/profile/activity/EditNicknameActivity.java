@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.widget.TopBarView;
+import com.hifunki.funki.widget.bar.TopBarView;
 
 import butterknife.BindView;
 

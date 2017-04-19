@@ -20,7 +20,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.hifunki.funki.module.live.widget.BlockView
+                <com.hifunki.funki.module.live.audience.widget.BlockView
                     android:id="@+id/block_1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -31,7 +31,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="10" />
 
-                <com.hifunki.funki.module.live.widget.BlockView
+                <com.hifunki.funki.module.live.audience.widget.BlockView
                     android:id="@+id/block_2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -348,7 +348,8 @@
                     android:layout_above="@+id/rl_info"
                     android:layout_alignParentRight="true" />
 
-                <com.hifunki.funki.module.live.danmu.DanMuGroup
+
+                <com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup
                     android:id="@+id/dan_mu_group"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

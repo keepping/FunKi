@@ -6,7 +6,7 @@ import android.text.TextUtils;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.pick.TextPicker;
+import com.hifunki.funki.widget.pick.TextPicker;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

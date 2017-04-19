@@ -1,132 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.module.dynamic.activity.ShotActivity">
+    tools:context=".module.dynamic.post.activity.ShotActivity">
 
-    <com.hifunki.funki.widget.TopBarView
-        android:id="@+id/tbv_live_tag"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menuImage="@drawable/iv_dynamic_beauty"
-        app:menuImageMore="@drawable/iv_dynamic_camera"
-        app:titleText="随手拍" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <SurfaceView
-        android:id="@+id/sv_dynamic"
-        android:layout_width="match_parent"
-        android:layout_height="360dp" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--照片布局-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/_230C47">
+            android:layout_height="480dp">
 
-            <ImageView
-                android:id="@+id/iv_dynamic_mirror"
-                android:layout_width="wrap_content"
+            <SurfaceView
+                android:id="@+id/sv_dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="480dp" />
+
+            <com.hifunki.funki.widget.bar.TopBarView4Shot
+                android:id="@+id/tbv_live_tag"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="19dp"
-                android:layout_marginTop="19dp"
-                android:src="@drawable/iv_dynamic_mirror" />
-
-            <ImageView
-                android:id="@+id/iv_dynamic_beauty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="19dp"
-                android:layout_toRightOf="@+id/iv_dynamic_mirror"
-                android:src="@drawable/iv_dynamic_beauty" />
-
-            <LinearLayout
-                android:id="@+id/ll_dynamic_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="19dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_shot_photo_dot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/iv_shot_dot" />
-
-                <TextView
-                    android:id="@+id/tv_shot_photo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/photograph"
-                    android:textColor="@color/_9B44ED"
-                    android:textSize="17sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_shot_video"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="19dp"
-                android:layout_toRightOf="@+id/ll_dynamic_image"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_shot_video_dot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/iv_shot_dot"
-                    android:visibility="invisible" />
-
-                <TextView
-                    android:id="@+id/tv_shot_video"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/video"
-                    android:textColor="@color/_4A2F75"
-                    android:textSize="17sp" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/iv_shot_take_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="38dp"
-                android:src="@drawable/iv_dynamic_shot" />
-
-            <ImageView
-                android:id="@+id/iv_shot_photo"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="55dp"
-                android:layout_marginRight="29dp" />
-
-        </RelativeLayout>
-        <!--视频布局-->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                app:menuImage="@drawable/iv_dynamic_beauty"
+                app:menuImageMore="@drawable/iv_dynamic_camera"
+                app:titleText="随手拍" />
 
             <ProgressBar
                 android:id="@+id/pb_shot"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
+                android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
                 android:progress="30"
                 android:progressDrawable="@drawable/progress_bay_recode_movie"
@@ -136,6 +44,7 @@
                 android:id="@+id/tv_shot_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/pb_shot"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
@@ -143,25 +52,8 @@
                 android:textColor="@color/_9B44ED"
                 android:textSize="13dp"
                 android:visibility="invisible" />
-
-            <ImageView
-                android:id="@+id/iv_shot_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="47dp"
-                android:layout_marginLeft="19dp"
-                android:src="@drawable/iv_dynamic_back" />
-
-            <ImageView
-                android:id="@+id/iv_shot_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="47dp"
-                android:layout_marginRight="19dp"
-                android:src="@drawable/iv_dynamic_ok" />
         </RelativeLayout>
-    </FrameLayout>
-</LinearLayout>
+
+        <include layout="@layout/layout_shot_bottom"/>
+    </LinearLayout>
+</RelativeLayout>

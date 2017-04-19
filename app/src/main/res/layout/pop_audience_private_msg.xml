@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_private_msg"
+    android:layout_width="match_parent"
+    android:layout_height="196dp"
+    android:background="@color/_28114D"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_private_msg_choose"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <TextView
+            android:id="@+id/tv_private_msg_not_read"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:text="忽略未读"
+            android:textColor="@color/_BBABD4"
+            android:textSize="13sp" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tb_private_msg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/tv_private_msg_not_read" />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_private_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_private_msg_choose" />
+
+</RelativeLayout>

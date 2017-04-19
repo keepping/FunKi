@@ -20,7 +20,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.hifunki.funki.module.live.widget.BlockView
+                <com.hifunki.funki.module.live.audience.widget.BlockView
                     android:id="@+id/block_1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -31,7 +31,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="10" />
 
-                <com.hifunki.funki.module.live.widget.BlockView
+                <com.hifunki.funki.module.live.audience.widget.BlockView
                     android:id="@+id/block_2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -80,7 +80,6 @@
                                 android:textColor="#ffffff"
                                 android:textSize="14sp" />
 
-
                             <TextView
                                 android:id="@+id/fan_num"
                                 android:layout_width="wrap_content"
@@ -88,7 +87,6 @@
                                 android:text="1989"
                                 android:textColor="#ffffff"
                                 android:textSize="14sp" />
-
 
                         </LinearLayout>
 
@@ -256,6 +254,7 @@
                         android:src="@drawable/iv_room_msg" />
 
                     <ImageView
+                        android:id="@+id/iv_room_private_msg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".module.me.MeFragment">
 
-
     <com.hifunki.funki.widget.MeScrollView
         android:id="@+id/nest"
         android:layout_width="match_parent"
@@ -26,13 +25,13 @@
                 android:id="@+id/rv_me"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_below="@+id/layout_mid_head"/>
+                android:layout_below="@+id/layout_mid_head" />
+
             <View
-                android:layout_below="@+id/rv_me"
-                android:background="@color/_230C47"
                 android:layout_width="match_parent"
                 android:layout_height="18dp"
-                />
+                android:layout_below="@+id/rv_me"
+                android:background="@color/_230C47" />
         </RelativeLayout>
     </com.hifunki.funki.widget.MeScrollView>
 

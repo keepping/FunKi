@@ -56,6 +56,12 @@ dependencies {
     //    需要去除的依赖
 
 
+    compile files('lib/adapter-rxjava2-2.2.0.jar')
+    //网络read time out can not connect
+
+    //    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+
+    compile project(':yasea')
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support:support-v4:25.3.0'
     compile 'com.android.support:design:25.3.0'
@@ -66,7 +72,7 @@ dependencies {
     compile 'pub.devrel:easypermissions:0.3.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.8.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.github.powyin:scroll:1.5.9'
+    compile 'com.github.powyin:scroll:1.7.0'
     compile 'com.github.powyin:switch:0.3.9'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.greenrobot:eventbus:3.0.0'
@@ -79,15 +85,9 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-    compile files('lib/adapter-rxjava2-2.2.0.jar')
-    //网络read time out can not connect
-
-    //    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
-
     compile 'com.github.ctiao:DanmakuFlameMaster:0.7.4'
     compile 'com.github.ctiao:ndkbitmap-armv7a:0.7.4'
-    testCompile 'junit:junit:4.12'
     compile 'com.jakewharton:butterknife:8.5.1'
+    testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile project(':yasea')
 }

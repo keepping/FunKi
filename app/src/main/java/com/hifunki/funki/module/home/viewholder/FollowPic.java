@@ -38,7 +38,7 @@ public class FollowPic extends PowViewHolder<Post>{
 
     @Override
     protected int getItemViewRes() {
-        return R.layout.viewholder_post_picture;
+        return R.layout.viewholder_follow_picture;
     }
 
     @Override

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.hifunki.funki.module.rank.me.activity.MeRankActivity">
 
-    <com.hifunki.funki.widget.TopBarView
+    <com.hifunki.funki.widget.bar.TopBarView
         android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

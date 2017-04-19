@@ -158,15 +158,12 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         vpHome = (ViewPager) root.findViewById(R.id.vp_home);
 
         adapter = new HomePagerAdapter(getChildFragmentManager(), listFragment);//the fragment manager belong to dynamic fragmentmanger
-        Log.e(TAG, "homefragment--initView: ");
 
-        initListener();
     }
 
-    /**
-     * 设置控件监听
-     */
-    private void initListener() {
+    @Override
+    protected void initListener() {
+        super.initListener();
         rgHomeTitle.setOnCheckedChangeListener(this);
         vpHome.addOnPageChangeListener(this);
 
@@ -174,6 +171,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         vpHome.setAdapter(adapter);
         vpHome.setCurrentItem(1);
     }
+
 
     @Override
     protected void bindData() {

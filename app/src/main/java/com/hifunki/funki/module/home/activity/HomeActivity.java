@@ -22,7 +22,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
 import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.live.anchor.activity.AnchorActivity;
-import com.hifunki.funki.module.dynamic.activity.PostDynamicActivity;
+import com.hifunki.funki.module.dynamic.post.activity.PostDynamicActivity;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;

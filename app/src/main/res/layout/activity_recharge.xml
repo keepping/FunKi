@@ -7,7 +7,7 @@
     android:background="@color/_230C47"
     tools:context=".module.me.recharge.activity.RechargeActivity">
 
-    <com.hifunki.funki.widget.TopBarView
+    <com.hifunki.funki.widget.bar.TopBarView
         android:id="@+id/tbv_recharge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

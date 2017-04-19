@@ -1,0 +1,14 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hifunki.funki.module.photo.personal.fragment.PersonalPhotoFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/_230C47"
+        android:id="@+id/rl_person_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout>

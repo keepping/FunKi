@@ -6,7 +6,6 @@
     android:paddingTop="20dp"
     android:background="@drawable/iv_login_all_bg">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -25,7 +24,6 @@
             android:paddingRight="15dp"
             android:paddingTop="15dp"
             android:src="@drawable/iv_back_big" />
-
 
         <TextView
             android:id="@+id/tv_title"
@@ -62,7 +60,6 @@
                 android:text="haha"
                 android:textSize="15sp"
                 android:textColor="@color/_9B44ED"/>
-
 
             <ImageView
                 android:id="@+id/iv_menu"
@@ -104,12 +101,6 @@
                 android:paddingRight="15dp"
                 android:paddingTop="15dp"
                 android:src="@drawable/ic_nav_me_actived" />
-
-
         </LinearLayout>
-
-
     </RelativeLayout>
-
-
 </LinearLayout>

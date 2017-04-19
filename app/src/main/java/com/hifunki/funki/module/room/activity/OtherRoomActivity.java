@@ -18,7 +18,7 @@ import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.room.adpater.RoomAdapter;
 import com.hifunki.funki.module.room.fragment.RoomDymicFragment;
 import com.hifunki.funki.module.room.fragment.RoomLiveFragment;
-import com.hifunki.funki.widget.TopBarView;
+import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
 import java.util.List;

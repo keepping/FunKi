@@ -13,7 +13,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.rank.me.adapter.RankAdapter;
 import com.hifunki.funki.module.rank.me.fragment.RankPresentFragment;
-import com.hifunki.funki.widget.TopBarView;
+import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
 import java.util.List;

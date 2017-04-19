@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hifunki.funki">
 
-    <!--<uses-sdk-->
-    <!--android:minSdkVersion="9"-->
-    <!--android:targetSdkVersion="21" />-->
+    <!-- <uses-sdk -->
+    <!-- android:minSdkVersion="9" -->
+    <!-- android:targetSdkVersion="21" /> -->
+
 
     <!-- 网络请求 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -31,7 +32,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--改变屏幕权限-->
+    <!-- 改变屏幕权限 -->
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -62,6 +63,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -160,13 +162,13 @@
         <!-- 他人空间 -->
         <activity android:name=".module.room.activity.OtherRoomActivity" />
         <!-- 发动态界面 -->
-        <activity android:name=".module.dynamic.activity.PostDynamicActivity" />
+        <activity android:name=".module.dynamic.post.activity.PostDynamicActivity" />
         <!-- 观众端界面 -->
 
         <activity
-            android:name=".module.live.activity.LiveActivity"
-            android:theme="@style/AppThemeFullScreen"
-            android:windowSoftInputMode="adjustUnspecified"/>
+            android:name=".module.live.audience.activity.LiveActivity"
+            android:windowSoftInputMode="adjustUnspecified"
+            android:theme="@style/AppThemeFullScreen" />
 
         <activity android:name=".module.splash.activity.SplashActivity" />
         <!-- 直播标签 -->
@@ -178,11 +180,17 @@
         <activity android:name=".module.me.exchange.activity.ExchangeActivity" />
         <!-- 提现界面 -->
         <activity android:name=".module.me.withdraw.activity.WithdrawActivity" />
-        <!-- 我的动态界面 -->
-        <activity android:name=".module.me.dynamic.activity.MyDynamicActivity" />
+
         <!-- 兑换记录 -->
         <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
-        <activity android:name=".module.dynamic.activity.ShotActivity"></activity>
+        <activity android:name=".module.dynamic.post.activity.ShotActivity" />
+        <activity android:name=".module.photo.personal.activity.PersonalGalleryActivity" />
+        <activity android:name=".module.dynamic.me.activity.MyDynamicActivity" />
+        <activity android:name=".module.dynamic.normal.activity.NormalDynamicActivity" />
+        <activity
+            android:name=".module.me.MyLiveActicity"
+            android:label="@string/title_activity_my_live_acticity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

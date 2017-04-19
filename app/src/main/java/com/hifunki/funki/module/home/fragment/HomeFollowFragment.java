@@ -11,6 +11,7 @@ import com.hifunki.funki.module.home.viewholder.FollowLiveNormal;
 import com.hifunki.funki.module.home.viewholder.FollowLiveTicket;
 import com.hifunki.funki.module.home.viewholder.FollowMovie;
 import com.hifunki.funki.module.home.viewholder.FollowPic;
+import com.hifunki.funki.module.home.viewholder.FollowRecommend;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
 import com.powyin.scroll.widget.ISwipe;
@@ -33,9 +34,6 @@ import butterknife.BindView;
  * @since 2017-03-13 16:46:46
  */
 public class HomeFollowFragment extends BaseFragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     private String[][] images = new String[][]{{"http://t2.27270.com/uploads/tu/201510/249/8.jpg", "640", "960"}
             , {"http://t2.27270.com/uploads/tu/201606/76/32.jpg", "640", "640"}
             , {"http://t2.27270.com/uploads/tu/201510/249/9.jpg", "640", "640"}
@@ -49,16 +47,6 @@ public class HomeFollowFragment extends BaseFragment {
             , {"http://img4.imgtn.bdimg.com/it/u=2495945657,2561148855&fm=21&gp=0.jpg", "640", "640"}
             , {"http://t2.27270.com/uploads/tu/201510/249/7.jpg", "800", "650"}};
 
-    private String mParam1;
-    private String mParam2;
-
-    @BindView(R.id.swipe_refresh)
-    SwipeRefresh swipeRefresh;
-    @BindView(R.id.recycle)
-    RecyclerView recyclerView;
-
-    MultipleRecycleAdapter<Post> multipleRecycleAdapter;
-
     List<String> uri = Arrays.asList("http://t2.27270.com/uploads/tu/201606/112/17.jpg",
             "http://t2.27270.com/uploads/tu/201510/249/3.jpg",
             "http://t2.27270.com/uploads/tu/201606/62/28.jpg",
@@ -66,8 +54,16 @@ public class HomeFollowFragment extends BaseFragment {
             "http://t2.27270.com/uploads/tu/201606/73/slt.jpg",
             "http://img2.imgtn.bdimg.com/it/u=3347259689,1828160575&fm=21&gp=0.jpg",
             "http://img1.imgtn.bdimg.com/it/u=3607821315,1190508392&fm=21&gp=0.jpg");
-
+    @BindView(R.id.swipe_refresh)
+    SwipeRefresh swipeRefresh;
+    @BindView(R.id.recycle)
+    RecyclerView recyclerView;
     private String imagePath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489567544808&di=7490422c9d0de0ba7db28352a7c138f3&imgtype=0&src=http%3A%2F%2Fsc.jb51.net%2Fuploads%2Fallimg%2F140628%2F10-14062PAGB04.jpg";
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+    private String mParam1;
+    private String mParam2;
+    MultipleRecycleAdapter<Post> multipleRecycleAdapter;
 
     public static HomeFollowFragment newInstance(String param1, String param2) {
         HomeFollowFragment fragment = new HomeFollowFragment();
@@ -97,11 +93,11 @@ public class HomeFollowFragment extends BaseFragment {
     protected void initView(View root) {
         super.initView(root);
 
-        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), FollowLiveNormal.class, FollowLiveTicket.class, FollowMovie.class, FollowPic.class);
+        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), FollowLiveNormal.class, FollowLiveTicket.class, FollowMovie.class, FollowPic.class, FollowRecommend.class);
         recyclerView.setAdapter(multipleRecycleAdapter);
 
-        for (int i = 0; i < 3; i++) {
-            multipleRecycleAdapter.addLast(new Post(i % 3 + 1, uri, imagePath));
+        for (int i = 0; i < 6; i++) {
+            multipleRecycleAdapter.addLast(new Post(i % 5 + 1, uri, imagePath));
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -118,21 +114,20 @@ public class HomeFollowFragment extends BaseFragment {
                 multipleRecycleAdapter.addLast(new Post(4, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(1, uri, imagePath));
 
-                swipeRefresh.setFreshStatue(ISwipe.RefreshStatus.SUCCESS);
+                swipeRefresh.setFreshStatue(ISwipe.FreshStatus.SUCCESS);
             }
 
             @Override
-            public void onLoading() {
+            public void onLoading(boolean isLoadViewShow) {
                 multipleRecycleAdapter.addLast(new Post(3, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(2, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(1, uri, imagePath));
                 multipleRecycleAdapter.addLast(new Post(4, uri, imagePath));
                 System.out.println("---------------------------onLoading");
+                swipeRefresh.setLoadMoreStatus(ISwipe.LoadedStatus.CONTINUE);
 
             }
         });
-
-
     }
 
     @Override
@@ -144,4 +139,5 @@ public class HomeFollowFragment extends BaseFragment {
     protected void bindData4NoNet() {
 
     }
+
 }

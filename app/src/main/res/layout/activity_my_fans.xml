@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".module.me.fans.activity.MyFansActivity">
 
-    <com.hifunki.funki.widget.TopBarView
+    <com.hifunki.funki.widget.bar.TopBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="@string/fans_mine" />
