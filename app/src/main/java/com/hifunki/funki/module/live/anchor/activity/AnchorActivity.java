@@ -173,6 +173,14 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
                 sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 break;
             case R.id.rl_ticket_live:
+                //创建PopWindow
+                if (sharePopWindow == null) {
+                    sharePopWindow = PopWindowUtil.getInstance(getApplicationContext());
+                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_ticket, null);
+//                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+                }
+                sharePopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 break;
             case R.id.rl_level_live:
                 break;
