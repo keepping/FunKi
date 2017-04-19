@@ -103,8 +103,10 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     TextView tvCountTime;
     @BindView(R.id.fl_anchor)
     FrameLayout flAnchor;
-    private PopWindowUtil sharePopWindow;//分享popWindow
-    private View shareView;
+    private PopWindowUtil invitePopWindow;//分享popWindow
+    private View inviteView;
+    private PopWindowUtil ticketPopWindow;//分享popWindow
+    private View ticketView;
     private SrsPublisher mPublisher;
     private String rtmpUrl = "rtmp://192.168.100.111/live/livestream";
     private String recPath = Environment.getExternalStorageDirectory().getPath() + "/test.mp4";
@@ -163,26 +165,43 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
 
                 break;
             case R.id.rl_invite_live:
+                if (ticketPopWindow != null) {
+                    ticketPopWindow.hidePopWindow();
+                }
                 //创建PopWindow
-                if (sharePopWindow == null) {
-                    sharePopWindow = PopWindowUtil.getInstance(getApplicationContext());
-                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_invite_friend, null);
+                if (invitePopWindow == null) {
+                    invitePopWindow = PopWindowUtil.getInstance(getApplicationContext());
+                    inviteView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_invite_friend, null);
 //                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
-                sharePopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
+                invitePopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                invitePopWindow.showPopWindow(inviteView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 break;
             case R.id.rl_ticket_live:
+                if (invitePopWindow != null) {
+                    invitePopWindow.hidePopWindow();
+                }
                 //创建PopWindow
-                if (sharePopWindow == null) {
-                    sharePopWindow = PopWindowUtil.getInstance(getApplicationContext());
-                    shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_ticket, null);
+                if (ticketPopWindow == null) {
+                    ticketPopWindow = PopWindowUtil.getInstance(getApplicationContext());
+                    ticketView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_ticket, null);
 //                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
-                sharePopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
+                ticketPopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                ticketPopWindow.showPopWindow(ticketView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 break;
             case R.id.rl_level_live:
+                if (invitePopWindow != null) {
+                    invitePopWindow.hidePopWindow();
+                }
+                //创建PopWindow
+                if (ticketPopWindow == null) {
+                    ticketPopWindow = PopWindowUtil.getInstance(getApplicationContext());
+                    ticketView = LayoutInflater.from(getContext()).inflate(R.layout.pop_live_level, null);
+//                    sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
+                }
+                ticketPopWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                ticketPopWindow.showPopWindow(ticketView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 break;
             case R.id.ll_start_live_main:
                 break;
