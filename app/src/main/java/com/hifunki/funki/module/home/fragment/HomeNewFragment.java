@@ -15,7 +15,7 @@ import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.adapter.HomeNewAdapter;
 import com.hifunki.funki.module.home.entity.HomeNewEntity;
 import com.hifunki.funki.module.home.net.service.HomeService;
-import com.hifunki.funki.module.live.audience.activity.LiveActivity;
+import com.hifunki.funki.module.live.audience.activity.AudienceActivity;
 import com.hifunki.funki.net.RetrofitUtil;
 import com.hifunki.funki.net.http.Callback;
 
@@ -117,7 +117,7 @@ public class HomeNewFragment extends BaseFragment {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 super.onItemChildClick(adapter, view, position);
-                LiveActivity.show(getContext());
+                AudienceActivity.show(getContext());
             }
         });
 

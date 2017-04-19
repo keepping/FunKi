@@ -24,7 +24,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -53,7 +52,6 @@ import com.powyin.scroll.adapter.MultipleRecycleAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.security.Provider;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,11 +64,11 @@ import master.flame.danmaku.ui.widget.DanmakuView;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.audience.fragment.RoomFragment.java
+ * @value com.hifunki.funki.module.live.audience.fragment.AudienceFragment.java
  * @link
  * @since 2017-03-25 13:37:37
  */
-public class RoomFragment extends BaseFragment {
+public class AudienceFragment extends BaseFragment {
 
     @BindView(R.id.host_avatar)
     ImageView hostAvatar;
@@ -123,9 +121,9 @@ public class RoomFragment extends BaseFragment {
     private View privateMsgView;
     DanMuKuHelper danMuKuHelper;
 
-    public static RoomFragment newInstance(LiveModel model) {
+    public static AudienceFragment newInstance(LiveModel model) {
         Bundle args = new Bundle();
-        RoomFragment fragment = new RoomFragment();
+        AudienceFragment fragment = new AudienceFragment();
         if (model != null) {
             args.putString(LiveModel.class.getName(), new Gson().toJson(model));
         }

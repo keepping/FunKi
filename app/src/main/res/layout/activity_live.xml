@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.live.audience.activity.LiveActivity">
+    tools:context=".module.live.audience.activity.AudienceActivity">
 
     <SurfaceView
         android:id="@+id/live"

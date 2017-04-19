@@ -166,7 +166,7 @@
         <!-- 观众端界面 -->
 
         <activity
-            android:name=".module.live.audience.activity.LiveActivity"
+            android:name=".module.live.audience.activity.AudienceActivity"
             android:windowSoftInputMode="adjustUnspecified"
             android:theme="@style/AppThemeFullScreen" />
 

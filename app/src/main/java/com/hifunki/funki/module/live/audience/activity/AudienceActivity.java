@@ -4,19 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.adapter.AutoSizeAdapter;
 import com.hifunki.funki.module.live.audience.event.EventPlayContent;
-import com.hifunki.funki.module.live.audience.fragment.RoomFragment;
+import com.hifunki.funki.module.live.audience.fragment.AudienceFragment;
 import com.hifunki.funki.module.live.audience.widget.VerticalViewPager;
 import com.hifunki.funki.net.back.LiveModel;
-import com.hifunki.funki.util.keyBoard.KeyboardUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -34,11 +31,11 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.live.audience.activity.LiveActivity.java
+ * @value com.hifunki.funki.module.live.audience.activity.AudienceActivity.java
  * @link
  * @since 2017-03-25 13:37:37
  */
-public class LiveActivity extends BaseActivity {
+public class AudienceActivity extends BaseActivity {
 
     @BindView(R.id.live)
     SurfaceView live;
@@ -47,7 +44,7 @@ public class LiveActivity extends BaseActivity {
     AutoSizeAdapter<LiveModel> mPagerAdapter;
 
     public static void show(Context context) {
-        context.startActivity(new Intent(context, LiveActivity.class));
+        context.startActivity(new Intent(context, AudienceActivity.class));
     }
 
 
@@ -68,7 +65,7 @@ public class LiveActivity extends BaseActivity {
         mPagerAdapter = new AutoSizeAdapter<LiveModel>(this) {
             @Override
             public Fragment getItem(LiveModel data) {
-                return RoomFragment.newInstance(data);
+                return AudienceFragment.newInstance(data);
             }
         };
         List<LiveModel> models = new ArrayList<>();

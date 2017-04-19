@@ -21,7 +21,7 @@ import com.hifunki.funki.module.home.entity.HomeHotEntity;
 import com.hifunki.funki.module.home.widget.banner.Banner;
 import com.hifunki.funki.module.home.widget.banner.GlideBannerImageLoader;
 import com.hifunki.funki.module.home.widget.banner.OnBannerListener;
-import com.hifunki.funki.module.live.audience.activity.LiveActivity;
+import com.hifunki.funki.module.live.audience.activity.AudienceActivity;
 import com.hifunki.funki.module.room.activity.OtherRoomActivity;
 import com.hifunki.funki.util.DisplayUtil;
 
@@ -154,7 +154,7 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
                         OtherRoomActivity.show(getContext());
                         break;
                     case R.id.iv_imagepath://跳转到直播间界面
-                        LiveActivity.show(getContext());
+                        AudienceActivity.show(getContext());
                         break;
                 }
             }
