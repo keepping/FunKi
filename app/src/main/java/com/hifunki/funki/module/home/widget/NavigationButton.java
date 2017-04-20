@@ -5,7 +5,6 @@ import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -25,7 +24,6 @@ import com.hifunki.funki.R;
  * @since 2017-03-07 13:41:41
  */
 public class NavigationButton extends FrameLayout {
-    private Fragment mFragment = null;
     private ImageView mIconView;
     private TextView mTitleView;
     private TextView mDot;
@@ -78,13 +76,6 @@ public class NavigationButton extends FrameLayout {
         this.mTag = mTag;
     }
 
-    public Fragment getFragment() {
-        return mFragment;
-    }
-
-    public void setFragment(Fragment fragment) {
-        this.mFragment = fragment;
-    }
 
     public String getTag() {
         return mTag;

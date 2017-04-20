@@ -7,9 +7,8 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.SystemClock;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -21,16 +20,14 @@ import android.widget.Toast;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
 import com.hifunki.funki.common.FragmentConst;
-import com.hifunki.funki.module.live.anchor.activity.AnchorActivity;
 import com.hifunki.funki.module.dynamic.post.activity.PostDynamicActivity;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;
 import com.hifunki.funki.module.home.fragment.MsgFragment;
-import com.hifunki.funki.module.home.fragment.NavFragment;
 import com.hifunki.funki.module.home.fragment.StoreFragment;
-import com.hifunki.funki.module.home.inter.OnTabReselectListener;
 import com.hifunki.funki.module.home.widget.NavigationButton;
+import com.hifunki.funki.module.live.anchor.activity.AnchorActivity;
 import com.hifunki.funki.module.me.MeFragment;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -48,8 +45,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-07 11:49:49
  */
-public class HomeActivity extends BaseCoordinatorActivity implements NavFragment.OnNavigationReselectListener,
-        HomeFragment.OnFragmentInteractionListener, NavFragment.OnFragmentInteractionListener,
+public class HomeActivity extends BaseCoordinatorActivity implements HomeFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
         MeFragment.OnFragmentInteractionListener, HomeHotFragment.OnFragmentInteractionListener,
         HomeNewFragment.OnFragmentInteractionListener, View.OnClickListener {
@@ -60,25 +56,30 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
     LinearLayout activityMainUi;
     @BindView(R.id.nav_item)
     ImageView ivNavItem;
+    @BindView(R.id.nav_item_home)
+    NavigationButton navHome;
+    @BindView(R.id.nav_item_msg)
+    NavigationButton navMsg;
+    @BindView(R.id.nav_item_store)
+    NavigationButton navStore;
+    @BindView(R.id.nav_item_me)
+    NavigationButton navMe;
 
-    private NavFragment mNavBar;
     private PopWindowUtil pwdPopWindow;
     private View pwdView;
 
     private long mBackPressedTime;
-    public static String TAG="HomeActivity";
-
+    public static String TAG = "HomeActivity";
+    private HomeFragment homeFragment;
+    private MsgFragment msgFragment;
+    private StoreFragment storeFragment;
+    private MeFragment meFragment;
+    private FragmentManager fragmentManager;
 
     public static void show(Context context, Activity activity) {
         context.startActivity(new Intent(context, HomeActivity.class));
         activity.finish();
     }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
 
     public interface TurnBackListener {
         boolean onTurnBack();
@@ -94,22 +95,44 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
 
     }
 
-
     @Override
     protected void initTitleBar() {
 
     }
 
+
     @Override
     protected void initView() {
-        FragmentManager manager = getSupportFragmentManager();
-        mNavBar = ((NavFragment) manager.findFragmentById(R.id.fag_nav));
+        navHome.init(R.drawable.tab_icon_home,
+                R.string.app_name,
+                FragmentConst.HomeFragment);
 
-        if (mNavBar != null) {
-            mNavBar.setup(this, manager, R.id.main_container, this, FragmentConst.NavFragment);
-        } else {
-            Log.e("test", "initView: " + "null");
-        }
+        navMsg.init(R.drawable.tab_icon_msg,
+                R.string.app_name,
+                FragmentConst.MsgFragment);
+
+        navStore.init(R.drawable.tab_icon_store,
+                R.string.app_name,
+                FragmentConst.StoreFragment);
+
+        navMe.init(R.drawable.tab_icon_me,
+                R.string.app_name,
+                FragmentConst.MeFragment);
+
+        fragmentManager = getSupportFragmentManager();
+        homeFragment = HomeFragment.newInstance("a", "a");
+        msgFragment = MsgFragment.newInstance("a", "a");
+        storeFragment = StoreFragment.newInstance("a", "a");
+        meFragment = MeFragment.newInstance("a", "a");
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.main_container, homeFragment);
+        transaction.add(R.id.main_container, msgFragment);
+        transaction.add(R.id.main_container, storeFragment);
+        transaction.add(R.id.main_container, meFragment);
+        transaction.commit();
+
+        navHome.performClick();
     }
 
     @Override
@@ -139,12 +162,44 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
     }
 
 
-    @OnClick({R.id.main_container, R.id.fag_nav, R.id.activity_main_ui, R.id.nav_item})
+    @OnClick({R.id.nav_item_home, R.id.nav_item_msg, R.id.nav_item_store, R.id.nav_item_me, R.id.main_container, R.id.activity_main_ui, R.id.nav_item})
     public void onClick(View view) {
+        FragmentTransaction transaction1;
+        transaction1 = fragmentManager.beginTransaction();
         switch (view.getId()) {
-            case R.id.main_container:
+            case R.id.nav_item_home:
+                setSelected(navHome, navMsg, navStore, navMe);
+                transaction1.show(homeFragment);
+                transaction1.hide(msgFragment);
+                transaction1.hide(storeFragment);
+                transaction1.hide(meFragment);
+                transaction1.commit();
                 break;
-            case R.id.fag_nav:
+            case R.id.nav_item_msg:
+                setSelected(navMsg, navHome, navStore, navMe);
+                transaction1.hide(homeFragment);
+                transaction1.show(msgFragment);
+                transaction1.hide(storeFragment);
+                transaction1.hide(meFragment);
+                transaction1.commit();
+                break;
+            case R.id.nav_item_store:
+                setSelected(navStore, navMsg, navHome, navMe);
+                transaction1.hide(homeFragment);
+                transaction1.hide(msgFragment);
+                transaction1.show(storeFragment);
+                transaction1.hide(meFragment);
+                transaction1.commit();
+                break;
+            case R.id.nav_item_me:
+                setSelected(navMe, navMsg, navStore, navHome);
+                transaction1.hide(msgFragment);
+                transaction1.hide(homeFragment);
+                transaction1.hide(storeFragment);
+                transaction1.show(meFragment);
+                transaction1.commit();
+                break;
+            case R.id.main_container:
                 break;
             case R.id.activity_main_ui:
                 break;
@@ -177,25 +232,20 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
         }
     }
 
-    @Override
-    public void onReselect(NavigationButton navigationButton) {
-        Fragment fragment = navigationButton.getFragment();
-        if (fragment != null
-                && fragment instanceof OnTabReselectListener) {
-            OnTabReselectListener listener = (OnTabReselectListener) fragment;
-            listener.onTabReselect();
-        }
+    private void setSelected(NavigationButton... button) {
+        button[0].setSelected(true);
+        button[1].setSelected(false);
+        button[2].setSelected(false);
+        button[3].setSelected(false);
     }
 
     @Override
     public void onBackPressed() {
-
         Configuration mConfiguration = this.getResources().getConfiguration();
         if (mConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             return;
         }
-
 
         boolean isDoubleClick = true;
         if (isDoubleClick) {
@@ -210,6 +260,12 @@ public class HomeActivity extends BaseCoordinatorActivity implements NavFragment
             finish();
         }
     }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
 
     /**
      * popupWindow dimiss

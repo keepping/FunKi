@@ -115,7 +115,13 @@ public class FunKiPlayer extends FrameLayout {
         updateUI();
     }
 
+    public void stop(){
+        ijkMediaPlayer.pause();
+    }
 
+    public void resume(){
+        ijkMediaPlayer.start();
+    }
     private void initView(Context context) {
         this.context = (Activity) context;
         View.inflate(context, R.layout.player_content, this);

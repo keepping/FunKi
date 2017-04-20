@@ -37,9 +37,8 @@ public class FollowMovie extends PowViewHolder<Post> {
     public FollowMovie(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
 
-        ButterKnife.bind(this,mItemView);
+        ButterKnife.bind(this, mItemView);
     }
-
 
     @Override
     protected int getItemViewRes() {
@@ -54,8 +53,7 @@ public class FollowMovie extends PowViewHolder<Post> {
     @Override
     public void loadData(AdapterDelegate<? super Post> multipleAdapter, Post data, int postion) {
         fun_player.play(CommonConst.VIDEO);
-
-
+        stopListener.stopPlay(fun_player);
     }
 
     @OnClick({R.id.tv_follow_movie_comment})
@@ -67,6 +65,18 @@ public class FollowMovie extends PowViewHolder<Post> {
         }
     }
 
+    /**
+     * 原来打算把参数回传到HomeFollowFragment
+     */
+    private OnFunkiStopListener stopListener;
+
+    public interface OnFunkiStopListener {
+        void stopPlay(FunKiPlayer player);
+    }
+
+    public void setOnFunkiStop(OnFunkiStopListener stopListener) {
+        this.stopListener=stopListener;
+    }
 }
 
 

@@ -139,4 +139,28 @@ public class HomeFollowFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+
+//        FollowMovie followMovie=new FollowMovie(this, new ViewGroup() {
+//            @Override
+//            protected void onLayout(boolean changed, int l, int t, int r, int b) {
+//
+//            }
+//        });
+//        multipleRecycleAdapter.getItemViewType(3);
+//        followMovie.setOnFunkiStop(new FollowMovie.OnFunkiStopListener() {
+//            @Override
+//            public void stopPlay(FunKiPlayer player) {
+//                player.stop();
+//            }
+//        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }

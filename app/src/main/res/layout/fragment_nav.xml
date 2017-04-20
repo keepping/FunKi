@@ -1,10 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="47dp"
     android:layout_gravity="bottom"
-    android:orientation="vertical"
-    tools:context="com.hifunki.funki.module.home.fragment.NavFragment">
+    android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"

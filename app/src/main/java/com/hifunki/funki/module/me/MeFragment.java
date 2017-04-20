@@ -18,6 +18,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.dynamic.me.activity.MyDynamicActivity;
 import com.hifunki.funki.module.me.adapter.MeInfoAdapter;
 import com.hifunki.funki.module.me.bill.activity.BillActivity;
@@ -95,7 +96,6 @@ public class MeFragment extends BaseFragment {
 
     private PopWindowUtil sharePopWindow;//分享popWindow
     private View shareView;
-    private String photo = "http://img0.imgtn.bdimg.com/it/u=2329110913,2614087554&fm=214&gp=0.jpg";
 
     private OnFragmentInteractionListener mListener;
     private List<String> mInfoTag;//个人中心信息标签
@@ -153,10 +153,10 @@ public class MeFragment extends BaseFragment {
         ViewUtil.adjustScrollViewHei(rvMe);
 
         //圆形头像
-        Glide.with(mContext).load(photo).into(civMePhoto);
-        Glide.with(mContext).load(photo).into(civFirstPhoto);
-        Glide.with(mContext).load(photo).into(civSecondPhoto);
-        Glide.with(mContext).load(photo).into(civThirdPhoto);
+        Glide.with(mContext).load(CommonConst.photo).into(civMePhoto);
+        Glide.with(mContext).load(CommonConst.photo).into(civFirstPhoto);
+        Glide.with(mContext).load(CommonConst.photo).into(civSecondPhoto);
+        Glide.with(mContext).load(CommonConst.photo).into(civThirdPhoto);
     }
 
     @Override
