@@ -31,6 +31,6 @@ public interface CommonConst {
 
 
     String IMAGE_VIEW = "http://pic.58pic.com/58pic/13/86/80/95h58PIC5jK_1024.jpg";
-
+    String VIDEO = "http://v.cctv.com/flash/mp4video6/TMS/2011/01/05/cf752b1c12ce452b3040cab2f90bc265_h264818000nero_aac32-1.mp4";
 
 }

@@ -9,9 +9,15 @@ import android.widget.RelativeLayout;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.common.BundleConst;
+import com.hifunki.funki.common.CommonConst;
+import com.hifunki.funki.module.home.widget.ninegrid.NineGridlayout;
 import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
+import com.hifunki.funki.widget.FunKiPlayer;
 import com.hifunki.funki.widget.bar.TopBarView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -30,9 +36,18 @@ public class NormalDynamicActivity extends BaseActivity {
     TopBarView topBarView;
     @BindView(R.id.rl_dynamic_normal_root)
     LinearLayout rlRoot;
+    @BindView(R.id.iv_ngrid_layout)
+    NineGridlayout nineGridlayout;
+    @BindView(R.id.player_follow_picture)
+    FunKiPlayer funKiPlayer;
 
     private PopWindowUtil sharePopoWindow;
     private View shareView;
+
+    private enum STATUS {
+        PICTURE,
+        MOVIE
+    }
 
     @Override
     protected int getViewResId() {
@@ -41,7 +56,31 @@ public class NormalDynamicActivity extends BaseActivity {
 
     @Override
     protected void initVariable() {
+        int types = getIntent().getIntExtra("type", 0);
+        if (types == BundleConst.FOLLOW_PICTURE_TO_DYNAMIC) {
+            refreshUI(STATUS.PICTURE);
+        } else if (types == BundleConst.FOLLOW_MOVIE_TO_DYNAMIC) {
+            refreshUI(STATUS.MOVIE);
+        }
+    }
 
+    private void refreshUI(STATUS type) {
+        switch (type) {
+            case PICTURE:
+                funKiPlayer.setVisibility(View.GONE);
+                ArrayList<String> strings = new ArrayList<>();
+                for (int i = 0; i < 9; i++) {
+                    strings.add(CommonConst.photo);
+                }
+                nineGridlayout.setImagesData(strings);
+                break;
+            case MOVIE:
+                nineGridlayout.setVisibility(View.INVISIBLE);
+                funKiPlayer.setVisibility(View.VISIBLE);
+                funKiPlayer.play(CommonConst.VIDEO);
+                break;
+
+        }
     }
 
     @Override
@@ -86,8 +125,9 @@ public class NormalDynamicActivity extends BaseActivity {
 
     }
 
-    public static void show(Activity mActivity) {
-
-        mActivity.startActivity(new Intent(mActivity, NormalDynamicActivity.class));
+    public static void show(Activity mActivity, int type) {
+        Intent intent = new Intent(mActivity, NormalDynamicActivity.class);
+        intent.putExtra("type", type);
+        mActivity.startActivity(intent);
     }
 }

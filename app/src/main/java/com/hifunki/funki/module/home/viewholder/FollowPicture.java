@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
+import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.dynamic.normal.activity.NormalDynamicActivity;
 import com.hifunki.funki.module.home.widget.ninegrid.NineGridlayout;
@@ -60,7 +61,7 @@ public class FollowPicture extends PowViewHolder<Post> {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_follow_picture_comment://点击弹出一个popupWindow
-                NormalDynamicActivity.show(mActivity);
+                NormalDynamicActivity.show(mActivity, BundleConst.FOLLOW_PICTURE_TO_DYNAMIC);
                 break;
         }
     }
