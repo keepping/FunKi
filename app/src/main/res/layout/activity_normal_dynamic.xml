@@ -29,28 +29,41 @@
 
             <include layout="@layout/viewholder_follow_picture" />
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/rl_dynamic_action"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tb_dynamic_normal"
-                    fontPath="fonts/FZDHTFW.ttf"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    app:tabBackground="@color/_4A2F75"
-                    app:tabIndicatorColor="@color/_9B44ED"
-                    app:tabIndicatorHeight="2px"
-                    app:tabMinWidth="39dp"
-                    app:tabSelectedTextColor="@color/_9B44ED"
-                    app:tabTextColor="@color/_6B4E9A" />
+                <TextView
+                    android:id="@+id/tv_dynamic_tranmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="转发653" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_dynamic_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/tv_dynamic_tranmit"
+                    android:text="评论3" />
+
+                <TextView
+                    android:id="@+id/tv_dynamic_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="赞1530" />
+            </RelativeLayout>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_dynamic_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
         </LinearLayout>
     </com.hifunki.funki.widget.MeScrollView>
 

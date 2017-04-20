@@ -3,7 +3,6 @@ package com.hifunki.funki.module.dynamic.normal.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
@@ -26,9 +26,9 @@ import com.hifunki.funki.widget.FunKiPlayer;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 在此写用途
@@ -39,7 +39,7 @@ import butterknife.BindView;
  * @link
  * @since 2017-04-15 14:08:08
  */
-public class NormalDynamicActivity extends BaseActivity implements NormalDynamicFragment.OnFragmentInteractionListener{
+public class NormalDynamicActivity extends BaseActivity implements NormalDynamicFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.tbv_normal_dynamic)
     TopBarView topBarView;
@@ -51,15 +51,19 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
     FunKiPlayer funKiPlayer;
     @BindView(R.id.vp_dynamic_normal)
     ViewPager viewPager;
-    @BindView(R.id.tb_dynamic_normal)
-    TabLayout tabLayout;
+    @BindView(R.id.tv_dynamic_tranmit)
+    TextView tvCommit;
+    @BindView(R.id.tv_dynamic_comment)
+    TextView tvComment;
+    @BindView(R.id.tv_dynamic_star)
+    TextView tvStar;
     @BindView(R.id.sv_dynamic_normal)
     NestedScrollView scrollView;
+    @BindView(R.id.rl_dynamic_action)
+    RelativeLayout rlAction;
 
     private PopWindowUtil sharePopoWindow;
     private View shareView;
-    private List<String> mTabTitle;
-
 
     private enum STATUS {
         PICTURE,
@@ -102,15 +106,7 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
 
     @Override
     protected void initView() {
-        //封装tab数据,数据和tab保持一致
-        mTabTitle = new ArrayList<>();
-        mTabTitle.add("转发42");
-        mTabTitle.add("评论86");
-        mTabTitle.add("赞24");
 
-        tabLayout.addTab(tabLayout.newTab().setText(mTabTitle.get(0)));
-        tabLayout.addTab(tabLayout.newTab().setText(mTabTitle.get(1)));
-        tabLayout.addTab(tabLayout.newTab().setText(mTabTitle.get(2)));
     }
 
     @Override
@@ -145,10 +141,25 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
     @Override
     protected void initAdapter() {
         super.initAdapter();
-        NormalDynamicAdapter adapter = new NormalDynamicAdapter(getSupportFragmentManager(), mTabTitle);
+        NormalDynamicAdapter adapter = new NormalDynamicAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
     }
+
+    @OnClick({R.id.tv_dynamic_tranmit, R.id.tv_dynamic_comment, R.id.tv_dynamic_star})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_dynamic_tranmit:
+                viewPager.setCurrentItem(0);
+                break;
+            case R.id.tv_dynamic_comment:
+                viewPager.setCurrentItem(1);
+                break;
+            case R.id.tv_dynamic_star:
+                viewPager.setCurrentItem(2);
+                break;
+        }
+    }
+
 
     @Override
     protected void bindData() {
@@ -173,27 +184,21 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
         @Override
         public void onGlobalLayout() {
             int totalHeight = scrollView.getHeight();
-            int topbarHeight = topBarView.getHeight();//titlebar高度
-            int dif = tabLayout.getHeight();
+            int dif = rlAction.getHeight();
             ViewGroup.LayoutParams layoutParams = viewPager.getLayoutParams();
 
-            if (layoutParams.height != totalHeight - dif - topbarHeight) {
-                layoutParams.height = totalHeight - dif - topbarHeight;
+            if (layoutParams.height != totalHeight - dif) {
+                layoutParams.height = totalHeight - dif;
                 viewPager.setLayoutParams(layoutParams);
             }
-
             reCount--;
             //滑动初始状态
             if (reCount >= 0) {
                 scrollView.scrollTo(0, 0);
             }
-
             if (reCount == 0) {
                 viewPager.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
-
-
-
         }
     };
 
@@ -203,4 +208,11 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (onGlobalLayoutListener != null) {
+            viewPager.getViewTreeObserver().removeOnGlobalLayoutListener(onGlobalLayoutListener);
+        }
+    }
 }

@@ -6,8 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.hifunki.funki.module.dynamic.normal.fragment.NormalDynamicFragment;
 
-import java.util.List;
-
 /**
  * 在此写用途
  *
@@ -19,11 +17,9 @@ import java.util.List;
  */
 public class NormalDynamicAdapter extends FragmentPagerAdapter {
 
-    private List<String> mStrings;
 
-    public NormalDynamicAdapter(FragmentManager fm, List<String> mTabTitle) {
+    public NormalDynamicAdapter(FragmentManager fm) {
         super(fm);
-        this.mStrings = mTabTitle;
     }
 
     @Override
@@ -33,6 +29,6 @@ public class NormalDynamicAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return mStrings.size();
+        return 3;
     }
 }
