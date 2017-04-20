@@ -10,12 +10,11 @@ import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.viewholder.FollowLiveNormal;
 import com.hifunki.funki.module.home.viewholder.FollowLiveTicket;
 import com.hifunki.funki.module.home.viewholder.FollowMovie;
-import com.hifunki.funki.module.home.viewholder.FollowPic;
+import com.hifunki.funki.module.home.viewholder.FollowPicture;
 import com.hifunki.funki.module.home.viewholder.FollowRecommend;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
 import com.powyin.scroll.widget.ISwipe;
-import com.powyin.scroll.widget.SwipeControl;
 import com.powyin.scroll.widget.SwipeRefresh;
 
 import java.util.Arrays;
@@ -93,7 +92,7 @@ public class HomeFollowFragment extends BaseFragment {
     protected void initView(View root) {
         super.initView(root);
 
-        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), FollowLiveNormal.class, FollowLiveTicket.class, FollowMovie.class, FollowPic.class, FollowRecommend.class);
+        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), FollowLiveNormal.class, FollowLiveTicket.class, FollowMovie.class, FollowPicture.class, FollowRecommend.class);
         recyclerView.setAdapter(multipleRecycleAdapter);
 
         for (int i = 0; i < 6; i++) {

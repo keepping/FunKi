@@ -9,10 +9,10 @@
 
 
     <com.hifunki.funki.widget.bar.TopBarView
-        android:id="@+id/topView"
+        android:id="@+id/tbv_normal_dynamic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:menuText="保存"
+        app:menuImage="@drawable/iv_dynamic_more"
         app:titleText="动态正文" />
 
     <include layout="@layout/viewholder_follow_picture" />

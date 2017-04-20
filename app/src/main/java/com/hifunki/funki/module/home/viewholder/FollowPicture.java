@@ -1,12 +1,14 @@
 package com.hifunki.funki.module.home.viewholder;
 
 import android.app.Activity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.common.CommonConst;
+import com.hifunki.funki.module.dynamic.normal.activity.NormalDynamicActivity;
 import com.hifunki.funki.module.home.widget.ninegrid.NineGridlayout;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.AdapterDelegate;
@@ -14,26 +16,27 @@ import com.powyin.scroll.adapter.PowViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 九宫格图片
  *
  * @author yinhaoxiang
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.viewholder.FollowPic.java
+ * @value com.hifunki.funki.module.home.viewholder.FollowPicture.java
  * @link
  * @since 2017-03-16 10:12:12
  */
-public class FollowPic extends PowViewHolder<Post>{
+public class FollowPicture extends PowViewHolder<Post> {
 
     @BindView(R.id.iv_ngrid_layout)
     NineGridlayout nineGridlayout;
-    @BindView(R.id.iv_post_photo)
+    @BindView(R.id.iv_follow_photo)
     ImageView ivPhoto;
 
-    public FollowPic(Activity activity, ViewGroup viewGroup) {
+    public FollowPicture(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
-        ButterKnife.bind(this,mItemView);
+        ButterKnife.bind(this, mItemView);
     }
 
     @Override
@@ -43,7 +46,7 @@ public class FollowPic extends PowViewHolder<Post>{
 
     @Override
     protected boolean acceptData(Post data) {
-        return data!=null && data.type==4;
+        return data != null && data.type == 4;
     }
 
     @Override
@@ -51,6 +54,15 @@ public class FollowPic extends PowViewHolder<Post>{
 
         Glide.with(mActivity).load(CommonConst.photo).into(ivPhoto);//头像
         nineGridlayout.setImagesData(data.imgageUri);
+    }
+
+    @OnClick({R.id.tv_follow_picture_comment})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_follow_picture_comment://点击弹出一个popupWindow
+                NormalDynamicActivity.show(mActivity);
+                break;
+        }
     }
 
 }

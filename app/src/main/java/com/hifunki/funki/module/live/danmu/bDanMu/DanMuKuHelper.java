@@ -15,7 +15,6 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.hifunki.funki.util.ImageUtils;
 
 import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
 import java.util.Random;
 
 import master.flame.danmaku.controller.IDanmakuView;
@@ -23,7 +22,6 @@ import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.danmaku.model.DanmakuTimer;
 import master.flame.danmaku.danmaku.model.IDanmakus;
 import master.flame.danmaku.danmaku.model.IDisplayer;
-import master.flame.danmaku.danmaku.model.android.AndroidDisplayer;
 import master.flame.danmaku.danmaku.model.android.BaseCacheStuffer;
 import master.flame.danmaku.danmaku.model.android.DanmakuContext;
 import master.flame.danmaku.danmaku.model.android.Danmakus;
@@ -62,18 +60,24 @@ public class DanMuKuHelper {
         @Override
         public void prepareDrawing(final BaseDanmaku danmaku, boolean fromWorkerThread) {
             DanMuData danMuData = (DanMuData) danmaku.tag;
-            String targetUri = danMuData == null ? null : danMuData.avatar;
+            final String targetUri = danMuData == null ? null : danMuData.avatar;
             if (TextUtils.isEmpty(targetUri)) return;
-            Glide.with(context).load(targetUri)
-                    .asBitmap().into(new SimpleTarget<Bitmap>() {
+            mDanmakuView.post(new Runnable() {
                 @Override
-                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    DanMuData danMuData = (DanMuData) danmaku.tag;
-                    resource = ImageUtils.toCircle(resource,200);
-                    danMuData.chachBitmap = new WeakReference<Bitmap>(resource);
-                    mDanmakuView.invalidateDanmaku(danmaku, false);
+                public void run() {
+                    Glide.with(context).load(targetUri)
+                            .asBitmap().into(new SimpleTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            DanMuData danMuData = (DanMuData) danmaku.tag;
+                            resource = ImageUtils.toCircle(resource,200);
+                            danMuData.chachBitmap = new WeakReference<Bitmap>(resource);
+                            mDanmakuView.invalidateDanmaku(danmaku, false);
+                        }
+                    });
                 }
             });
+
         }
 
         @Override
@@ -192,7 +196,7 @@ public class DanMuKuHelper {
         //  danmaku.priority = 0;  // 可能会被各种过滤器过滤并隐藏显示
         danmaku.isLive = false;
         danmaku.setTime(mDanmakuView.getCurrentTime() + random.nextInt(15000));
-        danmaku.textSize = 21f * (mParser.getDisplayer().getDensity() - 0.6f);
+        danmaku.textSize = 16f * (mParser.getDisplayer().getDensity() - 0.6f);
         danmaku.textColor = Color.WHITE;
         // danmaku.textShadowColor = Color.WHITE;
         // danmaku.underlineColor = Color.GREEN;

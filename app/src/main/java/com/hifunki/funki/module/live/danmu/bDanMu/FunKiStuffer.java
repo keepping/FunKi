@@ -3,17 +3,13 @@ package com.hifunki.funki.module.live.danmu.bDanMu;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextPaint;
 import android.text.TextUtils;
 
-import com.hifunki.funki.util.TextUtil;
-
 import java.lang.ref.WeakReference;
 
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
-import master.flame.danmaku.danmaku.model.android.AndroidDisplayer;
 import master.flame.danmaku.danmaku.model.android.SimpleTextCacheStuffer;
 
 /**
@@ -27,6 +23,7 @@ import master.flame.danmaku.danmaku.model.android.SimpleTextCacheStuffer;
  */
 public class FunKiStuffer extends SimpleTextCacheStuffer {
 
+    private static Rect mRect = new Rect();
 
     @Override
     protected void drawText(BaseDanmaku danmaku, String lineText, Canvas canvas, float left, float top, TextPaint paint, boolean fromWorkerThread) {
@@ -44,12 +41,21 @@ public class FunKiStuffer extends SimpleTextCacheStuffer {
 
         if(!TextUtils.isEmpty(danMuData.userName)){
             paint.setColor(Color.YELLOW);
-            canvas.drawText(danMuData.userName,left +5 + canvas.getHeight(),top + canvas.getHeight()/2 - danmaku.paintHeight*0.07f,paint);
+            canvas.drawText(danMuData.userName,left +15 + canvas.getHeight(),top + canvas.getHeight()/2 - danmaku.paintHeight*0.1f,paint);
         }
 
         if(!TextUtils.isEmpty(danMuData.message)){
             paint.setColor(Color.WHITE);
-            canvas.drawText(danMuData.message,left +5 + canvas.getHeight() ,top + canvas.getHeight() - danmaku.paintHeight*0.07f ,paint);
+            canvas.drawText(danMuData.message,left +15 + canvas.getHeight() ,top + canvas.getHeight() - danmaku.paintHeight*0.1f ,paint);
+            if(danmaku.textColor > 0){
+//                canvas.drawRoundRect(left +5 + canvas.getHeight(), canvas.getHeight()/2,danmaku.textColor,canvas.getHeight(),);
+
+                paint.setColor(0x22000000);
+                canvas.drawRoundRect(canvas.getHeight()+5, canvas.getHeight() /2 , canvas.getHeight() +25 +danmaku.textColor, canvas.getHeight() , canvas.getHeight()/2 , canvas.getHeight()/2,paint);
+
+            }
+
+
         }
 
     }
@@ -63,8 +69,9 @@ public class FunKiStuffer extends SimpleTextCacheStuffer {
         float wid = Math.max(nameWid,messWid);
         float hei =  getCacheHeight(danmaku,paint);
 
-        danmaku.paintWidth = wid;
+        danmaku.paintWidth = wid + hei*2 +30;
         danmaku.paintHeight = hei*2;
+        danmaku.textColor = (int)messWid;
 
     }
 

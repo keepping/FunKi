@@ -1,110 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/_0C001F"
+    android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/_0C001F"
-    tools:ignore="MissingPrefix"
-    android:orientation="vertical">
+    tools:ignore="MissingPrefix">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:orientation="horizontal">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:visibility="gone"
-            android:id="@+id/iv_post_photo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:padding="5dp"
-            />
-
-        <TextView
-            android:id="@+id/post_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/post_user_head"
-            android:text="安妮凯瑟薇"
-            android:textColor="#811dec"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/post_user_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/post_user_name"
-            android:text="1分钟"
-            android:textColor="#6B4E9A"
-            android:textSize="11sp" />
-
-
-        <ImageView
-            android:id="@+id/post_user_l"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
-            android:layout_toRightOf="@+id/post_user_head"
-            android:src="@drawable/ic_nav_me_actived"
-            android:text="1分钟"
-            android:textColor="#6B4E9A"
-            android:textSize="11sp" />
-
-        <TextView
-            android:id="@+id/post_user_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="4dp"
-            android:layout_toRightOf="@+id/post_user_l"
-            android:gravity="center"
-            android:text="加利福利亚"
-            android:textColor="#6B4E9A"
-            android:textSize="11sp" />
-
-        <ImageView
-            android:id="@+id/post_user_c"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/post_user_location"
-            android:src="@drawable/japan"
-            android:text="1分钟"
-            android:textColor="#6B4E9A"
-            android:textSize="11sp" />
-
-        <TextView
-            android:id="@+id/post_user_county"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="4dp"
-            android:layout_toRightOf="@+id/post_user_c"
-            android:text="English"
-            android:textColor="#6B4E9A"
-            android:textSize="11sp" />
-
-    </RelativeLayout>
+    <include layout="@layout/layout_follow_picture_video" />
 
     <TextView
-        android:layout_marginBottom="9dp"
+        android:id="@+id/tv_follow_picture_comment"
         fontPath="fonts/FZZDXFW.ttf"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="9dp"
         android:text="@string/home_post_text"
         android:textColor="@color/_BBABD4"
         android:textSize="13dp"
@@ -115,5 +27,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <!--底部点赞-->
-    <include layout="@layout/layout_follow_star"/>
+    <include layout="@layout/layout_follow_star" />
 </LinearLayout>

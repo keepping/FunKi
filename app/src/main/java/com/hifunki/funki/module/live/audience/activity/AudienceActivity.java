@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
+import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
@@ -101,7 +102,14 @@ public class AudienceActivity extends BaseActivity {
             ijkMediaPlayer.setDisplay(live.getHolder());
             ijkMediaPlayer.setDataSource(this, Uri.parse(event.uri));
             ijkMediaPlayer.prepareAsync();
-            ijkMediaPlayer.start();
+
+            ijkMediaPlayer.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(IMediaPlayer iMediaPlayer) {
+                    ijkMediaPlayer.start();
+                }
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }

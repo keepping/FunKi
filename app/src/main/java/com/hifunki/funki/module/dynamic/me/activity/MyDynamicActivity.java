@@ -10,7 +10,7 @@ import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.home.viewholder.FollowLiveNormal;
 import com.hifunki.funki.module.home.viewholder.FollowLiveTicket;
 import com.hifunki.funki.module.home.viewholder.FollowMovie;
-import com.hifunki.funki.module.home.viewholder.FollowPic;
+import com.hifunki.funki.module.home.viewholder.FollowPicture;
 import com.hifunki.funki.module.home.viewholder.FollowRecommend;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
@@ -70,7 +70,7 @@ public class MyDynamicActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(this, FollowLiveNormal.class, FollowLiveTicket.class, FollowMovie.class, FollowPic.class, FollowRecommend.class);
+        multipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(this, FollowLiveNormal.class, FollowLiveTicket.class, FollowMovie.class, FollowPicture.class, FollowRecommend.class);
         rvMyDynamic.setAdapter(multipleRecycleAdapter);
 
         for (int i = 0; i < 6; i++) {

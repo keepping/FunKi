@@ -14,13 +14,10 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
-
 import android.widget.FrameLayout;
-
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -38,7 +35,6 @@ import com.hifunki.funki.module.live.audience.viewholder.ChatComing;
 import com.hifunki.funki.module.live.audience.viewholder.ChatFan;
 import com.hifunki.funki.module.live.audience.viewholder.ChatText;
 import com.hifunki.funki.module.live.audience.viewholder.Gift;
-import com.hifunki.funki.module.live.audience.widget.BlockView;
 import com.hifunki.funki.module.live.danmu.bDanMu.DanMuData;
 import com.hifunki.funki.module.live.danmu.bDanMu.DanMuKuHelper;
 import com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup;
@@ -92,10 +88,7 @@ public class AudienceFragment extends BaseFragment {
     MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
     MultipleRecycleAdapter<User> avatarMultipleRecycleAdapter;
     MultipleRecycleAdapter<String> giftAdapter;
-    @BindView(R.id.block_1)
-    BlockView block1;
-    @BindView(R.id.block_2)
-    BlockView block2;
+
     @BindView(R.id.fan_name)
     TextView fanName;
     @BindView(R.id.fan_num)

@@ -149,7 +149,7 @@ public class TopBarView extends RelativeLayout {
         return tvMenuMore;
     }
 
-    public ImageView getIvMenu() {
+    public ImageView getMenuImage() {
         return ivMenu;
     }
 

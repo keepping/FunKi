@@ -45,64 +45,70 @@
             android:layout_toLeftOf="@+id/iv_home_show"
             android:src="@drawable/iv_home_list" />
 
-        <ImageView
-            android:id="@+id/iv_home_indicate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_home_funki"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/iv_home_indicate" />
-
-        <RadioGroup
-            android:id="@+id/rg_home_title"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_home_indicate"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="9dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_below="@+id/iv_home_funki">
 
-            <RadioButton
-                android:id="@+id/rb_home_follow"
-                fontPath="fonts/FZDHTFW.ttf"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/iv_home_indicate"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/follow"
-                android:textColor="@color/_BBABD4"
-                android:textSize="17sp" />
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/iv_home_indicate" />
 
-            <RadioButton
-                android:id="@+id/rb_home_hot"
-                fontPath="fonts/FZDHTFW.ttf"
-                android:layout_width="0dp"
+            <RadioGroup
+                android:id="@+id/rg_home_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:button="@null"
+                android:layout_below="@+id/iv_home_indicate"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="9dp"
                 android:gravity="center"
-                android:text="@string/home_fragment_hot"
-                android:textColor="@color/_BBABD4"
-                android:textSize="17sp" />
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/rb_home_new"
-                fontPath="fonts/FZDHTFW.ttf"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/home_fragment_latest"
-                android:textColor="@color/_BBABD4"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/rb_home_follow"
+                    fontPath="fonts/FZDHTFW.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/follow"
+                    android:textColor="@color/_BBABD4"
+                    android:textSize="17sp" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/rb_home_hot"
+                    fontPath="fonts/FZDHTFW.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/home_fragment_hot"
+                    android:textColor="@color/_BBABD4"
+                    android:textSize="17sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_home_new"
+                    fontPath="fonts/FZDHTFW.ttf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/home_fragment_latest"
+                    android:textColor="@color/_BBABD4"
+                    android:textSize="17sp" />
+
+            </RadioGroup>
+        </RelativeLayout>
+
 
         <!--首页title三个栏目，textView写法-->
 
