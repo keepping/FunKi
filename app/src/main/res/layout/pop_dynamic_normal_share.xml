@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rl_pop_share_dismiss"
+    android:fitsSystemWindows="true"
     android:background="#CC0C001F"
     android:orientation="vertical">
 

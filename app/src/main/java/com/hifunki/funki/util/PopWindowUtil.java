@@ -3,9 +3,12 @@ package com.hifunki.funki.util;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.PopupWindow;
+
+import java.lang.reflect.Field;
 
 /**
  * PopWindowUtil
@@ -112,4 +115,17 @@ public class PopWindowUtil {
         return mPopupWindow;
     }
 
+    public void fitPopupWindowOverStatusBar(boolean needFullScreen) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            try {
+                Field mLayoutInScreen = PopupWindow.class.getDeclaredField("mLayoutInScreen");
+                mLayoutInScreen.setAccessible(true);
+                mLayoutInScreen.set(mPopupWindow, needFullScreen);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.util.PopWindowUtil;
+import com.hifunki.funki.util.StatusBarUtil;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import butterknife.BindView;
@@ -27,6 +28,8 @@ public class NormalDynamicActivity extends BaseActivity {
 
     @BindView(R.id.tbv_normal_dynamic)
     TopBarView topBarView;
+    @BindView(R.id.rl_dynamic_normal_root)
+    LinearLayout rlRoot;
 
     private PopWindowUtil sharePopoWindow;
     private View shareView;
@@ -56,6 +59,7 @@ public class NormalDynamicActivity extends BaseActivity {
                 if (sharePopoWindow == null) {
                     sharePopoWindow = PopWindowUtil.getInstance(getApplicationContext());
                     shareView = LayoutInflater.from(NormalDynamicActivity.this).inflate(R.layout.pop_dynamic_normal_share, null);
+                    StatusBarUtil.adjustStatusBarHei(shareView);
                     RelativeLayout relativeLayout = (RelativeLayout) shareView.findViewById(R.id.rl_pop_share_dismiss);
                     relativeLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -64,6 +68,8 @@ public class NormalDynamicActivity extends BaseActivity {
                         }
                     });
                 }
+                sharePopoWindow.getPopWindow();
+                sharePopoWindow.fitPopupWindowOverStatusBar(true);
                 sharePopoWindow.init(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 sharePopoWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
             }
