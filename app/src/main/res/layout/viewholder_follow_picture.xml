@@ -30,7 +30,7 @@
     <com.hifunki.funki.widget.FunKiPlayer
         android:id="@+id/player_follow_picture"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="192dp"
         android:visibility="gone" />
 
     <!--底部点赞-->
