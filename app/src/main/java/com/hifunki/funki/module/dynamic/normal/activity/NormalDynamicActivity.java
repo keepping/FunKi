@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,14 +107,14 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
 
     @Override
     protected void initView() {
-
+        viewPager.getViewTreeObserver().addOnGlobalLayoutListener(onGlobalLayoutListener);
     }
 
     @Override
     protected void initListener() {
         super.initListener();
 
-        viewPager.getViewTreeObserver().addOnGlobalLayoutListener(onGlobalLayoutListener);
+
         topBarView.getMenuImage().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,21 +180,22 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
 
     //监听树
     ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
-        int reCount = 4;
+        int reCount = 2;
 
         @Override
         public void onGlobalLayout() {
             int totalHeight = scrollView.getHeight();
             int dif = rlAction.getHeight();
             ViewGroup.LayoutParams layoutParams = viewPager.getLayoutParams();
-
             if (layoutParams.height != totalHeight - dif) {
                 layoutParams.height = totalHeight - dif;
                 viewPager.setLayoutParams(layoutParams);
             }
             reCount--;
+            Log.e("NormalDynamicActivity", "onGlobalLayout: totalHeight=" + totalHeight + "dif" + dif + "reCount" + reCount);
             //滑动初始状态
             if (reCount >= 0) {
+                Log.e("NormalDynamicActivity", "onGlobalLayout: reCount>0" );
                 scrollView.scrollTo(0, 0);
             }
             if (reCount == 0) {
@@ -212,7 +214,7 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
     protected void onDestroy() {
         super.onDestroy();
         if (onGlobalLayoutListener != null) {
-            viewPager.getViewTreeObserver().removeOnGlobalLayoutListener(onGlobalLayoutListener);
+//            viewPager.getViewTreeObserver().removeOnGlobalLayoutListener(onGlobalLayoutListener);
         }
     }
 }

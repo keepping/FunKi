@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/_28114D"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rl_photo"
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/rl_photo">
+
+        <RelativeLayout
+            android:id="@+id/rl_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_country"
+                android:textColor="@color/_BBABD4"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tv_nickname"
+                android:src="@drawable/iv_girl" />
+
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_sex"
+                android:background="@drawable/bg_lv"
+                android:paddingBottom="2dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="2dp"
+                android:text="@string/search_lv"
+                android:textColor="@color/_FFFFFF"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_signturex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_nick"
+            android:layout_marginTop="6dp"
+            android:text="@string/search_activity_recommend"
+            android:textColor="@color/_6B4E9A"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/isCare"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/iv_search_care" />
+
+        <ImageView
+            android:id="@+id/isSpecialCare"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/isCare"
+            android:src="@drawable/iv_search_special" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/_4A2F75" />
+</RelativeLayout>

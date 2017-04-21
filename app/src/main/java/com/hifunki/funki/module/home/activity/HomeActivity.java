@@ -100,7 +100,6 @@ public class HomeActivity extends BaseCoordinatorActivity implements HomeFragmen
 
     }
 
-
     @Override
     protected void initView() {
         navHome.init(R.drawable.tab_icon_home,
@@ -161,6 +160,9 @@ public class HomeActivity extends BaseCoordinatorActivity implements HomeFragmen
 //        doNewIntent(intent, false);
     }
 
+    void showOrHideFragment() {
+
+    }
 
     @OnClick({R.id.nav_item_home, R.id.nav_item_msg, R.id.nav_item_store, R.id.nav_item_me, R.id.main_container, R.id.activity_main_ui, R.id.nav_item})
     public void onClick(View view) {

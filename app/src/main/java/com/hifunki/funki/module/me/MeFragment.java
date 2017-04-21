@@ -27,8 +27,8 @@ import com.hifunki.funki.module.me.fans.activity.MyFansActivity;
 import com.hifunki.funki.module.me.profile.activity.EditProfileActivity;
 import com.hifunki.funki.module.me.recharge.activity.RechargeActivity;
 import com.hifunki.funki.module.me.user.UserAvatarActivity;
+import com.hifunki.funki.module.me.visit.activity.VisitActivity;
 import com.hifunki.funki.module.me.withdraw.activity.WithdrawActivity;
-import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
 import com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
@@ -87,7 +87,6 @@ public class MeFragment extends BaseFragment {
 
     private String mParam1;
     private String mParam2;
-
 
     @BindView(R.id.rv_me)
     RecyclerView rvMe;
@@ -176,7 +175,7 @@ public class MeFragment extends BaseFragment {
                             if(position==0){
                                 PersonalGalleryActivity.show(getContext());
                             }else if(position==1){
-                                PhotoActivity.show(getContext());
+                                VisitActivity.show(getContext());
                             }
                         break;
                 }
@@ -271,7 +270,6 @@ public class MeFragment extends BaseFragment {
                 break;
         }
     }
-
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
