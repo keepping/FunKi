@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.photo.personal.adapter.PersonalPhotoAdapter;
 import com.hifunki.funki.module.photo.personal.entity.PersonalPhotoEntity;
@@ -33,16 +34,16 @@ public class PersonalPhotoFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
+    private int mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
     private List<PersonalPhotoEntity> personalPhotoEntities;
 
-    public static PersonalPhotoFragment newInstance(String param1, String param2) {
+    public static PersonalPhotoFragment newInstance(int param1, String param2) {
         PersonalPhotoFragment fragment = new PersonalPhotoFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putInt(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -52,7 +53,7 @@ public class PersonalPhotoFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getInt(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -66,8 +67,10 @@ public class PersonalPhotoFragment extends BaseFragment {
     protected void initVariable() {
         super.initVariable();
         personalPhotoEntities = new ArrayList<>();
-        PersonalPhotoEntity personalEntity = new PersonalPhotoEntity(PersonalPhotoEntity.CAMERA, CommonConst.photo);
-        personalPhotoEntities.add(personalEntity);
+        if (mParam1 == BundleConst.VALUE_ME_PHOTO_TO_GALLERY) {
+            PersonalPhotoEntity personalEntity = new PersonalPhotoEntity(PersonalPhotoEntity.CAMERA, CommonConst.photo);
+            personalPhotoEntities.add(personalEntity);
+        }
         for (int i = 0; i < 50; i++) {
             PersonalPhotoEntity personalEntity1 = new PersonalPhotoEntity(PersonalPhotoEntity.PHOTO, CommonConst.photo);
             personalPhotoEntities.add(personalEntity1);

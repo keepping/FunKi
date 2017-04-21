@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.module.photo.personal.adapter.PersonalGalleryVPAdapter;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalPhotoFragment;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalSercetFragment;
@@ -39,6 +40,8 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
 
     @Override
     protected void initVariable() {
+        int type = getIntent().getIntExtra(BundleConst.KEY_PERSONAL_GALLERY, 0);
+
         mTabTitle = new ArrayList<>();
         mTabTitle.add(getString(R.string.personal_photo));
         mTabTitle.add(getString(R.string.personal_sercet_photo));
@@ -46,9 +49,8 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(0)));
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(1)));
         mListFragment = new ArrayList<>();
-        mListFragment.add(PersonalPhotoFragment.newInstance("a", "a"));
-        mListFragment.add(PersonalPhotoFragment.newInstance("a", "a"));
-
+        mListFragment.add(PersonalPhotoFragment.newInstance(type, "a"));
+        mListFragment.add(PersonalPhotoFragment.newInstance(type, "a"));
     }
 
     @Override
@@ -68,10 +70,11 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
 
     }
 
-    public static void show(Context context) {
-        context.startActivity(new Intent(context, PersonalGalleryActivity.class));
+    public static void show(Context context, int type) {
+        Intent intent = new Intent(context, PersonalGalleryActivity.class);
+        intent.putExtra(BundleConst.KEY_PERSONAL_GALLERY, type);
+        context.startActivity(intent);
     }
-
 
     @OnClick({})
     public void onClick(View view) {

@@ -18,6 +18,12 @@ public interface BundleConst {
     String KEY_GALLERY_PHOTO_NUMBER = "key_gallery_photo_number";
     String KEY_GALLERY_PHOTO_ALL_NUMBER = "key_gallery_photo_all_number";
 
-    int FOLLOW_PICTURE_TO_DYNAMIC=1;
-    int FOLLOW_MOVIE_TO_DYNAMIC=2;
+    int FOLLOW_PICTURE_TO_DYNAMIC = 1;
+    int FOLLOW_MOVIE_TO_DYNAMIC = 2;
+
+    int VALUE_ROOM_PHOTO_TO_GALLERY = 1;
+    int VALUE_ME_PHOTO_TO_GALLERY = 2;
+
+    String KEY_PERSONAL_GALLERY = "key_personal_gallery";
+
 }

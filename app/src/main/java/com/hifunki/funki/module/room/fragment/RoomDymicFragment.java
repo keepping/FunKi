@@ -7,10 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.home.entity.HomeHotEntity;
+import com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity;
 import com.hifunki.funki.module.room.adpater.RoomDynamicAdapter;
 
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ public class RoomDymicFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private String TAG = getClass().getSimpleName();
     private String mParam1;
     private String mParam2;
 
@@ -43,6 +47,7 @@ public class RoomDymicFragment extends BaseFragment {
 
     private List<HomeHotEntity> hotEntities;
     private OnFragmentInteractionListener mListener;
+    private RoomDynamicAdapter adapter;
 
     public RoomDymicFragment() {
 
@@ -115,9 +120,24 @@ public class RoomDymicFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-        RoomDynamicAdapter adapter = new RoomDynamicAdapter(hotEntities);
+        adapter = new RoomDynamicAdapter(hotEntities);
         rlDymic.setLayoutManager(new LinearLayoutManager(getContext()));
         rlDymic.setAdapter(adapter);
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.rl_room_dynamic_photo_more:
+                        PersonalGalleryActivity.show(getContext(), BundleConst.VALUE_ROOM_PHOTO_TO_GALLERY);
+                        break;
+                }
+            }
+        });
     }
 
     public void onButtonPressed(Uri uri) {

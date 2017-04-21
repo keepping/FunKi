@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="32dp">
+        android:layout_height="32dp"
+        android:layout_marginTop="100dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -20,26 +21,33 @@
             android:textSize="13sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/iv_room_dynamic_next"
+        <RelativeLayout
+            android:id="@+id/rl_room_dynamic_photo_more"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/iv_next" />
+            android:layout_alignParentRight="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/iv_room_dynamic_next"
-            android:gravity="center"
-            android:text="更多"
-            android:textColor="@color/_9B44ED"
-            android:textStyle="bold" />
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_room_dynamic_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/iv_next" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/iv_room_dynamic_next"
+                android:gravity="center"
+                android:text="更多"
+                android:textColor="@color/_9B44ED"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

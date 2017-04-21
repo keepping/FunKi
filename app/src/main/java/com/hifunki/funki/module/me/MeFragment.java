@@ -18,6 +18,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.dynamic.me.activity.MyDynamicActivity;
 import com.hifunki.funki.module.me.adapter.MeInfoAdapter;
@@ -173,7 +174,7 @@ public class MeFragment extends BaseFragment {
                 switch (view.getId()){
                     case R.id.rl_item_info:
                             if(position==0){
-                                PersonalGalleryActivity.show(getContext());
+                                PersonalGalleryActivity.show(getContext(), BundleConst.VALUE_ME_PHOTO_TO_GALLERY);
                             }else if(position==1){
                                 VisitActivity.show(getContext());
                             }

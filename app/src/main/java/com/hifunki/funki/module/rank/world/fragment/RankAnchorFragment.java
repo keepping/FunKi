@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.rank.world.adapter.RankAnchorAdapter;
 import com.hifunki.funki.module.rank.world.entity.AnchorEntity;
 
@@ -94,13 +95,13 @@ public class RankAnchorFragment extends BaseFragment {
     @Override
     protected void initVariable() {
         super.initVariable();
-        String imagePath = "http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg";
-        AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.FIRST, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7612121);
-        AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.SECOND, 0, imagePath, "陪伴是最长情的告白", 1, 45, 761212);
-        AnchorEntity anchorEntity3 = new AnchorEntity(AnchorEntity.THIRD, 0, imagePath, "陪伴是最长情的告白", 1, 45, 7625612);
-        AnchorEntity anchorEntity4 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 76421);
-        AnchorEntity anchorEntity5 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764124);
-        AnchorEntity anchorEntity6 = new AnchorEntity(AnchorEntity.NORMAL, 0, imagePath, "陪伴是最长情的告白", 1, 45, 764121);
+
+        AnchorEntity anchorEntity1 = new AnchorEntity(AnchorEntity.FIRST, 0, CommonConst.photo, "陪伴是最长情的告白", 1, 45, 7612121);
+        AnchorEntity anchorEntity2 = new AnchorEntity(AnchorEntity.SECOND, 0, CommonConst.photo, "陪伴是最长情的告白", 1, 45, 761212);
+        AnchorEntity anchorEntity3 = new AnchorEntity(AnchorEntity.THIRD, 0, CommonConst.photo, "陪伴是最长情的告白", 1, 45, 7625612);
+        AnchorEntity anchorEntity4 = new AnchorEntity(AnchorEntity.NORMAL, 0, CommonConst.photo, "陪伴是最长情的告白", 1, 45, 76421);
+        AnchorEntity anchorEntity5 = new AnchorEntity(AnchorEntity.NORMAL, 0, CommonConst.photo, "陪伴是最长情的告白", 1, 45, 764124);
+        AnchorEntity anchorEntity6 = new AnchorEntity(AnchorEntity.NORMAL, 0, CommonConst.photo, "陪伴是最长情的告白", 1, 45, 764121);
         anchorEntities = new ArrayList<>();
         anchorEntities.add(anchorEntity1);
         anchorEntities.add(anchorEntity2);
@@ -123,7 +124,7 @@ public class RankAnchorFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-        mAdapter = new RankAnchorAdapter( anchorEntities);
+        mAdapter = new RankAnchorAdapter(anchorEntities);
         rlAnchor.setLayoutManager(new LinearLayoutManager(getContext()));
         rlAnchor.setAdapter(mAdapter);
     }

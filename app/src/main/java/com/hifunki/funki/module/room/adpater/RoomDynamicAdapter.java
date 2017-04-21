@@ -40,6 +40,7 @@ public class RoomDynamicAdapter extends BaseMultiItemQuickAdapter<HomeHotEntity,
                 RDPhotoAdapter adapter = new RDPhotoAdapter(R.layout.item_room_dynamic_photo, CommonConst.NINE_PHOTO);
                 recyclerView.setAdapter(adapter);
 
+                helper.addOnClickListener(R.id.rl_room_dynamic_photo_more);
                 break;
             case HomeHotEntity.LEVEL_LIVE:
                 NineGridlayout nineGridlayout = helper.getView(R.id.iv_ngrid_layout);
