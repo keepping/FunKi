@@ -1,9 +1,15 @@
 package com.hifunki.funki.module.room.adpater;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.hifunki.funki.R;
+import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.home.entity.HomeHotEntity;
+import com.hifunki.funki.module.home.widget.ninegrid.NineGridlayout;
+import com.hifunki.funki.widget.FunKiPlayer;
 
 import java.util.List;
 
@@ -18,12 +24,6 @@ import java.util.List;
  */
 public class RoomDynamicAdapter extends BaseMultiItemQuickAdapter<HomeHotEntity, BaseViewHolder> {
 
-    /**
-     * Same as QuickAdapter#QuickAdapter(Context,int) but with
-     * some initialization data.
-     *
-     * @param data A new list is created out of this one to avoid mutable list
-     */
     public RoomDynamicAdapter(List<HomeHotEntity> data) {
         super(data);
         addItemType(HomeHotEntity.NORMAL_LIVE, R.layout.item_room_dynamic_gallery);
@@ -33,15 +33,21 @@ public class RoomDynamicAdapter extends BaseMultiItemQuickAdapter<HomeHotEntity,
 
     @Override
     protected void convert(BaseViewHolder helper, HomeHotEntity item) {
-        switch (item.getItemType()) {
+        switch (helper.getItemViewType()) {
             case HomeHotEntity.NORMAL_LIVE:
+                RecyclerView recyclerView = helper.getView(R.id.rl_room_dynamic_gallery);
+                recyclerView.setLayoutManager(new GridLayoutManager(mContext, 5));
+                RDPhotoAdapter adapter = new RDPhotoAdapter(R.layout.item_room_dynamic_photo, CommonConst.NINE_PHOTO);
+                recyclerView.setAdapter(adapter);
 
                 break;
             case HomeHotEntity.LEVEL_LIVE:
-
+                NineGridlayout nineGridlayout = helper.getView(R.id.iv_ngrid_layout);
+                nineGridlayout.setImagesData(CommonConst.NINE_PHOTO);
                 break;
             case HomeHotEntity.NORMAL_VIDEO:
-
+                FunKiPlayer player = helper.getView(R.id.fun_player);
+                player.play(CommonConst.VIDEO);
                 break;
         }
     }

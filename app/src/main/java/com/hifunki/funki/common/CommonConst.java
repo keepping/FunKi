@@ -1,5 +1,8 @@
 package com.hifunki.funki.common;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 全局参数管理类
  *
@@ -32,5 +35,11 @@ public interface CommonConst {
 
     String IMAGE_VIEW = "http://pic.58pic.com/58pic/13/86/80/95h58PIC5jK_1024.jpg";
     String VIDEO = "http://v.cctv.com/flash/mp4video6/TMS/2011/01/05/cf752b1c12ce452b3040cab2f90bc265_h264818000nero_aac32-1.mp4";
-
+    List<String> NINE_PHOTO = Arrays.asList("http://t2.27270.com/uploads/tu/201606/112/17.jpg",
+            "http://t2.27270.com/uploads/tu/201510/249/3.jpg",
+            "http://t2.27270.com/uploads/tu/201606/62/28.jpg",
+            "http://t2.27270.com/uploads/tu/201606/76/34.jpg",
+            "http://t2.27270.com/uploads/tu/201606/73/slt.jpg",
+            "http://img2.imgtn.bdimg.com/it/u=3347259689,1828160575&fm=21&gp=0.jpg",
+            "http://img1.imgtn.bdimg.com/it/u=3607821315,1190508392&fm=21&gp=0.jpg");
 }

@@ -1,6 +1,5 @@
 package com.hifunki.funki.module.rank.world.adapter;
 
-import android.content.Context;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -23,12 +22,8 @@ import java.util.List;
  */
 public class RankAnchorAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, BaseViewHolder> {
 
-    private Context mContext;
-
-
-    public RankAnchorAdapter(Context context, List data) {
+    public RankAnchorAdapter( List data) {
         super(data);
-        this.mContext = context;
         addItemType(AnchorEntity.FIRST, R.layout.item_rank_anchor_first);
         addItemType(AnchorEntity.SECOND, R.layout.item_rank_anchor_second);
         addItemType(AnchorEntity.THIRD, R.layout.item_rank_anchor_third);

@@ -10,8 +10,6 @@ import com.hifunki.funki.module.room.fragment.RoomLiveFragment;
 import java.util.List;
 
 /**
- * 他人个人空间 viewPage -->apapter
- *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
  * @value com.hifunki.funki.module.room.adpater.RoomVPAdapter.java
@@ -40,10 +38,10 @@ public class RoomVPAdapter extends FragmentPagerAdapter {
         return mTabTitles.size();
     }
 
-
     @Override
     public CharSequence getPageTitle(int position) {
         return mTabTitles.get(position);
 
     }
+
 }

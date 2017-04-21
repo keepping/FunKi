@@ -43,9 +43,11 @@ public class RoomDymicFragment extends BaseFragment {
 
     private List<HomeHotEntity> hotEntities;
     private OnFragmentInteractionListener mListener;
+
     public RoomDymicFragment() {
 
     }
+
     public static RoomDymicFragment newInstance(String param1, String param2) {
         RoomDymicFragment fragment = new RoomDymicFragment();
         Bundle args = new Bundle();
@@ -80,24 +82,20 @@ public class RoomDymicFragment extends BaseFragment {
         }
         hotEntities = new ArrayList<>();
         //普通直播--big
-        HomeHotEntity homeHotEntity1 = new HomeHotEntity(HomeHotEntity.NORMAL_LIVE, true, CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变",  CommonConst.photo, false, false, 0, false, false, 0, 0, 0, false);//pgc
-        HomeHotEntity homeHotEntity2 = new HomeHotEntity(HomeHotEntity.NORMAL_LIVE, false, CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变",  CommonConst.photo, false, false, 0, false, false, 0, 0, 0, false);//ugc
+        HomeHotEntity homeHotEntity1 = new HomeHotEntity(HomeHotEntity.NORMAL_LIVE, true, CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变", CommonConst.photo, false, false, 0, false, false, 0, 0, 0, false);//pgc
         //等级直播--big
-        HomeHotEntity homeHotEntity3 = new HomeHotEntity(HomeHotEntity.NORMAL_LIVE, true,  CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变",  CommonConst.photo, false, true, 75, false, false, 0, 0, 0, false);//pgc
-        HomeHotEntity homeHotEntity4 = new HomeHotEntity(HomeHotEntity.NORMAL_LIVE, true,  CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变",  CommonConst.photo, false, true, 75, false, false, 0, 0, 0, false);//ugc
+        HomeHotEntity homeHotEntity3 = new HomeHotEntity(HomeHotEntity.LEVEL_LIVE, true, CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变", CommonConst.photo, false, true, 75, false, false, 0, 0, 0, false);//pgc
         //普通视频--big
-        HomeHotEntity homeHotEntity5 = new HomeHotEntity(HomeHotEntity.NORMAL_LIVE, true,  CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变",  CommonConst.photo, true, false, 0, false, false, 0, 0, 0, false);//only pgc
+        HomeHotEntity homeHotEntity5 = new HomeHotEntity(HomeHotEntity.NORMAL_VIDEO, true, CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变", CommonConst.photo, true, false, 0, false, false, 0, 0, 0, false);//only pgc
 
         //门票直播--small view
-        HomeHotEntity homeHotEntity6 = new HomeHotEntity(HomeHotEntity.TICKET_LIVE, true,  CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变",  CommonConst.photo, false, false, 0, false, true, 50, 25, 42, false);// pgc
-        HomeHotEntity homeHotEntity7 = new HomeHotEntity(HomeHotEntity.TICKET_LIVE, true,  CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变",  CommonConst.photo, false, false, 0, false, true, 100, 25, 84, false);//ugc
+        HomeHotEntity homeHotEntity6 = new HomeHotEntity(HomeHotEntity.LEVEL_LIVE, true, CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变", CommonConst.photo, false, false, 0, false, true, 50, 25, 42, false);// pgc
+        HomeHotEntity homeHotEntity7 = new HomeHotEntity(HomeHotEntity.LEVEL_LIVE, true, CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变", CommonConst.photo, false, false, 0, false, true, 100, 25, 84, false);//ugc
         //门票视频--small
-        HomeHotEntity homeHotEntity8 = new HomeHotEntity(HomeHotEntity.TICKET_LIVE, true,  CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变",  CommonConst.photo, true, false, 0, false, false, 0, 0, 0, true);//only pgc
+        HomeHotEntity homeHotEntity8 = new HomeHotEntity(HomeHotEntity.LEVEL_LIVE, true, CommonConst.photo, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变", CommonConst.photo, true, false, 0, false, false, 0, 0, 0, true);//only pgc
 
         hotEntities.add(homeHotEntity1);
-        hotEntities.add(homeHotEntity2);
         hotEntities.add(homeHotEntity3);
-        hotEntities.add(homeHotEntity4);
         hotEntities.add(homeHotEntity5);
         hotEntities.add(homeHotEntity6);
         hotEntities.add(homeHotEntity7);
@@ -117,8 +115,8 @@ public class RoomDymicFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
+        RoomDynamicAdapter adapter = new RoomDynamicAdapter(hotEntities);
         rlDymic.setLayoutManager(new LinearLayoutManager(getContext()));
-        RoomDynamicAdapter adapter=new RoomDynamicAdapter(hotEntities);
         rlDymic.setAdapter(adapter);
     }
 

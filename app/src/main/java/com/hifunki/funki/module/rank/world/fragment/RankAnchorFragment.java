@@ -123,7 +123,7 @@ public class RankAnchorFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-        mAdapter = new RankAnchorAdapter(getContext(), anchorEntities);
+        mAdapter = new RankAnchorAdapter( anchorEntities);
         rlAnchor.setLayoutManager(new LinearLayoutManager(getContext()));
         rlAnchor.setAdapter(mAdapter);
     }
