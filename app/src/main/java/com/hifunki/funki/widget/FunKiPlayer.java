@@ -89,39 +89,47 @@ public class FunKiPlayer extends FrameLayout {
 
     }
 
-    public void play(String uri) {
+    public void play(final String uri) {
 
-     //   System.out.println("......................................................................");
+        //   System.out.println("......................................................................");
+
+     //   System.out.println(this + "------------------------------------1:::" + System.currentTimeMillis());
         ensurePlayer();
 
-        this.uri = uri;
+        FunKiPlayer.this.uri = uri;
         play_status = PLAY_STATUS.unInit;
 
         try {
+
+
             ijkMediaPlayer.reset();
-            ijkMediaPlayer.setDataSource(getContext(),Uri.parse(uri));
+            ijkMediaPlayer.setDataSource(getContext(), Uri.parse(uri));
 //            ijkMediaPlayer.prepareAsync();
 //            ijkMediaPlayer.setDisplay(live.getHolder());
 //            ijkMediaPlayer.setDataSource(this, Uri.parse(event.uri));
             ijkMediaPlayer.prepareAsync();
-            ijkMediaPlayer.start();
-        }catch (Exception e){
+            //     ijkMediaPlayer.start();
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         play_status = PLAY_STATUS.loading;
 
         updateUI();
+
+     //   System.out.println(this + "------------------------------------2:::" + System.currentTimeMillis());
     }
 
-    public void stop(){
+    public void stop() {
         ijkMediaPlayer.pause();
     }
 
-    public void resume(){
+    public void resume() {
         ijkMediaPlayer.start();
     }
+
     private void initView(Context context) {
         this.context = (Activity) context;
         View.inflate(context, R.layout.player_content, this);
@@ -144,20 +152,20 @@ public class FunKiPlayer extends FrameLayout {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 ensurePlayer();
-                if(play_status == PLAY_STATUS.unInit && !TextUtils.isEmpty(uri)){
+                if (play_status == PLAY_STATUS.unInit && !TextUtils.isEmpty(uri)) {
                     play(uri);
                 }
-                ijkMediaPlayer.setDisplay(holder);
+
             }
 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+                ijkMediaPlayer.setDisplay(holder);
             }
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
-                if(ijkMediaPlayer!=null){
+                if (ijkMediaPlayer != null) {
                     ijkMediaPlayer.stop();
                 }
                 play_status = PLAY_STATUS.unInit;
@@ -168,13 +176,17 @@ public class FunKiPlayer extends FrameLayout {
 
     }
 
-    void ensurePlayer(){
-        if(ijkMediaPlayer==null){
+    void ensurePlayer() {
+        if (ijkMediaPlayer == null) {
+
+         //   System.out.println(this+"-------------------------------2222222222222------------2----------"+System.currentTimeMillis());
             ijkMediaPlayer = new IjkMediaPlayer();
             ijkMediaPlayer.setOnPreparedListener(new IjkMediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(IMediaPlayer iMediaPlayer) {
-                    startPlay();
+                    if( isAttatch ){
+                        startPlay();
+                    }
                 }
             });
 
@@ -185,38 +197,46 @@ public class FunKiPlayer extends FrameLayout {
                     updateUI();
                 }
             });
+
+        //    System.out.println(this+"-------------------------------2222222222222------------1----------"+System.currentTimeMillis());
+
         }
     }
 
+    private boolean isAttatch = false;
     @Override
     protected void onAttachedToWindow() {
+        isAttatch = true;
         super.onAttachedToWindow();
         ensurePlayer();
     }
 
     @Override
     protected void onDetachedFromWindow() {
+        isAttatch = false;
         super.onDetachedFromWindow();
-        if(ijkMediaPlayer!=null){
-            ijkMediaPlayer.release();
+        if (ijkMediaPlayer != null) {
+            ijkMediaPlayer.pause();
             ijkMediaPlayer = null;
         }
-        play_status = PLAY_STATUS.unInit;
+        play_status = PLAY_STATUS.pause;
     }
 
     @Override
     public void onStartTemporaryDetach() {
+        isAttatch = false;
         super.onStartTemporaryDetach();
-        if(ijkMediaPlayer!=null){
-            ijkMediaPlayer.release();
+        if (ijkMediaPlayer != null) {
+            ijkMediaPlayer.pause();
             ijkMediaPlayer = null;
         }
-        play_status = PLAY_STATUS.unInit;
+        play_status = PLAY_STATUS.pause;
 
     }
 
     @Override
     public void onFinishTemporaryDetach() {
+        isAttatch = true;
         super.onFinishTemporaryDetach();
         ensurePlayer();
     }

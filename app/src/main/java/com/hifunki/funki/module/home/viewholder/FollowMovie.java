@@ -52,8 +52,10 @@ public class FollowMovie extends PowViewHolder<Post> {
 
     @Override
     public void loadData(AdapterDelegate<? super Post> multipleAdapter, Post data, int postion) {
+        System.out.println(this+"------------------------1："+System.currentTimeMillis());
         fun_player.play(CommonConst.VIDEO);
 //        stopListener.stopPlay(fun_player);
+        System.out.println(this+"------------------------2："+System.currentTimeMillis());
     }
 
     @OnClick({R.id.tv_follow_movie_comment})

@@ -282,7 +282,12 @@ public class HomeActivity extends BaseCoordinatorActivity implements HomeFragmen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        pwdPopWindow.hidePopWindow();
+        try {
+            pwdPopWindow.hidePopWindow();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
 
