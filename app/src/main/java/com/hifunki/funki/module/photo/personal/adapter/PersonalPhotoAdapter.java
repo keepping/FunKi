@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.photo.personal.adapter;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -21,6 +22,10 @@ import java.util.List;
  */
 public class PersonalPhotoAdapter extends BaseMultiItemQuickAdapter<PersonalPhotoEntity, BaseViewHolder> {
 
+    private String TAG = getClass().getSimpleName();
+    private ImageView ivIcon;
+    private TextView tv;
+
     public PersonalPhotoAdapter(List<PersonalPhotoEntity> data) {
         super(data);
         addItemType(PersonalPhotoEntity.CAMERA, R.layout.photo_gallery_item_camera);
@@ -34,9 +39,24 @@ public class PersonalPhotoAdapter extends BaseMultiItemQuickAdapter<PersonalPhot
 
                 break;
             case PersonalPhotoEntity.PHOTO:
+                ivIcon = helper.getView(R.id.iv_personal_photo_icon);
+                tv = helper.getView(R.id.tv);
+                onSelectAllListener.onSelectAll(ivIcon,tv);
 
                 Glide.with(mContext).load(item.getPath()).into((ImageView) helper.getView(R.id.iv_personal_photo));
                 break;
         }
     }
+
+
+    private OnSelectAllListener onSelectAllListener;
+
+    public interface OnSelectAllListener {
+        void onSelectAll(ImageView b,TextView tv);
+    }
+
+    public void setSelectAll(OnSelectAllListener onSelectAllListener){
+        this.onSelectAllListener=onSelectAllListener;
+    }
+
 }

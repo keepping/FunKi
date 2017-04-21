@@ -12,9 +12,10 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.photo.personal.adapter.PersonalGalleryVPAdapter;
+import com.hifunki.funki.module.photo.personal.adapter.PersonalPhotoVPAdapter;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalPhotoFragment;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalSercetFragment;
+import com.hifunki.funki.module.photo.personal.inter.OnSelectAllListener;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class PersonalGalleryActivity extends BaseActivity implements PersonalPhotoFragment.OnFragmentInteractionListener, PersonalSercetFragment.OnFragmentInteractionListener, View.OnClickListener {
+public class PersonalPhotoActivity extends BaseActivity implements PersonalPhotoFragment.OnFragmentInteractionListener, PersonalSercetFragment.OnFragmentInteractionListener, View.OnClickListener {
 
     @BindView(R.id.tbv_personal_gallery)
     TopBarView topBarView;
@@ -39,7 +40,7 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
     private TextView firstText;
     private TextView menuText;
     private ImageView ivBack;
-
+    private String TAG = getClass().getSimpleName();
     private STATUS status = STATUS.NORMAL;
 
     @Override
@@ -47,9 +48,12 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
         return R.layout.activity_personal_gallery;
     }
 
+
     private enum STATUS {
         NORMAL,
-        EDIT
+        EDIT,
+        SELECT_ALL,
+        SELECT_NOT_ALL
     }
 
     @Override
@@ -72,7 +76,7 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
         ivBack = topBarView.getFirstImageView();
         firstText = topBarView.getFirstText();
         menuText = topBarView.getMenuText();
-        PersonalGalleryVPAdapter personalGalleryAdapter = new PersonalGalleryVPAdapter(getSupportFragmentManager(), mListFragment, mTabTitle);
+        PersonalPhotoVPAdapter personalGalleryAdapter = new PersonalPhotoVPAdapter(getSupportFragmentManager(), mListFragment, mTabTitle);
         vpPersonal.setAdapter(personalGalleryAdapter);
         tbPersonal.setupWithViewPager(vpPersonal);
     }
@@ -86,8 +90,9 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
     @Override
     protected void initListener() {
         super.initListener();
-        firstText.setOnClickListener(this);
-        menuText.setOnClickListener(this);
+//        firstText.setOnClickListener(this);
+//        menuText.setOnClickListener(this);
+
     }
 
     @Override
@@ -100,28 +105,37 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
     }
 
     public static void show(Context context, int type) {
-        Intent intent = new Intent(context, PersonalGalleryActivity.class);
+        Intent intent = new Intent(context, PersonalPhotoActivity.class);
         intent.putExtra(KEY_PERSONAL_GALLERY, type);
         context.startActivity(intent);
     }
 
-    @OnClick({})
+    @OnClick({R.id.tv_left, R.id.tv_menu})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_left:
-
+                status = STATUS.NORMAL;
+                refreshUI();
                 break;
             case R.id.tv_menu:
                 if (status == STATUS.NORMAL) {
                     status = STATUS.EDIT;
                     refreshUI();
-                } else {
-                    status = STATUS.NORMAL;
+                } else if (status == STATUS.EDIT) {
+                    status = STATUS.SELECT_ALL;
+                    refreshUI();
+                } else if (status == STATUS.SELECT_ALL) {
+                    status = STATUS.SELECT_NOT_ALL;
+                    refreshUI();
+                } else if (status == STATUS.SELECT_NOT_ALL) {
+                    status = STATUS.SELECT_ALL;
                     refreshUI();
                 }
                 break;
         }
     }
+
+    boolean isSelectAll = false;
 
     private void refreshUI() {
         switch (status) {
@@ -135,11 +149,33 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
                 firstText.setVisibility(View.VISIBLE);
                 menuText.setText("全选");
                 break;
+            case SELECT_ALL:
+                isSelectAll = true;
+                onSelectAllListeners.selectAll(isSelectAll);
+                break;
+            case SELECT_NOT_ALL:
+                isSelectAll = false;
+                onSelectAllListeners.selectAll(isSelectAll);
+                break;
         }
+    }
+
+    public OnSelectAllListener onSelectAllListeners;
+
+
+    public void setOnFunkiStop(OnSelectAllListener selectListener) {
+        this.onSelectAllListeners = selectListener;
+    }
+
+
+    @Override
+    public void onFragmentInteraction(Uri uri, boolean isSelectAll) {
+        this.isSelectAll = isSelectAll;
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity">
+    tools:context="com.hifunki.funki.module.photo.personal.activity.PersonalPhotoActivity">
 
     <com.hifunki.funki.widget.bar.TopBarView
         android:id="@+id/tbv_personal_gallery"
@@ -26,7 +26,6 @@
         app:tabSelectedTextColor="@color/_9B44ED"
         app:tabTextColor="@color/_6B4E9A" />
 
-    <!--app:tabMinWidth="match_parent"-->
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_personal"

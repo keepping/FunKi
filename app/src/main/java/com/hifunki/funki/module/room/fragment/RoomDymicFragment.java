@@ -12,7 +12,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.home.entity.HomeHotEntity;
-import com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity;
+import com.hifunki.funki.module.photo.personal.activity.PersonalPhotoActivity;
 import com.hifunki.funki.module.room.adpater.RoomDynamicAdapter;
 
 import java.util.ArrayList;
@@ -132,7 +132,7 @@ public class RoomDymicFragment extends BaseFragment {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rl_room_dynamic_photo_more:
-                        PersonalGalleryActivity.show(getContext(), PersonalGalleryActivity.VALUE_ROOM_PHOTO_TO_GALLERY);
+                        PersonalPhotoActivity.show(getContext(), PersonalPhotoActivity.VALUE_ROOM_PHOTO_TO_GALLERY);
                         break;
                 }
             }

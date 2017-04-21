@@ -156,7 +156,7 @@ public class BitmapLoadUtils {
 
     @SuppressWarnings("ConstantConditions")
     public static void close(@Nullable Closeable c) {
-        if (c != null && c instanceof Closeable) { // java.lang.IncompatibleClassChangeError: interface not implemented
+        if (c != null && c instanceof Closeable) { // java.lang.IncompatibleClassChangeError: inter not implemented
             try {
                 c.close();
             } catch (IOException e) {

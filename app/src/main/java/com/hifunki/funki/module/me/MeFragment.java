@@ -29,7 +29,7 @@ import com.hifunki.funki.module.me.recharge.activity.RechargeActivity;
 import com.hifunki.funki.module.me.user.UserAvatarActivity;
 import com.hifunki.funki.module.me.visit.activity.VisitActivity;
 import com.hifunki.funki.module.me.withdraw.activity.WithdrawActivity;
-import com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity;
+import com.hifunki.funki.module.photo.personal.activity.PersonalPhotoActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
@@ -173,7 +173,7 @@ public class MeFragment extends BaseFragment {
                 switch (view.getId()){
                     case R.id.rl_item_info:
                             if(position==0){
-                                PersonalGalleryActivity.show(getContext(), PersonalGalleryActivity.VALUE_ME_PHOTO_TO_GALLERY);
+                                PersonalPhotoActivity.show(getContext(), PersonalPhotoActivity.VALUE_ME_PHOTO_TO_GALLERY);
                             }else if(position==1){
                                 VisitActivity.show(getContext());
                             }

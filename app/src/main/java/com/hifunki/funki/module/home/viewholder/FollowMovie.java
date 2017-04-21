@@ -72,7 +72,7 @@ public class FollowMovie extends PowViewHolder<Post> {
      */
 //    private OnFunkiStopListener stopListener;
 //
-//    public interface OnFunkiStopListener {
+//    public inter OnFunkiStopListener {
 //        void stopPlay(FunKiPlayer player);
 //    }
 //

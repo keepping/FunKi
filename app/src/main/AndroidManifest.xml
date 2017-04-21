@@ -183,7 +183,7 @@
         <!-- 兑换记录 -->
         <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
         <activity android:name=".module.dynamic.post.activity.ShotActivity" />
-        <activity android:name=".module.photo.personal.activity.PersonalGalleryActivity" />
+        <activity android:name=".module.photo.personal.activity.PersonalPhotoActivity" />
         <activity android:name=".module.dynamic.me.activity.MyDynamicActivity" />
         <activity android:name=".module.dynamic.normal.activity.NormalDynamicActivity" />
         <activity

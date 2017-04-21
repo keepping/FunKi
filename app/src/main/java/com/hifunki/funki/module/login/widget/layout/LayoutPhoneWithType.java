@@ -26,7 +26,7 @@ public class LayoutPhoneWithType extends LinearLayout {
 
 
     //声明接口，这个接口由客户端实现，客户重写其中的事件处理方法
-//    public interface OnDownLoadCompletedListener {
+//    public inter OnDownLoadCompletedListener {
 //        void onDownLoadCompleted(Bitmap bitmap);
 //    }
 //
