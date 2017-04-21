@@ -7,10 +7,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.module.photo.personal.adapter.PersonalGalleryVPAdapter;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalPhotoFragment;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalSercetFragment;
@@ -22,25 +23,38 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class PersonalGalleryActivity extends BaseActivity implements PersonalPhotoFragment.OnFragmentInteractionListener, PersonalSercetFragment.OnFragmentInteractionListener {
+public class PersonalGalleryActivity extends BaseActivity implements PersonalPhotoFragment.OnFragmentInteractionListener, PersonalSercetFragment.OnFragmentInteractionListener, View.OnClickListener {
 
-    @BindView(R.id.topView)
-    TopBarView topView;
+    @BindView(R.id.tbv_personal_gallery)
+    TopBarView topBarView;
     @BindView(R.id.tb_personal)
     TabLayout tbPersonal;
     @BindView(R.id.vp_personal)
     ViewPager vpPersonal;
     private List<String> mTabTitle;
     private List<Fragment> mListFragment;
+    private static final String KEY_PERSONAL_GALLERY = "key_personal_gallery";
+    public static int VALUE_ROOM_PHOTO_TO_GALLERY = 1;
+    public static int VALUE_ME_PHOTO_TO_GALLERY = 2;
+    private TextView firstText;
+    private TextView menuText;
+    private ImageView ivBack;
+
+    private STATUS status = STATUS.NORMAL;
 
     @Override
     protected int getViewResId() {
         return R.layout.activity_personal_gallery;
     }
 
+    private enum STATUS {
+        NORMAL,
+        EDIT
+    }
+
     @Override
     protected void initVariable() {
-        int type = getIntent().getIntExtra(BundleConst.KEY_PERSONAL_GALLERY, 0);
+        int type = getIntent().getIntExtra(KEY_PERSONAL_GALLERY, 0);
 
         mTabTitle = new ArrayList<>();
         mTabTitle.add(getString(R.string.personal_photo));
@@ -55,14 +69,29 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
 
     @Override
     protected void initView() {
+        ivBack = topBarView.getFirstImageView();
+        firstText = topBarView.getFirstText();
+        menuText = topBarView.getMenuText();
         PersonalGalleryVPAdapter personalGalleryAdapter = new PersonalGalleryVPAdapter(getSupportFragmentManager(), mListFragment, mTabTitle);
         vpPersonal.setAdapter(personalGalleryAdapter);
         tbPersonal.setupWithViewPager(vpPersonal);
     }
 
     @Override
-    protected void bindData() {
+    protected void initAdapter() {
+        super.initAdapter();
 
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        firstText.setOnClickListener(this);
+        menuText.setOnClickListener(this);
+    }
+
+    @Override
+    protected void bindData() {
     }
 
     @Override
@@ -72,15 +101,40 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
 
     public static void show(Context context, int type) {
         Intent intent = new Intent(context, PersonalGalleryActivity.class);
-        intent.putExtra(BundleConst.KEY_PERSONAL_GALLERY, type);
+        intent.putExtra(KEY_PERSONAL_GALLERY, type);
         context.startActivity(intent);
     }
 
     @OnClick({})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_left:
 
+                break;
+            case R.id.tv_menu:
+                if (status == STATUS.NORMAL) {
+                    status = STATUS.EDIT;
+                    refreshUI();
+                } else {
+                    status = STATUS.NORMAL;
+                    refreshUI();
+                }
+                break;
+        }
+    }
 
+    private void refreshUI() {
+        switch (status) {
+            case NORMAL:
+                ivBack.setVisibility(View.VISIBLE);
+                firstText.setVisibility(View.INVISIBLE);
+                menuText.setText("编辑");
+                break;
+            case EDIT:
+                ivBack.setVisibility(View.INVISIBLE);
+                firstText.setVisibility(View.VISIBLE);
+                menuText.setText("全选");
+                break;
         }
     }
 

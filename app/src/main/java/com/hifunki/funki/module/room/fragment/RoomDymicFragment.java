@@ -10,7 +10,6 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.home.entity.HomeHotEntity;
 import com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity;
@@ -133,7 +132,7 @@ public class RoomDymicFragment extends BaseFragment {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rl_room_dynamic_photo_more:
-                        PersonalGalleryActivity.show(getContext(), BundleConst.VALUE_ROOM_PHOTO_TO_GALLERY);
+                        PersonalGalleryActivity.show(getContext(), PersonalGalleryActivity.VALUE_ROOM_PHOTO_TO_GALLERY);
                         break;
                 }
             }

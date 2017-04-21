@@ -21,9 +21,10 @@ import java.lang.reflect.Method;
  */
 public class TopBarView extends RelativeLayout {
 
-    private TextView tv_title;
+    private TextView tvCenterTitle;
 
-    private ImageView tv_left;
+    private ImageView ivLeft;
+    private TextView tvLeft;
 
     private TextView tvMenu;
     private ImageView ivMenu;
@@ -46,18 +47,18 @@ public class TopBarView extends RelativeLayout {
 
     public TopBarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
         mContext = context;
         initView(context, attrs);
     }
-
 
     private void initView(Context context, AttributeSet attrs) {
         rootView = LayoutInflater.from(context).inflate(R.layout.top_bar, this);
         //根布局
         LinearLayout llBaseMain = (LinearLayout) findViewById(R.id.base_main);
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_left = (ImageView) findViewById(R.id.tv_left);
-
+        tvCenterTitle = (TextView) findViewById(R.id.tv_title);
+        ivLeft = (ImageView) findViewById(R.id.iv_left);
+        tvLeft = (TextView) findViewById(R.id.tv_left);
         tvMenu = (TextView) findViewById(R.id.tv_menu);
         ivMenu = (ImageView) findViewById(R.id.iv_menu);
 
@@ -67,46 +68,22 @@ public class TopBarView extends RelativeLayout {
         ivMenuMore = (ImageView) findViewById(R.id.iv_menu_more);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TopBarView);
+        String leftText = typedArray.getString(R.styleable.TopBarView_firstText);
         String titleValue = typedArray.getString(R.styleable.TopBarView_titleText);
-        tv_title.setText(titleValue);
-
         String menuText = typedArray.getString(R.styleable.TopBarView_menuText);
         Drawable rightImage_l = typedArray.getDrawable(R.styleable.TopBarView_menuImage);
-
         String rightValue_r = typedArray.getString(R.styleable.TopBarView_menuTextMore);
         Drawable rightImage_r = typedArray.getDrawable(R.styleable.TopBarView_menuImageMore);
-
         boolean hasBg = typedArray.getBoolean(R.styleable.TopBarView_hasBackGround, true);//是否展示background
+        tvLeft.setText(leftText);
+        tvCenterTitle.setText(titleValue);
 
+        hideOrShowText(tvLeft, leftText);
+        hideOrShowText(tvMenu, menuText);
+        hideOrShowText(tvMenuMore, rightValue_r);
 
-        if (menuText != null && menuText.length() > 0) {
-            tvMenu.setText(menuText);
-            tvMenu.setVisibility(View.VISIBLE);
-        } else {
-            tvMenu.setVisibility(View.GONE);
-        }
-
-        if (rightImage_l != null) {
-            ivMenu.setImageDrawable(rightImage_l);
-            ivMenu.setVisibility(View.VISIBLE);
-        } else {
-            ivMenu.setVisibility(View.GONE);
-        }
-
-        if (rightValue_r != null && rightValue_r.length() > 0) {
-            tvMenuMore.setText(rightValue_r);
-            tvMenuMore.setVisibility(View.VISIBLE);
-        } else {
-            tvMenuMore.setVisibility(View.GONE);
-        }
-
-        if (rightImage_r != null) {
-            ivMenuMore.setImageDrawable(rightImage_r);
-            ivMenuMore.setVisibility(View.VISIBLE);
-        } else {
-            ivMenuMore.setVisibility(View.GONE);
-        }
-
+        showOrHideImageView(ivMenuMore, rightImage_r);
+        showOrHideImageView(ivMenu, rightImage_l);
 
         if (!hasBg) {
             llBaseMain.setBackground(null);
@@ -115,7 +92,7 @@ public class TopBarView extends RelativeLayout {
         typedArray.recycle();
 
         //Back
-        tv_left.setOnClickListener(new OnClickListener() {
+        ivLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 doBack(mContext);
@@ -125,6 +102,23 @@ public class TopBarView extends RelativeLayout {
         StatusBarUtil.adjustStatusBarHei(findViewById(R.id.base_main));
     }
 
+    private void showOrHideImageView(ImageView imageView, Drawable rightImage_r) {
+        if (rightImage_r != null) {
+            imageView.setImageDrawable(rightImage_r);
+            imageView.setVisibility(View.VISIBLE);
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
+    }
+
+    private void hideOrShowText(TextView textView, String leftText) {
+        if (leftText != null && leftText.length() > 0) {
+            textView.setText(leftText);
+            textView.setVisibility(View.VISIBLE);
+        } else {
+            textView.setVisibility(View.GONE);
+        }
+    }
 
     private void doBack(final Context context) {
         Class c = context.getClass();
@@ -138,7 +132,7 @@ public class TopBarView extends RelativeLayout {
 
     //获取中间的textView
     public TextView getTitileText() {
-        return tv_title;
+        return tvCenterTitle;
     }
 
     public TextView getMenuText() {
@@ -159,5 +153,12 @@ public class TopBarView extends RelativeLayout {
     }
 
 
+    public TextView getFirstText() {
+        return tvLeft;
+    }
+
+    public ImageView getFirstImageView() {
+        return ivLeft;
+    }
 }
 

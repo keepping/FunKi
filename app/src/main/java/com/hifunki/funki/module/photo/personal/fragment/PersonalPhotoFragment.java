@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.common.CommonConst;
+import com.hifunki.funki.module.photo.personal.activity.PersonalGalleryActivity;
 import com.hifunki.funki.module.photo.personal.adapter.PersonalPhotoAdapter;
 import com.hifunki.funki.module.photo.personal.entity.PersonalPhotoEntity;
 
@@ -67,7 +67,7 @@ public class PersonalPhotoFragment extends BaseFragment {
     protected void initVariable() {
         super.initVariable();
         personalPhotoEntities = new ArrayList<>();
-        if (mParam1 == BundleConst.VALUE_ME_PHOTO_TO_GALLERY) {
+        if (mParam1 == PersonalGalleryActivity.VALUE_ME_PHOTO_TO_GALLERY) {
             PersonalPhotoEntity personalEntity = new PersonalPhotoEntity(PersonalPhotoEntity.CAMERA, CommonConst.photo);
             personalPhotoEntities.add(personalEntity);
         }
