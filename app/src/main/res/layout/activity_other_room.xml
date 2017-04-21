@@ -25,47 +25,57 @@
                     android:id="@+id/lt_room_info"
                     layout="@layout/layout_info" />
 
-                <LinearLayout
-                    android:id="@+id/ll_room_live"
+                <RelativeLayout
+                    android:id="@+id/rl_other_room_live"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:gravity="bottom">
+                    android:orientation="vertical"
+                    android:paddingTop="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_room_live"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="bottom">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/iv_room_living" />
+
+                        <TextView
+                            android:id="@+id/tv_living"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/living_now"
+                            android:textColor="@color/_9B44ED"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_room_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/ll_room_live"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="18dp"
+                        android:src="@drawable/iv_room_info" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/iv_room_living" />
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/iv_room_info"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="18dp"
+                        android:src="@drawable/iv_room_share" />
 
-                    <TextView
-                        android:id="@+id/tv_living"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/living_now"
-                        android:textColor="@color/_9B44ED"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_room_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/ll_room_live"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginTop="18dp"
-                    android:src="@drawable/iv_room_info" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/iv_room_info"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginTop="18dp"
-                    android:src="@drawable/iv_room_share" />
+                </RelativeLayout>
             </RelativeLayout>
 
 
@@ -98,4 +108,31 @@
         app:hasBackGround="false"
         app:titleText="头像认证" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="已关注" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="私信" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="拉黑" />
+    </LinearLayout>
 </RelativeLayout>

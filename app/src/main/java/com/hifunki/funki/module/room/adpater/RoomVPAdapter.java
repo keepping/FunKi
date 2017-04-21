@@ -14,15 +14,15 @@ import java.util.List;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.room.adpater.RoomAdapter.java
+ * @value com.hifunki.funki.module.room.adpater.RoomVPAdapter.java
  * @link
  * @since 2017-03-24 10:09:09
  */
-public class RoomAdapter extends FragmentPagerAdapter {
+public class RoomVPAdapter extends FragmentPagerAdapter {
 
     private List<String> mTabTitles;
 
-    public RoomAdapter(FragmentManager fm, List<String> mTabTitles) {
+    public RoomVPAdapter(FragmentManager fm, List<String> mTabTitles) {
         super(fm);
         this.mTabTitles = mTabTitles;
     }

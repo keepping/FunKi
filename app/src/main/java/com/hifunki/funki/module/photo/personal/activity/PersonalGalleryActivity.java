@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.photo.personal.adapter.PersonalGalleryAdapter;
+import com.hifunki.funki.module.photo.personal.adapter.PersonalGalleryVPAdapter;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalPhotoFragment;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalSercetFragment;
 import com.hifunki.funki.widget.bar.TopBarView;
@@ -53,7 +53,7 @@ public class PersonalGalleryActivity extends BaseActivity implements PersonalPho
 
     @Override
     protected void initView() {
-        PersonalGalleryAdapter personalGalleryAdapter = new PersonalGalleryAdapter(getSupportFragmentManager(), mListFragment, mTabTitle);
+        PersonalGalleryVPAdapter personalGalleryAdapter = new PersonalGalleryVPAdapter(getSupportFragmentManager(), mListFragment, mTabTitle);
         vpPersonal.setAdapter(personalGalleryAdapter);
         tbPersonal.setupWithViewPager(vpPersonal);
     }

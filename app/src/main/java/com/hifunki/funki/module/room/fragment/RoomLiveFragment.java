@@ -31,7 +31,6 @@ public class RoomLiveFragment extends Fragment {
     public RoomLiveFragment() {
     }
 
-
     public static RoomLiveFragment newInstance(String param1, String param2) {
         RoomLiveFragment fragment = new RoomLiveFragment();
         Bundle args = new Bundle();
