@@ -3,12 +3,9 @@ package com.hifunki.funki.module.photo.personal.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
@@ -19,6 +16,7 @@ import com.hifunki.funki.module.photo.personal.entity.PersonalPhotoEntity;
 import com.hifunki.funki.module.photo.personal.inter.OnSelectAllListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -46,6 +44,8 @@ public class PersonalPhotoFragment extends BaseFragment {
     private List<PersonalPhotoEntity> personalPhotoEntities;
     private PersonalPhotoAdapter adapter;
     private String TAG = getClass().getSimpleName();
+    private HashMap<Integer, Boolean> mapSelect;
+    private boolean isSelect = false;
 
     public static PersonalPhotoFragment newInstance(int param1, String param2) {
         PersonalPhotoFragment fragment = new PersonalPhotoFragment();
@@ -55,7 +55,6 @@ public class PersonalPhotoFragment extends BaseFragment {
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -80,6 +79,7 @@ public class PersonalPhotoFragment extends BaseFragment {
             mParam1 = getArguments().getInt(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
         personalPhotoEntities = new ArrayList<>();
         if (mParam1 == PersonalPhotoActivity.VALUE_ME_PHOTO_TO_GALLERY) {
             PersonalPhotoEntity personalEntity = new PersonalPhotoEntity(PersonalPhotoEntity.CAMERA, CommonConst.photo);
@@ -89,9 +89,11 @@ public class PersonalPhotoFragment extends BaseFragment {
             PersonalPhotoEntity personalEntity1 = new PersonalPhotoEntity(PersonalPhotoEntity.PHOTO, CommonConst.photo);
             personalPhotoEntities.add(personalEntity1);
         }
+        for (int j = 0; j < personalPhotoEntities.size(); j++) {
+            mapSelect = new HashMap<>();
+            mapSelect.put(j, false);
+        }
     }
-
-    private boolean isSelect = false;
 
     @Override
     protected void initListener() {
@@ -100,46 +102,32 @@ public class PersonalPhotoFragment extends BaseFragment {
         activity.setOnFunkiStop(new OnSelectAllListener() {
             @Override
             public void selectAll(boolean isSelectAll) {
+                Log.e(TAG, "selectAll: " + isSelectAll);
                 isSelect = isSelectAll;
+                adapter.setIsSelect(isSelectAll);
+//                adapter.notifyDataSetChanged();
             }
         });
 
-        adapter = new PersonalPhotoAdapter(personalPhotoEntities);
-        adapter.setSelectAll(new PersonalPhotoAdapter.OnSelectAllListener() {
-            @Override
-            public void onSelectAll(ImageView imageView, TextView tv) {
-                if (isSelect) {
-                    imageView.setVisibility(View.VISIBLE);
-                    tv.setText("500");
-                } else {
-                    imageView.setVisibility(View.INVISIBLE);
-                    tv.setText("400");
-                }
-                Handler handler = new Handler();
-                final Runnable r = new Runnable() {
-                    public void run() {
-                        adapter.notifyDataSetChanged();
-                    }
-                };
-                handler.post(r);
-
-            }
-        });
+//        adapter.setSelectAll(new PersonalPhotoAdapter.OnSelectAllListener() {
+//            @Override
+//            public void onSelectAll(HashMap<Integer,Boolean> isSelectAlls) {
+//                if (isSelect) {
+//                }else{
+//
+//                }
+//            }
+//        });
     }
 
     @Override
     protected void initAdapter() {
         super.initAdapter();
 
+        adapter = new PersonalPhotoAdapter(personalPhotoEntities, mapSelect);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         rlPersonPhoto.setLayoutManager(gridLayoutManager);
         rlPersonPhoto.setAdapter(adapter);
-//        if(isSelect==true) {
-//            adapter.setSelectAll(View.VISIBLE);
-//        }else{
-//            adapter.setSelectAll(View.INVISIBLE);
-//        }
-        adapter.notifyDataSetChanged();
     }
 
     public void onButtonPressed(Uri uri, boolean isSelectAl) {
@@ -157,6 +145,5 @@ public class PersonalPhotoFragment extends BaseFragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri, boolean isSelectAll);
     }
-
 
 }
