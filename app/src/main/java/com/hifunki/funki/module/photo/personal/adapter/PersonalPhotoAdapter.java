@@ -26,14 +26,12 @@ import java.util.List;
 public class PersonalPhotoAdapter extends BaseMultiItemQuickAdapter<PersonalPhotoEntity, BaseViewHolder> {
 
     private String TAG = getClass().getSimpleName();
-    private ImageView ivIcon;
-    private TextView tv;
     private boolean isSelectAll = false;
-    private HashMap<Integer,Boolean> map;
+    private HashMap<Integer, Boolean> map;
 
     public PersonalPhotoAdapter(List<PersonalPhotoEntity> data, HashMap<Integer, Boolean> isSelectAll) {
         super(data);
-        this.map=isSelectAll;
+        this.map = isSelectAll;
         addItemType(PersonalPhotoEntity.CAMERA, R.layout.photo_gallery_item_camera);
         addItemType(PersonalPhotoEntity.PHOTO, R.layout.item_personal_photo);
     }
@@ -45,19 +43,16 @@ public class PersonalPhotoAdapter extends BaseMultiItemQuickAdapter<PersonalPhot
 
                 break;
             case PersonalPhotoEntity.PHOTO:
-                ivIcon = helper.getView(R.id.iv_personal_photo_icon);
-                tv = helper.getView(R.id.tv);
-//                onSelectAllListener.onSelectAll(isSelectAll);
+                Glide.with(mContext).load(item.getPath()).into((ImageView) helper.getView(R.id.iv_personal_photo));
+                ImageView ivIcon = helper.getView(R.id.iv_personal_photo_icon);
+                TextView tv = helper.getView(R.id.tv);
                 if (isSelectAll) {
-                    Log.e(TAG, "convert:VISIBLE ");
                     ivIcon.setVisibility(View.VISIBLE);
                     tv.setText("500");
                 } else {
-                    Log.e(TAG, "convert:INVISIBLE ");
                     ivIcon.setVisibility(View.INVISIBLE);
                     tv.setText("400");
                 }
-                Glide.with(mContext).load(item.getPath()).into((ImageView) helper.getView(R.id.iv_personal_photo));
                 break;
         }
     }
@@ -71,7 +66,7 @@ public class PersonalPhotoAdapter extends BaseMultiItemQuickAdapter<PersonalPhot
     private OnSelectAllListener onSelectAllListener;
 
     public interface OnSelectAllListener {
-        void onSelectAll(HashMap<Integer,Boolean>  isSelectAll);
+        void onSelectAll(HashMap<Integer, Boolean> isSelectAll);
     }
 
     public void setSelectAll(OnSelectAllListener onSelectAllListener) {

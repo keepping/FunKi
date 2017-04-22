@@ -101,23 +101,14 @@ public class PersonalPhotoFragment extends BaseFragment {
         PersonalPhotoActivity activity = (PersonalPhotoActivity) getActivity();
         activity.setOnFunkiStop(new OnSelectAllListener() {
             @Override
-            public void selectAll(boolean isSelectAll) {
+            public void selectAll(final boolean isSelectAll) {
                 Log.e(TAG, "selectAll: " + isSelectAll);
                 isSelect = isSelectAll;
                 adapter.setIsSelect(isSelectAll);
-//                adapter.notifyDataSetChanged();
+
             }
         });
 
-//        adapter.setSelectAll(new PersonalPhotoAdapter.OnSelectAllListener() {
-//            @Override
-//            public void onSelectAll(HashMap<Integer,Boolean> isSelectAlls) {
-//                if (isSelect) {
-//                }else{
-//
-//                }
-//            }
-//        });
     }
 
     @Override
