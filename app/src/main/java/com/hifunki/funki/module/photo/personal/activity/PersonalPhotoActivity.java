@@ -44,34 +44,35 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
     private ImageView ivBack;
     private String TAG = getClass().getSimpleName();
     private int currentItem;
+    boolean isPhotoSelectAll = false;
+    boolean isSercetSelectAll = false;
+    public OnPhotoSelectAllListener onSelectAllListeners;
+    public OnSercetSelectAllListener onSercetSelectAllListener;
     private STATUS status = STATUS.NORMAL;
     private STATUS status1 = STATUS.P_SELECT_NOT_ALL;
+    private STATUS status2 = STATUS.S_SELECT_NOT_ALL;
 
     @Override
     protected int getViewResId() {
         return R.layout.activity_personal_gallery;
     }
 
-
     private enum STATUS {
         NORMAL,
         EDIT,
-
+        SELCET_ALL,
         P_SELECT_ALL,
         P_SELECT_NOT_ALL,
         S_SELECT_ALL,
         S_SELECT_NOT_ALL,
-
     }
 
     @Override
     protected void initVariable() {
         int type = getIntent().getIntExtra(KEY_PERSONAL_GALLERY, 0);
-
         mTabTitle = new ArrayList<>();
         mTabTitle.add(getString(R.string.personal_photo));
         mTabTitle.add(getString(R.string.personal_sercet_photo));
-
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(0)));
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(1)));
         mListFragment = new ArrayList<>();
@@ -92,7 +93,6 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
     @Override
     protected void initAdapter() {
         super.initAdapter();
-
     }
 
     @Override
@@ -106,7 +106,6 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
 
             @Override
             public void onPageSelected(int position) {
-                Log.e(TAG, "onPageSelected: " + position);
                 currentItem = position;
             }
 
@@ -144,35 +143,26 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
                     status = STATUS.EDIT;
                     refreshUI();
                 } else if (status == STATUS.EDIT) {
-                    if (currentItem == 0) {
-                        status = STATUS.P_SELECT_ALL;
-                    } else {
-                        status = STATUS.S_SELECT_ALL;
+                    status = STATUS.SELCET_ALL;
+                    refreshUI();
+                } else if (currentItem == 0) {
+                    if(status1==STATUS.P_SELECT_ALL){
+                        status1=STATUS.P_SELECT_NOT_ALL;
+                    }else{
+                        status1=STATUS.P_SELECT_ALL;
                     }
                     refreshUI();
-                } else if (status == STATUS.S_SELECT_ALL) {
-                    if (currentItem == 0) {
-                        status1 = STATUS.S_SELECT_NOT_ALL;
-                    } else {
-                        status1 = STATUS.S_SELECT_NOT_ALL;
+                } else if(currentItem==1){
+                    if(status2==STATUS.S_SELECT_ALL){
+                        status2=STATUS.S_SELECT_NOT_ALL;
+                    }else{
+                        status2=STATUS.S_SELECT_ALL;
                     }
-                    refreshUI();
-                } else if (status == STATUS.S_SELECT_NOT_ALL) {
-                    status = STATUS.S_SELECT_ALL;
-                    refreshUI();
-                } else if (status == STATUS.P_SELECT_ALL) {
-                    status = STATUS.P_SELECT_NOT_ALL;
-                    refreshUI();
-                } else if (status == STATUS.P_SELECT_NOT_ALL) {
-                    status = STATUS.P_SELECT_ALL;
                     refreshUI();
                 }
                 break;
         }
     }
-
-    boolean isPhotoSelectAll = false;
-    boolean isSercetSelectAll = false;
 
     private void refreshUI() {
         switch (status) {
@@ -188,25 +178,22 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
                 break;
             case P_SELECT_ALL:
                 isPhotoSelectAll = true;
-                onSercetSelectAllListener.selectAll(isSercetSelectAll);
+                onSercetSelectAllListener.selectAll(isPhotoSelectAll);
                 break;
             case P_SELECT_NOT_ALL:
                 isPhotoSelectAll = false;
-                onSercetSelectAllListener.selectAll(isSercetSelectAll);
+                onSercetSelectAllListener.selectAll(isPhotoSelectAll);
                 break;
             case S_SELECT_ALL:
                 isSercetSelectAll = true;
-                onSelectAllListeners.selectAll(isPhotoSelectAll);
+                onSelectAllListeners.selectAll(isSercetSelectAll);
                 break;
             case S_SELECT_NOT_ALL:
                 isSercetSelectAll = false;
-                onSelectAllListeners.selectAll(isPhotoSelectAll);
+                onSelectAllListeners.selectAll(isSercetSelectAll);
                 break;
         }
     }
-
-    public OnPhotoSelectAllListener onSelectAllListeners;
-    public OnSercetSelectAllListener onSercetSelectAllListener;
 
     public void setOnPhotoSelectAllListener(OnPhotoSelectAllListener selectListener) {
         this.onSelectAllListeners = selectListener;

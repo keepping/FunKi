@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.rank.world.adapter.RankPageAdapter;
 import com.hifunki.funki.module.rank.world.fragment.RankAnchorFragment;
@@ -27,7 +28,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-13 15:45:45
  */
-public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFragment.OnFragmentInteractionListener{
+public class WorldRankActivity extends BaseActivity implements RankAnchorFragment.OnFragmentInteractionListener{
 
     @BindView(R.id.tb_rank)
     TabLayout tbRank;
@@ -49,7 +50,6 @@ public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFr
         return R.layout.activity_world_rank;
     }
 
-
     @Override
     protected void initVariable() {
         //封装tab数据,数据和tab保持一致
@@ -59,11 +59,6 @@ public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFr
 
         tbRank.addTab(tbRank.newTab().setText(mTabTitle.get(0)));
         tbRank.addTab(tbRank.newTab().setText(mTabTitle.get(1)));
-    }
-
-    @Override
-    protected void initTitleBar() {
-
     }
 
     @Override
@@ -78,12 +73,9 @@ public class WorldRankActivity extends BaseTitleActivity implements RankAnchorFr
 
     @Override
     protected void initAdapter() {
-
         RankPageAdapter rankPageAdapter = new RankPageAdapter(getSupportFragmentManager(),mTabTitle);
         vpRank.setAdapter(rankPageAdapter);
         tbRank.setupWithViewPager(vpRank);
-
-
     }
 
     @Override
