@@ -2,6 +2,7 @@ package com.hifunki.funki.base.application;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.hifunki.funki.R;
@@ -31,6 +32,12 @@ public class ApplicationMain extends MultiDexApplication {
      */
     //如果解决冲突之后
     private static List<Activity> mActivityList = new LinkedList<>();
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
