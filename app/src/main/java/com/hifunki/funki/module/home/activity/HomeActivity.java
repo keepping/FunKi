@@ -81,9 +81,7 @@ public class HomeActivity extends BaseCoordinatorActivity implements HomeFragmen
         activity.finish();
     }
 
-    public interface TurnBackListener {
-        boolean onTurnBack();
-    }
+
 
     @Override
     protected int getViewResId() {
@@ -170,36 +168,40 @@ public class HomeActivity extends BaseCoordinatorActivity implements HomeFragmen
         transaction1 = fragmentManager.beginTransaction();
         switch (view.getId()) {
             case R.id.nav_item_home:
-                setSelected(navHome, navMsg, navStore, navMe);
+
                 transaction1.show(homeFragment);
                 transaction1.hide(msgFragment);
                 transaction1.hide(storeFragment);
                 transaction1.hide(meFragment);
                 transaction1.commit();
+                setSelected(navHome, navMsg, navStore, navMe);
                 break;
             case R.id.nav_item_msg:
-                setSelected(navMsg, navHome, navStore, navMe);
+
                 transaction1.hide(homeFragment);
                 transaction1.show(msgFragment);
                 transaction1.hide(storeFragment);
                 transaction1.hide(meFragment);
                 transaction1.commit();
+                setSelected(navMsg, navHome, navStore, navMe);
                 break;
             case R.id.nav_item_store:
-                setSelected(navStore, navMsg, navHome, navMe);
+
                 transaction1.hide(homeFragment);
                 transaction1.hide(msgFragment);
                 transaction1.show(storeFragment);
                 transaction1.hide(meFragment);
                 transaction1.commit();
+                setSelected(navStore, navMsg, navHome, navMe);
                 break;
             case R.id.nav_item_me:
-                setSelected(navMe, navMsg, navStore, navHome);
+
                 transaction1.hide(msgFragment);
                 transaction1.hide(homeFragment);
                 transaction1.hide(storeFragment);
                 transaction1.show(meFragment);
                 transaction1.commit();
+                setSelected(navMe, navMsg, navStore, navHome);
                 break;
             case R.id.main_container:
                 break;
