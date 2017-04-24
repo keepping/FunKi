@@ -44,6 +44,7 @@ public class SplashActivity extends BaseActivity {
                 HomeActivity.show(SplashActivity.this, mActivity);
             }
         }, 100);
+
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.im.ImManager;
 import com.hifunki.funki.util.AppUtil;
 
 import java.util.LinkedList;
@@ -41,6 +42,8 @@ public class ApplicationMain extends Application {
         if (!AppUtil.isMyProcessStartApp(this)) {
             return;
         }
+
+        ImManager.getDefault(this).init();
 
         //加载自定义字体
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()

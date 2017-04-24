@@ -56,7 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("BaseActivity", "onCreate: "+"" );
+        Log.e("BaseActivity", "onCreate: " + System.currentTimeMillis() + this.getClass());
         ApplicationMain.addActivity(this);
 
         setContentView(getViewResId());

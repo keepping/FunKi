@@ -26,7 +26,6 @@ public class StatusBarUtil {
                 view.setPadding(0,barHei,0,0);
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
-                NestedScrollView scrollView = null;
 
             }
         });
