@@ -111,25 +111,21 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e(TAG, "HomeFragment=onCreateView: ");
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.e(TAG, "HomeFragment=onStart: ");
     }
 
     @Override
     public void onResume() {
-        Log.e(TAG, "HomeFragment=onResume: ");
         super.onResume();
     }
 
     @Override
     public void onStop() {
-        Log.e(TAG, "HomeFragment=onStop: ");
         super.onStop();
     }
 
@@ -193,19 +189,16 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.e(TAG, "HomeFragment=onDestroyView: ");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "HomeFragment=onDestroy: ");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.e(TAG, "HomeFragment=onDetach: ");
         mListener = null;
     }
 

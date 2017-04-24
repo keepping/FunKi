@@ -7,21 +7,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/_0C001F"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_follow_photo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="9dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:padding="5dp"
             android:src="@drawable/bg_lv" />
 
         <TextView
-            android:id="@+id/post_user_name"
+            android:id="@+id/tv_follow_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -33,25 +32,25 @@
             android:textSize="13sp" />
 
         <TextView
-            android:id="@+id/post_user_time"
+            android:id="@+id/tv_follow_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="19dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/post_user_name"
+            android:layout_toRightOf="@+id/tv_follow_name"
             android:text="1分钟"
             android:textColor="#6B4E9A"
             android:textSize="11sp" />
 
         <ImageView
+            android:layout_toRightOf="@+id/iv_follow_photo"
             android:id="@+id/post_user_l"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/post_user_head"
             android:src="@drawable/iv_location"
             android:text="1分钟"
             android:textColor="#6B4E9A"
@@ -71,7 +70,7 @@
             android:textSize="11sp" />
 
         <ImageView
-            android:id="@+id/post_user_c"
+            android:id="@+id/iv_follow_country_flag"
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_alignParentBottom="true"
@@ -84,13 +83,13 @@
             android:textSize="11sp" />
 
         <TextView
-            android:id="@+id/post_user_county"
+            android:id="@+id/tv_follow_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="4dp"
-            android:layout_toRightOf="@+id/post_user_c"
+            android:layout_toRightOf="@+id/iv_follow_country_flag"
             android:text="English"
             android:textColor="#6B4E9A" />
 
@@ -101,11 +100,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@+id/post_user_county"
+            android:layout_toRightOf="@+id/tv_follow_country"
             android:text="来自 @伊娃格林"
             android:textColor="@color/_4A2F75"
             android:textSize="12sp" />
 
     </RelativeLayout>
-
 </LinearLayout>
