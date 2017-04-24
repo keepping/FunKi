@@ -1,2 +1,2 @@
-include ':app',':yasea'
+include ':app',':yasea','conversations'
 
