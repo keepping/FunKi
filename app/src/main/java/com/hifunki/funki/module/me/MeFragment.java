@@ -216,7 +216,6 @@ public class MeFragment extends BaseFragment {
         mListener = null;
     }
 
-
     @OnClick({R.id.iv_me_bill, R.id.iv_me_profile, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans, R.id.tv_recharge, R.id.rl_dymic, R.id.rl_live, R.id.civ_me_photo, R.id.tv_exchange, R.id.tv_withdraw})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -233,9 +232,9 @@ public class MeFragment extends BaseFragment {
                     shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_me_share, null);
                     sharePopWindow.getPopWindow().setOnDismissListener(onDissmissListener);
                 }
+                sharePopWindow.fitPopupWindowOverStatusBar(true);
                 sharePopWindow.init((int) DisplayUtil.dip2Px(getContext(), 198), LinearLayout.LayoutParams.MATCH_PARENT);
                 sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 1, 0);
-
                 break;
             case R.id.civ_me_photo:
                 System.out.println(rvMe.getHeight());

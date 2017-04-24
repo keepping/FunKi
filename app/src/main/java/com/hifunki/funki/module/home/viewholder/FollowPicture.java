@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
@@ -34,6 +35,8 @@ public class FollowPicture extends PowViewHolder<Post> {
     NineGridlayout nineGridlayout;
     @BindView(R.id.iv_follow_photo)
     ImageView ivPhoto;
+    @BindView(R.id.layout_picture_star)
+    LinearLayout llPicture;
 
     public FollowPicture(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
@@ -55,6 +58,7 @@ public class FollowPicture extends PowViewHolder<Post> {
 
         Glide.with(mActivity).load(CommonConst.photo).into(ivPhoto);//头像
         nineGridlayout.setImagesData(data.imgageUri);
+        llPicture.setVisibility(View.VISIBLE);
     }
 
     @OnClick({R.id.tv_follow_picture_comment})

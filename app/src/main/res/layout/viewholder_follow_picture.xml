@@ -34,5 +34,8 @@
         android:visibility="gone" />
 
     <!--底部点赞-->
-    <include layout="@layout/layout_follow_star" />
+    <include
+        android:visibility="gone"
+        android:id="@+id/layout_picture_star"
+        layout="@layout/layout_follow_star" />
 </LinearLayout>

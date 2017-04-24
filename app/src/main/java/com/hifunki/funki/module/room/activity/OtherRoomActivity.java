@@ -8,16 +8,22 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.room.adpater.RoomVPAdapter;
 import com.hifunki.funki.module.room.fragment.RoomDymicFragment;
 import com.hifunki.funki.module.room.fragment.RoomLiveFragment;
+import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 import com.hifunki.funki.widget.bar.TopBarView;
 
@@ -25,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.hifunki.funki.R.id.tab_room;
 
@@ -42,9 +50,6 @@ public class OtherRoomActivity extends BaseActivity implements RoomDymicFragment
     @BindView(R.id.rl_other_room_live)
     RelativeLayout rlOtherRoomLive;
 
-    @BindView(R.id.lt_room_info)
-    RelativeLayout rlRoomInfo;
-
     @BindView(R.id.me_title)
     RelativeLayout meTitle;
 
@@ -60,6 +65,56 @@ public class OtherRoomActivity extends BaseActivity implements RoomDymicFragment
     @BindView(R.id.vp_room)
     ViewPager vpRoom;
 
+    @BindView(R.id.iv_room_share)
+    ImageView ivRoomShare;
+    @BindView(R.id.civ_third_photo)
+    CircleImageView civThirdPhoto;
+    @BindView(R.id.civ_second_photo)
+    CircleImageView civSecondPhoto;
+    @BindView(R.id.civ_first_photo)
+    CircleImageView civFirstPhoto;
+    @BindView(R.id.civ_me_photo)
+    CircleImageView civMePhoto;
+    @BindView(R.id.iv_me_authentication)
+    ImageView ivMeAuthentication;
+    @BindView(R.id.iv_me_photo)
+    RelativeLayout ivMePhoto;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.rl_user_name)
+    RelativeLayout rlUserName;
+    @BindView(R.id.tv_user_id)
+    TextView tvUserId;
+    @BindView(R.id.tv_send_diamond)
+    TextView tvSendDiamond;
+    @BindView(R.id.tv_user_account)
+    RelativeLayout tvUserAccount;
+    @BindView(R.id.tv_introduce)
+    TextView tvIntroduce;
+    @BindView(R.id.tv_follow)
+    TextView tvFollow;
+    @BindView(R.id.tv_follow_num)
+    TextView tvFollowNum;
+    @BindView(R.id.ll_follow)
+    LinearLayout llFollow;
+    @BindView(R.id.tv_fans)
+    TextView tvFans;
+    @BindView(R.id.tv_fans_num)
+    TextView tvFansNum;
+    @BindView(R.id.ll_fans)
+    LinearLayout llFans;
+    @BindView(R.id.rl_room_info)
+    RelativeLayout rlRoomInfo;
+    @BindView(R.id.tv_living)
+    TextView tvLiving;
+    @BindView(R.id.ll_room_live)
+    LinearLayout llRoomLive;
+    @BindView(R.id.iv_room_info)
+    ImageView ivRoomInfo;
+
+
+    private PopWindowUtil sharePopWindow;//分享popWindow
+    private View shareView;
     private List<String> mTabTitles;
 
     private List<String> mInfoTag;//个人中心信息标签
@@ -172,6 +227,20 @@ public class OtherRoomActivity extends BaseActivity implements RoomDymicFragment
         context.startActivity(new Intent(context, OtherRoomActivity.class));
     }
 
-//    int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-//    int statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+
+    @OnClick(R.id.iv_room_share)
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_room_share:
+                if (sharePopWindow == null) {
+                    sharePopWindow = PopWindowUtil.getInstance(this);
+                    shareView = LayoutInflater.from(this).inflate(R.layout.pop_me_share, null);
+                }
+                sharePopWindow.fitPopupWindowOverStatusBar(true);
+                sharePopWindow.init((int) DisplayUtil.dip2Px(this, 198), LinearLayout.LayoutParams.MATCH_PARENT);
+                sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_WINDOW, null, 1, 0);
+                break;
+        }
+    }
+
 }

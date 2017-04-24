@@ -46,7 +46,7 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
     @BindView(R.id.tbv_normal_dynamic)
     TopBarView topBarView;
     @BindView(R.id.rl_dynamic_normal_root)
-    LinearLayout rlRoot;
+    RelativeLayout rlRoot;
     @BindView(R.id.iv_ngrid_layout)
     NineGridlayout nineGridlayout;
     @BindView(R.id.player_follow_picture)

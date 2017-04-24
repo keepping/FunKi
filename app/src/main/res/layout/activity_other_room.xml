@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content">
 
                 <include
-                    android:id="@+id/lt_room_info"
+                    android:id="@+id/rl_room_info"
                     layout="@layout/layout_info" />
 
                 <RelativeLayout
@@ -67,6 +67,7 @@
                         android:src="@drawable/iv_room_info" />
 
                     <ImageView
+                        android:id="@+id/iv_room_share"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
