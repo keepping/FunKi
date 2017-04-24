@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -120,6 +121,24 @@ public class FunKiDialog extends Dialog implements DialogInterface {
         getWindow().setAttributes(params);
         window.setWindowAnimations(R.style.show_pay_dialog);
         setContentView(mDialogView);
+    }
+
+    /**
+     * refresh with and height
+     * @param id
+     * @param width
+     * @param height
+     */
+    public void refreshDialogHeight(int id, int width, int height) {
+        View rootView = mDialogView.findViewById(id);
+        ViewGroup.LayoutParams layoutParams = rootView.getLayoutParams();
+        if (height != measuredHeight) {
+            layoutParams.height = (int) DisplayUtil.dip2Px(mContext, height);
+        }
+        if (width != measuredWidth) {
+            layoutParams.width = (int) DisplayUtil.dip2Px(mContext, width);
+        }
+        rootView.setLayoutParams(layoutParams);
     }
 
 }

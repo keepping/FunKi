@@ -62,10 +62,6 @@ public class ApplicationMain extends MultiDexApplication {
                 .setDefaultFontPath("fonts/FZZDXFW.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build());
-
-
-
-
     }
 
     public static Context getContext() {
@@ -101,9 +97,6 @@ public class ApplicationMain extends MultiDexApplication {
     public static void addActivity(Activity activity) {
         if (mActivityList != null) {
             mActivityList.add(activity);
-
-
-
         }
     }
 
@@ -128,8 +121,6 @@ public class ApplicationMain extends MultiDexApplication {
             }
         }
     }
-
-    // TODO: 2015/10/17 end 抽取ActivityManger
 
     /**
      * desc 退出app
