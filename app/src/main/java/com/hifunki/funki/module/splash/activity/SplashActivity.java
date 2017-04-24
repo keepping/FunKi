@@ -41,7 +41,7 @@ public class SplashActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                HomeActivity.show(mContext, mActivity);
+                HomeActivity.show(SplashActivity.this, mActivity);
             }
         }, 100);
     }
