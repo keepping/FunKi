@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/_6B4E9A"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.me.blacklist.activity.BlackListActivtiy">
+
+    <com.hifunki.funki.widget.bar.TopBarView
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="黑名单" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_blacklist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

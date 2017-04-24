@@ -67,7 +67,7 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(0)));
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(1)));
         mListFragment = new ArrayList<>();
-        mListFragment.add(PersonalPhotoFragment.newInstance(type, "a"));
+        mListFragment.add(PersonalSercetFragment.newInstance(type, "a"));
         mListFragment.add(PersonalPhotoFragment.newInstance(type, "a"));
     }
 

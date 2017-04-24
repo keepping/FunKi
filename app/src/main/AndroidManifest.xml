@@ -56,7 +56,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-        <activity android:name=".module.splash.activity.SplashActivity" >
+
+        <activity android:name=".module.splash.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,9 +68,7 @@
         <activity
             android:name=".module.home.activity.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.live.anchor.activity.AnchorActivity"
             android:theme="@style/AppThemeFullScreen" />
@@ -195,7 +194,9 @@
         <activity android:name=".module.me.bill.activity.BillFilterActivity" />
         <activity android:name=".module.me.bill.activity.BillRankActivity" />
         <activity android:name=".module.me.bill.activity.BillDetailActivity" />
-        <activity android:name=".module.me.visit.activity.VisitActivity"></activity>
+        <activity android:name=".module.me.visit.activity.VisitActivity" />
+        <activity android:name=".module.me.blacklist.activity.BlackListActivtiy" />
+        <activity android:name=".module.me.follow.activity.MyFollowActivity"></activity>
     </application>
 
 </manifest>

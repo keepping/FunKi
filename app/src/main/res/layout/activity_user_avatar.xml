@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_230C47"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-t    <com.hifunki.funki.widget.bar.TopBarView
+    <com.hifunki.funki.widget.bar.TopBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="头像认证" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
         android:overScrollMode="never"
-        android:scrollbars="none"
-        >
+        android:scrollbars="none">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,98 +30,99 @@ t    <com.hifunki.funki.widget.bar.TopBarView
                 android:id="@+id/user_head"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:layout_marginTop="30dp"
                 android:src="@drawable/ic_nav_me_actived"
                 app:civ_border_color="#a000fd"
-                app:civ_border_width="2dp"
                 app:civ_border_overlay="false"
-                android:layout_marginTop="30dp" />
+                app:civ_border_width="2dp" />
 
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginLeft="28dp"
                 android:layout_marginTop="-22dp"
-                android:src="@drawable/ic_user_verify_no"
-                />
+                android:src="@drawable/ic_user_verify_no" />
 
 
             <TextView
                 android:id="@+id/user_head_ver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="真实头像认证"
-                android:textSize="18sp"
-                android:textColor="#9B44ED"
                 android:layout_marginTop="9dp"
-                />
+                android:text="真实头像认证"
+                android:textColor="#9B44ED"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
                 android:text="录几秒的视频来证明头像是你吧!"
                 android:textColor="#6b4e9a"
-                android:textSize="16sp"
-                android:layout_marginTop="9dp" />
+                android:textSize="16sp" />
 
             <LinearLayout
+                android:id="@+id/user_avatar_ver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                android:id="@+id/user_avatar_ver"
-                >
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp">
+                    android:layout_marginRight="50dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:background="@drawable/bg_user_verf_status"
+                        android:gravity="center"
                         android:text="1"
                         android:textColor="@color/tv_avatar_verfication"
-                        android:gravity="center"
-                        android:background="@drawable/bg_user_verf_status"
                         android:textSize="13sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
+
                     <View
                         android:layout_width="0dp"
                         android:layout_height="2dp"
                         android:layout_marginLeft="-2dp"
                         android:layout_marginRight="-2dp"
-                        android:background="#9844ed" android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:background="#9844ed" />
+
                     <TextView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:background="@drawable/bg_user_verf_status"
+                        android:gravity="center"
                         android:text="2"
                         android:textColor="@color/tv_avatar_verfication"
-                        android:gravity="center"
-                        android:background="@drawable/bg_user_verf_status"
                         android:textSize="13sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
+
                     <View
                         android:layout_width="0dp"
                         android:layout_height="2dp"
                         android:layout_marginLeft="-2dp"
                         android:layout_marginRight="-2dp"
-                        android:background="#9844ed" android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:background="#9844ed" />
+
                     <TextView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:background="@drawable/bg_user_verf_status"
+                        android:enabled="false"
+                        android:gravity="center"
                         android:text="3"
                         android:textColor="@color/tv_avatar_verfication"
-                        android:gravity="center"
-                        android:background="@drawable/bg_user_verf_status"
                         android:textSize="13sp"
-                        android:textStyle="bold"
-                        android:enabled="false"
-                        />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -131,32 +132,32 @@ t    <com.hifunki.funki.widget.bar.TopBarView
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="7dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:text="上传视频"
-                        android:textColor="#6B4E9A"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:text="已审核"
-                        android:textColor="#6B4E9A"
-                        android:layout_centerInParent="true"
-                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="上传视频"
+                        android:textColor="#6B4E9A"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="已审核"
+                        android:textColor="#6B4E9A"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:text="未通过"
                         android:textColor="#9b44ed"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
+                        android:textSize="15sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -165,48 +166,44 @@ t    <com.hifunki.funki.widget.bar.TopBarView
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="7dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="4天前"
-                        android:textColor="#6B4E9A"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:text="2天前"
-                        android:textColor="#6B4E9A"
-                        android:layout_centerInParent="true"
-                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="4天前"
+                        android:textColor="#6B4E9A"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="2天前"
+                        android:textColor="#6B4E9A"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:text="1天前"
                         android:textColor="#6B4E9A"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true" />
+                        android:textSize="12sp" />
                 </RelativeLayout>
 
             </LinearLayout>
 
-
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="专属特权"
                 android:layout_marginTop="19dp"
+                android:background="@drawable/bg_user_avatar_specail"
+                android:text="专属特权"
                 android:textColor="#6b4e9a"
-                android:textSize="16sp"
-                android:background="@drawable/bg_user_avatar_specail" />
-
+                android:textSize="16sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -215,46 +212,37 @@ t    <com.hifunki.funki.widget.bar.TopBarView
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@drawable/dash_line"
-                />
+                android:background="@drawable/dash_line" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="温馨提示"
-                android:textColor="#6b4e9a"
-                android:textSize="16sp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
-
-                />
+                android:text="温馨提示"
+                android:textColor="#6b4e9a"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:text="1.该视频用于个人认证在， 且其他用户不可查看。
 2.已经认证过的用户，再次更改头像时，请使用清晰正脸照。避免出现因头像与认证视频存在误差，导致个人认证被取消的情况。
 3.视频认证审核将在48小时之内，请耐心等待，谢谢。
 4.因认证标识基于视频认证功能获得，如您认为已认证的用户侵犯到您的合法利益，可联系客服4242@FunKi.com进行投诉。提供真实准确的相同证明且审核无误后，被投诉用户将会按照侵权账户进行注销或者封号处理"
                 android:textColor="#6b4e9a"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_gravity="left"
+                android:textSize="14sp" />
 
-
-                />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="50dp" />
-
-
-
         </LinearLayout>
-
 
     </ScrollView>
 
@@ -262,12 +250,10 @@ t    <com.hifunki.funki.widget.bar.TopBarView
         android:id="@+id/user_avatar_verify"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="开启视频认证"
         android:background="#1e1138"
-        android:textSize="20sp"
         android:gravity="center"
+        android:text="开启视频认证"
         android:textColor="#9844ed"
-
-        />
+        android:textSize="20sp" />
 
 </LinearLayout>

@@ -43,7 +43,7 @@ public class SplashActivity extends BaseActivity {
             public void run() {
                 HomeActivity.show(mContext, mActivity);
             }
-        }, 500);
+        }, 100);
     }
 
     @Override

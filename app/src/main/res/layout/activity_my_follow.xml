@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/_240C48"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.me.follow.activity.MyFollowActivity">
+
+    <com.hifunki.funki.widget.bar.TopBarView
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="关注的人" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_not_care"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:text="还没有关注的人，看看推荐吧"
+            android:textColor="@color/_6B4E9A" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_not_care"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="9dp"
+            android:layout_marginTop="38dp"
+            android:background="@drawable/bg_user_avatar_specail"
+            android:text="今日推荐"
+            android:textColor="@color/_6B4E9A" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_my_follow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

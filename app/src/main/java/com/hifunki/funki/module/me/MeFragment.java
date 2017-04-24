@@ -22,8 +22,10 @@ import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.dynamic.me.activity.MyDynamicActivity;
 import com.hifunki.funki.module.me.adapter.MeInfoAdapter;
 import com.hifunki.funki.module.me.bill.activity.BillActivity;
+import com.hifunki.funki.module.me.blacklist.activity.BlackListActivtiy;
 import com.hifunki.funki.module.me.exchange.activity.ExchangeActivity;
 import com.hifunki.funki.module.me.fans.activity.MyFansActivity;
+import com.hifunki.funki.module.me.follow.activity.MyFollowActivity;
 import com.hifunki.funki.module.me.profile.activity.EditProfileActivity;
 import com.hifunki.funki.module.me.recharge.activity.RechargeActivity;
 import com.hifunki.funki.module.me.user.UserAvatarActivity;
@@ -176,6 +178,8 @@ public class MeFragment extends BaseFragment {
                                 PersonalPhotoActivity.show(getContext(), PersonalPhotoActivity.VALUE_ME_PHOTO_TO_GALLERY);
                             }else if(position==1){
                                 VisitActivity.show(getContext());
+                            }else if(position==3){
+                                BlackListActivtiy.show(getContext());
                             }
                         break;
                 }
@@ -247,7 +251,7 @@ public class MeFragment extends BaseFragment {
                 MeRankActivity.show(getContext());
                 break;
             case R.id.ll_follow://关注
-
+                MyFollowActivity.show(getContext());
                 break;
             case R.id.rl_dymic://我的动态
                 MyDynamicActivity.show(getContext());
@@ -283,4 +287,5 @@ public class MeFragment extends BaseFragment {
 
         }
     };
+
 }

@@ -54,7 +54,7 @@ public class UserAvatarActivity extends BaseActivity {
 
     @Override
     protected int getViewResId() {
-        return R.layout.acitivy_user_avatar;
+        return R.layout.activity_user_avatar;
     }
 
     @Override
