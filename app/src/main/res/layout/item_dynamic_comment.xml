@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
     android:background="@color/_6B4E9A"
-    android:layout_height="20dp">
-    <TextView
-        android:text="你好"
-        android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_dynamic_photo"
+        android:layout_width="20dp"
         android:layout_height="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_dynamic_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="酱油泡饭" />
+
+        <TextView
+            android:id="@+id/tv_dynamic_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12-14 14:26" />
+
+        <TextView
+            android:text="今天是个好日子，一起出去玩吧"
+            android:id="@+id/tv_dynamic_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:textColor="@color/_9B44ED"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </LinearLayout>
 </LinearLayout>

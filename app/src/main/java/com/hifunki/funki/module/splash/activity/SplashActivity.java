@@ -1,7 +1,12 @@
 package com.hifunki.funki.module.splash.activity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.Handler;
+
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.module.home.activity.HomeActivity;
 
 /**
  * 闪屏页
@@ -15,6 +20,9 @@ import com.hifunki.funki.base.activity.BaseActivity;
 public class SplashActivity extends BaseActivity {
 
 
+    private Context mContext;
+    private Activity mActivity;
+
     @Override
     protected int getViewResId() {
         return R.layout.activity_splash;
@@ -22,13 +30,35 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initVariable() {
-
+        mContext = getApplicationContext();
+        mActivity = SplashActivity.this;//必须要调用,用来注册本地广播
     }
 
 
     @Override
     protected void initView() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                HomeActivity.show(mContext, mActivity);
+            }
+        }, 500);
+    }
 
+    @Override
+    protected void initTitleBar() {
+        super.initTitleBar();
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+    }
+
+    @Override
+    protected void initAdapter() {
+        super.initAdapter();
     }
 
     @Override

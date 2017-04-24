@@ -56,16 +56,19 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-        <!-- 主布局 -->
-        <activity
-            android:name=".module.home.activity.HomeActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:screenOrientation="portrait">
+        <activity android:name=".module.splash.activity.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!-- 主布局 -->
+        <activity
+            android:name=".module.home.activity.HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".module.live.anchor.activity.AnchorActivity"
@@ -169,7 +172,6 @@
             android:name=".module.live.audience.activity.AudienceActivity"
             android:theme="@style/AppThemeFullScreen"
             android:windowSoftInputMode="adjustUnspecified" />
-        <activity android:name=".module.splash.activity.SplashActivity" />
         <!-- 直播标签 -->
         <activity android:name=".module.live.anchor.activity.LiveTagActivity" />
         <!-- 修改昵称界面 -->

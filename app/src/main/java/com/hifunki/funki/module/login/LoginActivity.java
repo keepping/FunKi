@@ -21,20 +21,19 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.AccountBaseActivity;
+import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.activity.HomeActivity;
-import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.business.LoginBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
-import com.hifunki.funki.module.login.widget.scroller.FixedSpeedScroller;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.SPUtils;
 import com.hifunki.funki.util.ToastUtils;
+import com.hifunki.funki.util.ViewUtil;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -111,15 +110,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     @Override
     protected void initView() {
         vpPhoneEmail = (ViewPager) findViewById(R.id.vpPhoneEmail);
-        Field mScroller = null;
-        try {
-            mScroller = ViewPager.class.getDeclaredField("mScroller");
-            mScroller.setAccessible(true);
-            FixedSpeedScroller scroller = new FixedSpeedScroller(vpPhoneEmail.getContext());
-            mScroller.set(vpPhoneEmail, scroller);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ViewUtil.setVPNotScrool(vpPhoneEmail);
 
 //        vpPhoneEmail.setScanScroll(false);
         initViewPager();

@@ -21,10 +21,9 @@ import com.hifunki.funki.module.login.business.LoginBusiness;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
-import com.hifunki.funki.module.login.widget.scroller.FixedSpeedScroller;
 import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
+import com.hifunki.funki.util.ViewUtil;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -90,17 +89,8 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
 
     @Override
     protected void initView() {
-
         vpPhoneEmail = (ViewPager) findViewById(R.id.vpPhoneEmail);
-        Field mScroller = null;
-        try {
-            mScroller = ViewPager.class.getDeclaredField("mScroller");
-            mScroller.setAccessible(true);
-            FixedSpeedScroller scroller = new FixedSpeedScroller(vpPhoneEmail.getContext());
-            mScroller.set(vpPhoneEmail, scroller);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ViewUtil.setVPNotScrool(vpPhoneEmail);
 
         initViewPager();
     }

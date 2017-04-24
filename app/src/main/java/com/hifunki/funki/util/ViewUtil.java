@@ -1,5 +1,6 @@
 package com.hifunki.funki.util;
 
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.hifunki.funki.module.login.widget.scroller.FixedSpeedScroller;
+
+import java.lang.reflect.Field;
 
 
 public class ViewUtil {
@@ -99,6 +104,18 @@ public class ViewUtil {
 
     }
 
+
+    public static void setVPNotScrool(ViewPager viewPager){
+        Field mScroller = null;
+        try {
+            mScroller = ViewPager.class.getDeclaredField("mScroller");
+            mScroller.setAccessible(true);
+            FixedSpeedScroller scroller = new FixedSpeedScroller(viewPager.getContext());
+            mScroller.set(viewPager, scroller);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Text view设值
      *

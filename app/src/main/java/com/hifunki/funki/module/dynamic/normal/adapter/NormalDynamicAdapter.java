@@ -24,7 +24,16 @@ public class NormalDynamicAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return NormalDynamicFragment.newInstance("f", "f");
+        switch (position) {
+            case 0:
+                return NormalDynamicFragment.newInstance(0, "f");
+            case 1:
+                return NormalDynamicFragment.newInstance(1, "f");
+            case 2:
+                return NormalDynamicFragment.newInstance(2, "f");
+            default:
+                return null;
+        }
     }
 
     @Override

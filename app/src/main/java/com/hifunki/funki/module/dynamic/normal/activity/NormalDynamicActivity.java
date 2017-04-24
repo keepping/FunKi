@@ -23,6 +23,7 @@ import com.hifunki.funki.module.dynamic.normal.fragment.NormalDynamicFragment;
 import com.hifunki.funki.module.home.widget.ninegrid.NineGridlayout;
 import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
+import com.hifunki.funki.util.ViewUtil;
 import com.hifunki.funki.widget.FunKiPlayer;
 import com.hifunki.funki.widget.bar.TopBarView;
 
@@ -107,6 +108,7 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
 
     @Override
     protected void initView() {
+        ViewUtil.setVPNotScrool(viewPager);
         viewPager.getViewTreeObserver().addOnGlobalLayoutListener(onGlobalLayoutListener);
     }
 
@@ -195,7 +197,7 @@ public class NormalDynamicActivity extends BaseActivity implements NormalDynamic
             Log.e("NormalDynamicActivity", "onGlobalLayout: totalHeight=" + totalHeight + "dif" + dif + "reCount" + reCount);
             //滑动初始状态
             if (reCount >= 0) {
-                Log.e("NormalDynamicActivity", "onGlobalLayout: reCount>0" );
+                Log.e("NormalDynamicActivity", "onGlobalLayout: reCount>0");
                 scrollView.scrollTo(0, 0);
             }
             if (reCount == 0) {

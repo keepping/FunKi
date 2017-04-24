@@ -32,7 +32,7 @@ public class NormalDynamicFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
+    private int mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -41,25 +41,41 @@ public class NormalDynamicFragment extends BaseFragment {
     public NormalDynamicFragment() {
     }
 
-    public static NormalDynamicFragment newInstance(String param1, String param2) {
+    public static NormalDynamicFragment newInstance(int param1, String param2) {
         NormalDynamicFragment fragment = new NormalDynamicFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putInt(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_normal_dynamic;
+    }
+
+    @Override
     protected void initVariable() {
         super.initVariable();
         stringList = new ArrayList<>();
-        for(int i=0;i<30;i++){
+        for (int i = 0; i < 30; i++) {
             stringList.add("");
         }
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getInt(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -74,14 +90,10 @@ public class NormalDynamicFragment extends BaseFragment {
     protected void initAdapter() {
         super.initAdapter();
         rlComment.setLayoutManager(new LinearLayoutManager(getContext()));
-        DynamicCommentAdapter adapter=new DynamicCommentAdapter(R.layout.item_dynamic_comment,stringList);
+        DynamicCommentAdapter adapter = new DynamicCommentAdapter(R.layout.item_dynamic_comment, stringList,mParam1);
         rlComment.setAdapter(adapter);
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_normal_dynamic;
-    }
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -89,16 +101,6 @@ public class NormalDynamicFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
     @Override
     public void onDetach() {

@@ -5,4 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.hifunki.funki.module.splash.activity.SplashActivity">
 
+    <ImageView
+        android:src="@drawable/iv_splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

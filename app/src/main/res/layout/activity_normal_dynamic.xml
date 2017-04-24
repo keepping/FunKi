@@ -59,7 +59,7 @@
                     android:text="赞1530" />
             </RelativeLayout>
 
-            <android.support.v4.view.ViewPager
+            <com.hifunki.funki.module.login.widget.ViewpagerNotScroll
                 android:id="@+id/vp_dynamic_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
