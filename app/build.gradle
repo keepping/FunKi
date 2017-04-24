@@ -18,11 +18,8 @@ android {
         additionalParameters "--no-version-vectors"
     }
     dexOptions {
-        //方法超过65535快速解决
         jumboMode = true
-        incremental true
         javaMaxHeapSize "4g"
-        //javaMaxHeapSize "4g"b
     }
     packagingOptions {
         exclude '*.apk'
