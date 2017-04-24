@@ -1,8 +1,8 @@
 package com.hifunki.funki.base.application;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.util.AppUtil;
@@ -22,7 +22,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * @since 2017-03-15 10:27:27
  */
 
-public class ApplicationMain extends Application {
+public class ApplicationMain extends MultiDexApplication {
     static ApplicationMain application;
     static Context appContext;
     /**
