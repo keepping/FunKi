@@ -1,9 +1,7 @@
 package com.hifunki.funki.module.photo.personal.adapter;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -45,32 +43,28 @@ public class PersonalPhotoAdapter extends BaseMultiItemQuickAdapter<PersonalPhot
             case PersonalPhotoEntity.PHOTO:
                 Glide.with(mContext).load(item.getPath()).into((ImageView) helper.getView(R.id.iv_personal_photo));
                 ImageView ivIcon = helper.getView(R.id.iv_personal_photo_icon);
-                TextView tv = helper.getView(R.id.tv);
                 if (isSelectAll) {
                     ivIcon.setVisibility(View.VISIBLE);
-                    tv.setText("500");
                 } else {
                     ivIcon.setVisibility(View.INVISIBLE);
-                    tv.setText("400");
                 }
                 break;
         }
     }
 
     public void setIsSelect(boolean isSelect) {
-        Log.e(TAG, "setIsSelect: " + isSelect);
         this.isSelectAll = isSelect;
         notifyDataSetChanged();
     }
-
-    private OnSelectAllListener onSelectAllListener;
-
-    public interface OnSelectAllListener {
-        void onSelectAll(HashMap<Integer, Boolean> isSelectAll);
-    }
-
-    public void setSelectAll(OnSelectAllListener onSelectAllListener) {
-        this.onSelectAllListener = onSelectAllListener;
-    }
+//
+//    private OnPhotoSelectAllListener onSelectAllListener;
+//
+//    public interface OnPhotoSelectAllListener {
+//        void onSelectAll(HashMap<Integer, Boolean> isSelectAll);
+//    }
+//
+//    public void setSelectAll(OnPhotoSelectAllListener onSelectAllListener) {
+//        this.onSelectAllListener = onSelectAllListener;
+//    }
 
 }

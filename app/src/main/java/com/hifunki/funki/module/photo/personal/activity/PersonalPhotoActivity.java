@@ -15,7 +15,7 @@ import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.photo.personal.adapter.PersonalPhotoVPAdapter;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalPhotoFragment;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalSercetFragment;
-import com.hifunki.funki.module.photo.personal.inter.OnSelectAllListener;
+import com.hifunki.funki.module.photo.personal.inter.OnPhotoSelectAllListener;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
@@ -160,10 +160,10 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
         }
     }
 
-    public OnSelectAllListener onSelectAllListeners;
+    public OnPhotoSelectAllListener onSelectAllListeners;
 
 
-    public void setOnFunkiStop(OnSelectAllListener selectListener) {
+    public void setOnPhotoSelectAllListener(OnPhotoSelectAllListener selectListener) {
         this.onSelectAllListeners = selectListener;
     }
 

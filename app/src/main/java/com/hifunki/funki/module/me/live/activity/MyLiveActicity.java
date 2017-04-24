@@ -1,10 +1,18 @@
-package com.hifunki.funki.module.me;
+package com.hifunki.funki.module.me.live.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.module.me.live.adapter.MyLiveAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * 在此写用途
@@ -17,6 +25,10 @@ import com.hifunki.funki.base.activity.BaseActivity;
  */
 public class MyLiveActicity extends BaseActivity {
 
+    @BindView(R.id.rl_my_live)
+    RecyclerView rlMyLive;
+    private List<String> str;
+
     @Override
     protected int getViewResId() {
         return R.layout.activity_my_live;
@@ -24,12 +36,24 @@ public class MyLiveActicity extends BaseActivity {
 
     @Override
     protected void initVariable() {
-
+        str = new ArrayList<>();
+        str.add("a");
+        str.add("a");
+        str.add("a");
+        str.add("a");
     }
 
     @Override
     protected void initView() {
 
+    }
+
+    @Override
+    protected void initAdapter() {
+        super.initAdapter();
+        rlMyLive.setLayoutManager(new LinearLayoutManager(this));
+        MyLiveAdapter adapter=new MyLiveAdapter(R.layout.item_mylive,str);
+        rlMyLive.setAdapter(adapter);
     }
 
     @Override

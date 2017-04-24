@@ -113,7 +113,6 @@ public class PersonalSercetFragment extends BaseFragment {
     }
 
 
-
     @Override
     public void onDetach() {
         super.onDetach();

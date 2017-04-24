@@ -26,6 +26,7 @@ import com.hifunki.funki.module.me.blacklist.activity.BlackListActivtiy;
 import com.hifunki.funki.module.me.exchange.activity.ExchangeActivity;
 import com.hifunki.funki.module.me.fans.activity.MyFansActivity;
 import com.hifunki.funki.module.me.follow.activity.MyFollowActivity;
+import com.hifunki.funki.module.me.live.activity.MyLiveActicity;
 import com.hifunki.funki.module.me.profile.activity.EditProfileActivity;
 import com.hifunki.funki.module.me.recharge.activity.RechargeActivity;
 import com.hifunki.funki.module.me.user.UserAvatarActivity;

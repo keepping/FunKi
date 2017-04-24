@@ -12,7 +12,7 @@ import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.photo.personal.activity.PersonalPhotoActivity;
 import com.hifunki.funki.module.photo.personal.adapter.PersonalPhotoAdapter;
 import com.hifunki.funki.module.photo.personal.entity.PersonalPhotoEntity;
-import com.hifunki.funki.module.photo.personal.inter.OnSelectAllListener;
+import com.hifunki.funki.module.photo.personal.inter.OnPhotoSelectAllListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,7 +98,7 @@ public class PersonalPhotoFragment extends BaseFragment {
     protected void initListener() {
         super.initListener();
         PersonalPhotoActivity activity = (PersonalPhotoActivity) getActivity();
-        activity.setOnFunkiStop(new OnSelectAllListener() {
+        activity.setOnPhotoSelectAllListener(new OnPhotoSelectAllListener() {
             @Override
             public void selectAll(final boolean isSelectAll) {
                 isSelect = isSelectAll;
