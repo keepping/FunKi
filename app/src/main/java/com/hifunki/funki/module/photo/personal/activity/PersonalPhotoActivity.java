@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.hifunki.funki.module.photo.personal.adapter.PersonalPhotoVPAdapter;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalPhotoFragment;
 import com.hifunki.funki.module.photo.personal.fragment.PersonalSercetFragment;
 import com.hifunki.funki.module.photo.personal.inter.OnPhotoSelectAllListener;
+import com.hifunki.funki.module.photo.personal.inter.OnSercetSelectAllListener;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
@@ -41,7 +43,9 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
     private TextView menuText;
     private ImageView ivBack;
     private String TAG = getClass().getSimpleName();
+    private int currentItem;
     private STATUS status = STATUS.NORMAL;
+    private STATUS status1 = STATUS.P_SELECT_NOT_ALL;
 
     @Override
     protected int getViewResId() {
@@ -52,8 +56,12 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
     private enum STATUS {
         NORMAL,
         EDIT,
-        SELECT_ALL,
-        SELECT_NOT_ALL
+
+        P_SELECT_ALL,
+        P_SELECT_NOT_ALL,
+        S_SELECT_ALL,
+        S_SELECT_NOT_ALL,
+
     }
 
     @Override
@@ -67,8 +75,8 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(0)));
         tbPersonal.addTab(tbPersonal.newTab().setText(mTabTitle.get(1)));
         mListFragment = new ArrayList<>();
-        mListFragment.add(PersonalSercetFragment.newInstance(type, "a"));
         mListFragment.add(PersonalPhotoFragment.newInstance(type, "a"));
+        mListFragment.add(PersonalSercetFragment.newInstance(type, "a"));
     }
 
     @Override
@@ -90,9 +98,23 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
     @Override
     protected void initListener() {
         super.initListener();
-//        firstText.setOnClickListener(this);
-//        menuText.setOnClickListener(this);
+        vpPersonal.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.e(TAG, "onPageSelected: " + position);
+                currentItem = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -122,20 +144,35 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
                     status = STATUS.EDIT;
                     refreshUI();
                 } else if (status == STATUS.EDIT) {
-                    status = STATUS.SELECT_ALL;
+                    if (currentItem == 0) {
+                        status = STATUS.P_SELECT_ALL;
+                    } else {
+                        status = STATUS.S_SELECT_ALL;
+                    }
                     refreshUI();
-                } else if (status == STATUS.SELECT_ALL) {
-                    status = STATUS.SELECT_NOT_ALL;
+                } else if (status == STATUS.S_SELECT_ALL) {
+                    if (currentItem == 0) {
+                        status1 = STATUS.S_SELECT_NOT_ALL;
+                    } else {
+                        status1 = STATUS.S_SELECT_NOT_ALL;
+                    }
                     refreshUI();
-                } else if (status == STATUS.SELECT_NOT_ALL) {
-                    status = STATUS.SELECT_ALL;
+                } else if (status == STATUS.S_SELECT_NOT_ALL) {
+                    status = STATUS.S_SELECT_ALL;
+                    refreshUI();
+                } else if (status == STATUS.P_SELECT_ALL) {
+                    status = STATUS.P_SELECT_NOT_ALL;
+                    refreshUI();
+                } else if (status == STATUS.P_SELECT_NOT_ALL) {
+                    status = STATUS.P_SELECT_ALL;
                     refreshUI();
                 }
                 break;
         }
     }
 
-    boolean isSelectAll = false;
+    boolean isPhotoSelectAll = false;
+    boolean isSercetSelectAll = false;
 
     private void refreshUI() {
         switch (status) {
@@ -149,28 +186,39 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
                 firstText.setVisibility(View.VISIBLE);
                 menuText.setText("全选");
                 break;
-            case SELECT_ALL:
-                isSelectAll = true;
-                onSelectAllListeners.selectAll(isSelectAll);
+            case P_SELECT_ALL:
+                isPhotoSelectAll = true;
+                onSercetSelectAllListener.selectAll(isSercetSelectAll);
                 break;
-            case SELECT_NOT_ALL:
-                isSelectAll = false;
-                onSelectAllListeners.selectAll(isSelectAll);
+            case P_SELECT_NOT_ALL:
+                isPhotoSelectAll = false;
+                onSercetSelectAllListener.selectAll(isSercetSelectAll);
+                break;
+            case S_SELECT_ALL:
+                isSercetSelectAll = true;
+                onSelectAllListeners.selectAll(isPhotoSelectAll);
+                break;
+            case S_SELECT_NOT_ALL:
+                isSercetSelectAll = false;
+                onSelectAllListeners.selectAll(isPhotoSelectAll);
                 break;
         }
     }
 
     public OnPhotoSelectAllListener onSelectAllListeners;
-
+    public OnSercetSelectAllListener onSercetSelectAllListener;
 
     public void setOnPhotoSelectAllListener(OnPhotoSelectAllListener selectListener) {
         this.onSelectAllListeners = selectListener;
     }
 
+    public void setOnSercetSelectAllListener(OnSercetSelectAllListener selectListener) {
+        this.onSercetSelectAllListener = selectListener;
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri, boolean isSelectAll) {
-        this.isSelectAll = isSelectAll;
+        this.isPhotoSelectAll = isSelectAll;
     }
 
     @Override
