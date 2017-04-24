@@ -96,8 +96,11 @@ public class ViewUtil {
                     scrollView.measure(measureWith, measureHei);
 
                     ViewGroup.LayoutParams myParam = scrollView.getLayoutParams();
-                    myParam.height = scrollView.getMeasuredHeight();
-                    scrollView.setLayoutParams(myParam);
+
+                    if(myParam.height!=scrollView.getMeasuredHeight()){
+                        myParam.height = scrollView.getMeasuredHeight();
+                        scrollView.setLayoutParams(myParam);
+                    }
                 }
             }
         });

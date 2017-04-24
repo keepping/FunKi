@@ -17,7 +17,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/bg_lv" />
+            android:src="@drawable/gift_angle" />
 
         <TextView
             android:id="@+id/tv_follow_name"
