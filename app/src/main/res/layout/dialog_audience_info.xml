@@ -229,6 +229,7 @@
                 android:layout_alignParentBottom="true">
 
                 <TextView
+                    android:id="@+id/tv_audience_follow"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:layout_weight="1"
@@ -239,6 +240,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_audience_msg"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:layout_weight="1"
@@ -249,6 +251,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_audience_call"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:layout_weight="1"
@@ -259,6 +262,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_audience_otherroom"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:layout_weight="1"
@@ -283,6 +287,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/ll_audience_share"
             android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
