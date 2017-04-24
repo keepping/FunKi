@@ -19,38 +19,38 @@ import com.hifunki.funki.util.DisplayUtil;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.show.widget.ShowPayDialogBuilder.java
+ * @value com.hifunki.funki.module.show.widget.FunKiDialog.java
  * @link
  * @since 2017-03-17 14:15:15
  */
-public class ShowPayDialogBuilder extends Dialog implements DialogInterface {
+public class FunKiDialog extends Dialog implements DialogInterface {
 
     private View mDialogView;
 
     private static Context mContext;
 
-    private static ShowPayDialogBuilder instance;
+    private static FunKiDialog instance;
     private int measuredHeight;
     private int measuredWidth;
 
-    protected ShowPayDialogBuilder(@NonNull Context context, @StyleRes int themeResId, int res) {
+    protected FunKiDialog(@NonNull Context context, @StyleRes int themeResId, int res) {
         super(context, themeResId);
         init(context, res);
     }
 
-    protected ShowPayDialogBuilder(@NonNull Context context, @StyleRes int themeResId, View view) {
+    protected FunKiDialog(@NonNull Context context, @StyleRes int themeResId, View view) {
         super(context, themeResId);
         init(view);
     }
 
-    public static ShowPayDialogBuilder getInstance(Context context, Object obj) {
+    public static FunKiDialog getInstance(Context context, Object obj) {
         if (instance == null || !mContext.equals(context)) {
-            synchronized (ShowPayDialogBuilder.class) {
+            synchronized (FunKiDialog.class) {
                 if (instance == null || !mContext.equals(context)) {
                     if (obj instanceof Integer) {
-                        instance = new ShowPayDialogBuilder(context, R.style.show_pay_dialog, (int) obj);
+                        instance = new FunKiDialog(context, R.style.show_pay_dialog, (int) obj);
                     } else if (obj instanceof View) {
-                        instance = new ShowPayDialogBuilder(context, R.style.show_pay_dialog, (View) obj);
+                        instance = new FunKiDialog(context, R.style.show_pay_dialog, (View) obj);
                     }
                 }
             }
@@ -62,13 +62,6 @@ public class ShowPayDialogBuilder extends Dialog implements DialogInterface {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Window window = getWindow();
-//        WindowManager.LayoutParams params = window.getAttributes();
-//        params.height = (int) DisplayUtil.dip2Px(mContext, 210);
-//        params.width = (int) DisplayUtil.dip2Px(mContext, 231);
-//        getWindow().setAttributes(params);
-//        window.setWindowAnimations(R.style.show_pay_dialog);
-
     }
 
     private void init(View view) {
@@ -108,7 +101,7 @@ public class ShowPayDialogBuilder extends Dialog implements DialogInterface {
      *
      * @return
      */
-    public ShowPayDialogBuilder setDimiss() {
+    public FunKiDialog setDimiss() {
         dismiss();
         return this;
     }
@@ -127,7 +120,6 @@ public class ShowPayDialogBuilder extends Dialog implements DialogInterface {
         getWindow().setAttributes(params);
         window.setWindowAnimations(R.style.show_pay_dialog);
         setContentView(mDialogView);
-
     }
 
 }

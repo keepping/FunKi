@@ -32,7 +32,7 @@ import com.hifunki.funki.module.live.audience.adapter.PrivateMsgAdapter;
 import com.hifunki.funki.module.live.audience.event.EventPlayContent;
 import com.hifunki.funki.module.live.audience.mode.ChatMessage;
 import com.hifunki.funki.module.live.audience.viewholder.ChatComing;
-import com.hifunki.funki.module.live.audience.viewholder.ChatFan;
+import com.hifunki.funki.module.live.audience.viewholder.ChatFanHolder;
 import com.hifunki.funki.module.live.audience.viewholder.ChatText;
 import com.hifunki.funki.module.live.audience.viewholder.Gift;
 import com.hifunki.funki.module.live.danmu.bDanMu.DanMuData;
@@ -68,8 +68,8 @@ public class AudienceFragment extends BaseFragment {
 
     @BindView(R.id.host_avatar)
     ImageView hostAvatar;
-    @BindView(R.id.banner_fan)
-    RecyclerView recyclerViewAvatar;
+    @BindView(R.id.rl_fans_photo)
+    RecyclerView rvFansPhoto;
     @BindView(R.id.rl_gift)
     RecyclerView rlGift;
     @BindView(R.id.host_chat)
@@ -140,9 +140,9 @@ public class AudienceFragment extends BaseFragment {
         Glide.with(this).load("http://v1.qzone.cc/avatar/201408/03/23/44/53de58e5da74c247.jpg%21200x200.jpg").into(hostAvatar);
 
         //游客头像
-        avatarMultipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), ChatFan.class);
-        recyclerViewAvatar.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewAvatar.setAdapter(avatarMultipleRecycleAdapter);
+        avatarMultipleRecycleAdapter = MultipleRecycleAdapter.getByViewHolder(getActivity(), ChatFanHolder.class);
+        rvFansPhoto.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        rvFansPhoto.setAdapter(avatarMultipleRecycleAdapter);
         // 测试数据--------------
         List<User> users = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

@@ -112,9 +112,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         vpPhoneEmail = (ViewPager) findViewById(R.id.vpPhoneEmail);
         ViewUtil.setVPNotScrool(vpPhoneEmail);
 
-//        vpPhoneEmail.setScanScroll(false);
         initViewPager();
-//        vpPhoneEmail
 
     }
 

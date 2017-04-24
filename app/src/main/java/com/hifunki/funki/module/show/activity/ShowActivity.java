@@ -15,7 +15,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
 import com.hifunki.funki.module.show.adapter.ShowAdapter;
 import com.hifunki.funki.module.show.entity.ShowEntity;
-import com.hifunki.funki.widget.dialog.ShowPayDialogBuilder;
+import com.hifunki.funki.widget.dialog.FunKiDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
     RecyclerView rlShow;
     private String ImagePath = "http://img1.imgtn.bdimg.com/it/u=2227804654,860253351&fm=23&gp=0.jpg";
     private List<ShowEntity> entityList;
-    private ShowPayDialogBuilder builder;
+    private FunKiDialog builder;
 
     /**
      * 跳转界面方法
@@ -91,13 +91,12 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 super.onItemChildClick(adapter, view, position);
-                Log.e(TAG, "onItemChildClick: " + "test");
                 switch (view.getId()) {
                     case R.id.ll_show_price:
 //                        startActivity(new Intent(ShowActivity.this, TestDashLineActivity.class));
                         //这里需要判断余额问题
                         View rootView = LayoutInflater.from(ShowActivity.this).inflate(R.layout.dialog_show_pay, null);
-                        builder = ShowPayDialogBuilder.getInstance(ShowActivity.this, rootView);
+                        builder = FunKiDialog.getInstance(ShowActivity.this, rootView);
                         builder.setViewHeight(232, 210);
                         builder.show();
                         break;
@@ -114,7 +113,6 @@ public class ShowActivity extends BaseCoordinatorActivity implements View.OnClic
 
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Log.e(TAG, "onSimpleItemClick: " + "test");
                 ShowDetailActivity.show(ShowActivity.this);
                 switch (view.getId()) {
                     case R.id.rl_show_detail:

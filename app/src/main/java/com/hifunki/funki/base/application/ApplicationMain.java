@@ -1,8 +1,9 @@
 package com.hifunki.funki.base.application;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.im.ImManager;
@@ -23,7 +24,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * @since 2017-03-15 10:27:27
  */
 
-public class ApplicationMain extends Application {
+public class ApplicationMain extends MultiDexApplication {
     static ApplicationMain application;
     static Context appContext;
     /**
@@ -32,6 +33,12 @@ public class ApplicationMain extends Application {
      */
     //如果解决冲突之后
     private static List<Activity> mActivityList = new LinkedList<>();
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
