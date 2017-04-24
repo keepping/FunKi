@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -62,6 +63,7 @@ public class ChatFanHolder extends PowViewHolder<User> {
                 builder = FunKiDialog.getInstance(mActivity, rootView);
                 builder.setViewHeight(279, 338);
                 builder.show();
+                RelativeLayout rlMain = (RelativeLayout) rootView.findViewById(R.id.rl_audience_main);
                 ImageView ivPhotoFriend = (ImageView) rootView.findViewById(R.id.civ_audience_photo_friend);
                 ImageView ivPhotoMe = (ImageView) rootView.findViewById(R.id.civ_audience_photo_me);
                 Glide.with(mActivity).load(CommonConst.photo).into(ivPhotoFriend);
@@ -71,7 +73,7 @@ public class ChatFanHolder extends PowViewHolder<User> {
                     @Override
                     public void onClick(View v) {
                         Log.e(TAG, "onClick: " );
-                        builder.setViewHeight(279, 367);
+                        builder.refreshDialogHeight(R.id.rl_audience_main,279, 367);
                     }
                 });
                 break;
