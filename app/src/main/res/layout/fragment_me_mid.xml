@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:layout_below="@+id/layout_me_head"
     android:layout_marginTop="2dp"
-    android:background="@color/_230C47"
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 

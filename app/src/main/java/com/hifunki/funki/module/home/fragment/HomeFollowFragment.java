@@ -20,7 +20,6 @@ import com.powyin.scroll.widget.SwipeRefresh;
 
 import butterknife.BindView;
 
-
 /**
  * 首页关注Fragment
  *
@@ -31,20 +30,6 @@ import butterknife.BindView;
  * @since 2017-03-13 16:46:46
  */
 public class HomeFollowFragment extends BaseFragment {
-    private String[][] images = new String[][]{{"http://t2.27270.com/uploads/tu/201510/249/8.jpg", "640", "960"}
-            , {"http://t2.27270.com/uploads/tu/201606/76/32.jpg", "640", "640"}
-            , {"http://t2.27270.com/uploads/tu/201510/249/9.jpg", "640", "640"}
-            , {"http://t2.27270.com/uploads/tu/201606/112/17.jpg", "640", "640"}
-            , {"http://t2.27270.com/uploads/tu/201510/249/3.jpg", "640", "640"}
-            , {"http://t2.27270.com/uploads/tu/201606/62/28.jpg", "640", "640"}
-            , {"http://t2.27270.com/uploads/tu/201606/76/34.jpg", "640", "640"}
-            , {"http://t2.27270.com/uploads/tu/201606/73/slt.jpg", "640", "640"}
-            , {"http://img2.imgtn.bdimg.com/it/u=3347259689,1828160575&fm=21&gp=0.jpg", "640", "640"}
-            , {"http://img1.imgtn.bdimg.com/it/u=3607821315,1190508392&fm=21&gp=0.jpg", "640", "640"}
-            , {"http://img4.imgtn.bdimg.com/it/u=2495945657,2561148855&fm=21&gp=0.jpg", "640", "640"}
-            , {"http://t2.27270.com/uploads/tu/201510/249/7.jpg", "800", "650"}};
-
-
     @BindView(R.id.swipe_refresh)
     SwipeRefresh swipeRefresh;
     @BindView(R.id.recycle)
