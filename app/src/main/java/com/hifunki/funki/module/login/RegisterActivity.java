@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.AccountBaseActivity;
 import com.hifunki.funki.base.adapter.PagerBaseAdapter;
-import com.hifunki.funki.module.login.business.LoginBusiness;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
@@ -40,6 +38,7 @@ import butterknife.OnClick;
 public class RegisterActivity extends AccountBaseActivity implements View.OnClickListener, ViewTreeObserver.OnGlobalLayoutListener {
 
     private boolean isPhoneColor;
+
 
     @BindView(R.id.ll_icon)
     LinearLayout mLlIcon;
@@ -156,13 +155,13 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
     @Override
     protected void onResume() {
         super.onResume();
-        flTitle.getViewTreeObserver().addOnGlobalLayoutListener(this);
+//        flTitle.getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        flTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//        flTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
     }
 
     @OnClick({R.id.tvPhone, R.id.ivPhoneLine, R.id.tvEmail, R.id.ivEmailLine, R.id.vpPhoneEmail, R.id.llRegNext, R.id.ivAgree, R.id.tvHelpCenter, R.id.activity_login})
@@ -212,34 +211,34 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
         final LinearLayout llIcon = this.mLlIcon;
         Rect KeypadRect = new Rect();
 
-        flTitle.getWindowVisibleDisplayFrame(KeypadRect);
+//        flTitle.getWindowVisibleDisplayFrame(KeypadRect);
+//
+//        int screenHeight = flTitle.getRootView().getHeight();
 
-        int screenHeight = flTitle.getRootView().getHeight();
-
-        int keypadHeight = screenHeight - KeypadRect.bottom;
+//        int keypadHeight = screenHeight - KeypadRect.bottom;
 
         //更新键盘激活状态
-        if (keypadHeight > 0) {
-            updateKeyBoardActiveStatus(true);
-        } else {
-            updateKeyBoardActiveStatus(false);
-        }
-
-        if (keypadHeight > 0 && llIcon.getTag() == null) {
-            final int height = llIcon.getHeight();
-            final int width = llIcon.getWidth();
-            this.mLogoHeight = height;
-            this.mLogoWidth = width;
-            llIcon.setTag(true);
-            LoginBusiness.setTopMarginAnimator(llIcon, height, 0, 1);
-
-            LoginBusiness.setAlphaAnimator(llIcon, 1, 0);
-        } else if (keypadHeight == 0 && llIcon.getTag() != null) {
-            final int height = mLogoHeight;
-            llIcon.setTag(null);
-            LoginBusiness.setTopMarginAnimator(llIcon, height, 1, 0);
-            LoginBusiness.setAlphaAnimator(llIcon, 0, 1);
-        }
+//        if (keypadHeight > 0) {
+//            updateKeyBoardActiveStatus(true);
+//        } else {
+//            updateKeyBoardActiveStatus(false);
+//        }
+//
+//        if (keypadHeight > 0 && llIcon.getTag() == null) {
+//            final int height = llIcon.getHeight();
+//            final int width = llIcon.getWidth();
+//            this.mLogoHeight = height;
+//            this.mLogoWidth = width;
+//            llIcon.setTag(true);
+//            LoginBusiness.setTopMarginAnimator(llIcon, height, 0, 1);
+//
+//            LoginBusiness.setAlphaAnimator(llIcon, 1, 0);
+//        } else if (keypadHeight == 0 && llIcon.getTag() != null) {
+//            final int height = mLogoHeight;
+//            llIcon.setTag(null);
+//            LoginBusiness.setTopMarginAnimator(llIcon, height, 1, 0);
+//            LoginBusiness.setAlphaAnimator(llIcon, 0, 1);
+//        }
     }
 }
 

@@ -3,7 +3,6 @@ package com.hifunki.funki.module.login;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -24,8 +22,6 @@ import com.hifunki.funki.base.activity.AccountBaseActivity;
 import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.activity.HomeActivity;
-import com.hifunki.funki.module.login.business.LoginBusiness;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.util.DisplayUtil;
@@ -58,7 +54,8 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     TopBarView topBarView;
     @BindView(R.id.activity_login)
     LinearLayout activityLogin;
-
+//    @BindView(R.id.fl_title)
+//    FrameLayout flTitle;
     @BindView(R.id.ll_icon)
     LinearLayout mLlIcon;
     @BindView(R.id.iv_logo)
@@ -280,13 +277,13 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     @Override
     protected void onResume() {
         super.onResume();
-        flTitle.getViewTreeObserver().addOnGlobalLayoutListener(this);
+//        flTitle.getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        flTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//        flTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
     }
 
     //设置editText的点击监听
@@ -314,37 +311,37 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     //注册监听视图树的观察者
     @Override
     public void onGlobalLayout() {
-        final LinearLayout llIcon = this.mLlIcon;
-        Rect KeypadRect = new Rect();
-
-        flTitle.getWindowVisibleDisplayFrame(KeypadRect);
-
-        int screenHeight = flTitle.getRootView().getHeight();
-
-        int keypadHeight = screenHeight - KeypadRect.bottom;
-
-        //更新键盘激活状态
-        if (keypadHeight > 0) {
-            updateKeyBoardActiveStatus(true);
-        } else {
-            updateKeyBoardActiveStatus(false);
-        }
-
-        if (keypadHeight > 0 && llIcon.getTag() == null) {
-            final int height = llIcon.getHeight();
-            final int width = llIcon.getWidth();
-            this.mLogoHeight = height;
-            this.mLogoWidth = width;
-            llIcon.setTag(true);
-            LoginBusiness.setTopMarginAnimator(llIcon, height, 0, 1);
-
-            LoginBusiness.setAlphaAnimator(llIcon, 1, 0);
-        } else if (keypadHeight == 0 && llIcon.getTag() != null) {
-            final int height = mLogoHeight;
-            llIcon.setTag(null);
-            LoginBusiness.setTopMarginAnimator(llIcon, height, 1, 0);
-            LoginBusiness.setAlphaAnimator(llIcon, 0, 1);
-        }
+//        final LinearLayout llIcon = this.mLlIcon;
+//        Rect KeypadRect = new Rect();
+//
+//        flTitle.getWindowVisibleDisplayFrame(KeypadRect);
+//
+//        int screenHeight = flTitle.getRootView().getHeight();
+//
+//        int keypadHeight = screenHeight - KeypadRect.bottom;
+//
+//        //更新键盘激活状态
+//        if (keypadHeight > 0) {
+//            updateKeyBoardActiveStatus(true);
+//        } else {
+//            updateKeyBoardActiveStatus(false);
+//        }
+//
+//        if (keypadHeight > 0 && llIcon.getTag() == null) {
+//            final int height = llIcon.getHeight();
+//            final int width = llIcon.getWidth();
+//            this.mLogoHeight = height;
+//            this.mLogoWidth = width;
+//            llIcon.setTag(true);
+//            LoginBusiness.setTopMarginAnimator(llIcon, height, 0, 1);
+//
+//            LoginBusiness.setAlphaAnimator(llIcon, 1, 0);
+//        } else if (keypadHeight == 0 && llIcon.getTag() != null) {
+//            final int height = mLogoHeight;
+//            llIcon.setTag(null);
+//            LoginBusiness.setTopMarginAnimator(llIcon, height, 1, 0);
+//            LoginBusiness.setAlphaAnimator(llIcon, 0, 1);
+//        }
     }
 
 
