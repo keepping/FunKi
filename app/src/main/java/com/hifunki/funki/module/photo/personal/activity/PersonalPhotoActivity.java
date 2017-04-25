@@ -169,6 +169,10 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
                 ivBack.setVisibility(View.VISIBLE);
                 firstText.setVisibility(View.INVISIBLE);
                 menuText.setText("编辑");
+                isPhotoSelectAll = false;
+                isSercetSelectAll = false;
+                onPhotoSelectAllListeners.selectAll(false);
+                onSercetSelectAllListener.selectAll(false);
                 break;
             case SELCET_ALL:
                 ivBack.setVisibility(View.INVISIBLE);
@@ -176,27 +180,29 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
                 menuText.setText("全选");
                 break;
         }
-        if(currentItem==0) {
-            switch (status1) {
-                case P_SELECT_ALL:
-                    isPhotoSelectAll = true;
-                    onPhotoSelectAllListeners.selectAll(isPhotoSelectAll);
-                    break;
-                case P_SELECT_NOT_ALL:
-                    isPhotoSelectAll = false;
-                    onPhotoSelectAllListeners.selectAll(isPhotoSelectAll);
-                    break;
-            }
-        }else if(currentItem==1) {
-            switch (status2) {
-                case S_SELECT_ALL:
-                    isSercetSelectAll = true;
-                    onSercetSelectAllListener.selectAll(isSercetSelectAll);
-                    break;
-                case S_SELECT_NOT_ALL:
-                    isSercetSelectAll = false;
-                    onSercetSelectAllListener.selectAll(isSercetSelectAll);
-                    break;
+        if (status != STATUS.EDIT ) {//when click cancel the status change to STATUS.EDIT，avoid to execute the under codes
+            if (currentItem == 0) {
+                switch (status1) {
+                    case P_SELECT_ALL:
+                        isPhotoSelectAll = true;
+                        onPhotoSelectAllListeners.selectAll(isPhotoSelectAll);
+                        break;
+                    case P_SELECT_NOT_ALL:
+                        isPhotoSelectAll = false;
+                        onPhotoSelectAllListeners.selectAll(isPhotoSelectAll);
+                        break;
+                }
+            } else if (currentItem == 1) {
+                switch (status2) {
+                    case S_SELECT_ALL:
+                        isSercetSelectAll = true;
+                        onSercetSelectAllListener.selectAll(isSercetSelectAll);
+                        break;
+                    case S_SELECT_NOT_ALL:
+                        isSercetSelectAll = false;
+                        onSercetSelectAllListener.selectAll(isSercetSelectAll);
+                        break;
+                }
             }
         }
     }

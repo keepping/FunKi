@@ -22,13 +22,13 @@ import java.util.List;
  * @link
  * @since 2017-04-13 11:25:25
  */
-public class PersonalPhotoAdapter extends BaseMultiItemQuickAdapter<PersonalPhotoEntity, BaseViewHolder> {
+public class PersonalSercetAdapter extends BaseMultiItemQuickAdapter<PersonalPhotoEntity, BaseViewHolder> {
 
     private String TAG = getClass().getSimpleName();
     private boolean isSelectAll = false;
     private HashMap<Integer, Boolean> map;
 
-    public PersonalPhotoAdapter(List<PersonalPhotoEntity> data, HashMap<Integer, Boolean> isSelectAll) {
+    public PersonalSercetAdapter(List<PersonalPhotoEntity> data, HashMap<Integer, Boolean> isSelectAll) {
         super(data);
         this.map = isSelectAll;
         addItemType(PersonalPhotoEntity.CAMERA, R.layout.photo_gallery_item_camera);
@@ -47,6 +47,7 @@ public class PersonalPhotoAdapter extends BaseMultiItemQuickAdapter<PersonalPhot
                 if (isSelectAll) {
                     ivIcon.setVisibility(View.VISIBLE);
                 } else {
+                    Log.e(TAG, "convert:2false ");
                     ivIcon.setVisibility(View.INVISIBLE);
                 }
                 break;
