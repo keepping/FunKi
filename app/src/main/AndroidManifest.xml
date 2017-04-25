@@ -89,11 +89,7 @@
             android:name=".module.login.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- 国家列表页 -->
         <activity

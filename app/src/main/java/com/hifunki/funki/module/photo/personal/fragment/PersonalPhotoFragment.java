@@ -103,7 +103,6 @@ public class PersonalPhotoFragment extends BaseFragment {
             public void selectAll(final boolean isSelectAll) {
                 isSelect = isSelectAll;
                 adapter.setIsSelect(isSelectAll);
-
             }
         });
 

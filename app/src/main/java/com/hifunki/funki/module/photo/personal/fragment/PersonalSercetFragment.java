@@ -12,6 +12,7 @@ import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.photo.personal.activity.PersonalPhotoActivity;
 import com.hifunki.funki.module.photo.personal.adapter.PersonalPhotoAdapter;
 import com.hifunki.funki.module.photo.personal.entity.PersonalPhotoEntity;
+import com.hifunki.funki.module.photo.personal.inter.OnSercetSelectAllListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +54,11 @@ public class PersonalSercetFragment extends BaseFragment {
     }
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_personal_sercet;
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -61,12 +67,6 @@ public class PersonalSercetFragment extends BaseFragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -92,6 +92,19 @@ public class PersonalSercetFragment extends BaseFragment {
     }
 
     @Override
+    protected void initListener() {
+        super.initListener();
+        PersonalPhotoActivity activity = (PersonalPhotoActivity) getActivity();
+        activity.setOnSercetSelectAllListener(new OnSercetSelectAllListener() {
+            @Override
+            public void selectAll(boolean isSelectAll) {
+                isSelect = isSelectAll;
+                adapter.setIsSelect(isSelectAll);
+            }
+        });
+    }
+
+    @Override
     protected void initAdapter() {
         super.initAdapter();
         adapter = new PersonalPhotoAdapter(personalPhotoEntities, mapSelect);
@@ -101,10 +114,6 @@ public class PersonalSercetFragment extends BaseFragment {
 
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_personal_sercet;
-    }
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

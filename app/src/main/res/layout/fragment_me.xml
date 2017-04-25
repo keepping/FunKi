@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/_230C47"
     tools:context=".module.me.MeFragment">
 
     <com.hifunki.funki.widget.MeScrollView
@@ -30,11 +31,11 @@
                 android:layout_height="500dp"
                 android:layout_below="@+id/layout_mid_head" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="18dp"
-                android:layout_below="@+id/rv_me"
-                android:background="@color/_230C47" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="18dp"-->
+            <!--android:layout_below="@+id/rv_me"-->
+            <!--android:background="@color/_230C47" />-->
         </RelativeLayout>
     </com.hifunki.funki.widget.MeScrollView>
 

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -33,6 +32,8 @@ public class FunKiDialog extends Dialog implements DialogInterface {
     private static FunKiDialog instance;
     private int measuredHeight;
     private int measuredWidth;
+    private int lastHeight;
+    private int lastWidth;
 
     protected FunKiDialog(@NonNull Context context, @StyleRes int themeResId, int res) {
         super(context, themeResId);
@@ -125,20 +126,23 @@ public class FunKiDialog extends Dialog implements DialogInterface {
 
     /**
      * refresh with and height
-     * @param id
+     *
      * @param width
      * @param height
      */
-    public void refreshDialogHeight(int id, int width, int height) {
-        View rootView = mDialogView.findViewById(id);
-        ViewGroup.LayoutParams layoutParams = rootView.getLayoutParams();
-        if (height != measuredHeight) {
-            layoutParams.height = (int) DisplayUtil.dip2Px(mContext, height);
+    public void refreshDialogHeight(int width, int height) {
+        Window window = getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        if (height != measuredHeight || lastHeight != height) {
+            params.height = (int) DisplayUtil.dip2Px(mContext, height);
+            lastHeight = height;
         }
-        if (width != measuredWidth) {
-            layoutParams.width = (int) DisplayUtil.dip2Px(mContext, width);
+        if (width != measuredWidth|| lastWidth != width) {
+            params.width = (int) DisplayUtil.dip2Px(mContext, width);
+            lastWidth = width;
         }
-        rootView.setLayoutParams(layoutParams);
+
+        window.setAttributes(params);
     }
 
 }

@@ -53,6 +53,7 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     private OnFragmentInteractionListener mListener;
     private List<HomeHotEntity> hotEntities;
     private Banner banner;
+    private List<String> strings;
 
     public static HomeHotFragment newInstance(String param1, String param2) {
         HomeHotFragment fragment = new HomeHotFragment();
@@ -75,28 +76,6 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
         }
     }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        Log.e(TAG, "HomeHotFragment=onCreate: ");
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        Log.e(TAG, "HomeHotFragment=onCreateView: ");
-//        return super.onCreateView(inflater, container, savedInstanceState);
-//    }
-//
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        Log.e(TAG, "HomeHotFragment=onActivityCreated: ");
-//    }
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home_hot;
@@ -105,7 +84,14 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     @Override
     protected void initVariable() {
         super.initVariable();
-        Log.e(TAG, "HomeHotFragment=initVariable: ");
+        //简单使用
+        strings = new ArrayList<>();
+
+        strings.add("http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg");
+        strings.add("http://pic27.nipic.com/20130320/3822951_105204803000_2.jpg");
+        strings.add("http://pic.58pic.com/58pic/14/27/56/97H58PICjsU_1024.jpg");
+        strings.add("http://img05.tooopen.com/images/20150105/sy_78543795524.jpg");
+
         hotEntities = new ArrayList<>();
         //普通直播--big
         HomeHotEntity homeHotEntity1 = new HomeHotEntity(HomeHotEntity.NORMAL_LIVE, true, imagePath, "嘻哈朋克", "新西兰", "Japanese", 45212, "欢迎来到我的直播间", "电音狂魔", "双性变", imagePath, false, false, 0, false, false, 0, 0, 0, false);//pgc
@@ -135,7 +121,6 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     @Override
     protected void initView(View root) {
         super.initView(root);
-        Log.e(TAG, "HomeHotFragment=initView: ");
         rvHot.setLayoutManager(new LinearLayoutManager(getContext()));
         HomeHotAdapter homeHotAdapter = new HomeHotAdapter(getContext(), hotEntities);
         rvHot.setAdapter(homeHotAdapter);
@@ -159,8 +144,6 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
                 }
             }
         });
-
-
     }
 
     @Override
@@ -174,49 +157,16 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     }
 
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        Log.e(TAG, "HomeHotFragment=onStart: ");
-//        //开始轮播
-//        banner.startAutoPlay();
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        Log.e(TAG, "HomeHotFragment=onResume: ");
-//        super.onResume();
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        Log.e(TAG, "HomeHotFragment=onPause: ");
-//        super.onPause();
-//
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        Log.e(TAG, "HomeHotFragment=onDestroyView: ");
-//    }
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        Log.e(TAG, "HomeHotFragment=onDestroy: ");
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        Log.e(TAG, "HomeHotFragment=onDetach: ");
-//        mListener = null;
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        //开始轮播
+        banner.startAutoPlay();
+    }
+
 
     @Override
     public void onStop() {
-        Log.e(TAG, "HomeHotFragment=onStop: ");
         super.onStop();
         //结束轮播
         banner.stopAutoPlay();
@@ -226,21 +176,12 @@ public class HomeHotFragment extends BaseFragment implements OnBannerListener {
     private View getHeadView() {
         View headView = LayoutInflater.from(getActivity()).inflate(R.layout.vp_home_hot, null);
         banner = (Banner) headView.findViewById(R.id.banner_home_hot);
-
         banner.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) DisplayUtil.dip2Px(getContext(), 135)));
-        //简单使用
-        List<String> strings = new ArrayList<>();
-
-        strings.add("http://img5.imgtn.bdimg.com/it/u=2946893755,898530310&fm=23&gp=0.jpg");
-        strings.add("http://pic27.nipic.com/20130320/3822951_105204803000_2.jpg");
-        strings.add("http://pic.58pic.com/58pic/14/27/56/97H58PICjsU_1024.jpg");
-        strings.add("http://img05.tooopen.com/images/20150105/sy_78543795524.jpg");
 
         banner.setImages(strings)
                 .setImageLoader(new GlideBannerImageLoader())
                 .setOnBannerListener(this)
                 .start();
-//        home_hot_banner
         return banner;
     }
 

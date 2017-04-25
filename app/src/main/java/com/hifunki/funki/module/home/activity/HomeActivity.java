@@ -18,7 +18,7 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.dynamic.post.activity.PostDynamicActivity;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
@@ -45,7 +45,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-07 11:49:49
  */
-public class HomeActivity extends BaseCoordinatorActivity implements HomeFragment.OnFragmentInteractionListener,
+public class HomeActivity extends BaseActivity implements HomeFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
         MeFragment.OnFragmentInteractionListener, HomeHotFragment.OnFragmentInteractionListener,
         HomeNewFragment.OnFragmentInteractionListener, View.OnClickListener {
@@ -64,12 +64,11 @@ public class HomeActivity extends BaseCoordinatorActivity implements HomeFragmen
     NavigationButton navStore;
     @BindView(R.id.nav_item_me)
     NavigationButton navMe;
-
+    public static String TAG = "HomeActivity";
     private PopWindowUtil pwdPopWindow;
     private View pwdView;
 
     private long mBackPressedTime;
-    public static String TAG = "HomeActivity";
     private HomeFragment homeFragment;
     private MsgFragment msgFragment;
     private StoreFragment storeFragment;
@@ -80,7 +79,6 @@ public class HomeActivity extends BaseCoordinatorActivity implements HomeFragmen
         context.startActivity(new Intent(context, HomeActivity.class));
         activity.finish();
     }
-
 
 
     @Override
@@ -231,7 +229,6 @@ public class HomeActivity extends BaseCoordinatorActivity implements HomeFragmen
                 pwdPopWindow.hidePopWindow();
                 SystemClock.sleep(500);
                 AnchorActivity.show(this);
-//                StartLiveActivity.show(this);
                 break;
         }
     }
