@@ -9,10 +9,13 @@ import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import eu.siacs.conversations.entities.Account;
 import eu.siacs.conversations.entities.Conversation;
+import eu.siacs.conversations.entities.Message;
 import eu.siacs.conversations.services.XmppConnectionService;
 import eu.siacs.conversations.xmpp.OnUpdateBlocklist;
 import eu.siacs.conversations.xmpp.forms.Data;
@@ -99,6 +102,15 @@ public class ImManager {
         xmppConnectionService.setOnConversationListChangedListener(new XmppConnectionService.OnConversationUpdate() {
             @Override
             public void onConversationUpdate() {
+
+                Conversation conversation = null;
+
+                conversation.findUnreadMessages(new Conversation.OnMessageFound() {
+                    @Override
+                    public void onMessageFound(Message message) {
+
+                    }
+                });
 
                 Log.i(Tag,"onConversationUpdate");
             }

@@ -266,6 +266,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 
     }
 
+    FrameLayout flTitle;
     /**
      * popupWindow dimiss
      */

@@ -105,7 +105,19 @@
         <com.hifunki.funki.module.login.widget.ViewpagerNotScroll
             android:id="@+id/vpPhoneEmail"
             android:layout_width="match_parent"
-            android:layout_height="111dp"></com.hifunki.funki.module.login.widget.ViewpagerNotScroll>
+            android:layout_height="111dp">
+
+        </com.hifunki.funki.module.login.widget.ViewpagerNotScroll>
+
+        <com.powyin.slide.widget.BannerSwitch
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            app:pow_switch_fixed_edge="true">
+
+
+
+        </com.powyin.slide.widget.BannerSwitch>
+
     </LinearLayout>
 
     <LinearLayout
