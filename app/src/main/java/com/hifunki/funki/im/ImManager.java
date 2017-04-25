@@ -6,12 +6,17 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.os.IBinder;
+import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.List;
+
 import eu.siacs.conversations.entities.Account;
+import eu.siacs.conversations.entities.Conversation;
 import eu.siacs.conversations.services.XmppConnectionService;
 import eu.siacs.conversations.xmpp.OnUpdateBlocklist;
 import eu.siacs.conversations.xmpp.forms.Data;
+import eu.siacs.conversations.xmpp.jid.InvalidJidException;
 import eu.siacs.conversations.xmpp.jid.Jid;
 
 /**
@@ -66,10 +71,9 @@ public class ImManager {
         }
     };
 
-
+    Jid jid = null;
     private void connetToJid(){
         System.out.println("detail loging ---------------------------------------->>>");
-        Jid jid = null;
         try {
             jid = Jid.fromString("ccc@192.168.100.154");
         }catch (Exception e){
@@ -83,6 +87,9 @@ public class ImManager {
         mAccount.setOption(Account.OPTION_REGISTER, false);
         xmppConnectionService.createAccount(mAccount);
     }
+
+
+
 
 
     private final String Tag = "ImManager";
@@ -146,9 +153,53 @@ public class ImManager {
     }
 
 
+    private Account getDefault (){
+        List<Account> accounts = xmppConnectionService.getAccounts();
+        if(accounts==null) return null;
+
+        synchronized (accounts){
+            for(int i=0 ;  i< accounts.size(); i++) {
+                Account me = accounts.get(i);
+                if (!me.getJid().equals(jid)) {
+                    xmppConnectionService.deleteAccount(me);
+                    i--;
+                }
+            }
+            return  accounts.size()>0 ? accounts.get(0) : null;
+        }
+    }
 
 
+    //---------------------------------------------------------------------------------------->>> 普通业务
 
+    public Conversation joinConferenceChat(String jid){                                                //加入多人会话聊天
+        if(TextUtils.isEmpty(jid)){
+            Log.e(Tag,"joinConferenceChat no jid");
+            return null;
+        }
+
+        Account me = getDefault();
+        if(me == null){
+            Log.e(Tag,"joinConferenceChat no jid");
+            return null;
+        }
+
+        Jid conferenceJid = null;
+        try {
+            conferenceJid = Jid.fromString(jid);
+        } catch (final InvalidJidException e) {
+            return null;
+        }
+
+
+        return xmppConnectionService
+                .findOrCreateConversation(me,conferenceJid, true, true, true);
+    }
+
+
+    public Conversation joinSingleChat(String jid){
+        return null;
+    }
 
 
 
