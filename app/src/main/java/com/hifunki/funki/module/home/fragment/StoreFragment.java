@@ -3,12 +3,16 @@ package com.hifunki.funki.module.home.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
+import com.hifunki.funki.module.login.VisitorFillActivity;
+
+import butterknife.BindView;
 
 /**
  * 首页商城Fragment
@@ -21,6 +25,7 @@ import com.hifunki.funki.module.home.activity.HomeActivity;
  */
 public class StoreFragment extends BaseFragment {
 
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -28,7 +33,7 @@ public class StoreFragment extends BaseFragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private String TAG= HomeActivity.TAG;
+    private String TAG = HomeActivity.TAG;
 
     public static StoreFragment newInstance(String param1, String param2) {
         StoreFragment fragment = new StoreFragment();
@@ -40,9 +45,13 @@ public class StoreFragment extends BaseFragment {
     }
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_store;
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.e(TAG, "StoreFragment=onAttach: " );
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -50,10 +59,10 @@ public class StoreFragment extends BaseFragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.e(TAG, "StoreFragment=onAttach: " );
+    protected void initVariable() {
+        super.initVariable();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -61,14 +70,9 @@ public class StoreFragment extends BaseFragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.e(TAG, "StoreFragment=onAttach: " );
-    }
+    protected void initListener() {
+        super.initListener();
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_store;
     }
 
     @Override
@@ -87,41 +91,10 @@ public class StoreFragment extends BaseFragment {
         }
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.e(TAG, "StoreFragment=onStart: " );
-    }
-
-    @Override
-    public void onResume() {
-        Log.e(TAG, "StoreFragment=onResume: " );
-        super.onResume();
-    }
-
-    @Override
-    public void onStop() {
-        Log.e(TAG, "StoreFragment=onStop: " );
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.e(TAG, "StoreFragment=onDestroyView: " );
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG, "StoreFragment=onDestroy: " );
-    }
-
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.e(TAG, "StoreFragment=onDetach: " );
+        Log.e(TAG, "StoreFragment=onDetach: ");
         mListener = null;
     }
 

@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,9 +45,9 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
     private int currentItem;
     boolean isPhotoSelectAll = false;
     boolean isSercetSelectAll = false;
-    public OnPhotoSelectAllListener onSelectAllListeners;
+    public OnPhotoSelectAllListener onPhotoSelectAllListeners;
     public OnSercetSelectAllListener onSercetSelectAllListener;
-    private STATUS status = STATUS.NORMAL;
+    private STATUS status = STATUS.EDIT;
     private STATUS status1 = STATUS.P_SELECT_NOT_ALL;
     private STATUS status2 = STATUS.S_SELECT_NOT_ALL;
 
@@ -135,7 +134,7 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_left:
-                status = STATUS.NORMAL;
+                status = STATUS.EDIT;
                 refreshUI();
                 break;
             case R.id.tv_menu:
@@ -146,17 +145,17 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
                     status = STATUS.SELCET_ALL;
                     refreshUI();
                 } else if (currentItem == 0) {
-                    if(status1==STATUS.P_SELECT_ALL){
-                        status1=STATUS.P_SELECT_NOT_ALL;
-                    }else{
-                        status1=STATUS.P_SELECT_ALL;
+                    if (status1 == STATUS.P_SELECT_ALL) {
+                        status1 = STATUS.P_SELECT_NOT_ALL;
+                    } else {
+                        status1 = STATUS.P_SELECT_ALL;
                     }
                     refreshUI();
-                } else if(currentItem==1){
-                    if(status2==STATUS.S_SELECT_ALL){
-                        status2=STATUS.S_SELECT_NOT_ALL;
-                    }else{
-                        status2=STATUS.S_SELECT_ALL;
+                } else if (currentItem == 1) {
+                    if (status2 == STATUS.S_SELECT_ALL) {
+                        status2 = STATUS.S_SELECT_NOT_ALL;
+                    } else {
+                        status2 = STATUS.S_SELECT_ALL;
                     }
                     refreshUI();
                 }
@@ -166,37 +165,44 @@ public class PersonalPhotoActivity extends BaseActivity implements PersonalPhoto
 
     private void refreshUI() {
         switch (status) {
-            case NORMAL:
+            case EDIT:
                 ivBack.setVisibility(View.VISIBLE);
                 firstText.setVisibility(View.INVISIBLE);
                 menuText.setText("编辑");
                 break;
-            case EDIT:
+            case SELCET_ALL:
                 ivBack.setVisibility(View.INVISIBLE);
                 firstText.setVisibility(View.VISIBLE);
                 menuText.setText("全选");
                 break;
-            case P_SELECT_ALL:
-                isPhotoSelectAll = true;
-                onSercetSelectAllListener.selectAll(isPhotoSelectAll);
-                break;
-            case P_SELECT_NOT_ALL:
-                isPhotoSelectAll = false;
-                onSercetSelectAllListener.selectAll(isPhotoSelectAll);
-                break;
-            case S_SELECT_ALL:
-                isSercetSelectAll = true;
-                onSelectAllListeners.selectAll(isSercetSelectAll);
-                break;
-            case S_SELECT_NOT_ALL:
-                isSercetSelectAll = false;
-                onSelectAllListeners.selectAll(isSercetSelectAll);
-                break;
+        }
+        if(currentItem==0) {
+            switch (status1) {
+                case P_SELECT_ALL:
+                    isPhotoSelectAll = true;
+                    onPhotoSelectAllListeners.selectAll(isPhotoSelectAll);
+                    break;
+                case P_SELECT_NOT_ALL:
+                    isPhotoSelectAll = false;
+                    onPhotoSelectAllListeners.selectAll(isPhotoSelectAll);
+                    break;
+            }
+        }else if(currentItem==1) {
+            switch (status2) {
+                case S_SELECT_ALL:
+                    isSercetSelectAll = true;
+                    onSercetSelectAllListener.selectAll(isSercetSelectAll);
+                    break;
+                case S_SELECT_NOT_ALL:
+                    isSercetSelectAll = false;
+                    onSercetSelectAllListener.selectAll(isSercetSelectAll);
+                    break;
+            }
         }
     }
 
     public void setOnPhotoSelectAllListener(OnPhotoSelectAllListener selectListener) {
-        this.onSelectAllListeners = selectListener;
+        this.onPhotoSelectAllListeners = selectListener;
     }
 
     public void setOnSercetSelectAllListener(OnSercetSelectAllListener selectListener) {
