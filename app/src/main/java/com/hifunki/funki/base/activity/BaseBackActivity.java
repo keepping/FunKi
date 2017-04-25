@@ -8,16 +8,6 @@ package com.hifunki.funki.base.activity;
 
 public abstract class BaseBackActivity extends BaseTitleActivity {
 
-//    @Override
-//    protected void initWindow() {
-//        super.initWindow();
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeButtonEnabled(false);
-//        }
-//    }
-
     @Override
     public boolean onSupportNavigateUp() {
         finish();

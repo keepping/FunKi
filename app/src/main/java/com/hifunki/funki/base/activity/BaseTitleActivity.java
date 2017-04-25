@@ -20,10 +20,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //设置顶部状态栏
         StatusBarUtil.setStatusBarBackground(this, R.drawable.iv_login_top_status_bg);
-
     }
-
 }

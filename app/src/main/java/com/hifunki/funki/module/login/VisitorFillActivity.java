@@ -10,10 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.application.ApplicationMain;
 import com.hifunki.funki.module.login.business.VisitorFillBusiness;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,8 +26,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-23 20:24:24
  */
-public class VisitorFillActivity extends BaseTitleActivity implements View.OnClickListener {
-
+public class VisitorFillActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.tvBoy)
     TextView tvBoy;
@@ -61,7 +59,7 @@ public class VisitorFillActivity extends BaseTitleActivity implements View.OnCli
     private boolean isNotCareSex;
     private boolean isBothSex;
     private boolean isSecretSex;
-    private String TAG = "VisitorFillActivity";
+    private String TAG = getClass().getSimpleName();
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, VisitorFillActivity.class));
@@ -75,13 +73,6 @@ public class VisitorFillActivity extends BaseTitleActivity implements View.OnCli
     @Override
     protected void initVariable() {
 
-    }
-
-
-    @Override
-    protected void initTitleBar() {
-        ToolTitleBar.showLeftButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
-        ToolTitleBar.showCenterButton(this, activityVisitorFill, ToolTitleBar.BTN_TYPE_TEXT, R.string.visitor_fill_title, null);
     }
 
 

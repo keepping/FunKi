@@ -90,7 +90,6 @@ public class TopBarView extends RelativeLayout {
         }
 
         typedArray.recycle();
-
         //Back
         ivLeft.setOnClickListener(new OnClickListener() {
             @Override

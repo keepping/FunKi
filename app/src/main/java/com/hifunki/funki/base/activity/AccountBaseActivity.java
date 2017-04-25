@@ -76,10 +76,8 @@ public class AccountBaseActivity extends BaseTitleActivity {
             intent.setAction(ACTION_ACCOUNT_FINISH_ALL);
             return mManager.sendBroadcast(intent);
         }
-
         return false;
     }
-
 
     /**
      * register localReceiver

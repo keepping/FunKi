@@ -33,8 +33,6 @@ public class PopWicket {
     }
 
     protected Activity mActivity;
-
-
     protected DecorView mDecorView;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowParams;
