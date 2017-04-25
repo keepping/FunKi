@@ -5,14 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_230C47"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".module.login.LoginActivity"
     tools:ignore="MissingPrefix">
 
-    <include
-        android:id="@id/fl_title"
-        layout="@layout/title_templet" />
 
     <LinearLayout
         android:id="@+id/ll_icon"
