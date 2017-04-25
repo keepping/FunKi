@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_230C47"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".module.login.LoginActivity"
     tools:ignore="MissingPrefix">
 
-    <!--<com.hifunki.funki.module.login.widget.TitleBar-->
-    <!--android:id="@+id/tbLogin"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@drawable/iv_login_small_bg"-->
-    <!--android:clipToPadding="true"-->
-    <!--/>-->
-
-    <include
-        android:id="@+id/fl_title"
-        layout="@layout/title_templet" />
+    <com.hifunki.funki.widget.bar.TopBarView
+        android:id="@+id/tbv_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menuText="@string/register"
+        app:titleText="@string/login" />
 
     <LinearLayout
         android:id="@+id/ll_icon"
@@ -62,8 +57,8 @@
             android:orientation="vertical">
 
             <TextView
-                fontPath="fonts/FZDHTFW.ttf"
                 android:id="@+id/tvPhone"
+                fontPath="fonts/FZDHTFW.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_phone"
@@ -71,8 +66,8 @@
                 android:textSize="17sp" />
 
             <ImageView
-                fontPath="fonts/FZDHTFW.ttf"
                 android:id="@+id/ivPhoneLine"
+                fontPath="fonts/FZDHTFW.ttf"
                 android:layout_width="10dp"
                 android:layout_height="4dp"
                 android:layout_gravity="center"
@@ -116,12 +111,12 @@
         <com.hifunki.funki.module.login.widget.ViewpagerNotScroll
             android:id="@+id/vpPhoneEmail"
             android:layout_width="match_parent"
-            android:layout_height="111dp"></com.hifunki.funki.module.login.widget.ViewpagerNotScroll>
+            android:layout_height="111dp"/>
     </LinearLayout>
 
     <TextView
-        fontPath="fonts/FZDHTFW.ttf"
         android:id="@+id/tv_login"
+        fontPath="fonts/FZDHTFW.ttf"
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:layout_gravity="center_vertical"
@@ -133,9 +128,9 @@
         android:textSize="17sp" />
 
     <RelativeLayout
-        android:layout_marginTop="19dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp">
 
         <TextView
             android:id="@+id/tvForgetPwd"
