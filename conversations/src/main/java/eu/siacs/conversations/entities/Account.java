@@ -7,8 +7,6 @@ import android.util.Pair;
 
 //import eu.siacs.conversations.crypto.PgpDecryptionService;
 
-import net.java.otr4j.crypto.OtrCryptoEngineImpl;
-import net.java.otr4j.crypto.OtrCryptoException;
 
 import org.json.JSONException;
 import org.json.JSONObject;

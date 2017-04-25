@@ -669,7 +669,7 @@ public class XmppConnection implements Runnable {
 					int count = mSmCatchupMessageCounter.get();
 					Log.d(Config.LOGTAG,account.getJid().toBareJid()+": SM catchup complete ("+count+")");
 					if (count > 0) {
-					//	mXmppConnectionService.getNotificationService().finishBacklog(true,account);
+						mXmppConnectionService.getNotificationService().finishBacklog(true,account);
 					}
 				}
 				final Element ack = tagReader.readElement(nextTag);

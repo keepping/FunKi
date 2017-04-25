@@ -1,7 +1,6 @@
 package eu.siacs.conversations.generator;
 
-import net.java.otr4j.OtrException;
-import net.java.otr4j.session.Session;
+
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
