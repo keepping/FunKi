@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
 //        https://jcenter.bintray.com/
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:2.2.3'
 //        classpath 'com.android.tools.build:gradle:2.5.0-alpha-preview-02'
 //        classpath 'com.android.tools.build:gradle:2.4.0-alpha6'
 
