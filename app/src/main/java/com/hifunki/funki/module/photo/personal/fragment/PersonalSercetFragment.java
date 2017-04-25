@@ -10,7 +10,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.photo.personal.activity.PersonalPhotoActivity;
-import com.hifunki.funki.module.photo.personal.adapter.PersonalPhotoAdapter;
+import com.hifunki.funki.module.photo.personal.adapter.PersonalSercetAdapter;
 import com.hifunki.funki.module.photo.personal.entity.PersonalPhotoEntity;
 import com.hifunki.funki.module.photo.personal.inter.OnSercetSelectAllListener;
 
@@ -39,7 +39,7 @@ public class PersonalSercetFragment extends BaseFragment {
     private String mParam2;
     private List<PersonalPhotoEntity> personalPhotoEntities;
     private OnFragmentInteractionListener mListener;
-    private PersonalPhotoAdapter adapter;
+    private PersonalSercetAdapter adapter;
     private String TAG = getClass().getSimpleName();
     private boolean isSelect = false;
     private HashMap<Integer, Boolean> mapSelect;
@@ -107,7 +107,7 @@ public class PersonalSercetFragment extends BaseFragment {
     @Override
     protected void initAdapter() {
         super.initAdapter();
-        adapter = new PersonalPhotoAdapter(personalPhotoEntities, mapSelect);
+        adapter = new PersonalSercetAdapter(personalPhotoEntities, mapSelect);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         rlPersonPhoto.setLayoutManager(gridLayoutManager);
         rlPersonPhoto.setAdapter(adapter);

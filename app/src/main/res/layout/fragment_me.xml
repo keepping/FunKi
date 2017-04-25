@@ -12,11 +12,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+       >
 
             <include
                 android:id="@+id/layout_me_head"
-                layout="@layout/fragment_me_head" />
+                layout="@layout/fragment_me_head"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
 
             <include
                 android:id="@+id/layout_mid_head"
@@ -25,7 +28,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_me"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="500dp"
                 android:layout_below="@+id/layout_mid_head" />
 
             <!--<View-->

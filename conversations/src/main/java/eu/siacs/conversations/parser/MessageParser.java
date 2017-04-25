@@ -5,8 +5,6 @@ import android.text.Html;
 import android.util.Log;
 import android.util.Pair;
 
-import net.java.otr4j.session.Session;
-import net.java.otr4j.session.SessionStatus;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -415,7 +413,7 @@ public class MessageParser extends AbstractParser implements OnMessagePacketRece
 								replacedMessage.markUnread();
 							}
 							mXmppConnectionService.updateMessage(replacedMessage, uuid);
-						//	mXmppConnectionService.getNotificationService().updateNotification(false);
+							mXmppConnectionService.getNotificationService().updateNotification(false);
 							if (mXmppConnectionService.confirmMessages()
 									&& (replacedMessage.trusted() || replacedMessage.getType() == Message.TYPE_PRIVATE)
 									&& remoteMsgId != null
@@ -489,12 +487,12 @@ public class MessageParser extends AbstractParser implements OnMessagePacketRece
 				manager.createNewDownloadConnection(message);
 			} else if (notify) {
 				if (query != null && query.isCatchup()) {
-				//	mXmppConnectionService.getNotificationService().pushFromBacklog(message);
+					mXmppConnectionService.getNotificationService().pushFromBacklog(message);
 				} else if (account.getXmppConnection().isWaitingForSmCatchup()) {
 					account.getXmppConnection().incrementSmCatchupMessageCounter();
-				//	mXmppConnectionService.getNotificationService().pushFromBacklog(message);
+					mXmppConnectionService.getNotificationService().pushFromBacklog(message);
 				} else {
-				//	mXmppConnectionService.getNotificationService().push(message);
+					mXmppConnectionService.getNotificationService().push(message);
 				}
 			}
 		} else if (!packet.hasChild("body")){ //no body

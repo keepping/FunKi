@@ -16,11 +16,11 @@ import android.os.ParcelFileDescriptor;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+//import com.google.zxing.BarcodeFormat;
+//import com.google.zxing.EncodeHintType;
+//import com.google.zxing.common.BitMatrix;
+//import com.google.zxing.qrcode.QRCodeWriter;
+//import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -183,26 +183,28 @@ public class BarcodeProvider extends ContentProvider implements ServiceConnectio
     }
 
     public static Bitmap create2dBarcodeBitmap(String input, int size) {
-        try {
-            final QRCodeWriter barcodeWriter = new QRCodeWriter();
-            final Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
-            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
-            final BitMatrix result = barcodeWriter.encode(input, BarcodeFormat.QR_CODE, size, size, hints);
-            final int width = result.getWidth();
-            final int height = result.getHeight();
-            final int[] pixels = new int[width * height];
-            for (int y = 0; y < height; y++) {
-                final int offset = y * width;
-                for (int x = 0; x < width; x++) {
-                    pixels[offset + x] = result.get(x, y) ? Color.BLACK : Color.WHITE;
-                }
-            }
-            final Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
-            return bitmap;
-        } catch (final Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+//        try {
+//            final QRCodeWriter barcodeWriter = new QRCodeWriter();
+//            final Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
+//            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
+//            final BitMatrix result = barcodeWriter.encode(input, BarcodeFormat.QR_CODE, size, size, hints);
+//            final int width = result.getWidth();
+//            final int height = result.getHeight();
+//            final int[] pixels = new int[width * height];
+//            for (int y = 0; y < height; y++) {
+//                final int offset = y * width;
+//                for (int x = 0; x < width; x++) {
+//                    pixels[offset + x] = result.get(x, y) ? Color.BLACK : Color.WHITE;
+//                }
+//            }
+//            final Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+//            bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+//            return bitmap;
+//        } catch (final Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+        return null;
     }
 }

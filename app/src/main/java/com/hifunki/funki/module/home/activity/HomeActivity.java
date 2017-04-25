@@ -281,10 +281,8 @@ public class HomeActivity extends BaseActivity implements HomeFragment.OnFragmen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        try {
+        if(pwdPopWindow!=null){
             pwdPopWindow.hidePopWindow();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }

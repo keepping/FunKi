@@ -34,20 +34,17 @@ import android.util.LruCache;
 import android.util.Pair;
 
 
-import net.ypresto.androidtranscoder.MediaTranscoder;
-import net.ypresto.androidtranscoder.format.MediaFormatStrategyPresets;
+//import net.ypresto.androidtranscoder.MediaTranscoder;
+//import net.ypresto.androidtranscoder.format.MediaFormatStrategyPresets;
 
 
 
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
-import java.net.URL;
 import java.security.SecureRandom;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -96,7 +93,7 @@ import eu.siacs.conversations.parser.MessageParser;
 import eu.siacs.conversations.parser.PresenceParser;
 import eu.siacs.conversations.persistance.DatabaseBackend;
 import eu.siacs.conversations.persistance.FileBackend;
-
+import eu.siacs.conversations.ui.SettingsActivity;
 import eu.siacs.conversations.ui.UiCallback;
 import eu.siacs.conversations.ui.UiInformableCallback;
 import eu.siacs.conversations.utils.ConversationsFileObserver;
@@ -109,7 +106,6 @@ import eu.siacs.conversations.utils.PhoneHelper;
 import eu.siacs.conversations.utils.ReplacingSerialSingleThreadExecutor;
 import eu.siacs.conversations.utils.SerialSingleThreadExecutor;
 import eu.siacs.conversations.xml.Namespace;
-import eu.siacs.conversations.utils.XmppUri;
 import eu.siacs.conversations.xml.Element;
 import eu.siacs.conversations.xmpp.OnBindListener;
 import eu.siacs.conversations.xmpp.OnContactStatusChanged;
@@ -133,7 +129,7 @@ import eu.siacs.conversations.xmpp.pep.Avatar;
 import eu.siacs.conversations.xmpp.stanzas.IqPacket;
 import eu.siacs.conversations.xmpp.stanzas.MessagePacket;
 import eu.siacs.conversations.xmpp.stanzas.PresencePacket;
-import me.leolin.shortcutbadger.ShortcutBadger;
+//import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class XmppConnectionService extends Service {
 
@@ -170,9 +166,9 @@ public class XmppConnectionService extends Service {
 		}
 	};
 	private FileBackend fileBackend = new FileBackend(this);
-
-//	private NotificationService mNotificationService = new NotificationService(
-//			this);
+	// private MemorizingTrustManager mMemorizingTrustManager;
+	private NotificationService mNotificationService = new NotificationService(
+			this);
 	private OnMessagePacketReceived mMessageParser = new MessageParser(this);
 	private OnPresencePacketReceived mPresenceParser = new PresenceParser(this);
 	private IqParser mIqParser = new IqParser(this);
@@ -372,7 +368,7 @@ public class XmppConnectionService extends Service {
 					}
 				}
 			}
-		//	getNotificationService().updateErrorNotification();
+			getNotificationService().updateErrorNotification();
 		}
 	};
 
@@ -497,65 +493,66 @@ public class XmppConnectionService extends Service {
 				}
 			}
 
-			private void processAsVideo() throws FileNotFoundException {
-				Log.d(Config.LOGTAG,"processing file as video");
-				message.setRelativeFilePath(message.getUuid() + ".mp4");
-				final DownloadableFile file = getFileBackend().getFile(message);
-				file.getParentFile().mkdirs();
-				ParcelFileDescriptor parcelFileDescriptor = getContentResolver().openFileDescriptor(uri, "r");
-				FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-				final ArrayList<Integer> progressTracker = new ArrayList<>();
-				final UiInformableCallback<Message> informableCallback;
-				if (callback instanceof UiInformableCallback) {
-					informableCallback = (UiInformableCallback<Message>) callback;
-				} else {
-					informableCallback = null;
-				}
-				MediaTranscoder.Listener listener = new MediaTranscoder.Listener() {
-					@Override
-					public void onTranscodeProgress(double progress) {
-						int p = ((int) Math.round(progress * 100) / 20) * 20;
-						if (!progressTracker.contains(p) && p != 100 && p != 0) {
-							progressTracker.add(p);
-							if (informableCallback != null) {
-
-								informableCallback.inform(getString(R.string.transcoding_video_progress, String.valueOf(p)));
-							}
-						}
-					}
-
-					@Override
-					public void onTranscodeCompleted() {
-//						if (message.getEncryption() == Message.ENCRYPTION_DECRYPTED) {
-//							getPgpEngine().encrypt(message, callback);
-//						} else {
-//							callback.success(message);
+//			private void processAsVideo() throws FileNotFoundException {
+//				Log.d(Config.LOGTAG,"processing file as video");
+//				message.setRelativeFilePath(message.getUuid() + ".mp4");
+//				final DownloadableFile file = getFileBackend().getFile(message);
+//				file.getParentFile().mkdirs();
+//				ParcelFileDescriptor parcelFileDescriptor = getContentResolver().openFileDescriptor(uri, "r");
+//				FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+//				final ArrayList<Integer> progressTracker = new ArrayList<>();
+//				final UiInformableCallback<Message> informableCallback;
+//				if (callback instanceof UiInformableCallback) {
+//					informableCallback = (UiInformableCallback<Message>) callback;
+//				} else {
+//					informableCallback = null;
+//				}
+//				MediaTranscoder.Listener listener = new MediaTranscoder.Listener() {
+//					@Override
+//					public void onTranscodeProgress(double progress) {
+//						int p = ((int) Math.round(progress * 100) / 20) * 20;
+//						if (!progressTracker.contains(p) && p != 100 && p != 0) {
+//							progressTracker.add(p);
+//							if (informableCallback != null) {
+//
+//								informableCallback.inform(getString(R.string.transcoding_video_progress, String.valueOf(p)));
+//							}
 //						}
-
-						callback.success(message);
-					}
-
-					@Override
-					public void onTranscodeCanceled() {
-						processAsFile();
-					}
-
-					@Override
-					public void onTranscodeFailed(Exception e) {
-						Log.d(Config.LOGTAG,"video transcoding failed "+e.getMessage());
-						processAsFile();
-					}
-				};
-				MediaTranscoder.getInstance().transcodeVideo(fileDescriptor, file.getAbsolutePath(),
-						MediaFormatStrategyPresets.createAndroid720pStrategy(), listener);
-			}
+//					}
+//
+//					@Override
+//					public void onTranscodeCompleted() {
+////						if (message.getEncryption() == Message.ENCRYPTION_DECRYPTED) {
+////							getPgpEngine().encrypt(message, callback);
+////						} else {
+////							callback.success(message);
+////						}
+//
+//						callback.success(message);
+//					}
+//
+//					@Override
+//					public void onTranscodeCanceled() {
+//						processAsFile();
+//					}
+//
+//					@Override
+//					public void onTranscodeFailed(Exception e) {
+//						Log.d(Config.LOGTAG,"video transcoding failed "+e.getMessage());
+//						processAsFile();
+//					}
+//				};
+//				MediaTranscoder.getInstance().transcodeVideo(fileDescriptor, file.getAbsolutePath(),
+//						MediaFormatStrategyPresets.createAndroid720pStrategy(), listener);
+//			}
 
 			@Override
 			public void run() {
 				final String mimeType = MimeUtils.guessMimeTypeFromUri(XmppConnectionService.this, uri);
 				if (mimeType != null && mimeType.startsWith("video/") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
 					try {
-						processAsVideo();
+					//	processAsVideo();
+						processAsFile();
 					} catch (Throwable e) {
 						processAsFile();
 					}
@@ -647,14 +644,14 @@ public class XmppConnectionService extends Service {
 					logoutAndSave(true);
 					return START_NOT_STICKY;
 				case ACTION_CLEAR_NOTIFICATION:
-//					if (c != null) {
-//						mNotificationService.clear(c);
-//					} else {
-//						mNotificationService.clear();
-//					}
+					if (c != null) {
+						mNotificationService.clear(c);
+					} else {
+						mNotificationService.clear();
+					}
 					break;
 				case ACTION_DISABLE_FOREGROUND:
-
+					getPreferences().edit().putBoolean(SettingsActivity.KEEP_FOREGROUND_SERVICE, false).commit();
 					toggleForegroundService();
 					break;
 				case ACTION_DISMISS_ERROR_NOTIFICATIONS:
@@ -681,9 +678,9 @@ public class XmppConnectionService extends Service {
 				case Intent.ACTION_SCREEN_ON:
 					deactivateGracePeriod();
 				case Intent.ACTION_SCREEN_OFF:
-//					if (awayWhenScreenOff()) {
-//						refreshAllPresences();
-//					}
+					if (awayWhenScreenOff()) {
+						refreshAllPresences();
+					}
 					break;
 				case ACTION_GCM_TOKEN_REFRESH:
 					refreshAllGcmTokens();
@@ -854,7 +851,7 @@ public class XmppConnectionService extends Service {
 		if (dismissAfterReply) {
 			markRead(conversation,true);
 		} else {
-	//		mNotificationService.pushFromDirectReply(message);
+			mNotificationService.pushFromDirectReply(message);
 		}
 	}
 
@@ -862,17 +859,17 @@ public class XmppConnectionService extends Service {
 		return getPreferences().getBoolean("xa_on_silent_mode", false);
 	}
 
-//	private boolean manuallyChangePresence() {
-//		return getPreferences().getBoolean(SettingsActivity.MANUALLY_CHANGE_PRESENCE, false);
-//	}
-//
-//	private boolean treatVibrateAsSilent() {
-//		return getPreferences().getBoolean(SettingsActivity.TREAT_VIBRATE_AS_SILENT, false);
-//	}
-//
-//	private boolean awayWhenScreenOff() {
-//		return getPreferences().getBoolean(SettingsActivity.AWAY_WHEN_SCREEN_IS_OFF, false);
-//	}
+	private boolean manuallyChangePresence() {
+		return getPreferences().getBoolean(SettingsActivity.MANUALLY_CHANGE_PRESENCE, false);
+	}
+
+	private boolean treatVibrateAsSilent() {
+		return getPreferences().getBoolean(SettingsActivity.TREAT_VIBRATE_AS_SILENT, false);
+	}
+
+	private boolean awayWhenScreenOff() {
+		return getPreferences().getBoolean(SettingsActivity.AWAY_WHEN_SCREEN_IS_OFF, false);
+	}
 
 	private String getCompressPicturesPreference() {
 		return getPreferences().getString("picture_compression", "auto");
@@ -881,7 +878,7 @@ public class XmppConnectionService extends Service {
 	private Presence.Status getTargetPresence() {
 		if (xaOnSilentMode() && isPhoneSilenced()) {
 			return Presence.Status.XA;
-		} else if ( !isInteractive()) {
+		} else if (awayWhenScreenOff() && !isInteractive()) {
 			return Presence.Status.AWAY;
 		} else {
 			return Presence.Status.ONLINE;
@@ -905,12 +902,11 @@ public class XmppConnectionService extends Service {
 	private boolean isPhoneSilenced() {
 		AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		try {
-//			if (treatVibrateAsSilent()) {
-//				return audioManager.getRingerMode() != AudioManager.RINGER_MODE_NORMAL;
-//			} else {
-//				return audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT;
-//			}
-			return true;
+			if (treatVibrateAsSilent()) {
+				return audioManager.getRingerMode() != AudioManager.RINGER_MODE_NORMAL;
+			} else {
+				return audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT;
+			}
 		} catch (Throwable throwable) {
 			Log.d(Config.LOGTAG,"platform bug in isPhoneSilenced ("+ throwable.getMessage()+")");
 			return false;
@@ -930,7 +926,7 @@ public class XmppConnectionService extends Service {
 				databaseBackend.updateAccount(account);
 			}
 		}
-		// mNotificationService.updateErrorNotification();
+		mNotificationService.updateErrorNotification();
 	}
 
 	private void dismissErrorNotifications() {
@@ -1005,7 +1001,7 @@ public class XmppConnectionService extends Service {
 				&& Config.FREQUENT_RESTARTS_DETECTION_WINDOW != 0
 				&& !keepForegroundService()
 				&& databaseBackend.startTimeCountExceedsThreshold()) {
-			//getPreferences().edit().putBoolean(SettingsActivity.KEEP_FOREGROUND_SERVICE,true).commit();
+			getPreferences().edit().putBoolean(SettingsActivity.KEEP_FOREGROUND_SERVICE,true).commit();
 			Log.d(Config.LOGTAG,"number of restarts exceeds threshold. enabling foreground service");
 		}
 
@@ -1073,30 +1069,29 @@ public class XmppConnectionService extends Service {
 	}
 
 	public void toggleScreenEventReceiver() {
-//		if (awayWhenScreenOff() && !manuallyChangePresence()) {
-//			final IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
-//			filter.addAction(Intent.ACTION_SCREEN_OFF);
-//			registerReceiver(this.mEventReceiver, filter);
-//		} else {
-//			try {
-//				unregisterReceiver(this.mEventReceiver);
-//			} catch (IllegalArgumentException e) {
-//				//ignored
-//			}
-//		}
+		if (awayWhenScreenOff() && !manuallyChangePresence()) {
+			final IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+			filter.addAction(Intent.ACTION_SCREEN_OFF);
+			registerReceiver(this.mEventReceiver, filter);
+		} else {
+			try {
+				unregisterReceiver(this.mEventReceiver);
+			} catch (IllegalArgumentException e) {
+				//ignored
+			}
+		}
 	}
 
 	public void toggleForegroundService() {
 		if (keepForegroundService()) {
-		//	startForeground(NotificationService.FOREGROUND_NOTIFICATION_ID, this.mNotificationService.createForegroundNotification());
+			startForeground(NotificationService.FOREGROUND_NOTIFICATION_ID, this.mNotificationService.createForegroundNotification());
 		} else {
 			stopForeground(true);
 		}
 	}
 
 	private boolean keepForegroundService() {
-	//	return getPreferences().getBoolean(SettingsActivity.KEEP_FOREGROUND_SERVICE,false);
-		return false;
+		return getPreferences().getBoolean(SettingsActivity.KEEP_FOREGROUND_SERVICE,false);
 	}
 
 	@Override
@@ -1207,7 +1202,7 @@ public class XmppConnectionService extends Service {
 		final Account account = message.getConversation().getAccount();
 		if (account.setShowErrorNotification(true)) {
 			databaseBackend.updateAccount(account);
-		//	mNotificationService.updateErrorNotification();
+			mNotificationService.updateErrorNotification();
 		}
 		final Conversation conversation = message.getConversation();
 		account.deactivateGracePeriod();
@@ -1460,11 +1455,11 @@ public class XmppConnectionService extends Service {
 						conversation.findUnreadMessages(new Conversation.OnMessageFound() {
 							@Override
 							public void onMessageFound(Message message) {
-						//		mNotificationService.pushFromBacklog(message);
+								mNotificationService.pushFromBacklog(message);
 							}
 						});
 					}
-				//	mNotificationService.finishBacklog(false);
+					mNotificationService.finishBacklog(false);
 					mRestoredFromDatabase = true;
 					Log.d(Config.LOGTAG, "restored all messages");
 					updateConversationUi();
@@ -1745,7 +1740,7 @@ public class XmppConnectionService extends Service {
 	}
 
 	public void archiveConversation(Conversation conversation) {
-	//	getNotificationService().clear(conversation);
+		getNotificationService().clear(conversation);
 		conversation.setStatus(Conversation.STATUS_ARCHIVED);
 		synchronized (this.conversations) {
 			if (conversation.getMode() == Conversation.MODE_MULTI) {
@@ -1847,7 +1842,7 @@ public class XmppConnectionService extends Service {
 			databaseBackend.updateAccount(account);
 			reconnectAccountInBackground(account);
 			updateAccountUi();
-	//		getNotificationService().updateErrorNotification();
+			getNotificationService().updateErrorNotification();
 			return true;
 		} else {
 			return false;
@@ -1902,7 +1897,7 @@ public class XmppConnectionService extends Service {
 			mDatabaseExecutor.execute(runnable);
 			this.accounts.remove(account);
 			updateAccountUi();
-	//		getNotificationService().updateErrorNotification();
+			getNotificationService().updateErrorNotification();
 		}
 	}
 
@@ -1913,7 +1908,7 @@ public class XmppConnectionService extends Service {
 				switchToForeground();
 			}
 			this.mOnConversationUpdate = listener;
-	//		this.mNotificationService.setIsInForeground(true);
+			this.mNotificationService.setIsInForeground(true);
 			if (this.convChangedListenerCount < 2) {
 				this.convChangedListenerCount++;
 			}
@@ -1926,7 +1921,7 @@ public class XmppConnectionService extends Service {
 			if (this.convChangedListenerCount <= 0) {
 				this.convChangedListenerCount = 0;
 				this.mOnConversationUpdate = null;
-		//		this.mNotificationService.setIsInForeground(false);
+				this.mNotificationService.setIsInForeground(false);
 				if (checkListeners()) {
 					switchToBackground();
 				}
@@ -2160,7 +2155,7 @@ public class XmppConnectionService extends Service {
 				}
 			}
 		}
-	//	this.mNotificationService.setIsInForeground(false);
+		this.mNotificationService.setIsInForeground(false);
 		Log.d(Config.LOGTAG, "app switched into background");
 	}
 
@@ -3207,13 +3202,12 @@ public class XmppConnectionService extends Service {
 	}
 
 	public long getAutomaticMessageDeletionDate() {
-		return 0;
-//		try {
-//			final long timeout = Long.parseLong(getPreferences().getString(SettingsActivity.AUTOMATIC_MESSAGE_DELETION, "0")) * 1000;
-//			return timeout == 0 ? timeout : System.currentTimeMillis() - timeout;
-//		} catch (NumberFormatException e) {
-//			return 0;
-//		}
+		try {
+			final long timeout = Long.parseLong(getPreferences().getString(SettingsActivity.AUTOMATIC_MESSAGE_DELETION, "0")) * 1000;
+			return timeout == 0 ? timeout : System.currentTimeMillis() - timeout;
+		} catch (NumberFormatException e) {
+			return 0;
+		}
 	}
 
 	public boolean confirmMessages() {
@@ -3245,8 +3239,7 @@ public class XmppConnectionService extends Service {
 	}
 
 	public boolean broadcastLastActivity() {
-		return false;
-		//return getPreferences().getBoolean(SettingsActivity.BROADCAST_LAST_ACTIVITY, false);
+		return getPreferences().getBoolean(SettingsActivity.BROADCAST_LAST_ACTIVITY, false);
 	}
 
 	public int unreadCount() {
@@ -3331,9 +3324,9 @@ public class XmppConnectionService extends Service {
 	}
 
 	public boolean markRead(final Conversation conversation, boolean clear) {
-//		if (clear) {
-//			mNotificationService.clear(conversation);
-//		}
+		if (clear) {
+			mNotificationService.clear(conversation);
+		}
 		final List<Message> readMessages = conversation.markRead();
 		if (readMessages.size() > 0) {
 			Runnable runnable = new Runnable() {
@@ -3357,9 +3350,9 @@ public class XmppConnectionService extends Service {
 		if (unreadCount != count) {
 			Log.d(Config.LOGTAG, "update unread count to " + count);
 			if (count > 0) {
-				ShortcutBadger.applyCount(getApplicationContext(), count);
+		//		ShortcutBadger.applyCount(getApplicationContext(), count);
 			} else {
-				ShortcutBadger.removeCount(getApplicationContext());
+		//		ShortcutBadger.removeCount(getApplicationContext());
 			}
 			unreadCount = count;
 		}
@@ -3497,16 +3490,15 @@ public class XmppConnectionService extends Service {
 
 	private void sendPresence(final Account account, final boolean includeIdleTimestamp) {
 		PresencePacket packet;
-//		if (manuallyChangePresence()) {
-//			packet =  mPresenceGenerator.selfPresence(account, account.getPresenceStatus());
-//			String message = account.getPresenceStatusMessage();
-//			if (message != null && !message.isEmpty()) {
-//				packet.addChild(new Element("status").setContent(message));
-//			}
-//		} else {
-//			packet = mPresenceGenerator.selfPresence(account, getTargetPresence());
-//		}
-		packet = mPresenceGenerator.selfPresence(account, getTargetPresence());
+		if (manuallyChangePresence()) {
+			packet =  mPresenceGenerator.selfPresence(account, account.getPresenceStatus());
+			String message = account.getPresenceStatusMessage();
+			if (message != null && !message.isEmpty()) {
+				packet.addChild(new Element("status").setContent(message));
+			}
+		} else {
+			packet = mPresenceGenerator.selfPresence(account, getTargetPresence());
+		}
 		if (mLastActivity > 0 && includeIdleTimestamp) {
 			long since = Math.min(mLastActivity, System.currentTimeMillis()); //don't send future dates
 			packet.addChild("idle",Namespace.IDLE).setAttribute("since", AbstractGenerator.getTimestamp(since));
@@ -3589,9 +3581,9 @@ public class XmppConnectionService extends Service {
 		return null;
 	}
 
-//	public NotificationService getNotificationService() {
-//		return this.mNotificationService;
-//	}
+	public NotificationService getNotificationService() {
+		return this.mNotificationService;
+	}
 
 	public HttpConnectionManager getHttpConnectionManager() {
 		return this.mHttpConnectionManager;
@@ -3860,10 +3852,9 @@ public class XmppConnectionService extends Service {
 
 
 
-//	public boolean blindTrustBeforeVerification() {
-//		return false;
-//		return getPreferences().getBoolean(SettingsActivity.BLIND_TRUST_BEFORE_VERIFICATION, true);
-//	}
+	public boolean blindTrustBeforeVerification() {
+		return getPreferences().getBoolean(SettingsActivity.BLIND_TRUST_BEFORE_VERIFICATION, true);
+	}
 
 	public interface OnMamPreferencesFetched {
 		void onPreferencesFetched(Element prefs);

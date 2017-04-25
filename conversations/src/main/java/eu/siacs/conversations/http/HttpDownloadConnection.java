@@ -125,7 +125,7 @@ public class HttpDownloadConnection implements Transferable {
 
 		mHttpConnectionManager.updateConversationUi(true);
 		if (notify) {
-		//	mXmppConnectionService.getNotificationService().push(message);
+			mXmppConnectionService.getNotificationService().push(message);
 		}
 	}
 
@@ -166,7 +166,7 @@ public class HttpDownloadConnection implements Transferable {
 					showToastForException(e);
 				} else {
 					HttpDownloadConnection.this.acceptedAutomatically = false;
-				//	HttpDownloadConnection.this.mXmppConnectionService.getNotificationService().push(message);
+					HttpDownloadConnection.this.mXmppConnectionService.getNotificationService().push(message);
 				}
 				cancel();
 				return;
@@ -180,7 +180,7 @@ public class HttpDownloadConnection implements Transferable {
 			} else {
 				changeStatus(STATUS_OFFER);
 				HttpDownloadConnection.this.acceptedAutomatically = false;
-			//	HttpDownloadConnection.this.mXmppConnectionService.getNotificationService().push(message);
+				HttpDownloadConnection.this.mXmppConnectionService.getNotificationService().push(message);
 			}
 		}
 
@@ -243,7 +243,7 @@ public class HttpDownloadConnection implements Transferable {
 					showToastForException(e);
 				} else {
 					HttpDownloadConnection.this.acceptedAutomatically = false;
-				//	HttpDownloadConnection.this.mXmppConnectionService.getNotificationService().push(message);
+					HttpDownloadConnection.this.mXmppConnectionService.getNotificationService().push(message);
 				}
 				cancel();
 			}

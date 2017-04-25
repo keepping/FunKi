@@ -191,13 +191,12 @@ public class SQLiteAxolotlStore implements AxolotlStore {
 			String fingerprint = identityKey.getFingerprint().replaceAll("\\s", "");
 			FingerprintStatus status = getFingerprintStatus(fingerprint);
 			if (status == null) {
-//				if (mXmppConnectionService.blindTrustBeforeVerification()) {
-//					Log.d(Config.LOGTAG,account.getJid().toBareJid()+": blindly trusted "+fingerprint+" of "+name);
-//					status = FingerprintStatus.createActiveTrusted();
-//				} else {
-//					status = FingerprintStatus.createActiveUndecided();
-//				}
-				status = FingerprintStatus.createActiveUndecided();
+				if (mXmppConnectionService.blindTrustBeforeVerification()) {
+					Log.d(Config.LOGTAG,account.getJid().toBareJid()+": blindly trusted "+fingerprint+" of "+name);
+					status = FingerprintStatus.createActiveTrusted();
+				} else {
+					status = FingerprintStatus.createActiveUndecided();
+				}
 			} else {
 				status = status.toActive();
 			}

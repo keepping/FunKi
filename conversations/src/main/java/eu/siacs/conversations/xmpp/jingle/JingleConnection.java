@@ -109,7 +109,7 @@ public class JingleConnection implements Transferable {
 //						JingleConnection.this.mXmppConnectionService.getNotificationService().push(message);
 //					}
 
-				//	JingleConnection.this.mXmppConnectionService.getNotificationService().push(message);
+					JingleConnection.this.mXmppConnectionService.getNotificationService().push(message);
 				}
 			} else {
 //				if (message.getEncryption() == Message.ENCRYPTION_PGP) {
@@ -391,7 +391,7 @@ public class JingleConnection implements Transferable {
 									+ " allowed size:"
 									+ this.mJingleConnectionManager
 											.getAutoAcceptFileSize());
-				//	this.mXmppConnectionService.getNotificationService().push(message);
+					this.mXmppConnectionService.getNotificationService().push(message);
 				}
 				this.file = this.mXmppConnectionService.getFileBackend().getFile(message, false);
 			//	if (mXmppAxolotlMessage != null) {

@@ -2,7 +2,7 @@ package eu.siacs.conversations.xmpp.jid;
 
 import android.util.LruCache;
 
-import net.java.otr4j.session.SessionID;
+
 
 import java.net.IDN;
 
@@ -51,13 +51,13 @@ public final class Jid {
 		return resourcepart;
 	}
 
-	public static Jid fromSessionID(final SessionID id) throws InvalidJidException{
-		if (id.getUserID().isEmpty()) {
-			return Jid.fromString(id.getAccountID());
-		} else {
-			return Jid.fromString(id.getAccountID()+"/"+id.getUserID());
-		}
-	}
+//	public static Jid fromSessionID(final SessionID id) throws InvalidJidException{
+//		if (id.getUserID().isEmpty()) {
+//			return Jid.fromString(id.getAccountID());
+//		} else {
+//			return Jid.fromString(id.getAccountID()+"/"+id.getUserID());
+//		}
+//	}
 
 	public static Jid fromString(final String jid) throws InvalidJidException {
 		return Jid.fromString(jid, false);

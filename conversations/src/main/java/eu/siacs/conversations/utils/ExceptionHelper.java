@@ -26,7 +26,6 @@
 //import eu.siacs.conversations.entities.Conversation;
 //import eu.siacs.conversations.entities.Message;
 //import eu.siacs.conversations.services.XmppConnectionService;
-//import eu.siacs.conversations.ui.ConversationActivity;
 //import eu.siacs.conversations.xmpp.jid.InvalidJidException;
 //import eu.siacs.conversations.xmpp.jid.Jid;
 //

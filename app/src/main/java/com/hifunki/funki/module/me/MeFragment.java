@@ -20,6 +20,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.dynamic.me.activity.MyDynamicActivity;
+import com.hifunki.funki.module.login.VisitorFillActivity;
 import com.hifunki.funki.module.me.adapter.MeInfoAdapter;
 import com.hifunki.funki.module.me.bill.activity.BillActivity;
 import com.hifunki.funki.module.me.blacklist.activity.BlackListActivtiy;
@@ -181,6 +182,8 @@ public class MeFragment extends BaseFragment {
                                 VisitActivity.show(getContext());
                             }else if(position==3){
                                 BlackListActivtiy.show(getContext());
+                            }else if(position==4){
+                                VisitorFillActivity.show(getContext());
                             }
                         break;
                 }
@@ -243,7 +246,6 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.civ_me_photo:
                 System.out.println(rvMe.getHeight());
-
                 break;
             case R.id.iv_me_authentication:
                 UserAvatarActivity.show(getContext());
