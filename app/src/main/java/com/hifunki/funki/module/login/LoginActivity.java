@@ -33,6 +33,7 @@ import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.SPUtils;
 import com.hifunki.funki.util.ToastUtils;
 import com.hifunki.funki.util.ViewUtil;
+import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
 
@@ -53,7 +54,8 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 
     private boolean isPhoneColor;
     private ArrayList<LinearLayout> mTabViews;
-
+    @BindView(R.id.tbv_login)
+    TopBarView topBarView;
     @BindView(R.id.activity_login)
     LinearLayout activityLogin;
     @BindView(R.id.fl_title)
@@ -99,12 +101,9 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 
 
     @Override
-    protected void initTitleBar() {
+    protected void initVariable() {
+        super.initVariable();
         mActivity = LoginActivity.this;//必须要调用,用来注册本地广播
-        ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
-
-        ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.login, null);
-        ToolTitleBar.showRightButtonMsg(this, activityLogin, R.string.register, this);
     }
 
     @Override
@@ -118,11 +117,10 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 
     @Override
     protected void initListener() {
-
+        topBarView.getMenuText().setOnClickListener(this);
     }
 
-    //    R.id.vpPhoneEmail,
-    @OnClick({R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.tv_login, R.id.tvForgetPwd, R.id.tvHelpCenter})
+    @OnClick({R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.tv_login, R.id.tvForgetPwd, R.id.tvHelpCenter,R.id.tv_menu})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.activity_login:
@@ -135,7 +133,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
                 VisitorFillActivity.show(this);
                 finish();
                 break;
-            case R.id.tv_register:
+            case R.id.tv_menu:
                 RegisterActivity.show(this);
             case R.id.tvPhone:
                 ivPhoneLine.setVisibility(View.VISIBLE);
