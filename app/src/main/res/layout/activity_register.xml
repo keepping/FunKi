@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_230C47"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".module.login.LoginActivity"
     tools:ignore="MissingPrefix">
 
-    <include
-        android:id="@id/fl_title"
-        layout="@layout/title_templet" />
+    <com.hifunki.funki.widget.bar.TopBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="注册" />
 
     <LinearLayout
         android:id="@+id/ll_icon"

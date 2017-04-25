@@ -58,8 +58,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     TopBarView topBarView;
     @BindView(R.id.activity_login)
     LinearLayout activityLogin;
-    @BindView(R.id.fl_title)
-    FrameLayout flTitle;
+
     @BindView(R.id.ll_icon)
     LinearLayout mLlIcon;
     @BindView(R.id.iv_logo)

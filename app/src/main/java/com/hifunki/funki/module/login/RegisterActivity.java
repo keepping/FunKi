@@ -18,7 +18,6 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.AccountBaseActivity;
 import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.business.LoginBusiness;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
@@ -42,8 +41,6 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
 
     private boolean isPhoneColor;
 
-    @BindView(R.id.fl_title)
-    FrameLayout flTitle;
     @BindView(R.id.ll_icon)
     LinearLayout mLlIcon;
     @BindView(R.id.tvPhone)
@@ -82,9 +79,7 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
 
     @Override
     protected void initTitleBar() {
-        ToolTitleBar.showLeftButton(this, activityLogin, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
-        ToolTitleBar.showCenterButton(this, activityLogin, ToolTitleBar.BTN_TYPE_TEXT, R.string.register, null);
     }
 
     @Override
