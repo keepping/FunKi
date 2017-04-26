@@ -37,7 +37,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 
 /**
- * 没有标题栏的activity
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>

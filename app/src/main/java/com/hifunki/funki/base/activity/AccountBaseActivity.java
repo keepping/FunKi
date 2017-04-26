@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.hifunki.funki.R;
 
 /**
- * account base
+ * account bases
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
