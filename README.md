@@ -1,2 +1,2 @@
 # FunKi
-Android FunKi
+FunKi_Android
