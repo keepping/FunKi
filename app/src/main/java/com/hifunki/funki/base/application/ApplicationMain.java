@@ -6,12 +6,13 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.im.ImManager;
+
 import com.hifunki.funki.util.AppUtil;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import eu.siacs.conversations.clent.ImManager;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -50,7 +51,7 @@ public class ApplicationMain extends MultiDexApplication {
             return;
         }
 
-        ImManager.getDefault(this).init();
+        ImManager.init(this);
 
         //加载自定义字体
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()

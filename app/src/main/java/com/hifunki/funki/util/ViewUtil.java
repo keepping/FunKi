@@ -88,7 +88,7 @@ public class ViewUtil {
                 }
 
                 if (needReSize) {
-                    System.out.println(" adjust View Height ");
+               //     System.out.println(" adjust View Height ");
                     int with = scrollView.getWidth();
                     int measureWith = View.MeasureSpec.makeMeasureSpec(with, View.MeasureSpec.EXACTLY);
                     //取大值 重新衡量 高度

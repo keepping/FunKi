@@ -44,7 +44,7 @@ public class PresenceParser extends AbstractParser implements
 				mXmppConnectionService.getAvatarService().clear(mucOptions);
 			}
 			if (before != mucOptions.online() || (mucOptions.online() && count != mucOptions.getUserCount())) {
-				mXmppConnectionService.updateConversationUi();
+			//	mXmppConnectionService.updateConversationUi();
 			} else if (mucOptions.online()) {
 				mXmppConnectionService.updateMucRosterUi();
 			}
@@ -179,12 +179,12 @@ public class PresenceParser extends AbstractParser implements
 						account.setAvatar(avatar.getFilename());
 						mXmppConnectionService.databaseBackend.updateAccount(account);
 						mXmppConnectionService.getAvatarService().clear(account);
-						mXmppConnectionService.updateConversationUi();
-						mXmppConnectionService.updateAccountUi();
+				//		mXmppConnectionService.updateConversationUi();
+				//		mXmppConnectionService.updateAccountUi();
 					} else if (contact.setAvatar(avatar)) {
 						mXmppConnectionService.getAvatarService().clear(contact);
-						mXmppConnectionService.updateConversationUi();
-						mXmppConnectionService.updateRosterUi();
+				//		mXmppConnectionService.updateConversationUi();
+				//		mXmppConnectionService.updateRosterUi();
 					}
 				} else if (mXmppConnectionService.isDataSaverDisabled()){
 					mXmppConnectionService.fetchAvatar(account, avatar);
@@ -252,7 +252,7 @@ public class PresenceParser extends AbstractParser implements
 				}
 			}
 		}
-		mXmppConnectionService.updateRosterUi();
+	//	mXmppConnectionService.updateRosterUi();
 	}
 
 	@Override

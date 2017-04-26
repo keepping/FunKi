@@ -188,9 +188,11 @@ public class DanMuKuHelper {
 
         BaseDanmaku danmaku = mContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
 
+        if(danmaku == null) return;
+
         // for(int i=0;i<100;i++){
         // }
-        danmaku.text = String.valueOf(random.nextInt(10000000));
+        danmaku.text = danMuData.message;
         danmaku.tag = danMuData;
 
         //  danmaku.priority = 0;  // 可能会被各种过滤器过滤并隐藏显示

@@ -92,7 +92,7 @@ public class Contact implements ListItem, Blockable {
 	public static Contact fromCursor(final Cursor cursor) {
 		final Jid jid;
 		try {
-			jid = Jid.fromString(cursor.getString(cursor.getColumnIndex(JID)), true);
+			jid = Jid.fromString(cursor.getString(cursor.getColumnIndex(JID)));
 		} catch (final InvalidJidException e) {
 			// TODO: Borked DB... handle this somehow?
 			return null;

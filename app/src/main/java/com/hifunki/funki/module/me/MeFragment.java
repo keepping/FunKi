@@ -154,6 +154,7 @@ public class MeFragment extends BaseFragment {
         rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMe.setAdapter(meInfoAdapter);
         ViewUtil.adjustScrollViewHei(rvMe);
+        root.findViewById(R.id.layout_me_head).requestFocus();
 
         //圆形头像
         Glide.with(mContext).load(CommonConst.photo).into(civMePhoto);

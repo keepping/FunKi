@@ -27,6 +27,7 @@ import eu.siacs.conversations.entities.TransferablePlaceholder;
 import eu.siacs.conversations.parser.IqParser;
 import eu.siacs.conversations.persistance.FileBackend;
 import eu.siacs.conversations.services.AbstractConnectionManager;
+import eu.siacs.conversations.clent.ImManager;
 import eu.siacs.conversations.services.XmppConnectionService;
 import eu.siacs.conversations.xml.Element;
 import eu.siacs.conversations.xmpp.OnIqPacketReceived;
@@ -376,13 +377,14 @@ public class JingleConnection implements Transferable {
 				long size = Long.parseLong(fileSize.getContent());
 				message.setBody(Long.toString(size));
 				conversation.add(message);
-				mJingleConnectionManager.updateConversationUi(true);
+				ImManager.getDefault().invokeUpdateConversation(conversation);
 				if (mJingleConnectionManager.hasStoragePermission()
 						&& size < this.mJingleConnectionManager.getAutoAcceptFileSize()
 						&& mXmppConnectionService.isDataSaverDisabled()) {
 					Log.d(Config.LOGTAG, "auto accepting file from "+ packet.getFrom());
 					this.acceptedAutomatically = true;
 					this.sendAccept();
+				//	ImManager.getDefault().invokeUpdateMessage(message);
 				} else {
 					message.markUnread();
 					Log.d(Config.LOGTAG,
@@ -482,7 +484,7 @@ public class JingleConnection implements Transferable {
 	private void sendAccept() {
 		mJingleStatus = JINGLE_STATUS_ACCEPTED;
 		this.mStatus = Transferable.STATUS_DOWNLOADING;
-		this.mJingleConnectionManager.updateConversationUi(true);
+//		this.mJingleConnectionManager.updateConversationUi(true);
 		this.mJingleConnectionManager.getPrimaryCandidate(this.account, new OnPrimaryCandidateFound() {
 			@Override
 			public void onPrimaryCandidateFound(boolean success, final JingleCandidate candidate) {
@@ -835,7 +837,7 @@ public class JingleConnection implements Transferable {
 			if (this.file!=null) {
 				file.delete();
 			}
-			this.mJingleConnectionManager.updateConversationUi(true);
+			// this.mJingleConnectionManager.updateConversationUi(true);
 		} else {
 			this.mXmppConnectionService.markMessage(this.message,
 					Message.STATUS_SEND_FAILED);
@@ -861,7 +863,7 @@ public class JingleConnection implements Transferable {
 				if (this.file!=null) {
 					file.delete();
 				}
-				this.mJingleConnectionManager.updateConversationUi(true);
+		//		this.mJingleConnectionManager.updateConversationUi(true);
 			} else {
 				this.mXmppConnectionService.markMessage(this.message,
 						Message.STATUS_SEND_FAILED,
@@ -1009,7 +1011,7 @@ public class JingleConnection implements Transferable {
 
 	public void updateProgress(int i) {
 		this.mProgress = i;
-		mJingleConnectionManager.updateConversationUi(false);
+	//	mJingleConnectionManager.updateConversationUi(false);
 	}
 
 	public String getTransportId() {

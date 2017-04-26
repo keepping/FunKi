@@ -26,11 +26,12 @@ import eu.siacs.conversations.Config;
 //import eu.siacs.conversations.crypto.axolotl.AxolotlService;
 import eu.siacs.conversations.entities.Account;
 import eu.siacs.conversations.entities.Contact;
+import eu.siacs.conversations.clent.ImManager;
 import eu.siacs.conversations.services.XmppConnectionService;
 import eu.siacs.conversations.xml.Namespace;
 import eu.siacs.conversations.xml.Element;
 import eu.siacs.conversations.xmpp.OnIqPacketReceived;
-import eu.siacs.conversations.xmpp.OnUpdateBlocklist;
+
 import eu.siacs.conversations.xmpp.jid.Jid;
 import eu.siacs.conversations.xmpp.stanzas.IqPacket;
 
@@ -81,8 +82,7 @@ public class IqParser extends AbstractParser implements OnIqPacketReceived {
 				mXmppConnectionService.getAvatarService().clear(contact);
 			}
 		}
-		mXmppConnectionService.updateConversationUi();
-		mXmppConnectionService.updateRosterUi();
+
 	}
 
 	public String avatarData(final IqPacket packet) {
@@ -293,6 +293,7 @@ public class IqParser extends AbstractParser implements OnIqPacketReceived {
 				account.getRoster().markAllAsNotInRoster();
 			}
 			this.rosterItems(account, query);
+			ImManager.getDefault().invokeNotifyRelationship(account);
 		} else if ((packet.hasChild("block", Namespace.BLOCKING) || packet.hasChild("blocklist", Namespace.BLOCKING)) &&
 				packet.fromServer(account)) {
 			// Block list or block push.
@@ -324,13 +325,21 @@ public class IqParser extends AbstractParser implements OnIqPacketReceived {
 					for(Jid jid : jids) {
 						removed |= mXmppConnectionService.removeBlockedConversations(account,jid);
 					}
+
 					if (removed) {
-						mXmppConnectionService.updateConversationUi();
+						ImManager.getDefault().invokeNotifyConversationRoster(account);
 					}
+
+//					if (removed) {
+//						mXmppConnectionService.updateConversationUi();
+//					}
+
 				}
 			}
+			ImManager.getDefault().invokeNotifyRelationship(account);
 			// Update the UI
-			mXmppConnectionService.updateBlocklistUi(OnUpdateBlocklist.Status.BLOCKED);
+			//mXmppConnectionService.updateBlocklistUi(OnUpdateBlocklist.Status.BLOCKED);
+
 			if (packet.getType() == IqPacket.TYPE.SET) {
 				final IqPacket response = packet.generateResponse(IqPacket.TYPE.RESULT);
 				mXmppConnectionService.sendIqPacket(account, response, null);
@@ -354,7 +363,7 @@ public class IqParser extends AbstractParser implements OnIqPacketReceived {
 				}
 				account.getBlocklist().removeAll(jids);
 			}
-			mXmppConnectionService.updateBlocklistUi(OnUpdateBlocklist.Status.UNBLOCKED);
+		//	mXmppConnectionService.updateBlocklistUi(OnUpdateBlocklist.Status.UNBLOCKED);
 			final IqPacket response = packet.generateResponse(IqPacket.TYPE.RESULT);
 			mXmppConnectionService.sendIqPacket(account, response, null);
 		} else if (packet.hasChild("open", "http://jabber.org/protocol/ibb")

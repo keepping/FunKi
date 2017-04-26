@@ -536,7 +536,7 @@ public class Conversation extends AbstractEntity implements Blockable, Comparabl
 	public static Conversation fromCursor(Cursor cursor) {
 		Jid jid;
 		try {
-			jid = Jid.fromString(cursor.getString(cursor.getColumnIndex(CONTACTJID)), true);
+			jid = Jid.fromString(cursor.getString(cursor.getColumnIndex(CONTACTJID)));
 		} catch (final InvalidJidException e) {
 			// Borked DB..
 			jid = null;

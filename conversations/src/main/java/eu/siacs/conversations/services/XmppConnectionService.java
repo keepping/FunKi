@@ -20,7 +20,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
-import android.os.ParcelFileDescriptor;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
@@ -28,7 +27,6 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.security.KeyChain;
 import android.support.v4.app.RemoteInput;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.LruCache;
 import android.util.Pair;
@@ -38,9 +36,6 @@ import android.util.Pair;
 //import net.ypresto.androidtranscoder.format.MediaFormatStrategyPresets;
 
 
-
-import java.io.FileDescriptor;
-import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
@@ -81,6 +76,8 @@ import eu.siacs.conversations.entities.Roster;
 import eu.siacs.conversations.entities.ServiceDiscoveryResult;
 import eu.siacs.conversations.entities.Transferable;
 import eu.siacs.conversations.entities.TransferablePlaceholder;
+import eu.siacs.conversations.clent.ImManager;
+import eu.siacs.conversations.clent.OnUpdateConversation;
 import eu.siacs.conversations.generator.AbstractGenerator;
 import eu.siacs.conversations.generator.IqGenerator;
 import eu.siacs.conversations.generator.MessageGenerator;
@@ -95,14 +92,11 @@ import eu.siacs.conversations.persistance.DatabaseBackend;
 import eu.siacs.conversations.persistance.FileBackend;
 import eu.siacs.conversations.ui.SettingsActivity;
 import eu.siacs.conversations.ui.UiCallback;
-import eu.siacs.conversations.ui.UiInformableCallback;
 import eu.siacs.conversations.utils.ConversationsFileObserver;
 import eu.siacs.conversations.utils.CryptoHelper;
 
 import eu.siacs.conversations.utils.MimeUtils;
-import eu.siacs.conversations.utils.OnPhoneContactsLoadedListener;
 import eu.siacs.conversations.utils.PRNGFixes;
-import eu.siacs.conversations.utils.PhoneHelper;
 import eu.siacs.conversations.utils.ReplacingSerialSingleThreadExecutor;
 import eu.siacs.conversations.utils.SerialSingleThreadExecutor;
 import eu.siacs.conversations.xml.Namespace;
@@ -115,7 +109,7 @@ import eu.siacs.conversations.xmpp.OnMessageAcknowledged;
 import eu.siacs.conversations.xmpp.OnMessagePacketReceived;
 import eu.siacs.conversations.xmpp.OnPresencePacketReceived;
 import eu.siacs.conversations.xmpp.OnStatusChanged;
-import eu.siacs.conversations.xmpp.OnUpdateBlocklist;
+
 import eu.siacs.conversations.xmpp.Patches;
 import eu.siacs.conversations.xmpp.XmppConnection;
 import eu.siacs.conversations.xmpp.chatstate.ChatState;
@@ -217,7 +211,7 @@ public class XmppConnectionService extends Service {
 	private AvatarService mAvatarService = new AvatarService(this);
 	private MessageArchiveService mMessageArchiveService = new MessageArchiveService(this);
 	private PushManagementService mPushManagementService = new PushManagementService(this);
-	private OnConversationUpdate mOnConversationUpdate = null;
+	//private OnConversationUpdate mOnConversationUpdate = null;
 
 
 	private final ConversationsFileObserver fileObserver = new ConversationsFileObserver(
@@ -250,15 +244,16 @@ public class XmppConnectionService extends Service {
 		}
 	};
 	private int convChangedListenerCount = 0;
-	private OnShowErrorToast mOnShowErrorToast = null;
+	// private OnShowErrorToast mOnShowErrorToast = null;
 	private int showErrorToastListenerCount = 0;
 	private int unreadCount = -1;
-	private OnAccountUpdate mOnAccountUpdate = null;
-	private OnCaptchaRequested mOnCaptchaRequested = null;
+
+	// private OnCaptchaRequested mOnCaptchaRequested = null;
 	private int accountChangedListenerCount = 0;
 	private int captchaRequestedListenerCount = 0;
-	private OnRosterUpdate mOnRosterUpdate = null;
-	private OnUpdateBlocklist mOnUpdateBlocklist = null;
+	// private OnRosterUpdate mOnRosterUpdate = null;
+
+
 	private int updateBlocklistListenerCount = 0;
 	private int rosterChangedListenerCount = 0;
 	private OnMucRosterUpdate mOnMucRosterUpdate = null;
@@ -297,9 +292,7 @@ public class XmppConnectionService extends Service {
 		@Override
 		public void onStatusChanged(final Account account) {
 			XmppConnection connection = account.getXmppConnection();
-			if (mOnAccountUpdate != null) {
-				mOnAccountUpdate.onAccountUpdate();
-			}
+
 			if (account.getStatus() == Account.State.ONLINE) {
 				synchronized (mLowPingTimeoutMode) {
 					if (mLowPingTimeoutMode.remove(account.getJid().toBareJid())) {
@@ -815,41 +808,12 @@ public class XmppConnectionService extends Service {
 
 	private void directReply(Conversation conversation, String body, final boolean dismissAfterReply) {
 		Message message = new Message(conversation,body,conversation.getNextEncryption());
-		message.markUnread();
-//		if (message.getEncryption() == Message.ENCRYPTION_PGP) {
-//			getPgpEngine().encrypt(message, new UiCallback<Message>() {
-//				@Override
-//				public void success(Message message) {
-//					message.setEncryption(Message.ENCRYPTION_DECRYPTED);
-//					sendMessage(message);
-//					if (dismissAfterReply) {
-//						markRead(message.getConversation(),true);
-//					} else {
-//						mNotificationService.pushFromDirectReply(message);
-//					}
-//				}
-//
-//				@Override
-//				public void error(int errorCode, Message object) {
-//
-//				}
-//
-//				@Override
-//				public void userInputRequried(PendingIntent pi, Message object) {
-//
-//				}
-//			});
-//		} else {
-//			sendMessage(message);
-//			if (dismissAfterReply) {
-//				markRead(conversation,true);
-//			} else {
-//				mNotificationService.pushFromDirectReply(message);
-//			}
-//		}
+		message.markRead();
+
+
 		sendMessage(message);
 		if (dismissAfterReply) {
-			markRead(conversation,true);
+			markRead(conversation);
 		} else {
 			mNotificationService.pushFromDirectReply(message);
 		}
@@ -961,7 +925,7 @@ public class XmppConnectionService extends Service {
 							}
 						}
 					}
-					updateConversationUi();
+				//	updateConversationUi();
 				}
 			}
 		});
@@ -1238,62 +1202,6 @@ public class XmppConnectionService extends Service {
 						packet = mMessageGenerator.generateChat(message);
 					}
 					break;
-//				case Message.ENCRYPTION_PGP:
-//				case Message.ENCRYPTION_DECRYPTED:
-//					if (message.needsUploading()) {
-//						if (account.httpUploadAvailable(fileBackend.getFile(message,false).getSize())
-//								|| message.fixCounterpart()) {
-//							this.sendFileMessage(message, delay);
-//						} else {
-//							break;
-//						}
-//					} else {
-//						packet = mMessageGenerator.generatePgpChat(message);
-//					}
-//					break;
-//				case Message.ENCRYPTION_OTR:
-//					SessionImpl otrSession = conversation.getOtrSession();
-//					if (otrSession != null && otrSession.getSessionStatus() == SessionStatus.ENCRYPTED) {
-//						try {
-//							message.setCounterpart(Jid.fromSessionID(otrSession.getSessionID()));
-//						} catch (InvalidJidException e) {
-//							break;
-//						}
-//						if (message.needsUploading()) {
-//							mJingleConnectionManager.createNewConnection(message);
-//						} else {
-//							packet = mMessageGenerator.generateOtrChat(message);
-//						}
-//					} else if (otrSession == null) {
-//						if (message.fixCounterpart()) {
-//							conversation.startOtrSession(message.getCounterpart().getResourcepart(), true);
-//						} else {
-//							Log.d(Config.LOGTAG,account.getJid().toBareJid()+": could not fix counterpart for OTR message to contact "+message.getContact().getJid());
-//							break;
-//						}
-//					} else {
-//						Log.d(Config.LOGTAG,account.getJid().toBareJid()+" OTR session with "+message.getContact()+" is in wrong state: "+otrSession.getSessionStatus().toString());
-//					}
-//					break;
-//				case Message.ENCRYPTION_AXOLOTL:
-//					message.setFingerprint(account.getAxolotlService().getOwnFingerprint());
-//					if (message.needsUploading()) {
-//						if (account.httpUploadAvailable(fileBackend.getFile(message,false).getSize())
-//								|| message.fixCounterpart()) {
-//							this.sendFileMessage(message, delay);
-//						} else {
-//							break;
-//						}
-//					} else {
-//						XmppAxolotlMessage axolotlMessage = account.getAxolotlService().fetchAxolotlMessageFromCache(message);
-//						if (axolotlMessage == null) {
-//							account.getAxolotlService().preparePayloadMessage(message, delay);
-//						} else {
-//							packet = mMessageGenerator.generateAxolotlChat(message, axolotlMessage);
-//						}
-//					}
-//					break;
-
 			}
 			if (packet != null) {
 				if (account.getXmppConnection().getFeatures().sm()
@@ -1304,11 +1212,12 @@ public class XmppConnectionService extends Service {
 				}
 			}
 		}
+
 		if (resend) {
 			if (packet != null && addToConversation) {
 				if (account.getXmppConnection().getFeatures().sm()
 						|| (conversation.getMode() == Conversation.MODE_MULTI && message.getCounterpart().isBareJid())) {
-					markMessage(message, Message.STATUS_UNSEND);
+
 				} else {
 					markMessage(message, Message.STATUS_SEND);
 				}
@@ -1316,14 +1225,17 @@ public class XmppConnectionService extends Service {
 		} else {
 			if (addToConversation) {
 				conversation.add(message);
+				if(messageFetch!=null){
+					messageFetch.onFetch( conversation, message);
+				}
 			}
 			if (saveInDb) {
 				databaseBackend.createMessage(message);
 			} else if (message.edited()) {
 				databaseBackend.updateMessage(message, message.getEditedId());
 			}
-			updateConversationUi();
 		}
+
 		if (packet != null) {
 			if (delay) {
 				mMessageGenerator.addDelay(packet, message.getTimeSent());
@@ -1336,6 +1248,8 @@ public class XmppConnectionService extends Service {
 			sendMessagePacket(account, packet);
 		}
 	}
+
+	private OnUpdateConversation messageFetch;
 
 	private void sendUnsentMessages(final Conversation conversation) {
 		conversation.findWaitingMessages(new Conversation.OnMessageFound() {
@@ -1425,6 +1339,7 @@ public class XmppConnectionService extends Service {
 				Account account = accountLookupTable.get(conversation.getAccountUuid());
 				conversation.setAccount(account);
 			}
+
 			Runnable runnable = new Runnable() {
 				@Override
 				public void run() {
@@ -1462,7 +1377,7 @@ public class XmppConnectionService extends Service {
 					mNotificationService.finishBacklog(false);
 					mRestoredFromDatabase = true;
 					Log.d(Config.LOGTAG, "restored all messages");
-					updateConversationUi();
+			//		updateConversationUi();
 				}
 			};
 			mDatabaseExecutor.execute(runnable);
@@ -1470,49 +1385,49 @@ public class XmppConnectionService extends Service {
 	}
 
 	public void loadPhoneContacts() {
-		mContactMergerExecutor.execute(new Runnable() {
-			@Override
-			public void run() {
-				PhoneHelper.loadPhoneContacts(XmppConnectionService.this, new OnPhoneContactsLoadedListener() {
-					@Override
-					public void onPhoneContactsLoaded(List<Bundle> phoneContacts) {
-						Log.d(Config.LOGTAG, "start merging phone contacts with roster");
-						for (Account account : accounts) {
-							List<Contact> withSystemAccounts = account.getRoster().getWithSystemAccounts();
-							for (Bundle phoneContact : phoneContacts) {
-								Jid jid;
-								try {
-									jid = Jid.fromString(phoneContact.getString("jid"));
-								} catch (final InvalidJidException e) {
-									continue;
-								}
-								final Contact contact = account.getRoster().getContact(jid);
-								String systemAccount = phoneContact.getInt("phoneid")
-										+ "#"
-										+ phoneContact.getString("lookup");
-								contact.setSystemAccount(systemAccount);
-								boolean needsCacheClean = contact.setPhotoUri(phoneContact.getString("photouri"));
-								needsCacheClean |= contact.setSystemName(phoneContact.getString("displayname"));
-								if (needsCacheClean) {
-									getAvatarService().clear(contact);
-								}
-								withSystemAccounts.remove(contact);
-							}
-							for (Contact contact : withSystemAccounts) {
-								contact.setSystemAccount(null);
-								boolean needsCacheClean = contact.setPhotoUri(null);
-								needsCacheClean |= contact.setSystemName(null);
-								if (needsCacheClean) {
-									getAvatarService().clear(contact);
-								}
-							}
-						}
-						Log.d(Config.LOGTAG, "finished merging phone contacts");
-						updateAccountUi();
-					}
-				});
-			}
-		});
+//		mContactMergerExecutor.execute(new Runnable() {
+//			@Override
+//			public void run() {
+//				PhoneHelper.loadPhoneContacts(XmppConnectionService.this, new OnPhoneContactsLoadedListener() {
+//					@Override
+//					public void onPhoneContactsLoaded(List<Bundle> phoneContacts) {
+//						Log.d(Config.LOGTAG, "start merging phone contacts with roster");
+//						for (Account account : accounts) {
+//							List<Contact> withSystemAccounts = account.getRoster().getWithSystemAccounts();
+//							for (Bundle phoneContact : phoneContacts) {
+//								Jid jid;
+//								try {
+//									jid = Jid.fromString(phoneContact.getString("jid"));
+//								} catch (final InvalidJidException e) {
+//									continue;
+//								}
+//								final Contact contact = account.getRoster().getContact(jid);
+//								String systemAccount = phoneContact.getInt("phoneid")
+//										+ "#"
+//										+ phoneContact.getString("lookup");
+//								contact.setSystemAccount(systemAccount);
+//								boolean needsCacheClean = contact.setPhotoUri(phoneContact.getString("photouri"));
+//								needsCacheClean |= contact.setSystemName(phoneContact.getString("displayname"));
+//								if (needsCacheClean) {
+//									getAvatarService().clear(contact);
+//								}
+//								withSystemAccounts.remove(contact);
+//							}
+//							for (Contact contact : withSystemAccounts) {
+//								contact.setSystemAccount(null);
+//								boolean needsCacheClean = contact.setPhotoUri(null);
+//								needsCacheClean |= contact.setSystemName(null);
+//								if (needsCacheClean) {
+//									getAvatarService().clear(contact);
+//								}
+//							}
+//						}
+//						Log.d(Config.LOGTAG, "finished merging phone contacts");
+//						updateAccountUi();
+//					}
+//				});
+//			}
+//		});
 	}
 
 	public List<Conversation> getConversations() {
@@ -1548,8 +1463,9 @@ public class XmppConnectionService extends Service {
 							final int s = message.getStatus();
 							if (s == Message.STATUS_WAITING || s == Message.STATUS_OFFERED || s == Message.STATUS_UNSEND) {
 								markMessage(message, Message.STATUS_SEND_FAILED);
+								ImManager.getDefault().invokeUpdateMessage(message);
 							} else {
-								updateConversationUi();
+								ImManager.getDefault().invokeUpdateMessage(message);
 							}
 						} else {
 							Log.d(Config.LOGTAG,"found matching message for file "+path+" but file still exists");
@@ -1707,8 +1623,9 @@ public class XmppConnectionService extends Service {
 				@Override
 				public void run() {
 					if (loadMessagesFromDb) {
-						c.addAll(0, databaseBackend.getMessages(c, Config.PAGE_SIZE));
-						updateConversationUi();
+						List<Message> messageList = databaseBackend.getMessages(c,Config.PAGE_SIZE);
+						c.addAll(0, messageList);
+						ImManager.getDefault().invokeUpdateConversation(c,messageList.toArray(new Message[messageList.size()]));
 						c.messagesLoaded.set(true);
 					}
 					if (account.getXmppConnection() != null
@@ -1734,7 +1651,7 @@ public class XmppConnectionService extends Service {
 				runnable.run();
 			}
 			this.conversations.add(conversation);
-			updateConversationUi();
+
 			return conversation;
 		}
 	}
@@ -1753,7 +1670,7 @@ public class XmppConnectionService extends Service {
 				}
 				leaveMuc(conversation);
 			} else {
-//				conversation.endOtrIfNeeded();
+
 				if (conversation.getContact().getOption(Contact.Options.PENDING_SUBSCRIPTION_REQUEST)) {
 					Log.d(Config.LOGTAG, "Canceling presence request from " + conversation.getJid().toString());
 					sendPresencePacket(
@@ -1764,7 +1681,8 @@ public class XmppConnectionService extends Service {
 			}
 			updateConversation(conversation);
 			this.conversations.remove(conversation);
-			updateConversationUi();
+
+			ImManager.getDefault().invokeNotifyConversationRoster(conversation.getAccount());
 		}
 	}
 
@@ -1773,7 +1691,7 @@ public class XmppConnectionService extends Service {
 		databaseBackend.createAccount(account);
 		this.accounts.add(account);
 		this.reconnectAccountInBackground(account);
-		updateAccountUi();
+//		updateAccountUi();
 	}
 
 	public void createAccountFromKey(final String alias, final OnAccountCreated callback) {
@@ -1828,7 +1746,8 @@ public class XmppConnectionService extends Service {
 				//	account.getAxolotlService().regenerateKeys(true);
 				}
 			} else {
-				showErrorToastInUi(R.string.jid_does_not_match_certificate);
+				Log.e(getClass().getSimpleName(),"Jabber ID does not math certificate");
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1841,7 +1760,8 @@ public class XmppConnectionService extends Service {
 			this.statusListener.onStatusChanged(account);
 			databaseBackend.updateAccount(account);
 			reconnectAccountInBackground(account);
-			updateAccountUi();
+		//	updateAccountUi();
+			ImManager.getDefault().invokeUpdateAccount(account);
 			getNotificationService().updateErrorNotification();
 			return true;
 		} else {
@@ -1896,164 +1816,15 @@ public class XmppConnectionService extends Service {
 			};
 			mDatabaseExecutor.execute(runnable);
 			this.accounts.remove(account);
-			updateAccountUi();
+			ImManager.getDefault().invokeUpdateAccount(account);
 			getNotificationService().updateErrorNotification();
 		}
 	}
 
-	public void setOnConversationListChangedListener(OnConversationUpdate listener) {
-		synchronized (this) {
-			this.mLastActivity = System.currentTimeMillis();
-			if (checkListeners()) {
-				switchToForeground();
-			}
-			this.mOnConversationUpdate = listener;
-			this.mNotificationService.setIsInForeground(true);
-			if (this.convChangedListenerCount < 2) {
-				this.convChangedListenerCount++;
-			}
-		}
-	}
 
-	public void removeOnConversationListChangedListener() {
-		synchronized (this) {
-			this.convChangedListenerCount--;
-			if (this.convChangedListenerCount <= 0) {
-				this.convChangedListenerCount = 0;
-				this.mOnConversationUpdate = null;
-				this.mNotificationService.setIsInForeground(false);
-				if (checkListeners()) {
-					switchToBackground();
-				}
-			}
-		}
-	}
 
-	public void setOnShowErrorToastListener(OnShowErrorToast onShowErrorToast) {
-		synchronized (this) {
-			if (checkListeners()) {
-				switchToForeground();
-			}
-			this.mOnShowErrorToast = onShowErrorToast;
-			if (this.showErrorToastListenerCount < 2) {
-				this.showErrorToastListenerCount++;
-			}
-		}
-		this.mOnShowErrorToast = onShowErrorToast;
-	}
 
-	public void removeOnShowErrorToastListener() {
-		synchronized (this) {
-			this.showErrorToastListenerCount--;
-			if (this.showErrorToastListenerCount <= 0) {
-				this.showErrorToastListenerCount = 0;
-				this.mOnShowErrorToast = null;
-				if (checkListeners()) {
-					switchToBackground();
-				}
-			}
-		}
-	}
 
-	public void setOnAccountListChangedListener(OnAccountUpdate listener) {
-		synchronized (this) {
-			if (checkListeners()) {
-				switchToForeground();
-			}
-			this.mOnAccountUpdate = listener;
-			if (this.accountChangedListenerCount < 2) {
-				this.accountChangedListenerCount++;
-			}
-		}
-	}
-
-	public void removeOnAccountListChangedListener() {
-		synchronized (this) {
-			this.accountChangedListenerCount--;
-			if (this.accountChangedListenerCount <= 0) {
-				this.mOnAccountUpdate = null;
-				this.accountChangedListenerCount = 0;
-				if (checkListeners()) {
-					switchToBackground();
-				}
-			}
-		}
-	}
-
-	public void setOnCaptchaRequestedListener(OnCaptchaRequested listener) {
-		synchronized (this) {
-			if (checkListeners()) {
-				switchToForeground();
-			}
-			this.mOnCaptchaRequested = listener;
-			if (this.captchaRequestedListenerCount < 2) {
-				this.captchaRequestedListenerCount++;
-			}
-		}
-	}
-
-	public void removeOnCaptchaRequestedListener() {
-		synchronized (this) {
-			this.captchaRequestedListenerCount--;
-			if (this.captchaRequestedListenerCount <= 0) {
-				this.mOnCaptchaRequested = null;
-				this.captchaRequestedListenerCount = 0;
-				if (checkListeners()) {
-					switchToBackground();
-				}
-			}
-		}
-	}
-
-	public void setOnRosterUpdateListener(final OnRosterUpdate listener) {
-		synchronized (this) {
-			if (checkListeners()) {
-				switchToForeground();
-			}
-			this.mOnRosterUpdate = listener;
-			if (this.rosterChangedListenerCount < 2) {
-				this.rosterChangedListenerCount++;
-			}
-		}
-	}
-
-	public void removeOnRosterUpdateListener() {
-		synchronized (this) {
-			this.rosterChangedListenerCount--;
-			if (this.rosterChangedListenerCount <= 0) {
-				this.rosterChangedListenerCount = 0;
-				this.mOnRosterUpdate = null;
-				if (checkListeners()) {
-					switchToBackground();
-				}
-			}
-		}
-	}
-
-	public void setOnUpdateBlocklistListener(final OnUpdateBlocklist listener) {
-		synchronized (this) {
-			if (checkListeners()) {
-				switchToForeground();
-			}
-			this.mOnUpdateBlocklist = listener;
-			if (this.updateBlocklistListenerCount < 2) {
-				this.updateBlocklistListenerCount++;
-			}
-		}
-	}
-
-	public void removeOnUpdateBlocklistListener() {
-		synchronized (this) {
-			this.updateBlocklistListenerCount--;
-			if (this.updateBlocklistListenerCount <= 0) {
-				this.updateBlocklistListenerCount = 0;
-				this.mOnUpdateBlocklist = null;
-				if (checkListeners()) {
-					switchToBackground();
-				}
-			}
-		}
-	}
 
 //	public void setOnKeyStatusUpdatedListener(final OnKeyStatusUpdated listener) {
 //		synchronized (this) {
@@ -2106,12 +1877,7 @@ public class XmppConnectionService extends Service {
 	}
 
 	public boolean checkListeners() {
-		return (this.mOnAccountUpdate == null
-				&& this.mOnConversationUpdate == null
-				&& this.mOnRosterUpdate == null
-				&& this.mOnCaptchaRequested == null
-				&& this.mOnUpdateBlocklist == null
-				&& this.mOnShowErrorToast == null);
+		return false;
 	}
 
 	private void switchToForeground() {
@@ -2241,19 +2007,19 @@ public class XmppConnectionService extends Service {
 				public void onFetchFailed(final Conversation conversation, Element error) {
 					if (error != null && "remote-server-not-found".equals(error.getName())) {
 						conversation.getMucOptions().setError(MucOptions.Error.SERVER_NOT_FOUND);
-						updateConversationUi();
+						ImManager.getDefault().invokeUpdateConversation(conversation);
 					} else {
 						join(conversation);
 						fetchConferenceConfiguration(conversation);
 					}
 				}
 			});
-			updateConversationUi();
+			ImManager.getDefault().invokeUpdateConversation(conversation);
 		} else {
 			account.pendingConferenceJoins.add(conversation);
 			conversation.resetMucOptions();
 			conversation.setHasMessagesLeftOnServer(false);
-			updateConversationUi();
+			ImManager.getDefault().invokeUpdateConversation(conversation);
 		}
 	}
 
@@ -2304,7 +2070,7 @@ public class XmppConnectionService extends Service {
 					Log.d(Config.LOGTAG,account.getJid().toBareJid()+": retrieved members for "+conversation.getJid().toBareJid()+": "+conversation.getMucOptions().getMembers());
 					getAvatarService().clear(conversation);
 					updateMucRosterUi();
-					updateConversationUi();
+					ImManager.getDefault().invokeUpdateConversation(conversation);
 				}
 			}
 		};
@@ -2512,7 +2278,9 @@ public class XmppConnectionService extends Service {
 						callback.onConferenceConfigurationFetched(conversation);
 					}
 					Log.d(Config.LOGTAG,account.getJid().toBareJid()+": fetched muc configuration for "+conversation.getJid().toBareJid()+" - "+features.toString());
-					updateConversationUi();
+				//	updateConversationUi();
+
+
 				} else if (packet.getType() == IqPacket.TYPE.ERROR) {
 					if (callback != null) {
 						callback.onFetchFailed(conversation, packet.getError());
@@ -2676,12 +2444,12 @@ public class XmppConnectionService extends Service {
 
 	public void updateMessage(Message message) {
 		databaseBackend.updateMessage(message);
-		updateConversationUi();
+		ImManager.getDefault().invokeUpdateMessage(message);
 	}
 
 	public void updateMessage(Message message, String uuid) {
 		databaseBackend.updateMessage(message, uuid);
-		updateConversationUi();
+		ImManager.getDefault().invokeUpdateMessage(message);
 	}
 
 	protected void syncDirtyContacts(Account account) {
@@ -2934,15 +2702,17 @@ public class XmppConnectionService extends Service {
 									databaseBackend.updateAccount(account);
 								}
 								getAvatarService().clear(account);
-								updateConversationUi();
-								updateAccountUi();
+
+								ImManager.getDefault().invokeUpdateUserInfo(account.getJid());
+
 							} else {
 								Contact contact = account.getRoster()
 										.getContact(avatar.owner);
 								contact.setAvatar(avatar);
 								getAvatarService().clear(contact);
-								updateConversationUi();
-								updateRosterUi();
+
+								ImManager.getDefault().invokeUpdateUserInfo(contact.getJid());
+
 							}
 							if (callback != null) {
 								callback.success(avatar);
@@ -2994,14 +2764,14 @@ public class XmppConnectionService extends Service {
 									account.setAvatar(avatar.getFilename());
 									databaseBackend.updateAccount(account);
 									getAvatarService().clear(account);
-									updateAccountUi();
+
 								} else {
 									Contact contact = account.getRoster().getContact(avatar.owner);
 									contact.setAvatar(avatar);
 									getAvatarService().clear(contact);
-									updateRosterUi();
+
 								}
-								updateConversationUi();
+								ImManager.getDefault().invokeUpdateUserInfo(avatar.owner);
 							} else {
 								Conversation conversation = find(account, avatar.owner.toBareJid());
 								if (conversation != null && conversation.getMode() == Conversation.MODE_MULTI) {
@@ -3009,7 +2779,9 @@ public class XmppConnectionService extends Service {
 									if (user != null) {
 										if (user.setAvatar(avatar)) {
 											getAvatarService().clear(user);
-											updateConversationUi();
+
+											ImManager.getDefault().invokeUpdateUserInfo(avatar.owner);
+
 											updateMucRosterUi();
 										}
 									}
@@ -3191,9 +2963,11 @@ public class XmppConnectionService extends Service {
 			return;
 		}
 		message.setErrorMessage(errorMessage);
-		message.setStatus(status);
-		databaseBackend.updateMessage(message);
-		updateConversationUi();
+		if(message.getStatus() != status){
+			message.setStatus(status);
+			databaseBackend.updateMessage(message);
+			ImManager.getDefault().invokeUpdateMessage(message);
+		}
 	}
 
 	public SharedPreferences getPreferences() {
@@ -3251,47 +3025,48 @@ public class XmppConnectionService extends Service {
 	}
 
 
-	public void showErrorToastInUi(int resId) {
-		if (mOnShowErrorToast != null) {
-			mOnShowErrorToast.onShowErrorToast(resId);
-		}
-	}
+//	public void showErrorToastInUi(int resId) {
+//		if (mOnShowErrorToast != null) {
+//			mOnShowErrorToast.onShowErrorToast(resId);
+//		}
+//	}
 
-	public void updateConversationUi() {
-		if (mOnConversationUpdate != null) {
-			mOnConversationUpdate.onConversationUpdate();
-		}
-	}
 
-	public void updateAccountUi() {
-		if (mOnAccountUpdate != null) {
-			mOnAccountUpdate.onAccountUpdate();
-		}
-	}
+//	public void updateConversationUi() {
+//		if (mOnConversationUpdate != null) {
+//			mOnConversationUpdate.onConversationUpdate();
+//		}
+//	}
 
-	public void updateRosterUi() {
-		if (mOnRosterUpdate != null) {
-			mOnRosterUpdate.onRosterUpdate();
-		}
-	}
+//	public void updateAccountUi() {
+//		if (mOnAccountUpdate != null) {
+//			mOnAccountUpdate.onAccountUpdate();
+//		}
+//	}
+//
+//	public void updateRosterUi() {
+//		if (mOnRosterUpdate != null) {
+//			mOnRosterUpdate.onRosterUpdate();
+//		}
+//	}
 
 	public boolean displayCaptchaRequest(Account account, String id, Data data, Bitmap captcha) {
-		if (mOnCaptchaRequested != null) {
-			DisplayMetrics metrics = getApplicationContext().getResources().getDisplayMetrics();
-			Bitmap scaled = Bitmap.createScaledBitmap(captcha, (int) (captcha.getWidth() * metrics.scaledDensity),
-					(int) (captcha.getHeight() * metrics.scaledDensity), false);
-
-			mOnCaptchaRequested.onCaptchaRequested(account, id, data, scaled);
-			return true;
-		}
+//		if (mOnCaptchaRequested != null) {
+//			DisplayMetrics metrics = getApplicationContext().getResources().getDisplayMetrics();
+//			Bitmap scaled = Bitmap.createScaledBitmap(captcha, (int) (captcha.getWidth() * metrics.scaledDensity),
+//					(int) (captcha.getHeight() * metrics.scaledDensity), false);
+//
+//			mOnCaptchaRequested.onCaptchaRequested(account, id, data, scaled);
+//			return true;
+//		}
 		return false;
 	}
 
-	public void updateBlocklistUi(final OnUpdateBlocklist.Status status) {
-		if (mOnUpdateBlocklist != null) {
-			mOnUpdateBlocklist.OnUpdateBlocklist(status);
-		}
-	}
+//	public void updateBlocklistUi(final OnUpdateBlocklist.Status status) {
+//		if (mOnUpdateBlocklist != null) {
+//			mOnUpdateBlocklist.OnUpdateBlocklist(status);
+//		}
+//	}
 
 	public void updateMucRosterUi() {
 		if (mOnMucRosterUpdate != null) {
@@ -3319,14 +3094,10 @@ public class XmppConnectionService extends Service {
 		return null;
 	}
 
-	public boolean markRead(final Conversation conversation) {
-		return markRead(conversation,true);
-	}
 
-	public boolean markRead(final Conversation conversation, boolean clear) {
-		if (clear) {
-			mNotificationService.clear(conversation);
-		}
+
+	public boolean markRead(final Conversation conversation) {
+
 		final List<Message> readMessages = conversation.markRead();
 		if (readMessages.size() > 0) {
 			Runnable runnable = new Runnable() {
@@ -3339,6 +3110,7 @@ public class XmppConnectionService extends Service {
 			};
 			mDatabaseExecutor.execute(runnable);
 			updateUnreadCountBadge();
+			ImManager.getDefault().invokeUpdateConversation(conversation);
 			return true;
 		} else {
 			return false;
@@ -3361,7 +3133,7 @@ public class XmppConnectionService extends Service {
 	public void sendReadMarker(final Conversation conversation) {
 		final Message markable = conversation.getLatestMarkableMessage();
 		if (this.markRead(conversation)) {
-			updateConversationUi();
+			ImManager.getDefault().invokeUpdateConversation(conversation);
 		}
 		if (confirmMessages()
 				&& markable != null
@@ -3636,12 +3408,15 @@ public class XmppConnectionService extends Service {
 				public void onIqPacketReceived(final Account account, final IqPacket packet) {
 					if (packet.getType() == IqPacket.TYPE.RESULT) {
 						account.getBlocklist().add(jid);
-						updateBlocklistUi(OnUpdateBlocklist.Status.BLOCKED);
+				//		updateBlocklistUi(OnUpdateBlocklist.Status.BLOCKED);
+						ImManager.getDefault().invokeNotifyRelationship(blockable.getAccount());
 					}
 				}
 			});
 			if (removeBlockedConversations(blockable.getAccount(),jid)) {
-				updateConversationUi();
+
+				ImManager.getDefault().invokeNotifyRelationship(blockable.getAccount());
+
 				return true;
 			} else {
 				return false;
@@ -3681,7 +3456,10 @@ public class XmppConnectionService extends Service {
 				public void onIqPacketReceived(final Account account, final IqPacket packet) {
 					if (packet.getType() == IqPacket.TYPE.RESULT) {
 						account.getBlocklist().remove(jid);
-						updateBlocklistUi(OnUpdateBlocklist.Status.UNBLOCKED);
+					//	updateBlocklistUi(OnUpdateBlocklist.Status.UNBLOCKED);
+
+						ImManager.getDefault().invokeNotifyRelationship(blockable.getAccount());
+
 					}
 				}
 			});
@@ -3897,13 +3675,10 @@ public class XmppConnectionService extends Service {
 		void onRoleChangeFailed(String nick, int resid);
 	}
 
-	public interface OnConversationUpdate {
-		void onConversationUpdate();
-	}
 
-	public interface OnAccountUpdate {
-		void onAccountUpdate();
-	}
+//	public interface OnAccountUpdate {
+//		void onAccountUpdate();
+//	}
 
 	public interface OnCaptchaRequested {
 		void onCaptchaRequested(Account account,

@@ -16,13 +16,13 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLHandshakeException;
 
 import eu.siacs.conversations.Config;
-import eu.siacs.conversations.R;
 import eu.siacs.conversations.entities.DownloadableFile;
 import eu.siacs.conversations.entities.Message;
 import eu.siacs.conversations.entities.Transferable;
 import eu.siacs.conversations.entities.TransferablePlaceholder;
 import eu.siacs.conversations.persistance.FileBackend;
 import eu.siacs.conversations.services.AbstractConnectionManager;
+import eu.siacs.conversations.clent.ImManager;
 import eu.siacs.conversations.services.XmppConnectionService;
 import eu.siacs.conversations.utils.CryptoHelper;
 import eu.siacs.conversations.utils.FileWriterException;
@@ -114,7 +114,7 @@ public class HttpDownloadConnection implements Transferable {
 		} else {
 			message.setTransferable(null);
 		}
-		mHttpConnectionManager.updateConversationUi(true);
+		ImManager.getDefault().invokeUpdateMessage(message);
 	}
 
 	private void finish() {
@@ -123,7 +123,7 @@ public class HttpDownloadConnection implements Transferable {
 		mHttpConnectionManager.finishConnection(this);
 		boolean notify = acceptedAutomatically && !message.isRead();
 
-		mHttpConnectionManager.updateConversationUi(true);
+		ImManager.getDefault().invokeUpdateMessage(message);
 		if (notify) {
 			mXmppConnectionService.getNotificationService().push(message);
 		}
@@ -131,18 +131,22 @@ public class HttpDownloadConnection implements Transferable {
 
 	private void changeStatus(int status) {
 		this.mStatus = status;
-		mHttpConnectionManager.updateConversationUi(true);
+		ImManager.getDefault().invokeUpdateMessage(message);
 	}
 
 	private void showToastForException(Exception e) {
 		if (e instanceof java.net.UnknownHostException) {
-			mXmppConnectionService.showErrorToastInUi(R.string.download_failed_server_not_found);
+			Log.e(this.getClass().getSimpleName(),"error http connetc");
+			e.printStackTrace();
 		} else if (e instanceof java.net.ConnectException) {
-			mXmppConnectionService.showErrorToastInUi(R.string.download_failed_could_not_connect);
+			Log.e(this.getClass().getSimpleName(),"error http connetc");
+			e.printStackTrace();
 		} else if (e instanceof FileWriterException) {
-			mXmppConnectionService.showErrorToastInUi(R.string.download_failed_could_not_write_file);
+			Log.e(this.getClass().getSimpleName(),"error http connetc");
+			e.printStackTrace();
 		} else if (!(e instanceof  CancellationException)) {
-			mXmppConnectionService.showErrorToastInUi(R.string.download_failed_file_not_found);
+			Log.e(this.getClass().getSimpleName(),"error http connetc");
+			e.printStackTrace();
 		}
 	}
 
@@ -339,7 +343,7 @@ public class HttpDownloadConnection implements Transferable {
 
 	public void updateProgress(int i) {
 		this.mProgress = i;
-		mHttpConnectionManager.updateConversationUi(false);
+		ImManager.getDefault().invokeUpdateMessage(message);
 	}
 
 	@Override

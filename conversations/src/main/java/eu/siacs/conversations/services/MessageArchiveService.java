@@ -199,7 +199,7 @@ public class MessageArchiveService implements OnAdvancedStreamFeaturesLoaded {
 		if (query.hasCallback()) {
 			query.callback(done);
 		} else {
-			this.mXmppConnectionService.updateConversationUi();
+			//this.mXmppConnectionService.updateConversationUi();
 		}
 	}
 

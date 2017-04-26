@@ -53,6 +53,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import eu.siacs.conversations.clent.ImManager;
+import eu.siacs.conversations.clent.OnUpdateConversation;
+import eu.siacs.conversations.entities.Conversation;
+import eu.siacs.conversations.entities.Message;
 import master.flame.danmaku.ui.widget.DanmakuView;
 
 /**
@@ -339,11 +343,48 @@ public class AudienceFragment extends BaseFragment {
         });
     }
 
+    String roomId = "fj@conference.192.168.100.163";
 
+    private final OnUpdateConversation onUpdateConversation = new OnUpdateConversation() {
+        @Override
+        public void onFetch(Conversation conversation, Message... messages) {
+
+            System.out.println("------>>>1 add action " + messages);
+
+            System.out.println("null  " + mConversation.getJid());
+            System.out.println("null  " + conversation.getJid());
+
+            if(mConversation ==null || !(mConversation.getJid().toBareJid().equals(conversation.getJid().toBareJid()))) return;
+
+            System.out.println("------>>>2 add action " + messages);
+
+            if(messages==null || messages.length==0) return;
+
+            System.out.println("------>>>3 add action " + messages);
+
+            for(Message current : messages){
+                DanMuData danMuData = new DanMuData();
+                danMuData.message = current.getBody();
+                System.out.println("------>>>4 add action " + messages);
+         //       System.out.println("------>>> add action " + current.getBody());
+                danMuKuHelper.addDanMu(danMuData);
+            }
+        }
+    };
+
+    Conversation mConversation;
 
 
     private void startPlay() {
+
+
         if (reResume && isVisual) {
+
+            mConversation =  ImManager.getDefault().createConversation(roomId);
+
+            System.out.println("null :::::::::::::::::::" + (mConversation==null));
+            ImManager.getDefault().regester(onUpdateConversation);
+
             EventBus.getDefault().post(new EventPlayContent());
             CountDownTimer timer = new CountDownTimer(20000, 4000) {
 
@@ -384,9 +425,11 @@ public class AudienceFragment extends BaseFragment {
 
                 }
             };
-            timer.start();
+          //  timer.start();
 
 
+        }else {
+            ImManager.getDefault().unRegester(onUpdateConversation);
         }
     }
 

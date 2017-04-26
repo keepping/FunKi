@@ -22,6 +22,7 @@ import eu.siacs.conversations.entities.Transferable;
 import eu.siacs.conversations.parser.IqParser;
 import eu.siacs.conversations.persistance.FileBackend;
 import eu.siacs.conversations.services.AbstractConnectionManager;
+import eu.siacs.conversations.clent.ImManager;
 import eu.siacs.conversations.services.XmppConnectionService;
 import eu.siacs.conversations.utils.CryptoHelper;
 import eu.siacs.conversations.xml.Namespace;
@@ -174,7 +175,10 @@ public class HttpUploadConnection implements Transferable {
 				while (((count = mFileInputStream.read(buffer)) != -1) && !canceled) {
 					transmitted += count;
 					os.write(buffer, 0, count);
-					mHttpConnectionManager.updateConversationUi(false);
+//					mHttpConnectionManager.updateConversationUi(false);
+
+					ImManager.getDefault().invokeUpdateMessage(message);
+
 				}
 				os.flush();
 				os.close();

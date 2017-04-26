@@ -183,9 +183,7 @@ public class NotificationService {
 
 	public void clear() {
 		synchronized (notifications) {
-			for(ArrayList<Message> messages : notifications.values()) {
-				markAsReadIfHasDirectReply(messages);
-			}
+
 			notifications.clear();
 			updateNotification(false);
 		}
@@ -196,7 +194,6 @@ public class NotificationService {
 			this.mBacklogMessageCounter.remove(conversation);
 		}
 		synchronized (notifications) {
-			markAsReadIfHasDirectReply(conversation);
 			notifications.remove(conversation.getUuid());
 			final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(mXmppConnectionService);
 			notificationManager.cancel(conversation.getUuid(), NOTIFICATION_ID);
@@ -204,20 +201,19 @@ public class NotificationService {
 		}
 	}
 
-	private void markAsReadIfHasDirectReply(final Conversation conversation) {
-		markAsReadIfHasDirectReply(notifications.get(conversation.getUuid()));
-	}
-
-	private void markAsReadIfHasDirectReply(final ArrayList<Message> messages) {
-		if (messages != null && messages.size() > 0) {
-			Message last = messages.get(messages.size() - 1);
-			if (last.getStatus() != Message.STATUS_RECEIVED) {
-				if (mXmppConnectionService.markRead(last.getConversation(), false)) {
-					mXmppConnectionService.updateConversationUi();
-				}
-			}
-		}
-	}
+//	private void markAsReadIfHasDirectReply(final Conversation conversation) {
+//		markAsReadIfHasDirectReply(notifications.get(conversation.getUuid()));
+//	}
+//
+//	private void markAsReadIfHasDirectReply(final ArrayList<Message> messages) {
+//		if (messages != null && messages.size() > 0) {
+//			Message last = messages.get(messages.size() - 1);
+//			if (last.getStatus() != Message.STATUS_RECEIVED) {
+//				if (mXmppConnectionService.markRead(last.getConversation(), false)) {
+//				}
+//			}
+//		}
+//	}
 
 	private void setNotificationColor(final Builder mBuilder) {
 		mBuilder.setColor(ContextCompat.getColor(mXmppConnectionService, R.color.primary500));

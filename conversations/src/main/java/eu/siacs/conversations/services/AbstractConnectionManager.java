@@ -39,7 +39,7 @@ public class AbstractConnectionManager {
 	protected XmppConnectionService mXmppConnectionService;
 
 	private static final int UI_REFRESH_THRESHOLD = 250;
-	private static final AtomicLong LAST_UI_UPDATE_CALL = new AtomicLong(0);
+	// private static final AtomicLong LAST_UI_UPDATE_CALL = new AtomicLong(0);
 
 	public AbstractConnectionManager(XmppConnectionService service) {
 		this.mXmppConnectionService = service;
@@ -141,14 +141,14 @@ public class AbstractConnectionManager {
 		}
 	}
 
-	public void updateConversationUi(boolean force) {
-		synchronized (LAST_UI_UPDATE_CALL) {
-			if (force || SystemClock.elapsedRealtime() - LAST_UI_UPDATE_CALL.get() >= UI_REFRESH_THRESHOLD) {
-				LAST_UI_UPDATE_CALL.set(SystemClock.elapsedRealtime());
-				mXmppConnectionService.updateConversationUi();
-			}
-		}
-	}
+//	public void updateConversationUi(boolean force) {
+//		synchronized (LAST_UI_UPDATE_CALL) {
+//			if (force || SystemClock.elapsedRealtime() - LAST_UI_UPDATE_CALL.get() >= UI_REFRESH_THRESHOLD) {
+//				LAST_UI_UPDATE_CALL.set(SystemClock.elapsedRealtime());
+//				mXmppConnectionService.updateConversationUi();
+//			}
+//		}
+//	}
 
 	public PowerManager.WakeLock createWakeLock(String name) {
 		PowerManager powerManager = (PowerManager) mXmppConnectionService.getSystemService(Context.POWER_SERVICE);

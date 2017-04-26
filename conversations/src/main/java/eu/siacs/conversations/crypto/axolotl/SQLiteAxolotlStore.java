@@ -148,7 +148,8 @@ public class SQLiteAxolotlStore implements AxolotlStore {
 		identityKeyPair = loadIdentityKeyPair();
 		localRegistrationId = loadRegistrationId(true);
 		currentPreKeyId = 0;
-		mXmppConnectionService.updateAccountUi();
+	//	mXmppConnectionService.updateAccountUi();
+
 	}
 
 	/**
