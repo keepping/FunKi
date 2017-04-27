@@ -58,12 +58,9 @@
         </provider>
 
         <activity android:name=".module.splash.activity.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
         <!-- 主布局 -->
         <activity
             android:name=".module.home.activity.HomeActivity"
@@ -185,7 +182,13 @@
 
         <!-- 兑换记录 -->
         <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
-        <activity android:name=".module.dynamic.post.activity.ShotActivity" />
+        <activity android:name=".module.dynamic.post.activity.ShotActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".module.photo.personal.activity.PersonalPhotoActivity" />
         <activity android:name=".module.dynamic.me.activity.MyDynamicActivity" />
         <activity android:name=".module.dynamic.normal.activity.NormalDynamicActivity" />

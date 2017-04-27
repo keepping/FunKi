@@ -131,7 +131,7 @@ public class RecodeMovieActivity extends BaseActivity {
 
     @Override
     protected void initVariable() {
-        mRecodeFile = new File(FileUtils.getRandomVideoPath(this));
+        mRecodeFile = FileUtils.getRandomFilePath(this,".mp4",false);
     }
 
     @OnClick({

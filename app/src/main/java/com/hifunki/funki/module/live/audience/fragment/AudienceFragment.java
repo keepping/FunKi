@@ -199,7 +199,7 @@ public class AudienceFragment extends BaseFragment {
 
 
 
-    @OnClick({R.id.host_avatar, R.id.tv_follow, R.id.iv_room_private_msg})
+    @OnClick({R.id.host_avatar, R.id.tv_follow, R.id.iv_room_private_msg , R.id.iv_room_msg})
 
     public void onClick(View view) {
         switch (view.getId()) {
@@ -229,6 +229,9 @@ public class AudienceFragment extends BaseFragment {
 
                 break;
             case R.id.iv_room_msg:
+
+                System.out.println("...............................>>>>>>>>>>>>>>>>>");
+
                 KeyboardUtil.showKeyboard(editContent);
 
 
@@ -439,7 +442,7 @@ public class AudienceFragment extends BaseFragment {
         danMuKuHelper.onPause();
         reResume = false;
 
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
+      //  System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
 
         KeyboardUtil.detach(getActivity(),layoutListener);
     }

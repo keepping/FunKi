@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/video_progress"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="#ffbb00"
+        />
+
+    <View
+        android:id="@+id/video_progress_over"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"/>
+
+    <View
+        android:id="@+id/video_progress_notify"
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:stateListAnimator="@animator/video_recoad" />
+
+
+
+
+
+</LinearLayout>

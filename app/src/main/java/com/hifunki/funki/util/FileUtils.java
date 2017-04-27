@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -43,9 +44,76 @@ public class FileUtils {
 
     private final static String PATTERN = "yyyyMMddHHmmss";    // 时间戳命名
 
-    private FileUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
+
+    /**
+     *                       获取 随机文件   可设置后缀名
+     * @param context       content
+     * @param suffixName    后缀名
+     * @param isDir         是否目录
+     * @return
+     */
+    @Nullable
+    public static File getRandomFilePath(Context context, String suffixName , boolean isDir) {
+        String path;
+
+//        // 正式用法
+//        if (context.getExternalCacheDir() != null) {
+//            path = context.getExternalCacheDir().getAbsolutePath() + "/funki";
+//        } else if (context.getCacheDir() != null) {
+//            path = context.getCacheDir().getAbsolutePath() + "/funki";
+//        }else {
+//            path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/funki";
+//        }
+
+        // 测试用法 用于查看文件
+
+        path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/funki";
+
+        if (suffixName != null && !suffixName.startsWith(".")) {
+            suffixName = "." + suffixName;
+        }
+
+        path = path + "/" + System.currentTimeMillis() + suffixName;
+        File pathFile = new File(path);
+
+        if(ensureFileExist(pathFile,isDir)){
+            return pathFile;
+        }else {
+            return null;
+        }
     }
+
+    /**
+     *                   确保文件存在 否则创建它
+     * @param file      目标检查的文件
+     * @param isDir     目标文件是否为目录
+     * @return
+     */
+    public static boolean ensureFileExist(File file , boolean isDir){
+        if(!isDir && file.isDirectory() || isDir && file.isFile()){
+            if(!file.delete()){
+                throw new RuntimeException("cannot delete file : "+file);
+            }
+        }
+        if(file.exists()){
+            return true;
+        }
+        if(ensureFileExist(file.getParentFile(),true)){
+            if(isDir){
+                return file.mkdir();
+            } else {
+                try {
+                    return file.createNewFile();
+                }catch (Exception e){
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+
     /**
      * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
@@ -53,61 +121,6 @@ public class FileUtils {
      */
     public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
-    }
-
-    public static String getRandomLivePath(Context context){
-//        String path = Environment.getExternalStorageDirectory().getPath();
-        String path;
-//        if(context.getExternalCacheDir()!=null){
-//            path = context.getExternalCacheDir().getPath();
-//        }else {
-            path = Environment.getExternalStorageDirectory().getPath();
-//        }
-        path = path+"/renshine";
-        Log.e("test", "getRandomLivePath: "+path );
-        File file = new File(path);
-        if(!file.exists()){
-            boolean tf =file.mkdirs();
-        }
-
-        path+="/"+System.currentTimeMillis()+".jpg";
-
-        file = new File(path);
-        if(!file.exists()){
-            try {
-                boolean tf = file.createNewFile();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        return path;
-    }
-
-    public static String getRandomVideoPath(Context context){
-//        String path = Environment.getExternalStorageDirectory().getPath();
-        String path;
-        if(context.getExternalCacheDir()!=null){
-            path = context.getExternalCacheDir().getPath();
-        }else {
-            path = Environment.getExternalStorageDirectory().getPath();
-        }
-        path = path+"/renshine";
-        File file = new File(path);
-        if(!file.exists()){
-            boolean tf =file.mkdirs();
-        }
-
-        path+="/"+System.currentTimeMillis()+".mp4";
-
-        file = new File(path);
-        if(!file.exists()){
-            try {
-                boolean tf = file.createNewFile();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        return path;
     }
 
     /**

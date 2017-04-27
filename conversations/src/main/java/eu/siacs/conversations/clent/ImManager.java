@@ -42,9 +42,9 @@ public class ImManager {
 
     public static void init(Context context) {
         mImManager = new ImManager(context);
-        Intent intent = new Intent(context, XmppConnectionService.class);
-        context.startService(intent);
-        context.bindService(intent, mImManager.mConnection, Context.BIND_AUTO_CREATE);
+//        Intent intent = new Intent(context, XmppConnectionService.class);
+//        context.startService(intent);
+//        context.bindService(intent, mImManager.mConnection, Context.BIND_AUTO_CREATE);
     }
 
     public static final String EXTRA_ACCOUNT = "account";

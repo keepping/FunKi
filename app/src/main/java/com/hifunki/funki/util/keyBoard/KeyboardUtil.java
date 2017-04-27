@@ -28,6 +28,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.application.ApplicationMain;
 
 
 public class KeyboardUtil {
@@ -52,7 +53,7 @@ public class KeyboardUtil {
 
 
     // 显示键盘
-    public static void showKeyboard(final View view) {
+    public static void showKeyboard(View view) {
         view.requestFocus();
         InputMethodManager inputManager =
                 (InputMethodManager) view.getContext().getSystemService(
@@ -76,21 +77,19 @@ public class KeyboardUtil {
     }
 
     // 得到状态栏高度
-    public static synchronized int getStatusBarHeight( Context context) {
+    public static int getStatusBarHeight( Context context) {
         if (!INIT) {
             int resourceId = context.getResources().
                     getIdentifier(STATUS_BAR_NAME, STATUS_BAR_DEF_TYPE, STATUS_BAR_DEF_PACKAGE);
             if (resourceId > 0) {
                 STATUS_BAR_HEIGHT = context.getResources().getDimensionPixelSize(resourceId);
                 INIT = true;
-                Log.d("StatusBarHeightUtil",
-                        String.format("Get status bar height %d", STATUS_BAR_HEIGHT));
             }
         }
         return STATUS_BAR_HEIGHT;
     }
 
-
+    // 注册键盘高度监听器
     public static ViewTreeObserver.OnGlobalLayoutListener attach(final Activity activity, IPanelHeightTarget target) {
         final ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
         ViewTreeObserver.OnGlobalLayoutListener globalLayoutListener = new KeyboardStatusListener(contentView, target);
@@ -98,7 +97,7 @@ public class KeyboardUtil {
         return globalLayoutListener;
     }
 
-
+    // 移除键盘高度监听器
     public static void detach(Activity activity, ViewTreeObserver.OnGlobalLayoutListener l) {
         ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
         if (Build.VERSION.SDK_INT >= 19) {
@@ -190,7 +189,8 @@ public class KeyboardUtil {
     // 得到最低键盘高度
     private static int getMinKeyBoardHeight(final Context context) {
         if (MIN_KEYBOARD_HEI == 0) {
-            MIN_KEYBOARD_HEI = context.getResources().getDimensionPixelSize(R.dimen.min_panel_height);
+            final float scale =  context.getResources().getDisplayMetrics().density;
+            MIN_KEYBOARD_HEI= (int) (100 * scale + 0.5f);
         }
         return MIN_KEYBOARD_HEI;
     }
@@ -201,7 +201,7 @@ public class KeyboardUtil {
             return false;
         }
         LAST_SAVE_KEYBOARD_HEIGHT = keyboardHeight;
-        return save(context, keyboardHeight);
+        return save(context, LAST_SAVE_KEYBOARD_HEIGHT);
     }
 
 

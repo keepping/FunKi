@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Camera;
+import android.media.MediaRecorder;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -15,14 +16,13 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
+import com.hifunki.funki.module.dynamic.post.data.VideoHolder;
 import com.hifunki.funki.util.PermissionUtil;
 import com.hifunki.funki.util.ToastUtils;
-import com.hifunki.funki.util.ViewUtil;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.hifunki.funki.R.id.pb_shot;
+
 
 /**
  * 随手拍界面
@@ -59,8 +59,7 @@ public class ShotActivity extends BaseActivity {
     TextView tvShotPhoto;
     @BindView(R.id.ll_dynamic_image)
     LinearLayout llDynamicImage;
-    @BindView(R.id.ll_shot_video)
-    LinearLayout llShotVideo;//视频按钮
+
     @BindView(R.id.iv_shot_video_dot)
     ImageView ivShotVideoDot;
     @BindView(R.id.tv_shot_video)
@@ -69,23 +68,26 @@ public class ShotActivity extends BaseActivity {
     ImageView ivShotTakePhoto;
     @BindView(R.id.iv_shot_photo)
     ImageView ivShotPhoto;
-    @BindView(pb_shot)
-    ProgressBar pbShot;
+
+
     @BindView(R.id.tv_shot_time)
     TextView tvShotTime;
     @BindView(R.id.iv_shot_back)
     ImageView ivShotBack;
+
     @BindView(R.id.iv_shot_ok)
     ImageView ivShotOk;
+
+    @BindView(R.id.recode_content)
+    LinearLayout recodeContent;
+
+    private List<VideoHolder> holders = new ArrayList<>();
     private SurfaceHolder mSurfaceHolder;
     boolean mSurfaceCreated = false;
-    Camera mCamera;
+    private Camera mCamera;
     private boolean mPermissions = false;
     int cameraPosition = 1;//0代表前置摄像头，1代表后置摄像头
 
-    private enum STATUS {
-        UNINIT, IMAGE, IMAGE_BEAUTY, MOVIE_INIT, MOVIE_LESS_NOTIFY, MOVIE_LESS_DEL, MOVIE_OK
-    }
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, ShotActivity.class));
@@ -98,7 +100,7 @@ public class ShotActivity extends BaseActivity {
 
     @Override
     protected void initVariable() {
-
+        MediaRecorder recorder;
     }
 
     @Override
@@ -106,7 +108,7 @@ public class ShotActivity extends BaseActivity {
         tbvLiveTag.setBackgroundColor(Color.parseColor("#790C001F"));
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(recodeCallBack);
-        mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);//surfaceview不维护自己的缓冲区，等待屏幕渲染引擎将内容推送到用户面前
+     //   mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);//surfaceview不维护自己的缓冲区，等待屏幕渲染引擎将内容推送到用户面前
         ImageView menuImageMore = tbvLiveTag.getMenuImageMore();
         menuImageMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +121,7 @@ public class ShotActivity extends BaseActivity {
                         mCamera.stopPreview();
                         mCamera.release();
                         mCamera = null;
+
                         mCamera = Camera.open(i);
                         Camera.Parameters params = mCamera.getParameters();
                         params.set("orientation", "portrait");
@@ -155,20 +158,25 @@ public class ShotActivity extends BaseActivity {
             }
         });
 
-    }
-
-    @Override
-    protected void bindData() {
-
-    }
-
-    @Override
-    protected void bindData4NoNet() {
+        VideoHolder holder = new  VideoHolder(this,recodeContent, OnRecodeOver);
+        holders.add(holder);
+        recodeContent.addView(holder.getItemView());
 
     }
 
 
-    @OnClick({R.id.tbv_live_tag, R.id.sv_dynamic, R.id.iv_dynamic_mirror, R.id.iv_dynamic_beauty, R.id.iv_shot_photo_dot, R.id.tv_shot_photo, R.id.ll_dynamic_image, R.id.ll_shot_video, R.id.iv_shot_video_dot, R.id.tv_shot_video, R.id.iv_shot_take_photo, R.id.iv_shot_photo, pb_shot, R.id.tv_shot_time, R.id.iv_shot_back, R.id.iv_shot_ok})
+
+    private Camera.Size  getPreSize(Camera.CameraInfo info){
+
+
+        return null;
+    }
+
+
+    @OnClick({R.id.tbv_live_tag, R.id.sv_dynamic, R.id.iv_dynamic_mirror,
+            R.id.iv_dynamic_beauty, R.id.iv_shot_photo_dot, R.id.tv_shot_photo,
+            R.id.ll_dynamic_image, R.id.ll_shot_video, R.id.iv_shot_video_dot, R.id.tv_shot_video,
+            R.id.iv_shot_take_photo, R.id.iv_shot_photo, R.id.tv_shot_time, R.id.iv_shot_back, R.id.iv_shot_ok})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tbv_live_tag:
@@ -184,21 +192,35 @@ public class ShotActivity extends BaseActivity {
             case R.id.tv_shot_photo:
                 break;
             case R.id.ll_dynamic_image:
-                updateUI(STATUS.IMAGE);
+
                 break;
             case R.id.ll_shot_video:
-                updateUI(STATUS.MOVIE_INIT);
+
                 break;
             case R.id.iv_shot_video_dot:
                 break;
             case R.id.tv_shot_video:
                 break;
             case R.id.iv_shot_take_photo:
+
+
+                View current =  findViewById(R.id.iv_shot_take_photo);
+                if(!current.isSelected()){
+                    holders.get(holders.size()-1).startRecord(mCamera,mSurfaceHolder.getSurface(),400,40000);
+                    current.setSelected(true);
+                }else {
+                    holders.get(holders.size()-1).stopRecord();
+                    current.setSelected(false);
+
+                    VideoHolder holder = new VideoHolder(this,recodeContent, OnRecodeOver);
+                    holders.add(holder);
+                    recodeContent.addView(holder.getItemView());
+                }
+
                 break;
             case R.id.iv_shot_photo:
                 break;
-            case pb_shot:
-                break;
+
             case R.id.tv_shot_time:
                 break;
             case R.id.iv_shot_back:
@@ -208,33 +230,13 @@ public class ShotActivity extends BaseActivity {
         }
     }
 
-    private void updateUI(STATUS uninit) {
+    private VideoHolder.OnRecodeOver OnRecodeOver = new VideoHolder.OnRecodeOver() {
+        @Override
+        public void onStop(VideoHolder holder) {
 
-        switch (uninit) {
-            case UNINIT://初始化状态
-                ViewUtil.showOrHideView(View.INVISIBLE, pbShot, tvShotTime);
-
-
-            case IMAGE:
-//                ViewUtil.showOrHideView(View.INVISIBLE, pbShot, tvShotTime);
-                break;
-            case IMAGE_BEAUTY:
-
-                break;
-            case MOVIE_INIT:
-
-                break;
-            case MOVIE_LESS_NOTIFY:
-
-                break;
-            case MOVIE_LESS_DEL:
-
-                break;
-            case MOVIE_OK:
-
-                break;
         }
-    }
+    };
+
 
     private SurfaceHolder.Callback recodeCallBack = new SurfaceHolder.Callback() {
 

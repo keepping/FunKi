@@ -123,9 +123,13 @@ public abstract class BaseActivity extends AppCompatActivity{
         }
     }
 
-    protected abstract void bindData();
+    protected  void bindData(){
 
-    protected abstract void bindData4NoNet();
+    }
+
+    protected  void bindData4NoNet(){
+
+    }
 
     @Override
     public void onBackPressed() {

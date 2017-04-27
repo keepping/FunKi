@@ -59,7 +59,7 @@ public class PostDynamicActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_dynamic_add://跳转到随手拍界面
-                ShotActivity.show(getApplicationContext());
+                ShotActivity.show(this);
                 break;
         }
     }

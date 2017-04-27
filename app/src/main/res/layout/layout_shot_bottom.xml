@@ -132,5 +132,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="26dp"
-        android:src="@drawable/iv_dynamic_shot" />
+        android:src="@drawable/iv_dynamic_start_recoad" />
 </RelativeLayout>
