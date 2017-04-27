@@ -36,6 +36,7 @@ import com.hifunki.funki.util.PermissionUtil;
 import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.ToastUtils;
 import com.hifunki.funki.widget.RoundImageView;
+import com.hifunki.funki.widget.dialog.FunKiDialog;
 import com.seu.magicfilter.utils.MagicFilterType;
 
 import net.ossrs.yasea.SrsCameraView;
@@ -103,6 +104,8 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     TextView tvCountTime;
     @BindView(R.id.fl_anchor)
     FrameLayout flAnchor;
+    @BindView(R.id.iv_anchor_exit)
+    ImageView ivAnchorExit;
     private PopWindowUtil invitePopWindow;//分享popWindow
     private View inviteView;
     private PopWindowUtil ticketPopWindow;//分享popWindow
@@ -113,6 +116,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     private boolean mPermissions = false;
     private List<String> permissions;
     boolean isCountFinish = false;
+    private FunKiDialog builder;
 
     private enum STATUS {
         UNINIT,
@@ -120,7 +124,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
         LIVEING,
     }
 
-    @OnClick({R.id.iv_location, R.id.iv_beauty, R.id.iv_camera, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main})
+    @OnClick({R.id.iv_location, R.id.iv_beauty, R.id.iv_camera, R.id.iv_close, R.id.rl_start_live_head, R.id.iv_photo, R.id.tv_topic, R.id.rl_normal_live, R.id.rl_invite_live, R.id.rl_ticket_live, R.id.rl_level_live, R.id.ll_start_live_main,R.id.iv_anchor_exit})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_location:
@@ -204,6 +208,19 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
                 ticketPopWindow.showPopWindow(ticketView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
                 break;
             case R.id.ll_start_live_main:
+                break;
+            case R.id.iv_anchor_exit:
+                View rootView = LayoutInflater.from(this).inflate(R.layout.dialog_anchor_exit, null);
+                RelativeLayout rlAnchorMain= (RelativeLayout) rootView.findViewById(R.id.rl_anchor_main);
+//                rlAnchorMain.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        builder.setDimiss();
+//                    }
+//                });
+                builder = FunKiDialog.getInstance(this, rootView);
+                builder.setViewHeight(240, 124);
+                builder.show();
                 break;
         }
     }

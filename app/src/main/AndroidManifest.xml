@@ -99,10 +99,11 @@
         <!-- 注册界面 -->
         <activity
             android:name=".module.login.RegisterActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             android:screenOrientation="portrait" />
         <!-- 图形验证码界面 -->
         <activity
-            android:name=".module.login.PwdGraphActivity"
+            android:name=".module.login.FindPwdGraphActivity"
             android:screenOrientation="portrait" />
         <!-- 邮箱验证码界面 -->
         <activity

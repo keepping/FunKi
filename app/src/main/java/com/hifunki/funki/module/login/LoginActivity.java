@@ -194,9 +194,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                 break;
             case R.id.tv_phone_pwd://通过手机号找回密码
-                PwdGraphActivity.show(this);
+                FindPwdGraphActivity.show(this,FindPwdGraphActivity.KEY_FIND_PWD_PHONE);
                 break;
             case R.id.tv_email_pwd:
+                FindPwdGraphActivity.show(this,FindPwdGraphActivity.KEY_FIND_PWD_EMAIL);
                 break;
             case R.id.iv_close:
                 pwdPopWindow.hidePopWindow();
