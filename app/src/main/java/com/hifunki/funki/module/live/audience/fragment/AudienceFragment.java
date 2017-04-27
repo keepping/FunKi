@@ -195,11 +195,7 @@ public class AudienceFragment extends BaseFragment {
         divergeView3.setDivergeViewProvider(new Provider());
     }
 
-
-
-
-
-    @OnClick({R.id.host_avatar, R.id.tv_follow, R.id.iv_room_private_msg})
+    @OnClick({R.id.host_avatar, R.id.tv_follow, R.id.iv_room_msg,R.id.iv_room_private_msg})
 
     public void onClick(View view) {
         switch (view.getId()) {
@@ -231,10 +227,7 @@ public class AudienceFragment extends BaseFragment {
             case R.id.iv_room_msg:
                 KeyboardUtil.showKeyboard(editContent);
 
-
-
                 break;
-
             case R.id.iv_room_private_msg:
                 if (sharePopWindow != null) {
                     sharePopWindow.hidePopWindow();
@@ -277,8 +270,6 @@ public class AudienceFragment extends BaseFragment {
 
         danMuKuHelper = new DanMuKuHelper(getContext(),mDanmakuView);
         danMuKuHelper.onViewCreated(view,savedInstanceState);
-
-
     }
 
 
@@ -376,7 +367,6 @@ public class AudienceFragment extends BaseFragment {
 
 
     private void startPlay() {
-
 
         if (reResume && isVisual) {
 

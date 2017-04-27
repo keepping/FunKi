@@ -9,16 +9,18 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.AccountBaseActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.common.Spkey;
 import com.hifunki.funki.module.home.activity.HomeActivity;
@@ -29,6 +31,7 @@ import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.SPUtils;
 import com.hifunki.funki.util.ToastUtils;
 import com.hifunki.funki.util.ViewUtil;
+import com.hifunki.funki.util.keyBoard.KeyboardUtil;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
@@ -46,18 +49,14 @@ import butterknife.OnClick;
  * @link {@link LayoutPhoneWithType}    {@link LayoutEmailWithType}
  * @since 2017-02-23 20:24:24
  */
-public class LoginActivity extends AccountBaseActivity implements View.OnClickListener, ViewTreeObserver.OnGlobalLayoutListener, View.OnFocusChangeListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private boolean isPhoneColor;
     private ArrayList<LinearLayout> mTabViews;
     @BindView(R.id.tbv_login)
     TopBarView topBarView;
     @BindView(R.id.activity_login)
-    LinearLayout activityLogin;
-//    @BindView(R.id.fl_title)
-//    FrameLayout flTitle;
-    @BindView(R.id.ll_icon)
-    LinearLayout mLlIcon;
+    RelativeLayout activityLogin;
     @BindView(R.id.iv_logo)
     ImageView mIvLogo;
     @BindView(R.id.tv_login)
@@ -74,7 +73,8 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     TextView tvPhone;
     @BindView(R.id.tvEmail)
     TextView tvEmail;
-
+    @BindView(R.id.ll_icon)
+    LinearLayout llIcon;
     @BindView(R.id.vpPhoneEmail)
     ViewPager vpPhoneEmail;
     private PopWindowUtil pwdPopWindow;
@@ -85,6 +85,15 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     private int mLogoWidth;
     protected InputMethodManager mInputMethodManager;
     private Activity mActivity;
+    private String TAG = getClass().getSimpleName();
+    private EditText etEmailTel;
+    private EditText etEmailPwd;
+
+    @BindView(R.id.ll_edit)
+    LinearLayout llEdit;
+
+    @BindView(R.id.view_empty)
+    View viewEmpty;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, LoginActivity.class));
@@ -98,7 +107,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 
     @Override
     protected void initVariable() {
-        super.initVariable();
+//        super.initVariable();
         mActivity = LoginActivity.this;//必须要调用,用来注册本地广播
     }
 
@@ -116,11 +125,11 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         topBarView.getMenuText().setOnClickListener(this);
     }
 
-    @OnClick({R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.tv_login, R.id.tvForgetPwd, R.id.tvHelpCenter,R.id.tv_menu})
+    @OnClick({R.id.activity_login, R.id.ivPhoneLine, R.id.ivEmailLine, R.id.tvPhone, R.id.tvEmail, R.id.vpPhoneEmail, R.id.tv_login, R.id.tvForgetPwd, R.id.tvHelpCenter, R.id.tv_menu})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.activity_login:
-                hideKeyBoard(getCurrentFocus().getWindowToken());
+//                hideKeyBoard(getCurrentFocus().getWindowToken());
                 break;
             case R.id.ll_login_register:
                 RegisterActivity.show(this);
@@ -201,6 +210,16 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 
     }
 
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
     /**
      * phone and email listener
      */
@@ -255,15 +274,19 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 
         mEtIuputTel = layoutPhoneWithType.getEtIuputTel();
         mEtIuputPwd = layoutPhoneWithType.getEtIuputPwd();
+        etEmailTel = layoutEmailWithType.getEtEmailTel();
+        etEmailPwd = layoutEmailWithType.getEtEmailPwd();
 
         mEtIuputTel.setOnFocusChangeListener(this);
         mEtIuputPwd.setOnFocusChangeListener(this);
+        etEmailTel.setOnFocusChangeListener(this);
+        etEmailPwd.setOnFocusChangeListener(this);
 
         vpPhoneEmail.setAdapter(new PagerBaseAdapter<>(mTabViews));
 
     }
 
-    View flTitle;
+    ViewTreeObserver.OnGlobalLayoutListener layoutListener;
     /**
      * popupWindow dimiss
      */
@@ -277,13 +300,46 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
     @Override
     protected void onResume() {
         super.onResume();
-//        flTitle.getViewTreeObserver().addOnGlobalLayoutListener(this);
+//        topBarView.getViewTreeObserver().addOnGlobalLayoutListener(this);
+        layoutListener = KeyboardUtil.attach(this, new KeyboardUtil.IPanelHeightTarget() {
+            @Override
+            public void refreshHeight(int panelHeight) {
+                ViewGroup.LayoutParams layoutParams = viewEmpty.getLayoutParams();
+                if (layoutParams.height != panelHeight) {
+                    layoutParams.height = panelHeight;
+                    viewEmpty.setLayoutParams(layoutParams);
+                }
+            }
+
+            @Override
+            public int getHeight() {
+                ViewGroup.LayoutParams layoutParams = viewEmpty.getLayoutParams();
+                return layoutParams.height;
+            }
+
+            @Override
+            public void onKeyboardShowing(boolean showing) {
+                if (showing) {
+                    llIcon.setVisibility(View.GONE);
+                    llEdit.setVisibility(View.VISIBLE);
+                } else {
+                    llIcon.setVisibility(View.VISIBLE);
+                    llEdit.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        KeyboardUtil.detach(this, layoutListener);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        flTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//        topBarView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
     }
 
     //设置editText的点击监听
@@ -293,14 +349,30 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         switch (id) {
             case R.id.etIuputTel:
                 if (hasFocus) {
+                    KeyboardUtil.showKeyboard(tvPhone);
                     mEtIuputTel.setActivated(true);
                     mEtIuputPwd.setActivated(false);
                 }
                 break;
             case R.id.etIuputPwd:
                 if (hasFocus) {
+                    KeyboardUtil.showKeyboard(tvPhone);
                     mEtIuputPwd.setActivated(true);
                     mEtIuputTel.setActivated(false);
+                }
+                break;
+            case R.id.etInputEmail:
+                if (hasFocus) {
+                    KeyboardUtil.showKeyboard(tvPhone);
+                    etEmailTel.setActivated(true);
+                    etEmailPwd.setActivated(false);
+                }
+                break;
+            case R.id.etEmailPwd:
+                if (hasFocus) {
+                    KeyboardUtil.showKeyboard(tvPhone);
+                    etEmailPwd.setActivated(true);
+                    etEmailTel.setActivated(false);
                 }
                 break;
             default:
@@ -308,15 +380,18 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
         }
     }
 
+
+
+
     //注册监听视图树的观察者
-    @Override
-    public void onGlobalLayout() {
+//    @Override
+//    public void onGlobalLayout() {
 //        final LinearLayout llIcon = this.mLlIcon;
 //        Rect KeypadRect = new Rect();
 //
-//        flTitle.getWindowVisibleDisplayFrame(KeypadRect);
+//        topBarView.getWindowVisibleDisplayFrame(KeypadRect);
 //
-//        int screenHeight = flTitle.getRootView().getHeight();
+//        int screenHeight = topBarView.getRootView().getHeight();
 //
 //        int keypadHeight = screenHeight - KeypadRect.bottom;
 //
@@ -342,7 +417,7 @@ public class LoginActivity extends AccountBaseActivity implements View.OnClickLi
 //            LoginBusiness.setTopMarginAnimator(llIcon, height, 1, 0);
 //            LoginBusiness.setAlphaAnimator(llIcon, 0, 1);
 //        }
-    }
+//    }
 
 
 }

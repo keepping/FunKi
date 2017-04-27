@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/_230C47"
     android:orientation="vertical"
     tools:context=".module.login.LoginActivity"
     tools:ignore="MissingPrefix">
@@ -18,139 +17,162 @@
         app:titleText="@string/login" />
 
     <LinearLayout
-        android:id="@+id/ll_icon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tbv_login"
+        android:background="@color/_230C47"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_icon"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="43dp"
-            android:src="@drawable/iv_logo"
-            android:text="login"
-            android:visibility="visible" />
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="43dp"
+                android:src="@drawable/iv_logo"
+                android:text="login"
+                android:visibility="visible" />
+
+            <TextView
+                fontPath="fonts/arial_0.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="37dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/app_name"
+                android:textColor="@color/_FDFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="78dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    fontPath="fonts/FZDHTFW.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_phone"
+                    android:textColor="@color/_9B44ED"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/ivPhoneLine"
+                    fontPath="fonts/FZDHTFW.ttf"
+                    android:layout_width="10dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/login_iv_line"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="111dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_mail"
+                    android:textColor="@color/_6B4E9A"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/ivEmailLine"
+                    android:layout_width="10dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/login_iv_line"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="31dp">
+
+            <com.hifunki.funki.module.login.widget.ViewpagerNotScroll
+                android:id="@+id/vpPhoneEmail"
+                android:layout_width="match_parent"
+                android:layout_height="111dp" />
+        </LinearLayout>
 
         <TextView
-            fontPath="fonts/arial_0.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="37dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/app_name"
-            android:textColor="@color/_FDFFFF"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:id="@+id/tv_login"
+            fontPath="fonts/FZDHTFW.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="19dp"
+            android:background="@color/_28114D"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textColor="@color/_4A2F75"
+            android:textSize="17sp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="78dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="19dp">
 
             <TextView
-                android:id="@+id/tvPhone"
-                fontPath="fonts/FZDHTFW.ttf"
+                android:id="@+id/tvForgetPwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login_phone"
-                android:textColor="@color/_9B44ED"
-                android:textSize="17sp" />
-
-            <ImageView
-                android:id="@+id/ivPhoneLine"
-                fontPath="fonts/FZDHTFW.ttf"
-                android:layout_width="10dp"
-                android:layout_height="4dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/login_iv_line"
-                android:visibility="visible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="111dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_mail"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:text="@string/login_forget_pwd"
                 android:textColor="@color/_6B4E9A"
-                android:textSize="17sp" />
+                android:textSize="15dp" />
 
-            <ImageView
-                android:id="@+id/ivEmailLine"
-                android:layout_width="10dp"
-                android:layout_height="4dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/login_iv_line"
-                android:visibility="invisible" />
-        </LinearLayout>
-    </RelativeLayout>
-
+            <TextView
+                android:id="@+id/tvHelpCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="14dp"
+                android:text="@string/login_help_center"
+                android:textColor="@color/_6B4E9A"
+                android:textSize="15dp" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="31dp">
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <com.hifunki.funki.module.login.widget.ViewpagerNotScroll
-            android:id="@+id/vpPhoneEmail"
+        <View
+            android:id="@+id/view_empty"
             android:layout_width="match_parent"
-            android:layout_height="111dp"/>
+            android:layout_height="1dp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_login"
-        fontPath="fonts/FZDHTFW.ttf"
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="19dp"
-        android:background="@color/_28114D"
-        android:gravity="center"
-        android:text="@string/login"
-        android:textColor="@color/_4A2F75"
-        android:textSize="17sp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp">
-
-        <TextView
-            android:id="@+id/tvForgetPwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp"
-            android:text="@string/login_forget_pwd"
-            android:textColor="@color/_6B4E9A"
-            android:textSize="15dp" />
-
-        <TextView
-            android:id="@+id/tvHelpCenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="14dp"
-            android:text="@string/login_help_center"
-            android:textColor="@color/_6B4E9A"
-            android:textSize="15dp" />
-    </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>
