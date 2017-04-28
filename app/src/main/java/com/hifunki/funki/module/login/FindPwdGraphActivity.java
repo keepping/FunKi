@@ -11,9 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.login.widget.PwdGraphView;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -23,11 +22,11 @@ import butterknife.OnClick;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.login.PwdGraphActivity.java
+ * @value com.hifunki.funki.module.login.FindPwdGraphActivity.java
  * @link
  * @since 2017-02-24 12:03:03
  */
-public class PwdGraphActivity extends BaseTitleActivity implements View.OnClickListener {
+public class FindPwdGraphActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.iv_pwd_country)
     ImageView ivPwdCountry;
@@ -35,8 +34,10 @@ public class PwdGraphActivity extends BaseTitleActivity implements View.OnClickL
     TextView tvPwdCountry;
     @BindView(R.id.llCounty)
     LinearLayout llCounty;
-    @BindView(R.id.etIuputTel)
-    EditText etIuputTel;
+    @BindView(R.id.etFindPhone)
+    EditText etFindPhone;
+    @BindView(R.id.etFindEmail)
+    EditText etFindEmail;
     @BindView(R.id.iv_pwd_graph)
     ImageView ivPwdGraph;
     @BindView(R.id.etIuputGraph)
@@ -47,10 +48,18 @@ public class PwdGraphActivity extends BaseTitleActivity implements View.OnClickL
     RelativeLayout rlConfirm;
     @BindView(R.id.activity_pwd_graph)
     LinearLayout activityPwdGraph;
+    @BindView(R.id.rlFindPhone)
+    RelativeLayout rlFindPhone;
     private PwdGraphView pwdGraphView;
+    private static final String KEY_FIND_PWD_TYPE = "key_find_pwd_type";
+    static final int KEY_FIND_PWD_PHONE = 1;
+    static final int KEY_FIND_PWD_EMAIL = 2;
 
-    public static void show(Context context) {
-        context.startActivity(new Intent(context, PwdGraphActivity.class));
+
+    public static void show(Context context, int type) {
+        Intent intent = new Intent(context, FindPwdGraphActivity.class);
+        intent.putExtra(FindPwdGraphActivity.KEY_FIND_PWD_TYPE, type);
+        context.startActivity(intent);
     }
 
     @Override
@@ -60,9 +69,15 @@ public class PwdGraphActivity extends BaseTitleActivity implements View.OnClickL
 
     @Override
     protected void initVariable() {
-
+        int type = getIntent().getIntExtra(FindPwdGraphActivity.KEY_FIND_PWD_TYPE, 0);
+        if (type == KEY_FIND_PWD_PHONE) {
+            rlFindPhone.setVisibility(View.VISIBLE);
+            etFindEmail.setVisibility(View.GONE);
+        } else if (type == KEY_FIND_PWD_EMAIL) {
+            rlFindPhone.setVisibility(View.GONE);
+            etFindEmail.setVisibility(View.VISIBLE);
+        }
     }
-
 
     @Override
     protected void initView() {
@@ -94,8 +109,7 @@ public class PwdGraphActivity extends BaseTitleActivity implements View.OnClickL
 
     @Override
     protected void initTitleBar() {
-        ToolTitleBar.showLeftButton(this, activityPwdGraph, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
-        ToolTitleBar.showCenterButton(this, activityPwdGraph, ToolTitleBar.BTN_TYPE_TEXT, R.string.find_pwd, null);
+
     }
 
 

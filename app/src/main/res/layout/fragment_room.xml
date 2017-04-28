@@ -108,11 +108,11 @@
                     </RelativeLayout>
 
                     <android.support.v7.widget.RecyclerView
-                        android:layout_marginTop="10dp"
                         android:id="@+id/rl_fans_photo"
                         android:layout_width="match_parent"
                         android:layout_height="37dp"
-                        android:layout_marginLeft="24dp" />
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="10dp" />
 
                 </LinearLayout>
                 <!--金币数量-->
@@ -157,8 +157,6 @@
                     android:src="@drawable/iv_home_list" />
 
 
-
-
                 <Space
                     android:layout_width="1dp"
                     android:layout_height="0dp"
@@ -185,17 +183,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
 
-                    android:layout_marginTop="60dp"
-                    android:layout_marginBottom="20dp" />
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="60dp" />
 
                 <com.hifunki.funki.module.live.danmu.vDanMu.DanMuGroup
                     android:id="@+id/dan_mu_group"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
 
-                    android:layout_marginTop="120dp"
-                    android:layout_marginBottom="10dp" />
-
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="120dp" />
 
 
             </RelativeLayout>
@@ -204,15 +201,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-
-                    android:layout_weight="10"
-                    />
+                    android:layout_weight="10" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rl_gift"
@@ -226,13 +220,10 @@
                     android:id="@+id/host_chat"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-
                     android:layout_marginBottom="16dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="81dp"
                     android:overScrollMode="never" />
-
-
 
 
                 <!--底部操作按钮-->
@@ -240,9 +231,7 @@
                     android:id="@+id/rl_info"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-
                     android:gravity="center_vertical"
-
                     >
 
                     <ImageView
@@ -287,40 +276,28 @@
                     android:id="@+id/live_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:background="#f7f7f7"
-                    android:visibility="gone"
-                    >
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/live_edit_content"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:gravity="left|center"
                         android:background="@null"
-                        />
+                        android:gravity="left|center"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp" />
 
                     <View
                         android:id="@+id/empty"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"/>
-
+                        android:layout_height="100dp" />
 
                 </LinearLayout>
-
-
             </LinearLayout>
 
-
         </FrameLayout>
-
-
-
-
-
-
 
         <FrameLayout
             android:layout_width="match_parent"

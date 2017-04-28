@@ -7,7 +7,7 @@
     android:background="@color/_230C47"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".module.login.PwdGraphActivity">
+    tools:context=".module.login.FindPwdGraphActivity">
 
     <com.hifunki.funki.module.login.widget.TitleBar
         android:id="@+id/tbPwdGraph"

@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
+import android.view.View;
 
 
 public class PhotoView extends AppCompatImageView implements IPhotoView { //
@@ -168,6 +169,8 @@ public class PhotoView extends AppCompatImageView implements IPhotoView { //
     @Override
     @Deprecated
     public void setMaxScale(float maxScale) {
+
+
         setMaximumScale(maxScale);
     }
 

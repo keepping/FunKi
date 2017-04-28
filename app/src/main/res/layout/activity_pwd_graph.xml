@@ -1,78 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_pwd_graph"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/_230C47"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    tools:context=".module.login.PwdGraphActivity">
+    tools:context=".module.login.FindPwdGraphActivity">
 
-    <include layout="@layout/title_templet" />
-
-    <RelativeLayout
+    <com.hifunki.funki.widget.bar.TopBarView
+        android:id="@+id/tbvFindPwd"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:background="@color/_28114D"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        app:titleText="找回密码" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rlFindPhone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="54dp"
+            android:background="@color/_28114D"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/llCounty"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="14dp">
+                android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/iv_pwd_country"
+                <LinearLayout
+                    android:id="@+id/llCounty"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/japan" />
+                    android:layout_height="match_parent"
+                    android:paddingLeft="14dp">
 
-                <TextView
-                    android:id="@+id/tv_pwd_country"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/iv_pwd_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/japan" />
+
+                    <TextView
+                        android:id="@+id/tv_pwd_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="14dp"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/_BBABD4"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="29dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="14dp"
-                    android:text="@string/phone_number"
-                    android:textColor="@color/_BBABD4"
+                    android:layout_marginLeft="16dp"
+
+                    android:background="@color/_4A2F75" />
+
+                <EditText
+                    android:id="@+id/etFindPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="51dp"
+                    android:background="@null"
+                    android:gravity="left|center_vertical"
+                    android:hint="@string/login_input_phone_number"
+                    android:maxLines="1"
+                    android:paddingLeft="1dp"
+                    android:textColorHint="@color/_4A2F75"
                     android:textSize="17sp" />
             </LinearLayout>
 
-            <View
-                android:layout_width="1px"
-                android:layout_height="29dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
 
-                android:background="@color/_4A2F75" />
+        </RelativeLayout>
 
-            <EditText
-                android:id="@+id/etIuputTel"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="51dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="@string/login_input_phone_number"
-                android:maxLines="1"
-                android:paddingLeft="1dp"
-                android:singleLine="true"
-                android:textColorHint="@color/_4A2F75"
-                android:textSize="17sp" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/etFindEmail"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="14dp"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:hint="@string/login_input_email_address"
+            android:maxLines="1"
+            android:paddingLeft="1dp"
+            android:textColorHint="@color/_4A2F75"
+            android:textSize="17sp">
 
-
-    </RelativeLayout>
+        </EditText>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

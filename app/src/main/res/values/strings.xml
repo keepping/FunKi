@@ -107,6 +107,7 @@
     <string name="login_receiver_msg">会收到一条含有验证码的短信</string>
     <string name="login_input_code">请输入验证码</string>
     <string name="login_input_phone_number">请输入行动电话</string>
+    <string name="login_input_email_address">请输入邮箱地址</string>
     <string name="login_forget_pwd">忘记密码</string>
     <string name="login_help_center">帮助中心</string>
     <string name="login_receiver_6_msg">会收到一条含有6位数字验证码的短信</string>

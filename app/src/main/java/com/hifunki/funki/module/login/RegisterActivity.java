@@ -2,24 +2,28 @@ package com.hifunki.funki.module.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.AccountBaseActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.adapter.PagerBaseAdapter;
 import com.hifunki.funki.module.login.widget.layout.LayoutEmailWithType;
 import com.hifunki.funki.module.login.widget.layout.LayoutPhoneWithType;
 import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
 import com.hifunki.funki.util.ViewUtil;
+import com.hifunki.funki.util.keyBoard.KeyboardUtil;
+import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
 
@@ -35,11 +39,12 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-24 10:36:36
  */
-public class RegisterActivity extends AccountBaseActivity implements View.OnClickListener, ViewTreeObserver.OnGlobalLayoutListener {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private boolean isPhoneColor;
 
-
+    @BindView(R.id.tbv_register)
+    TopBarView tbRegister;
     @BindView(R.id.ll_icon)
     LinearLayout mLlIcon;
     @BindView(R.id.tvPhone)
@@ -59,11 +64,20 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
     @BindView(R.id.tvHelpCenter)
     TextView tvHelpCenter;
     @BindView(R.id.activity_login)
-    LinearLayout activityLogin;
+    RelativeLayout activityLogin;
     private int mLogoHeight;
     private int mLogoWidth;
 
+    @BindView(R.id.ll_edit)
+    LinearLayout llEdit;
+    @BindView(R.id.view_empty)
+    View viewEmpty;
     private ArrayList<LinearLayout> mTabViews;
+    private EditText etIuputTel;
+    private EditText etIuputPwd;
+    private EditText etEmailTel;
+    private EditText etEmailPwd;
+    ViewTreeObserver.OnGlobalLayoutListener layoutListener;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, RegisterActivity.class));
@@ -74,6 +88,10 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
         return R.layout.activity_register;
     }
 
+    @Override
+    protected void initVariable() {
+
+    }
 
 
     @Override
@@ -99,12 +117,34 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
 
     }
 
+    @Override
+    protected void bindData() {
+
+    }
+
+    @Override
+    protected void bindData4NoNet() {
+
+    }
+
     private void initViewPager() {
         mTabViews = new ArrayList<>();
         //获取第一个视图
-        LayoutPhoneWithType layoutLoginWithType = new LayoutPhoneWithType(etItemListener, onClickListener, this, 0);
+        LayoutPhoneWithType layoutPhoneWithType = new LayoutPhoneWithType(etItemListener, onClickListener, this, 0);
         LayoutEmailWithType layoutEmailWithType = new LayoutEmailWithType(this, 1);
-        mTabViews.add(layoutLoginWithType);
+        etIuputTel = layoutPhoneWithType.getEtIuputTel();
+        etIuputPwd = layoutPhoneWithType.getEtIuputPwd();
+
+        etEmailTel = layoutEmailWithType.getEtEmailTel();
+        etEmailPwd = layoutEmailWithType.getEtEmailPwd();
+
+        etIuputTel.setOnFocusChangeListener(this);
+        etIuputPwd.setOnFocusChangeListener(this);
+        etEmailTel.setOnFocusChangeListener(this);
+        etEmailPwd.setOnFocusChangeListener(this);
+
+
+        mTabViews.add(layoutPhoneWithType);
         mTabViews.add(layoutEmailWithType);
         vpPhoneEmail.setAdapter(new PagerBaseAdapter<>(mTabViews));
 
@@ -135,6 +175,42 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
         }
     };
 
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        switch (v.getId()) {
+            case R.id.etIuputTel:
+                if (hasFocus) {
+                    KeyboardUtil.showKeyboard(tvPhone);
+                    etIuputTel.setActivated(true);
+                    etIuputPwd.setActivated(false);
+                }
+                break;
+            case R.id.etIuputPwd:
+                if (hasFocus) {
+                    KeyboardUtil.showKeyboard(tvPhone);
+                    etIuputTel.setActivated(false);
+                    etIuputPwd.setActivated(true);
+                }
+                break;
+            case R.id.etInputEmail:
+                if (hasFocus) {
+                    KeyboardUtil.showKeyboard(tvPhone);
+                    etEmailTel.setActivated(true);
+                    etEmailPwd.setActivated(false);
+                }
+                break;
+            case R.id.etEmailPwd:
+                if (hasFocus) {
+                    KeyboardUtil.showKeyboard(tvPhone);
+                    etEmailPwd.setActivated(true);
+                    etEmailTel.setActivated(false);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     private TextWatcher etItemListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -155,13 +231,44 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
     @Override
     protected void onResume() {
         super.onResume();
-//        flTitle.getViewTreeObserver().addOnGlobalLayoutListener(this);
+        layoutListener = KeyboardUtil.attach(this, new KeyboardUtil.IPanelHeightTarget() {
+            @Override
+            public void refreshHeight(int panelHeight) {
+                ViewGroup.LayoutParams layoutParams = viewEmpty.getLayoutParams();
+                if (layoutParams.height != panelHeight) {
+                    layoutParams.height = panelHeight;
+                    viewEmpty.setLayoutParams(layoutParams);
+                }
+            }
+
+            @Override
+            public int getHeight() {
+                ViewGroup.LayoutParams layoutParams = viewEmpty.getLayoutParams();
+                return layoutParams.height;
+            }
+
+            @Override
+            public void onKeyboardShowing(boolean showing) {
+                if (showing) {
+                    mLlIcon.setVisibility(View.GONE);
+                    llEdit.setVisibility(View.VISIBLE);
+                } else {
+                    mLlIcon.setVisibility(View.VISIBLE);
+                    llEdit.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        KeyboardUtil.detach(this, layoutListener);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        flTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
     }
 
     @OnClick({R.id.tvPhone, R.id.ivPhoneLine, R.id.tvEmail, R.id.ivEmailLine, R.id.vpPhoneEmail, R.id.llRegNext, R.id.ivAgree, R.id.tvHelpCenter, R.id.activity_login})
@@ -206,39 +313,6 @@ public class RegisterActivity extends AccountBaseActivity implements View.OnClic
         }
     }
 
-    @Override
-    public void onGlobalLayout() {
-        final LinearLayout llIcon = this.mLlIcon;
-        Rect KeypadRect = new Rect();
 
-//        flTitle.getWindowVisibleDisplayFrame(KeypadRect);
-//
-//        int screenHeight = flTitle.getRootView().getHeight();
-
-//        int keypadHeight = screenHeight - KeypadRect.bottom;
-
-        //更新键盘激活状态
-//        if (keypadHeight > 0) {
-//            updateKeyBoardActiveStatus(true);
-//        } else {
-//            updateKeyBoardActiveStatus(false);
-//        }
-//
-//        if (keypadHeight > 0 && llIcon.getTag() == null) {
-//            final int height = llIcon.getHeight();
-//            final int width = llIcon.getWidth();
-//            this.mLogoHeight = height;
-//            this.mLogoWidth = width;
-//            llIcon.setTag(true);
-//            LoginBusiness.setTopMarginAnimator(llIcon, height, 0, 1);
-//
-//            LoginBusiness.setAlphaAnimator(llIcon, 1, 0);
-//        } else if (keypadHeight == 0 && llIcon.getTag() != null) {
-//            final int height = mLogoHeight;
-//            llIcon.setTag(null);
-//            LoginBusiness.setTopMarginAnimator(llIcon, height, 1, 0);
-//            LoginBusiness.setAlphaAnimator(llIcon, 0, 1);
-//        }
-    }
 }
 
