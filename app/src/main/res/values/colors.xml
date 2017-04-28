@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!--颜色透明度参照-->
+    <!--http://blog.csdn.net/github_25928675/article/details/50330635-->
     <color name="colorPrimary">#230C47</color>
     <color name="colorPrimaryDark">#230C47</color>
     <color name="colorAccent">#FF4081</color>
@@ -9,6 +10,7 @@
     <color name="_000000">#000000</color>
     <color name="_07001F">#07001F</color>
     <color name="_0C001F">#0C001F</color>
+    <color name="_350C001F">#590C001F</color>
     <color name="_CC0C001F">#CC0C001F</color>
     <color name="_140231">#140231</color>
     <color name="_150333">#150333</color>

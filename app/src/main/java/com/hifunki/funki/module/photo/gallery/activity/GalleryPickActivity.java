@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.photo.gallery.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,6 +23,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,11 +43,14 @@ import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.HashMapUtil;
 import com.hifunki.funki.util.ListUtil;
 import com.hifunki.funki.util.PermissionUtil;
+import com.hifunki.funki.widget.bar.TopBarView4Gallery;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * 图片选择页面
@@ -58,40 +63,38 @@ import java.util.List;
  */
 public class GalleryPickActivity extends BaseTitleActivity implements View.OnClickListener {
 
-    private Context mContext = null;
-    private GalleryPickActivity mActivity = null;
-    private final static String TAG = "GalleryPickActivity";
-
+    @BindView(R.id.tbv_bill)
+    TopBarView4Gallery topBarView4Gallery;
+    @BindView(R.id.rl_all_photo)
+    RelativeLayout rlAllPhoto;
+    @BindView(R.id.ll_preview)// 文件夹按钮
+            LinearLayout llPreview;
+    @BindView(R.id.tv_gallery_preview)
+    TextView tvGalleryPreview;
+    @BindView(R.id.ll_gallery_sourceimage)
+    LinearLayout llImageSize;
+    @BindView(R.id.rvGalleryImage)// 图片列表
+            RecyclerView rvGalleryImage;
+    @BindView(R.id.iv_gallery_icon)//图片向下角标
+            ImageView ivGalleryIcon;
+    @BindView(R.id.tv_all_photo)
+    TextView tvGalleryFolder;
+    private TextView tvFinish;
+    private Context mContext;
+    private Activity mActivity;
+    private String TAG = getClass().getSimpleName();
     private ArrayList<String> resultPhoto;      //照片路径集合
     private boolean isOpenImage;                //是否点击所有图片
-    private TextView tvFinish;                  // 完成按钮
-    private TextView tvGalleryFolder;           // 文件夹按钮
-    private LinearLayout btnGalleryPickBack;    // 返回按钮
-    private RecyclerView rvGalleryImage;        // 图片列表
-    private ImageView ivGalleryFolder;          //图片向下角标
-    private TextView tvGalleryPreview;          //预览图片
-    private LinearLayout llGallerySourceImage;  //原图控件
 
     private PhotoGalleryAdapter photoAdapter;              // 图片适配器
     private FolderAdapter folderAdapter;            // 文件夹适配器
 
-
     private List<FolderInfo> folderInfoList = new ArrayList<>();    // 本地文件夹信息List
     private List<PhotoInfo> photoInfoList = new ArrayList<>();      // 本地图片信息List
-
-    private static final int LOADER_ALL = 0;         // 获取所有图片
-    private static final int LOADER_CATEGORY = 1;    // 获取某个文件夹中的所有图片
-
     private boolean hasFolderScan = false;           // 是否扫描过
-
     private GalleryConfig galleryConfig;   // GalleryPick 配置器
-
-    private static final int REQUEST_CAMERA = 100;   // 设置拍摄照片的 REQUEST_CODE
-
     private IHandlerCallBack mHandlerCallBack;   // GalleryPick 生命周期接口
-
     private FolderListPopupWindow folderListPopupWindow;   // 文件夹选择弹出框
-
     private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallback;
     private HashMap<Integer, Boolean> isSelected;   //是否已经选中hashmap
 
@@ -99,12 +102,10 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     private File cropTempFile;           //待裁剪图片
     private int mSelectedPosition;       //选中图片的下表
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mContext = this;
-        mActivity = this;
-    }
+    private static final int LOADER_ALL = 0;         // 获取所有图片
+    private static final int LOADER_CATEGORY = 1;    // 获取某个文件夹中的所有图片
+    private static final int REQUEST_CAMERA = 100;   // 设置拍摄照片的 REQUEST_CODE
+
 
     @Override
     protected int getViewResId() {
@@ -113,12 +114,13 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
 
     @Override
     protected void initVariable() {
-
+        mContext = GalleryPickActivity.this;
+        mActivity = this;
     }
-
 
     @Override
     protected void initTitleBar() {
+
     }
 
     /**
@@ -126,20 +128,9 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
      */
     @Override
     protected void initView() {
-        tvFinish = (TextView) super.findViewById(R.id.tvFinish);
-        tvGalleryFolder = (TextView) super.findViewById(R.id.tvGalleryFolder);
-        ivGalleryFolder = (ImageView) super.findViewById(R.id.iv_gallery_folder);//图片角标
-        btnGalleryPickBack = (LinearLayout) super.findViewById(R.id.btnGalleryPickBack);
-        rvGalleryImage = (RecyclerView) super.findViewById(R.id.rvGalleryImage);
-        tvGalleryPreview = (TextView) super.findViewById(R.id.tv_gallery_preview);
-        llGallerySourceImage = (LinearLayout) super.findViewById(R.id.ll_gallery_sourceimage);
-
-        tvFinish.setOnClickListener(this);
-        btnGalleryPickBack.setOnClickListener(this);
-        tvGalleryFolder.setOnClickListener(this);
-        tvGalleryPreview.setOnClickListener(this);
-        llGallerySourceImage.setOnClickListener(this);
+        tvFinish = topBarView4Gallery.getMenuText();
         galleryConfig = GalleryPick.getInstance().getGalleryConfig();
+
         init();
         initPhoto();  //加载图片
     }
@@ -175,9 +166,9 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
                 //检查相机权限
-                if(PermissionUtil.checkCameraAccess(getApplicationContext())){
+                if (PermissionUtil.checkCameraAccess(getApplicationContext())) {
                     showCameraAction();
-                }else{
+                } else {
                     if (Build.VERSION.SDK_INT >= 23 && !PermissionUtil.checkCameraAccess(getApplicationContext())) {
                         requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
                     }
@@ -291,6 +282,7 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                 }
                 return null;
             }
+
             @Override
             public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
                 if (data != null) {
@@ -358,6 +350,7 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         };
         getSupportLoaderManager().restartLoader(LOADER_ALL, null, mLoaderCallback);   // 扫描手机中的图片
     }
+
     private void showCameraAction() {
         // 跳转到系统照相机
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -424,11 +417,6 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         finish();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Runtime.getRuntime().gc();
-    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -443,16 +431,20 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mHandlerCallBack.onCancel();
+        exit();
+    }
+
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tvFinish://确定按钮
+            case R.id.iv_menu://确定按钮
                 startCropImage();
                 break;
-            case R.id.btnGalleryPickBack://返回键
-                mHandlerCallBack.onCancel();
-                exit();
-                break;
-            case R.id.tvGalleryFolder://所有图片文件夹
+            case R.id.tv_all_photo://所有图片文件夹
                 changeImageState();
 
                 if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
@@ -467,7 +459,7 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                 break;
             case R.id.tv_gallery_preview://预览按钮
                 if (!ListUtil.isEmpty(photoInfoList) && mSelectedPosition != -1 && mSelectedPosition != 0) {
-                    ArrayList<PhotoInfo> arrayList=new ArrayList<>();
+                    ArrayList<PhotoInfo> arrayList = new ArrayList<>();
                     arrayList.addAll(photoInfoList);
                     GalleryVpActivity.show(this, mSelectedPosition, arrayList);
                 }
@@ -482,9 +474,9 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         Drawable drawableDown = getResources().getDrawable(R.drawable.iv_gallery_pick_dropdown_white);
         Drawable drawableUp = getResources().getDrawable(R.drawable.iv_gallery_pick_up_white);
         if (isOpenImage) {
-            ivGalleryFolder.setImageDrawable(drawableUp);
+            ivGalleryIcon.setImageDrawable(drawableUp);
         } else {
-            ivGalleryFolder.setImageDrawable(drawableDown);
+            ivGalleryIcon.setImageDrawable(drawableDown);
         }
     }
 
@@ -512,5 +504,17 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     protected void bindData4NoNet() {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
+
+    //                case R.id.btnGalleryPickBack://返回键
+    //                mHandlerCallBack.onCancel();
+    //                exit();
+    //                break;
+
 
 }

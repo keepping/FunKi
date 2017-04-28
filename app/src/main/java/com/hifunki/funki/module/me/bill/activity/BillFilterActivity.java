@@ -37,13 +37,15 @@ public class BillFilterActivity extends BaseActivity {
     private TagAdapter<String> mAdapter;
     private List<String> stringList;
 
+    final static int REQUEST_BILL_TO_BILL_FILTER = 2;
+
     @Override
     protected int getViewResId() {
         return R.layout.activity_biil_filter;
     }
 
     public static void show(Activity mActivity, Context context) {
-        mActivity.startActivityForResult(new Intent(context, BillFilterActivity.class), BundleConst.REQUEST_BILL_TO_BILL_FILTER);
+        mActivity.startActivityForResult(new Intent(context, BillFilterActivity.class), BillFilterActivity.REQUEST_BILL_TO_BILL_FILTER);
     }
 
     @Override
@@ -85,7 +87,7 @@ public class BillFilterActivity extends BaseActivity {
                 bundle.putInt("bundle", position);
                 intent.putExtra("intent", bundle);
                 intent.setClass(BillFilterActivity.this, BillActivity.class);
-                setResult(BundleConst.REQUEST_BILL_TO_BILL_FILTER, intent);
+                setResult(BillFilterActivity.REQUEST_BILL_TO_BILL_FILTER, intent);
                 finish();
                 return true;
             }

@@ -10,11 +10,10 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.common.BundleConst;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;
 import com.hifunki.funki.module.photo.gallery.viewPager.SamplePagerAdapter;
 import com.hifunki.funki.widget.HackyViewPager;
+import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
 
@@ -32,6 +31,8 @@ import butterknife.OnClick;
  */
 public class GalleryVpActivity extends BaseTitleActivity implements View.OnClickListener {
 
+    @BindView(R.id.top_pic)
+    TopBarView topBarView;
     @BindView(R.id.vp_gallery_photo)
     HackyViewPager vpGalleryPhoto;
     @BindView(R.id.tv_gallery_num)
@@ -41,11 +42,13 @@ public class GalleryVpActivity extends BaseTitleActivity implements View.OnClick
     private int anInt;
     private int mSize;
     private ArrayList<PhotoInfo> photoInfoList;
+   static String KEY_GALLERY_PHOTO_NUMBER = "key_gallery_photo_number";
+    static  String KEY_GALLERY_PHOTO_ALL_NUMBER = "key_gallery_photo_all_number";
 
     public static void show(Context context, int position, ArrayList<PhotoInfo> photoInfoList) {
         Intent intent = new Intent(context, GalleryVpActivity.class);
-        intent.putExtra(BundleConst.KEY_GALLERY_PHOTO_NUMBER, position);
-        intent.putParcelableArrayListExtra(BundleConst.KEY_GALLERY_PHOTO_ALL_NUMBER, photoInfoList);
+        intent.putExtra(GalleryVpActivity.KEY_GALLERY_PHOTO_NUMBER, position);
+        intent.putParcelableArrayListExtra(GalleryVpActivity.KEY_GALLERY_PHOTO_ALL_NUMBER, photoInfoList);
         context.startActivity(intent);
     }
 
@@ -64,21 +67,16 @@ public class GalleryVpActivity extends BaseTitleActivity implements View.OnClick
     protected void initVariable() {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        anInt = extras.getInt(BundleConst.KEY_GALLERY_PHOTO_NUMBER);
-        photoInfoList = extras.getParcelableArrayList(BundleConst.KEY_GALLERY_PHOTO_ALL_NUMBER);
+        anInt = extras.getInt(GalleryVpActivity.KEY_GALLERY_PHOTO_NUMBER);
+        photoInfoList = extras.getParcelableArrayList(GalleryVpActivity.KEY_GALLERY_PHOTO_ALL_NUMBER);
         mSize = photoInfoList.size();
     }
 
     @Override
     protected void initTitleBar() {
-        ToolTitleBar.showLeftButton(this, activityGalleryVp, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
-
-        String number = String.format(getString(R.string.gallery_photo), anInt, mSize);
-
-        ToolTitleBar.showCenterButton(this, activityGalleryVp, ToolTitleBar.BTN_TYPE_TEXT, number, null);
-
-        ToolTitleBar.showRightButtonMsg(this, activityGalleryVp, R.string.confirm, this);
-
+        TextView titileText = topBarView.getTitileText();
+        String number = String.format((String) titileText.getText(), anInt, mSize);
+        titileText.setText(number);
     }
 
     @Override
@@ -87,7 +85,7 @@ public class GalleryVpActivity extends BaseTitleActivity implements View.OnClick
     }
 
     private void initViewPager() {
-        Log.e("test", "initViewPager: "+photoInfoList );
+        Log.e("test", "initViewPager: " + photoInfoList);
         vpGalleryPhoto.setAdapter(new SamplePagerAdapter(GalleryVpActivity.this, photoInfoList));
 
     }

@@ -1,7 +1,6 @@
 package com.hifunki.funki.widget.bar;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -32,8 +31,7 @@ public class TopBarView4Shot extends TopBarView {
         if (rootView != null) {
             LinearLayout linearLayout = (LinearLayout) rootView.findViewById(R.id.base_main);
             linearLayout.setBackground(null);
-            linearLayout.setBackgroundColor(Color.parseColor("#590C001F"));
-
+            linearLayout.setBackgroundColor(getResources().getColor(R.color._350C001F));
         }
     }
 }

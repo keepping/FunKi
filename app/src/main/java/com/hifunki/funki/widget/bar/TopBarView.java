@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,57 +17,53 @@ import com.hifunki.funki.util.StatusBarUtil;
 
 import java.lang.reflect.Method;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by chenzhaohua on 16/3/21.
  */
 public class TopBarView extends RelativeLayout {
 
-    private TextView tvCenterTitle;
-
-    private ImageView ivLeft;
-    private TextView tvLeft;
-
-    private TextView tvMenu;
-    private ImageView ivMenu;
-
-    private TextView tvMenuMore;
-    private ImageView ivMenuMore;
+    @BindView(R.id.base_main)
+    LinearLayout llBaseMain;
+    @BindView(R.id.tv_title)
+    TextView tvCenterTitle;
+    @BindView(R.id.iv_left)
+    ImageView ivLeft;
+    @BindView(R.id.tv_left)
+    TextView tvLeft;
+    @BindView(R.id.tv_menu)
+    TextView tvMenu;
+    @BindView(R.id.iv_menu)
+    ImageView ivMenu;
+    @BindView(R.id.tv_menu_more)
+    TextView tvMenuMore;
+    @BindView(R.id.iv_menu_more)
+    ImageView ivMenuMore;
 
     private Context mContext;
     protected View rootView;
+    int mHeight;
+    private String TAG = getClass().getSimpleName();
 
     public TopBarView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public TopBarView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        mContext = context;
-        initView(context, attrs);
+        this(context, attrs, 0);
     }
 
     public TopBarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         mContext = context;
+        rootView = LayoutInflater.from(context).inflate(R.layout.bar_top, this);
+        ButterKnife.bind(this, rootView);
         initView(context, attrs);
     }
 
     private void initView(Context context, AttributeSet attrs) {
-        rootView = LayoutInflater.from(context).inflate(R.layout.top_bar, this);
-        //根布局
-        LinearLayout llBaseMain = (LinearLayout) findViewById(R.id.base_main);
-        tvCenterTitle = (TextView) findViewById(R.id.tv_title);
-        ivLeft = (ImageView) findViewById(R.id.iv_left);
-        tvLeft = (TextView) findViewById(R.id.tv_left);
-        tvMenu = (TextView) findViewById(R.id.tv_menu);
-        ivMenu = (ImageView) findViewById(R.id.iv_menu);
-
-        //最右边的TextView
-        tvMenuMore = (TextView) findViewById(R.id.tv_menu_more);
-        //最右边的ImageView
-        ivMenuMore = (ImageView) findViewById(R.id.iv_menu_more);
-
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TopBarView);
         String leftText = typedArray.getString(R.styleable.TopBarView_firstText);
         String titleValue = typedArray.getString(R.styleable.TopBarView_titleText);
@@ -99,6 +96,13 @@ public class TopBarView extends RelativeLayout {
         });
 
         StatusBarUtil.adjustStatusBarHei(findViewById(R.id.base_main));
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        mHeight = llBaseMain.getMeasuredHeight();
+        Log.e(TAG, "onMeasure: " + mHeight);
     }
 
     private void showOrHideImageView(ImageView imageView, Drawable rightImage_r) {
@@ -151,7 +155,6 @@ public class TopBarView extends RelativeLayout {
         return ivMenuMore;
     }
 
-
     public TextView getFirstText() {
         return tvLeft;
     }
@@ -159,5 +162,7 @@ public class TopBarView extends RelativeLayout {
     public ImageView getFirstImageView() {
         return ivLeft;
     }
+
+
 }
 

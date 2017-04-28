@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.common.BundleConst;
 import com.hifunki.funki.common.CommonConst;
 import com.hifunki.funki.module.me.bill.adapter.BillAdapter;
 import com.hifunki.funki.module.me.bill.entity.BillEntity;
@@ -147,7 +146,7 @@ public class BillActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case BundleConst.REQUEST_BILL_TO_BILL_FILTER:
+            case BillFilterActivity.REQUEST_BILL_TO_BILL_FILTER:
                 Bundle extras = data.getBundleExtra("intent");
                 int bundle = extras.getInt("bundle");
                 break;
