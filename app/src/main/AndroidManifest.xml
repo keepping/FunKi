@@ -85,10 +85,8 @@
         <activity
             android:name=".module.login.LoginActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:screenOrientation="portrait" >
-
-        </activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <!-- 国家列表页 -->
         <activity
             android:name=".module.login.CountyListActivity"
@@ -96,8 +94,8 @@
         <!-- 注册界面 -->
         <activity
             android:name=".module.login.RegisterActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- 图形验证码界面 -->
         <activity
             android:name=".module.login.FindPwdGraphActivity"
@@ -203,7 +201,8 @@
         <activity android:name=".module.me.bill.activity.BillDetailActivity" />
         <activity android:name=".module.me.visit.activity.VisitActivity" />
         <activity android:name=".module.me.blacklist.activity.BlackListActivtiy" />
-        <activity android:name=".module.me.follow.activity.MyFollowActivity"></activity>
+        <activity android:name=".module.me.follow.activity.MyFollowActivity" />
+        <activity android:name=".module.live.anchor.activity.LiveFinishActivity"></activity>
     </application>
 
 </manifest>

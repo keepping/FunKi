@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.live.anchor.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -63,7 +64,7 @@ import static com.hifunki.funki.base.application.ApplicationMain.getContext;
  * @link
  * @since 2017-03-29 16:53:53
  */
-public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.RtmpListener, SrsRecordHandler.SrsRecordListener, SrsEncodeHandler.SrsEncodeListener {
+public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.RtmpListener, SrsRecordHandler.SrsRecordListener, SrsEncodeHandler.SrsEncodeListener, View.OnClickListener {
 
     private static final String TAG = "AnchorActivity";
     Button btnRecord = null;
@@ -117,6 +118,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
     private List<String> permissions;
     boolean isCountFinish = false;
     private FunKiDialog builder;
+    private Activity mActivity;
 
     private enum STATUS {
         UNINIT,
@@ -211,17 +213,25 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
                 break;
             case R.id.iv_anchor_exit:
                 View rootView = LayoutInflater.from(this).inflate(R.layout.dialog_anchor_exit, null);
-                RelativeLayout rlAnchorMain= (RelativeLayout) rootView.findViewById(R.id.rl_anchor_main);
-//                rlAnchorMain.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        builder.setDimiss();
-//                    }
-//                });
+                TextView tvSure= (TextView) rootView.findViewById(R.id.tv_dialog_anchor_sure);
+                TextView tvCancel= (TextView) rootView.findViewById(R.id.tv_dialog_anchor_cancel);
+                tvSure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LiveFinishActivity.show(mActivity,AnchorActivity.this);
+                    }
+                });
+                tvCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        builder.dismiss();
+                    }
+                });
                 builder = FunKiDialog.getInstance(this, rootView);
                 builder.setViewHeight(240, 124);
                 builder.show();
                 break;
+
         }
     }
 
@@ -236,7 +246,7 @@ public class AnchorActivity extends BaseWindowActivity implements RtmpHandler.Rt
 
     @Override
     protected void initVariable() {
-
+        mActivity = this;
     }
 
     @Override

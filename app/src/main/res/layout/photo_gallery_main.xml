@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_gallery_pick_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,8 +8,13 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/photo_gallery_title" />
-
+    <com.hifunki.funki.widget.bar.TopBarView4Gallery
+        android:id="@+id/tbv_bill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:galleryCenterImage="@drawable/iv_gallery_pick_dropdown_white"
+        app:galleryCenterText="所有照片"
+        app:menuText="@string/filter" />
 
     <RelativeLayout
         android:layout_width="match_parent"
