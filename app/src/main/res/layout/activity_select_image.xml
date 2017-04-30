@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_select_image"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,11 @@
     tools:context=".module.photo.gallery.activity.PhotoActivity"
     tools:ignore="MissingPrefix">
 
-    <include layout="@layout/title_templet" />
+    <com.hifunki.funki.widget.bar.TopBarView
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/visitor_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,8 +23,8 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_selectimage"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_select_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"

@@ -33,6 +33,7 @@ import com.hifunki.funki.module.me.recharge.activity.RechargeActivity;
 import com.hifunki.funki.module.me.user.UserAvatarActivity;
 import com.hifunki.funki.module.me.visit.activity.VisitActivity;
 import com.hifunki.funki.module.me.withdraw.activity.WithdrawActivity;
+import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
 import com.hifunki.funki.module.photo.personal.activity.PersonalPhotoActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
@@ -185,6 +186,8 @@ public class MeFragment extends BaseFragment {
                                 BlackListActivtiy.show(getContext());
                             }else if(position==4){
                                 VisitorFillActivity.show(getContext());
+                            }else if(position==5){
+                                PhotoActivity.show(getContext());
                             }
                         break;
                 }

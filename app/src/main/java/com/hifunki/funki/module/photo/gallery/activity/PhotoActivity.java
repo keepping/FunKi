@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
@@ -46,10 +47,10 @@ import butterknife.OnClick;
  * @link
  * @since 2017-02-28 09:42:42
  */
-public class PhotoActivity extends BaseTitleActivity implements View.OnClickListener {
+public class PhotoActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(R.id.iv_selectimage)
-    ImageView ivSelectimage;
+    @BindView(R.id.iv_select_image)
+    ImageView ivSelectImage;
     @BindView(R.id.et_nickname)
     EditText etNickname;
     @BindView(R.id.tv_complete)
@@ -61,7 +62,7 @@ public class PhotoActivity extends BaseTitleActivity implements View.OnClickList
     private IHandlerCallBack iHandlerCallBack;
     private List<String> path = new ArrayList<>();
     private final int PERMISSIONS_REQUEST_READ_CONTACTS = 8;
-    private String TAG = "PhotoActivity";
+    private String TAG = getClass().getSimpleName();
 
 
     public static void show(Context context) {
@@ -81,9 +82,7 @@ public class PhotoActivity extends BaseTitleActivity implements View.OnClickList
 
     @Override
     protected void initTitleBar() {
-        ToolTitleBar.showLeftButton(this, activitySelectImage, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
-        ToolTitleBar.showCenterButton(this, activitySelectImage, ToolTitleBar.BTN_TYPE_TEXT, R.string.visitor_title, null);
     }
 
     @Override
@@ -131,13 +130,13 @@ public class PhotoActivity extends BaseTitleActivity implements View.OnClickList
     }
 
 
-    @OnClick({R.id.iv_selectimage, R.id.et_nickname, R.id.tv_complete, R.id.activity_select_image})
+    @OnClick({R.id.iv_select_image, R.id.et_nickname, R.id.tv_complete, R.id.activity_select_image})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rlTitleLeft:
                 //back
                 break;
-            case R.id.iv_selectimage:
+            case R.id.iv_select_image:
                 initPermissions();
                 break;
             case R.id.et_nickname:
@@ -169,14 +168,15 @@ public class PhotoActivity extends BaseTitleActivity implements View.OnClickList
                 String filePath = path.get(0);
                 Bitmap bitmapSquare = BitmapFactory.decodeFile(filePath);//方形原图
 
-                RoundedBitmapDrawable drawableA = RoundedBitmapDrawableFactory.create(getResources(), bitmapSquare);
-                drawableA.setCircular(true);
-                Bitmap bitmapCircle = drawableToBitmap(drawableA);
+//                RoundedBitmapDrawable drawableA = RoundedBitmapDrawableFactory.create(getResources(), bitmapSquare);
+//                drawableA.setCircular(true);
+//                Bitmap bitmapCircle = drawableToBitmap(drawableA);
 
                 //Gif会报错
 
                 //设置头像
-                Glide.with(PhotoActivity.this).load(bitmapCircle).into(ivSelectimage);
+                ivSelectImage.setImageBitmap(bitmapSquare);
+//                Glide.with(PhotoActivity.this).load(bitmapSquare).into(ivSelectImage);
 
             }
 

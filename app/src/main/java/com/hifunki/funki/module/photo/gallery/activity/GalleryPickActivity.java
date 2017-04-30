@@ -68,15 +68,15 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     @BindView(R.id.rl_all_photo)
     RelativeLayout rlAllPhoto;
     @BindView(R.id.ll_preview)// 文件夹按钮
-    LinearLayout llPreview;
+            LinearLayout llPreview;
     @BindView(R.id.tv_gallery_preview)
     TextView tvGalleryPreview;
     @BindView(R.id.ll_gallery_sourceimage)
     LinearLayout llImageSize;
     @BindView(R.id.rvGalleryImage)// 图片列表
-    RecyclerView rvGalleryImage;
+            RecyclerView rvGalleryImage;
     @BindView(R.id.iv_gallery_icon)//图片向下角标
-    ImageView ivGalleryIcon;
+            ImageView ivGalleryIcon;
     @BindView(R.id.tv_all_photo)
     TextView tvGalleryFolder;
     private TextView tvFinish;
@@ -314,7 +314,6 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                                     photoInfoList.add(photoInfo);
                                     folderInfo.photoInfoList = photoInfoList;
                                     folderInfoList.add(folderInfo);
-
                                 } else {
                                     FolderInfo f = folderInfoList.get(folderInfoList.indexOf(folderInfo));
                                     f.photoInfoList.add(photoInfo);
@@ -330,13 +329,18 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                         for (PhotoInfo photoInfo : photoInfoList) {
                             tempPhotoPathList.add(photoInfo.path);
                         }
-                        //添加之前初始化选中的图片
-                        for (String mPhotoPath : galleryConfig.getPathList()) {
-                            if (!tempPhotoPathList.contains(mPhotoPath)) {
-                                PhotoInfo photoInfo = new PhotoInfo(mPhotoPath, null, 0L, 0);
-                                photoInfoList.add(0, photoInfo);
-                            }
+
+                        for(int i=0;i<photoInfoList.size()+1;i++){
+                            isSelected.put(i,false);
                         }
+                        //添加之前初始化选中的图片
+//                        for (String mPhotoPath : galleryConfig.getPathList()) {
+//                            if (!tempPhotoPathList.contains(mPhotoPath)) {
+//                                PhotoInfo photoInfo = new PhotoInfo(mPhotoPath, null, 0L, 0);
+//                                photoInfoList.add(0, photoInfo);
+//                            }
+//                        }
+
                         photoAdapter.notifyDataSetChanged();
                         hasFolderScan = true;
                     }
@@ -418,17 +422,17 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     }
 
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
-                folderListPopupWindow.dismiss();
-                return true;
-            }
-            mHandlerCallBack.onCancel();
-            exit();
-        }
-        return true;
-    }
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
+//                folderListPopupWindow.dismiss();
+//                return true;
+//            }
+//            mHandlerCallBack.onCancel();
+//            exit();
+//        }
+//        return true;
+//    }
 
     @Override
     public void onBackPressed() {
