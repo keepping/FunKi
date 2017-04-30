@@ -25,8 +25,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
 import com.hifunki.funki.module.photo.gallery.inter.GlideImageLoader;

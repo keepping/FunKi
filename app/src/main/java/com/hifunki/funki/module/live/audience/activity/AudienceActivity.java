@@ -115,8 +115,6 @@ public class AudienceActivity extends BaseActivity {
         }
     }
 
-    ;
-
     @Override
     public void onStart() {
         super.onStart();

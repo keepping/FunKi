@@ -137,11 +137,8 @@ public class RateShareEntry extends GroupEntry {
             if (availableBitrate != entry.availableBitrate) {
                 return false;
             }
-            if (targetRateShare != entry.targetRateShare) {
-                return false;
-            }
+            return targetRateShare == entry.targetRateShare;
 
-            return true;
         }
 
         @Override
@@ -178,11 +175,8 @@ public class RateShareEntry extends GroupEntry {
         if (targetRateShare != that.targetRateShare) {
             return false;
         }
-        if (entries != null ? !entries.equals(that.entries) : that.entries != null) {
-            return false;
-        }
+        return entries != null ? entries.equals(that.entries) : that.entries == null;
 
-        return true;
     }
 
     @Override

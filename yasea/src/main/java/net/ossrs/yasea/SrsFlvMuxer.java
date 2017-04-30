@@ -269,7 +269,7 @@ public class SrsFlvMuxer {
         public final static int Video = 9;
         // 18 = script data
         public final static int Script = 18;
-    };
+    }
 
     // E.4.3.1 VIDEODATA
     // CodecID UB [4]
@@ -857,7 +857,7 @@ public class SrsFlvMuxer {
                 // 5bits, 7.3.1 NAL unit syntax,
                 // H.264-AVC-ISO_IEC_14496-10.pdf, page 44.
                 // 7: SPS, 8: PPS, 5: I Frame, 1: P Frame
-                int nal_unit_type = (int)(frame.data.get(0) & 0x1f);
+                int nal_unit_type = frame.data.get(0) & 0x1f;
                 if (nal_unit_type == SrsAvcNaluType.SPS || nal_unit_type == SrsAvcNaluType.PPS) {
                     Log.i(TAG, String.format("annexb demux %dB, pts=%d, frame=%dB, nalu=%d",
                         bi.size, pts, frame.size, nal_unit_type));

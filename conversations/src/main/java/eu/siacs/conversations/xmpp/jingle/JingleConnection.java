@@ -1023,9 +1023,9 @@ public class JingleConnection implements Transferable {
 	}
 
 	interface OnProxyActivated {
-		public void success();
+		void success();
 
-		public void failed();
+		void failed();
 	}
 
 	public boolean hasTransportId(String sid) {

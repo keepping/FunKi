@@ -370,9 +370,7 @@ public class PictureParameterSet extends BitstreamElement {
             return false;
         if (weighted_bipred_idc != other.weighted_bipred_idc)
             return false;
-        if (weighted_pred_flag != other.weighted_pred_flag)
-            return false;
-        return true;
+        return weighted_pred_flag == other.weighted_pred_flag;
     }
 
     @Override

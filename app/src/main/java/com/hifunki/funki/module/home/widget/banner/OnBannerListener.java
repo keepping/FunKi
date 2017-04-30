@@ -10,5 +10,5 @@ package com.hifunki.funki.module.home.widget.banner;
  * @since 2017-03-08 10:06:06
  */
 public interface OnBannerListener {
-    public void OnBannerClick(int position);
+    void OnBannerClick(int position);
 }

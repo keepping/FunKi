@@ -350,10 +350,8 @@ public class ESDescriptor extends BaseDescriptor {
             return false;
         if (otherDescriptors != null ? !otherDescriptors.equals(that.otherDescriptors) : that.otherDescriptors != null)
             return false;
-        if (slConfigDescriptor != null ? !slConfigDescriptor.equals(that.slConfigDescriptor) : that.slConfigDescriptor != null)
-            return false;
+        return slConfigDescriptor != null ? slConfigDescriptor.equals(that.slConfigDescriptor) : that.slConfigDescriptor == null;
 
-        return true;
     }
 
     @Override

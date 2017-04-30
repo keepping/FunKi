@@ -47,7 +47,7 @@ public class DivergeView3 extends View {
     }
 
     public interface DivergeViewProvider{
-        public Bitmap getBitmap(Object obj);
+        Bitmap getBitmap(Object obj);
     }
 
 

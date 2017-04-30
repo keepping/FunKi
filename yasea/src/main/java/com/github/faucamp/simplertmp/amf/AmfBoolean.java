@@ -35,12 +35,12 @@ public class AmfBoolean implements AmfData {
     
     @Override
     public void readFrom(InputStream in) throws IOException {
-        value = (in.read() == 0x01) ? true : false;
+        value = (in.read() == 0x01);
     }
     
     public static boolean readBooleanFrom(InputStream in) throws IOException {
         // Skip data type byte (we assume it's already read)
-        return (in.read() == 0x01) ? true : false;
+        return (in.read() == 0x01);
     }
     
     @Override

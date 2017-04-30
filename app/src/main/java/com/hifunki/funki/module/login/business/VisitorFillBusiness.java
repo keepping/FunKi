@@ -78,10 +78,6 @@ public class VisitorFillBusiness {
             return false;
         }
         boolean isJump = ((sex != 0) || jump[0] || jump[1] || jump[2] || jump[3] || jump[4]);
-        if (!isJump) {
-            return false;
-        } else {
-            return true;
-        }
+        return isJump;
     }
 }

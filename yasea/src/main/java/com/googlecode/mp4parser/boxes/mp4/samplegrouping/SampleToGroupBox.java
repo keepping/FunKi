@@ -133,11 +133,8 @@ public class SampleToGroupBox extends AbstractFullBox {
             if (groupDescriptionIndex != entry.groupDescriptionIndex) {
                 return false;
             }
-            if (sampleCount != entry.sampleCount) {
-                return false;
-            }
+            return sampleCount == entry.sampleCount;
 
-            return true;
         }
 
         @Override

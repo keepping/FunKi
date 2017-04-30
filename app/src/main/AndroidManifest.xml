@@ -140,7 +140,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
         <!-- 账号基本类 -->
-        <activity android:name=".base.activity.AccountBaseActivity" />
         <activity android:name=".module.search.activity.SearchActivity" />
         <!-- 世界总榜 -->
         <activity android:name=".module.rank.world.activity.WorldRankActivity" />

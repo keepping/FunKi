@@ -30,7 +30,6 @@ import android.widget.Toast;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
 import com.hifunki.funki.module.photo.gallery.adapter.PhotoGalleryAdapter;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
