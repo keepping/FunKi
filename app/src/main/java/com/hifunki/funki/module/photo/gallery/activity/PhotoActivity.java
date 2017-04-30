@@ -31,6 +31,8 @@ import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
 import com.hifunki.funki.module.photo.gallery.config.GalleryPick;
 import com.hifunki.funki.module.photo.gallery.inter.GlideImageLoader;
 import com.hifunki.funki.module.photo.gallery.inter.IHandlerCallBack;
+import com.hifunki.funki.util.PermissionUtil;
+import com.hifunki.funki.util.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,9 +63,9 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
     private GalleryConfig galleryConfig;
     private IHandlerCallBack iHandlerCallBack;
     private List<String> path = new ArrayList<>();
-    private final int PERMISSIONS_REQUEST_READ_CONTACTS = 8;
     private String TAG = getClass().getSimpleName();
-
+    private boolean mPermissions = false;
+    private String provideName="com.hifunki.funki.fileprovider";
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, PhotoActivity.class));
@@ -79,7 +81,6 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-
     @Override
     protected void initTitleBar() {
 
@@ -88,12 +89,12 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initView() {
 
-        initGallery();
+        initIHandlerCallBack();
 
         galleryConfig = new GalleryConfig.Builder()
                 .imageLoader(new GlideImageLoader())    // ImageLoader 加载框架（必填）
                 .iHandlerCallBack(iHandlerCallBack)     // 监听接口（必填）
-                .provider("com.hifunki.funki.fileprovider")   // provider(必填)
+                .provider(provideName)                  // provider(必填)
                 .pathList(path)                         // 记录已选的图片
                 .multiSelect(false)                      // 是否多选   默认：false
                 .multiSelect(false, 9)                   // 配置是否多选的同时 配置多选数量   默认：false ， 9
@@ -105,7 +106,6 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
                 .build();
 
         galleryConfig.getBuilder().isOpenCamera(false).build();
-
 
     }
 
@@ -137,7 +137,11 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
                 //back
                 break;
             case R.id.iv_select_image:
-                initPermissions();
+                if (!PermissionUtil.checkWriteStorageAccess(PhotoActivity.this)) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+                } else {
+                    GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(PhotoActivity.this);
+                }
                 break;
             case R.id.et_nickname:
                 break;
@@ -149,7 +153,7 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
     }
 
 
-    private void initGallery() {
+    private void initIHandlerCallBack() {
         iHandlerCallBack = new IHandlerCallBack() {
             @Override
             public void onStart() {
@@ -162,22 +166,9 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
                 for (String s : photoList) {
                     path.add(s);
                 }
-
-                //TODO需要改成圆形头像
-
                 String filePath = path.get(0);
                 Bitmap bitmapSquare = BitmapFactory.decodeFile(filePath);//方形原图
-
-//                RoundedBitmapDrawable drawableA = RoundedBitmapDrawableFactory.create(getResources(), bitmapSquare);
-//                drawableA.setCircular(true);
-//                Bitmap bitmapCircle = drawableToBitmap(drawableA);
-
-                //Gif会报错
-
-                //设置头像
                 ivSelectImage.setImageBitmap(bitmapSquare);
-//                Glide.with(PhotoActivity.this).load(bitmapSquare).into(ivSelectImage);
-
             }
 
             @Override
@@ -196,32 +187,19 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
     }
 
 
-    // 授权管理
-    private void initPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            需要授权
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-//                拒绝过了
-                Toast.makeText(this, "请在 设置-应用管理 中开启此应用的储存授权。", Toast.LENGTH_SHORT).show();
-            } else {
-//                进行授权
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_CONTACTS);
-            }
-        } else {
-//            不需要授权
-            //页面跳转
-            GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(PhotoActivity.this);
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                同意授权
+        if (requestCode == 0) {
+            for (int ret : grantResults) {
+                if (ret != PackageManager.PERMISSION_GRANTED) {
+                    mPermissions = false;
+                    ToastUtils.showShortToastSafe("没有授权");
+                } else {
+                    mPermissions = true;
+                }
+            }
+            if (permissions.length == grantResults.length && mPermissions) {
                 GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(PhotoActivity.this);
-            } else {
-//                拒绝授权
             }
         }
     }

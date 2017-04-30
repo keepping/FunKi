@@ -4,8 +4,6 @@
     android:id="@+id/ll_gallery_pick_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="true"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <com.hifunki.funki.widget.bar.TopBarView4Gallery
@@ -41,7 +39,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/ll_gallery_sourceimage"
+                android:id="@+id/ll_gallery_source_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -72,6 +70,5 @@
             android:background="@color/_230C47" />
 
     </RelativeLayout>
-
 
 </LinearLayout>

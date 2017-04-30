@@ -19,6 +19,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hifunki.funki.R;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.photo.gallery.adapter.FolderAdapter;
 import com.hifunki.funki.module.photo.gallery.adapter.PhotoGalleryAdapter;
@@ -51,6 +53,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 图片选择页面
@@ -61,7 +64,7 @@ import butterknife.BindView;
  * @link
  * @since 2017-03-03 17:36:36
  */
-public class GalleryPickActivity extends BaseTitleActivity implements View.OnClickListener {
+public class GalleryPickActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.tbv_bill)
     TopBarView4Gallery topBarView4Gallery;
@@ -71,7 +74,7 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
             LinearLayout llPreview;
     @BindView(R.id.tv_gallery_preview)
     TextView tvGalleryPreview;
-    @BindView(R.id.ll_gallery_sourceimage)
+    @BindView(R.id.ll_gallery_source_image)
     LinearLayout llImageSize;
     @BindView(R.id.rvGalleryImage)// 图片列表
             RecyclerView rvGalleryImage;
@@ -105,7 +108,7 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     private static final int LOADER_ALL = 0;         // 获取所有图片
     private static final int LOADER_CATEGORY = 1;    // 获取某个文件夹中的所有图片
     private static final int REQUEST_CAMERA = 100;   // 设置拍摄照片的 REQUEST_CODE
-
+    private GridLayoutManager gridLayoutManager;
 
     @Override
     protected int getViewResId() {
@@ -116,22 +119,17 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     protected void initVariable() {
         mContext = GalleryPickActivity.this;
         mActivity = this;
+        galleryConfig = GalleryPick.getInstance().getGalleryConfig();
+        mHandlerCallBack = galleryConfig.getIHandlerCallBack();
+        mHandlerCallBack.onStart();
+        resultPhoto = galleryConfig.getPathList();
+        isSelected = new HashMap<>();
     }
 
-    @Override
-    protected void initTitleBar() {
-
-    }
-
-    /**
-     * 初始化视图
-     */
     @Override
     protected void initView() {
         tvFinish = topBarView4Gallery.getMenuText();
-        galleryConfig = GalleryPick.getInstance().getGalleryConfig();
 
-        init();
         initPhoto();  //加载图片
     }
 
@@ -142,22 +140,13 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
 
     @Override
     protected void initAdapter() {
-
+        initPhotoAdapter();
+        initFolderAdapter();
     }
 
-    /**
-     * 初始化
-     */
-    private void init() {
-        mHandlerCallBack = galleryConfig.getIHandlerCallBack();
-        mHandlerCallBack.onStart();
-
-        resultPhoto = galleryConfig.getPathList();
-
-        final GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
+    private void initPhotoAdapter() {
+        gridLayoutManager = new GridLayoutManager(mContext, 3);
         rvGalleryImage.setLayoutManager(gridLayoutManager);
-
-        isSelected = new HashMap<>();
 
         photoAdapter = new PhotoGalleryAdapter(mActivity, mContext, photoInfoList, isSelected);
         photoAdapter.setOnCallBack(new PhotoGalleryAdapter.OnCallBack() {
@@ -173,15 +162,12 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                         requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
                     }
                 }
-
             }
 
             @Override
             public void OnClickPhoto(List<String> selectPhotoList) {
-
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
-
                 if (!galleryConfig.isMultiSelect() && resultPhoto != null && resultPhoto.size() > 0) {
                     if (galleryConfig.isCrop()) {
                         cameraTempFile = new File(resultPhoto.get(0));
@@ -197,16 +183,13 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
             //选中照片操作
             @Override
             public void OnSelectPhoto(List<String> selectPhotoList, int position) {
-
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
-
                 if (resultPhoto != null && resultPhoto.size() > 0) {
                     cameraTempFile = new File(resultPhoto.get(0));
                     cropTempFile = FileUtils.getCorpFile(galleryConfig.getFilePath());
                 }
                 mSelectedPosition = position;
-
                 tvGalleryPreview.setClickable(true);
                 tvFinish.setVisibility(View.VISIBLE);
             }
@@ -216,18 +199,16 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
             public void OnNoSelectPhoto(List<String> selectPhotoList, int position) {
                 resultPhoto.clear();
                 resultPhoto.addAll(selectPhotoList);
-
                 mSelectedPosition = -1;
-
                 tvGalleryPreview.setClickable(false);
                 tvFinish.setVisibility(View.GONE);
             }
         });
-
-        photoAdapter.setSelectPhoto(resultPhoto);
+//        photoAdapter.setSelectPhoto(resultPhoto);
         rvGalleryImage.setAdapter(photoAdapter);
+    }
 
-
+    private void initFolderAdapter() {
         //设置文件夹适配器
         folderAdapter = new FolderAdapter(mActivity, mContext, folderInfoList);
         folderAdapter.setOnClickListener(new FolderAdapter.OnClickListener() {
@@ -252,9 +233,9 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                 gridLayoutManager.scrollToPosition(0);
             }
         });
-
     }
 
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (PermissionUtil.checkCameraAccess(getApplicationContext())) {
@@ -320,27 +301,22 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                                 }
                             }
                         } while (data.moveToNext());
-
                         photoInfoList.clear();
                         photoInfoList.addAll(tempPhotoList);
-
-
                         List<String> tempPhotoPathList = new ArrayList<>();
                         for (PhotoInfo photoInfo : photoInfoList) {
                             tempPhotoPathList.add(photoInfo.path);
                         }
-
-                        for(int i=0;i<photoInfoList.size()+1;i++){
-                            isSelected.put(i,false);
-                        }
                         //添加之前初始化选中的图片
-//                        for (String mPhotoPath : galleryConfig.getPathList()) {
-//                            if (!tempPhotoPathList.contains(mPhotoPath)) {
-//                                PhotoInfo photoInfo = new PhotoInfo(mPhotoPath, null, 0L, 0);
-//                                photoInfoList.add(0, photoInfo);
-//                            }
-//                        }
-
+                        for (String mPhotoPath : galleryConfig.getPathList()) {
+                            if (!tempPhotoPathList.contains(mPhotoPath)) {
+                                PhotoInfo photoInfo = new PhotoInfo(mPhotoPath, null, 0L, 0);
+                                photoInfoList.add(0, photoInfo);
+                            }
+                        }
+                        for (int i = 0; i < photoInfoList.size() + 1; i++) {
+                            isSelected.put(i, false);
+                        }
                         photoAdapter.notifyDataSetChanged();
                         hasFolderScan = true;
                     }
@@ -416,36 +392,11 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void exit() {
-        mHandlerCallBack.onFinish();
-        finish();
-    }
 
-
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
-//                folderListPopupWindow.dismiss();
-//                return true;
-//            }
-//            mHandlerCallBack.onCancel();
-//            exit();
-//        }
-//        return true;
-//    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        mHandlerCallBack.onCancel();
-        exit();
-    }
-
-
-    @Override
+    @OnClick({R.id.tv_menu, R.id.tv_all_photo, R.id.tv_gallery_preview, R.id.ll_gallery_source_image})
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_menu://确定按钮
+            case R.id.tv_menu://确定按钮
                 startCropImage();
                 break;
             case R.id.tv_all_photo://所有图片文件夹
@@ -468,7 +419,7 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
                     GalleryVpActivity.show(this, mSelectedPosition, arrayList);
                 }
                 break;
-            case R.id.ll_gallery_sourceimage://点击原图
+            case R.id.ll_gallery_source_image://点击原图
                 break;
         }
     }
@@ -515,10 +466,20 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
         Runtime.getRuntime().gc();
     }
 
-    //                case R.id.btnGalleryPickBack://返回键
-    //                mHandlerCallBack.onCancel();
-    //                exit();
-    //                break;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (folderListPopupWindow != null && folderListPopupWindow.isShowing()) {
+            folderListPopupWindow.dismiss();
+        }
+        mHandlerCallBack.onCancel();
+        exit();
+    }
+
+    private void exit() {
+        mHandlerCallBack.onFinish();
+        finish();
+    }
 
 
 }

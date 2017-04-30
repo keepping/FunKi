@@ -287,8 +287,10 @@ public class ShotActivity extends BaseActivity {
                         ToastUtils.showShortToastSafe("授权成功");
                     }
                 }
-                mPermissions = true;
-                openCamera();
+                if (permissions.length == grantResults.length) {
+                    mPermissions = true;
+                    openCamera();
+                }
                 break;
         }
     }
