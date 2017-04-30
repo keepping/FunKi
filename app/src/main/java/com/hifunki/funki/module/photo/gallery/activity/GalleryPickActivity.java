@@ -68,15 +68,15 @@ public class GalleryPickActivity extends BaseTitleActivity implements View.OnCli
     @BindView(R.id.rl_all_photo)
     RelativeLayout rlAllPhoto;
     @BindView(R.id.ll_preview)// 文件夹按钮
-            LinearLayout llPreview;
+    LinearLayout llPreview;
     @BindView(R.id.tv_gallery_preview)
     TextView tvGalleryPreview;
     @BindView(R.id.ll_gallery_sourceimage)
     LinearLayout llImageSize;
     @BindView(R.id.rvGalleryImage)// 图片列表
-            RecyclerView rvGalleryImage;
+    RecyclerView rvGalleryImage;
     @BindView(R.id.iv_gallery_icon)//图片向下角标
-            ImageView ivGalleryIcon;
+    ImageView ivGalleryIcon;
     @BindView(R.id.tv_all_photo)
     TextView tvGalleryFolder;
     private TextView tvFinish;
