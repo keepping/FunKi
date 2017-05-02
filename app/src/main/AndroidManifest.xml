@@ -90,7 +90,7 @@
             android:name=".module.login.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- 国家列表页 -->
         <activity
             android:name=".module.login.CountyListActivity"
@@ -185,9 +185,7 @@
 
         <!-- 兑换记录 -->
         <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
-        <activity android:name=".module.dynamic.post.activity.ShotActivity" >
-
-        </activity>
+        <activity android:name=".module.dynamic.post.activity.ShotActivity"></activity>
         <activity android:name=".module.photo.personal.activity.PersonalPhotoActivity" />
         <activity android:name=".module.dynamic.me.activity.MyDynamicActivity" />
         <activity android:name=".module.dynamic.normal.activity.NormalDynamicActivity" />
@@ -201,7 +199,11 @@
         <activity android:name=".module.me.visit.activity.VisitActivity" />
         <activity android:name=".module.me.blacklist.activity.BlackListActivtiy" />
         <activity android:name=".module.me.follow.activity.MyFollowActivity" />
-        <activity android:name=".module.live.anchor.activity.LiveFinishActivity"></activity>
+        <activity android:name=".module.live.anchor.activity.LiveFinishActivity" />
+        <activity
+            android:name=".module.me.settting.activity.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -30,6 +30,7 @@ import com.hifunki.funki.module.me.follow.activity.MyFollowActivity;
 import com.hifunki.funki.module.me.live.activity.MyLiveActicity;
 import com.hifunki.funki.module.me.profile.activity.EditProfileActivity;
 import com.hifunki.funki.module.me.recharge.activity.RechargeActivity;
+import com.hifunki.funki.module.me.settting.activity.SettingsActivity;
 import com.hifunki.funki.module.me.user.UserAvatarActivity;
 import com.hifunki.funki.module.me.visit.activity.VisitActivity;
 import com.hifunki.funki.module.me.withdraw.activity.WithdrawActivity;
@@ -188,6 +189,8 @@ public class MeFragment extends BaseFragment {
                                 VisitorFillActivity.show(getContext());
                             }else if(position==5){
                                 PhotoActivity.show(getContext());
+                            }else if(position==6){
+                                SettingsActivity.show(getContext());
                             }
                         break;
                 }
