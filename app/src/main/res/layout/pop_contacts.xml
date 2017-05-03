@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginRight="5dp"
-    android:layout_gravity=""
+    android:id="@+id/ll_msg_contacts"
     android:background="@color/_4A2F75">
 
     <LinearLayout

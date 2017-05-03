@@ -8,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.module.msg.activity.MsgContactsActvity;
 import com.hifunki.funki.module.msg.adapter.ExpandableItemAdapter;
 import com.hifunki.funki.module.msg.adapter.MsgRecommendAdapter;
 import com.hifunki.funki.module.msg.entity.Level0Item;
@@ -163,6 +165,13 @@ public class MsgFragment extends BaseFragment implements View.OnClickListener {
         }
 
         sharePopWindow.init(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout llRootView= (LinearLayout) shareView.findViewById(R.id.ll_msg_contacts);
+        llRootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MsgContactsActvity.show(getContext());
+            }
+        });
         //here 105 is for marginRight
         int width = DisplayUtil.getScreenWidth(getContext()) -  (int)DisplayUtil.dip2Px(getContext(),105);
         sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_VIEW, tbvMsg, width, 0);

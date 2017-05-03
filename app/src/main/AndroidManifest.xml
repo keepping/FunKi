@@ -184,7 +184,7 @@
 
         <!-- 兑换记录 -->
         <activity android:name=".module.me.exchange.activity.ExChangeDetailActivity" />
-        <activity android:name=".module.dynamic.post.activity.ShotActivity"></activity>
+        <activity android:name=".module.dynamic.post.activity.ShotActivity" />
         <activity android:name=".module.photo.personal.activity.PersonalPhotoActivity" />
         <activity android:name=".module.dynamic.me.activity.MyDynamicActivity" />
         <activity android:name=".module.dynamic.normal.activity.NormalDynamicActivity" />
@@ -202,7 +202,8 @@
         <activity
             android:name=".module.me.settting.activity.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".module.msg.activity.MsgContactsActvity"></activity>
     </application>
 
 </manifest>
