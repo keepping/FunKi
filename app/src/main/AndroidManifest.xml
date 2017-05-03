@@ -81,7 +81,6 @@
         <!-- 游客必填信息页 -->
         <activity
             android:name=".module.login.VisitorFillActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- android:launchMode="singleTop" -->
