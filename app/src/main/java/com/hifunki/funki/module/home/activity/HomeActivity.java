@@ -24,7 +24,7 @@ import com.hifunki.funki.module.dynamic.post.activity.PostDynamicActivity;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;
-import com.hifunki.funki.module.home.fragment.MsgFragment;
+import com.hifunki.funki.module.msg.fragment.MsgFragment;
 import com.hifunki.funki.module.home.fragment.StoreFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 import com.hifunki.funki.module.live.anchor.activity.AnchorActivity;

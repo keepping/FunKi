@@ -66,12 +66,18 @@ public class TopBarView extends RelativeLayout {
     private void initView(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TopBarView);
         String leftText = typedArray.getString(R.styleable.TopBarView_firstText);
+        boolean leftImageVisible = typedArray.getBoolean(R.styleable.TopBarView_leftImageVisible, true);
         String titleValue = typedArray.getString(R.styleable.TopBarView_titleText);
         String menuText = typedArray.getString(R.styleable.TopBarView_menuText);
         Drawable rightImage_l = typedArray.getDrawable(R.styleable.TopBarView_menuImage);
         String rightValue_r = typedArray.getString(R.styleable.TopBarView_menuTextMore);
         Drawable rightImage_r = typedArray.getDrawable(R.styleable.TopBarView_menuImageMore);
         boolean hasBg = typedArray.getBoolean(R.styleable.TopBarView_hasBackGround, true);//是否展示background
+        if (leftImageVisible) {
+            ivLeft.setVisibility(VISIBLE);
+        } else {
+            ivLeft.setVisibility(INVISIBLE);
+        }
         tvLeft.setText(leftText);
         tvCenterTitle.setText(titleValue);
 
@@ -132,6 +138,7 @@ public class TopBarView extends RelativeLayout {
             e.printStackTrace();
         }
     }
+
 
     //获取中间的textView
     public TextView getTitileText() {

@@ -87,6 +87,7 @@
     </declare-styleable>
 
     <declare-styleable name="TopBarView">
+        <attr name="leftImageVisible" format="boolean" />
         <attr name="firstText" format="string" />
         <attr name="titleText" format="string" />
         <attr name="menuText" format="string" />
