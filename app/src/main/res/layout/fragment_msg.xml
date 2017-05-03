@@ -18,10 +18,16 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_msg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tbv_msg" />
-    <android.support.v7.widget.RecyclerView
+    <TextView
         android:layout_below="@+id/rv_msg"
+        android:id="@+id/tv_msg"
+        android:text="你好"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/tv_msg"
         android:id="@+id/rv_msg1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -76,6 +82,7 @@
     <!--</LinearLayout>-->
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="83dp"
         android:layout_alignParentBottom="true"
