@@ -15,79 +15,14 @@
         app:menuImage="@drawable/iv_msg_contacts"
         app:titleText="消息" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tbv_msg" />
-    <TextView
-        android:layout_below="@+id/rv_msg"
-        android:id="@+id/tv_msg"
-        android:text="你好"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <android.support.v7.widget.RecyclerView
-        android:layout_below="@+id/tv_msg"
-        android:id="@+id/rv_msg1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/tbv_msg"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="215dp"-->
-                <!--android:layout_centerInParent="true"-->
-                <!--android:gravity="center"-->
-                <!--android:text="您当前暂无消息，快去找人聊聊吧"-->
-                <!--android:textColor="@color/_9B44ED"-->
-                <!--android:textSize="14sp"-->
-                <!--android:textStyle="bold" />-->
-        <!--</RelativeLayout>-->
-
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="48dp">-->
-
-            <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                <!--android:id="@+id/cv_photo_image"-->
-                <!--android:layout_width="31dp"-->
-                <!--android:layout_height="31dp" />-->
-
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<TextView-->
-                    <!--android:textSize="15sp"-->
-                    <!--android:textColor="@color/_BBABD4"-->
-                    <!--android:text="FunKi"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
-            <!--</LinearLayout>-->
-        <!--</RelativeLayout>-->
-    <!--</LinearLayout>-->
-
     <LinearLayout
-        android:visibility="gone"
+        android:id="@+id/ll_msg_recommend"
         android:layout_width="match_parent"
         android:layout_height="83dp"
         android:layout_alignParentBottom="true"
         android:background="@color/_0C001F"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,4 +39,87 @@
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
+
+    <com.hifunki.funki.widget.MeScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_msg_recommend"
+        android:layout_below="@+id/tbv_msg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tbv_msg" />
+
+            <TextView
+                android:id="@+id/tv_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rv_msg"
+                android:text="你好" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_msg1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_msg" />
+        </LinearLayout>
+    </com.hifunki.funki.widget.MeScrollView>
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/tbv_msg"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="215dp"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:gravity="center"-->
+    <!--android:text="您当前暂无消息，快去找人聊聊吧"-->
+    <!--android:textColor="@color/_9B44ED"-->
+    <!--android:textSize="14sp"-->
+    <!--android:textStyle="bold" />-->
+    <!--</RelativeLayout>-->
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="48dp">-->
+
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+    <!--android:id="@+id/cv_photo_image"-->
+    <!--android:layout_width="31dp"-->
+    <!--android:layout_height="31dp" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<TextView-->
+    <!--android:textSize="15sp"-->
+    <!--android:textColor="@color/_BBABD4"-->
+    <!--android:text="FunKi"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
+    <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
+
+
 </RelativeLayout>
