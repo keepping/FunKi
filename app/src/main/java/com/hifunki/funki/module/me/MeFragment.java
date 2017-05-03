@@ -231,7 +231,7 @@ public class MeFragment extends BaseFragment {
         mListener = null;
     }
 
-    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans, R.id.tv_recharge, R.id.rl_dymic, R.id.rl_live, R.id.civ_me_photo, R.id.tv_exchange, R.id.tv_withdraw})
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans, R.id.rl_recharge,R.id.rl_exchange,R.id.rl_withdraw, R.id.rl_dymic, R.id.rl_live, R.id.civ_me_photo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_me_bill:
@@ -272,13 +272,13 @@ public class MeFragment extends BaseFragment {
             case R.id.ll_fans://粉丝
                 MyFansActivity.show(getContext());
                 break;
-            case R.id.tv_recharge://充值
+            case R.id.rl_recharge://充值
                 RechargeActivity.show(getContext());
                 break;
-            case R.id.tv_exchange://兑换
+            case R.id.rl_exchange://兑换
                 ExchangeActivity.show(getContext());
                 break;
-            case R.id.tv_withdraw://提现
+            case R.id.rl_withdraw://提现
                 WithdrawActivity.show(getContext());
                 break;
         }

@@ -1,5 +1,7 @@
 package com.hifunki.funki.module.me.exchange.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
 import com.hifunki.funki.R;
@@ -16,13 +18,13 @@ import butterknife.BindView;
  * @link
  * @since 2017-03-31 16:01:01
  */
-public class ExChangeRecordActivity extends BaseActivity {
+public class ExChangeDetailActivity extends BaseActivity {
 
     @BindView(R.id.rv_exchange_record)
     RecyclerView recyclerView;
     @Override
     protected int getViewResId() {
-        return R.layout.activity_ex_change_record;
+        return R.layout.activity_exchange_detail;
     }
 
     @Override
@@ -45,5 +47,9 @@ public class ExChangeRecordActivity extends BaseActivity {
     @Override
     protected void bindData4NoNet() {
 
+    }
+
+    public static void show(Context mContext) {
+        mContext.startActivity(new Intent(mContext,ExChangeDetailActivity.class));
     }
 }
