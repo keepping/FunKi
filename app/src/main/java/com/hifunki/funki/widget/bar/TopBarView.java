@@ -44,7 +44,7 @@ public class TopBarView extends RelativeLayout {
 
     private Context mContext;
     protected View rootView;
-    int mHeight;
+    public int mHeight;
     private String TAG = getClass().getSimpleName();
 
     public TopBarView(Context context) {

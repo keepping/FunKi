@@ -5,7 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.hifunki.funki.R;
@@ -14,6 +16,8 @@ import com.hifunki.funki.module.msg.adapter.ExpandableItemAdapter;
 import com.hifunki.funki.module.msg.adapter.MsgRecommendAdapter;
 import com.hifunki.funki.module.msg.entity.Level0Item;
 import com.hifunki.funki.module.msg.entity.Level1Item;
+import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.widget.bar.TopBarView;
 
 import java.util.ArrayList;
@@ -51,6 +55,8 @@ public class MsgFragment extends BaseFragment implements View.OnClickListener {
     private List<String> mList;
     private ArrayList<MultiItemEntity> res;
     private String TAG = getClass().getSimpleName();
+    private PopWindowUtil sharePopWindow;//分享popWindow
+    private View shareView;
 
     public MsgFragment() {
     }
@@ -90,8 +96,6 @@ public class MsgFragment extends BaseFragment implements View.OnClickListener {
 
         int lv0Count = 1;
         int lv1Count = 14;
-
-
         res = new ArrayList<>();
         for (int i = 0; i < lv0Count; i++) {
             Level0Item lv0 = new Level0Item("This is " + i + "th item in Level 0", "subtitle of " + i);
@@ -152,8 +156,16 @@ public class MsgFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
+        if (sharePopWindow == null) {
+            sharePopWindow = PopWindowUtil.getInstance(getContext());
+            shareView = LayoutInflater.from(getContext()).inflate(R.layout.pop_contacts, null);
+        }
 
+        sharePopWindow.init(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //here 105 is for marginRight
+        int width = DisplayUtil.getScreenWidth(getContext()) -  (int)DisplayUtil.dip2Px(getContext(),105);
+        sharePopWindow.showPopWindow(shareView, PopWindowUtil.ATTACH_LOCATION_VIEW, tbvMsg, width, 0);
     }
 
     public interface OnFragmentInteractionListener {
