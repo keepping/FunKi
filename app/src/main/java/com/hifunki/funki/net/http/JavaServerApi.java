@@ -16,7 +16,7 @@ import retrofit2.http.POST;
  */
 public interface JavaServerApi {
 
-    public static final String SERVER_URL = "http://192.168.199.208:3807/";
+    String SERVER_URL = "http://192.168.199.208:3807/";
 
     @Headers({
             "Content-Type: application/json",

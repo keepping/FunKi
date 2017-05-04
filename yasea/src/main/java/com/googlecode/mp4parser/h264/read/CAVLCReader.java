@@ -92,7 +92,7 @@ public class CAVLCReader extends BitstreamReader {
 
     public boolean readBool(String message) throws IOException {
 
-        boolean res = read1Bit() == 0 ? false : true;
+        boolean res = read1Bit() != 0;
 
         trace(message, res ? "1" : "0");
 

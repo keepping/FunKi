@@ -174,11 +174,8 @@ public class SampleGroupDescriptionBox extends AbstractFullBox {
         if (groupEntries != null ? !groupEntries.equals(that.groupEntries) : that.groupEntries != null) {
             return false;
         }
-        if (groupingType != null ? !groupingType.equals(that.groupingType) : that.groupingType != null) {
-            return false;
-        }
+        return groupingType != null ? groupingType.equals(that.groupingType) : that.groupingType == null;
 
-        return true;
     }
 
     @Override

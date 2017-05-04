@@ -59,9 +59,8 @@ public class TemporalLevelEntry extends GroupEntry {
         TemporalLevelEntry that = (TemporalLevelEntry) o;
 
         if (levelIndependentlyDecodable != that.levelIndependentlyDecodable) return false;
-        if (reserved != that.reserved) return false;
+        return reserved == that.reserved;
 
-        return true;
     }
 
     @Override

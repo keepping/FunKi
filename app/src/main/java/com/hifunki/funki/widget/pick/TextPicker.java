@@ -210,7 +210,7 @@ public class TextPicker<T> extends View {              //加入点击
             if(targetValue!=null)
                 value = targetValue.toString();
         }catch (Exception e){
-            e.printStackTrace();;
+            e.printStackTrace();
         }
 
         return value;

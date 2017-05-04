@@ -142,7 +142,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         listFragment.add(HomeFollowFragment.newInstance("aa", "xx"));
         listFragment.add(HomeHotFragment.newInstance("aa", "xx"));
         listFragment.add(HomeNewFragment.newInstance("aa", "xx"));
-
+//        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -194,6 +194,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     @Override
     public void onDestroy() {
         super.onDestroy();
+//        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -284,6 +285,9 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
                 rbHomeFollow.setTextColor(getResources().getColor(R.color._BBABD4));
                 rbHomeNew.setTextColor(getResources().getColor(R.color._BBABD4));
                 ivHomeIndicate.setVisibility(View.VISIBLE);
+
+                //暂停followMovie
+
                 break;
             case 2:
                 rbHomeNew.setChecked(true);
@@ -291,6 +295,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
                 rbHomeHot.setTextColor(getResources().getColor(R.color._BBABD4));
                 rbHomeFollow.setTextColor(getResources().getColor(R.color._BBABD4));
                 ivHomeIndicate.setVisibility(View.INVISIBLE);
+
                 break;
         }
     }

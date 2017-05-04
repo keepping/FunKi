@@ -62,7 +62,7 @@ public class PopWindowUtil {
                 mPopupWindow.showAtLocation(attachContainer == null ? mPopupWindow.getContentView() : attachContainer, x == 0 ? Gravity.BOTTOM : Gravity.NO_GRAVITY, x, y);
                 break;
             default:
-                mPopupWindow.showAsDropDown(attachContainer, 0, 0);
+                mPopupWindow.showAsDropDown(attachContainer, x, y);
                 break;
         }
         return INSTANCE;

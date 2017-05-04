@@ -274,10 +274,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @OnClick({R.id.tvPhone, R.id.ivPhoneLine, R.id.tvEmail, R.id.ivEmailLine, R.id.vpPhoneEmail, R.id.llRegNext, R.id.ivAgree, R.id.tvHelpCenter, R.id.activity_login})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rlTitleLeft:
-                //跳到登录界面
-                LoginActivity.show(this);
-                break;
+
             case R.id.tvPhone://行动电话
                 ivPhoneLine.setVisibility(View.VISIBLE);
                 ivEmailLine.setVisibility(View.INVISIBLE);

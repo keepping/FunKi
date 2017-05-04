@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hifunki.funki.module.me.exchange.activity.ExChangeRecordActivity">
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.me.settting.activity.SettingsActivity">
+
     <com.hifunki.funki.widget.bar.TopBarView
-        android:id="@+id/topView"
+        android:id="@+id/tbv_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:titleText="兑换记录" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_exchange_record"
+        app:titleText="设置" />
+    <TextView
+        android:id="@+id/tv_setting_exit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:background="@color/_6B4E9A"
+        android:text="退出"
+        android:textSize="45sp" />
 </LinearLayout>

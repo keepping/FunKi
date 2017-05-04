@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseCoordinatorActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.show.adapter.ShowAdapter;
 import com.hifunki.funki.module.show.entity.ShowEntity;
 import com.hifunki.funki.widget.dialog.FunKiDialog;
@@ -31,7 +31,7 @@ import butterknife.BindView;
  * @link
  * @since 2017-03-16 10:12:12
  */
-public class ShowActivity extends BaseCoordinatorActivity implements View.OnClickListener {
+public class ShowActivity extends BaseActivity implements View.OnClickListener {
 
 
     @BindView(R.id.rl_show)

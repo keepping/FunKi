@@ -3,7 +3,10 @@ package com.hifunki.funki.module.photo.gallery.viewPager;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -25,9 +28,13 @@ public class SamplePagerAdapter extends PagerAdapter {
     private Activity aty;
     private String[] imageUrls;
 
+    private Handler mImageHandler;
     public static int TYPE_GIF = 0;
     public static int TYPE_JPG = 1;
     public static int TYPE_PNG = 2;
+    private int SEND_IMAGE=1;
+    private PhotoView photoView;
+    private String TAG=getClass().getSimpleName();
 
     public SamplePagerAdapter(Activity aty, String[] imageUrls) {
         this.aty = aty;
@@ -37,6 +44,18 @@ public class SamplePagerAdapter extends PagerAdapter {
     public SamplePagerAdapter(GalleryVpActivity aty, ArrayList<PhotoInfo> photoInfoList) {
         this.aty = aty;
         this.photoInfoList = photoInfoList;
+        mImageHandler=new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if(msg.what==SEND_IMAGE){
+                    String name = Thread.currentThread().getName();
+                    Log.e(TAG, "SamplePagerAdapter: "+name );
+                    Bitmap bitmap= (Bitmap) msg.obj;
+                    photoView.setImageBitmap(bitmap);
+                }
+            }
+        };
     }
 
     @Override
@@ -47,12 +66,12 @@ public class SamplePagerAdapter extends PagerAdapter {
     @Override
     public View instantiateItem(ViewGroup container, int position) {
         View root = View.inflate(aty, R.layout.layout_gallery_photo, null);
-        final PhotoView photoView = (PhotoView) root.findViewById(R.id.images);
+        photoView = (PhotoView) root.findViewById(R.id.images);
 //        final GifImageView gifView = (GifImageView) root.findViewById(R.id.gifimage);
         final ProgressBar mProgressBar = (ProgressBar) root.findViewById(R.id.progress);
 
 //        BitmapFactory.decodeFile(photoInfoList.get(position).getName())
-        displayImages(photoView, com.hifunki.funki.util.FileUtils.readFile2Bytes(photoInfoList.get(position).getName()));
+        displayImages(com.hifunki.funki.util.FileUtils.readFile2Bytes(photoInfoList.get(position).getName()));
 
 //        gifRequest图片请求
 
@@ -91,17 +110,32 @@ public class SamplePagerAdapter extends PagerAdapter {
     /**
      * 加载本地图片
      *
-     * @param photoView
      * @param bytes
      */
-    private void displayImages(PhotoView photoView, byte[] bytes) {
+    private void displayImages(final byte[] bytes) {
         //如果读到的是空，不处理
         if (bytes == null) {
             return;
         }
-        Bitmap bitmap1 = byteArrayToBitmap(bytes);
 
-        photoView.setImageBitmap(bitmap1);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                String name = Thread.currentThread().getName();
+                Log.e(TAG, "run: "+name );
+                Bitmap bitmap1 = byteArrayToBitmap(bytes);
+                Message message=mImageHandler.obtainMessage();
+                message.what=SEND_IMAGE;
+                message.obj=bitmap1;
+                mImageHandler.sendMessage(message);
+            }
+        };
+//        runnable.run();
+        new Thread(runnable).start();
+
+
+
+//        photoView.setImageBitmap(bitmap1);
 //        Glide.with(aty).load(bitmap).into(photoView);
     }
 

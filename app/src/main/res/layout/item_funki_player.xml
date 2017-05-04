@@ -5,7 +5,7 @@
     android:background="#000000">
 
     <SurfaceView
-        android:id="@+id/video_view"
+        android:id="@+id/sv_video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
@@ -16,32 +16,32 @@
         android:layout_gravity="center" />
 
     <FrameLayout
-        android:id="@+id/play"
+        android:id="@+id/fl_play"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/play_init"
+            android:id="@+id/iv_play_init"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:src="@drawable/iv_play_start_1" />
 
         <ProgressBar
-            android:id="@+id/play_loading"
+            android:id="@+id/pb_loading"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center" />
 
         <ImageView
-            android:id="@+id/play_pause"
+            android:id="@+id/iv_play_pause"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:src="@drawable/iv_play_pause" />
 
         <ImageView
-            android:id="@+id/play_restart"
+            android:id="@+id/iv_play_restart"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -50,7 +50,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/play_control"
+        android:id="@+id/ll_play_control"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_gravity="bottom"
@@ -59,7 +59,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/play_pause_or_start"
+            android:id="@+id/iv_play_pause_start"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
@@ -69,7 +69,7 @@
             android:src="@drawable/iv_play_pause" />
 
         <TextView
-            android:id="@+id/play_time_current"
+            android:id="@+id/iv_play_current_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -79,17 +79,15 @@
             android:textSize="18sp" />
 
         <SeekBar
-            android:id="@+id/play_seek"
+            android:id="@+id/iv_play_seek"
             android:layout_width="0dp"
             android:layout_height="10dp"
             android:layout_weight="10"
             android:progressDrawable="@drawable/play_progress"
-            android:thumb="@drawable/ic_circles"
-
-            />
+            android:thumb="@drawable/ic_circles" />
 
         <TextView
-            android:id="@+id/play_time"
+            android:id="@+id/iv_play_all_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -99,7 +97,7 @@
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/play_full_screen"
+            android:id="@+id/iv_play_fullscreen"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"

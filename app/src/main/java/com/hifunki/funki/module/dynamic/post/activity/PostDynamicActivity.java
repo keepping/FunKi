@@ -156,7 +156,7 @@ public class PostDynamicActivity extends BaseActivity {
         ImageView postImage;
 
         ViewHolder() {
-            mainView = getLayoutInflater().inflate(R.layout.item_post_dynamic, (ViewGroup) null, false);
+            mainView = getLayoutInflater().inflate(R.layout.item_post_dynamic, null, false);
             ButterKnife.bind(this, mainView);
         }
 
