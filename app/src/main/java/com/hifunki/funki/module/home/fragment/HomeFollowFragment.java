@@ -15,6 +15,7 @@ import com.hifunki.funki.module.home.viewholder.FollowPicture;
 import com.hifunki.funki.module.home.viewholder.FollowRecommend;
 import com.hifunki.funki.net.back.Post;
 import com.powyin.scroll.adapter.MultipleRecycleAdapter;
+import com.powyin.scroll.widget.ISwipe;
 import com.powyin.scroll.widget.SwipeRefresh;
 
 import butterknife.BindView;
@@ -88,7 +89,7 @@ public class HomeFollowFragment extends BaseFragment {
 //                multipleRecycleAdapter.addLast(new Post(4, CommonConst.NINE_PHOTO, imagePath));
 //                multipleRecycleAdapter.addLast(new Post(1, CommonConst.NINE_PHOTO, imagePath));
 //
-//                swipeRefresh.setFreshStatue(ISwipe.FreshStatus.SUCCESS);
+                swipeRefresh.setFreshStatue(ISwipe.FreshStatus.SUCCESS);
             }
 
             @Override
@@ -98,7 +99,7 @@ public class HomeFollowFragment extends BaseFragment {
 //                multipleRecycleAdapter.addLast(new Post(1, CommonConst.NINE_PHOTO, imagePath));
 //                multipleRecycleAdapter.addLast(new Post(4, CommonConst.NINE_PHOTO, imagePath));
 //                System.out.println("---------------------------onLoading");
-//                swipeRefresh.setLoadMoreStatus(ISwipe.LoadedStatus.CONTINUE);
+                swipeRefresh.setLoadMoreStatus(ISwipe.LoadedStatus.CONTINUE);
 
             }
         });

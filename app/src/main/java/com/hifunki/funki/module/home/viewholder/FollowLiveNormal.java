@@ -46,4 +46,7 @@ public class FollowLiveNormal extends PowViewHolder<Post> {
         Glide.with(mActivity).load(data.liveUri).into((ImageView) mItemView.findViewById(R.id.iv_photo));
 
     }
+
+
+
 }

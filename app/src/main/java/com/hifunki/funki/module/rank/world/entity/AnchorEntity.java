@@ -19,6 +19,7 @@ public class AnchorEntity implements MultiItemEntity {
     public static final int SECOND = 2;
     public static final int THIRD = 3;
     public static final int NORMAL = 4;
+    public static final int SPECIAL = 5;
 
     private int position;
     private String imagePath;
@@ -26,6 +27,23 @@ public class AnchorEntity implements MultiItemEntity {
     private int sex;
     private int level;
     private int goldNumber;
+
+    @Override
+    public String toString() {
+        return "AnchorEntity{" +
+                "itemType=" + itemType +
+                ", position=" + position +
+                ", imagePath='" + imagePath + '\'' +
+                ", username='" + username + '\'' +
+                ", sex=" + sex +
+                ", level=" + level +
+                ", goldNumber=" + goldNumber +
+                '}';
+    }
+
+    public static int getSPECIAL() {
+        return SPECIAL;
+    }
 
     public AnchorEntity(int itemType, int position, String imagePath, String username, int sex, int level, int goldNumber) {
         this.itemType = itemType;
@@ -106,18 +124,7 @@ public class AnchorEntity implements MultiItemEntity {
         this.goldNumber = goldNumber;
     }
 
-    @Override
-    public String toString() {
-        return "AnchorEntity{" +
-                "itemType=" + itemType +
-                ", position=" + position +
-                ", imagePath='" + imagePath + '\'' +
-                ", username='" + username + '\'' +
-                ", sex=" + sex +
-                ", level=" + level +
-                ", goldNumber=" + goldNumber +
-                '}';
-    }
+
 
     @Override
     public int getItemType() {
