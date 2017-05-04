@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -62,6 +63,17 @@ public class MeScrollView extends NestedScrollView {
 
         return !target.canScrollVertically((int)velocityY) && flingWithNestedDispatch((int) velocityY) ;
 
+    }
+
+    @Override
+    public void dispatchWindowFocusChanged(boolean hasFocus) {
+        //super.dispatchWindowFocusChanged(hasFocus);
+    }
+
+    @Override
+    protected boolean dispatchGenericFocusedEvent(MotionEvent event) {
+        return true;
+        //return super.dispatchGenericFocusedEvent(event);
     }
 
     // from NestScrollView Code

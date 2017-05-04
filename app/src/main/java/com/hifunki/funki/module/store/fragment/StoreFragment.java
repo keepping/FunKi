@@ -1,16 +1,20 @@
-package com.hifunki.funki.module.home.fragment;
+package com.hifunki.funki.module.store.fragment;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.module.home.activity.HomeActivity;
-import com.hifunki.funki.module.login.VisitorFillActivity;
+import com.hifunki.funki.module.msg.adapter.ContactsFriendAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -19,13 +23,16 @@ import butterknife.BindView;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.fragment.StoreFragment.java
+ * @value com.hifunki.funki.module.store.fragment.StoreFragment.java
  * @link
  * @since 2017-03-08 10:06:06
  */
 public class StoreFragment extends BaseFragment {
 
-
+    @BindView(R.id.tv_stores)
+    TextView tvStores;
+    @BindView(R.id.rv_store)
+    RecyclerView rvStores;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -33,7 +40,8 @@ public class StoreFragment extends BaseFragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private String TAG = HomeActivity.TAG;
+    private String TAG = getClass().getSimpleName();
+    private List<String> list;
 
     public static StoreFragment newInstance(String param1, String param2) {
         StoreFragment fragment = new StoreFragment();
@@ -67,12 +75,25 @@ public class StoreFragment extends BaseFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        list = new ArrayList<>();
+        for(int i=0;i<100;i++){
+            list.add("sss");
+        }
     }
 
     @Override
     protected void initListener() {
         super.initListener();
 
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
+//        tvStores.setFocusable(true);
+        ContactsFriendAdapter adapter=new ContactsFriendAdapter(R.layout.item_search_user,list);
+        rvStores.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvStores.setAdapter(adapter);
     }
 
     @Override

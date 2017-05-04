@@ -5,7 +5,7 @@ package com.hifunki.funki.module.home.widget.banner;
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.fragment.StoreFragment.java
+ * @value com.hifunki.funki.module.store.fragment.StoreFragment.java
  * @link
  * @since 2017-03-08 10:06:06
  */
