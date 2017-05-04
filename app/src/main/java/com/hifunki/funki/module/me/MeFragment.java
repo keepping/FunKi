@@ -3,9 +3,12 @@ package com.hifunki.funki.module.me;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,6 +47,7 @@ import com.hifunki.funki.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -90,6 +94,8 @@ public class MeFragment extends BaseFragment {
     TextView tvExchange;
     @BindView(R.id.tv_withdraw)
     TextView tvWithDraw;
+    @BindView(R.id.tv_me_account_num)
+    TextView tvAccountNum;
 
     private String mParam1;
     private String mParam2;
@@ -104,6 +110,8 @@ public class MeFragment extends BaseFragment {
 
     private OnFragmentInteractionListener mListener;
     private List<String> mInfoTag;//个人中心信息标签
+    private String TAG = getClass().getSimpleName();
+    private Handler numHandler;
 
     public MeFragment() {
     }
@@ -115,6 +123,18 @@ public class MeFragment extends BaseFragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -144,7 +164,19 @@ public class MeFragment extends BaseFragment {
         mInfoTag.add(getString(R.string.setting));
         mInfoTag.add(getString(R.string.help_feedback));
         mInfoTag.add(getString(R.string.business_cooperate));
+        numHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (msg.what == 0) {
+                    int i = msg.arg1;
+                    String name = Thread.currentThread().getName();
+                    System.out.println("name="+name);
+                    tvAccountNum.setText("" + i);
+                }
 
+            }
+        };
     }
 
     @Override
@@ -177,21 +209,21 @@ public class MeFragment extends BaseFragment {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 super.onItemChildClick(adapter, view, position);
-                switch (view.getId()){
+                switch (view.getId()) {
                     case R.id.rl_item_info:
-                            if(position==0){
-                                PersonalPhotoActivity.show(getContext(), PersonalPhotoActivity.VALUE_ME_PHOTO_TO_GALLERY);
-                            }else if(position==1){
-                                VisitActivity.show(getContext());
-                            }else if(position==3){
-                                BlackListActivtiy.show(getContext());
-                            }else if(position==4){
-                                VisitorFillActivity.show(getContext());
-                            }else if(position==5){
-                                PhotoActivity.show(getContext());
-                            }else if(position==6){
-                                SettingsActivity.show(getContext());
-                            }
+                        if (position == 0) {
+                            PersonalPhotoActivity.show(getContext(), PersonalPhotoActivity.VALUE_ME_PHOTO_TO_GALLERY);
+                        } else if (position == 1) {
+                            VisitActivity.show(getContext());
+                        } else if (position == 3) {
+                            BlackListActivtiy.show(getContext());
+                        } else if (position == 4) {
+                            VisitorFillActivity.show(getContext());
+                        } else if (position == 5) {
+                            PhotoActivity.show(getContext());
+                        } else if (position == 6) {
+                            SettingsActivity.show(getContext());
+                        }
                         break;
                 }
             }
@@ -215,13 +247,35 @@ public class MeFragment extends BaseFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: ");
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            final TimerTask timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    for (int i = 0; i < 5001; i++) {
+                        Message message=numHandler.obtainMessage();
+                        message.what=0;
+                        message.arg1=i;
+                        numHandler.sendMessage(message);
+                    }
+                }
+            };
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    timerTask.run();
+                }
+            }).start();
+
+
         }
     }
 
@@ -231,7 +285,7 @@ public class MeFragment extends BaseFragment {
         mListener = null;
     }
 
-    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans, R.id.rl_recharge,R.id.rl_exchange,R.id.rl_withdraw, R.id.rl_dymic, R.id.rl_live, R.id.civ_me_photo})
+    @OnClick({R.id.iv_me_bill, R.id.iv_me_profile, R.id.iv_me_share, R.id.iv_me_list, R.id.iv_me_authentication, R.id.ll_follow, R.id.ll_fans, R.id.rl_recharge, R.id.rl_exchange, R.id.rl_withdraw, R.id.rl_dymic, R.id.rl_live, R.id.civ_me_photo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_me_bill:
