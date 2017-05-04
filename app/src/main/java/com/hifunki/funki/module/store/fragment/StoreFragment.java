@@ -91,6 +91,8 @@ public class StoreFragment extends BaseFragment {
     protected void initView(View root) {
         super.initView(root);
 //        tvStores.setFocusable(true);
+        rvStores.setFocusable(false);
+//        rvStores.setFocusableInTouchMode(false);
         ContactsFriendAdapter adapter=new ContactsFriendAdapter(R.layout.item_search_user,list);
         rvStores.setLayoutManager(new LinearLayoutManager(getContext()));
         rvStores.setAdapter(adapter);

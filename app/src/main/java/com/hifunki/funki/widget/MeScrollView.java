@@ -65,16 +65,16 @@ public class MeScrollView extends NestedScrollView {
 
     }
 
-    @Override
-    public void dispatchWindowFocusChanged(boolean hasFocus) {
-        //super.dispatchWindowFocusChanged(hasFocus);
-    }
-
-    @Override
-    protected boolean dispatchGenericFocusedEvent(MotionEvent event) {
-        return true;
-        //return super.dispatchGenericFocusedEvent(event);
-    }
+//    @Override
+//    public void dispatchWindowFocusChanged(boolean hasFocus) {
+//        //super.dispatchWindowFocusChanged(hasFocus);
+//    }
+//
+//    @Override
+//    protected boolean dispatchGenericFocusedEvent(MotionEvent event) {
+//        return true;
+//        //return super.dispatchGenericFocusedEvent(event);
+//    }
 
     // from NestScrollView Code
     private boolean flingWithNestedDispatch(int velocityY) {
