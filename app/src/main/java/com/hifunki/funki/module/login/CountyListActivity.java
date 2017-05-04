@@ -13,7 +13,6 @@ import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.login.entity.City;
 import com.hifunki.funki.module.login.adapter.CityListAdapter;
 import com.hifunki.funki.module.login.widget.SideLetterBar;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +31,7 @@ import butterknife.OnClick;
  */
 public class CountyListActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(R.id.tvTitleLeft)
-    TextView tvTitleLeft;
-    @BindView(R.id.rlTitleLeft)
-    RelativeLayout rlTitleLeft;
-    @BindView(R.id.tvTitleCenter)
-    TextView tvTitleCenter;
-    @BindView(R.id.rlTitleCenter)
-    RelativeLayout rlTitleCenter;
-    @BindView(R.id.ll_title_right)
-    LinearLayout llTitleRight;
+
     @BindView(R.id.flTitleContainer)
     FrameLayout flTitleContainer;
     @BindView(R.id.iv_search)
@@ -101,16 +91,16 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initTitleBar() {
-        ToolTitleBar.showLeftButton(this, activityCountryList, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
-        ToolTitleBar.showCenterButton(this, activityCountryList, ToolTitleBar.BTN_TYPE_TEXT, R.string.choose_country, null);
+//        ToolTitleBar.showLeftButton(this, activityCountryList, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
+//        ToolTitleBar.showCenterButton(this, activityCountryList, ToolTitleBar.BTN_TYPE_TEXT, R.string.choose_country, null);
     }
 
 
     @OnClick({R.id.rl_search, R.id.side_letter_bar, R.id.activity_country_list})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rlTitleLeft://左边的back
-                break;
+//            case R.id.rlTitleLeft://左边的back
+//                break;
             case R.id.rl_search://搜索
                 //跳转搜索结果界面
                 CountryResultActivity.show(this);

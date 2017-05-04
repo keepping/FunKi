@@ -134,10 +134,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.ll_login_register:
                 RegisterActivity.show(this);
                 break;
-            case R.id.rlTitleLeft:
-                VisitorFillActivity.show(this);
-                finish();
-                break;
             case R.id.tv_menu:
                 RegisterActivity.show(this);
             case R.id.tvPhone:

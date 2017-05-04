@@ -116,9 +116,7 @@ public class FindPwdGraphActivity extends BaseActivity implements View.OnClickLi
     @OnClick({R.id.iv_pwd_country, R.id.tv_pwd_country, R.id.llCounty, R.id.iv_pwd_graph, R.id.tvConfirm, R.id.rlConfirm, R.id.activity_pwd_graph})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rlTitleLeft:
-                finish();
-                break;
+
             case R.id.iv_pwd_country:
                 break;
             case R.id.tv_pwd_country:

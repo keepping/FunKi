@@ -11,18 +11,13 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.photo.gallery.config.GalleryConfig;
@@ -131,9 +126,7 @@ public class PhotoActivity extends BaseActivity implements View.OnClickListener 
     @OnClick({R.id.iv_select_image, R.id.et_nickname, R.id.tv_complete, R.id.activity_select_image})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rlTitleLeft:
-                //back
-                break;
+
             case R.id.iv_select_image:
                 if (!PermissionUtil.checkWriteStorageAccess(PhotoActivity.this)) {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
