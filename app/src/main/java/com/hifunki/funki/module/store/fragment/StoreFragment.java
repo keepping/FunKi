@@ -29,10 +29,7 @@ import butterknife.BindView;
  */
 public class StoreFragment extends BaseFragment {
 
-    @BindView(R.id.tv_stores)
-    TextView tvStores;
-    @BindView(R.id.rv_store)
-    RecyclerView rvStores;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -75,10 +72,7 @@ public class StoreFragment extends BaseFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        list = new ArrayList<>();
-        for(int i=0;i<100;i++){
-            list.add("sss");
-        }
+
     }
 
     @Override
@@ -90,12 +84,7 @@ public class StoreFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-//        tvStores.setFocusable(true);
-        rvStores.setFocusable(false);
-//        rvStores.setFocusableInTouchMode(false);
-        ContactsFriendAdapter adapter=new ContactsFriendAdapter(R.layout.item_search_user,list);
-        rvStores.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvStores.setAdapter(adapter);
+
     }
 
     @Override

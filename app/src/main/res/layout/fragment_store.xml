@@ -10,33 +10,4 @@
         android:layout_height="wrap_content"
         android:text="@string/store_fragment" />
 
-    <com.hifunki.funki.widget.MeScrollView
-        android:id="@+id/nest"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tv_store">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-
-                android:textSize="58sp"
-                android:background="@color/_61E46D"
-                android:text="@string/app_name"
-                android:id="@+id/tv_stores"
-                android:layout_width="match_parent"
-                android:layout_height="500dp" />
-            <!--android:focusable="true"-->
-            <!--android:focusableInTouchMode="true"-->
-            <android.support.v7.widget.RecyclerView
-                android:focusable="false"
-                android:id="@+id/rv_store"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_below="@+id/tv_stores" />
-
-        </RelativeLayout>
-    </com.hifunki.funki.widget.MeScrollView>
 </RelativeLayout>
