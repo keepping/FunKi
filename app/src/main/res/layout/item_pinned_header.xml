@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/_240C48"
+    android:orientation="vertical">
     <!--android:padding="2dp"-->
     <TextView
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
         android:id="@+id/tv_animal"
-        android:background="#5A5A5A"
-        tools:text="熊猫"
-        android:gravity="center"
-        android:textSize="18dp"
-        android:padding="8dp"
-        android:textColor="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textColor="@color/_9B44ED"
+        android:textSize="17dp"
+        tools:text="熊猫" />
 
 </LinearLayout>

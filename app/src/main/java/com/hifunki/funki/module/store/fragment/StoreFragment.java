@@ -3,20 +3,13 @@ package com.hifunki.funki.module.store.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.module.msg.adapter.ContactsFriendAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * 首页商城Fragment
@@ -28,7 +21,6 @@ import butterknife.BindView;
  * @since 2017-03-08 10:06:06
  */
 public class StoreFragment extends BaseFragment {
-
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";

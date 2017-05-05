@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:background="#70E593">
-    <!--    android:layout_marginBottom="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="49dp"
+    android:background="@color/_28114D">
+
     <ImageView
+        android:layout_marginLeft="10dp"
         android:id="@+id/iv_animal"
+        android:layout_width="31dp"
+        android:layout_height="31dp"
         android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        tools:src="@drawable/bg_recharge_item"/>
+        tools:src="@drawable/bg_recharge_item" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/tv_pos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:padding="8dp"
         android:textColor="#000000"
         android:textSize="18dp"
-        tools:text="1"/>
+        tools:text="1" />
 
-</FrameLayout>
+</LinearLayout>
