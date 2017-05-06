@@ -78,9 +78,11 @@ public class FunKiPlayer extends FrameLayout {
     TextView tvNetPlayRestart;//无网络重新播放
     String uri;
     CountDownTimer timer;
+    String imageView;
 
     PLAY_STATUS status = PLAY_STATUS.UNINIT;
     private boolean isAttatch = false;
+    private SurfaceHolder mHolder;
 
     enum PLAY_STATUS {
         UNINIT,                    //未初始化
@@ -112,7 +114,7 @@ public class FunKiPlayer extends FrameLayout {
 
         seekBar.setMax(100);
         seekBar.setOnSeekBarChangeListener(seekBarChangeListener);
-
+        mHolder = surfaceView.getHolder();
         flPlay.setOnClickListener(clickListener);
         ivPlayPauseStart.setOnClickListener(clickListener);
         ivPlayFullScreen.setOnClickListener(clickListener);
@@ -122,28 +124,35 @@ public class FunKiPlayer extends FrameLayout {
             updateUI();
             return;
         }
-
         initSurfaceHolder();
-
     }
 
     private void initSurfaceHolder() {
-        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+        mHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                ensurePlayer();
+
+                System.out.println("name=initSurfaceHolder=surfaceCreated" + System.currentTimeMillis());
+
                 if (status == PLAY_STATUS.UNINIT && !TextUtils.isEmpty(uri)) {
+                    ensurePlayer();
+                    //持续等待获取uri的值
+                    System.out.println("name=initSurfaceHolder=" + System.currentTimeMillis());
                     play(uri);
                 }
             }
 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-                ijkMediaPlayer.setDisplay(holder);
+                System.out.println("name=initSurfaceHolder=surfaceChanged" + System.currentTimeMillis());
+                if (ijkMediaPlayer != null) {
+                    ijkMediaPlayer.setDisplay(holder);
+                }
             }
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
+                System.out.println("name=initSurfaceHolder=surfaceDestroyed" + System.currentTimeMillis());
                 if (ijkMediaPlayer != null) {
                     ijkMediaPlayer.stop();
                 }
@@ -153,8 +162,13 @@ public class FunKiPlayer extends FrameLayout {
         });
     }
 
+    public void loadDatas(String video, String imageView) {
+        this.uri = video;
+        this.imageView = imageView;
+    }
+
     public void play(final String uri) {
-        ensurePlayer();
+//        ensurePlayer();
         this.uri = uri;
         status = PLAY_STATUS.UNINIT;
         Glide.with(activity).load(CommonConst.IMAGE_VIEW).into(ivPlayBg);
@@ -165,8 +179,6 @@ public class FunKiPlayer extends FrameLayout {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-//        status = PLAY_STATUS.LOADING;
         updateUI();
     }
 
@@ -192,6 +204,12 @@ public class FunKiPlayer extends FrameLayout {
                     updateUI();
                 }
             });
+            ijkMediaPlayer.setOnErrorListener(new IMediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(IMediaPlayer iMediaPlayer, int i, int i1) {
+                    return false;
+                }
+            });
         }
     }
 
@@ -203,12 +221,12 @@ public class FunKiPlayer extends FrameLayout {
             timer = null;
         }
         long duration = ijkMediaPlayer.getDuration();
-        System.out.println("funkiplayer=" + duration);
+        System.out.println("home=duration" + duration);
         if (duration > 0) {
             timer = new CountDownTimer(duration, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    System.out.println("funkiplayer=millisUntilFinished" + millisUntilFinished);
+                    System.out.println("home=millisUntilFinished" + millisUntilFinished);
                     updateUI();
                 }
 
@@ -230,11 +248,11 @@ public class FunKiPlayer extends FrameLayout {
                     switch (status) {
                         case UNINIT:
                             status = PLAY_STATUS.LOADING;
-                            System.out.println("status="+status+"uninit");
+                            System.out.println("home=" + status + "uninit");
                             break;
                         case LOADING:
                             status = PLAY_STATUS.PLAYING_SILENCE;
-                            System.out.println("status=="+status+"loading");
+                            System.out.println("home==" + status + "loading");
                             break;
                         case PLAYING_SILENCE:
                             status = PLAY_STATUS.PLAYING_NOTIFY;
@@ -386,6 +404,7 @@ public class FunKiPlayer extends FrameLayout {
     protected void onAttachedToWindow() {
         isAttatch = true;
         super.onAttachedToWindow();
+        System.out.println("home-->onAttachedToWindow");
 //        ensurePlayer();
     }
 
@@ -393,6 +412,7 @@ public class FunKiPlayer extends FrameLayout {
     protected void onDetachedFromWindow() {
         isAttatch = false;
         super.onDetachedFromWindow();
+        System.out.println("home-->onDetachedFromWindow");
         if (ijkMediaPlayer != null) {
             ijkMediaPlayer.pause();
             ijkMediaPlayer = null;
@@ -446,6 +466,18 @@ public class FunKiPlayer extends FrameLayout {
             }
         }
     };
+
+
+//    public interface OnLoadDatasListener {
+//        void setOnLoadDatas(boolean isLoadDatas);
+//    }
+//
+//    public OnLoadDatasListener onLoadDatasListener;
+//
+//    public void setOnLoadDatasListener(OnLoadDatasListener listener) {
+//        this.onLoadDatasListener = listener;
+//    }
+//    onLoadDatasListener.setOnLoadDatas(false);
 
 
 }

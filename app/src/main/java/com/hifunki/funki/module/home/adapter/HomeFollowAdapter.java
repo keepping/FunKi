@@ -56,7 +56,17 @@ public class HomeFollowAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, B
                 break;
             case AnchorEntity.THIRD:
                 FunKiPlayer funKiPlayer = helper.getView(R.id.fun_player);
+
+//                funKiPlayer.setOnLoadDatasListener(new FunKiPlayer.OnLoadDatasListener() {
+//                    @Override
+//                    public void setOnLoadDatas(boolean isLoadDats) {
+//
+//                    }
+//                });
+                System.out.println("name=adapter=" + System.currentTimeMillis());
+
                 funKiPlayer.play(CommonConst.VIDEO);
+                funKiPlayer.loadDatas(CommonConst.VIDEO, CommonConst.IMAGE_VIEW);
                 break;
             case AnchorEntity.NORMAL:
                 NineGridlayout nineGridlayout = helper.getView(R.id.iv_ngrid_layout);

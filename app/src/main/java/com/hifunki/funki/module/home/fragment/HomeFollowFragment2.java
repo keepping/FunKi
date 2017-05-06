@@ -91,6 +91,7 @@ public class HomeFollowFragment2 extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
+
         HomeFollowAdapter adapter = new HomeFollowAdapter(anchorEntities);
         rvFollow.setLayoutManager(new LinearLayoutManager(getContext()));
         rvFollow.setAdapter(adapter);
