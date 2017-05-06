@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="54dp"
+    android:layout_marginTop="28dp"
+    android:background="@color/_28114D"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tv_currency_symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="14dp"
+        android:text="$"
+        android:textColor="@color/_9B44ED"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/tv_currency_symbol"
+        android:text="10"
+        android:textColor="@color/_9B44ED"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/iv_exchange_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="86dp"
+        android:src="@drawable/iv_exchange_point" />
+
+    <TextView
+        android:id="@+id/tv_exchange_before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="29dp"
+        android:layout_toRightOf="@+id/iv_exchange_point"
+        android:text="1800"
+        android:textColor="@color/_BBABD4"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/tv_exchange_before"
+        android:src="@drawable/iv_me_income_unit" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="14dp"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016.4.2"
+            android:textColor="@color/_BBABD4"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="9dp"
+            android:text="14:42"
+            android:textColor="@color/_BBABD4"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</RelativeLayout>
