@@ -1,4 +1,4 @@
-package io.kickflip.sdk.av;
+package io.media.av;
 
 import android.opengl.EGL14;
 import android.opengl.EGLContext;

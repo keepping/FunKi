@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package io.kickflip.sdk.av;
-
-import android.opengl.Matrix;
+package io.media.av;
 
 import java.nio.FloatBuffer;
 

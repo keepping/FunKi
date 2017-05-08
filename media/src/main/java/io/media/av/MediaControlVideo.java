@@ -1,4 +1,4 @@
-package io.kickflip.sdk.av;
+package io.media.av;
 
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -19,8 +19,8 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 
-import io.kickflip.sdk.view.GLCameraEncoderView;
-import io.kickflip.sdk.view.GLCameraView;
+import io.media.wiget.GLCameraEncoderView;
+import io.media.wiget.GLCameraView;
 
 /**
  * @hide
@@ -108,7 +108,7 @@ public class MediaControlVideo implements SurfaceTexture.OnFrameAvailableListene
     }
 
     /**
-     * Resets per-recording state. This excludes {@link io.kickflip.sdk.av.EglStateSaver},
+     * Resets per-recording state. This excludes {@link EglStateSaver},
      * which should be re-used across recordings made by this MediaControlVideo instance.
      *
      * @param config the desired parameters for the next recording.
@@ -139,15 +139,15 @@ public class MediaControlVideo implements SurfaceTexture.OnFrameAvailableListene
      * This must be called after {@link #stopRecording()} and before {@link #release()}
      *
      * @param config the desired parameters for the next recording. Make sure you're
-     *               providing a new {@link io.kickflip.sdk.av.SessionConfig} to avoid
+     *               providing a new {@link SessionConfig} to avoid
      *               overwriting a previous recording.
      */
     public void reset(SessionConfig config) {
         if (DEBUG) {
-            Log.i(TAG, mState.toString() + "  : reset");
+            Log.i(TAG, mState.toString() + "  : initOrReset");
         }
         if (mState != STATE.UNINITIALIZED)
-            throw new IllegalArgumentException("reset called in invalid state");
+            throw new IllegalArgumentException("initOrReset called in invalid state");
         mState = STATE.INITIALIZING;
         mHandler.sendMessage(mHandler.obtainMessage(MSG_RESET, config));
 
@@ -313,6 +313,7 @@ public class MediaControlVideo implements SurfaceTexture.OnFrameAvailableListene
 
     public void setPreviewDisplay(GLSurfaceView display) {
 
+
         mDisplayRenderer = new SurfaceRenderer(this);
         // Prep GLSurfaceView and attach Renderer
         display.setEGLContextClientVersion(2);
@@ -416,7 +417,7 @@ public class MediaControlVideo implements SurfaceTexture.OnFrameAvailableListene
 
     /**
      * Stop recording. After this call you must call either {@link #release()} to release resources if you're not going to
-     * make any subsequent recordings, or {@link #reset(io.kickflip.sdk.av.SessionConfig)} to prepare
+     * make any subsequent recordings, or {@link #reset(SessionConfig)} to prepare
      * the encoder for the next recording
      * <p/>
      * Called from UI thread
@@ -1026,7 +1027,7 @@ public class MediaControlVideo implements SurfaceTexture.OnFrameAvailableListene
                         throw new RuntimeException("Unexpected msg what=" + what);
                 }
             } catch (IOException e) {
-                Log.e(TAG, "Unable to reset! Could be trouble creating MediaCodec encoder");
+                Log.e(TAG, "Unable to initOrReset! Could be trouble creating MediaCodec encoder");
                 e.printStackTrace();
             }
         }

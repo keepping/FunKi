@@ -1,4 +1,4 @@
-package io.kickflip.sdk.view;
+package io.media.wiget;
 
 import android.content.Context;
 import android.hardware.Camera;

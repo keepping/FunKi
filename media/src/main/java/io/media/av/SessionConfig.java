@@ -1,4 +1,4 @@
-package io.kickflip.sdk.av;
+package io.media.av;
 
 import android.os.Environment;
 
@@ -18,55 +18,30 @@ public class SessionConfig {
 
     private final VideoEncoderConfig mVideoConfig;
     private final AudioEncoderConfig mAudioConfig;
-    private File mOutputDirectory;
-    private final UUID mUUID;
+
     private Muxer mMuxer;
 
     private boolean mIsAdaptiveBitrate;
-    private boolean mAttachLocation;
+
     private int mHlsSegmentDuration;
 
-    public SessionConfig() {
-        mVideoConfig = new VideoEncoderConfig(1280, 720, 2 * 1000 * 1000);
-        mAudioConfig = new AudioEncoderConfig(1, 44100, 96 * 1000);
 
-        mUUID = UUID.randomUUID();
-
-        File rootDir = new File(Environment.getExternalStorageDirectory(), "Kickflip");
-        File outputDir = new File(rootDir, mUUID.toString());
-        File outputFile = new File(outputDir, String.format("kf_%d.mp4", System.currentTimeMillis()));
-        outputDir.mkdir();
-        mMuxer = new Muxer(outputFile.getAbsolutePath(), Muxer.FORMAT.MPEG4);
-
-    }
-
-    public SessionConfig(UUID uuid, Muxer muxer, VideoEncoderConfig videoConfig, AudioEncoderConfig audioConfig) {
+    private SessionConfig(VideoEncoderConfig videoConfig, AudioEncoderConfig audioConfig) {
         mVideoConfig = videoConfig;
         mAudioConfig = audioConfig;
-
-        mMuxer = muxer;
-        mUUID = uuid;
-
-    }
-
-    public UUID getUUID() {
-        return mUUID;
     }
 
     public Muxer getMuxer() {
         return mMuxer;
     }
 
-
-    public void setOutputDirectory(File outputDirectory) {
-        mOutputDirectory = outputDirectory;
+    private void setMuxer(Muxer mMuxer){
+        this.mMuxer = mMuxer;
     }
 
-    public File getOutputDirectory() {
-        return mOutputDirectory;
-    }
 
-    public String getOutputPath() {
+
+    public String getOutputFile() {
         return mMuxer.getOutputPath();
     }
 
@@ -114,19 +89,7 @@ public class SessionConfig {
     }
 
 
-    public boolean shouldAttachLocation() {
-        return mAttachLocation;
-    }
 
-
-
-    public void setAttachLocation(boolean mAttachLocation) {
-        this.mAttachLocation = mAttachLocation;
-    }
-
-    public void setHlsSegmentDuration(int hlsSegmentDuration) {
-        mHlsSegmentDuration = hlsSegmentDuration;
-    }
 
     public static class Builder {
         private int mWidth;
@@ -136,13 +99,12 @@ public class SessionConfig {
         private int mAudioSamplerate;
         private int mAudioBitrate;
         private int mNumAudioChannels;
-        private Muxer mMuxer;
-        private File mOutputDirectory;
-        private UUID mUUID;
-        private String mTitle;
-        private String mDescription;
+
+
+        private String mOutPutFile;
+
         private boolean mPrivate;
-        private boolean mAttachLocation;
+
 
         private Map mExtraInfo;
 
@@ -169,47 +131,12 @@ public class SessionConfig {
          * You can query the final outputLocation after building with
          * SessionConfig.getOutputPath()
          *
-         * @param outputLocation desired output location. For file based recording,
-         *                       recordings will be stored at <outputLocationParent>/<UUID>/<outputLocationFileName>
          */
-        public Builder(String outputLocation) {
+        public Builder() {
             setAVDefaults();
             setMetaDefaults();
-            mUUID = UUID.randomUUID();
-
-            mMuxer = new Muxer(createRecordingPath(outputLocation), Muxer.FORMAT.MPEG4);
-
         }
 
-        /**
-         * Use this builder to manage file hierarchy manually
-         * or to provide your own Muxer
-         *
-         * @param muxer
-         */
-        public Builder(Muxer muxer) {
-            setAVDefaults();
-            setMetaDefaults();
-            mMuxer = muxer;
-            mOutputDirectory = new File(mMuxer.getOutputPath()).getParentFile();
-            mUUID = UUID.randomUUID();
-        }
-
-        /**
-         * Inserts a directory into the given path based on the
-         * value of mUUID.
-         *
-         * @param outputPath a desired storage location like /path/filename.ext
-         * @return a File pointing to /path/UUID/filename.ext
-         */
-        private String createRecordingPath(String outputPath) {
-            File desiredFile = new File(outputPath);
-            String desiredFilename = desiredFile.getName();
-            File outputDir = new File(desiredFile.getParent(), mUUID.toString());
-            mOutputDirectory = outputDir;
-            outputDir.mkdirs();
-            return new File(outputDir, desiredFilename).getAbsolutePath();
-        }
 
         private void setAVDefaults() {
             mWidth = 1280;
@@ -223,28 +150,13 @@ public class SessionConfig {
 
         private void setMetaDefaults() {
             mPrivate = false;
-            mAttachLocation = false;
             mHlsSegmentDuration = 10;
         }
 
 
-        public Builder withTitle(String title) {
-            mTitle = title;
-            return this;
-        }
-
-        public Builder withDescription(String description) {
-            mDescription = description;
-            return this;
-        }
 
         public Builder withPrivateVisibility(boolean isPrivate) {
             mPrivate = isPrivate;
-            return this;
-        }
-
-        public Builder withLocation(boolean attachLocation) {
-            mAttachLocation = attachLocation;
             return this;
         }
 
@@ -282,17 +194,20 @@ public class SessionConfig {
             return this;
         }
 
+        public Builder withOutFilePath(String recodeFile){
+            mOutPutFile = recodeFile;
+            return this;
+        }
+
 
         public SessionConfig build() {
-            SessionConfig session = new SessionConfig(mUUID, mMuxer,
+            SessionConfig config = new SessionConfig(
                     new VideoEncoderConfig(mWidth, mHeight, mVideoBitrate),
                     new AudioEncoderConfig(mNumAudioChannels, mAudioSamplerate, mAudioBitrate));
 
-            session.setAttachLocation(mAttachLocation);
-            session.setHlsSegmentDuration(mHlsSegmentDuration);
-            session.setOutputDirectory(mOutputDirectory);
+            config.setMuxer(new Muxer(mOutPutFile, Muxer.FORMAT.MPEG4));
 
-            return session;
+            return config;
         }
 
 

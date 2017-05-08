@@ -18,11 +18,7 @@
         android:id="@+id/video_progress_notify"
         android:layout_width="10dp"
         android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:stateListAnimator="@animator/video_recoad" />
-
-
-
+        android:background="#ffffff" />
 
 
 </LinearLayout>
