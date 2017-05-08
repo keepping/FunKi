@@ -89,14 +89,7 @@
                     android:layout_marginTop="19dp"
                     android:src="@drawable/iv_dynamic_mirror" />
 
-                <ImageView
-                    android:id="@+id/iv_shot_photo"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="55dp"
-                    android:layout_marginRight="29dp" />
+
 
             </RelativeLayout>
 
