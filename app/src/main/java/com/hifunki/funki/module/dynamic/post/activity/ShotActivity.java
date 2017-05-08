@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -20,12 +21,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
+import com.github.hiteshsondhi88.libffmpeg.FFmpegExecuteResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.LoadBinaryResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegNotSupportedException;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.dynamic.post.data.VideoHolder;
+import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.PermissionUtil;
 import com.hifunki.funki.util.ToastUtils;
 import com.hifunki.funki.widget.bar.TopBarView;
+import com.powyin.slide.widget.BannerSwitch;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -89,6 +97,9 @@ public class ShotActivity extends BaseActivity {
     AVRecorder mAVRecorder;
 
 
+    FFmpeg fFmpeg;
+
+
     private VideoHolder.OnRecodeOver nRecodeOverListener = new VideoHolder.OnRecodeOver() {
         @Override
         public void onStop(VideoHolder holder) {
@@ -132,6 +143,19 @@ public class ShotActivity extends BaseActivity {
         holders.add(holder);
         recodeContent.addView(holder.getItemView());
 
+        fFmpeg = FFmpeg.getInstance(this);
+
+        try {
+            fFmpeg.loadBinary(new LoadBinaryResponseHandler() {
+                @Override
+                public void onFailure() {
+                    Log.e(getClass().getSimpleName(),"error init ffmpeg");
+                }
+            });
+        } catch (FFmpegNotSupportedException e) {
+            Log.e(getClass().getSimpleName(),"error init ffmpeg");
+        }
+
         checkPemison();
     }
 
@@ -165,6 +189,7 @@ public class ShotActivity extends BaseActivity {
             case R.id.ll_dynamic_image:
                 break;
             case R.id.ll_shot_video:
+
                 break;
             case R.id.iv_shot_video_dot:
                 break;
@@ -192,6 +217,60 @@ public class ShotActivity extends BaseActivity {
             case R.id.iv_shot_back:
                 break;
             case R.id.iv_shot_ok:
+                if(view.isSelected()){
+
+
+                }else {
+
+                }
+                try {
+
+                    if(holders.size() == 1) return;
+
+
+                    StringBuilder common = new StringBuilder();
+                    common.append("-i concat:");
+                    for(int i=0 ; i<holders.size() -1 ;i++){
+                        common.append(holders.get(i).getStoreFile());
+                        common.append("|");
+                    }
+                    common.setLength(common.length()-1);
+                    common.append(" -c copy ");
+                    common.append(FileUtils.getRandomFilePath(this,".mp4",false).toString());
+
+                    fFmpeg.execute(new String[]{ },new FFmpegExecuteResponseHandler(){
+
+                        @Override
+                        public void onSuccess(String message) {
+                            System.out.println("...................................onSuccess");
+                        }
+
+                        @Override
+                        public void onProgress(String message) {
+                            System.out.println("...................................onProgress");
+                        }
+
+                        @Override
+                        public void onFailure(String message) {
+                            System.out.println("...................................onFailure");
+                        }
+
+                        @Override
+                        public void onStart() {
+                            System.out.println("...................................onStart");
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            System.out.println("...................................onFinish");
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
                 break;
         }
     }
