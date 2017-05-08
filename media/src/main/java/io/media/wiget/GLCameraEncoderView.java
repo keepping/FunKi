@@ -1,10 +1,10 @@
-package io.kickflip.sdk.view;
+package io.media.wiget;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import io.kickflip.sdk.av.MediaControlVideo;
+import io.media.av.MediaControlVideo;
 
 /**
  * Special GLSurfaceView for use with MediaControlVideo

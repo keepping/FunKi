@@ -1,4 +1,4 @@
-package io.kickflip.sdk.av;
+package io.media.av;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -81,8 +81,8 @@ public class MediaControlAudio implements Runnable {
     }
 
     public void reset(SessionConfig config) throws IOException {
-        if (VERBOSE) Log.i(TAG, "reset");
-        if (mThreadRunning) Log.e(TAG, "reset called before stop completed");
+        if (VERBOSE) Log.i(TAG, "initOrReset");
+        if (mThreadRunning) Log.e(TAG, "initOrReset called before stop completed");
         init(config);
     }
 
@@ -209,13 +209,13 @@ public class MediaControlAudio implements Runnable {
         long bufferDuration = (1000000 * bufferSamplesNum) / (mEncoderCore.mSampleRate);
         bufferPts -= bufferDuration; // accounts for the delay of acquiring the audio buffer
         if (totalSamplesNum == 0) {
-            // reset
+            // initOrReset
             startPTS = bufferPts;
             totalSamplesNum = 0;
         }
         correctedPts = startPTS +  (1000000 * totalSamplesNum) / (mEncoderCore.mSampleRate);
         if(bufferPts - correctedPts >= 2*bufferDuration) {
-            // reset
+            // initOrReset
             startPTS = bufferPts;
             totalSamplesNum = 0;
             correctedPts = startPTS;

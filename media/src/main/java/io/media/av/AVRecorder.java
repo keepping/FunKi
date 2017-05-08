@@ -1,8 +1,10 @@
-package io.kickflip.sdk.av;
+package io.media.av;
+
+import android.opengl.GLSurfaceView;
 
 import java.io.IOException;
 
-import io.kickflip.sdk.view.GLCameraView;
+import io.media.wiget.GLCameraView;
 
 /**
  * Records an Audio / Video stream to disk.
@@ -38,7 +40,7 @@ public class AVRecorder {
         mIsRecording = false;
     }
 
-    public void setPreviewDisplay(GLCameraView display){
+    public void setPreviewDisplay(GLSurfaceView display){
         mCamEncoder.setPreviewDisplay(display);
     }
 
@@ -111,6 +113,10 @@ public class AVRecorder {
         // between recordings. It might someday if we decide to present
         // persistent audio volume meters etc.
         // Until then, we don't need to write MediaControlAudio.release()
+    }
+
+    public SessionConfig getConfig(){
+        return mConfig;
     }
 
     public void onHostActivityPaused(){

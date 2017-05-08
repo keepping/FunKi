@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.kickflip.sdk.av;
+package io.media.av;
 
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;

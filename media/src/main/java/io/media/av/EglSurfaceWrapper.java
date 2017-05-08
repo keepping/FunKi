@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.kickflip.sdk.av;
+package io.media.av;
 
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
