@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -108,8 +109,9 @@ public class FunKiPlayer extends FrameLayout {
     }
 
     private void initView(Context context) {
+        Log.d(tag, "initView: ");
         activity = (Activity) context;
-        View rootView = View.inflate(context, R.layout.item_funki_player, this);
+        View rootView = View.inflate(context, R.layout.item_funki_player1, this);
         ButterKnife.bind(this, rootView);
 
         seekBar.setMax(100);
@@ -125,6 +127,7 @@ public class FunKiPlayer extends FrameLayout {
             return;
         }
         initSurfaceHolder();
+        Log.d(tag, "initView: end");
     }
 
     private void initSurfaceHolder() {

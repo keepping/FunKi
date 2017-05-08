@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.home.viewholder;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class FollowMovie extends PowViewHolder<Post> {
 
     @Override
     public void loadData(AdapterDelegate<? super Post> multipleAdapter, Post data, int postion) {
+        Log.d("FunKiPlayer", "initView: play");
         fun_player.play(CommonConst.VIDEO);
 
     }

@@ -16,7 +16,7 @@
         android:textColor="#c193ec"
         android:textSize="15sp" />
 
-    <com.hifunki.funki.widget.FunKiPlayer
+    <com.hifunki.funki.widget.FunKiPlayer2
         android:id="@+id/fun_player"
         android:layout_width="match_parent"
         android:layout_height="192dp"

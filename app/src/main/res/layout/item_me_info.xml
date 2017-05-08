@@ -1,55 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/rl_item_info"
-    android:background="@color/_28114D"
+    android:layout_width="match_parent"
     android:layout_height="53dp"
+    android:background="@color/_28114D"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_me_image"
+        android:layout_width="41dp"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_me_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/iv_me_gallery" />
+    </LinearLayout>
+
     <TextView
-        android:textColor="@color/_6B4E9A"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="16dp"
-        android:layout_centerVertical="true"
         android:id="@+id/tv_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/account" />
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/ll_me_image"
+        android:text="@string/account"
+        android:textColor="@color/_936DD1"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <ImageView
-        android:layout_centerVertical="true"
         android:id="@+id/iv_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
         android:src="@drawable/iv_next"
         android:text="@string/account" />
 
     <TextView
-        android:layout_marginRight="19dp"
-        android:layout_toLeftOf="@+id/iv_next"
-        android:textColor="@color/_6B4E9A"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:layout_centerVertical="true"
         android:id="@+id/tv_tag_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="14" />
+        android:layout_centerVertical="true"
+        android:layout_marginRight="19dp"
+        android:layout_toLeftOf="@+id/iv_next"
+        android:text="14"
+        android:textColor="@color/_6B4E9A"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <ImageView
-        android:layout_centerVertical="true"
-        android:src="@drawable/me_tag_dot"
         android:id="@+id/tv_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/tv_tag_count"
-         />
+        android:src="@drawable/me_tag_dot" />
+
     <View
-        android:background="@color/_4A2F75"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/_4A2F75" />
 </RelativeLayout>
