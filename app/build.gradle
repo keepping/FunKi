@@ -57,6 +57,7 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.12'
+    compile 'com.oushangfeng:PinnedSectionItemDecoration:1.2.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.powyin:scroll:1.7.0'
     compile 'com.github.powyin:switch:1.4.5'

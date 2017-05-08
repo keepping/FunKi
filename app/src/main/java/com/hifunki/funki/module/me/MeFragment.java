@@ -182,13 +182,13 @@ public class MeFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
+        rvMe.setFocusable(false);
         StatusBarUtil.adjustStatusBarHei(root.findViewById(R.id.layout_me_head));
         MeInfoAdapter meInfoAdapter = new MeInfoAdapter(R.layout.item_me_info, mInfoTag);
         //    rvMe.setNestedScrollingEnabled(false);//防止滑动事件传递到RecycleView
         rvMe.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMe.setAdapter(meInfoAdapter);
         ViewUtil.adjustScrollViewHei(rvMe);
-        root.findViewById(R.id.layout_me_head).requestFocus();
 
         //圆形头像
         Glide.with(mContext).load(CommonConst.photo).into(civMePhoto);

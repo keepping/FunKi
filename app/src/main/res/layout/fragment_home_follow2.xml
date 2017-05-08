@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hifunki.funki.module.msg.fragment.ContactsFansFragment">
+    tools:context="com.hifunki.funki.module.home.fragment.HomeFollowFragment2">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_contacts_fans"
+        android:id="@+id/rv_follow"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
 </FrameLayout>

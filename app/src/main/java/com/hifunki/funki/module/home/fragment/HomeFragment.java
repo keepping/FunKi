@@ -141,7 +141,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         listFragment = new ArrayList<>();
         listFragment.add(HomeFollowFragment.newInstance("aa", "xx"));
         listFragment.add(HomeHotFragment.newInstance("aa", "xx"));
-        listFragment.add(HomeNewFragment.newInstance("aa", "xx"));
+        listFragment.add(HomeFollowFragment2.newInstance("aa", "xx"));
 //        EventBus.getDefault().register(this);
     }
 

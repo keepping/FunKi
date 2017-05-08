@@ -6,7 +6,6 @@
     android:background="@color/_240C48"
     tools:context="com.hifunki.funki.module.msg.fragment.MsgFragment">
 
-
     <com.hifunki.funki.widget.bar.TopBarView
         android:id="@+id/tbv_msg"
         android:layout_width="wrap_content"
@@ -28,14 +27,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="9dp"
             android:text="您可感兴趣的人"
             android:textColor="@color/_9B44ED"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_msg_recommend"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
@@ -56,13 +58,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tbv_msg" />
-
-            <TextView
-                android:id="@+id/tv_msg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rv_msg"
-                android:text="你好" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_msg1"

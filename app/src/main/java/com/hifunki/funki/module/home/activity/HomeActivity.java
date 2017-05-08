@@ -21,11 +21,12 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.common.FragmentConst;
 import com.hifunki.funki.module.dynamic.post.activity.PostDynamicActivity;
+import com.hifunki.funki.module.home.fragment.HomeFollowFragment2;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;
 import com.hifunki.funki.module.msg.fragment.MsgFragment;
-import com.hifunki.funki.module.home.fragment.StoreFragment;
+import com.hifunki.funki.module.store.fragment.StoreFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 import com.hifunki.funki.module.live.anchor.activity.AnchorActivity;
 import com.hifunki.funki.module.me.MeFragment;
@@ -48,7 +49,7 @@ import butterknife.OnClick;
 public class HomeActivity extends BaseActivity implements HomeFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
         MeFragment.OnFragmentInteractionListener, HomeHotFragment.OnFragmentInteractionListener,
-        HomeNewFragment.OnFragmentInteractionListener, View.OnClickListener {
+        HomeNewFragment.OnFragmentInteractionListener,HomeFollowFragment2.OnFragmentInteractionListener, View.OnClickListener {
 
     @BindView(R.id.main_container)
     FrameLayout mainContainer;
@@ -126,7 +127,6 @@ public class HomeActivity extends BaseActivity implements HomeFragment.OnFragmen
         transaction.add(R.id.main_container, storeFragment);
         transaction.add(R.id.main_container, meFragment);
         transaction.commit();
-
         navHome.performClick();
     }
 

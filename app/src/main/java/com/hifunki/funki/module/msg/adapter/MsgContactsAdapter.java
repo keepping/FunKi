@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.hifunki.funki.module.msg.fragment.ContactsCloseFriendFragment;
 import com.hifunki.funki.module.msg.fragment.ContactsFansFragment;
 import com.hifunki.funki.module.msg.fragment.ContactsFriendFragment;
 
@@ -34,6 +35,8 @@ public class MsgContactsAdapter extends FragmentPagerAdapter {
                 return ContactsFriendFragment.newInstance("a", "a");
             case 1:
                 return ContactsFansFragment.newInstance("a", "a");
+            case 2:
+                return ContactsCloseFriendFragment.newInstance("a", "a");
         }
         return null;
     }

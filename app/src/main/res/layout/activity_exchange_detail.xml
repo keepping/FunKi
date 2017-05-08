@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.hifunki.funki.module.me.exchange.activity.ExChangeDetailActivity">
+
     <com.hifunki.funki.widget.bar.TopBarView
-        android:id="@+id/topView"
+        android:id="@+id/tbv_exchange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:titleText="兑换记录" />

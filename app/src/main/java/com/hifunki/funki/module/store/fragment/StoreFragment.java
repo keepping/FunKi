@@ -1,30 +1,26 @@
-package com.hifunki.funki.module.home.fragment;
+package com.hifunki.funki.module.store.fragment;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
-import com.hifunki.funki.module.home.activity.HomeActivity;
-import com.hifunki.funki.module.login.VisitorFillActivity;
 
-import butterknife.BindView;
+import java.util.List;
 
 /**
  * 首页商城Fragment
  *
  * @author monotone
  * @version V1.0 <描述当前版本功能>
- * @value com.hifunki.funki.module.home.fragment.StoreFragment.java
+ * @value com.hifunki.funki.module.store.fragment.StoreFragment.java
  * @link
  * @since 2017-03-08 10:06:06
  */
 public class StoreFragment extends BaseFragment {
-
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -33,7 +29,8 @@ public class StoreFragment extends BaseFragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private String TAG = HomeActivity.TAG;
+    private String TAG = getClass().getSimpleName();
+    private List<String> list;
 
     public static StoreFragment newInstance(String param1, String param2) {
         StoreFragment fragment = new StoreFragment();
@@ -67,11 +64,18 @@ public class StoreFragment extends BaseFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     protected void initListener() {
         super.initListener();
+
+    }
+
+    @Override
+    protected void initView(View root) {
+        super.initView(root);
 
     }
 

@@ -15,6 +15,7 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.msg.activity.MsgContactsActvity;
 import com.hifunki.funki.module.msg.adapter.ExpandableItemAdapter;
+import com.hifunki.funki.module.msg.adapter.MsgDetailAdapter;
 import com.hifunki.funki.module.msg.adapter.MsgRecommendAdapter;
 import com.hifunki.funki.module.msg.entity.Level0Item;
 import com.hifunki.funki.module.msg.entity.Level1Item;
@@ -91,11 +92,9 @@ public class MsgFragment extends BaseFragment implements View.OnClickListener {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         mList = new ArrayList<>();
-        mList.add("nihel");
-        mList.add("nihel");
-        mList.add("nihel");
-        mList.add("nihel");
-
+        for(int i=0;i<20;i++){
+            mList.add("nihel");
+        }
         int lv0Count = 1;
         int lv1Count = 14;
         res = new ArrayList<>();
@@ -123,14 +122,13 @@ public class MsgFragment extends BaseFragment implements View.OnClickListener {
         rvMsg.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMsg.setAdapter(adapter);
 
-
         rvMsgRecommend.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         MsgRecommendAdapter msgRecommendAdapter = new MsgRecommendAdapter(R.layout.item_msg_recommend, mList);
         rvMsgRecommend.setAdapter(msgRecommendAdapter);
 
         rvMsg1.setLayoutManager(new LinearLayoutManager(getContext()));
-        MsgRecommendAdapter msgRecommendAdapter1 = new MsgRecommendAdapter(R.layout.item_msg_recommend, mList);
-        rvMsg1.setAdapter(msgRecommendAdapter1);
+        MsgDetailAdapter msgDetailAdapter = new MsgDetailAdapter(R.layout.item_msg_detail, mList);
+        rvMsg1.setAdapter(msgDetailAdapter);
 
     }
 
