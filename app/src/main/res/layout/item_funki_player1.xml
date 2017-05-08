@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/_28114D">
+    android:background="#000000">
 
     <TextView
         android:id="@+id/iv_net_play_restart"
@@ -28,7 +28,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_play_status"
+            android:id="@+id/iv_play_init"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -40,19 +40,19 @@
             android:layout_height="40dp"
             android:layout_gravity="center" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/iv_play_pause"-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:src="@drawable/iv_play_pause" />-->
+        <ImageView
+            android:id="@+id/iv_play_pause"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/iv_play_pause" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/iv_play_restart"-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:src="@drawable/iv_refresh" />-->
+        <ImageView
+            android:id="@+id/iv_play_restart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/iv_refresh" />
 
     </FrameLayout>
 
@@ -88,7 +88,7 @@
         <SeekBar
             android:id="@+id/iv_play_seek"
             android:layout_width="0dp"
-            android:layout_height="5dp"
+            android:layout_height="10dp"
             android:layout_weight="10"
             android:progressDrawable="@drawable/play_progress"
             android:thumb="@drawable/ic_circles" />

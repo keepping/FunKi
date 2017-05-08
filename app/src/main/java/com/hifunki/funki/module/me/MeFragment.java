@@ -27,6 +27,7 @@ import com.hifunki.funki.module.login.VisitorFillActivity;
 import com.hifunki.funki.module.me.adapter.MeInfoAdapter;
 import com.hifunki.funki.module.me.bill.activity.BillActivity;
 import com.hifunki.funki.module.me.blacklist.activity.BlackListActivtiy;
+import com.hifunki.funki.module.me.entity.MeBottomEntity;
 import com.hifunki.funki.module.me.exchange.activity.ExchangeActivity;
 import com.hifunki.funki.module.me.fans.activity.MyFansActivity;
 import com.hifunki.funki.module.me.follow.activity.MyFollowActivity;
@@ -109,7 +110,7 @@ public class MeFragment extends BaseFragment {
     private View shareView;
 
     private OnFragmentInteractionListener mListener;
-    private List<String> mInfoTag;//个人中心信息标签
+    private List<MeBottomEntity> mInfoTag;//个人中心信息标签
     private String TAG = getClass().getSimpleName();
     private Handler numHandler;
 
@@ -155,15 +156,16 @@ public class MeFragment extends BaseFragment {
     protected void initVariable() {
         super.initVariable();
         mInfoTag = new ArrayList<>();
-        mInfoTag.add(getString(R.string.self_gallery));
-        mInfoTag.add(getString(R.string.vistor_record));
-        mInfoTag.add(getString(R.string.my_field_control));
-        mInfoTag.add(getString(R.string.blacklist));
-        mInfoTag.add(getString(R.string.order_management));
-        mInfoTag.add(getString(R.string.account_privacy_safety));
-        mInfoTag.add(getString(R.string.setting));
-        mInfoTag.add(getString(R.string.help_feedback));
-        mInfoTag.add(getString(R.string.business_cooperate));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.self_gallery),getResources().getDrawable(R.drawable.iv_me_gallery)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.vistor_record),getResources().getDrawable(R.drawable.iv_me_visitlist)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.my_field_control),getResources().getDrawable(R.drawable.iv_me_blacklist)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.blacklist),getResources().getDrawable(R.drawable.iv_me_order)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.order_management),getResources().getDrawable(R.drawable.iv_me_safty)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.setting),getResources().getDrawable(R.drawable.iv_me_setting)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.help_feedback),getResources().getDrawable(R.drawable.iv_me_help)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.business_cooperate),getResources().getDrawable(R.drawable.iv_me_business)));
+
+
         numHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {

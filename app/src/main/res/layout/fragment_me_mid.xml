@@ -26,24 +26,25 @@
                 android:layout_height="50.5dp"
                 android:background="@color/_140231">
 
+                <ImageView
+                    android:id="@+id/iv_me_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="21dp"
+                    android:src="@drawable/iv_me_account" />
+
                 <TextView
                     android:id="@+id/tv_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/iv_me_account"
                     android:text="@string/account"
                     android:textColor="@color/_BBABD4"
                     android:textSize="15sp"
                     android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="19dp"
-                    android:layout_toRightOf="@+id/tv_account"
-                    android:src="@drawable/iv_me_account" />
 
             </RelativeLayout>
 
@@ -109,25 +110,25 @@
                 android:layout_height="50.5dp"
                 android:background="@color/_140231">
 
+                <ImageView
+                    android:id="@+id/iv_me_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/iv_me_income" />
+
                 <TextView
                     android:id="@+id/tv_income"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/iv_me_income"
                     android:text="@string/income"
                     android:textColor="@color/_BBABD4"
                     android:textSize="15sp"
                     android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="19dp"
-                    android:layout_toRightOf="@+id/tv_income"
-                    android:src="@drawable/iv_me_income" />
-
             </RelativeLayout>
 
             <com.hifunki.funki.widget.DashedLineView
@@ -212,25 +213,25 @@
                 android:layout_height="50.5dp"
                 android:background="@color/_140231">
 
+                <ImageView
+                    android:id="@+id/iv_me_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/iv_me_balance" />
+
                 <TextView
                     android:id="@+id/tv_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/iv_me_balance"
                     android:text="@string/balance"
-                    android:textColor="@color/_BBABD4"
+                    android:textColor="@color/_E3AA21"
                     android:textSize="15sp"
                     android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="19dp"
-                    android:layout_toRightOf="@+id/tv_balance"
-                    android:src="@drawable/iv_me_balance" />
-
             </RelativeLayout>
 
             <com.hifunki.funki.widget.DashedLineView
@@ -307,15 +308,25 @@
         <RelativeLayout
             android:id="@+id/rl_dymic"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_dynamic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="39dp"
+                android:gravity="center_vertical"
+                android:src="@drawable/iv_me_dynamic" />
 
             <LinearLayout
                 android:id="@+id/ll_dynamic"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="39dp"
-                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/iv_dynamic"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -324,7 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dynamic"
-                    android:textColor="@color/_6B4E9A"
+                    android:textColor="@color/_936DD1"
                     android:textSize="15sp" />
 
                 <TextView
@@ -338,23 +349,13 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="32dp"
-                android:layout_toRightOf="@+id/ll_dynamic"
-                android:gravity="center_vertical"
-                android:src="@drawable/iv_me_dynamic" />
-
         </RelativeLayout>
 
         <com.hifunki.funki.widget.DashedLineView
-            android:layout_gravity="center_vertical"
             android:id="@+id/dl_mid"
             android:layout_width="1dp"
             android:layout_height="39dp"
+            android:layout_gravity="center_vertical"
             app:dashOrientation="1"
             app:dashWidth="2dp"
             app:lineColor="@color/_6B4E9A"
@@ -364,16 +365,25 @@
         <RelativeLayout
             android:id="@+id/rl_live"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/dl_mid">
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/dl_mid"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_me_live"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="32dp"
+                android:src="@drawable/iv_me_live" />
 
             <LinearLayout
                 android:id="@+id/ll_live"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="39dp"
-                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/iv_me_live"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -397,13 +407,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="32dp"
-                android:layout_toRightOf="@+id/ll_live"
-                android:src="@drawable/iv_me_live" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

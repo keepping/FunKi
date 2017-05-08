@@ -15,7 +15,7 @@ import com.hifunki.funki.module.home.widget.ninegrid.NineGridlayout;
 import com.hifunki.funki.module.rank.world.entity.AnchorEntity;
 import com.hifunki.funki.module.search.adapter.HotSearchAdapter;
 import com.hifunki.funki.module.search.entity.PersonEntity;
-import com.hifunki.funki.widget.FunKiPlayer;
+import com.hifunki.funki.widget.FunKiPlayer2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class HomeFollowAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, B
         super(data);
         addItemType(AnchorEntity.FIRST, R.layout.item_live_normal);//大图
         addItemType(AnchorEntity.SECOND, R.layout.item_live_vip);//小图
-        addItemType(AnchorEntity.THIRD, R.layout.viewholder_follow_movie);//小图
+        addItemType(AnchorEntity.THIRD, R.layout.viewholder_follow_movie2);//小图
         addItemType(AnchorEntity.NORMAL, R.layout.viewholder_follow_picture);//小图
         addItemType(AnchorEntity.SPECIAL, R.layout.viewholder_follow_recommend_);//小图
     }
@@ -55,18 +55,10 @@ public class HomeFollowAdapter extends BaseMultiItemQuickAdapter<AnchorEntity, B
 
                 break;
             case AnchorEntity.THIRD:
-                FunKiPlayer funKiPlayer = helper.getView(R.id.fun_player);
+                FunKiPlayer2 funKiPlayer = helper.getView(R.id.fun_player);
 
-//                funKiPlayer.setOnLoadDatasListener(new FunKiPlayer.OnLoadDatasListener() {
-//                    @Override
-//                    public void setOnLoadDatas(boolean isLoadDats) {
-//
-//                    }
-//                });
-                System.out.println("name=adapter=" + System.currentTimeMillis());
-
-                funKiPlayer.play(CommonConst.VIDEO);
-                funKiPlayer.loadDatas(CommonConst.VIDEO, CommonConst.IMAGE_VIEW);
+//                funKiPlayer.play(CommonConst.VIDEO);
+//                funKiPlayer.loadDatas(CommonConst.VIDEO, CommonConst.IMAGE_VIEW);
                 break;
             case AnchorEntity.NORMAL:
                 NineGridlayout nineGridlayout = helper.getView(R.id.iv_ngrid_layout);

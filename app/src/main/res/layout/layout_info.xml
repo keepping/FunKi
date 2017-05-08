@@ -136,7 +136,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/me_user_id"
-            android:textColor="@color/_6B4E9A"
+            android:textColor="@color/_936DD1"
             android:textSize="13dp"
             android:textStyle="bold" />
 
@@ -147,7 +147,7 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/tv_user_id"
             android:text="@string/me_send_diamond"
-            android:textColor="@color/_6B4E9A"
+            android:textColor="@color/_936DD1"
             android:textSize="13dp"
             android:textStyle="bold" />
 
@@ -169,7 +169,7 @@
         android:layout_marginTop="13dp"
         android:gravity="center"
         android:text="@string/me_introduce"
-        android:textColor="@color/_6B4E9A"
+        android:textColor="@color/_936DD1"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -195,7 +195,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/follow"
-                android:textColor="@color/_6B4E9A"
+                android:textColor="@color/_936DD1"
                 android:textSize="15sp" />
 
             <TextView
@@ -221,7 +221,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fans"
-                android:textColor="@color/_6B4E9A"
+                android:textColor="@color/_936DD1"
                 android:textSize="15sp" />
 
             <TextView
