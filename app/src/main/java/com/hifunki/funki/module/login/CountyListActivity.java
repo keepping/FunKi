@@ -1,7 +1,8 @@
 package com.hifunki.funki.module.login;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -10,9 +11,8 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.module.login.entity.City;
 import com.hifunki.funki.module.login.adapter.CityListAdapter;
-import com.hifunki.funki.module.login.widget.SideLetterBar;
+import com.hifunki.funki.module.login.entity.City;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +31,6 @@ import butterknife.OnClick;
  */
 public class CountyListActivity extends BaseActivity implements View.OnClickListener {
 
-
-    @BindView(R.id.flTitleContainer)
-    FrameLayout flTitleContainer;
     @BindView(R.id.iv_search)
     ImageView ivSearch;
     @BindView(R.id.tv_search)
@@ -42,8 +39,6 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
     RelativeLayout rlSearch;
     @BindView(R.id.lv_all_country)
     ListView lvAllCountry;
-    @BindView(R.id.side_letter_bar)
-    SideLetterBar sideLetterBar;
     @BindView(R.id.activity_country_list)
     LinearLayout activityCountryList;
     private CityListAdapter mCityAdapter;
@@ -64,7 +59,6 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initView() {
-
 
     }
 
@@ -91,12 +85,10 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initTitleBar() {
-//        ToolTitleBar.showLeftButton(this, activityCountryList, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
-//        ToolTitleBar.showCenterButton(this, activityCountryList, ToolTitleBar.BTN_TYPE_TEXT, R.string.choose_country, null);
+
     }
 
-
-    @OnClick({R.id.rl_search, R.id.side_letter_bar, R.id.activity_country_list})
+    @OnClick({R.id.rl_search,  R.id.activity_country_list})
     public void onClick(View view) {
         switch (view.getId()) {
 //            case R.id.rlTitleLeft://左边的back
@@ -105,11 +97,14 @@ public class CountyListActivity extends BaseActivity implements View.OnClickList
                 //跳转搜索结果界面
                 CountryResultActivity.show(this);
                 break;
-            case R.id.side_letter_bar://右侧bar
-                break;
+
             case R.id.activity_country_list://总的布局
                 break;
         }
+    }
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context,CountyListActivity.class));
     }
 }
 

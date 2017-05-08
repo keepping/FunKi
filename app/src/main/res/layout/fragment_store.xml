@@ -5,6 +5,8 @@
     tools:context="com.hifunki.funki.module.store.fragment.StoreFragment">
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:textSize="58dp"
         android:id="@+id/tv_store"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

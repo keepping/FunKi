@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -28,6 +27,15 @@ public class SideLetterBar extends View {
     private Context context;
     private Bitmap bitmapSearch;
     private float xPos;
+    private String TAG = getClass().getSimpleName();
+
+    public SideLetterBar(Context context) {
+        this(context, null);
+    }
+
+    public SideLetterBar(Context context, AttributeSet attrs) {
+        this(context, null, 0);
+    }
 
     public SideLetterBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -35,23 +43,8 @@ public class SideLetterBar extends View {
         initViews();
     }
 
-
-    public SideLetterBar(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        initViews();
-    }
-
-    public SideLetterBar(Context context) {
-        super(context);
-        this.context = context;
-        initViews();
-    }
-
     private void initViews() {
         paint = new Paint();
-
-
         mPaint = new Paint();
         bitmapSearch = BitmapFactory.decodeResource(context.getResources(), R.drawable.iv_search_small);
     }
@@ -75,14 +68,12 @@ public class SideLetterBar extends View {
 
         int height = getHeight();
         int width = getWidth();
-        int widthStart = width / 2 - bitmapSearch.getWidth();
-        Log.e("test", "onDraw: " + width + "test" + widthStart);
+        drawBitmap(width, canvas);
 
-
-        int singleHeight = height / b.length;
+//        int singleHeight = height / b.length;
 //        int singleHeight = (int) (11+paint.measureText(b[0]));
-
-        Log.e("test", "onDraw:singleHeight+ " + singleHeight);
+        float v = DisplayUtil.dip2Px(context, 6);
+        int singleHeight =0;
         for (int i = 0; i < b.length; i++) {
             paint.setColor(getResources().getColor(R.color._230C47));
             //通过sp装换成dp
@@ -97,16 +88,32 @@ public class SideLetterBar extends View {
 //                paint.setFakeBoldText(true);  //加粗
 
             xPos = width / 2 - paint.measureText(b[i]) / 2;
-            float yPos = singleHeight * i + singleHeight;
+//            if(i==0){
+//                singleHeight= (int) (bitmapSearch.getHeight()+v);
+//                Log.e(TAG, "onDraw: bitmapSearch"+bitmapSearch.getHeight() );
+//            }else {
+                singleHeight = (int) (getTextHeight(paint) + v);
+//            }
+            float yPos = singleHeight * i + singleHeight+bitmapSearch.getHeight();
             canvas.drawText(b[i], xPos, yPos, paint);
             paint.reset();
         }
+    }
 
-        Rect srcRect = new Rect(0, 0, bitmapSearch.getWidth(), bitmapSearch.getHeight());
-        Rect destRect = new Rect((int) xPos, 0, bitmapSearch.getWidth(), bitmapSearch.getHeight());
+    /**
+     * 计算文本高度
+     *
+     * @param paint
+     * @return
+     */
+    private int getTextHeight(Paint paint) {
+        Paint.FontMetrics fm = paint.getFontMetrics();
+        return (int) (Math.abs(fm.ascent) + Math.abs(fm.descent));
+    }
 
-        canvas.drawBitmap(bitmapSearch, srcRect, destRect, mPaint);
-
+    private void drawBitmap(int width, Canvas canvas) {
+        int widthStart = width / 2 - bitmapSearch.getWidth() / 2;
+        canvas.drawBitmap(bitmapSearch, widthStart, 0, mPaint);
     }
 
     @Override
@@ -131,7 +138,6 @@ public class SideLetterBar extends View {
                         }
                     }
                 }
-
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (oldChoose != c && listener != null) {

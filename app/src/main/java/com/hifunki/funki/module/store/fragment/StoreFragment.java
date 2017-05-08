@@ -5,9 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
+import com.hifunki.funki.module.login.VisitorFillActivity;
 
 import java.util.List;
 
@@ -76,7 +78,13 @@ public class StoreFragment extends BaseFragment {
     @Override
     protected void initView(View root) {
         super.initView(root);
-
+        TextView tvStore= (TextView) root.findViewById(R.id.tv_store);
+        tvStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VisitorFillActivity.show(getContext());
+            }
+        });
     }
 
     @Override

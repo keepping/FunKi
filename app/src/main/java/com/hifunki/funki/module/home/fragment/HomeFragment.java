@@ -19,8 +19,8 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.home.adapter.HomePagerAdapter;
+import com.hifunki.funki.module.login.CountyListActivity;
 import com.hifunki.funki.module.rank.world.activity.WorldRankActivity;
-import com.hifunki.funki.module.search.activity.SearchActivity;
 import com.hifunki.funki.module.show.activity.ShowActivity;
 import com.hifunki.funki.util.StatusBarUtil;
 
@@ -213,7 +213,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
 //                if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
 //                    LoginActivity.show(homeActivity);
 //                } else {  }
-                SearchActivity.show(mActivity);
+                CountyListActivity.show(getContext());
                 break;
             case R.id.iv_home_show:
                 ShowActivity.show(mActivity);
