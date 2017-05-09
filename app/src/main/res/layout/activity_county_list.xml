@@ -60,16 +60,12 @@
 
             </RelativeLayout>
 
-            <ListView
-                android:id="@+id/lv_all_country"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_all_country"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@null"
-                android:cacheColorHint="@android:color/transparent"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0dp"
-                android:listSelector="@android:color/transparent" />
+                android:background="@null" />
         </LinearLayout>
 
         <com.hifunki.funki.module.login.widget.SideLetterBar

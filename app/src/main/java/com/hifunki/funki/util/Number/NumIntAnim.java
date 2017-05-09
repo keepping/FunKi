@@ -44,7 +44,7 @@ public class NumIntAnim {
 
             int countNew=num/count;
 
-            int randomInt = random.nextInt(countNew);
+            int randomInt = random.nextInt(countNew)+1;
             int nextInt = randomInt;
             System.out.println(nextInt);
             if (numtemp - nextInt >= 0) {
