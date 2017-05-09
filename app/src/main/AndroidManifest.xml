@@ -65,7 +65,15 @@
         <activity
             android:name=".module.home.activity.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".module.live.anchor.activity.AnchorActivity"
             android:theme="@style/AppThemeFullScreen" />
@@ -183,11 +191,7 @@
         <!-- 兑换记录 -->
         <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
         <activity android:name=".module.dynamic.post.activity.ShotActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".module.photo.personal.activity.PersonalPhotoActivity" />
         <activity android:name=".module.dynamic.me.activity.MyDynamicActivity" />
