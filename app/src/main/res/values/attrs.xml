@@ -104,6 +104,10 @@
         <attr name="galleryCenterImage" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="SideLetterBar">
+        <attr name="isShowSearch" format="boolean" />
+    </declare-styleable>
+
     <!--个人资料编辑-->
     <declare-styleable name="RelativeEditProfileView">
         <attr name="leftText" format="string" />

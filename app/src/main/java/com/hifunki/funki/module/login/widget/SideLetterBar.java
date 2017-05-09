@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.login.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -28,6 +29,7 @@ public class SideLetterBar extends View {
     private Bitmap bitmapSearch;
     private float xPos;
     private String TAG = getClass().getSimpleName();
+    private boolean aBoolean;
 
     public SideLetterBar(Context context) {
         this(context, null);
@@ -40,10 +42,15 @@ public class SideLetterBar extends View {
     public SideLetterBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
-        initViews();
+        initViews(attrs);
     }
 
-    private void initViews() {
+    private void initViews(AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SideLetterBar);
+        aBoolean = typedArray.getBoolean(R.styleable.SideLetterBar_isShowSearch, true);
+        Log.e(TAG, "initViews: " + aBoolean);
+        System.out.println("SideLetterBar=" + aBoolean);
+        typedArray.recycle();
         paint = new Paint();
         mPaint = new Paint();
         bitmapSearch = BitmapFactory.decodeResource(context.getResources(), R.drawable.iv_search_small);
@@ -66,17 +73,14 @@ public class SideLetterBar extends View {
             canvas.drawColor(Color.TRANSPARENT);
         }
 
-        int height = getHeight();
         int width = getWidth();
-        drawBitmap(width, canvas);
-
-//        int singleHeight = height / b.length;
-//        int singleHeight = (int) (11+paint.measureText(b[0]));
+        if (aBoolean) {
+            drawBitmap(width, canvas);
+        }
         float v = DisplayUtil.dip2Px(context, 6);
-        int singleHeight =0;
+        int singleHeight = 0;
         for (int i = 0; i < b.length; i++) {
             paint.setColor(getResources().getColor(R.color._230C47));
-            //通过sp装换成dp
             int px = DisplayUtil.sp2px(context, 9);
             paint.setTextSize(px);
             paint.setColor(getResources().getColor(R.color._6B4E9A));
@@ -86,15 +90,14 @@ public class SideLetterBar extends View {
 //                paint.setFakeBoldText(true);
 //            }
 //                paint.setFakeBoldText(true);  //加粗
-
             xPos = width / 2 - paint.measureText(b[i]) / 2;
-//            if(i==0){
-//                singleHeight= (int) (bitmapSearch.getHeight()+v);
-//                Log.e(TAG, "onDraw: bitmapSearch"+bitmapSearch.getHeight() );
-//            }else {
-                singleHeight = (int) (getTextHeight(paint) + v);
-//            }
-            float yPos = singleHeight * i + singleHeight+bitmapSearch.getHeight();
+            singleHeight = (int) (getTextHeight(paint) + v);
+            float yPos;
+            if (aBoolean) {
+                yPos = singleHeight * i + singleHeight + bitmapSearch.getHeight();
+            } else {
+                yPos = singleHeight * i + singleHeight;
+            }
             canvas.drawText(b[i], xPos, yPos, paint);
             paint.reset();
         }

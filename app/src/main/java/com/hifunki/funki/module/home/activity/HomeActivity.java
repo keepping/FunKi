@@ -11,6 +11,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,11 +27,11 @@ import com.hifunki.funki.module.home.fragment.HomeFollowFragment2;
 import com.hifunki.funki.module.home.fragment.HomeFragment;
 import com.hifunki.funki.module.home.fragment.HomeHotFragment;
 import com.hifunki.funki.module.home.fragment.HomeNewFragment;
-import com.hifunki.funki.module.msg.fragment.MsgFragment;
-import com.hifunki.funki.module.store.fragment.StoreFragment;
 import com.hifunki.funki.module.home.widget.NavigationButton;
 import com.hifunki.funki.module.live.anchor.activity.AnchorActivity;
 import com.hifunki.funki.module.me.MeFragment;
+import com.hifunki.funki.module.msg.fragment.MsgFragment;
+import com.hifunki.funki.module.store.fragment.StoreFragment;
 import com.hifunki.funki.util.DisplayUtil;
 import com.hifunki.funki.util.PopWindowUtil;
 
@@ -49,7 +51,7 @@ import butterknife.OnClick;
 public class HomeActivity extends BaseActivity implements HomeFragment.OnFragmentInteractionListener,
         MsgFragment.OnFragmentInteractionListener, StoreFragment.OnFragmentInteractionListener,
         MeFragment.OnFragmentInteractionListener, HomeHotFragment.OnFragmentInteractionListener,
-        HomeNewFragment.OnFragmentInteractionListener,HomeFollowFragment2.OnFragmentInteractionListener, View.OnClickListener {
+        HomeNewFragment.OnFragmentInteractionListener, HomeFollowFragment2.OnFragmentInteractionListener, View.OnClickListener {
 
     @BindView(R.id.main_container)
     FrameLayout mainContainer;
@@ -213,10 +215,14 @@ public class HomeActivity extends BaseActivity implements HomeFragment.OnFragmen
                 }
                 pwdPopWindow.init((int) DisplayUtil.dip2Px(this, 192), LinearLayout.LayoutParams.MATCH_PARENT);
                 pwdPopWindow.showPopWindow(pwdView, PopWindowUtil.ATTACH_LOCATION_WINDOW, view, 0, 0);
+
                 //动态
                 LinearLayout llHomeDymic = (LinearLayout) pwdView.findViewById(R.id.ll_home_dymic);
+                Animation animationUp = AnimationUtils.loadAnimation(HomeActivity.this, R.anim.pop_home_startlive_up);
+                llHomeDymic.startAnimation(animationUp);
                 //直播
                 LinearLayout llHomeLive = (LinearLayout) pwdView.findViewById(R.id.ll_home_live);
+                llHomeLive.startAnimation(animationUp);
                 llHomeDymic.setOnClickListener(this);
                 llHomeLive.setOnClickListener(this);
                 break;
@@ -281,7 +287,7 @@ public class HomeActivity extends BaseActivity implements HomeFragment.OnFragmen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(pwdPopWindow!=null){
+        if (pwdPopWindow != null) {
             pwdPopWindow.hidePopWindow();
         }
 

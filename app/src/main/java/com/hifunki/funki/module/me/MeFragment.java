@@ -3,8 +3,6 @@ package com.hifunki.funki.module.me;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,13 +40,13 @@ import com.hifunki.funki.module.photo.gallery.activity.PhotoActivity;
 import com.hifunki.funki.module.photo.personal.activity.PersonalPhotoActivity;
 import com.hifunki.funki.module.rank.me.activity.MeRankActivity;
 import com.hifunki.funki.util.DisplayUtil;
+import com.hifunki.funki.util.Number.NumIntAnim;
 import com.hifunki.funki.util.PopWindowUtil;
 import com.hifunki.funki.util.StatusBarUtil;
 import com.hifunki.funki.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -112,7 +110,6 @@ public class MeFragment extends BaseFragment {
     private OnFragmentInteractionListener mListener;
     private List<MeBottomEntity> mInfoTag;//个人中心信息标签
     private String TAG = getClass().getSimpleName();
-    private Handler numHandler;
 
     public MeFragment() {
     }
@@ -156,29 +153,15 @@ public class MeFragment extends BaseFragment {
     protected void initVariable() {
         super.initVariable();
         mInfoTag = new ArrayList<>();
-        mInfoTag.add(new MeBottomEntity(getString(R.string.self_gallery),getResources().getDrawable(R.drawable.iv_me_gallery)));
-        mInfoTag.add(new MeBottomEntity(getString(R.string.vistor_record),getResources().getDrawable(R.drawable.iv_me_visitlist)));
-        mInfoTag.add(new MeBottomEntity(getString(R.string.my_field_control),getResources().getDrawable(R.drawable.iv_me_blacklist)));
-        mInfoTag.add(new MeBottomEntity(getString(R.string.blacklist),getResources().getDrawable(R.drawable.iv_me_order)));
-        mInfoTag.add(new MeBottomEntity(getString(R.string.order_management),getResources().getDrawable(R.drawable.iv_me_safty)));
-        mInfoTag.add(new MeBottomEntity(getString(R.string.setting),getResources().getDrawable(R.drawable.iv_me_setting)));
-        mInfoTag.add(new MeBottomEntity(getString(R.string.help_feedback),getResources().getDrawable(R.drawable.iv_me_help)));
-        mInfoTag.add(new MeBottomEntity(getString(R.string.business_cooperate),getResources().getDrawable(R.drawable.iv_me_business)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.self_gallery), getResources().getDrawable(R.drawable.iv_me_gallery)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.vistor_record), getResources().getDrawable(R.drawable.iv_me_visitlist)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.my_field_control), getResources().getDrawable(R.drawable.iv_me_blacklist)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.blacklist), getResources().getDrawable(R.drawable.iv_me_order)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.order_management), getResources().getDrawable(R.drawable.iv_me_safty)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.setting), getResources().getDrawable(R.drawable.iv_me_setting)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.help_feedback), getResources().getDrawable(R.drawable.iv_me_help)));
+        mInfoTag.add(new MeBottomEntity(getString(R.string.business_cooperate), getResources().getDrawable(R.drawable.iv_me_business)));
 
-
-        numHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == 0) {
-                    int i = msg.arg1;
-                    String name = Thread.currentThread().getName();
-                    System.out.println("name="+name);
-                    tvAccountNum.setText("" + i);
-                }
-
-            }
-        };
     }
 
     @Override
@@ -259,25 +242,7 @@ public class MeFragment extends BaseFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            final TimerTask timerTask = new TimerTask() {
-                @Override
-                public void run() {
-                    for (int i = 0; i < 5001; i++) {
-                        Message message=numHandler.obtainMessage();
-                        message.what=0;
-                        message.arg1=i;
-                        numHandler.sendMessage(message);
-                    }
-                }
-            };
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    timerTask.run();
-                }
-            }).start();
-
-
+            NumIntAnim.startAnim(tvAccountNum, 5000,200);
         }
     }
 
