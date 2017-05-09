@@ -56,11 +56,8 @@ public class ProfileLevelIndicationDescriptor extends BaseDescriptor {
 
         ProfileLevelIndicationDescriptor that = (ProfileLevelIndicationDescriptor) o;
 
-        if (profileLevelIndicationIndex != that.profileLevelIndicationIndex) {
-            return false;
-        }
+        return profileLevelIndicationIndex == that.profileLevelIndicationIndex;
 
-        return true;
     }
 
     @Override

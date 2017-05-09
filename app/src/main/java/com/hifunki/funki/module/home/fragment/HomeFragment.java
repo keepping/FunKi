@@ -19,8 +19,8 @@ import com.hifunki.funki.R;
 import com.hifunki.funki.base.fragment.BaseFragment;
 import com.hifunki.funki.module.home.activity.HomeActivity;
 import com.hifunki.funki.module.home.adapter.HomePagerAdapter;
+import com.hifunki.funki.module.login.CountyListActivity;
 import com.hifunki.funki.module.rank.world.activity.WorldRankActivity;
-import com.hifunki.funki.module.search.activity.SearchActivity;
 import com.hifunki.funki.module.show.activity.ShowActivity;
 import com.hifunki.funki.util.StatusBarUtil;
 
@@ -141,8 +141,8 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         listFragment = new ArrayList<>();
         listFragment.add(HomeFollowFragment.newInstance("aa", "xx"));
         listFragment.add(HomeHotFragment.newInstance("aa", "xx"));
-        listFragment.add(HomeNewFragment.newInstance("aa", "xx"));
-
+        listFragment.add(HomeFollowFragment2.newInstance("aa", "xx"));
+//        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -194,6 +194,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
     @Override
     public void onDestroy() {
         super.onDestroy();
+//        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -212,7 +213,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
 //                if (spUtils.getInt(Spkey.KEY_LOGIN_SUCCESS) != 1) {
 //                    LoginActivity.show(homeActivity);
 //                } else {  }
-                SearchActivity.show(mActivity);
+                CountyListActivity.show(getContext());
                 break;
             case R.id.iv_home_show:
                 ShowActivity.show(mActivity);
@@ -284,6 +285,9 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
                 rbHomeFollow.setTextColor(getResources().getColor(R.color._BBABD4));
                 rbHomeNew.setTextColor(getResources().getColor(R.color._BBABD4));
                 ivHomeIndicate.setVisibility(View.VISIBLE);
+
+                //暂停followMovie
+
                 break;
             case 2:
                 rbHomeNew.setChecked(true);
@@ -291,6 +295,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
                 rbHomeHot.setTextColor(getResources().getColor(R.color._BBABD4));
                 rbHomeFollow.setTextColor(getResources().getColor(R.color._BBABD4));
                 ivHomeIndicate.setVisibility(View.INVISIBLE);
+
                 break;
         }
     }

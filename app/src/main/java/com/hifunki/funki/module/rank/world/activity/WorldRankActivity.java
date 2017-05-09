@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
 import com.hifunki.funki.module.rank.world.adapter.RankPageAdapter;
 import com.hifunki.funki.module.rank.world.fragment.RankAnchorFragment;
 

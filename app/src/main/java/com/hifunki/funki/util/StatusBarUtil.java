@@ -3,13 +3,11 @@ package com.hifunki.funki.util;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -17,29 +15,23 @@ import java.lang.reflect.Method;
 
 public class StatusBarUtil {
 
-    public static void adjustStatusBarHei(final View view){
+    public static void adjustStatusBarHei(final View view) {
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-
                 int barHei = DisplayUtil.getStatusBarHeight(view.getContext());
-                view.setPadding(0,barHei,0,0);
+                view.setPadding(0, barHei, 0, 0);
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
 
             }
         });
-
-
     }
-
-
 
     // 设置状态栏透明与字体颜色
     public static void setStatusBarTrans(Activity acitivty, boolean lightStatusBar) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             acitivty.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = acitivty.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -120,42 +112,5 @@ public class StatusBarUtil {
     interface ILightStatusBar {
         void setLightStatusBar(Window window, boolean lightStatusBar);
     }
-
-
-    /**
-     * 设置状态栏图片
-     * @param activity
-     * @param img
-     */
-    public static void setStatusBarBackground(Activity activity,int img){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //1
-            setTranslucentStatus(activity,true);
-            // 创建状态栏的管理实例
-            SystemBarTintManager tintManager = new SystemBarTintManager(activity);
-            // 激活状态栏设置
-            tintManager.setStatusBarTintEnabled(true);
-            // 激活导航栏设置
-            tintManager.setNavigationBarTintEnabled(true);
-            // 设置一个样式背景给导航栏
-//                tintManager.setNavigationBarTintResource(img);
-            // 设置一个状态栏资源
-            tintManager.setStatusBarTintDrawable(activity.getResources().getDrawable(img));
-
-        }
-    }
-
-    private static void setTranslucentStatus(Activity activity,boolean on) {
-        Window win = activity.getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
-
 
 }

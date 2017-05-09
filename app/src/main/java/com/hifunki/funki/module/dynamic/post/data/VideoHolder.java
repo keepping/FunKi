@@ -1,21 +1,16 @@
 package com.hifunki.funki.module.dynamic.post.data;
 
-import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
-import android.media.MediaRecorder;
+import android.app.Activity;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Surface;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Interpolator;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.animation.TwoInterpolator;
 import com.hifunki.funki.util.FileUtils;
 
 import java.io.File;
@@ -23,6 +18,10 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.media.RecodeUtil;
+import io.media.av.AVRecorder;
+import io.media.av.SessionConfig;
+
 
 /**
  * Created by powyin on 2017/4/27.
@@ -41,52 +40,66 @@ public class VideoHolder {
     @BindView(R.id.video_progress_notify)
     View notify;
 
-    private Camera mCamera;
-    private final File mVideoRecodeFile;
+    private final Activity mActivity;
     private final ViewGroup mItemView;
-    private MediaRecorder mMediaRecorder;
+
     private CountDownTimer countDownTimer;
     private OnRecodeOver mOnRecodeOver;
     private long mVideoTime;
+    private AVRecorder mAVRecorder;
+
+    private SessionConfig mConfig;
+
+    private boolean mNeedReset = false;                                        // 由于 播放器的 生命控制有 执行  严格要求  所以在这里妥协
 
     //---------------------------------------API-------------------------------------------//
 
-    public VideoHolder(Context context, ViewGroup viewGroup, OnRecodeOver lisener) {
-        mItemView = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.item_video_recoad, viewGroup, false);
-        mVideoRecodeFile = FileUtils.getRandomFilePath(context, ".mp4", false);
-        this.mOnRecodeOver = lisener;
+    public VideoHolder(Activity context) {
+        mActivity = context;
+        mItemView = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.item_video_recoad, (ViewGroup) context.findViewById(android.R.id.content), false);
         ButterKnife.bind(this, mItemView);
         progress.setVisibility(View.GONE);
         over.setVisibility(View.GONE);
         notify.setVisibility(View.VISIBLE);
 
-        // 加入了一个闪烁
-        ObjectAnimator animator = new ObjectAnimator();
-        animator.setPropertyName("alpha");
-        animator.setDuration(1500);
-        animator.setFloatValues(0, 1);
-        animator.setInterpolator(new TwoInterpolator());
-        animator.setRepeatCount(ValueAnimator.INFINITE);
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        stateListAnimator.addState(new int[0], animator);
-        notify.setStateListAnimator(stateListAnimator);
-        // 加入了一个闪烁
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0f, 1f);
+        alphaAnimation.setDuration(1500);
+        alphaAnimation.setRepeatCount(Animation.INFINITE);
+        alphaAnimation.setInterpolator(new Interpolator() {
+            @Override
+            public float getInterpolation(float input) {
+                return input > 0.5f ? 1 : 0;
+            }
+        });
+        notify.startAnimation(alphaAnimation);
     }
 
 
-    public void startRecord(Camera camera, Surface surface, final int maxViewWith, final int maxRecodeTime) {
-        mCamera = camera;
+
+
+    public void setOnStopLister(OnRecodeOver lisener) {
+        mOnRecodeOver = lisener;
+    }
+
+    public void setRecorder(AVRecorder avRecorder , boolean needReset) {
+        mAVRecorder = avRecorder;
+        mNeedReset = needReset;
+    }
+
+
+    public void startRecord(final int maxViewWith, final int maxRecodeTime) {
+
+        if (mAVRecorder == null)
+            throw new RuntimeException("for startRecord  you must set mAVRecorder");
+
         progress.setVisibility(View.VISIBLE);
         over.setVisibility(View.GONE);
 
-        // 去除闪烁
-        notify.setVisibility(View.VISIBLE);
-        notify.setStateListAnimator(null);
+        notify.clearAnimation();
         notify.setAlpha(1f);
-        // 去除闪烁
 
         try {
-            startMovieRecord(surface);
+            startMovieRecord();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -148,85 +161,110 @@ public class VideoHolder {
     }
 
     // 得到视频文件
-    public File getStoreFile() {
-        return mVideoRecodeFile;
+    public String getStoreFile() {
+        return   mConfig.getOutputFile();
     }
 
     //---------------------------------------API------------------------------------------//
 
-    // 拍摄 初始化
-    private boolean startMovieRecord(Surface surface) throws IOException {
 
-        System.out.println("--------------------------------------->>>>>>>>>start");
-
-        if (mCamera == null) return false;
-
-
-        mMediaRecorder = new MediaRecorder();
-
-        // Step 1: Unlock and set camera to MediaRecorder
-        mCamera.unlock();
-        mMediaRecorder.setCamera(mCamera);
-
-        // Step 2: Set sources
-
-//         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER);
-        mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-        mMediaRecorder.setOrientationHint(90);
-        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-
-
-        // Step 3: Set a CamcorderProfile (requires API Level 8 or higher)
-//         CamcorderProfile profile = CamcorderProfile.get(0,CamcorderProfile.QUALITY_CIF);
-//         mMediaRecorder.setProfile(profile);
-//         mMediaRecorder.setOrientationHint(90);
-
-        mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-        mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.MPEG_4_SP);
-
-
-        // Step 4: Set output file
-        mMediaRecorder.setOutputFile(mVideoRecodeFile.getAbsolutePath());
-//        mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-
-        // Step 5: Set the preview output
-        mMediaRecorder.setPreviewDisplay(surface);
+    void startMovieRecord() {
 
         try {
-            mMediaRecorder.prepare();
-            mMediaRecorder.start();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            return false;
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            return false;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
 
-    // 拍摄 终止
-    private void stopAndReleaseMovieRecord() {
-
-        if (mMediaRecorder != null) {
-            try {
-                mMediaRecorder.stop();
-                mMediaRecorder.reset();
-                mMediaRecorder.release();
-
-                mCamera.lock();
-                mMediaRecorder = null;
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            if(mNeedReset){
+                mAVRecorder.reset(RecodeUtil.create720pSessionConfig(mActivity));
             }
+
+            mConfig = mAVRecorder.getConfig();
+
+            mAVRecorder.startRecording();
+        } catch (IOException e) {
+            // Could not create recording at given file path
+            Log.e("VideoHolder", "Failed to initOrReset AVRecorder!");
+            e.printStackTrace();
         }
+
+
     }
 
+    void stopAndReleaseMovieRecord() {
+        mAVRecorder.stopRecording();
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

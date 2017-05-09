@@ -105,11 +105,8 @@ public class SLConfigDescriptor extends BaseDescriptor {
 
         SLConfigDescriptor that = (SLConfigDescriptor) o;
 
-        if (predefined != that.predefined) {
-            return false;
-        }
+        return predefined == that.predefined;
 
-        return true;
     }
 
     @Override

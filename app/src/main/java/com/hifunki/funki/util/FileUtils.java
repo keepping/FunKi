@@ -52,7 +52,6 @@ public class FileUtils {
      * @param isDir         是否目录
      * @return
      */
-    @Nullable
     public static File getRandomFilePath(Context context, String suffixName , boolean isDir) {
         String path;
 
@@ -76,11 +75,10 @@ public class FileUtils {
         path = path + "/" + System.currentTimeMillis() + suffixName;
         File pathFile = new File(path);
 
-        if(ensureFileExist(pathFile,isDir)){
-            return pathFile;
-        }else {
-            return null;
-        }
+        ensureFileExist(pathFile,isDir);
+
+
+        return pathFile;
     }
 
     /**

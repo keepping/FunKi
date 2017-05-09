@@ -1,6 +1,6 @@
 package com.hifunki.funki.module.login;
 
-import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 
 /**
  * MainActivity
@@ -11,7 +11,7 @@ import com.hifunki.funki.base.activity.BaseTitleActivity;
  * @link
  * @since 2017-02-23 20:24:24
  */
-public class MainActivity extends BaseTitleActivity {
+public class MainActivity extends BaseActivity {
 
 
     @Override

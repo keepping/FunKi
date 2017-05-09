@@ -51,8 +51,8 @@ public class HomeFollowFragment extends BaseFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initVariable() {
+        super.initVariable();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -63,7 +63,6 @@ public class HomeFollowFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_home_follow;
     }
-
 
     @Override
     protected void initView(View root) {
@@ -81,25 +80,25 @@ public class HomeFollowFragment extends BaseFragment {
         swipeRefresh.setOnRefreshListener(new SwipeRefresh.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                System.out.println("---------------------------onRefresh");
-                multipleRecycleAdapter.deleteAllData();
-                multipleRecycleAdapter.addLast(new Post(2, CommonConst.NINE_PHOTO, imagePath));
-                multipleRecycleAdapter.addLast(new Post(4, CommonConst.NINE_PHOTO, imagePath));
-                multipleRecycleAdapter.addLast(new Post(1, CommonConst.NINE_PHOTO, imagePath));
-                multipleRecycleAdapter.addLast(new Post(3, CommonConst.NINE_PHOTO, imagePath));
-                multipleRecycleAdapter.addLast(new Post(4, CommonConst.NINE_PHOTO, imagePath));
-                multipleRecycleAdapter.addLast(new Post(1, CommonConst.NINE_PHOTO, imagePath));
-
+//                System.out.println("---------------------------onRefresh");
+//                multipleRecycleAdapter.deleteAllData();
+//                multipleRecycleAdapter.addLast(new Post(2, CommonConst.NINE_PHOTO, imagePath));
+//                multipleRecycleAdapter.addLast(new Post(4, CommonConst.NINE_PHOTO, imagePath));
+//                multipleRecycleAdapter.addLast(new Post(1, CommonConst.NINE_PHOTO, imagePath));
+//                multipleRecycleAdapter.addLast(new Post(3, CommonConst.NINE_PHOTO, imagePath));
+//                multipleRecycleAdapter.addLast(new Post(4, CommonConst.NINE_PHOTO, imagePath));
+//                multipleRecycleAdapter.addLast(new Post(1, CommonConst.NINE_PHOTO, imagePath));
+//
                 swipeRefresh.setFreshStatue(ISwipe.FreshStatus.SUCCESS);
             }
 
             @Override
             public void onLoading(boolean isLoadViewShow) {
-                multipleRecycleAdapter.addLast(new Post(3, CommonConst.NINE_PHOTO, imagePath));
-                multipleRecycleAdapter.addLast(new Post(2, CommonConst.NINE_PHOTO, imagePath));
-                multipleRecycleAdapter.addLast(new Post(1, CommonConst.NINE_PHOTO, imagePath));
-                multipleRecycleAdapter.addLast(new Post(4, CommonConst.NINE_PHOTO, imagePath));
-                System.out.println("---------------------------onLoading");
+//                multipleRecycleAdapter.addLast(new Post(3, CommonConst.NINE_PHOTO, imagePath));
+//                multipleRecycleAdapter.addLast(new Post(2, CommonConst.NINE_PHOTO, imagePath));
+//                multipleRecycleAdapter.addLast(new Post(1, CommonConst.NINE_PHOTO, imagePath));
+//                multipleRecycleAdapter.addLast(new Post(4, CommonConst.NINE_PHOTO, imagePath));
+//                System.out.println("---------------------------onLoading");
                 swipeRefresh.setLoadMoreStatus(ISwipe.LoadedStatus.CONTINUE);
 
             }
@@ -116,28 +115,4 @@ public class HomeFollowFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-
-//        FollowMovie followMovie=new FollowMovie(this, new ViewGroup() {
-//            @Override
-//            protected void onLayout(boolean changed, int l, int t, int r, int b) {
-//
-//            }
-//        });
-//        multipleRecycleAdapter.getItemViewType(3);
-//        followMovie.setOnFunkiStop(new FollowMovie.OnFunkiStopListener() {
-//            @Override
-//            public void stopPlay(FunKiPlayer player) {
-//                player.stop();
-//            }
-//        });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
 }

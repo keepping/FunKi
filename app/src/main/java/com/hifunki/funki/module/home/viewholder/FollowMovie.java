@@ -1,6 +1,7 @@
 package com.hifunki.funki.module.home.viewholder;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -36,7 +37,6 @@ public class FollowMovie extends PowViewHolder<Post> {
 
     public FollowMovie(Activity activity, ViewGroup viewGroup) {
         super(activity, viewGroup);
-
         ButterKnife.bind(this, mItemView);
     }
 
@@ -52,10 +52,9 @@ public class FollowMovie extends PowViewHolder<Post> {
 
     @Override
     public void loadData(AdapterDelegate<? super Post> multipleAdapter, Post data, int postion) {
-        System.out.println(this+"------------------------1："+System.currentTimeMillis());
+        Log.d("FunKiPlayer", "initView: play");
         fun_player.play(CommonConst.VIDEO);
-//        stopListener.stopPlay(fun_player);
-        System.out.println(this+"------------------------2："+System.currentTimeMillis());
+
     }
 
     @OnClick({R.id.tv_follow_movie_comment})
@@ -67,18 +66,6 @@ public class FollowMovie extends PowViewHolder<Post> {
         }
     }
 
-    /**
-     * 原来打算把参数回传到HomeFollowFragment
-     */
-//    private OnFunkiStopListener stopListener;
-//
-//    public inter OnFunkiStopListener {
-//        void stopPlay(FunKiPlayer player);
-//    }
-//
-//    public void setOnFunkiStop(OnFunkiStopListener stopListener) {
-//        this.stopListener=stopListener;
-//    }
 }
 
 

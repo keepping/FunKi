@@ -1,7 +1,7 @@
 package com.hifunki.funki.module.login;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 
 /**
  * 找回密码界面
@@ -12,7 +12,7 @@ import com.hifunki.funki.base.activity.BaseTitleActivity;
  * @link
  * @since 2017-02-24 13:52:52
  */
-public class FindPwdActivity extends BaseTitleActivity {
+public class FindPwdActivity extends BaseActivity {
 
 
     @Override

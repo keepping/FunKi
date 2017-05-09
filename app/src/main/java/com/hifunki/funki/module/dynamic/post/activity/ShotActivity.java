@@ -7,10 +7,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Camera;
 import android.media.MediaRecorder;
+import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -18,12 +21,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
+import com.github.hiteshsondhi88.libffmpeg.FFmpegExecuteResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.LoadBinaryResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegNotSupportedException;
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.dynamic.post.data.VideoHolder;
+import com.hifunki.funki.util.FileUtils;
 import com.hifunki.funki.util.PermissionUtil;
 import com.hifunki.funki.util.ToastUtils;
 import com.hifunki.funki.widget.bar.TopBarView;
+import com.powyin.slide.widget.BannerSwitch;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +41,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
+import io.media.RecodeUtil;
+import io.media.av.AVRecorder;
 
 
 /**
@@ -48,7 +59,7 @@ public class ShotActivity extends BaseActivity {
     @BindView(R.id.tbv_live_tag)
     TopBarView tbvLiveTag;
     @BindView(R.id.sv_dynamic)
-    SurfaceView mSurfaceView;
+    GLSurfaceView mSurfaceView;
     @BindView(R.id.iv_dynamic_mirror)
     ImageView ivDynamicMirror;//镜像按钮
     @BindView(R.id.iv_dynamic_beauty)
@@ -82,12 +93,19 @@ public class ShotActivity extends BaseActivity {
     LinearLayout recodeContent;
 
     private List<VideoHolder> holders = new ArrayList<>();
-    private SurfaceHolder mSurfaceHolder;
-    boolean mSurfaceCreated = false;
-    private Camera mCamera;
-    private boolean mPermissions = false;
-    int cameraPosition = 1;//0代表前置摄像头，1代表后置摄像头
 
+    AVRecorder mAVRecorder;
+
+
+    FFmpeg fFmpeg;
+
+
+    private VideoHolder.OnRecodeOver nRecodeOverListener = new VideoHolder.OnRecodeOver() {
+        @Override
+        public void onStop(VideoHolder holder) {
+
+        }
+    };
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, ShotActivity.class));
@@ -106,72 +124,49 @@ public class ShotActivity extends BaseActivity {
     @Override
     protected void initView() {
         tbvLiveTag.setBackgroundColor(Color.parseColor("#790C001F"));
-        mSurfaceHolder = mSurfaceView.getHolder();
-        mSurfaceHolder.addCallback(recodeCallBack);
+
      //   mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);//surfaceview不维护自己的缓冲区，等待屏幕渲染引擎将内容推送到用户面前
         ImageView menuImageMore = tbvLiveTag.getMenuImageMore();
-        menuImageMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
-                int cameraCount = Camera.getNumberOfCameras();
-                for (int i = 0; i < cameraCount; i++) {
-                    Camera.getCameraInfo(i, cameraInfo);
-                    if (cameraPosition == 1 && cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
-                        mCamera.stopPreview();
-                        mCamera.release();
-                        mCamera = null;
 
-                        mCamera = Camera.open(i);
-                        Camera.Parameters params = mCamera.getParameters();
-                        params.set("orientation", "portrait");
-                        mCamera.setParameters(params);
-                        mCamera.setDisplayOrientation(90);
-                        try {
-                            mCamera.setPreviewDisplay(mSurfaceHolder);//通过surfaceview显示取景画面
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        mCamera.startPreview();//开始预览
-                        cameraPosition = 0;
-                        break;
-                    } else if (cameraPosition == 0 && cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-                        //现在是前置， 变更为后置
-                        mCamera.stopPreview();//停掉原来摄像头的预览
-                        mCamera.release();//释放资源
-                        mCamera = null;//取消原来摄像头
-                        mCamera = Camera.open(i);//打开当前选中的摄像头
-                        Camera.Parameters params = mCamera.getParameters();
-                        params.set("orientation", "portrait");
-                        mCamera.setParameters(params);
-                        mCamera.setDisplayOrientation(90);
-                        try {
-                            mCamera.setPreviewDisplay(mSurfaceHolder);//通过surfaceview显示取景画面
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        mCamera.startPreview();//开始预览
-                        cameraPosition = 1;
-                        break;
-                    }
-                }
-            }
-        });
+        try {
+            mAVRecorder = new AVRecorder(RecodeUtil.create720pSessionConfig(this));
+            mAVRecorder.setPreviewDisplay(mSurfaceView);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        VideoHolder holder = new  VideoHolder(this,recodeContent, OnRecodeOver);
+
+
+        VideoHolder holder = new  VideoHolder(this);
+        holder.setOnStopLister(nRecodeOverListener);
+        holder.setRecorder(mAVRecorder,false);
         holders.add(holder);
         recodeContent.addView(holder.getItemView());
 
+        fFmpeg = FFmpeg.getInstance(this);
+
+        try {
+            fFmpeg.loadBinary(new LoadBinaryResponseHandler() {
+                @Override
+                public void onFailure() {
+                    Log.e(getClass().getSimpleName(),"error init ffmpeg");
+                }
+            });
+        } catch (FFmpegNotSupportedException e) {
+            Log.e(getClass().getSimpleName(),"error init ffmpeg");
+        }
+
+        checkPemison();
     }
 
+    @Override
+    protected void onDestroy() {
+        if(mAVRecorder!=null){
+            mAVRecorder.release();
+        }
 
-
-    private Camera.Size  getPreSize(Camera.CameraInfo info){
-
-
-        return null;
+        super.onDestroy();
     }
-
 
     @OnClick({R.id.tbv_live_tag, R.id.sv_dynamic, R.id.iv_dynamic_mirror,
             R.id.iv_dynamic_beauty, R.id.iv_shot_photo_dot, R.id.tv_shot_photo,
@@ -192,7 +187,6 @@ public class ShotActivity extends BaseActivity {
             case R.id.tv_shot_photo:
                 break;
             case R.id.ll_dynamic_image:
-
                 break;
             case R.id.ll_shot_video:
 
@@ -203,117 +197,106 @@ public class ShotActivity extends BaseActivity {
                 break;
             case R.id.iv_shot_take_photo:
 
-
                 View current =  findViewById(R.id.iv_shot_take_photo);
                 if(!current.isSelected()){
-                    holders.get(holders.size()-1).startRecord(mCamera,mSurfaceHolder.getSurface(),400,40000);
-                    current.setSelected(true);
+                    holders.get(holders.size()-1).startRecord(400,40000);
                 }else {
                     holders.get(holders.size()-1).stopRecord();
-                    current.setSelected(false);
-
-                    VideoHolder holder = new VideoHolder(this,recodeContent, OnRecodeOver);
+                    VideoHolder holder = new  VideoHolder(this);
+                    holder.setRecorder(mAVRecorder,true);
+                    holder.setOnStopLister(nRecodeOverListener);
                     holders.add(holder);
                     recodeContent.addView(holder.getItemView());
                 }
-
+                current.setSelected(!current.isSelected());
                 break;
             case R.id.iv_shot_photo:
                 break;
-
             case R.id.tv_shot_time:
                 break;
             case R.id.iv_shot_back:
                 break;
             case R.id.iv_shot_ok:
-                break;
-        }
-    }
-
-    private VideoHolder.OnRecodeOver OnRecodeOver = new VideoHolder.OnRecodeOver() {
-        @Override
-        public void onStop(VideoHolder holder) {
-
-        }
-    };
+                if(view.isSelected()){
 
 
-    private SurfaceHolder.Callback recodeCallBack = new SurfaceHolder.Callback() {
+                }else {
 
-        @RequiresApi(api = Build.VERSION_CODES.M)
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {              // 视频预浏览
-            mSurfaceCreated = true;
-            List<String> permissions = new ArrayList<>();
-            if (!PermissionUtil.checkCameraAccess(ShotActivity.this)) {
-                permissions.add(Manifest.permission.CAMERA);
-            }
-            if (!PermissionUtil.checkAudioAccess(ShotActivity.this)) {
-                permissions.add(Manifest.permission.RECORD_AUDIO);
-            }
-            if (!PermissionUtil.checkWriteStorageAccess(ShotActivity.this)) {
-                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            }
-            if (permissions.size() != 0) {
-                ActivityCompat.requestPermissions(ShotActivity.this, permissions.toArray(new String[permissions.size()]), 0);
-            } else {
-                mPermissions = true;
-                openCamera();
-            }
-
-        }
-
-        @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        }
-
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
-            releaseCamera();
-            mSurfaceCreated = false;
-        }
-
-    };
-
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 0:
-                for (int ret : grantResults) {
-                    if (ret != PackageManager.PERMISSION_GRANTED) {
-
-                        ToastUtils.showShortToastSafe("没有授权");
-                    } else {
-                        ToastUtils.showShortToastSafe("授权成功");
-                    }
                 }
-                mPermissions = true;
-                openCamera();
+                try {
+
+                    if(holders.size() == 1) return;
+
+
+                    StringBuilder common = new StringBuilder();
+                    common.append("-i concat:");
+                    for(int i=0 ; i<holders.size() -1 ;i++){
+                        common.append(holders.get(i).getStoreFile());
+                        common.append("|");
+                    }
+                    common.setLength(common.length()-1);
+                    common.append(" -c copy ");
+                    common.append(FileUtils.getRandomFilePath(this,".mp4",false).toString());
+
+                    fFmpeg.execute(new String[]{ },new FFmpegExecuteResponseHandler(){
+
+                        @Override
+                        public void onSuccess(String message) {
+                            System.out.println("...................................onSuccess");
+                        }
+
+                        @Override
+                        public void onProgress(String message) {
+                            System.out.println("...................................onProgress");
+                        }
+
+                        @Override
+                        public void onFailure(String message) {
+                            System.out.println("...................................onFailure");
+                        }
+
+                        @Override
+                        public void onStart() {
+                            System.out.println("...................................onStart");
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            System.out.println("...................................onFinish");
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
                 break;
         }
     }
 
-    private void openCamera() {
-        try {
-            mCamera = Camera.open();
-            Camera.Parameters params = mCamera.getParameters();
-            params.set("orientation", "portrait");
-            mCamera.setParameters(params);
-            mCamera.setDisplayOrientation(90);
-            mCamera.setPreviewDisplay(mSurfaceView.getHolder());
-            mCamera.startPreview();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+    // 检查权限
+    private void checkPemison(){
+        List<String> permissions = new ArrayList<>();
+        if (!PermissionUtil.checkCameraAccess(ShotActivity.this)) {
+            permissions.add(Manifest.permission.CAMERA);
+        }
+        if (!PermissionUtil.checkAudioAccess(ShotActivity.this)) {
+            permissions.add(Manifest.permission.RECORD_AUDIO);
+        }
+        if (!PermissionUtil.checkWriteStorageAccess(ShotActivity.this)) {
+            permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (permissions.size() != 0) {
+            ActivityCompat.requestPermissions(ShotActivity.this, permissions.toArray(new String[permissions.size()]), 0);
         }
     }
 
-    private void releaseCamera() {
-        if (mCamera != null) {
-            mCamera.stopPreview();
-            mCamera.setPreviewCallbackWithBuffer(null);
-            mCamera.release();
-            mCamera = null;
-        }
-    }
+
+
+
+
+
 
 }

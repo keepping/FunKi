@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hifunki.funki.module.msg.activity.MsgContactsActvity">
+
+    <com.hifunki.funki.widget.bar.TopBarView
+        android:id="@+id/tbv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menuImage="@drawable/iv_dynamic_more"
+        app:titleText="通讯录" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tb_msg_contacts"
+        fontPath="fonts/FZDHTFW.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tabBackground="@color/_4A2F75"
+        app:tabIndicatorColor="@color/_9B44ED"
+        app:tabIndicatorHeight="2px"
+        app:tabMinWidth="39dp"
+        app:tabSelectedTextColor="@color/_9B44ED"
+        app:tabTextColor="@color/_6B4E9A" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_msg_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

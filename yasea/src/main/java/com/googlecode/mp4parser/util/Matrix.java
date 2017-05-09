@@ -61,9 +61,8 @@ public class Matrix {
         if (Double.compare(matrix.ty, ty) != 0) return false;
         if (Double.compare(matrix.u, u) != 0) return false;
         if (Double.compare(matrix.v, v) != 0) return false;
-        if (Double.compare(matrix.w, w) != 0) return false;
+        return Double.compare(matrix.w, w) == 0;
 
-        return true;
     }
 
     @Override

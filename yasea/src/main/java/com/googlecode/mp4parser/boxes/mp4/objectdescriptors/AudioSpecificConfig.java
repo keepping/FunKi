@@ -1119,11 +1119,8 @@ public class AudioSpecificConfig extends BaseDescriptor {
         if (var_ScalableFlag != that.var_ScalableFlag) {
             return false;
         }
-        if (!Arrays.equals(configBytes, that.configBytes)) {
-            return false;
-        }
+        return Arrays.equals(configBytes, that.configBytes);
 
-        return true;
     }
 
     @Override

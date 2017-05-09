@@ -58,7 +58,11 @@
         </provider>
 
         <activity android:name=".module.splash.activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- 主布局 -->
@@ -85,7 +89,6 @@
         <!-- 游客必填信息页 -->
         <activity
             android:name=".module.login.VisitorFillActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- android:launchMode="singleTop" -->
@@ -94,7 +97,7 @@
             android:name=".module.login.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- 国家列表页 -->
         <activity
             android:name=".module.login.CountyListActivity"
@@ -144,7 +147,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".module.photo.gallery.activity.GalleryVpActivity" />
         <!-- 账号基本类 -->
-        <activity android:name=".base.activity.AccountBaseActivity" />
         <activity android:name=".module.search.activity.SearchActivity" />
         <!-- 世界总榜 -->
         <activity android:name=".module.rank.world.activity.WorldRankActivity" />
@@ -189,10 +191,17 @@
         <activity android:name=".module.me.withdraw.activity.WithdrawActivity" />
 
         <!-- 兑换记录 -->
-        <activity android:name=".module.me.exchange.activity.ExChangeRecordActivity" />
+        <activity android:name=".module.me.exchange.activity.ExChangeDetailActivity" />
         <activity android:name=".module.dynamic.post.activity.ShotActivity" >
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
+
         <activity android:name=".module.photo.personal.activity.PersonalPhotoActivity" />
         <activity android:name=".module.dynamic.me.activity.MyDynamicActivity" />
         <activity android:name=".module.dynamic.normal.activity.NormalDynamicActivity" />
@@ -206,7 +215,12 @@
         <activity android:name=".module.me.visit.activity.VisitActivity" />
         <activity android:name=".module.me.blacklist.activity.BlackListActivtiy" />
         <activity android:name=".module.me.follow.activity.MyFollowActivity" />
-        <activity android:name=".module.live.anchor.activity.LiveFinishActivity"></activity>
+        <activity android:name=".module.live.anchor.activity.LiveFinishActivity" />
+        <activity
+            android:name=".module.me.settting.activity.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".module.msg.activity.MsgContactsActvity"></activity>
     </application>
 
 </manifest>

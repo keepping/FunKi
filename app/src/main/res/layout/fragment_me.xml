@@ -12,20 +12,18 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-       >
+            android:layout_height="wrap_content">
 
             <include
                 android:id="@+id/layout_me_head"
-                layout="@layout/fragment_me_head"
-                android:focusable="true"
-                android:focusableInTouchMode="true"/>
+                layout="@layout/fragment_me_head" />
 
             <include
                 android:id="@+id/layout_mid_head"
                 layout="@layout/fragment_me_mid" />
 
             <android.support.v7.widget.RecyclerView
+                android:focusable="false"
                 android:id="@+id/rv_me"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"

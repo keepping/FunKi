@@ -69,11 +69,8 @@ public class UnknownEntry extends GroupEntry {
 
         UnknownEntry that = (UnknownEntry) o;
 
-        if (content != null ? !content.equals(that.content) : that.content != null) {
-            return false;
-        }
+        return content != null ? content.equals(that.content) : that.content == null;
 
-        return true;
     }
 
     @Override

@@ -88,11 +88,14 @@ public class AudienceFragment extends BaseFragment {
     DanmakuView mDanmakuView;
     @BindView(R.id.iv_room_msg)
     ImageView ivRoomMsg;
-
-    MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
-    MultipleRecycleAdapter<User> avatarMultipleRecycleAdapter;
-    MultipleRecycleAdapter<String> giftAdapter;
-
+    @BindView(R.id.live_edit_content)
+    EditText editContent;
+    @BindView(R.id.live_edit)
+    View editGroup;
+    @BindView(R.id.rl_info)
+    View editSwitch;
+    @BindView(R.id.empty)
+    View empty;
     @BindView(R.id.fan_name)
     TextView fanName;
     @BindView(R.id.fan_num)
@@ -101,12 +104,15 @@ public class AudienceFragment extends BaseFragment {
     LinearLayout fanLocation;
     @BindView(R.id.iv_room_exit)
     ImageView ivRoomExit;
-//    @BindView(R.id.rl_info)
-//    RelativeLayout rlInfo;
     @BindView(R.id.room_view)
     FrameLayout roomView;
     @BindView(R.id.iv_room_private_msg)
     ImageView ivRoomPrivateMsg;
+
+    MultipleRecycleAdapter<ChatMessage> messageMultipleRecycleAdapter;
+    MultipleRecycleAdapter<User> avatarMultipleRecycleAdapter;
+    MultipleRecycleAdapter<String> giftAdapter;
+
     private boolean reResume = false;      //用于控制当前显示视频
     private boolean isVisual = false;      //用于控制当前显示视频
     private LiveModel model;
@@ -118,6 +124,7 @@ public class AudienceFragment extends BaseFragment {
     private View privateMsgView;
     DanMuKuHelper danMuKuHelper;
 
+    ViewTreeObserver.OnGlobalLayoutListener layoutListener;
     public static AudienceFragment newInstance(LiveModel model) {
         Bundle args = new Bundle();
         AudienceFragment fragment = new AudienceFragment();
@@ -190,13 +197,9 @@ public class AudienceFragment extends BaseFragment {
         mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.iv_rank_first, null)).getBitmap());
         mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.iv_start_live_facebook, null)).getBitmap());
 
-
         divergeView3.setEndPoint(new PointF(divergeView3.getMeasuredWidth() / 2, 0));
         divergeView3.setDivergeViewProvider(new Provider());
     }
-
-
-
 
     @OnClick({R.id.host_avatar, R.id.tv_follow, R.id.iv_room_msg,R.id.iv_room_private_msg})
     public void onClick(View view) {
@@ -212,7 +215,6 @@ public class AudienceFragment extends BaseFragment {
 
                 Rect rect = new Rect();
 
-
                 System.out.println("---------------------size "+mRoot.getHeight() + "   ");
 
                 break;
@@ -227,11 +229,7 @@ public class AudienceFragment extends BaseFragment {
 
                 break;
             case R.id.iv_room_msg:
-
-                System.out.println("...............................>>>>>>>>>>>>>>>>>");
-
                 KeyboardUtil.showKeyboard(editContent);
-
                 break;
             case R.id.iv_room_private_msg:
                 if (sharePopWindow != null) {
@@ -263,39 +261,16 @@ public class AudienceFragment extends BaseFragment {
                 PrivateMsgAdapter privateMsgAdapter = new PrivateMsgAdapter(R.layout.item_audience_private_msg, list);
                 rvPrivatemsg.setAdapter(privateMsgAdapter);
                 break;
-
-
         }
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         danMuKuHelper = new DanMuKuHelper(getContext(),mDanmakuView);
         danMuKuHelper.onViewCreated(view,savedInstanceState);
     }
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        danMuKuHelper.onDestroyView();
-    }
-
-    @BindView(R.id.live_edit_content)
-    EditText editContent;
-
-    @BindView(R.id.live_edit)
-    View editGroup;
-
-    @BindView(R.id.rl_info)
-    View editSwitch;
-    @BindView(R.id.empty)
-    View empty;
-
-    ViewTreeObserver.OnGlobalLayoutListener layoutListener;
     @Override
     public void onResume() {
         super.onResume();
@@ -369,7 +344,11 @@ public class AudienceFragment extends BaseFragment {
     };
 
     Conversation mConversation;
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        danMuKuHelper.onDestroyView();
+    }
 
     private void startPlay() {
 

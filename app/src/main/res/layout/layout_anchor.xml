@@ -8,7 +8,7 @@
     <com.powyin.slide.widget.BannerSwitch
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:pow_switch_auto_ennable="true"
+
         app:pow_switch_fixed_edge="true">
 
         <FrameLayout

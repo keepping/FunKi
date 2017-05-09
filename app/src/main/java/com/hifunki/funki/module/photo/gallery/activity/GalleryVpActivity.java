@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.photo.gallery.entity.PhotoInfo;
 import com.hifunki.funki.module.photo.gallery.viewPager.SamplePagerAdapter;
 import com.hifunki.funki.widget.HackyViewPager;
@@ -29,7 +29,7 @@ import butterknife.OnClick;
  * @link
  * @since 2017-03-03 17:36:36
  */
-public class GalleryVpActivity extends BaseTitleActivity implements View.OnClickListener {
+public class GalleryVpActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.top_pic)
     TopBarView topBarView;
@@ -42,8 +42,8 @@ public class GalleryVpActivity extends BaseTitleActivity implements View.OnClick
     private int anInt;
     private int mSize;
     private ArrayList<PhotoInfo> photoInfoList;
-   static String KEY_GALLERY_PHOTO_NUMBER = "key_gallery_photo_number";
-    static  String KEY_GALLERY_PHOTO_ALL_NUMBER = "key_gallery_photo_all_number";
+    static String KEY_GALLERY_PHOTO_NUMBER = "key_gallery_photo_number";
+    static String KEY_GALLERY_PHOTO_ALL_NUMBER = "key_gallery_photo_all_number";
 
     public static void show(Context context, int position, ArrayList<PhotoInfo> photoInfoList) {
         Intent intent = new Intent(context, GalleryVpActivity.class);
@@ -117,12 +117,6 @@ public class GalleryVpActivity extends BaseTitleActivity implements View.OnClick
             case R.id.vp_gallery_photo:
                 break;
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
     }
 
     @Override

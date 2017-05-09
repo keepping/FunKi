@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/_0C001F"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_follow_picture_video" />
+
+    <TextView
+        android:id="@+id/tv_follow_movie_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/home_post_movie"
+        android:textColor="#c193ec"
+        android:textSize="15sp" />
+
+    <com.hifunki.funki.widget.FunKiPlayer2
+        android:id="@+id/fun_player"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:background="@color/_28114D" />
+
+    <include layout="@layout/layout_follow_star" />
+
+</LinearLayout>

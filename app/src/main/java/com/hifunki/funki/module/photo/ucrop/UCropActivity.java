@@ -18,8 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hifunki.funki.R;
-import com.hifunki.funki.base.activity.BaseTitleActivity;
-import com.hifunki.funki.module.login.widget.ToolTitleBar;
+import com.hifunki.funki.base.activity.BaseActivity;
 import com.hifunki.funki.module.photo.ucrop.callback.BitmapCropCallback;
 import com.hifunki.funki.module.photo.ucrop.entity.AspectRatio;
 import com.hifunki.funki.module.photo.ucrop.util.SelectedStateListDrawable;
@@ -42,7 +41,7 @@ import java.util.Locale;
  */
 
 @SuppressWarnings("ConstantConditions")
-public class UCropActivity extends BaseTitleActivity implements View.OnClickListener {
+public class UCropActivity extends BaseActivity implements View.OnClickListener {
 
     public static final int DEFAULT_COMPRESS_QUALITY = 90;
     public static final Bitmap.CompressFormat DEFAULT_COMPRESS_FORMAT = Bitmap.CompressFormat.JPEG;
@@ -100,9 +99,7 @@ public class UCropActivity extends BaseTitleActivity implements View.OnClickList
         photoBox = (ViewGroup) findViewById(R.id.ucrop_photobox);
 
 
-        ToolTitleBar.showLeftButton(this, photoBox, ToolTitleBar.BTN_TYPE_IMAGE, R.drawable.iv_back, this);
 
-        ToolTitleBar.showCenterButton(this, photoBox, ToolTitleBar.BTN_TYPE_TEXT, R.string.ucrop_tailor_photo, null);
 
     }
 
@@ -142,9 +139,7 @@ public class UCropActivity extends BaseTitleActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rlTitleLeft:
-                onBackPressed();
-                break;
+
             case R.id.tv_ucrop_finish:
                 cropAndSaveImage();
                 break;

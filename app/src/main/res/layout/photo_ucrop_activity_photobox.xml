@@ -4,11 +4,13 @@
     android:id="@+id/ucrop_photobox"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:ignore="MissingPrefix">
 
-    <include layout="@layout/title_templet" />
-
+    <com.hifunki.funki.widget.bar.TopBarView
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/ucrop_tailor_photo" />
 
     <TextView
         android:id="@+id/tv_ucrop_finish"

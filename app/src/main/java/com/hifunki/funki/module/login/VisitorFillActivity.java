@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.hifunki.funki.R;
 import com.hifunki.funki.base.activity.BaseActivity;
-import com.hifunki.funki.base.application.ApplicationMain;
 import com.hifunki.funki.module.login.business.VisitorFillBusiness;
 
 import butterknife.BindView;
@@ -158,9 +157,7 @@ public class VisitorFillActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.activity_visitor_fill://根布局
                 break;
-            case R.id.rlTitleLeft:
-                ApplicationMain.finishAllActivity();
-                break;
+
         }
     }
 
